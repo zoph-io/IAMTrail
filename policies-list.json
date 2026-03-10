@@ -17413,6 +17413,30 @@
             "UpdateDate": "2026-03-04T22:57:11+00:00"
         },
         {
+            "PolicyName": "AmazonRoute53GlobalResolverFullAccess",
+            "PolicyId": "ANPAZKAPJZG4IMQMOAGRC",
+            "Arn": "arn:aws:iam::aws:policy/AmazonRoute53GlobalResolverFullAccess",
+            "Path": "/",
+            "DefaultVersionId": "v1",
+            "AttachmentCount": 0,
+            "PermissionsBoundaryUsageCount": 0,
+            "IsAttachable": true,
+            "CreateDate": "2026-03-09T20:27:09+00:00",
+            "UpdateDate": "2026-03-09T20:27:09+00:00"
+        },
+        {
+            "PolicyName": "AmazonRoute53GlobalResolverReadOnlyAccess",
+            "PolicyId": "ANPAZKAPJZG4O4UWF76UM",
+            "Arn": "arn:aws:iam::aws:policy/AmazonRoute53GlobalResolverReadOnlyAccess",
+            "Path": "/",
+            "DefaultVersionId": "v1",
+            "AttachmentCount": 0,
+            "PermissionsBoundaryUsageCount": 0,
+            "IsAttachable": true,
+            "CreateDate": "2026-03-09T20:27:11+00:00",
+            "UpdateDate": "2026-03-09T20:27:11+00:00"
+        },
+        {
             "PolicyName": "AWSConfigRole",
             "PolicyId": "ANPAIQRXRDRGJUA33ELIO",
             "Arn": "arn:aws:iam::aws:policy/service-role/AWSConfigRole",
