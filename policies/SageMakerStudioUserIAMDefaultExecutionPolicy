@@ -1,7 +1,7 @@
 {
     "PolicyVersion": {
-        "CreateDate": "2026-02-12T18:02:28Z", 
-        "VersionId": "v21", 
+        "CreateDate": "2026-03-11T17:42:09Z", 
+        "VersionId": "v22", 
         "Document": {
             "Version": "2012-10-17", 
             "Statement": [
@@ -926,7 +926,15 @@
                 {
                     "Action": [
                         "emr-serverless:ListApplications", 
-                        "emr-serverless:GetApplication"
+                        "emr-serverless:GetApplication", 
+                        "emr-serverless:GetDashboardForJobRun", 
+                        "emr-serverless:GetJobRun", 
+                        "emr-serverless:ListJobRunAttempts", 
+                        "emr-serverless:ListJobRuns", 
+                        "emr-serverless:ListTagsForResource", 
+                        "emr-serverless:StartApplication", 
+                        "emr-serverless:StartJobRun", 
+                        "emr-serverless:AccessLivyEndpoints"
                     ], 
                     "Resource": "*", 
                     "Effect": "Allow", 
