@@ -1,7 +1,7 @@
 {
     "PolicyVersion": {
-        "CreateDate": "2026-03-02T20:12:08Z", 
-        "VersionId": "v77", 
+        "CreateDate": "2026-03-11T16:27:10Z", 
+        "VersionId": "v78", 
         "Document": {
             "Version": "2012-10-17", 
             "Statement": [
@@ -1772,7 +1772,8 @@
                         "arn:aws:iam::*:role/aws-service-role/ops.emr-serverless.amazonaws.com/AWSServiceRoleForAmazonEMRServerless", 
                         "arn:aws:iam::*:role/aws-service-role/airflow.amazonaws.com/AWSServiceRoleForAmazonMWAA", 
                         "arn:aws:iam::*:role/aws-service-role/elasticmapreduce.amazonaws.com/AWSServiceRoleForEMRCleanup", 
-                        "arn:aws:iam::*:role/aws-service-role/emr-containers.amazonaws.com/AWSServiceRoleForAmazonEMRContainers"
+                        "arn:aws:iam::*:role/aws-service-role/emr-containers.amazonaws.com/AWSServiceRoleForAmazonEMRContainers", 
+                        "arn:aws:iam::*:role/aws-service-role/ops.athena.amazonaws.com/AWSServiceRoleForAmazonAthena"
                     ], 
                     "Effect": "Allow", 
                     "Sid": "CreateSLR"
@@ -2996,6 +2997,6 @@
                 }
             ]
         }, 
-        "IsDefaultVersion": false
+        "IsDefaultVersion": true
     }
 }
