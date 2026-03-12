@@ -1,19 +1,19 @@
 {
     "PolicyVersion": {
-        "CreateDate": "2015-11-10T23:25:01Z", 
-        "VersionId": "v1", 
         "Document": {
-            "Version": "2012-10-17", 
+            "Version": "2012-10-17",
             "Statement": [
                 {
                     "Action": [
                         "redshift:Describe*"
-                    ], 
-                    "Resource": "*", 
-                    "Effect": "Allow"
+                    ],
+                    "Effect": "Allow",
+                    "Resource": "*"
                 }
             ]
-        }, 
-        "IsDefaultVersion": true
+        },
+        "VersionId": "v1",
+        "IsDefaultVersion": true,
+        "CreateDate": "2015-11-10T23:25:01+00:00"
     }
 }
