@@ -1,61 +1,61 @@
 {
     "PolicyVersion": {
-        "CreateDate": "2026-02-12T18:02:30Z", 
-        "VersionId": "v8", 
         "Document": {
-            "Version": "2012-10-17", 
+            "Version": "2012-10-17",
             "Statement": [
                 {
+                    "Effect": "Allow",
                     "Action": [
-                        "rum:GetAppMonitor", 
-                        "rum:GetAppMonitorData", 
-                        "rum:ListAppMonitors", 
-                        "rum:ListRumMetricsDestinations", 
-                        "rum:BatchGetRumMetricDefinitions", 
-                        "rum:GetResourcePolicy", 
+                        "rum:GetAppMonitor",
+                        "rum:GetAppMonitorData",
+                        "rum:ListAppMonitors",
+                        "rum:ListRumMetricsDestinations",
+                        "rum:BatchGetRumMetricDefinitions",
+                        "rum:GetResourcePolicy",
                         "rum:ListTagsForResource"
-                    ], 
-                    "Resource": "*", 
-                    "Effect": "Allow"
-                }, 
+                    ],
+                    "Resource": "*"
+                },
                 {
+                    "Effect": "Allow",
                     "Action": [
-                        "synthetics:describeCanariesLastRun", 
+                        "synthetics:describeCanariesLastRun",
                         "synthetics:describeCanaries"
-                    ], 
-                    "Resource": "arn:aws:synthetics:*:*:canary:*", 
-                    "Effect": "Allow"
-                }, 
+                    ],
+                    "Resource": "arn:aws:synthetics:*:*:canary:*"
+                },
                 {
+                    "Effect": "Allow",
                     "Action": [
                         "cloudwatch:GetMetricData"
-                    ], 
-                    "Resource": "*", 
-                    "Effect": "Allow"
-                }, 
+                    ],
+                    "Resource": "*"
+                },
                 {
+                    "Effect": "Allow",
                     "Action": [
                         "cloudwatch:DescribeAlarms"
-                    ], 
-                    "Resource": "arn:aws:cloudwatch:*:*:alarm:*", 
-                    "Effect": "Allow"
-                }, 
+                    ],
+                    "Resource": "arn:aws:cloudwatch:*:*:alarm:*"
+                },
                 {
+                    "Effect": "Allow",
                     "Action": [
                         "logs:DescribeLogGroups"
-                    ], 
-                    "Resource": "arn:aws:logs:*:*:log-group::log-stream:*", 
-                    "Effect": "Allow"
-                }, 
+                    ],
+                    "Resource": "arn:aws:logs:*:*:log-group::log-stream:*"
+                },
                 {
+                    "Effect": "Allow",
                     "Action": [
                         "xray:GetTraceSummaries"
-                    ], 
-                    "Resource": "*", 
-                    "Effect": "Allow"
+                    ],
+                    "Resource": "*"
                 }
             ]
-        }, 
-        "IsDefaultVersion": true
+        },
+        "VersionId": "v8",
+        "IsDefaultVersion": true,
+        "CreateDate": "2026-02-12T18:02:30+00:00"
     }
 }
