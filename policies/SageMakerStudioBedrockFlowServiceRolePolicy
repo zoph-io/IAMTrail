@@ -1,160 +1,160 @@
 {
     "PolicyVersion": {
-        "CreateDate": "2026-02-12T17:58:49Z", 
-        "VersionId": "v9", 
         "Document": {
-            "Version": "2012-10-17", 
+            "Version": "2012-10-17",
             "Statement": [
                 {
-                    "Action": "bedrock:GetPrompt", 
-                    "Resource": "arn:aws:bedrock:*:*:prompt/*", 
-                    "Effect": "Allow", 
+                    "Sid": "BedrockPromptPermissions",
+                    "Effect": "Allow",
+                    "Action": "bedrock:GetPrompt",
+                    "Resource": "arn:aws:bedrock:*:*:prompt/*",
                     "Condition": {
                         "StringEquals": {
-                            "aws:ResourceTag/AmazonDataZoneProject": "${aws:PrincipalTag/AmazonDataZoneProject}", 
-                            "aws:ResourceAccount": "${aws:PrincipalAccount}"
+                            "aws:ResourceAccount": "${aws:PrincipalAccount}",
+                            "aws:ResourceTag/AmazonDataZoneProject": "${aws:PrincipalTag/AmazonDataZoneProject}"
                         }
-                    }, 
-                    "Sid": "BedrockPromptPermissions"
-                }, 
+                    }
+                },
                 {
-                    "Action": "bedrock:Retrieve", 
-                    "Resource": "arn:aws:bedrock:*:*:knowledge-base/*", 
-                    "Effect": "Allow", 
+                    "Sid": "BedrockKnowledgeBasePermissions",
+                    "Effect": "Allow",
+                    "Action": "bedrock:Retrieve",
+                    "Resource": "arn:aws:bedrock:*:*:knowledge-base/*",
                     "Condition": {
                         "StringEquals": {
-                            "aws:ResourceTag/AmazonDataZoneProject": "${aws:PrincipalTag/AmazonDataZoneProject}", 
-                            "aws:ResourceAccount": "${aws:PrincipalAccount}"
+                            "aws:ResourceAccount": "${aws:PrincipalAccount}",
+                            "aws:ResourceTag/AmazonDataZoneProject": "${aws:PrincipalTag/AmazonDataZoneProject}"
                         }
-                    }, 
-                    "Sid": "BedrockKnowledgeBasePermissions"
-                }, 
+                    }
+                },
                 {
-                    "Action": "bedrock:ApplyGuardrail", 
-                    "Resource": "arn:aws:bedrock:*:*:guardrail/*", 
-                    "Effect": "Allow", 
+                    "Sid": "BedrockGuardrailPermissions",
+                    "Effect": "Allow",
+                    "Action": "bedrock:ApplyGuardrail",
+                    "Resource": "arn:aws:bedrock:*:*:guardrail/*",
                     "Condition": {
                         "StringEquals": {
-                            "aws:ResourceTag/AmazonDataZoneProject": "${aws:PrincipalTag/AmazonDataZoneProject}", 
-                            "aws:ResourceAccount": "${aws:PrincipalAccount}"
+                            "aws:ResourceAccount": "${aws:PrincipalAccount}",
+                            "aws:ResourceTag/AmazonDataZoneProject": "${aws:PrincipalTag/AmazonDataZoneProject}"
                         }
-                    }, 
-                    "Sid": "BedrockGuardrailPermissions"
-                }, 
+                    }
+                },
                 {
-                    "Action": "bedrock:RetrieveAndGenerate", 
-                    "Resource": "*", 
-                    "Effect": "Allow", 
-                    "Sid": "AllowBedrockRetrieveAndGeneratePermissions"
-                }, 
+                    "Sid": "AllowBedrockRetrieveAndGeneratePermissions",
+                    "Effect": "Allow",
+                    "Action": "bedrock:RetrieveAndGenerate",
+                    "Resource": "*"
+                },
                 {
-                    "Action": "lambda:InvokeFunction", 
-                    "Resource": "arn:aws:lambda:*:*:function:amazon-bedrock*", 
-                    "Effect": "Allow", 
+                    "Sid": "AllowLambdaInvokeFunctionInProjectPermissions",
+                    "Effect": "Allow",
+                    "Action": "lambda:InvokeFunction",
+                    "Resource": "arn:aws:lambda:*:*:function:amazon-bedrock*",
                     "Condition": {
                         "StringEquals": {
-                            "aws:ResourceTag/AmazonDataZoneProject": "${aws:PrincipalTag/AmazonDataZoneProject}", 
-                            "aws:ResourceAccount": "${aws:PrincipalAccount}"
+                            "aws:ResourceAccount": "${aws:PrincipalAccount}",
+                            "aws:ResourceTag/AmazonDataZoneProject": "${aws:PrincipalTag/AmazonDataZoneProject}"
                         }
-                    }, 
-                    "Sid": "AllowLambdaInvokeFunctionInProjectPermissions"
-                }, 
+                    }
+                },
                 {
+                    "Sid": "AllowBedrockApplicationInferenceProfileAccessInProjectPermissions",
+                    "Effect": "Allow",
                     "Action": [
-                        "bedrock:GetInferenceProfile", 
+                        "bedrock:GetInferenceProfile",
                         "bedrock:InvokeModel"
-                    ], 
-                    "Resource": "arn:aws:bedrock:*:*:application-inference-profile/*", 
-                    "Effect": "Allow", 
+                    ],
+                    "Resource": "arn:aws:bedrock:*:*:application-inference-profile/*",
                     "Condition": {
                         "StringEquals": {
                             "aws:ResourceTag/AmazonDataZoneProject": "${aws:PrincipalTag/AmazonDataZoneProject}"
                         }
-                    }, 
-                    "Sid": "AllowBedrockApplicationInferenceProfileAccessInProjectPermissions"
-                }, 
+                    }
+                },
                 {
-                    "Action": "bedrock:InvokeModel", 
+                    "Sid": "AllowBedrockInvokeModelAccessWithInferenceProfilePermissions",
+                    "Effect": "Allow",
+                    "Action": "bedrock:InvokeModel",
                     "Resource": [
-                        "arn:aws:bedrock:*::foundation-model/*", 
-                        "arn:aws:bedrock:*:*:custom-model/*", 
+                        "arn:aws:bedrock:*::foundation-model/*",
+                        "arn:aws:bedrock:*:*:custom-model/*",
                         "arn:aws:bedrock:*:*:provisioned-model/*"
-                    ], 
-                    "Effect": "Allow", 
+                    ],
                     "Condition": {
                         "Null": {
                             "bedrock:InferenceProfileArn": "false"
                         }
-                    }, 
-                    "Sid": "AllowBedrockInvokeModelAccessWithInferenceProfilePermissions"
-                }, 
+                    }
+                },
                 {
-                    "Action": "bedrock:InvokeAgent", 
-                    "Resource": "arn:aws:bedrock:*:*:agent-alias/*", 
-                    "Effect": "Allow", 
+                    "Sid": "BedrockInvokeAgentPermissions",
+                    "Effect": "Allow",
+                    "Action": "bedrock:InvokeAgent",
+                    "Resource": "arn:aws:bedrock:*:*:agent-alias/*",
                     "Condition": {
                         "StringEquals": {
-                            "aws:ResourceTag/AmazonDataZoneProject": "${aws:PrincipalTag/AmazonDataZoneProject}", 
-                            "aws:ResourceAccount": "${aws:PrincipalAccount}"
+                            "aws:ResourceAccount": "${aws:PrincipalAccount}",
+                            "aws:ResourceTag/AmazonDataZoneProject": "${aws:PrincipalTag/AmazonDataZoneProject}"
                         }
-                    }, 
-                    "Sid": "BedrockInvokeAgentPermissions"
-                }, 
+                    }
+                },
                 {
+                    "Sid": "BedrockPromptKmsPermissions",
+                    "Effect": "Allow",
                     "Action": [
-                        "kms:Decrypt", 
+                        "kms:Decrypt",
                         "kms:GenerateDataKey"
-                    ], 
-                    "Resource": "arn:aws:kms:*:*:key/${aws:PrincipalTag/KmsKeyId}", 
-                    "Effect": "Allow", 
+                    ],
+                    "Resource": "arn:aws:kms:*:*:key/${aws:PrincipalTag/KmsKeyId}",
                     "Condition": {
-                        "StringEquals": {
-                            "aws:ResourceAccount": "${aws:PrincipalAccount}"
-                        }, 
                         "StringLike": {
-                            "kms:EncryptionContext:aws:bedrock-prompts:arn": "arn:aws:bedrock:*:${aws:PrincipalAccount}:prompt/*", 
-                            "kms:ViaService": "bedrock.*.amazonaws.com"
-                        }
-                    }, 
-                    "Sid": "BedrockPromptKmsPermissions"
-                }, 
-                {
-                    "Action": "kms:Decrypt", 
-                    "Resource": "arn:aws:kms:*:*:key/${aws:PrincipalTag/KmsKeyId}", 
-                    "Effect": "Allow", 
-                    "Condition": {
+                            "kms:ViaService": "bedrock.*.amazonaws.com",
+                            "kms:EncryptionContext:aws:bedrock-prompts:arn": "arn:aws:bedrock:*:${aws:PrincipalAccount}:prompt/*"
+                        },
                         "StringEquals": {
                             "aws:ResourceAccount": "${aws:PrincipalAccount}"
-                        }, 
+                        }
+                    }
+                },
+                {
+                    "Sid": "BedrockGuardrailKmsPermissions",
+                    "Effect": "Allow",
+                    "Action": "kms:Decrypt",
+                    "Resource": "arn:aws:kms:*:*:key/${aws:PrincipalTag/KmsKeyId}",
+                    "Condition": {
+                        "StringLike": {
+                            "kms:ViaService": "bedrock.*.amazonaws.com"
+                        },
+                        "StringEquals": {
+                            "aws:ResourceAccount": "${aws:PrincipalAccount}"
+                        },
                         "Null": {
                             "kms:EncryptionContext:aws:bedrock:guardrail-id": "false"
-                        }, 
-                        "StringLike": {
-                            "kms:ViaService": "bedrock.*.amazonaws.com"
                         }
-                    }, 
-                    "Sid": "BedrockGuardrailKmsPermissions"
-                }, 
+                    }
+                },
                 {
+                    "Sid": "BedrockAgentKmsPermissions",
+                    "Effect": "Allow",
                     "Action": [
-                        "kms:Decrypt", 
+                        "kms:Decrypt",
                         "kms:GenerateDataKey"
-                    ], 
-                    "Resource": "arn:aws:kms:*:*:key/${aws:PrincipalTag/KmsKeyId}", 
-                    "Effect": "Allow", 
+                    ],
+                    "Resource": "arn:aws:kms:*:*:key/${aws:PrincipalTag/KmsKeyId}",
                     "Condition": {
+                        "StringLike": {
+                            "kms:ViaService": "bedrock.*.amazonaws.com",
+                            "kms:EncryptionContext:aws:bedrock:arn": "arn:aws:bedrock:*:${aws:PrincipalAccount}:agent/*"
+                        },
                         "StringEquals": {
                             "aws:ResourceAccount": "${aws:PrincipalAccount}"
-                        }, 
-                        "StringLike": {
-                            "kms:ViaService": "bedrock.*.amazonaws.com", 
-                            "kms:EncryptionContext:aws:bedrock:arn": "arn:aws:bedrock:*:${aws:PrincipalAccount}:agent/*"
                         }
-                    }, 
-                    "Sid": "BedrockAgentKmsPermissions"
+                    }
                 }
             ]
-        }, 
-        "IsDefaultVersion": true
+        },
+        "VersionId": "v9",
+        "IsDefaultVersion": true,
+        "CreateDate": "2026-02-12T17:58:49+00:00"
     }
 }
