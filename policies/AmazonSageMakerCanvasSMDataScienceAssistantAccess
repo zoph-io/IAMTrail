@@ -1,39 +1,39 @@
 {
     "PolicyVersion": {
-        "CreateDate": "2026-02-12T18:02:13Z", 
-        "VersionId": "v6", 
         "Document": {
-            "Version": "2012-10-17", 
+            "Version": "2012-10-17",
             "Statement": [
                 {
+                    "Sid": "SageMakerDataScienceAssistantAccess",
+                    "Effect": "Allow",
                     "Action": [
                         "sagemaker-data-science-assistant:SendConversation"
-                    ], 
-                    "Resource": "*", 
-                    "Effect": "Allow", 
+                    ],
+                    "Resource": "*",
                     "Condition": {
                         "StringEquals": {
                             "aws:ResourceAccount": "${aws:PrincipalAccount}"
                         }
-                    }, 
-                    "Sid": "SageMakerDataScienceAssistantAccess"
-                }, 
+                    }
+                },
                 {
+                    "Sid": "AmazonQDeveloperAccess",
+                    "Effect": "Allow",
                     "Action": [
-                        "q:SendMessage", 
+                        "q:SendMessage",
                         "q:StartConversation"
-                    ], 
-                    "Resource": "*", 
-                    "Effect": "Allow", 
+                    ],
+                    "Resource": "*",
                     "Condition": {
                         "StringEquals": {
                             "aws:ResourceAccount": "${aws:PrincipalAccount}"
                         }
-                    }, 
-                    "Sid": "AmazonQDeveloperAccess"
+                    }
                 }
             ]
-        }, 
-        "IsDefaultVersion": true
+        },
+        "VersionId": "v6",
+        "IsDefaultVersion": true,
+        "CreateDate": "2026-02-12T18:02:13+00:00"
     }
 }
