@@ -1,42 +1,42 @@
 {
     "PolicyVersion": {
-        "CreateDate": "2025-03-06T21:22:07Z", 
-        "VersionId": "v3", 
         "Document": {
-            "Version": "2012-10-17", 
+            "Version": "2012-10-17",
             "Statement": [
                 {
+                    "Sid": "ECR",
+                    "Effect": "Allow",
                     "Action": [
-                        "ecr:GetAuthorizationToken", 
-                        "ecr:BatchCheckLayerAvailability", 
-                        "ecr:InitiateLayerUpload", 
-                        "ecr:UploadLayerPart", 
-                        "ecr:CompleteLayerUpload", 
-                        "ecr:PutImage", 
-                        "ecr:BatchGetImage", 
-                        "ecr:BatchImportUpstreamImage", 
-                        "ecr:GetDownloadUrlForLayer", 
+                        "ecr:GetAuthorizationToken",
+                        "ecr:BatchCheckLayerAvailability",
+                        "ecr:InitiateLayerUpload",
+                        "ecr:UploadLayerPart",
+                        "ecr:CompleteLayerUpload",
+                        "ecr:PutImage",
+                        "ecr:BatchGetImage",
+                        "ecr:BatchImportUpstreamImage",
+                        "ecr:GetDownloadUrlForLayer",
                         "ecr:GetImageCopyStatus"
-                    ], 
-                    "Resource": "*", 
-                    "Effect": "Allow", 
-                    "Sid": "ECR"
-                }, 
+                    ],
+                    "Resource": "*"
+                },
                 {
+                    "Sid": "SecretsManager",
+                    "Effect": "Allow",
                     "Action": [
                         "secretsmanager:GetSecretValue"
-                    ], 
-                    "Resource": "arn:aws:secretsmanager:*:*:secret:ecr-pullthroughcache/*", 
-                    "Effect": "Allow", 
+                    ],
+                    "Resource": "arn:aws:secretsmanager:*:*:secret:ecr-pullthroughcache/*",
                     "Condition": {
                         "StringEquals": {
                             "aws:ResourceAccount": "${aws:PrincipalAccount}"
                         }
-                    }, 
-                    "Sid": "SecretsManager"
+                    }
                 }
             ]
-        }, 
-        "IsDefaultVersion": true
+        },
+        "VersionId": "v3",
+        "IsDefaultVersion": true,
+        "CreateDate": "2025-03-06T21:22:07+00:00"
     }
 }
