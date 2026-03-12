@@ -1,69 +1,69 @@
 {
     "PolicyVersion": {
-        "CreateDate": "2026-02-12T17:59:32Z", 
-        "VersionId": "v3", 
         "Document": {
-            "Version": "2012-10-17", 
+            "Version": "2012-10-17",
             "Statement": [
                 {
+                    "Sid": "ApplicationAccess",
+                    "Effect": "Allow",
                     "Action": [
-                        "securityagent:ListAgentSpaces", 
+                        "securityagent:ListAgentSpaces",
                         "securityagent:ListSecurityRequirements"
-                    ], 
-                    "Resource": "*", 
-                    "Effect": "Allow", 
+                    ],
+                    "Resource": "*",
                     "Condition": {
                         "StringEquals": {
                             "aws:ResourceAccount": "${aws:PrincipalAccount}"
                         }
-                    }, 
-                    "Sid": "ApplicationAccess"
-                }, 
+                    }
+                },
                 {
+                    "Sid": "AgentSpaceAccess",
+                    "Effect": "Allow",
                     "Action": [
-                        "securityagent:AddArtifact", 
-                        "securityagent:BatchDeletePentests", 
-                        "securityagent:BatchGetAgentSpaces", 
-                        "securityagent:BatchGetArtifactMetadata", 
-                        "securityagent:BatchGetFindings", 
-                        "securityagent:BatchGetPentestJobs", 
-                        "securityagent:BatchGetPentests", 
-                        "securityagent:BatchGetPentestJobContentMetadata", 
-                        "securityagent:BatchGetPentestJobTasks", 
-                        "securityagent:CreateDesignReview", 
-                        "securityagent:CreatePentest", 
-                        "securityagent:DeleteArtifact", 
-                        "securityagent:GetArtifact", 
-                        "securityagent:DeleteDesignReview", 
-                        "securityagent:GetDesignReview", 
-                        "securityagent:GetDesignReviewArtifact", 
-                        "securityagent:ListArtifacts", 
-                        "securityagent:ListSecurityRequirements", 
-                        "securityagent:ListDiscoveredEndpoints", 
-                        "securityagent:ListDesignReviewComments", 
-                        "securityagent:ListDesignReviews", 
-                        "securityagent:ListFindings", 
-                        "securityagent:ListIntegratedResources", 
-                        "securityagent:ListPentestJobsForPentest", 
-                        "securityagent:ListPentests", 
-                        "securityagent:ListPentestJobTasks", 
-                        "securityagent:StartCodeRemediation", 
-                        "securityagent:StartPentestJob", 
-                        "securityagent:StopPentestJob", 
-                        "securityagent:UpdateFinding", 
+                        "securityagent:AddArtifact",
+                        "securityagent:BatchDeletePentests",
+                        "securityagent:BatchGetAgentSpaces",
+                        "securityagent:BatchGetArtifactMetadata",
+                        "securityagent:BatchGetFindings",
+                        "securityagent:BatchGetPentestJobs",
+                        "securityagent:BatchGetPentests",
+                        "securityagent:BatchGetPentestJobContentMetadata",
+                        "securityagent:BatchGetPentestJobTasks",
+                        "securityagent:CreateDesignReview",
+                        "securityagent:CreatePentest",
+                        "securityagent:DeleteArtifact",
+                        "securityagent:GetArtifact",
+                        "securityagent:DeleteDesignReview",
+                        "securityagent:GetDesignReview",
+                        "securityagent:GetDesignReviewArtifact",
+                        "securityagent:ListArtifacts",
+                        "securityagent:ListSecurityRequirements",
+                        "securityagent:ListDiscoveredEndpoints",
+                        "securityagent:ListDesignReviewComments",
+                        "securityagent:ListDesignReviews",
+                        "securityagent:ListFindings",
+                        "securityagent:ListIntegratedResources",
+                        "securityagent:ListPentestJobsForPentest",
+                        "securityagent:ListPentests",
+                        "securityagent:ListPentestJobTasks",
+                        "securityagent:StartCodeRemediation",
+                        "securityagent:StartPentestJob",
+                        "securityagent:StopPentestJob",
+                        "securityagent:UpdateFinding",
                         "securityagent:UpdatePentest"
-                    ], 
-                    "Resource": "arn:aws:securityagent:*:*:agent-space*", 
-                    "Effect": "Allow", 
+                    ],
+                    "Resource": "arn:aws:securityagent:*:*:agent-space*",
                     "Condition": {
                         "StringEquals": {
                             "aws:ResourceAccount": "${aws:PrincipalAccount}"
                         }
-                    }, 
-                    "Sid": "AgentSpaceAccess"
+                    }
                 }
             ]
-        }, 
-        "IsDefaultVersion": true
+        },
+        "VersionId": "v3",
+        "IsDefaultVersion": true,
+        "CreateDate": "2026-02-12T17:59:32+00:00"
     }
 }
