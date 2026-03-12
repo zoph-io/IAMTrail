@@ -1,28 +1,28 @@
 {
     "PolicyVersion": {
-        "CreateDate": "2026-02-12T17:57:37Z", 
-        "VersionId": "v4", 
         "Document": {
-            "Version": "2012-10-17", 
+            "Version": "2012-10-17",
             "Statement": [
                 {
+                    "Effect": "Allow",
                     "Action": [
-                        "billingconductor:List*", 
-                        "billingconductor:GetBillingGroupCostReport", 
-                        "organizations:ListAccounts", 
-                        "pricing:DescribeServices", 
-                        "pricing:GetAttributeValues", 
-                        "pricing:GetProducts", 
-                        "organizations:ListRoots", 
-                        "organizations:ListOrganizationalUnitsForParent", 
-                        "organizations:ListChildren", 
+                        "billingconductor:List*",
+                        "billingconductor:GetBillingGroupCostReport",
+                        "organizations:ListAccounts",
+                        "pricing:DescribeServices",
+                        "pricing:GetAttributeValues",
+                        "pricing:GetProducts",
+                        "organizations:ListRoots",
+                        "organizations:ListOrganizationalUnitsForParent",
+                        "organizations:ListChildren",
                         "organizations:DescribeAccount"
-                    ], 
-                    "Resource": "*", 
-                    "Effect": "Allow"
+                    ],
+                    "Resource": "*"
                 }
             ]
-        }, 
-        "IsDefaultVersion": true
+        },
+        "VersionId": "v4",
+        "IsDefaultVersion": true,
+        "CreateDate": "2026-02-12T17:57:37+00:00"
     }
 }
