@@ -1,45 +1,45 @@
 {
     "PolicyVersion": {
-        "CreateDate": "2022-02-15T22:36:18Z", 
-        "VersionId": "v3", 
         "Document": {
-            "Version": "2012-10-17", 
+            "Version": "2012-10-17",
             "Statement": [
                 {
+                    "Sid": "AWSGrafanaOrganizationAdmin",
+                    "Effect": "Allow",
                     "Action": [
                         "iam:ListRoles"
-                    ], 
-                    "Resource": "*", 
-                    "Effect": "Allow", 
-                    "Sid": "AWSGrafanaOrganizationAdmin"
-                }, 
+                    ],
+                    "Resource": "*"
+                },
                 {
-                    "Action": "iam:GetRole", 
-                    "Resource": "arn:aws:iam::*:role/*", 
-                    "Effect": "Allow", 
-                    "Sid": "GrafanaIAMGetRolePermission"
-                }, 
+                    "Sid": "GrafanaIAMGetRolePermission",
+                    "Effect": "Allow",
+                    "Action": "iam:GetRole",
+                    "Resource": "arn:aws:iam::*:role/*"
+                },
                 {
+                    "Sid": "AWSGrafanaPermissions",
+                    "Effect": "Allow",
                     "Action": [
                         "grafana:*"
-                    ], 
-                    "Resource": "*", 
-                    "Effect": "Allow", 
-                    "Sid": "AWSGrafanaPermissions"
-                }, 
+                    ],
+                    "Resource": "*"
+                },
                 {
-                    "Action": "iam:PassRole", 
-                    "Resource": "arn:aws:iam::*:role/*", 
-                    "Effect": "Allow", 
+                    "Sid": "GrafanaIAMPassRolePermission",
+                    "Effect": "Allow",
+                    "Action": "iam:PassRole",
+                    "Resource": "arn:aws:iam::*:role/*",
                     "Condition": {
                         "StringLike": {
                             "iam:PassedToService": "grafana.amazonaws.com"
                         }
-                    }, 
-                    "Sid": "GrafanaIAMPassRolePermission"
+                    }
                 }
             ]
-        }, 
-        "IsDefaultVersion": true
+        },
+        "VersionId": "v3",
+        "IsDefaultVersion": true,
+        "CreateDate": "2022-02-15T22:36:18+00:00"
     }
 }
