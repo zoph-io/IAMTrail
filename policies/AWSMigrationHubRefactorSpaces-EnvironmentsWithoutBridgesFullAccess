@@ -1,242 +1,242 @@
 {
     "PolicyVersion": {
-        "CreateDate": "2024-04-11T18:16:48Z", 
-        "VersionId": "v3", 
         "Document": {
-            "Version": "2012-10-17", 
+            "Version": "2012-10-17",
             "Statement": [
                 {
+                    "Sid": "RefactorSpaces",
+                    "Effect": "Allow",
                     "Action": [
                         "refactor-spaces:*"
-                    ], 
-                    "Resource": "*", 
-                    "Effect": "Allow", 
-                    "Sid": "RefactorSpaces"
-                }, 
+                    ],
+                    "Resource": "*"
+                },
                 {
+                    "Sid": "EC2Describe",
+                    "Effect": "Allow",
                     "Action": [
-                        "ec2:DescribeSubnets", 
-                        "ec2:DescribeVpcEndpointServiceConfigurations", 
-                        "ec2:DescribeVpcs", 
-                        "ec2:DescribeTags", 
-                        "ec2:DescribeAccountAttributes", 
+                        "ec2:DescribeSubnets",
+                        "ec2:DescribeVpcEndpointServiceConfigurations",
+                        "ec2:DescribeVpcs",
+                        "ec2:DescribeTags",
+                        "ec2:DescribeAccountAttributes",
                         "ec2:DescribeInternetGateways"
-                    ], 
-                    "Resource": "*", 
-                    "Effect": "Allow", 
-                    "Sid": "EC2Describe"
-                }, 
+                    ],
+                    "Resource": "*"
+                },
                 {
+                    "Sid": "VpcEndpointServiceConfigurationCreate",
+                    "Effect": "Allow",
                     "Action": [
                         "ec2:CreateVpcEndpointServiceConfiguration"
-                    ], 
-                    "Resource": "*", 
-                    "Effect": "Allow", 
-                    "Sid": "VpcEndpointServiceConfigurationCreate"
-                }, 
+                    ],
+                    "Resource": "*"
+                },
                 {
+                    "Sid": "EC2TagsDelete",
+                    "Effect": "Allow",
                     "Action": [
                         "ec2:DeleteTags"
-                    ], 
-                    "Resource": "*", 
-                    "Effect": "Allow", 
+                    ],
+                    "Resource": "*",
                     "Condition": {
                         "Null": {
                             "aws:ResourceTag/refactor-spaces:environment-id": "false"
                         }
-                    }, 
-                    "Sid": "EC2TagsDelete"
-                }, 
+                    }
+                },
                 {
-                    "Action": "ec2:DeleteVpcEndpointServiceConfigurations", 
-                    "Resource": "*", 
-                    "Effect": "Allow", 
+                    "Sid": "VpcEndpointServiceConfigurationDelete",
+                    "Effect": "Allow",
+                    "Action": "ec2:DeleteVpcEndpointServiceConfigurations",
+                    "Resource": "*",
                     "Condition": {
                         "Null": {
                             "aws:ResourceTag/refactor-spaces:application-id": "false"
                         }
-                    }, 
-                    "Sid": "VpcEndpointServiceConfigurationDelete"
-                }, 
+                    }
+                },
                 {
+                    "Sid": "ELBLoadBalancerCreate",
+                    "Effect": "Allow",
                     "Action": [
-                        "elasticloadbalancing:AddTags", 
+                        "elasticloadbalancing:AddTags",
                         "elasticloadbalancing:CreateLoadBalancer"
-                    ], 
-                    "Resource": "arn:*:elasticloadbalancing:*:*:loadbalancer/net/refactor-spaces-nlb-*", 
-                    "Effect": "Allow", 
+                    ],
+                    "Resource": "arn:*:elasticloadbalancing:*:*:loadbalancer/net/refactor-spaces-nlb-*",
                     "Condition": {
                         "Null": {
                             "aws:RequestTag/refactor-spaces:application-id": "false"
                         }
-                    }, 
-                    "Sid": "ELBLoadBalancerCreate"
-                }, 
+                    }
+                },
                 {
+                    "Sid": "ELBDescribe",
+                    "Effect": "Allow",
                     "Action": [
-                        "elasticloadbalancing:DescribeLoadBalancers", 
-                        "elasticloadbalancing:DescribeTags", 
-                        "elasticloadbalancing:DescribeTargetHealth", 
-                        "elasticloadbalancing:DescribeTargetGroups", 
+                        "elasticloadbalancing:DescribeLoadBalancers",
+                        "elasticloadbalancing:DescribeTags",
+                        "elasticloadbalancing:DescribeTargetHealth",
+                        "elasticloadbalancing:DescribeTargetGroups",
                         "elasticloadbalancing:DescribeListeners"
-                    ], 
-                    "Resource": "*", 
-                    "Effect": "Allow", 
-                    "Sid": "ELBDescribe"
-                }, 
+                    ],
+                    "Resource": "*"
+                },
                 {
+                    "Sid": "ELBModify",
+                    "Effect": "Allow",
                     "Action": [
-                        "elasticloadbalancing:RegisterTargets", 
-                        "elasticloadbalancing:CreateLoadBalancerListeners", 
-                        "elasticloadbalancing:CreateListener", 
-                        "elasticloadbalancing:DeleteListener", 
+                        "elasticloadbalancing:RegisterTargets",
+                        "elasticloadbalancing:CreateLoadBalancerListeners",
+                        "elasticloadbalancing:CreateListener",
+                        "elasticloadbalancing:DeleteListener",
                         "elasticloadbalancing:DeleteTargetGroup"
-                    ], 
-                    "Resource": "*", 
-                    "Effect": "Allow", 
+                    ],
+                    "Resource": "*",
                     "Condition": {
                         "StringLike": {
                             "aws:ResourceTag/refactor-spaces:route-id": [
                                 "*"
                             ]
                         }
-                    }, 
-                    "Sid": "ELBModify"
-                }, 
+                    }
+                },
                 {
-                    "Action": "elasticloadbalancing:DeleteLoadBalancer", 
-                    "Resource": "arn:*:elasticloadbalancing:*:*:loadbalancer/net/refactor-spaces-nlb-*", 
-                    "Effect": "Allow", 
-                    "Sid": "ELBLoadBalancerDelete"
-                }, 
+                    "Sid": "ELBLoadBalancerDelete",
+                    "Effect": "Allow",
+                    "Action": "elasticloadbalancing:DeleteLoadBalancer",
+                    "Resource": "arn:*:elasticloadbalancing:*:*:loadbalancer/net/refactor-spaces-nlb-*"
+                },
                 {
+                    "Sid": "ELBListenerCreate",
+                    "Effect": "Allow",
                     "Action": [
-                        "elasticloadbalancing:AddTags", 
+                        "elasticloadbalancing:AddTags",
                         "elasticloadbalancing:CreateListener"
-                    ], 
+                    ],
                     "Resource": [
-                        "arn:*:elasticloadbalancing:*:*:loadbalancer/net/refactor-spaces-nlb-*", 
+                        "arn:*:elasticloadbalancing:*:*:loadbalancer/net/refactor-spaces-nlb-*",
                         "arn:*:elasticloadbalancing:*:*:listener/net/refactor-spaces-nlb-*"
-                    ], 
-                    "Effect": "Allow", 
+                    ],
                     "Condition": {
                         "Null": {
                             "aws:RequestTag/refactor-spaces:route-id": "false"
                         }
-                    }, 
-                    "Sid": "ELBListenerCreate"
-                }, 
+                    }
+                },
                 {
-                    "Action": "elasticloadbalancing:DeleteListener", 
-                    "Resource": "arn:*:elasticloadbalancing:*:*:listener/net/refactor-spaces-nlb-*", 
-                    "Effect": "Allow", 
-                    "Sid": "ELBListenerDelete"
-                }, 
+                    "Sid": "ELBListenerDelete",
+                    "Effect": "Allow",
+                    "Action": "elasticloadbalancing:DeleteListener",
+                    "Resource": "arn:*:elasticloadbalancing:*:*:listener/net/refactor-spaces-nlb-*"
+                },
                 {
+                    "Sid": "ELBTargetGroupModify",
+                    "Effect": "Allow",
                     "Action": [
-                        "elasticloadbalancing:DeleteTargetGroup", 
+                        "elasticloadbalancing:DeleteTargetGroup",
                         "elasticloadbalancing:RegisterTargets"
-                    ], 
-                    "Resource": "arn:*:elasticloadbalancing:*:*:targetgroup/refactor-spaces-tg-*", 
-                    "Effect": "Allow", 
-                    "Sid": "ELBTargetGroupModify"
-                }, 
+                    ],
+                    "Resource": "arn:*:elasticloadbalancing:*:*:targetgroup/refactor-spaces-tg-*"
+                },
                 {
+                    "Sid": "ELBTargetGroupCreate",
+                    "Effect": "Allow",
                     "Action": [
-                        "elasticloadbalancing:AddTags", 
+                        "elasticloadbalancing:AddTags",
                         "elasticloadbalancing:CreateTargetGroup"
-                    ], 
-                    "Resource": "arn:*:elasticloadbalancing:*:*:targetgroup/refactor-spaces-tg-*", 
-                    "Effect": "Allow", 
+                    ],
+                    "Resource": "arn:*:elasticloadbalancing:*:*:targetgroup/refactor-spaces-tg-*",
                     "Condition": {
                         "Null": {
                             "aws:RequestTag/refactor-spaces:route-id": "false"
                         }
-                    }, 
-                    "Sid": "ELBTargetGroupCreate"
-                }, 
+                    }
+                },
                 {
+                    "Sid": "APIGatewayModify",
+                    "Effect": "Allow",
                     "Action": [
-                        "apigateway:GET", 
-                        "apigateway:DELETE", 
-                        "apigateway:PATCH", 
-                        "apigateway:POST", 
-                        "apigateway:PUT", 
+                        "apigateway:GET",
+                        "apigateway:DELETE",
+                        "apigateway:PATCH",
+                        "apigateway:POST",
+                        "apigateway:PUT",
                         "apigateway:UpdateRestApiPolicy"
-                    ], 
+                    ],
                     "Resource": [
-                        "arn:aws:apigateway:*::/restapis", 
-                        "arn:aws:apigateway:*::/restapis/*", 
-                        "arn:aws:apigateway:*::/vpclinks", 
-                        "arn:aws:apigateway:*::/vpclinks/*", 
-                        "arn:aws:apigateway:*::/tags", 
+                        "arn:aws:apigateway:*::/restapis",
+                        "arn:aws:apigateway:*::/restapis/*",
+                        "arn:aws:apigateway:*::/vpclinks",
+                        "arn:aws:apigateway:*::/vpclinks/*",
+                        "arn:aws:apigateway:*::/tags",
                         "arn:aws:apigateway:*::/tags/*"
-                    ], 
-                    "Effect": "Allow", 
+                    ],
                     "Condition": {
                         "Null": {
                             "aws:ResourceTag/refactor-spaces:application-id": "false"
                         }
-                    }, 
-                    "Sid": "APIGatewayModify"
-                }, 
+                    }
+                },
                 {
-                    "Action": "apigateway:GET", 
+                    "Sid": "APIGatewayVpcLinksGet",
+                    "Effect": "Allow",
+                    "Action": "apigateway:GET",
                     "Resource": [
-                        "arn:aws:apigateway:*::/vpclinks", 
+                        "arn:aws:apigateway:*::/vpclinks",
                         "arn:aws:apigateway:*::/vpclinks/*"
-                    ], 
-                    "Effect": "Allow", 
-                    "Sid": "APIGatewayVpcLinksGet"
-                }, 
+                    ]
+                },
                 {
+                    "Sid": "OrganizationDescribe",
+                    "Effect": "Allow",
                     "Action": [
                         "organizations:DescribeOrganization"
-                    ], 
-                    "Resource": "*", 
-                    "Effect": "Allow", 
-                    "Sid": "OrganizationDescribe"
-                }, 
+                    ],
+                    "Resource": "*"
+                },
                 {
+                    "Sid": "CloudformationStackCreate",
+                    "Effect": "Allow",
                     "Action": [
                         "cloudformation:CreateStack"
-                    ], 
-                    "Resource": "*", 
-                    "Effect": "Allow", 
-                    "Sid": "CloudformationStackCreate"
-                }, 
+                    ],
+                    "Resource": "*"
+                },
                 {
+                    "Sid": "CloudformationStackTag",
+                    "Effect": "Allow",
                     "Action": [
                         "cloudformation:TagResource"
-                    ], 
-                    "Resource": "arn:aws:cloudformation:*:*:stack/*", 
-                    "Effect": "Allow", 
-                    "Sid": "CloudformationStackTag"
-                }, 
+                    ],
+                    "Resource": "arn:aws:cloudformation:*:*:stack/*"
+                },
                 {
-                    "Action": "iam:CreateServiceLinkedRole", 
-                    "Resource": "*", 
-                    "Effect": "Allow", 
+                    "Sid": "CreateRefactorSpacesSLR",
+                    "Effect": "Allow",
+                    "Action": "iam:CreateServiceLinkedRole",
+                    "Resource": "*",
                     "Condition": {
                         "StringEquals": {
                             "iam:AWSServiceName": "refactor-spaces.amazonaws.com"
                         }
-                    }, 
-                    "Sid": "CreateRefactorSpacesSLR"
-                }, 
+                    }
+                },
                 {
-                    "Action": "iam:CreateServiceLinkedRole", 
-                    "Resource": "*", 
-                    "Effect": "Allow", 
+                    "Sid": "CreateELBSLR",
+                    "Effect": "Allow",
+                    "Action": "iam:CreateServiceLinkedRole",
+                    "Resource": "*",
                     "Condition": {
                         "StringEquals": {
                             "iam:AWSServiceName": "elasticloadbalancing.amazonaws.com"
                         }
-                    }, 
-                    "Sid": "CreateELBSLR"
+                    }
                 }
             ]
-        }, 
-        "IsDefaultVersion": true
+        },
+        "VersionId": "v3",
+        "IsDefaultVersion": true,
+        "CreateDate": "2024-04-11T18:16:48+00:00"
     }
 }
