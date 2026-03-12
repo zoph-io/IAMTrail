@@ -1,75 +1,75 @@
 {
     "PolicyVersion": {
-        "CreateDate": "2026-02-12T17:59:08Z", 
-        "VersionId": "v6", 
         "Document": {
-            "Version": "2012-10-17", 
+            "Version": "2012-10-17",
             "Statement": [
                 {
+                    "Sid": "MpaReadAccess",
+                    "Effect": "Allow",
                     "Action": [
-                        "mpa:Get*", 
+                        "mpa:Get*",
                         "mpa:List*"
-                    ], 
-                    "Resource": "*", 
-                    "Effect": "Allow", 
-                    "Sid": "MpaReadAccess"
-                }, 
+                    ],
+                    "Resource": "*"
+                },
                 {
+                    "Sid": "OrganizationsAccess",
+                    "Effect": "Allow",
                     "Action": [
-                        "organizations:ListDelegatedAdministrators", 
+                        "organizations:ListDelegatedAdministrators",
                         "organizations:DescribeOrganization"
-                    ], 
-                    "Resource": "*", 
-                    "Effect": "Allow", 
-                    "Sid": "OrganizationsAccess"
-                }, 
+                    ],
+                    "Resource": "*"
+                },
                 {
+                    "Sid": "SSOManagementAccess",
+                    "Effect": "Allow",
                     "Action": [
-                        "sso:DescribeInstance", 
-                        "sso:ListInstances", 
-                        "sso:DescribeRegisteredRegions", 
-                        "sso:GetSharedSsoConfiguration", 
-                        "sso-directory:DescribeUsers", 
+                        "sso:DescribeInstance",
+                        "sso:ListInstances",
+                        "sso:DescribeRegisteredRegions",
+                        "sso:GetSharedSsoConfiguration",
+                        "sso-directory:DescribeUsers",
                         "sso-directory:SearchUsers"
-                    ], 
-                    "Resource": "*", 
-                    "Effect": "Allow", 
-                    "Sid": "SSOManagementAccess"
-                }, 
+                    ],
+                    "Resource": "*"
+                },
                 {
+                    "Sid": "AllowKmsAccessViaIdentityCenter",
+                    "Effect": "Allow",
                     "Action": [
                         "kms:Decrypt"
-                    ], 
-                    "Resource": "*", 
-                    "Effect": "Allow", 
+                    ],
+                    "Resource": "*",
                     "Condition": {
                         "ArnLike": {
                             "kms:EncryptionContext:aws:sso:instance-arn": "arn:*:sso:::instance/*"
-                        }, 
+                        },
                         "StringLike": {
                             "kms:ViaService": "sso.*.amazonaws.com"
                         }
-                    }, 
-                    "Sid": "AllowKmsAccessViaIdentityCenter"
-                }, 
+                    }
+                },
                 {
+                    "Sid": "AllowKmsAccessViaIdentityStore",
+                    "Effect": "Allow",
                     "Action": [
                         "kms:Decrypt"
-                    ], 
-                    "Resource": "*", 
-                    "Effect": "Allow", 
+                    ],
+                    "Resource": "*",
                     "Condition": {
                         "ArnLike": {
                             "kms:EncryptionContext:aws:identitystore:identitystore-arn": "arn:*:identitystore::*:identitystore/*"
-                        }, 
+                        },
                         "StringLike": {
                             "kms:ViaService": "identitystore.*.amazonaws.com"
                         }
-                    }, 
-                    "Sid": "AllowKmsAccessViaIdentityStore"
+                    }
                 }
             ]
-        }, 
-        "IsDefaultVersion": true
+        },
+        "VersionId": "v6",
+        "IsDefaultVersion": true,
+        "CreateDate": "2026-02-12T17:59:08+00:00"
     }
 }
