@@ -1,41 +1,41 @@
 {
     "PolicyVersion": {
-        "CreateDate": "2026-02-12T18:00:45Z", 
-        "VersionId": "v3", 
         "Document": {
-            "Version": "2012-10-17", 
+            "Version": "2012-10-17",
             "Statement": [
                 {
+                    "Sid": "GuardDutyMalwareScanPermissions",
+                    "Effect": "Allow",
                     "Action": [
-                        "guardduty:StartMalwareScan", 
+                        "guardduty:StartMalwareScan",
                         "guardduty:GetMalwareScan"
-                    ], 
-                    "Resource": "*", 
-                    "Effect": "Allow", 
-                    "Sid": "GuardDutyMalwareScanPermissions"
-                }, 
+                    ],
+                    "Resource": "*"
+                },
                 {
-                    "Action": "iam:PassRole", 
-                    "Resource": "*", 
-                    "Effect": "Allow", 
+                    "Sid": "IAMPassPermissions",
+                    "Effect": "Allow",
+                    "Action": "iam:PassRole",
+                    "Resource": "*",
                     "Condition": {
                         "StringEquals": {
                             "iam:PassedToService": "malware-protection.guardduty.amazonaws.com"
                         }
-                    }, 
-                    "Sid": "IAMPassPermissions"
-                }, 
+                    }
+                },
                 {
+                    "Sid": "EC2ReadAPIPermissions",
+                    "Effect": "Allow",
                     "Action": [
-                        "ec2:DescribeImages", 
+                        "ec2:DescribeImages",
                         "ec2:DescribeSnapshots"
-                    ], 
-                    "Resource": "*", 
-                    "Effect": "Allow", 
-                    "Sid": "EC2ReadAPIPermissions"
+                    ],
+                    "Resource": "*"
                 }
             ]
-        }, 
-        "IsDefaultVersion": true
+        },
+        "VersionId": "v3",
+        "IsDefaultVersion": true,
+        "CreateDate": "2026-02-12T18:00:45+00:00"
     }
 }
