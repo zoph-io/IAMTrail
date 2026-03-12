@@ -1,19 +1,19 @@
 {
     "PolicyVersion": {
-        "CreateDate": "2025-07-30T21:07:06Z", 
-        "VersionId": "v1", 
         "Document": {
-            "Version": "2012-10-17", 
+            "Version": "2012-10-17",
             "Statement": [
                 {
+                    "Effect": "Allow",
                     "Action": [
                         "billing:GetBillingViewData"
-                    ], 
-                    "Resource": "*", 
-                    "Effect": "Allow"
+                    ],
+                    "Resource": "*"
                 }
             ]
-        }, 
-        "IsDefaultVersion": true
+        },
+        "VersionId": "v1",
+        "IsDefaultVersion": true,
+        "CreateDate": "2025-07-30T21:07:06+00:00"
     }
 }
