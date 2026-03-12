@@ -1,50 +1,50 @@
 {
     "PolicyVersion": {
-        "CreateDate": "2024-11-15T21:27:47Z", 
-        "VersionId": "v1", 
         "Document": {
-            "Version": "2012-10-17", 
+            "Version": "2012-10-17",
             "Statement": [
                 {
+                    "Effect": "Allow",
                     "Action": [
-                        "iam:CreateRole", 
+                        "iam:CreateRole",
                         "iam:GetRole"
-                    ], 
-                    "Resource": "arn:aws:iam::*:role/AWS-QuickSetup-SSM-DefaultEC2MgmtRole-*", 
-                    "Effect": "Allow"
-                }, 
+                    ],
+                    "Resource": "arn:aws:iam::*:role/AWS-QuickSetup-SSM-DefaultEC2MgmtRole-*"
+                },
                 {
-                    "Action": "iam:PassRole", 
-                    "Resource": "arn:aws:iam::*:role/AWS-QuickSetup-SSM-DefaultEC2MgmtRole-*", 
-                    "Effect": "Allow", 
+                    "Effect": "Allow",
+                    "Action": "iam:PassRole",
+                    "Resource": "arn:aws:iam::*:role/AWS-QuickSetup-SSM-DefaultEC2MgmtRole-*",
                     "Condition": {
                         "StringEquals": {
                             "iam:PassedToService": "ssm.amazonaws.com"
                         }
                     }
-                }, 
+                },
                 {
+                    "Effect": "Allow",
                     "Action": [
                         "iam:AttachRolePolicy"
-                    ], 
-                    "Resource": "arn:aws:iam::*:role/AWS-QuickSetup-SSM-DefaultEC2MgmtRole-*", 
-                    "Effect": "Allow", 
+                    ],
+                    "Resource": "arn:aws:iam::*:role/AWS-QuickSetup-SSM-DefaultEC2MgmtRole-*",
                     "Condition": {
                         "ArnEquals": {
                             "iam:PolicyARN": "arn:aws:iam::aws:policy/AmazonSSMManagedEC2InstanceDefaultPolicy"
                         }
                     }
-                }, 
+                },
                 {
+                    "Effect": "Allow",
                     "Action": [
-                        "ssm:GetServiceSetting", 
+                        "ssm:GetServiceSetting",
                         "ssm:UpdateServiceSetting"
-                    ], 
-                    "Resource": "arn:aws:ssm:*:*:servicesetting/ssm/managed-instance/default-ec2-instance-management-role", 
-                    "Effect": "Allow"
+                    ],
+                    "Resource": "arn:aws:ssm:*:*:servicesetting/ssm/managed-instance/default-ec2-instance-management-role"
                 }
             ]
-        }, 
-        "IsDefaultVersion": true
+        },
+        "VersionId": "v1",
+        "IsDefaultVersion": true,
+        "CreateDate": "2024-11-15T21:27:47+00:00"
     }
 }
