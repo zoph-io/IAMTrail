@@ -1,23 +1,21 @@
 {
     "PolicyVersion": {
-        "CreateDate": "2021-01-07T19:54:08Z", 
-        "VersionId": "v6", 
         "Document": {
-            "Version": "2012-10-17", 
+            "Version": "2012-10-17",
             "Statement": [
                 {
+                    "Effect": "Allow",
                     "Action": [
                         "appmesh:*"
-                    ], 
-                    "Resource": "*", 
-                    "Effect": "Allow"
-                }, 
+                    ],
+                    "Resource": "*"
+                },
                 {
+                    "Effect": "Allow",
                     "Action": [
                         "iam:CreateServiceLinkedRole"
-                    ], 
-                    "Resource": "arn:aws:iam::*:role/aws-service-role/appmesh.amazonaws.com/AWSServiceRoleForAppMesh", 
-                    "Effect": "Allow", 
+                    ],
+                    "Resource": "arn:aws:iam::*:role/aws-service-role/appmesh.amazonaws.com/AWSServiceRoleForAppMesh",
                     "Condition": {
                         "StringLike": {
                             "iam:AWSServiceName": [
@@ -25,38 +23,40 @@
                             ]
                         }
                     }
-                }, 
+                },
                 {
+                    "Effect": "Allow",
                     "Action": [
-                        "cloudformation:CreateStack", 
-                        "cloudformation:DeleteStack", 
-                        "cloudformation:DescribeStack*", 
+                        "cloudformation:CreateStack",
+                        "cloudformation:DeleteStack",
+                        "cloudformation:DescribeStack*",
                         "cloudformation:UpdateStack"
-                    ], 
-                    "Resource": "arn:aws:cloudformation:*:*:stack/AWSAppMesh-GettingStarted-*", 
-                    "Effect": "Allow"
-                }, 
+                    ],
+                    "Resource": "arn:aws:cloudformation:*:*:stack/AWSAppMesh-GettingStarted-*"
+                },
                 {
+                    "Effect": "Allow",
                     "Action": [
-                        "acm:ListCertificates", 
-                        "acm:DescribeCertificate", 
-                        "acm-pca:DescribeCertificateAuthority", 
+                        "acm:ListCertificates",
+                        "acm:DescribeCertificate",
+                        "acm-pca:DescribeCertificateAuthority",
                         "acm-pca:ListCertificateAuthorities"
-                    ], 
-                    "Resource": "*", 
-                    "Effect": "Allow"
-                }, 
+                    ],
+                    "Resource": "*"
+                },
                 {
+                    "Effect": "Allow",
                     "Action": [
-                        "servicediscovery:ListNamespaces", 
-                        "servicediscovery:ListServices", 
+                        "servicediscovery:ListNamespaces",
+                        "servicediscovery:ListServices",
                         "servicediscovery:ListInstances"
-                    ], 
-                    "Resource": "*", 
-                    "Effect": "Allow"
+                    ],
+                    "Resource": "*"
                 }
             ]
-        }, 
-        "IsDefaultVersion": true
+        },
+        "VersionId": "v6",
+        "IsDefaultVersion": true,
+        "CreateDate": "2021-01-07T19:54:08+00:00"
     }
 }
