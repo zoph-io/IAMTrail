@@ -1,42 +1,42 @@
 {
     "PolicyVersion": {
-        "CreateDate": "2026-02-12T18:02:56Z", 
-        "VersionId": "v3", 
         "Document": {
-            "Version": "2012-10-17", 
+            "Version": "2012-10-17",
             "Statement": [
                 {
-                    "Action": "aoss:APIAccessAll", 
-                    "Resource": "arn:aws:aoss:*:*:collection/*", 
-                    "Effect": "Allow", 
+                    "Sid": "OpenSearchServerlessPermissions",
+                    "Effect": "Allow",
+                    "Action": "aoss:APIAccessAll",
+                    "Resource": "arn:aws:aoss:*:*:collection/*",
                     "Condition": {
+                        "StringEquals": {
+                            "aws:ResourceAccount": "${aws:PrincipalAccount}"
+                        },
                         "StringLike": {
                             "aoss:collection": "bedrock*"
-                        }, 
-                        "StringEquals": {
-                            "aws:ResourceAccount": "${aws:PrincipalAccount}"
                         }
-                    }, 
-                    "Sid": "OpenSearchServerlessPermissions"
-                }, 
+                    }
+                },
                 {
+                    "Sid": "BedrockKnowledgeBasePermissions",
+                    "Effect": "Allow",
                     "Action": [
-                        "bedrock:GetIngestionJob", 
-                        "bedrock:ListIngestionJobs", 
+                        "bedrock:GetIngestionJob",
+                        "bedrock:ListIngestionJobs",
                         "bedrock:StartIngestionJob"
-                    ], 
-                    "Resource": "arn:aws:bedrock:*:*:knowledge-base/*", 
-                    "Effect": "Allow", 
+                    ],
+                    "Resource": "arn:aws:bedrock:*:*:knowledge-base/*",
                     "Condition": {
                         "StringEquals": {
-                            "aws:ResourceTag/AmazonDataZoneProject": "${aws:PrincipalTag/AmazonDataZoneProject}", 
-                            "aws:ResourceAccount": "${aws:PrincipalAccount}"
+                            "aws:ResourceAccount": "${aws:PrincipalAccount}",
+                            "aws:ResourceTag/AmazonDataZoneProject": "${aws:PrincipalTag/AmazonDataZoneProject}"
                         }
-                    }, 
-                    "Sid": "BedrockKnowledgeBasePermissions"
+                    }
                 }
             ]
-        }, 
-        "IsDefaultVersion": true
+        },
+        "VersionId": "v3",
+        "IsDefaultVersion": true,
+        "CreateDate": "2026-02-12T18:02:56+00:00"
     }
 }
