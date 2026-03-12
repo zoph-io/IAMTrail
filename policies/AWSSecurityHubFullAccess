@@ -1,63 +1,63 @@
 {
     "PolicyVersion": {
-        "CreateDate": "2026-02-12T17:58:23Z", 
-        "VersionId": "v9", 
         "Document": {
-            "Version": "2012-10-17", 
+            "Version": "2012-10-17",
             "Statement": [
                 {
-                    "Action": "securityhub:*", 
-                    "Resource": "*", 
-                    "Effect": "Allow", 
-                    "Sid": "SecurityHubAllowAll"
-                }, 
+                    "Sid": "SecurityHubAllowAll",
+                    "Effect": "Allow",
+                    "Action": "securityhub:*",
+                    "Resource": "*"
+                },
                 {
-                    "Action": "iam:CreateServiceLinkedRole", 
-                    "Resource": "*", 
-                    "Effect": "Allow", 
+                    "Sid": "SecurityHubServiceLinkedRole",
+                    "Effect": "Allow",
+                    "Action": "iam:CreateServiceLinkedRole",
+                    "Resource": "*",
                     "Condition": {
                         "StringEquals": {
                             "iam:AWSServiceName": [
-                                "securityhub.amazonaws.com", 
+                                "securityhub.amazonaws.com",
                                 "securityhubv2.amazonaws.com"
                             ]
                         }
-                    }, 
-                    "Sid": "SecurityHubServiceLinkedRole"
-                }, 
+                    }
+                },
                 {
+                    "Sid": "OtherServicePermission",
+                    "Effect": "Allow",
                     "Action": [
-                        "guardduty:GetDetector", 
-                        "guardduty:ListDetectors", 
-                        "guardduty:UpdateDetector", 
-                        "guardduty:EnableOrganizationAdminAccount", 
-                        "guardduty:ListOrganizationAdminAccounts", 
-                        "guardduty:DeleteDetector", 
-                        "guardduty:CreateDetector", 
-                        "guardduty:CreateMembers", 
-                        "guardduty:UpdateOrganizationConfiguration", 
-                        "guardduty:DescribeOrganizationConfiguration", 
-                        "inspector2:BatchGetAccountStatus", 
-                        "inspector2:Enable", 
-                        "inspector2:Disable", 
-                        "inspector2:EnableDelegatedAdminAccount", 
-                        "inspector2:DisableDelegatedAdminAccount", 
-                        "inspector2:ListDelegatedAdminAccounts", 
-                        "inspector2:UpdateOrganizationConfiguration", 
-                        "inspector2:DescribeOrganizationConfiguration", 
-                        "pricing:GetProducts", 
-                        "account:ListRegions", 
-                        "account:GetRegionOptStatus", 
-                        "iam:GetPolicy", 
-                        "iam:GetPolicyVersion", 
+                        "guardduty:GetDetector",
+                        "guardduty:ListDetectors",
+                        "guardduty:UpdateDetector",
+                        "guardduty:EnableOrganizationAdminAccount",
+                        "guardduty:ListOrganizationAdminAccounts",
+                        "guardduty:DeleteDetector",
+                        "guardduty:CreateDetector",
+                        "guardduty:CreateMembers",
+                        "guardduty:UpdateOrganizationConfiguration",
+                        "guardduty:DescribeOrganizationConfiguration",
+                        "inspector2:BatchGetAccountStatus",
+                        "inspector2:Enable",
+                        "inspector2:Disable",
+                        "inspector2:EnableDelegatedAdminAccount",
+                        "inspector2:DisableDelegatedAdminAccount",
+                        "inspector2:ListDelegatedAdminAccounts",
+                        "inspector2:UpdateOrganizationConfiguration",
+                        "inspector2:DescribeOrganizationConfiguration",
+                        "pricing:GetProducts",
+                        "account:ListRegions",
+                        "account:GetRegionOptStatus",
+                        "iam:GetPolicy",
+                        "iam:GetPolicyVersion",
                         "iam:GetRole"
-                    ], 
-                    "Resource": "*", 
-                    "Effect": "Allow", 
-                    "Sid": "OtherServicePermission"
+                    ],
+                    "Resource": "*"
                 }
             ]
-        }, 
-        "IsDefaultVersion": true
+        },
+        "VersionId": "v9",
+        "IsDefaultVersion": true,
+        "CreateDate": "2026-02-12T17:58:23+00:00"
     }
 }
