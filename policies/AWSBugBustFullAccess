@@ -1,50 +1,50 @@
 {
     "PolicyVersion": {
-        "CreateDate": "2021-07-22T20:04:29Z", 
-        "VersionId": "v2", 
         "Document": {
-            "Version": "2012-10-17", 
+            "Version": "2012-10-17",
             "Statement": [
                 {
+                    "Sid": "CodeGuruReviewerPermission",
+                    "Effect": "Allow",
                     "Action": [
-                        "codeguru-reviewer:DescribeCodeReview", 
-                        "codeguru-reviewer:ListRecommendations", 
+                        "codeguru-reviewer:DescribeCodeReview",
+                        "codeguru-reviewer:ListRecommendations",
                         "codeguru-reviewer:ListCodeReviews"
-                    ], 
-                    "Resource": "*", 
-                    "Effect": "Allow", 
-                    "Sid": "CodeGuruReviewerPermission"
-                }, 
+                    ],
+                    "Resource": "*"
+                },
                 {
+                    "Sid": "CodeGuruProfilerPermission",
+                    "Effect": "Allow",
                     "Action": [
-                        "codeguru-profiler:ListProfilingGroups", 
+                        "codeguru-profiler:ListProfilingGroups",
                         "codeguru-profiler:DescribeProfilingGroup"
-                    ], 
-                    "Resource": "*", 
-                    "Effect": "Allow", 
-                    "Sid": "CodeGuruProfilerPermission"
-                }, 
+                    ],
+                    "Resource": "*"
+                },
                 {
+                    "Sid": "AWSBugBustFullAccess",
+                    "Effect": "Allow",
                     "Action": [
                         "bugbust:*"
-                    ], 
-                    "Resource": "*", 
-                    "Effect": "Allow", 
-                    "Sid": "AWSBugBustFullAccess"
-                }, 
+                    ],
+                    "Resource": "*"
+                },
                 {
-                    "Action": "iam:CreateServiceLinkedRole", 
-                    "Resource": "arn:aws:iam::*:role/aws-service-role/bugbust.amazonaws.com/AWSServiceRoleForBugBust", 
-                    "Effect": "Allow", 
+                    "Sid": "AWSBugBustSLRCreation",
+                    "Effect": "Allow",
+                    "Action": "iam:CreateServiceLinkedRole",
+                    "Resource": "arn:aws:iam::*:role/aws-service-role/bugbust.amazonaws.com/AWSServiceRoleForBugBust",
                     "Condition": {
                         "StringLike": {
                             "iam:AWSServiceName": "bugbust.amazonaws.com"
                         }
-                    }, 
-                    "Sid": "AWSBugBustSLRCreation"
+                    }
                 }
             ]
-        }, 
-        "IsDefaultVersion": true
+        },
+        "VersionId": "v2",
+        "IsDefaultVersion": true,
+        "CreateDate": "2021-07-22T20:04:29+00:00"
     }
 }
