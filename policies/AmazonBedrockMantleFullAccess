@@ -1,20 +1,20 @@
 {
     "PolicyVersion": {
-        "CreateDate": "2026-02-12T18:00:54Z", 
-        "VersionId": "v3", 
         "Document": {
-            "Version": "2012-10-17", 
+            "Version": "2012-10-17",
             "Statement": [
                 {
+                    "Sid": "BedrockMantleAll",
+                    "Effect": "Allow",
                     "Action": [
                         "bedrock-mantle:*"
-                    ], 
-                    "Resource": "*", 
-                    "Effect": "Allow", 
-                    "Sid": "BedrockMantleAll"
+                    ],
+                    "Resource": "*"
                 }
             ]
-        }, 
-        "IsDefaultVersion": true
+        },
+        "VersionId": "v3",
+        "IsDefaultVersion": true,
+        "CreateDate": "2026-02-12T18:00:54+00:00"
     }
 }
