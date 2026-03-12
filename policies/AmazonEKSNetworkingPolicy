@@ -1,71 +1,69 @@
 {
     "PolicyVersion": {
-        "CreateDate": "2026-02-20T19:12:09Z", 
-        "VersionId": "v2", 
         "Document": {
-            "Version": "2012-10-17", 
+            "Version": "2012-10-17",
             "Statement": [
                 {
-                    "Action": "ec2:CreateNetworkInterface", 
-                    "Resource": "*", 
-                    "Effect": "Allow", 
+                    "Effect": "Allow",
+                    "Action": "ec2:CreateNetworkInterface",
+                    "Resource": "*",
                     "Condition": {
-                        "StringLike": {
-                            "aws:RequestTag/eks:kubernetes-cni-node-name": "*"
-                        }, 
                         "StringEquals": {
                             "aws:RequestTag/eks:eks-cluster-name": "${aws:PrincipalTag/eks:eks-cluster-name}"
-                        }, 
+                        },
+                        "StringLike": {
+                            "aws:RequestTag/eks:kubernetes-cni-node-name": "*"
+                        },
                         "ForAllValues:StringEquals": {
                             "aws:TagKeys": [
-                                "eks:eks-cluster-name", 
+                                "eks:eks-cluster-name",
                                 "eks:kubernetes-cni-node-name"
                             ]
                         }
                     }
-                }, 
+                },
                 {
-                    "Action": "ec2:CreateNetworkInterface", 
+                    "Effect": "Allow",
+                    "Action": "ec2:CreateNetworkInterface",
                     "Resource": [
-                        "arn:aws:ec2:*:*:security-group/*", 
+                        "arn:aws:ec2:*:*:security-group/*",
                         "arn:aws:ec2:*:*:subnet/*"
-                    ], 
-                    "Effect": "Allow"
-                }, 
+                    ]
+                },
                 {
-                    "Action": "ec2:CreateTags", 
-                    "Resource": "*", 
-                    "Effect": "Allow", 
+                    "Effect": "Allow",
+                    "Action": "ec2:CreateTags",
+                    "Resource": "*",
                     "Condition": {
                         "StringEquals": {
                             "ec2:CreateAction": "CreateNetworkInterface"
                         }
                     }
-                }, 
+                },
                 {
+                    "Effect": "Allow",
                     "Action": [
-                        "ec2:AttachNetworkInterface", 
-                        "ec2:DetachNetworkInterface", 
-                        "ec2:UnassignPrivateIpAddresses", 
-                        "ec2:UnassignIpv6Addresses", 
-                        "ec2:AssignPrivateIpAddresses", 
+                        "ec2:AttachNetworkInterface",
+                        "ec2:DetachNetworkInterface",
+                        "ec2:UnassignPrivateIpAddresses",
+                        "ec2:UnassignIpv6Addresses",
+                        "ec2:AssignPrivateIpAddresses",
                         "ec2:AssignIpv6Addresses"
-                    ], 
-                    "Resource": "*", 
-                    "Effect": "Allow", 
+                    ],
+                    "Resource": "*",
                     "Condition": {
                         "StringEquals": {
                             "aws:ResourceTag/eks:eks-cluster-name": "${aws:PrincipalTag/eks:eks-cluster-name}"
                         }
                     }
-                }, 
+                },
                 {
-                    "Action": "ec2:ModifyNetworkInterfaceAttribute", 
+                    "Effect": "Allow",
+                    "Action": "ec2:ModifyNetworkInterfaceAttribute",
                     "Resource": [
-                        "arn:aws:ec2:*:*:network-interface/*", 
+                        "arn:aws:ec2:*:*:network-interface/*",
                         "arn:aws:ec2:*:*:instance/*"
-                    ], 
-                    "Effect": "Allow", 
+                    ],
                     "Condition": {
                         "StringEquals": {
                             "aws:ResourceTag/eks:eks-cluster-name": "${aws:PrincipalTag/eks:eks-cluster-name}"
@@ -73,7 +71,9 @@
                     }
                 }
             ]
-        }, 
-        "IsDefaultVersion": true
+        },
+        "VersionId": "v2",
+        "IsDefaultVersion": true,
+        "CreateDate": "2026-02-20T19:12:09+00:00"
     }
 }
