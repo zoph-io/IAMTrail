@@ -1,97 +1,97 @@
 {
     "PolicyVersion": {
-        "CreateDate": "2026-02-12T18:00:22Z", 
-        "VersionId": "v11", 
         "Document": {
-            "Version": "2012-10-17", 
+            "Version": "2012-10-17",
             "Statement": [
                 {
+                    "Sid": "AWSSSOMemberAccountAdministrator",
+                    "Effect": "Allow",
                     "Action": [
-                        "ds:DescribeDirectories", 
-                        "ds:AuthorizeApplication", 
-                        "ds:UnauthorizeApplication", 
-                        "ds:DescribeTrusts", 
-                        "iam:ListPolicies", 
-                        "organizations:EnableAWSServiceAccess", 
-                        "organizations:DescribeOrganization", 
-                        "organizations:DescribeAccount", 
-                        "organizations:ListRoots", 
-                        "organizations:ListAccounts", 
-                        "organizations:ListAccountsForParent", 
-                        "organizations:ListParents", 
-                        "organizations:ListChildren", 
-                        "organizations:ListOrganizationalUnitsForParent", 
-                        "organizations:ListDelegatedAdministrators", 
-                        "sso:*", 
-                        "sso-directory:*", 
-                        "identitystore:*", 
-                        "identitystore-auth:*", 
-                        "ds:CreateAlias", 
-                        "access-analyzer:ValidatePolicy", 
-                        "signin:CreateTrustedIdentityPropagationApplicationForConsole", 
+                        "ds:DescribeDirectories",
+                        "ds:AuthorizeApplication",
+                        "ds:UnauthorizeApplication",
+                        "ds:DescribeTrusts",
+                        "iam:ListPolicies",
+                        "organizations:EnableAWSServiceAccess",
+                        "organizations:DescribeOrganization",
+                        "organizations:DescribeAccount",
+                        "organizations:ListRoots",
+                        "organizations:ListAccounts",
+                        "organizations:ListAccountsForParent",
+                        "organizations:ListParents",
+                        "organizations:ListChildren",
+                        "organizations:ListOrganizationalUnitsForParent",
+                        "organizations:ListDelegatedAdministrators",
+                        "sso:*",
+                        "sso-directory:*",
+                        "identitystore:*",
+                        "identitystore-auth:*",
+                        "ds:CreateAlias",
+                        "access-analyzer:ValidatePolicy",
+                        "signin:CreateTrustedIdentityPropagationApplicationForConsole",
                         "signin:ListTrustedIdentityPropagationApplicationsForConsole"
-                    ], 
-                    "Resource": "*", 
-                    "Effect": "Allow", 
-                    "Sid": "AWSSSOMemberAccountAdministrator"
-                }, 
+                    ],
+                    "Resource": "*"
+                },
                 {
+                    "Sid": "AWSSSOManageDelegatedAdministrator",
+                    "Effect": "Allow",
                     "Action": [
-                        "organizations:RegisterDelegatedAdministrator", 
+                        "organizations:RegisterDelegatedAdministrator",
                         "organizations:DeregisterDelegatedAdministrator"
-                    ], 
-                    "Resource": "*", 
-                    "Effect": "Allow", 
+                    ],
+                    "Resource": "*",
                     "Condition": {
                         "StringEquals": {
                             "organizations:ServicePrincipal": "sso.amazonaws.com"
                         }
-                    }, 
-                    "Sid": "AWSSSOManageDelegatedAdministrator"
-                }, 
+                    }
+                },
                 {
+                    "Sid": "AllowKMSKeyUseViaAWSIAMIdentityCenterService",
+                    "Effect": "Allow",
                     "Action": [
-                        "kms:GenerateDataKeyWithoutPlaintext", 
-                        "kms:Encrypt", 
+                        "kms:GenerateDataKeyWithoutPlaintext",
+                        "kms:Encrypt",
                         "kms:Decrypt"
-                    ], 
-                    "Resource": "*", 
-                    "Effect": "Allow", 
+                    ],
+                    "Resource": "*",
                     "Condition": {
                         "StringLike": {
-                            "kms:ViaService": "sso.*.amazonaws.com", 
+                            "kms:ViaService": "sso.*.amazonaws.com",
                             "kms:EncryptionContext:aws:sso:instance-arn": "*"
                         }
-                    }, 
-                    "Sid": "AllowKMSKeyUseViaAWSIAMIdentityCenterService"
-                }, 
+                    }
+                },
                 {
+                    "Sid": "AllowKMSKeyUseViaAWSIdentityStoreService",
+                    "Effect": "Allow",
                     "Action": [
-                        "kms:GenerateDataKeyWithoutPlaintext", 
-                        "kms:Encrypt", 
+                        "kms:GenerateDataKeyWithoutPlaintext",
+                        "kms:Encrypt",
                         "kms:Decrypt"
-                    ], 
-                    "Resource": "*", 
-                    "Effect": "Allow", 
+                    ],
+                    "Resource": "*",
                     "Condition": {
                         "StringLike": {
-                            "kms:ViaService": "identitystore.*.amazonaws.com", 
+                            "kms:ViaService": "identitystore.*.amazonaws.com",
                             "kms:EncryptionContext:aws:identitystore:identitystore-arn": "*"
                         }
-                    }, 
-                    "Sid": "AllowKMSKeyUseViaAWSIdentityStoreService"
-                }, 
+                    }
+                },
                 {
+                    "Sid": "AllowKMSKeyDiscovery",
+                    "Effect": "Allow",
                     "Action": [
-                        "kms:ListAliases", 
+                        "kms:ListAliases",
                         "kms:DescribeKey"
-                    ], 
-                    "Resource": "*", 
-                    "Effect": "Allow", 
-                    "Sid": "AllowKMSKeyDiscovery"
+                    ],
+                    "Resource": "*"
                 }
             ]
-        }, 
-        "IsDefaultVersion": true
+        },
+        "VersionId": "v11",
+        "IsDefaultVersion": true,
+        "CreateDate": "2026-02-12T18:00:22+00:00"
     }
 }
