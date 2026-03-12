@@ -1,118 +1,118 @@
 {
     "PolicyVersion": {
-        "CreateDate": "2026-02-12T17:58:59Z", 
-        "VersionId": "v12", 
         "Document": {
-            "Version": "2012-10-17", 
+            "Version": "2012-10-17",
             "Statement": [
                 {
+                    "Effect": "Allow",
                     "Action": [
-                        "ec2:DescribeVolumes", 
+                        "ec2:DescribeVolumes",
                         "ec2:DescribeSnapshots"
-                    ], 
-                    "Resource": "*", 
-                    "Effect": "Allow"
-                }, 
+                    ],
+                    "Resource": "*"
+                },
                 {
+                    "Effect": "Allow",
                     "Action": [
                         "ec2:CreateSnapshot"
-                    ], 
+                    ],
                     "Resource": [
                         "arn:aws:ec2:*:*:snapshot/*"
-                    ], 
-                    "Effect": "Allow", 
+                    ],
                     "Condition": {
                         "StringEquals": {
                             "aws:RequestTag/CreatedBy": "EC2 Image Builder"
                         }
                     }
-                }, 
+                },
                 {
+                    "Effect": "Allow",
                     "Action": [
                         "ec2:CreateSnapshot"
-                    ], 
+                    ],
                     "Resource": [
                         "arn:aws:ec2:*:*:volume/*"
-                    ], 
-                    "Effect": "Allow", 
+                    ],
                     "Condition": {
                         "StringEquals": {
                             "aws:ResourceTag/CreatedBy": "EC2 Image Builder"
                         }
                     }
-                }, 
+                },
                 {
+                    "Effect": "Allow",
                     "Action": [
                         "ec2:CreateTags"
-                    ], 
-                    "Resource": "*", 
-                    "Effect": "Allow", 
+                    ],
+                    "Resource": "*",
                     "Condition": {
                         "StringEquals": {
+                            "ec2:CreateAction": "CreateSnapshot",
                             "aws:RequestTag/CreatedBy": [
                                 "EC2 Image Builder"
-                            ], 
-                            "ec2:CreateAction": "CreateSnapshot"
+                            ]
                         }
                     }
-                }, 
+                },
                 {
+                    "Effect": "Allow",
                     "Action": [
                         "s3:GetObject"
-                    ], 
+                    ],
                     "Resource": [
-                        "arn:aws:s3:::*/*.ISO", 
-                        "arn:aws:s3:::*/*.iso", 
+                        "arn:aws:s3:::*/*.ISO",
+                        "arn:aws:s3:::*/*.iso",
                         "arn:aws:s3:::*/*.Iso"
-                    ], 
-                    "Effect": "Allow", 
+                    ],
                     "Condition": {
                         "StringEquals": {
                             "s3:ResourceAccount": "${aws:PrincipalAccount}"
                         }
                     }
-                }, 
+                },
                 {
+                    "Effect": "Allow",
                     "Action": [
-                        "imagebuilder:GetComponent", 
+                        "imagebuilder:GetComponent",
                         "imagebuilder:GetMarketplaceResource"
-                    ], 
-                    "Resource": "*", 
-                    "Effect": "Allow"
-                }, 
+                    ],
+                    "Resource": "*"
+                },
                 {
+                    "Effect": "Allow",
                     "Action": [
                         "kms:Decrypt"
-                    ], 
-                    "Resource": "*", 
-                    "Effect": "Allow", 
+                    ],
+                    "Resource": "*",
                     "Condition": {
                         "ForAnyValue:StringEquals": {
-                            "kms:EncryptionContextKeys": "aws:imagebuilder:arn", 
+                            "kms:EncryptionContextKeys": "aws:imagebuilder:arn",
                             "aws:CalledVia": [
                                 "imagebuilder.amazonaws.com"
                             ]
                         }
                     }
-                }, 
+                },
                 {
+                    "Effect": "Allow",
                     "Action": [
                         "s3:GetObject"
-                    ], 
-                    "Resource": "arn:aws:s3:::ec2imagebuilder*", 
-                    "Effect": "Allow"
-                }, 
+                    ],
+                    "Resource": "arn:aws:s3:::ec2imagebuilder*"
+                },
                 {
+                    "Effect": "Allow",
                     "Action": [
-                        "logs:CreateLogStream", 
-                        "logs:CreateLogGroup", 
+                        "logs:CreateLogStream",
+                        "logs:CreateLogGroup",
                         "logs:PutLogEvents"
-                    ], 
-                    "Resource": "arn:aws:logs:*:*:log-group:/aws/imagebuilder/*", 
-                    "Effect": "Allow"
+                    ],
+                    "Resource": "arn:aws:logs:*:*:log-group:/aws/imagebuilder/*"
                 }
             ]
-        }, 
-        "IsDefaultVersion": true
+        },
+        "VersionId": "v12",
+        "IsDefaultVersion": true,
+        "CreateDate": "2026-02-12T17:58:59+00:00"
     }
 }
