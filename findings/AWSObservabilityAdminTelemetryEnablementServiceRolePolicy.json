@@ -23,13 +23,13 @@
         "span": {
           "start": {
             "line": 1,
-            "column": 1664,
-            "offset": 1664
+            "column": 1720,
+            "offset": 1720
           },
           "end": {
             "line": 1,
-            "column": 1688,
-            "offset": 1688
+            "column": 1744,
+            "offset": 1744
           }
         }
       },
@@ -51,13 +51,13 @@
         "span": {
           "start": {
             "line": 1,
-            "column": 1798,
-            "offset": 1798
+            "column": 1854,
+            "offset": 1854
           },
           "end": {
             "line": 1,
-            "column": 1822,
-            "offset": 1822
+            "column": 1878,
+            "offset": 1878
           }
         }
       },
@@ -82,13 +82,13 @@
         "span": {
           "start": {
             "line": 1,
-            "column": 1892,
-            "offset": 1892
+            "column": 1948,
+            "offset": 1948
           },
           "end": {
             "line": 1,
-            "column": 1940,
-            "offset": 1940
+            "column": 1996,
+            "offset": 1996
           }
         }
       }
