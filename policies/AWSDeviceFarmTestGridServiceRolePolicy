@@ -1,85 +1,83 @@
 {
     "PolicyVersion": {
-        "CreateDate": "2021-05-26T22:01:35Z", 
-        "VersionId": "v1", 
         "Document": {
-            "Version": "2012-10-17", 
+            "Version": "2012-10-17",
             "Statement": [
                 {
+                    "Effect": "Allow",
                     "Action": [
-                        "ec2:DescribeNetworkInterfaces", 
-                        "ec2:DescribeVpcs", 
-                        "ec2:DescribeSubnets", 
+                        "ec2:DescribeNetworkInterfaces",
+                        "ec2:DescribeVpcs",
+                        "ec2:DescribeSubnets",
                         "ec2:DescribeSecurityGroups"
-                    ], 
-                    "Resource": "*", 
-                    "Effect": "Allow"
-                }, 
+                    ],
+                    "Resource": "*"
+                },
                 {
+                    "Effect": "Allow",
                     "Action": [
                         "ec2:CreateNetworkInterface"
-                    ], 
+                    ],
                     "Resource": [
-                        "arn:aws:ec2:*:*:subnet/*", 
+                        "arn:aws:ec2:*:*:subnet/*",
                         "arn:aws:ec2:*:*:security-group/*"
-                    ], 
-                    "Effect": "Allow"
-                }, 
+                    ]
+                },
                 {
+                    "Effect": "Allow",
                     "Action": [
                         "ec2:CreateNetworkInterface"
-                    ], 
+                    ],
                     "Resource": [
                         "arn:aws:ec2:*:*:network-interface/*"
-                    ], 
-                    "Effect": "Allow", 
+                    ],
                     "Condition": {
                         "StringEquals": {
                             "aws:RequestTag/AWSDeviceFarmManaged": "true"
                         }
                     }
-                }, 
+                },
                 {
+                    "Effect": "Allow",
                     "Action": [
                         "ec2:CreateTags"
-                    ], 
-                    "Resource": "arn:aws:ec2:*:*:network-interface/*", 
-                    "Effect": "Allow", 
+                    ],
+                    "Resource": "arn:aws:ec2:*:*:network-interface/*",
                     "Condition": {
                         "StringEquals": {
                             "ec2:CreateAction": "CreateNetworkInterface"
                         }
                     }
-                }, 
+                },
                 {
+                    "Effect": "Allow",
                     "Action": [
-                        "ec2:CreateNetworkInterfacePermission", 
+                        "ec2:CreateNetworkInterfacePermission",
                         "ec2:DeleteNetworkInterface"
-                    ], 
-                    "Resource": "arn:aws:ec2:*:*:network-interface/*", 
-                    "Effect": "Allow", 
+                    ],
+                    "Resource": "arn:aws:ec2:*:*:network-interface/*",
                     "Condition": {
                         "StringEquals": {
                             "aws:ResourceTag/AWSDeviceFarmManaged": "true"
                         }
                     }
-                }, 
+                },
                 {
+                    "Effect": "Allow",
                     "Action": [
                         "ec2:ModifyNetworkInterfaceAttribute"
-                    ], 
+                    ],
                     "Resource": [
-                        "arn:aws:ec2:*:*:security-group/*", 
+                        "arn:aws:ec2:*:*:security-group/*",
                         "arn:aws:ec2:*:*:instance/*"
-                    ], 
-                    "Effect": "Allow"
-                }, 
+                    ]
+                },
                 {
+                    "Effect": "Allow",
                     "Action": [
                         "ec2:ModifyNetworkInterfaceAttribute"
-                    ], 
-                    "Resource": "arn:aws:ec2:*:*:network-interface/*", 
-                    "Effect": "Allow", 
+                    ],
+                    "Resource": "arn:aws:ec2:*:*:network-interface/*",
                     "Condition": {
                         "StringEquals": {
                             "aws:ResourceTag/AWSDeviceFarmManaged": "true"
@@ -87,7 +85,9 @@
                     }
                 }
             ]
-        }, 
-        "IsDefaultVersion": true
+        },
+        "VersionId": "v1",
+        "IsDefaultVersion": true,
+        "CreateDate": "2021-05-26T22:01:35+00:00"
     }
 }
