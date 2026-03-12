@@ -1,233 +1,233 @@
 {
     "PolicyVersion": {
-        "CreateDate": "2026-02-12T18:01:49Z", 
-        "VersionId": "v9", 
         "Document": {
-            "Version": "2012-10-17", 
+            "Version": "2012-10-17",
             "Statement": [
                 {
+                    "Sid": "AllowOpsItemReplication",
+                    "Effect": "Allow",
                     "Action": [
                         "ssm:CreateOpsItem"
-                    ], 
+                    ],
                     "Resource": [
                         "arn:aws:ssm:*:*:opsitem/*"
-                    ], 
-                    "Effect": "Allow", 
+                    ],
                     "Condition": {
                         "StringEquals": {
-                            "aws:RequestTag/SystemsManagerJustInTimeNodeAccessManaged": "Replica", 
-                            "aws:ResourceAccount": "${aws:PrincipalAccount}"
-                        }, 
+                            "aws:ResourceAccount": "${aws:PrincipalAccount}",
+                            "aws:RequestTag/SystemsManagerJustInTimeNodeAccessManaged": "Replica"
+                        },
                         "ForAllValues:StringEquals": {
                             "aws:TagKeys": [
                                 "SystemsManagerJustInTimeNodeAccessManaged"
                             ]
                         }
-                    }, 
-                    "Sid": "AllowOpsItemReplication"
-                }, 
+                    }
+                },
                 {
+                    "Sid": "AllowOpsItemReplicationTagging",
+                    "Effect": "Allow",
                     "Action": [
                         "ssm:AddTagsToResource"
-                    ], 
+                    ],
                     "Resource": [
                         "arn:aws:ssm:*:*:opsitem/*"
-                    ], 
-                    "Effect": "Allow", 
+                    ],
                     "Condition": {
                         "StringEquals": {
                             "aws:RequestTag/SystemsManagerJustInTimeNodeAccessManaged": "Replica"
-                        }, 
+                        },
                         "ForAllValues:StringEquals": {
                             "aws:TagKeys": [
                                 "SystemsManagerJustInTimeNodeAccessManaged"
                             ]
                         }
-                    }, 
-                    "Sid": "AllowOpsItemReplicationTagging"
-                }, 
+                    }
+                },
                 {
+                    "Sid": "AllowAutomationExecutionTagging",
+                    "Effect": "Allow",
                     "Action": [
                         "ssm:AddTagsToResource"
-                    ], 
+                    ],
                     "Resource": [
                         "arn:aws:ssm:*:*:automation-execution/*"
-                    ], 
-                    "Effect": "Allow", 
+                    ],
                     "Condition": {
                         "StringEquals": {
                             "aws:RequestTag/SystemsManagerJustInTimeNodeAccessManaged": "true"
-                        }, 
+                        },
                         "ForAllValues:StringEquals": {
                             "aws:TagKeys": [
                                 "SystemsManagerJustInTimeNodeAccessManaged"
                             ]
                         }
-                    }, 
-                    "Sid": "AllowAutomationExecutionTagging"
-                }, 
+                    }
+                },
                 {
+                    "Sid": "AllowOpsItemManagement",
+                    "Effect": "Allow",
                     "Action": [
-                        "ssm:GetOpsItem", 
+                        "ssm:GetOpsItem",
                         "ssm:UpdateOpsItem"
-                    ], 
+                    ],
                     "Resource": [
                         "arn:aws:ssm:*:*:opsitem/*"
-                    ], 
-                    "Effect": "Allow", 
+                    ],
                     "Condition": {
                         "StringEquals": {
                             "aws:ResourceAccount": "${aws:PrincipalAccount}"
                         }
-                    }, 
-                    "Sid": "AllowOpsItemManagement"
-                }, 
+                    }
+                },
                 {
+                    "Sid": "AllowRetrieveDocument",
+                    "Effect": "Allow",
                     "Action": [
-                        "ssm:GetDocument", 
+                        "ssm:GetDocument",
                         "ssm:DescribeDocument"
-                    ], 
+                    ],
                     "Resource": [
                         "arn:aws:ssm:*:*:document/*"
-                    ], 
-                    "Effect": "Allow", 
+                    ],
                     "Condition": {
                         "StringEquals": {
                             "ssm:DocumentType": [
-                                "ManualApprovalPolicy", 
+                                "ManualApprovalPolicy",
                                 "AutoApprovalPolicy"
                             ]
                         }
-                    }, 
-                    "Sid": "AllowRetrieveDocument"
-                }, 
+                    }
+                },
                 {
+                    "Sid": "AllowDescriptions",
+                    "Effect": "Allow",
                     "Action": [
-                        "ssm:DescribeOpsItems", 
-                        "ssm:DescribeSessions", 
+                        "ssm:DescribeOpsItems",
+                        "ssm:DescribeSessions",
                         "ssm:ListDocuments"
-                    ], 
+                    ],
                     "Resource": [
                         "*"
-                    ], 
-                    "Effect": "Allow", 
-                    "Sid": "AllowDescriptions"
-                }, 
+                    ]
+                },
                 {
+                    "Sid": "AllowListTagsForManagedInstances",
+                    "Effect": "Allow",
                     "Action": [
                         "ssm:ListTagsForResource"
-                    ], 
+                    ],
                     "Resource": [
                         "arn:aws:ssm:*:*:managed-instance/*"
-                    ], 
-                    "Effect": "Allow", 
-                    "Sid": "AllowListTagsForManagedInstances"
-                }, 
+                    ]
+                },
                 {
+                    "Sid": "AllowListSSMGUIConnections",
+                    "Effect": "Allow",
                     "Action": [
                         "ssm-guiconnect:ListConnections"
-                    ], 
+                    ],
                     "Resource": [
                         "*"
-                    ], 
-                    "Effect": "Allow", 
-                    "Sid": "AllowListSSMGUIConnections"
-                }, 
+                    ]
+                },
                 {
+                    "Sid": "AllowIdentityStoreActions",
+                    "Effect": "Allow",
                     "Action": [
-                        "identitystore:ListGroupMembershipsForMember", 
-                        "identitystore:DescribeUser", 
-                        "identitystore:GetGroupId", 
+                        "identitystore:ListGroupMembershipsForMember",
+                        "identitystore:DescribeUser",
+                        "identitystore:GetGroupId",
                         "identitystore:GetUserId"
-                    ], 
+                    ],
                     "Resource": [
                         "*"
-                    ], 
-                    "Effect": "Allow", 
-                    "Sid": "AllowIdentityStoreActions"
-                }, 
+                    ]
+                },
                 {
+                    "Sid": "AllowSSODirectoryActions",
+                    "Effect": "Allow",
                     "Action": [
-                        "sso-directory:DescribeUsers", 
+                        "sso-directory:DescribeUsers",
                         "sso-directory:IsMemberInGroup"
-                    ], 
+                    ],
                     "Resource": [
                         "*"
-                    ], 
-                    "Effect": "Allow", 
-                    "Sid": "AllowSSODirectoryActions"
-                }, 
+                    ]
+                },
                 {
+                    "Sid": "AllowSSOInstanceActions",
+                    "Effect": "Allow",
                     "Action": [
-                        "sso:ListInstances", 
-                        "sso:DescribeRegisteredRegions", 
+                        "sso:ListInstances",
+                        "sso:DescribeRegisteredRegions",
                         "sso:ListDirectoryAssociations"
-                    ], 
+                    ],
                     "Resource": [
                         "*"
-                    ], 
-                    "Effect": "Allow", 
-                    "Sid": "AllowSSOInstanceActions"
-                }, 
+                    ]
+                },
                 {
+                    "Sid": "AllowDescribingEC2Tags",
+                    "Effect": "Allow",
                     "Action": [
                         "ec2:DescribeTags"
-                    ], 
+                    ],
                     "Resource": [
                         "*"
-                    ], 
-                    "Effect": "Allow", 
-                    "Sid": "AllowDescribingEC2Tags"
-                }, 
+                    ]
+                },
                 {
+                    "Sid": "AllowPublishingCloudWatchMetrics",
+                    "Effect": "Allow",
                     "Action": [
                         "cloudwatch:PutMetricData"
-                    ], 
+                    ],
                     "Resource": [
                         "*"
-                    ], 
-                    "Effect": "Allow", 
+                    ],
                     "Condition": {
                         "StringEquals": {
                             "cloudwatch:namespace": "AWS/SSM/JustInTimeAccess"
                         }
-                    }, 
-                    "Sid": "AllowPublishingCloudWatchMetrics"
-                }, 
+                    }
+                },
                 {
+                    "Sid": "AllowKmsAccessViaIdentityCenter",
+                    "Effect": "Allow",
                     "Action": [
                         "kms:Decrypt"
-                    ], 
-                    "Resource": "*", 
-                    "Effect": "Allow", 
+                    ],
+                    "Resource": "*",
                     "Condition": {
                         "ArnLike": {
                             "kms:EncryptionContext:aws:sso:instance-arn": "arn:*:sso:::instance/*"
-                        }, 
+                        },
                         "StringLike": {
                             "kms:ViaService": "sso.*.amazonaws.com"
                         }
-                    }, 
-                    "Sid": "AllowKmsAccessViaIdentityCenter"
-                }, 
+                    }
+                },
                 {
+                    "Sid": "AllowKmsAccessViaIdentityStore",
+                    "Effect": "Allow",
                     "Action": [
                         "kms:Decrypt"
-                    ], 
-                    "Resource": "*", 
-                    "Effect": "Allow", 
+                    ],
+                    "Resource": "*",
                     "Condition": {
                         "ArnLike": {
                             "kms:EncryptionContext:aws:identitystore:identitystore-arn": "arn:*:identitystore::*:identitystore/*"
-                        }, 
+                        },
                         "StringLike": {
                             "kms:ViaService": "identitystore.*.amazonaws.com"
                         }
-                    }, 
-                    "Sid": "AllowKmsAccessViaIdentityStore"
+                    }
                 }
             ]
-        }, 
-        "IsDefaultVersion": true
+        },
+        "VersionId": "v9",
+        "IsDefaultVersion": true,
+        "CreateDate": "2026-02-12T18:01:49+00:00"
     }
 }
