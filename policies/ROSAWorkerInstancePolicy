@@ -1,49 +1,49 @@
 {
     "PolicyVersion": {
-        "CreateDate": "2026-02-12T18:00:36Z", 
-        "VersionId": "v6", 
         "Document": {
-            "Version": "2012-10-17", 
+            "Version": "2012-10-17",
             "Statement": [
                 {
+                    "Sid": "EC2DescribeInstancesRegions",
+                    "Effect": "Allow",
                     "Action": [
-                        "ec2:DescribeInstances", 
+                        "ec2:DescribeInstances",
                         "ec2:DescribeRegions"
-                    ], 
-                    "Resource": "*", 
-                    "Effect": "Allow", 
-                    "Sid": "EC2DescribeInstancesRegions"
-                }, 
+                    ],
+                    "Resource": "*"
+                },
                 {
+                    "Sid": "ECRGetAuthorizationToken",
+                    "Effect": "Allow",
                     "Action": [
                         "ecr:GetAuthorizationToken"
-                    ], 
-                    "Resource": "*", 
-                    "Effect": "Allow", 
-                    "Sid": "ECRGetAuthorizationToken"
-                }, 
+                    ],
+                    "Resource": "*"
+                },
                 {
+                    "Sid": "ECRReadOnlyAccessRedHatManaged",
+                    "Effect": "Allow",
                     "Action": [
-                        "ecr:BatchCheckLayerAvailability", 
-                        "ecr:GetDownloadUrlForLayer", 
-                        "ecr:GetRepositoryPolicy", 
-                        "ecr:DescribeRepositories", 
-                        "ecr:ListImages", 
-                        "ecr:DescribeImages", 
-                        "ecr:BatchGetImage", 
+                        "ecr:BatchCheckLayerAvailability",
+                        "ecr:GetDownloadUrlForLayer",
+                        "ecr:GetRepositoryPolicy",
+                        "ecr:DescribeRepositories",
+                        "ecr:ListImages",
+                        "ecr:DescribeImages",
+                        "ecr:BatchGetImage",
                         "ecr:ListTagsForResource"
-                    ], 
-                    "Resource": "*", 
-                    "Effect": "Allow", 
+                    ],
+                    "Resource": "*",
                     "Condition": {
                         "StringEquals": {
                             "aws:ResourceTag/red-hat-managed": "true"
                         }
-                    }, 
-                    "Sid": "ECRReadOnlyAccessRedHatManaged"
+                    }
                 }
             ]
-        }, 
-        "IsDefaultVersion": true
+        },
+        "VersionId": "v6",
+        "IsDefaultVersion": true,
+        "CreateDate": "2026-02-12T18:00:36+00:00"
     }
 }
