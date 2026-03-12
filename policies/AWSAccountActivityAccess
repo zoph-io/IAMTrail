@@ -1,33 +1,33 @@
 {
     "PolicyVersion": {
-        "CreateDate": "2026-02-20T20:57:12Z", 
-        "VersionId": "v3", 
         "Document": {
-            "Version": "2012-10-17", 
+            "Version": "2012-10-17",
             "Statement": [
                 {
+                    "Effect": "Allow",
                     "Action": [
-                        "account:GetAccountInformation", 
-                        "account:GetAlternateContact", 
-                        "account:GetContactInformation", 
-                        "account:GetRegionOptStatus", 
-                        "account:ListRegions", 
-                        "billing:GetIAMAccessPreference", 
-                        "billing:GetSellerOfRecord", 
+                        "account:GetAccountInformation",
+                        "account:GetAlternateContact",
+                        "account:GetContactInformation",
+                        "account:GetRegionOptStatus",
+                        "account:ListRegions",
+                        "billing:GetIAMAccessPreference",
+                        "billing:GetSellerOfRecord",
                         "payments:ListPaymentPreferences"
-                    ], 
-                    "Resource": "*", 
-                    "Effect": "Allow"
-                }, 
+                    ],
+                    "Resource": "*"
+                },
                 {
+                    "Effect": "Allow",
                     "Action": [
                         "aws-portal:ViewBilling"
-                    ], 
-                    "Resource": "*", 
-                    "Effect": "Allow"
+                    ],
+                    "Resource": "*"
                 }
             ]
-        }, 
-        "IsDefaultVersion": true
+        },
+        "VersionId": "v3",
+        "IsDefaultVersion": true,
+        "CreateDate": "2026-02-20T20:57:12+00:00"
     }
 }
