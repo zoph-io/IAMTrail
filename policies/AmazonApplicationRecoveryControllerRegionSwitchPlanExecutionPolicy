@@ -1,38 +1,38 @@
 {
     "PolicyVersion": {
-        "CreateDate": "2026-03-05T19:27:12Z", 
-        "VersionId": "v4", 
         "Document": {
-            "Version": "2012-10-17", 
+            "Version": "2012-10-17",
             "Statement": [
                 {
+                    "Effect": "Allow",
                     "Action": [
-                        "arc-region-switch:GetPlan", 
-                        "arc-region-switch:GetPlanExecution", 
+                        "arc-region-switch:GetPlan",
+                        "arc-region-switch:GetPlanExecution",
                         "arc-region-switch:ListPlanExecutions"
-                    ], 
-                    "Resource": "*", 
-                    "Effect": "Allow", 
+                    ],
+                    "Resource": "*",
                     "Sid": "GetPlanAndExecutions"
-                }, 
+                },
                 {
-                    "Action": "iam:SimulatePrincipalPolicy", 
-                    "Resource": "arn:aws:iam::*:role/*", 
-                    "Effect": "Allow", 
+                    "Effect": "Allow",
+                    "Action": "iam:SimulatePrincipalPolicy",
+                    "Resource": "arn:aws:iam::*:role/*",
                     "Sid": "PlanEvaluation"
-                }, 
+                },
                 {
+                    "Effect": "Allow",
                     "Action": [
-                        "cloudwatch:DescribeAlarms", 
-                        "cloudwatch:DescribeAlarmHistory", 
+                        "cloudwatch:DescribeAlarms",
+                        "cloudwatch:DescribeAlarmHistory",
                         "cloudwatch:GetMetricStatistics"
-                    ], 
-                    "Resource": "*", 
-                    "Effect": "Allow", 
+                    ],
+                    "Resource": "*",
                     "Sid": "CloudWatch"
                 }
             ]
-        }, 
-        "IsDefaultVersion": true
+        },
+        "VersionId": "v4",
+        "IsDefaultVersion": true,
+        "CreateDate": "2026-03-05T19:27:12+00:00"
     }
 }
