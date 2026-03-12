@@ -1,22 +1,22 @@
 {
     "PolicyVersion": {
-        "CreateDate": "2026-02-12T18:02:33Z", 
-        "VersionId": "v3", 
         "Document": {
-            "Version": "2012-10-17", 
+            "Version": "2012-10-17",
             "Statement": [
                 {
-                    "Action": "logs:CreateLogStream", 
-                    "Resource": "arn:aws:logs:*:*:log-group:aws-controltower/CloudTrailLogs*:*", 
-                    "Effect": "Allow"
-                }, 
+                    "Effect": "Allow",
+                    "Action": "logs:CreateLogStream",
+                    "Resource": "arn:aws:logs:*:*:log-group:aws-controltower/CloudTrailLogs*:*"
+                },
                 {
-                    "Action": "logs:PutLogEvents", 
-                    "Resource": "arn:aws:logs:*:*:log-group:aws-controltower/CloudTrailLogs*:*", 
-                    "Effect": "Allow"
+                    "Effect": "Allow",
+                    "Action": "logs:PutLogEvents",
+                    "Resource": "arn:aws:logs:*:*:log-group:aws-controltower/CloudTrailLogs*:*"
                 }
             ]
-        }, 
-        "IsDefaultVersion": true
+        },
+        "VersionId": "v3",
+        "IsDefaultVersion": true,
+        "CreateDate": "2026-02-12T18:02:33+00:00"
     }
 }
