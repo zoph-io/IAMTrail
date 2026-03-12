@@ -1,23 +1,23 @@
 {
     "PolicyVersion": {
-        "CreateDate": "2024-10-10T19:28:38Z", 
-        "VersionId": "v1", 
         "Document": {
-            "Version": "2012-10-17", 
+            "Version": "2012-10-17",
             "Statement": [
                 {
-                    "Action": "cloudwatch:PutMetricData", 
-                    "Resource": "*", 
-                    "Effect": "Allow", 
+                    "Sid": "CloudwatchMetricPublishing",
+                    "Effect": "Allow",
+                    "Action": "cloudwatch:PutMetricData",
+                    "Resource": "*",
                     "Condition": {
                         "StringEquals": {
                             "cloudwatch:namespace": "AWS/SocialMessaging"
                         }
-                    }, 
-                    "Sid": "CloudwatchMetricPublishing"
+                    }
                 }
             ]
-        }, 
-        "IsDefaultVersion": true
+        },
+        "VersionId": "v1",
+        "IsDefaultVersion": true,
+        "CreateDate": "2024-10-10T19:28:38+00:00"
     }
 }
