@@ -1,28 +1,28 @@
 {
     "PolicyVersion": {
-        "CreateDate": "2026-02-12T18:01:12Z", 
-        "VersionId": "v6", 
         "Document": {
-            "Version": "2012-10-17", 
+            "Version": "2012-10-17",
             "Statement": [
                 {
+                    "Effect": "Allow",
                     "Action": [
                         "cloudwatch:PutMetricData"
-                    ], 
-                    "Resource": "*", 
-                    "Effect": "Allow", 
+                    ],
+                    "Resource": "*",
                     "Condition": {
                         "StringEquals": {
-                            "aws:ResourceAccount": "${aws:PrincipalAccount}", 
                             "cloudwatch:namespace": [
-                                "AWS/AuroraDSQL", 
+                                "AWS/AuroraDSQL",
                                 "AWS/Usage"
-                            ]
+                            ],
+                            "aws:ResourceAccount": "${aws:PrincipalAccount}"
                         }
                     }
                 }
             ]
-        }, 
-        "IsDefaultVersion": true
+        },
+        "VersionId": "v6",
+        "IsDefaultVersion": true,
+        "CreateDate": "2026-02-12T18:01:12+00:00"
     }
 }
