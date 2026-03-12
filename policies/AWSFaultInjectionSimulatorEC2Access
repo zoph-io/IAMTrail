@@ -1,74 +1,74 @@
 {
     "PolicyVersion": {
-        "CreateDate": "2026-02-12T17:59:38Z", 
-        "VersionId": "v10", 
         "Document": {
-            "Version": "2012-10-17", 
+            "Version": "2012-10-17",
             "Statement": [
                 {
+                    "Sid": "AllowEc2Actions",
+                    "Effect": "Allow",
                     "Action": [
-                        "ec2:RebootInstances", 
-                        "ec2:SendSpotInstanceInterruptions", 
-                        "ec2:StartInstances", 
-                        "ec2:StopInstances", 
+                        "ec2:RebootInstances",
+                        "ec2:SendSpotInstanceInterruptions",
+                        "ec2:StartInstances",
+                        "ec2:StopInstances",
                         "ec2:TerminateInstances"
-                    ], 
-                    "Resource": "arn:aws:ec2:*:*:instance/*", 
-                    "Effect": "Allow", 
-                    "Sid": "AllowEc2Actions"
-                }, 
+                    ],
+                    "Resource": "arn:aws:ec2:*:*:instance/*"
+                },
                 {
+                    "Sid": "AllowEc2InstancesWithEncryptedEbsVolumes",
+                    "Effect": "Allow",
                     "Action": [
                         "kms:CreateGrant"
-                    ], 
+                    ],
                     "Resource": [
                         "arn:aws:kms:*:*:key/*"
-                    ], 
-                    "Effect": "Allow", 
+                    ],
                     "Condition": {
-                        "Bool": {
-                            "kms:GrantIsForAWSResource": "true"
-                        }, 
                         "StringLike": {
                             "kms:ViaService": "ec2.*.amazonaws.com"
+                        },
+                        "Bool": {
+                            "kms:GrantIsForAWSResource": "true"
                         }
-                    }, 
-                    "Sid": "AllowEc2InstancesWithEncryptedEbsVolumes"
-                }, 
+                    }
+                },
                 {
+                    "Sid": "AllowSSMSendOnEc2",
+                    "Effect": "Allow",
                     "Action": [
                         "ssm:SendCommand"
-                    ], 
+                    ],
                     "Resource": [
-                        "arn:aws:ec2:*:*:instance/*", 
+                        "arn:aws:ec2:*:*:instance/*",
                         "arn:aws:ssm:*:*:document/*"
-                    ], 
-                    "Effect": "Allow", 
-                    "Sid": "AllowSSMSendOnEc2"
-                }, 
+                    ]
+                },
                 {
+                    "Sid": "AllowSSMStopOnEc2",
+                    "Effect": "Allow",
                     "Action": [
-                        "ssm:CancelCommand", 
+                        "ssm:CancelCommand",
                         "ssm:ListCommands"
-                    ], 
-                    "Resource": "*", 
-                    "Effect": "Allow", 
-                    "Sid": "AllowSSMStopOnEc2"
-                }, 
+                    ],
+                    "Resource": "*"
+                },
                 {
-                    "Action": "ec2:DescribeInstances", 
-                    "Resource": "*", 
-                    "Effect": "Allow", 
-                    "Sid": "DescribeInstances"
-                }, 
+                    "Sid": "DescribeInstances",
+                    "Effect": "Allow",
+                    "Action": "ec2:DescribeInstances",
+                    "Resource": "*"
+                },
                 {
-                    "Action": "ec2:DescribeSubnets", 
-                    "Resource": "*", 
-                    "Effect": "Allow", 
-                    "Sid": "DescribeSubnets"
+                    "Sid": "DescribeSubnets",
+                    "Effect": "Allow",
+                    "Action": "ec2:DescribeSubnets",
+                    "Resource": "*"
                 }
             ]
-        }, 
-        "IsDefaultVersion": true
+        },
+        "VersionId": "v10",
+        "IsDefaultVersion": true,
+        "CreateDate": "2026-02-12T17:59:38+00:00"
     }
 }
