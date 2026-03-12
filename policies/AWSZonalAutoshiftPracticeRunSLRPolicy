@@ -1,43 +1,43 @@
 {
     "PolicyVersion": {
-        "CreateDate": "2025-06-30T17:07:07Z", 
-        "VersionId": "v2", 
         "Document": {
-            "Version": "2012-10-17", 
+            "Version": "2012-10-17",
             "Statement": [
                 {
+                    "Sid": "MonitoringPermissions",
+                    "Effect": "Allow",
                     "Action": [
-                        "cloudwatch:DescribeAlarms", 
+                        "cloudwatch:DescribeAlarms",
                         "health:DescribeEvents"
-                    ], 
-                    "Resource": "*", 
-                    "Effect": "Allow", 
-                    "Sid": "MonitoringPermissions"
-                }, 
+                    ],
+                    "Resource": "*"
+                },
                 {
+                    "Sid": "AutoshiftPracticeCheckPermissions",
+                    "Effect": "Allow",
                     "Action": [
-                        "autoscaling:DescribeAutoScalingGroups", 
-                        "ec2:DescribeInstances", 
-                        "elasticloadbalancing:DescribeTargetHealth", 
+                        "autoscaling:DescribeAutoScalingGroups",
+                        "ec2:DescribeInstances",
+                        "elasticloadbalancing:DescribeTargetHealth",
                         "elasticloadbalancing:DescribeTargetGroups"
-                    ], 
-                    "Resource": "*", 
-                    "Effect": "Allow", 
-                    "Sid": "AutoshiftPracticeCheckPermissions"
-                }, 
+                    ],
+                    "Resource": "*"
+                },
                 {
+                    "Sid": "ZonalShiftManagementPermissions",
+                    "Effect": "Allow",
                     "Action": [
-                        "arc-zonal-shift:CancelZonalShift", 
-                        "arc-zonal-shift:GetManagedResource", 
-                        "arc-zonal-shift:StartZonalShift", 
+                        "arc-zonal-shift:CancelZonalShift",
+                        "arc-zonal-shift:GetManagedResource",
+                        "arc-zonal-shift:StartZonalShift",
                         "arc-zonal-shift:UpdateZonalShift"
-                    ], 
-                    "Resource": "*", 
-                    "Effect": "Allow", 
-                    "Sid": "ZonalShiftManagementPermissions"
+                    ],
+                    "Resource": "*"
                 }
             ]
-        }, 
-        "IsDefaultVersion": true
+        },
+        "VersionId": "v2",
+        "IsDefaultVersion": true,
+        "CreateDate": "2025-06-30T17:07:07+00:00"
     }
 }
