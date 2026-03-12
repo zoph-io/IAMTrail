@@ -1,32 +1,32 @@
 {
     "PolicyVersion": {
-        "CreateDate": "2026-02-12T17:58:42Z", 
-        "VersionId": "v9", 
         "Document": {
-            "Version": "2012-10-17", 
+            "Version": "2012-10-17",
             "Statement": [
                 {
+                    "Sid": "DsqlReadOnlyPermissions",
+                    "Effect": "Allow",
                     "Action": [
-                        "dsql:GetClusterPolicy", 
-                        "dsql:GetCluster", 
-                        "dsql:GetVpcEndpointServiceName", 
-                        "dsql:ListClusters", 
+                        "dsql:GetClusterPolicy",
+                        "dsql:GetCluster",
+                        "dsql:GetVpcEndpointServiceName",
+                        "dsql:ListClusters",
                         "dsql:ListTagsForResource"
-                    ], 
-                    "Resource": "*", 
-                    "Effect": "Allow", 
-                    "Sid": "DsqlReadOnlyPermissions"
-                }, 
+                    ],
+                    "Resource": "*"
+                },
                 {
+                    "Sid": "RelatedServicesPermissions",
+                    "Effect": "Allow",
                     "Action": [
                         "cloudwatch:GetMetricData"
-                    ], 
-                    "Resource": "*", 
-                    "Effect": "Allow", 
-                    "Sid": "RelatedServicesPermissions"
+                    ],
+                    "Resource": "*"
                 }
             ]
-        }, 
-        "IsDefaultVersion": true
+        },
+        "VersionId": "v9",
+        "IsDefaultVersion": true,
+        "CreateDate": "2026-02-12T17:58:42+00:00"
     }
 }
