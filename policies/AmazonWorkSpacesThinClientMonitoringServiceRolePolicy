@@ -1,28 +1,28 @@
 {
     "PolicyVersion": {
-        "CreateDate": "2025-06-13T19:37:07Z", 
-        "VersionId": "v1", 
         "Document": {
-            "Version": "2012-10-17", 
+            "Version": "2012-10-17",
             "Statement": [
                 {
+                    "Sid": "AllowCloudWatchPutMetricData",
+                    "Effect": "Allow",
                     "Action": [
                         "cloudwatch:PutMetricData"
-                    ], 
-                    "Resource": "*", 
-                    "Effect": "Allow", 
+                    ],
+                    "Resource": "*",
                     "Condition": {
                         "StringEquals": {
                             "cloudwatch:namespace": [
-                                "AWS/WorkSpacesThinClient", 
+                                "AWS/WorkSpacesThinClient",
                                 "AWS/Usage"
                             ]
                         }
-                    }, 
-                    "Sid": "AllowCloudWatchPutMetricData"
+                    }
                 }
             ]
-        }, 
-        "IsDefaultVersion": true
+        },
+        "VersionId": "v1",
+        "IsDefaultVersion": true,
+        "CreateDate": "2025-06-13T19:37:07+00:00"
     }
 }
