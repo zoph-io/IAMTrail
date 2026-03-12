@@ -1,19 +1,19 @@
 {
     "PolicyVersion": {
-        "CreateDate": "2025-09-11T16:19:07Z", 
-        "VersionId": "v1", 
         "Document": {
-            "Version": "2012-10-17", 
+            "Version": "2012-10-17",
             "Statement": [
                 {
+                    "Effect": "Allow",
                     "Action": [
                         "billing:GetBillingViewData"
-                    ], 
-                    "Resource": "arn:aws:billing::*:billingview/*", 
-                    "Effect": "Allow"
+                    ],
+                    "Resource": "arn:aws:billing::*:billingview/*"
                 }
             ]
-        }, 
-        "IsDefaultVersion": true
+        },
+        "VersionId": "v1",
+        "IsDefaultVersion": true,
+        "CreateDate": "2025-09-11T16:19:07+00:00"
     }
 }
