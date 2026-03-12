@@ -1,48 +1,48 @@
 {
     "PolicyVersion": {
-        "CreateDate": "2025-07-11T00:22:07Z", 
-        "VersionId": "v1", 
         "Document": {
-            "Version": "2012-10-17", 
+            "Version": "2012-10-17",
             "Statement": [
                 {
+                    "Sid": "SSMSendCommandPermission",
+                    "Effect": "Allow",
                     "Action": [
                         "ssm:SendCommand"
-                    ], 
+                    ],
                     "Resource": [
-                        "arn:aws:ssm:*:*:document/AWS-RunPowerShellScript", 
+                        "arn:aws:ssm:*:*:document/AWS-RunPowerShellScript",
                         "arn:aws:ec2:*:*:instance/*"
-                    ], 
-                    "Effect": "Allow", 
-                    "Sid": "SSMSendCommandPermission"
-                }, 
+                    ]
+                },
                 {
+                    "Sid": "EC2DescribePermissions",
+                    "Effect": "Allow",
                     "Action": [
-                        "ec2:DescribeAvailabilityZones", 
-                        "ec2:DescribeDhcpOptions", 
-                        "ec2:DescribeNetworkInterfaces", 
-                        "ec2:DescribeRouteTables", 
-                        "ec2:DescribeSecurityGroups", 
-                        "ec2:DescribeSubnets", 
+                        "ec2:DescribeAvailabilityZones",
+                        "ec2:DescribeDhcpOptions",
+                        "ec2:DescribeNetworkInterfaces",
+                        "ec2:DescribeRouteTables",
+                        "ec2:DescribeSecurityGroups",
+                        "ec2:DescribeSubnets",
                         "ec2:DescribeVpcs"
-                    ], 
-                    "Resource": "*", 
-                    "Effect": "Allow", 
-                    "Sid": "EC2DescribePermissions"
-                }, 
+                    ],
+                    "Resource": "*"
+                },
                 {
+                    "Sid": "SSMManagementPermissions",
+                    "Effect": "Allow",
                     "Action": [
-                        "ssm:ListCommands", 
-                        "ssm:GetCommandInvocation", 
-                        "ssm:DescribeInstanceInformation", 
+                        "ssm:ListCommands",
+                        "ssm:GetCommandInvocation",
+                        "ssm:DescribeInstanceInformation",
                         "ssm:GetConnectionStatus"
-                    ], 
-                    "Resource": "*", 
-                    "Effect": "Allow", 
-                    "Sid": "SSMManagementPermissions"
+                    ],
+                    "Resource": "*"
                 }
             ]
-        }, 
-        "IsDefaultVersion": true
+        },
+        "VersionId": "v1",
+        "IsDefaultVersion": true,
+        "CreateDate": "2025-07-11T00:22:07+00:00"
     }
 }
