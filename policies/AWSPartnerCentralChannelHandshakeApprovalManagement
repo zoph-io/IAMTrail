@@ -1,30 +1,30 @@
 {
     "PolicyVersion": {
-        "CreateDate": "2026-02-12T17:59:23Z", 
-        "VersionId": "v3", 
         "Document": {
-            "Version": "2012-10-17", 
+            "Version": "2012-10-17",
             "Statement": [
                 {
+                    "Sid": "ChannelHandshakeManagement",
+                    "Effect": "Allow",
                     "Action": [
-                        "partnercentral:ListChannelHandshakes", 
-                        "partnercentral:AcceptChannelHandshake", 
+                        "partnercentral:ListChannelHandshakes",
+                        "partnercentral:AcceptChannelHandshake",
                         "partnercentral:RejectChannelHandshake"
-                    ], 
-                    "Resource": "*", 
-                    "Effect": "Allow", 
+                    ],
+                    "Resource": "*",
                     "Condition": {
                         "StringEquals": {
                             "partnercentral:Catalog": [
-                                "AWS", 
+                                "AWS",
                                 "Sandbox"
                             ]
                         }
-                    }, 
-                    "Sid": "ChannelHandshakeManagement"
+                    }
                 }
             ]
-        }, 
-        "IsDefaultVersion": true
+        },
+        "VersionId": "v3",
+        "IsDefaultVersion": true,
+        "CreateDate": "2026-02-12T17:59:23+00:00"
     }
 }
