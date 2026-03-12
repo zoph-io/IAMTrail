@@ -1,89 +1,89 @@
 {
     "PolicyVersion": {
-        "CreateDate": "2026-02-12T17:57:30Z", 
-        "VersionId": "v6", 
         "Document": {
-            "Version": "2012-10-17", 
+            "Version": "2012-10-17",
             "Statement": [
                 {
+                    "Sid": "CreateJustInTimeAccessServiceLinkedRole",
+                    "Effect": "Allow",
                     "Action": [
                         "iam:CreateServiceLinkedRole"
-                    ], 
+                    ],
                     "Resource": [
                         "arn:aws:iam::*:role/aws-service-role/justintimeaccess.ssm.amazonaws.com/AWSServiceRoleForSystemsManagerJustInTimeAccess"
-                    ], 
-                    "Effect": "Allow", 
+                    ],
                     "Condition": {
                         "StringLike": {
                             "iam:AWSServiceName": "justintimeaccess.ssm.amazonaws.com"
                         }
-                    }, 
-                    "Sid": "CreateJustInTimeAccessServiceLinkedRole"
-                }, 
+                    }
+                },
                 {
+                    "Sid": "CreateSystemsManagerNotificationServiceLinkedRole",
+                    "Effect": "Allow",
                     "Action": [
                         "iam:CreateServiceLinkedRole"
-                    ], 
+                    ],
                     "Resource": [
                         "arn:aws:iam::*:role/aws-service-role/notifications.ssm.amazonaws.com/AWSServiceRoleForSystemsManagerNotifications"
-                    ], 
-                    "Effect": "Allow", 
+                    ],
                     "Condition": {
                         "StringLike": {
                             "iam:AWSServiceName": "notifications.ssm.amazonaws.com"
                         }
-                    }, 
-                    "Sid": "CreateSystemsManagerNotificationServiceLinkedRole"
-                }, 
+                    }
+                },
                 {
+                    "Effect": "Allow",
                     "Action": [
                         "iam:AttachRolePolicy"
-                    ], 
-                    "Resource": "arn:aws:iam::*:role/SSM-JustInTimeAccessTokenRole", 
-                    "Effect": "Allow", 
+                    ],
+                    "Resource": "arn:aws:iam::*:role/SSM-JustInTimeAccessTokenRole",
                     "Condition": {
                         "ArnEquals": {
                             "iam:PolicyARN": "arn:aws:iam::*:policy/AWSSystemsManagerJustInTimeAccessTokenPolicy"
                         }
                     }
-                }, 
+                },
                 {
+                    "Sid": "IAMRoleManagementPermissions",
+                    "Effect": "Allow",
                     "Action": [
-                        "iam:CreateRole", 
-                        "iam:GetRole", 
+                        "iam:CreateRole",
+                        "iam:GetRole",
                         "iam:TagRole"
-                    ], 
+                    ],
                     "Resource": [
                         "arn:aws:iam::*:role/SSM-JustInTimeAccessTokenRole"
-                    ], 
-                    "Effect": "Allow", 
+                    ],
                     "Condition": {
-                        "StringEquals": {
-                            "aws:ResourceTag/QuickSetupDocument": [
-                                "AWSQuickSetupType-JITNA"
-                            ]
-                        }, 
                         "ForAnyValue:StringLike": {
                             "aws:TagKeys": [
                                 "QuickSetup*"
                             ]
+                        },
+                        "StringEquals": {
+                            "aws:ResourceTag/QuickSetupDocument": [
+                                "AWSQuickSetupType-JITNA"
+                            ]
                         }
-                    }, 
-                    "Sid": "IAMRoleManagementPermissions"
-                }, 
+                    }
+                },
                 {
+                    "Sid": "ServiceSettingsManagementPermissions",
+                    "Effect": "Allow",
                     "Action": [
-                        "ssm:UpdateServiceSetting", 
+                        "ssm:UpdateServiceSetting",
                         "ssm:GetServiceSetting"
-                    ], 
+                    ],
                     "Resource": [
                         "arn:aws:ssm:*:*:servicesetting/ssm/just-in-time-access/identity-provider"
-                    ], 
-                    "Effect": "Allow", 
-                    "Sid": "ServiceSettingsManagementPermissions"
+                    ]
                 }
             ]
-        }, 
-        "IsDefaultVersion": true
+        },
+        "VersionId": "v6",
+        "IsDefaultVersion": true,
+        "CreateDate": "2026-02-12T17:57:30+00:00"
     }
 }
