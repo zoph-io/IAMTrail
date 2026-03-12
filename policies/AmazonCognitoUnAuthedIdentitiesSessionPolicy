@@ -1,44 +1,44 @@
 {
     "PolicyVersion": {
-        "CreateDate": "2024-11-01T18:12:44Z", 
-        "VersionId": "v3", 
         "Document": {
-            "Version": "2012-10-17", 
+            "Version": "2012-10-17",
             "Statement": [
                 {
+                    "Sid": "CognitoUnAuthedIdentitiesSessionPolicy",
+                    "Effect": "Allow",
                     "Action": [
-                        "rum:PutRumEvents", 
-                        "sagemaker:InvokeEndpoint", 
-                        "polly:*", 
-                        "comprehend:*", 
-                        "translate:*", 
-                        "transcribe:*", 
-                        "rekognition:*", 
-                        "mobiletargeting:*", 
-                        "firehose:*", 
-                        "personalize:*", 
-                        "geo:GetMap*", 
-                        "geo:SearchPlaceIndex*", 
-                        "geo:GetPlace", 
-                        "geo:CalculateRoute*", 
-                        "geo:*Geofence", 
-                        "geo:*Geofences", 
-                        "geo:*DevicePosition*", 
-                        "kms:Encrypt", 
-                        "kms:Decrypt", 
-                        "kms:ReEncryptTo", 
-                        "kms:ReEncryptFrom", 
-                        "kms:GenerateDataKey", 
-                        "kms:GenerateDataKeyPair", 
-                        "kms:GenerateDataKeyPairWithoutPlaintext", 
+                        "rum:PutRumEvents",
+                        "sagemaker:InvokeEndpoint",
+                        "polly:*",
+                        "comprehend:*",
+                        "translate:*",
+                        "transcribe:*",
+                        "rekognition:*",
+                        "mobiletargeting:*",
+                        "firehose:*",
+                        "personalize:*",
+                        "geo:GetMap*",
+                        "geo:SearchPlaceIndex*",
+                        "geo:GetPlace",
+                        "geo:CalculateRoute*",
+                        "geo:*Geofence",
+                        "geo:*Geofences",
+                        "geo:*DevicePosition*",
+                        "kms:Encrypt",
+                        "kms:Decrypt",
+                        "kms:ReEncryptTo",
+                        "kms:ReEncryptFrom",
+                        "kms:GenerateDataKey",
+                        "kms:GenerateDataKeyPair",
+                        "kms:GenerateDataKeyPairWithoutPlaintext",
                         "kms:GenerateDataKeyWithoutPlaintext"
-                    ], 
-                    "Resource": "*", 
-                    "Effect": "Allow", 
-                    "Sid": "CognitoUnAuthedIdentitiesSessionPolicy"
+                    ],
+                    "Resource": "*"
                 }
             ]
-        }, 
-        "IsDefaultVersion": true
+        },
+        "VersionId": "v3",
+        "IsDefaultVersion": true,
+        "CreateDate": "2024-11-01T18:12:44+00:00"
     }
 }
