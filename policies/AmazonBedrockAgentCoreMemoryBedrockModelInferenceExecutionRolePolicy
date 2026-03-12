@@ -1,20 +1,18 @@
 {
     "PolicyVersion": {
-        "CreateDate": "2026-02-12T17:59:11Z", 
-        "VersionId": "v3", 
         "Document": {
-            "Version": "2012-10-17", 
+            "Version": "2012-10-17",
             "Statement": [
                 {
+                    "Effect": "Allow",
                     "Action": [
-                        "bedrock:InvokeModel", 
+                        "bedrock:InvokeModel",
                         "bedrock:InvokeModelWithResponseStream"
-                    ], 
+                    ],
                     "Resource": [
-                        "arn:aws:bedrock:*::foundation-model/*", 
+                        "arn:aws:bedrock:*::foundation-model/*",
                         "arn:aws:bedrock:*:*:inference-profile/*"
-                    ], 
-                    "Effect": "Allow", 
+                    ],
                     "Condition": {
                         "StringEquals": {
                             "aws:ResourceAccount": "${aws:PrincipalAccount}"
@@ -22,7 +20,9 @@
                     }
                 }
             ]
-        }, 
-        "IsDefaultVersion": true
+        },
+        "VersionId": "v3",
+        "IsDefaultVersion": true,
+        "CreateDate": "2026-02-12T17:59:11+00:00"
     }
 }
