@@ -1,39 +1,39 @@
 {
     "PolicyVersion": {
-        "CreateDate": "2026-02-12T17:57:08Z", 
-        "VersionId": "v3", 
         "Document": {
-            "Version": "2012-10-17", 
+            "Version": "2012-10-17",
             "Statement": [
                 {
+                    "Sid": "AWSTransformCustomManageTransformations",
+                    "Effect": "Allow",
                     "Action": [
-                        "transform-custom:ConverseStream", 
-                        "transform-custom:CreateTransformationPackageUrl", 
-                        "transform-custom:CompleteTransformationPackageUpload", 
-                        "transform-custom:DeleteTransformationPackage", 
-                        "transform-custom:GetTransformationPackageUrl", 
-                        "transform-custom:ListTransformationPackageMetadata", 
-                        "transform-custom:ExecuteTransformation", 
-                        "transform-custom:ListKnowledgeItems", 
-                        "transform-custom:GetKnowledgeItem", 
-                        "transform-custom:DeleteKnowledgeItem", 
-                        "transform-custom:UpdateKnowledgeItemConfiguration", 
-                        "transform-custom:UpdateKnowledgeItemStatus", 
-                        "transform-custom:GetCampaign", 
-                        "transform-custom:UpdateCampaignRepositoryStatus", 
-                        "transform-custom:UpdateCampaign", 
-                        "transform-custom:ListTagsForResource", 
-                        "transform-custom:TagResource", 
+                        "transform-custom:ConverseStream",
+                        "transform-custom:CreateTransformationPackageUrl",
+                        "transform-custom:CompleteTransformationPackageUpload",
+                        "transform-custom:DeleteTransformationPackage",
+                        "transform-custom:GetTransformationPackageUrl",
+                        "transform-custom:ListTransformationPackageMetadata",
+                        "transform-custom:ExecuteTransformation",
+                        "transform-custom:ListKnowledgeItems",
+                        "transform-custom:GetKnowledgeItem",
+                        "transform-custom:DeleteKnowledgeItem",
+                        "transform-custom:UpdateKnowledgeItemConfiguration",
+                        "transform-custom:UpdateKnowledgeItemStatus",
+                        "transform-custom:GetCampaign",
+                        "transform-custom:UpdateCampaignRepositoryStatus",
+                        "transform-custom:UpdateCampaign",
+                        "transform-custom:ListTagsForResource",
+                        "transform-custom:TagResource",
                         "transform-custom:UntagResource"
-                    ], 
+                    ],
                     "Resource": [
                         "*"
-                    ], 
-                    "Effect": "Allow", 
-                    "Sid": "AWSTransformCustomManageTransformations"
+                    ]
                 }
             ]
-        }, 
-        "IsDefaultVersion": true
+        },
+        "VersionId": "v3",
+        "IsDefaultVersion": true,
+        "CreateDate": "2026-02-12T17:57:08+00:00"
     }
 }
