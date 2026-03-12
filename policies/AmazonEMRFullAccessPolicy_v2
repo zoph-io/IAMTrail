@@ -1,151 +1,151 @@
 {
     "PolicyVersion": {
-        "CreateDate": "2026-02-12T17:58:52Z", 
-        "VersionId": "v7", 
         "Document": {
-            "Version": "2012-10-17", 
+            "Version": "2012-10-17",
             "Statement": [
                 {
+                    "Sid": "RunJobFlowExplicitlyWithEMRManagedTag",
+                    "Effect": "Allow",
                     "Action": [
                         "elasticmapreduce:RunJobFlow"
-                    ], 
-                    "Resource": "*", 
-                    "Effect": "Allow", 
+                    ],
+                    "Resource": "*",
                     "Condition": {
                         "StringEquals": {
                             "aws:RequestTag/for-use-with-amazon-emr-managed-policies": "true"
                         }
-                    }, 
-                    "Sid": "RunJobFlowExplicitlyWithEMRManagedTag"
-                }, 
+                    }
+                },
                 {
+                    "Sid": "ElasticMapReduceActions",
+                    "Effect": "Allow",
                     "Action": [
-                        "elasticmapreduce:AddInstanceFleet", 
-                        "elasticmapreduce:AddInstanceGroups", 
-                        "elasticmapreduce:AddJobFlowSteps", 
-                        "elasticmapreduce:AddTags", 
-                        "elasticmapreduce:CancelSteps", 
-                        "elasticmapreduce:CreateEditor", 
-                        "elasticmapreduce:CreatePersistentAppUI", 
-                        "elasticmapreduce:CreateSecurityConfiguration", 
-                        "elasticmapreduce:DeleteEditor", 
-                        "elasticmapreduce:DeleteSecurityConfiguration", 
-                        "elasticmapreduce:DescribeCluster", 
-                        "elasticmapreduce:DescribeEditor", 
-                        "elasticmapreduce:DescribeJobFlows", 
-                        "elasticmapreduce:DescribePersistentAppUI", 
-                        "elasticmapreduce:DescribeSecurityConfiguration", 
-                        "elasticmapreduce:DescribeStep", 
-                        "elasticmapreduce:DescribeReleaseLabel", 
-                        "elasticmapreduce:GetBlockPublicAccessConfiguration", 
-                        "elasticmapreduce:GetManagedScalingPolicy", 
-                        "elasticmapreduce:GetAutoTerminationPolicy", 
-                        "elasticmapreduce:GetPersistentAppUIPresignedURL", 
-                        "elasticmapreduce:ListBootstrapActions", 
-                        "elasticmapreduce:ListClusters", 
-                        "elasticmapreduce:ListEditors", 
-                        "elasticmapreduce:ListInstanceFleets", 
-                        "elasticmapreduce:ListInstanceGroups", 
-                        "elasticmapreduce:ListInstances", 
-                        "elasticmapreduce:ListSecurityConfigurations", 
-                        "elasticmapreduce:ListSteps", 
-                        "elasticmapreduce:ListSupportedInstanceTypes", 
-                        "elasticmapreduce:ModifyCluster", 
-                        "elasticmapreduce:ModifyInstanceFleet", 
-                        "elasticmapreduce:ModifyInstanceGroups", 
-                        "elasticmapreduce:OpenEditorInConsole", 
-                        "elasticmapreduce:PutAutoScalingPolicy", 
-                        "elasticmapreduce:PutBlockPublicAccessConfiguration", 
-                        "elasticmapreduce:PutManagedScalingPolicy", 
-                        "elasticmapreduce:RemoveAutoScalingPolicy", 
-                        "elasticmapreduce:RemoveManagedScalingPolicy", 
-                        "elasticmapreduce:RemoveTags", 
-                        "elasticmapreduce:SetTerminationProtection", 
-                        "elasticmapreduce:StartEditor", 
-                        "elasticmapreduce:StopEditor", 
-                        "elasticmapreduce:TerminateJobFlows", 
+                        "elasticmapreduce:AddInstanceFleet",
+                        "elasticmapreduce:AddInstanceGroups",
+                        "elasticmapreduce:AddJobFlowSteps",
+                        "elasticmapreduce:AddTags",
+                        "elasticmapreduce:CancelSteps",
+                        "elasticmapreduce:CreateEditor",
+                        "elasticmapreduce:CreatePersistentAppUI",
+                        "elasticmapreduce:CreateSecurityConfiguration",
+                        "elasticmapreduce:DeleteEditor",
+                        "elasticmapreduce:DeleteSecurityConfiguration",
+                        "elasticmapreduce:DescribeCluster",
+                        "elasticmapreduce:DescribeEditor",
+                        "elasticmapreduce:DescribeJobFlows",
+                        "elasticmapreduce:DescribePersistentAppUI",
+                        "elasticmapreduce:DescribeSecurityConfiguration",
+                        "elasticmapreduce:DescribeStep",
+                        "elasticmapreduce:DescribeReleaseLabel",
+                        "elasticmapreduce:GetBlockPublicAccessConfiguration",
+                        "elasticmapreduce:GetManagedScalingPolicy",
+                        "elasticmapreduce:GetAutoTerminationPolicy",
+                        "elasticmapreduce:GetPersistentAppUIPresignedURL",
+                        "elasticmapreduce:ListBootstrapActions",
+                        "elasticmapreduce:ListClusters",
+                        "elasticmapreduce:ListEditors",
+                        "elasticmapreduce:ListInstanceFleets",
+                        "elasticmapreduce:ListInstanceGroups",
+                        "elasticmapreduce:ListInstances",
+                        "elasticmapreduce:ListSecurityConfigurations",
+                        "elasticmapreduce:ListSteps",
+                        "elasticmapreduce:ListSupportedInstanceTypes",
+                        "elasticmapreduce:ModifyCluster",
+                        "elasticmapreduce:ModifyInstanceFleet",
+                        "elasticmapreduce:ModifyInstanceGroups",
+                        "elasticmapreduce:OpenEditorInConsole",
+                        "elasticmapreduce:PutAutoScalingPolicy",
+                        "elasticmapreduce:PutBlockPublicAccessConfiguration",
+                        "elasticmapreduce:PutManagedScalingPolicy",
+                        "elasticmapreduce:RemoveAutoScalingPolicy",
+                        "elasticmapreduce:RemoveManagedScalingPolicy",
+                        "elasticmapreduce:RemoveTags",
+                        "elasticmapreduce:SetTerminationProtection",
+                        "elasticmapreduce:StartEditor",
+                        "elasticmapreduce:StopEditor",
+                        "elasticmapreduce:TerminateJobFlows",
                         "elasticmapreduce:ViewEventsFromAllClustersInConsole"
-                    ], 
-                    "Resource": "*", 
-                    "Effect": "Allow", 
-                    "Sid": "ElasticMapReduceActions"
-                }, 
+                    ],
+                    "Resource": "*"
+                },
                 {
+                    "Sid": "ViewMetricsInEMRConsole",
+                    "Effect": "Allow",
                     "Action": [
                         "cloudwatch:GetMetricStatistics"
-                    ], 
-                    "Resource": "*", 
-                    "Effect": "Allow", 
-                    "Sid": "ViewMetricsInEMRConsole"
-                }, 
+                    ],
+                    "Resource": "*"
+                },
                 {
-                    "Action": "iam:PassRole", 
-                    "Resource": "arn:aws:iam::*:role/EMR_DefaultRole_V2", 
-                    "Effect": "Allow", 
+                    "Sid": "PassRoleForElasticMapReduce",
+                    "Effect": "Allow",
+                    "Action": "iam:PassRole",
+                    "Resource": "arn:aws:iam::*:role/EMR_DefaultRole_V2",
                     "Condition": {
                         "StringLike": {
                             "iam:PassedToService": "elasticmapreduce.amazonaws.com*"
                         }
-                    }, 
-                    "Sid": "PassRoleForElasticMapReduce"
-                }, 
+                    }
+                },
                 {
-                    "Action": "iam:PassRole", 
-                    "Resource": "arn:aws:iam::*:role/EMR_EC2_DefaultRole", 
-                    "Effect": "Allow", 
+                    "Sid": "PassRoleForEC2",
+                    "Effect": "Allow",
+                    "Action": "iam:PassRole",
+                    "Resource": "arn:aws:iam::*:role/EMR_EC2_DefaultRole",
                     "Condition": {
                         "StringLike": {
                             "iam:PassedToService": "ec2.amazonaws.com*"
                         }
-                    }, 
-                    "Sid": "PassRoleForEC2"
-                }, 
+                    }
+                },
                 {
-                    "Action": "iam:PassRole", 
-                    "Resource": "arn:aws:iam::*:role/EMR_AutoScaling_DefaultRole", 
-                    "Effect": "Allow", 
+                    "Sid": "PassRoleForAutoScaling",
+                    "Effect": "Allow",
+                    "Action": "iam:PassRole",
+                    "Resource": "arn:aws:iam::*:role/EMR_AutoScaling_DefaultRole",
                     "Condition": {
                         "StringLike": {
                             "iam:PassedToService": "application-autoscaling.amazonaws.com*"
                         }
-                    }, 
-                    "Sid": "PassRoleForAutoScaling"
-                }, 
+                    }
+                },
                 {
-                    "Action": "iam:CreateServiceLinkedRole", 
-                    "Resource": "arn:aws:iam::*:role/aws-service-role/elasticmapreduce.amazonaws.com*/AWSServiceRoleForEMRCleanup*", 
-                    "Effect": "Allow", 
+                    "Sid": "ElasticMapReduceServiceLinkedRole",
+                    "Effect": "Allow",
+                    "Action": "iam:CreateServiceLinkedRole",
+                    "Resource": "arn:aws:iam::*:role/aws-service-role/elasticmapreduce.amazonaws.com*/AWSServiceRoleForEMRCleanup*",
                     "Condition": {
                         "StringEquals": {
                             "iam:AWSServiceName": [
-                                "elasticmapreduce.amazonaws.com", 
+                                "elasticmapreduce.amazonaws.com",
                                 "elasticmapreduce.amazonaws.com.cn"
                             ]
                         }
-                    }, 
-                    "Sid": "ElasticMapReduceServiceLinkedRole"
-                }, 
+                    }
+                },
                 {
+                    "Sid": "ConsoleUIActions",
+                    "Effect": "Allow",
                     "Action": [
-                        "ec2:DescribeAccountAttributes", 
-                        "ec2:DescribeAvailabilityZones", 
-                        "ec2:DescribeImages", 
-                        "ec2:DescribeKeyPairs", 
-                        "ec2:DescribeNatGateways", 
-                        "ec2:DescribeRouteTables", 
-                        "ec2:DescribeSecurityGroups", 
-                        "ec2:DescribeSubnets", 
-                        "ec2:DescribeVpcs", 
-                        "ec2:DescribeVpcEndpoints", 
-                        "s3:ListAllMyBuckets", 
+                        "ec2:DescribeAccountAttributes",
+                        "ec2:DescribeAvailabilityZones",
+                        "ec2:DescribeImages",
+                        "ec2:DescribeKeyPairs",
+                        "ec2:DescribeNatGateways",
+                        "ec2:DescribeRouteTables",
+                        "ec2:DescribeSecurityGroups",
+                        "ec2:DescribeSubnets",
+                        "ec2:DescribeVpcs",
+                        "ec2:DescribeVpcEndpoints",
+                        "s3:ListAllMyBuckets",
                         "iam:ListRoles"
-                    ], 
-                    "Resource": "*", 
-                    "Effect": "Allow", 
-                    "Sid": "ConsoleUIActions"
+                    ],
+                    "Resource": "*"
                 }
             ]
-        }, 
-        "IsDefaultVersion": true
+        },
+        "VersionId": "v7",
+        "IsDefaultVersion": true,
+        "CreateDate": "2026-02-12T17:58:52+00:00"
     }
 }
