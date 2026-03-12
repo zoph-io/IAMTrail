@@ -1,54 +1,54 @@
 {
     "PolicyVersion": {
-        "CreateDate": "2024-11-06T21:51:02Z", 
-        "VersionId": "v1", 
         "Document": {
-            "Version": "2012-10-17", 
+            "Version": "2012-10-17",
             "Statement": [
                 {
+                    "Sid": "DenyAllOtherActionsOnAnyResource",
+                    "Effect": "Deny",
                     "NotAction": [
-                        "sqs:SetQueueAttributes", 
-                        "sqs:GetQueueAttributes", 
-                        "sqs:ListQueues", 
+                        "sqs:SetQueueAttributes",
+                        "sqs:GetQueueAttributes",
+                        "sqs:ListQueues",
                         "sqs:GetQueueUrl"
-                    ], 
-                    "Resource": "*", 
-                    "Effect": "Deny", 
-                    "Sid": "DenyAllOtherActionsOnAnyResource"
-                }, 
+                    ],
+                    "Resource": "*"
+                },
                 {
+                    "Sid": "DenyGettingQueueAttributesOnNonOwnQueue",
+                    "Effect": "Deny",
                     "Action": [
                         "sqs:GetQueueAttributes"
-                    ], 
-                    "Resource": "arn:aws:sqs:*:*:*", 
-                    "Effect": "Deny", 
+                    ],
+                    "Resource": "arn:aws:sqs:*:*:*",
                     "Condition": {
                         "StringNotEqualsIfExists": {
                             "aws:ResourceAccount": [
                                 "${aws:PrincipalAccount}"
                             ]
                         }
-                    }, 
-                    "Sid": "DenyGettingQueueAttributesOnNonOwnQueue"
-                }, 
+                    }
+                },
                 {
+                    "Sid": "DenyActionsForNonRootUser",
+                    "Effect": "Deny",
                     "Action": [
-                        "sqs:SetQueueAttributes", 
-                        "sqs:GetQueueAttributes", 
-                        "sqs:ListQueues", 
+                        "sqs:SetQueueAttributes",
+                        "sqs:GetQueueAttributes",
+                        "sqs:ListQueues",
                         "sqs:GetQueueUrl"
-                    ], 
-                    "Resource": "*", 
-                    "Effect": "Deny", 
+                    ],
+                    "Resource": "*",
                     "Condition": {
                         "StringNotLike": {
                             "aws:PrincipalArn": "arn:aws:iam::*:root"
                         }
-                    }, 
-                    "Sid": "DenyActionsForNonRootUser"
+                    }
                 }
             ]
-        }, 
-        "IsDefaultVersion": true
+        },
+        "VersionId": "v1",
+        "IsDefaultVersion": true,
+        "CreateDate": "2024-11-06T21:51:02+00:00"
     }
 }
