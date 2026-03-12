@@ -1,146 +1,146 @@
 {
     "PolicyVersion": {
-        "CreateDate": "2026-02-12T18:02:57Z", 
-        "VersionId": "v3", 
         "Document": {
-            "Version": "2012-10-17", 
+            "Version": "2012-10-17",
             "Statement": [
                 {
+                    "Sid": "DDBAndDAXFullAccess",
+                    "Effect": "Allow",
                     "Action": [
-                        "dynamodb:*", 
+                        "dynamodb:*",
                         "dax:*"
-                    ], 
-                    "Resource": "*", 
-                    "Effect": "Allow", 
-                    "Sid": "DDBAndDAXFullAccess"
-                }, 
+                    ],
+                    "Resource": "*"
+                },
                 {
+                    "Sid": "KMSIntegration",
+                    "Effect": "Allow",
                     "Action": [
-                        "kms:DescribeKey", 
+                        "kms:DescribeKey",
                         "kms:ListAliases"
-                    ], 
-                    "Resource": "*", 
-                    "Effect": "Allow", 
-                    "Sid": "KMSIntegration"
-                }, 
+                    ],
+                    "Resource": "*"
+                },
                 {
+                    "Sid": "LambdaIntegration",
+                    "Effect": "Allow",
                     "Action": [
-                        "lambda:ListEventSourceMappings", 
+                        "lambda:ListEventSourceMappings",
                         "lambda:ListFunctions"
-                    ], 
-                    "Resource": "*", 
-                    "Effect": "Allow", 
-                    "Sid": "LambdaIntegration"
-                }, 
+                    ],
+                    "Resource": "*"
+                },
                 {
+                    "Sid": "DaxSNSIntegration",
+                    "Effect": "Allow",
                     "Action": [
                         "sns:ListTopics"
-                    ], 
-                    "Resource": "*", 
-                    "Effect": "Allow", 
-                    "Sid": "DaxSNSIntegration"
-                }, 
+                    ],
+                    "Resource": "*"
+                },
                 {
+                    "Sid": "ApplicationAutoscalingIntegration",
+                    "Effect": "Allow",
                     "Action": [
-                        "application-autoscaling:DeleteScalingPolicy", 
-                        "application-autoscaling:DeregisterScalableTarget", 
-                        "application-autoscaling:PutScalingPolicy", 
+                        "application-autoscaling:DeleteScalingPolicy",
+                        "application-autoscaling:DeregisterScalableTarget",
+                        "application-autoscaling:PutScalingPolicy",
                         "application-autoscaling:RegisterScalableTarget"
-                    ], 
-                    "Resource": "*", 
-                    "Effect": "Allow", 
+                    ],
+                    "Resource": "*",
                     "Condition": {
                         "StringEquals": {
                             "application-autoscaling:service-namespace": "dynamodb"
                         }
-                    }, 
-                    "Sid": "ApplicationAutoscalingIntegration"
-                }, 
+                    }
+                },
                 {
+                    "Sid": "ApplicationAutoscalingDescribeActions",
+                    "Effect": "Allow",
                     "Action": [
-                        "application-autoscaling:DescribeScalableTargets", 
-                        "application-autoscaling:DescribeScalingActivities", 
+                        "application-autoscaling:DescribeScalableTargets",
+                        "application-autoscaling:DescribeScalingActivities",
                         "application-autoscaling:DescribeScalingPolicies"
-                    ], 
-                    "Resource": "*", 
-                    "Effect": "Allow", 
-                    "Sid": "ApplicationAutoscalingDescribeActions"
-                }, 
+                    ],
+                    "Resource": "*"
+                },
                 {
+                    "Sid": "TagManagement",
+                    "Effect": "Allow",
                     "Action": [
                         "tag:GetResources"
-                    ], 
-                    "Resource": "*", 
-                    "Effect": "Allow", 
-                    "Sid": "TagManagement"
-                }, 
+                    ],
+                    "Resource": "*"
+                },
                 {
+                    "Sid": "CloudwatchMonitoring",
+                    "Effect": "Allow",
                     "Action": [
-                        "cloudwatch:DescribeAlarms", 
-                        "cloudwatch:GetMetricStatistics", 
+                        "cloudwatch:DescribeAlarms",
+                        "cloudwatch:GetMetricStatistics",
                         "cloudwatch:GetMetricData"
-                    ], 
-                    "Resource": "*", 
-                    "Effect": "Allow", 
-                    "Sid": "CloudwatchMonitoring"
-                }, 
+                    ],
+                    "Resource": "*"
+                },
                 {
+                    "Sid": "ListKinesisResources",
+                    "Effect": "Allow",
                     "Action": [
-                        "kinesis:ListStreams", 
-                        "kinesis:DescribeStream", 
+                        "kinesis:ListStreams",
+                        "kinesis:DescribeStream",
                         "kinesis:DescribeStreamSummary"
-                    ], 
-                    "Resource": "*", 
-                    "Effect": "Allow", 
-                    "Sid": "ListKinesisResources"
-                }, 
+                    ],
+                    "Resource": "*"
+                },
                 {
+                    "Sid": "ListEC2ResourcesForDaxClusterCreation",
+                    "Effect": "Allow",
                     "Action": [
-                        "ec2:DescribeVpcs", 
-                        "ec2:DescribeSubnets", 
+                        "ec2:DescribeVpcs",
+                        "ec2:DescribeSubnets",
                         "ec2:DescribeSecurityGroups"
-                    ], 
-                    "Resource": "*", 
-                    "Effect": "Allow", 
-                    "Sid": "ListEC2ResourcesForDaxClusterCreation"
-                }, 
+                    ],
+                    "Resource": "*"
+                },
                 {
-                    "Action": "cloudwatch:GetInsightRuleReport", 
-                    "Resource": "arn:aws:cloudwatch:*:*:insight-rule/DynamoDBContributorInsights*", 
-                    "Effect": "Allow", 
-                    "Sid": "CloudwatchInsightsRules"
-                }, 
+                    "Sid": "CloudwatchInsightsRules",
+                    "Effect": "Allow",
+                    "Action": "cloudwatch:GetInsightRuleReport",
+                    "Resource": "arn:aws:cloudwatch:*:*:insight-rule/DynamoDBContributorInsights*"
+                },
                 {
+                    "Sid": "ServiceRoleCreation",
+                    "Effect": "Allow",
                     "Action": [
                         "iam:CreateServiceLinkedRole"
-                    ], 
-                    "Resource": "*", 
-                    "Effect": "Allow", 
+                    ],
+                    "Resource": "*",
                     "Condition": {
                         "StringEquals": {
                             "iam:AWSServiceName": [
-                                "replication.dynamodb.amazonaws.com", 
-                                "dax.amazonaws.com", 
-                                "dynamodb.application-autoscaling.amazonaws.com", 
-                                "contributorinsights.dynamodb.amazonaws.com", 
+                                "replication.dynamodb.amazonaws.com",
+                                "dax.amazonaws.com",
+                                "dynamodb.application-autoscaling.amazonaws.com",
+                                "contributorinsights.dynamodb.amazonaws.com",
                                 "kinesisreplication.dynamodb.amazonaws.com"
                             ]
                         }
-                    }, 
-                    "Sid": "ServiceRoleCreation"
-                }, 
+                    }
+                },
                 {
+                    "Sid": "IamIntegration",
+                    "Effect": "Allow",
                     "Action": [
                         "iam:ListRoles"
-                    ], 
+                    ],
                     "Resource": [
                         "*"
-                    ], 
-                    "Effect": "Allow", 
-                    "Sid": "IamIntegration"
+                    ]
                 }
             ]
-        }, 
-        "IsDefaultVersion": true
+        },
+        "VersionId": "v3",
+        "IsDefaultVersion": true,
+        "CreateDate": "2026-02-12T18:02:57+00:00"
     }
 }
