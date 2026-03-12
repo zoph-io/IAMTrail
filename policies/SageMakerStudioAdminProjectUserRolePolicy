@@ -1,109 +1,109 @@
 {
     "PolicyVersion": {
-        "CreateDate": "2026-02-12T17:59:34Z", 
-        "VersionId": "v6", 
         "Document": {
-            "Version": "2012-10-17", 
+            "Version": "2012-10-17",
             "Statement": [
                 {
+                    "Sid": "GlueDatalakePermissions",
+                    "Effect": "Allow",
                     "Action": [
-                        "glue:CreateTable", 
-                        "glue:DeleteTable", 
-                        "glue:BatchDeleteTable", 
-                        "glue:UpdateTable", 
-                        "glue:BatchCreatePartition", 
-                        "glue:CreatePartition", 
-                        "glue:DeletePartition", 
-                        "glue:BatchDeletePartition", 
-                        "glue:UpdatePartition", 
-                        "glue:BatchGetPartition", 
-                        "glue:BatchGetTableOptimizer", 
-                        "glue:GetCatalogImportStatus", 
-                        "glue:GetColumnStatisticsForPartition", 
-                        "glue:GetColumnStatisticsForTable", 
-                        "glue:GetColumnStatisticsTaskRun", 
-                        "glue:GetColumnStatisticsTaskRuns", 
-                        "glue:GetDatabase", 
-                        "glue:GetDatabases", 
-                        "glue:GetPartition", 
-                        "glue:GetPartitionIndexes", 
-                        "glue:GetPartitions", 
-                        "glue:GetTable", 
-                        "glue:GetTableOptimizer", 
-                        "glue:GetTableVersion", 
-                        "glue:GetTableVersions", 
-                        "glue:GetTables", 
-                        "glue:SearchTables", 
-                        "glue:ListTableOptimizerRuns", 
-                        "glue:CreatePartitionIndex", 
-                        "glue:BatchUpdatePartition", 
-                        "glue:DeleteTableVersion", 
-                        "glue:DeleteColumnStatisticsForPartition", 
-                        "glue:DeleteColumnStatisticsForTable", 
-                        "glue:DeletePartitionIndex", 
-                        "glue:UpdateColumnStatisticsForPartition", 
-                        "glue:UpdateColumnStatisticsForTable", 
-                        "glue:BatchDeleteTableVersion", 
-                        "glue:GetCatalogs", 
+                        "glue:CreateTable",
+                        "glue:DeleteTable",
+                        "glue:BatchDeleteTable",
+                        "glue:UpdateTable",
+                        "glue:BatchCreatePartition",
+                        "glue:CreatePartition",
+                        "glue:DeletePartition",
+                        "glue:BatchDeletePartition",
+                        "glue:UpdatePartition",
+                        "glue:BatchGetPartition",
+                        "glue:BatchGetTableOptimizer",
+                        "glue:GetCatalogImportStatus",
+                        "glue:GetColumnStatisticsForPartition",
+                        "glue:GetColumnStatisticsForTable",
+                        "glue:GetColumnStatisticsTaskRun",
+                        "glue:GetColumnStatisticsTaskRuns",
+                        "glue:GetDatabase",
+                        "glue:GetDatabases",
+                        "glue:GetPartition",
+                        "glue:GetPartitionIndexes",
+                        "glue:GetPartitions",
+                        "glue:GetTable",
+                        "glue:GetTableOptimizer",
+                        "glue:GetTableVersion",
+                        "glue:GetTableVersions",
+                        "glue:GetTables",
+                        "glue:SearchTables",
+                        "glue:ListTableOptimizerRuns",
+                        "glue:CreatePartitionIndex",
+                        "glue:BatchUpdatePartition",
+                        "glue:DeleteTableVersion",
+                        "glue:DeleteColumnStatisticsForPartition",
+                        "glue:DeleteColumnStatisticsForTable",
+                        "glue:DeletePartitionIndex",
+                        "glue:UpdateColumnStatisticsForPartition",
+                        "glue:UpdateColumnStatisticsForTable",
+                        "glue:BatchDeleteTableVersion",
+                        "glue:GetCatalogs",
                         "glue:GetCatalog"
-                    ], 
+                    ],
                     "Resource": [
-                        "arn:aws:glue:*:*:catalog", 
-                        "arn:aws:glue:*:*:database/*", 
+                        "arn:aws:glue:*:*:catalog",
+                        "arn:aws:glue:*:*:database/*",
                         "arn:aws:glue:*:*:table/*"
-                    ], 
-                    "Effect": "Allow", 
+                    ],
                     "Condition": {
-                        "StringLike": {
-                            "aws:PrincipalTag/BootstrappedServices": "*glue*"
-                        }, 
                         "StringEquals": {
                             "aws:ResourceAccount": "${aws:PrincipalAccount}"
+                        },
+                        "StringLike": {
+                            "aws:PrincipalTag/BootstrappedServices": "*glue*"
                         }
-                    }, 
-                    "Sid": "GlueDatalakePermissions"
-                }, 
+                    }
+                },
                 {
+                    "Sid": "GlueCatalogDatabasePermissions",
+                    "Effect": "Allow",
                     "Action": [
-                        "glue:CreateDatabase", 
+                        "glue:CreateDatabase",
                         "glue:DeleteDatabase"
-                    ], 
+                    ],
                     "Resource": [
                         "arn:aws:glue:*:*:catalog"
-                    ], 
-                    "Effect": "Allow", 
+                    ],
                     "Condition": {
-                        "StringLike": {
-                            "aws:PrincipalTag/BootstrappedServices": "*glue*"
-                        }, 
                         "StringEquals": {
                             "aws:ResourceAccount": "${aws:PrincipalAccount}"
+                        },
+                        "StringLike": {
+                            "aws:PrincipalTag/BootstrappedServices": "*glue*"
                         }
-                    }, 
-                    "Sid": "GlueCatalogDatabasePermissions"
-                }, 
+                    }
+                },
                 {
+                    "Sid": "DataAccessPermissionsForS3",
+                    "Effect": "Allow",
                     "Action": [
-                        "s3:PutObject", 
-                        "s3:GetObject", 
-                        "s3:DeleteObject", 
-                        "s3:ListBucket", 
+                        "s3:PutObject",
+                        "s3:GetObject",
+                        "s3:DeleteObject",
+                        "s3:ListBucket",
                         "s3:ListAllMyBuckets"
-                    ], 
-                    "Resource": "arn:aws:s3:::*", 
-                    "Effect": "Allow", 
+                    ],
+                    "Resource": "arn:aws:s3:::*",
                     "Condition": {
-                        "StringLike": {
-                            "aws:PrincipalTag/BootstrappedServices": "*glue*"
-                        }, 
                         "StringEquals": {
                             "aws:ResourceAccount": "${aws:PrincipalAccount}"
+                        },
+                        "StringLike": {
+                            "aws:PrincipalTag/BootstrappedServices": "*glue*"
                         }
-                    }, 
-                    "Sid": "DataAccessPermissionsForS3"
+                    }
                 }
             ]
-        }, 
-        "IsDefaultVersion": true
+        },
+        "VersionId": "v6",
+        "IsDefaultVersion": true,
+        "CreateDate": "2026-02-12T17:59:34+00:00"
     }
 }
