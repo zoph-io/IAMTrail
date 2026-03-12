@@ -1,82 +1,82 @@
 {
     "PolicyVersion": {
-        "CreateDate": "2024-10-24T17:59:05Z", 
-        "VersionId": "v4", 
         "Document": {
-            "Version": "2012-10-17", 
+            "Version": "2012-10-17",
             "Statement": [
                 {
+                    "Effect": "Allow",
                     "Action": [
-                        "ec2:DescribeInstances", 
-                        "ec2:DescribeRouteTables", 
-                        "ec2:DescribeTags", 
-                        "ec2:DescribeNetworkInterfaces", 
-                        "ec2:DescribeInstanceTypes", 
-                        "ec2:DescribeAvailabilityZones", 
-                        "ec2messages:AcknowledgeMessage", 
-                        "ec2messages:DeleteMessage", 
-                        "ec2messages:FailMessage", 
-                        "ec2messages:GetEndpoint", 
-                        "ec2messages:GetMessages", 
-                        "ec2messages:SendReply", 
-                        "ssmmessages:CreateControlChannel", 
-                        "ssmmessages:CreateDataChannel", 
-                        "ssmmessages:OpenControlChannel", 
-                        "ssmmessages:OpenDataChannel", 
-                        "ssm:DescribeInstanceProperties", 
-                        "ssm:DescribeDocumentParameters", 
-                        "ssm:ListInstanceAssociations", 
-                        "ssm:RegisterManagedInstance", 
-                        "ssm:UpdateInstanceInformation", 
-                        "ssm:UpdateInstanceAssociationStatus", 
-                        "ssm:PutComplianceItems", 
-                        "ssm:PutInventory", 
-                        "ecr-public:GetAuthorizationToken", 
+                        "ec2:DescribeInstances",
+                        "ec2:DescribeRouteTables",
+                        "ec2:DescribeTags",
+                        "ec2:DescribeNetworkInterfaces",
+                        "ec2:DescribeInstanceTypes",
+                        "ec2:DescribeAvailabilityZones",
+                        "ec2messages:AcknowledgeMessage",
+                        "ec2messages:DeleteMessage",
+                        "ec2messages:FailMessage",
+                        "ec2messages:GetEndpoint",
+                        "ec2messages:GetMessages",
+                        "ec2messages:SendReply",
+                        "ssmmessages:CreateControlChannel",
+                        "ssmmessages:CreateDataChannel",
+                        "ssmmessages:OpenControlChannel",
+                        "ssmmessages:OpenDataChannel",
+                        "ssm:DescribeInstanceProperties",
+                        "ssm:DescribeDocumentParameters",
+                        "ssm:ListInstanceAssociations",
+                        "ssm:RegisterManagedInstance",
+                        "ssm:UpdateInstanceInformation",
+                        "ssm:UpdateInstanceAssociationStatus",
+                        "ssm:PutComplianceItems",
+                        "ssm:PutInventory",
+                        "ecr-public:GetAuthorizationToken",
                         "ecr:GetAuthorizationToken"
-                    ], 
-                    "Resource": "*", 
-                    "Effect": "Allow"
-                }, 
+                    ],
+                    "Resource": "*"
+                },
                 {
+                    "Effect": "Allow",
                     "Action": [
-                        "ecr:GetDownloadUrlForLayer", 
+                        "ecr:GetDownloadUrlForLayer",
                         "ecr:BatchGetImage"
-                    ], 
+                    ],
                     "Resource": [
-                        "arn:aws:ecr:*:*:repository/eks/*", 
-                        "arn:aws:ecr:*:*:repository/bottlerocket-admin", 
-                        "arn:aws:ecr:*:*:repository/bottlerocket-control-eks", 
-                        "arn:aws:ecr:*:*:repository/diagnostics-collector-eks", 
+                        "arn:aws:ecr:*:*:repository/eks/*",
+                        "arn:aws:ecr:*:*:repository/bottlerocket-admin",
+                        "arn:aws:ecr:*:*:repository/bottlerocket-control-eks",
+                        "arn:aws:ecr:*:*:repository/diagnostics-collector-eks",
                         "arn:aws:ecr:*:*:repository/kubelet-config-updater"
-                    ], 
-                    "Effect": "Allow"
-                }, 
+                    ]
+                },
                 {
+                    "Effect": "Allow",
                     "Action": [
-                        "secretsmanager:GetSecretValue", 
+                        "secretsmanager:GetSecretValue",
                         "secretsmanager:DeleteSecret"
-                    ], 
-                    "Resource": "arn:*:secretsmanager:*:*:secret:eks-local.cluster.x-k8s.io/*", 
-                    "Effect": "Allow"
-                }, 
+                    ],
+                    "Resource": "arn:*:secretsmanager:*:*:secret:eks-local.cluster.x-k8s.io/*"
+                },
                 {
+                    "Effect": "Allow",
                     "Action": [
                         "logs:CreateLogGroup"
-                    ], 
-                    "Resource": "arn:aws:logs:*:*:log-group:/aws/eks/*", 
-                    "Effect": "Allow"
-                }, 
+                    ],
+                    "Resource": "arn:aws:logs:*:*:log-group:/aws/eks/*"
+                },
                 {
+                    "Effect": "Allow",
                     "Action": [
-                        "logs:PutLogEvents", 
-                        "logs:CreateLogStream", 
+                        "logs:PutLogEvents",
+                        "logs:CreateLogStream",
                         "logs:DescribeLogStreams"
-                    ], 
-                    "Resource": "arn:aws:logs:*:*:log-group:/aws/eks/*:*", 
-                    "Effect": "Allow"
+                    ],
+                    "Resource": "arn:aws:logs:*:*:log-group:/aws/eks/*:*"
                 }
             ]
-        }, 
-        "IsDefaultVersion": true
+        },
+        "VersionId": "v4",
+        "IsDefaultVersion": true,
+        "CreateDate": "2024-10-24T17:59:05+00:00"
     }
 }
