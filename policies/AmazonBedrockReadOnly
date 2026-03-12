@@ -1,62 +1,62 @@
 {
     "PolicyVersion": {
-        "CreateDate": "2026-02-12T17:57:55Z", 
-        "VersionId": "v7", 
         "Document": {
-            "Version": "2012-10-17", 
+            "Version": "2012-10-17",
             "Statement": [
                 {
+                    "Sid": "AmazonBedrockReadOnly",
+                    "Effect": "Allow",
                     "Action": [
-                        "bedrock:Get*", 
+                        "bedrock:Get*",
                         "bedrock:List*"
-                    ], 
-                    "Resource": "*", 
-                    "Effect": "Allow", 
-                    "Sid": "AmazonBedrockReadOnly"
-                }, 
+                    ],
+                    "Resource": "*"
+                },
                 {
+                    "Sid": "MarketplaceModelEndpointNonMutatingAPIs",
+                    "Effect": "Allow",
                     "Action": [
-                        "sagemaker:DescribeEndpoint", 
-                        "sagemaker:DescribeEndpointConfig", 
-                        "sagemaker:DescribeModel", 
-                        "sagemaker:DescribeInferenceComponent", 
-                        "sagemaker:ListEndpoints", 
+                        "sagemaker:DescribeEndpoint",
+                        "sagemaker:DescribeEndpointConfig",
+                        "sagemaker:DescribeModel",
+                        "sagemaker:DescribeInferenceComponent",
+                        "sagemaker:ListEndpoints",
                         "sagemaker:ListTags"
-                    ], 
+                    ],
                     "Resource": [
-                        "arn:aws:sagemaker:*:*:endpoint/*", 
-                        "arn:aws:sagemaker:*:*:endpoint-config/*", 
+                        "arn:aws:sagemaker:*:*:endpoint/*",
+                        "arn:aws:sagemaker:*:*:endpoint-config/*",
                         "arn:aws:sagemaker:*:*:model/*"
-                    ], 
-                    "Effect": "Allow", 
+                    ],
                     "Condition": {
                         "StringEquals": {
                             "aws:CalledViaLast": "bedrock.amazonaws.com"
                         }
-                    }, 
-                    "Sid": "MarketplaceModelEndpointNonMutatingAPIs"
-                }, 
+                    }
+                },
                 {
+                    "Sid": "DiscoveringMarketplaceModel",
+                    "Effect": "Allow",
                     "Action": [
                         "sagemaker:DescribeHubContent"
-                    ], 
+                    ],
                     "Resource": [
-                        "arn:aws:sagemaker:*:aws:hub-content/SageMakerPublicHub/Model/*", 
+                        "arn:aws:sagemaker:*:aws:hub-content/SageMakerPublicHub/Model/*",
                         "arn:aws:sagemaker:*:aws:hub/SageMakerPublicHub"
-                    ], 
-                    "Effect": "Allow", 
-                    "Sid": "DiscoveringMarketplaceModel"
-                }, 
+                    ]
+                },
                 {
+                    "Sid": "AllowMarketplaceModelsListing",
+                    "Effect": "Allow",
                     "Action": [
                         "sagemaker:ListHubContents"
-                    ], 
-                    "Resource": "arn:aws:sagemaker:*:aws:hub/SageMakerPublicHub", 
-                    "Effect": "Allow", 
-                    "Sid": "AllowMarketplaceModelsListing"
+                    ],
+                    "Resource": "arn:aws:sagemaker:*:aws:hub/SageMakerPublicHub"
                 }
             ]
-        }, 
-        "IsDefaultVersion": true
+        },
+        "VersionId": "v7",
+        "IsDefaultVersion": true,
+        "CreateDate": "2026-02-12T17:57:55+00:00"
     }
 }
