@@ -1,96 +1,96 @@
 {
     "PolicyVersion": {
-        "CreateDate": "2026-02-12T18:02:55Z", 
-        "VersionId": "v9", 
         "Document": {
-            "Version": "2012-10-17", 
+            "Version": "2012-10-17",
             "Statement": [
                 {
+                    "Sid": "Clusters",
+                    "Effect": "Allow",
                     "Action": [
-                        "ecs:DescribeClusters", 
+                        "ecs:DescribeClusters",
                         "ecs:ListContainerInstances"
-                    ], 
+                    ],
                     "Resource": [
                         "arn:aws:ecs:*:*:cluster/*"
-                    ], 
-                    "Effect": "Allow", 
-                    "Sid": "Clusters"
-                }, 
+                    ]
+                },
                 {
+                    "Sid": "Tasks",
+                    "Effect": "Allow",
                     "Action": [
-                        "ecs:DescribeTasks", 
+                        "ecs:DescribeTasks",
                         "ecs:StopTask"
-                    ], 
+                    ],
                     "Resource": [
                         "arn:aws:ecs:*:*:task/*/*"
-                    ], 
-                    "Effect": "Allow", 
-                    "Sid": "Tasks"
-                }, 
+                    ]
+                },
                 {
+                    "Sid": "ContainerInstances",
+                    "Effect": "Allow",
                     "Action": [
                         "ecs:UpdateContainerInstancesState"
-                    ], 
+                    ],
                     "Resource": [
                         "arn:aws:ecs:*:*:container-instance/*/*"
-                    ], 
-                    "Effect": "Allow", 
-                    "Sid": "ContainerInstances"
-                }, 
+                    ]
+                },
                 {
+                    "Sid": "ListTasks",
+                    "Effect": "Allow",
                     "Action": [
                         "ecs:ListTasks"
-                    ], 
-                    "Resource": "*", 
-                    "Effect": "Allow", 
-                    "Sid": "ListTasks"
-                }, 
+                    ],
+                    "Resource": "*"
+                },
                 {
-                    "Action": "ssm:SendCommand", 
+                    "Sid": "SSMSend",
+                    "Effect": "Allow",
+                    "Action": "ssm:SendCommand",
                     "Resource": [
-                        "arn:aws:ssm:*:*:managed-instance/*", 
+                        "arn:aws:ssm:*:*:managed-instance/*",
                         "arn:aws:ssm:*:*:document/*"
-                    ], 
-                    "Effect": "Allow", 
-                    "Sid": "SSMSend"
-                }, 
+                    ]
+                },
                 {
+                    "Sid": "SSMList",
+                    "Effect": "Allow",
                     "Action": [
-                        "ssm:ListCommands", 
+                        "ssm:ListCommands",
                         "ssm:CancelCommand"
-                    ], 
-                    "Resource": "*", 
-                    "Effect": "Allow", 
-                    "Sid": "SSMList"
-                }, 
+                    ],
+                    "Resource": "*"
+                },
                 {
+                    "Sid": "TargetResolutionByTags",
+                    "Effect": "Allow",
                     "Action": [
                         "tag:GetResources"
-                    ], 
-                    "Resource": "*", 
-                    "Effect": "Allow", 
-                    "Sid": "TargetResolutionByTags"
-                }, 
+                    ],
+                    "Resource": "*"
+                },
                 {
-                    "Action": "ecs:DescribeContainerInstances", 
-                    "Resource": "arn:aws:ecs:*:*:container-instance/*/*", 
-                    "Effect": "Allow", 
-                    "Sid": "DescribeContainerInstances"
-                }, 
+                    "Sid": "DescribeContainerInstances",
+                    "Effect": "Allow",
+                    "Action": "ecs:DescribeContainerInstances",
+                    "Resource": "arn:aws:ecs:*:*:container-instance/*/*"
+                },
                 {
-                    "Action": "ec2:DescribeInstances", 
-                    "Resource": "*", 
-                    "Effect": "Allow", 
-                    "Sid": "DescribeInstances"
-                }, 
+                    "Sid": "DescribeInstances",
+                    "Effect": "Allow",
+                    "Action": "ec2:DescribeInstances",
+                    "Resource": "*"
+                },
                 {
-                    "Action": "ec2:DescribeSubnets", 
-                    "Resource": "*", 
-                    "Effect": "Allow", 
-                    "Sid": "DescribeSubnets"
+                    "Sid": "DescribeSubnets",
+                    "Effect": "Allow",
+                    "Action": "ec2:DescribeSubnets",
+                    "Resource": "*"
                 }
             ]
-        }, 
-        "IsDefaultVersion": true
+        },
+        "VersionId": "v9",
+        "IsDefaultVersion": true,
+        "CreateDate": "2026-02-12T18:02:55+00:00"
     }
 }
