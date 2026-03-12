@@ -1,49 +1,49 @@
 {
     "PolicyVersion": {
-        "CreateDate": "2026-02-12T17:58:23Z", 
-        "VersionId": "v7", 
         "Document": {
-            "Version": "2012-10-17", 
+            "Version": "2012-10-17",
             "Statement": [
                 {
+                    "Effect": "Allow",
                     "Action": [
-                        "secretsmanager:CreateSecret", 
-                        "secretsmanager:UpdateSecret", 
-                        "secretsmanager:DescribeSecret", 
-                        "secretsmanager:DeleteSecret", 
-                        "secretsmanager:GetSecretValue", 
+                        "secretsmanager:CreateSecret",
+                        "secretsmanager:UpdateSecret",
+                        "secretsmanager:DescribeSecret",
+                        "secretsmanager:DeleteSecret",
+                        "secretsmanager:GetSecretValue",
                         "secretsmanager:PutSecretValue"
-                    ], 
-                    "Resource": "arn:aws:secretsmanager:*:*:secret:events!connection/*", 
-                    "Effect": "Allow", 
+                    ],
+                    "Resource": "arn:aws:secretsmanager:*:*:secret:events!connection/*",
                     "Condition": {
                         "StringEquals": {
                             "aws:ResourceAccount": "${aws:PrincipalAccount}"
                         }
                     }
-                }, 
+                },
                 {
+                    "Effect": "Allow",
                     "Action": [
-                        "kms:Decrypt", 
-                        "kms:Encrypt", 
+                        "kms:Decrypt",
+                        "kms:Encrypt",
                         "kms:GenerateDataKey"
-                    ], 
-                    "Resource": "arn:aws:kms:*:*:key/*", 
-                    "Effect": "Allow", 
+                    ],
+                    "Resource": "arn:aws:kms:*:*:key/*",
                     "Condition": {
-                        "StringEquals": {
-                            "aws:ResourceTag/EventBridgeApiDestinations": "true"
-                        }, 
                         "StringLike": {
+                            "kms:ViaService": "secretsmanager.*.amazonaws.com",
                             "kms:EncryptionContext:SecretARN": [
                                 "arn:aws:secretsmanager:*:*:secret:events!connection/*"
-                            ], 
-                            "kms:ViaService": "secretsmanager.*.amazonaws.com"
+                            ]
+                        },
+                        "StringEquals": {
+                            "aws:ResourceTag/EventBridgeApiDestinations": "true"
                         }
                     }
                 }
             ]
-        }, 
-        "IsDefaultVersion": true
+        },
+        "VersionId": "v7",
+        "IsDefaultVersion": true,
+        "CreateDate": "2026-02-12T17:58:23+00:00"
     }
 }
