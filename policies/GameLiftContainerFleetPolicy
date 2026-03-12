@@ -1,54 +1,54 @@
 {
     "PolicyVersion": {
-        "CreateDate": "2026-02-12T17:57:58Z", 
-        "VersionId": "v4", 
         "Document": {
-            "Version": "2012-10-17", 
+            "Version": "2012-10-17",
             "Statement": [
                 {
+                    "Sid": "WriteGameSessionLogsToLogStream",
+                    "Effect": "Allow",
                     "Action": [
-                        "logs:CreateLogStream", 
-                        "logs:PutLogEvents", 
+                        "logs:CreateLogStream",
+                        "logs:PutLogEvents",
                         "logs:PutRetentionPolicy"
-                    ], 
-                    "Resource": "arn:aws:logs:*:*:log-group:gamelift-*:log-stream:*", 
-                    "Effect": "Allow", 
-                    "Sid": "WriteGameSessionLogsToLogStream"
-                }, 
+                    ],
+                    "Resource": "arn:aws:logs:*:*:log-group:gamelift-*:log-stream:*"
+                },
                 {
-                    "Action": "logs:CreateLogGroup", 
-                    "Resource": "arn:aws:logs:*:*:log-group:gamelift-*", 
-                    "Effect": "Allow", 
-                    "Sid": "CreateLogGroupToStoreGameSessionLogs"
-                }, 
+                    "Sid": "CreateLogGroupToStoreGameSessionLogs",
+                    "Effect": "Allow",
+                    "Action": "logs:CreateLogGroup",
+                    "Resource": "arn:aws:logs:*:*:log-group:gamelift-*"
+                },
                 {
+                    "Sid": "WriteGameSessionLogsToS3Bucket",
+                    "Effect": "Allow",
                     "Action": [
-                        "s3:PutObject", 
+                        "s3:PutObject",
                         "s3:GetBucketLocation"
-                    ], 
+                    ],
                     "Resource": [
                         "arn:aws:s3:::gamelift-*"
-                    ], 
-                    "Effect": "Allow", 
+                    ],
                     "Condition": {
                         "StringEquals": {
                             "s3:ResourceAccount": "${aws:PrincipalAccount}"
                         }
-                    }, 
-                    "Sid": "WriteGameSessionLogsToS3Bucket"
-                }, 
+                    }
+                },
                 {
+                    "Sid": "RetrieveComputeAuthToken",
+                    "Effect": "Allow",
                     "Action": [
                         "gamelift:GetComputeAuthToken"
-                    ], 
+                    ],
                     "Resource": [
                         "arn:aws:gamelift:*:*:containerfleet/*"
-                    ], 
-                    "Effect": "Allow", 
-                    "Sid": "RetrieveComputeAuthToken"
+                    ]
                 }
             ]
-        }, 
-        "IsDefaultVersion": true
+        },
+        "VersionId": "v4",
+        "IsDefaultVersion": true,
+        "CreateDate": "2026-02-12T17:57:58+00:00"
     }
 }
