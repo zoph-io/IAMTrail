@@ -1,79 +1,79 @@
 {
     "PolicyVersion": {
-        "CreateDate": "2025-04-17T17:37:07Z", 
-        "VersionId": "v2", 
         "Document": {
-            "Version": "2012-10-17", 
+            "Version": "2012-10-17",
             "Statement": [
                 {
+                    "Sid": "PrivateConnectivityServiceRolePolicy",
+                    "Effect": "Allow",
                     "Action": [
-                        "ec2:DescribeNetworkInterfaces", 
-                        "ec2:DescribeSecurityGroups", 
-                        "ec2:DescribeSubnets", 
+                        "ec2:DescribeNetworkInterfaces",
+                        "ec2:DescribeSecurityGroups",
+                        "ec2:DescribeSubnets",
                         "ec2:DescribeVpcEndpoints"
-                    ], 
-                    "Resource": "*", 
-                    "Effect": "Allow", 
-                    "Sid": "PrivateConnectivityServiceRolePolicy"
-                }, 
+                    ],
+                    "Resource": "*"
+                },
                 {
+                    "Sid": "PrivateConnectivityCreateNetworkInterfacePolicy",
+                    "Effect": "Allow",
                     "Action": [
                         "ec2:CreateNetworkInterface"
-                    ], 
+                    ],
                     "Resource": [
-                        "arn:*:ec2:*:*:vpc/*", 
-                        "arn:*:ec2:*:*:subnet/*", 
+                        "arn:*:ec2:*:*:vpc/*",
+                        "arn:*:ec2:*:*:subnet/*",
                         "arn:*:ec2:*:*:security-group/*"
-                    ], 
-                    "Effect": "Allow", 
-                    "Sid": "PrivateConnectivityCreateNetworkInterfacePolicy"
-                }, 
+                    ]
+                },
                 {
+                    "Sid": "PrivateConnectivityCreateNetworkInterfaceTaggingPolicy",
+                    "Effect": "Allow",
                     "Action": [
                         "ec2:CreateNetworkInterface"
-                    ], 
+                    ],
                     "Resource": [
                         "arn:*:ec2:*:*:network-interface/*"
-                    ], 
-                    "Effect": "Allow", 
+                    ],
                     "Condition": {
                         "ForAnyValue:StringEquals": {
                             "aws:TagKeys": [
                                 "outposts:private-connectivity-resourceId"
                             ]
                         }
-                    }, 
-                    "Sid": "PrivateConnectivityCreateNetworkInterfaceTaggingPolicy"
-                }, 
+                    }
+                },
                 {
+                    "Sid": "PrivateConnectivityCreateSecurityGroupPolicy",
+                    "Effect": "Allow",
                     "Action": [
                         "ec2:CreateSecurityGroup"
-                    ], 
+                    ],
                     "Resource": [
                         "arn:*:ec2:*:*:vpc/*"
-                    ], 
-                    "Effect": "Allow", 
-                    "Sid": "PrivateConnectivityCreateSecurityGroupPolicy"
-                }, 
+                    ]
+                },
                 {
+                    "Sid": "PrivateConnectivityCreateSecurityGroupTaggingPolicy",
+                    "Effect": "Allow",
                     "Action": [
                         "ec2:CreateSecurityGroup"
-                    ], 
+                    ],
                     "Resource": [
                         "arn:*:ec2:*:*:security-group/*"
-                    ], 
-                    "Effect": "Allow", 
+                    ],
                     "Condition": {
                         "ForAnyValue:StringEquals": {
                             "aws:TagKeys": [
                                 "outposts:private-connectivity-resourceId"
                             ]
                         }
-                    }, 
-                    "Sid": "PrivateConnectivityCreateSecurityGroupTaggingPolicy"
+                    }
                 }
             ]
-        }, 
-        "IsDefaultVersion": true
+        },
+        "VersionId": "v2",
+        "IsDefaultVersion": true,
+        "CreateDate": "2025-04-17T17:37:07+00:00"
     }
 }
