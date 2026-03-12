@@ -1,50 +1,50 @@
 {
     "PolicyVersion": {
-        "CreateDate": "2026-02-12T18:00:28Z", 
-        "VersionId": "v6", 
         "Document": {
-            "Version": "2012-10-17", 
+            "Version": "2012-10-17",
             "Statement": [
                 {
+                    "Sid": "AllowAmazonQDeveloperAccess",
+                    "Effect": "Allow",
                     "Action": [
-                        "q:StartConversation", 
-                        "q:SendMessage", 
-                        "q:GetConversation", 
-                        "q:ListConversations", 
-                        "q:UpdateConversation", 
-                        "q:DeleteConversation", 
-                        "q:PassRequest", 
-                        "q:StartTroubleshootingAnalysis", 
-                        "q:StartTroubleshootingResolutionExplanation", 
-                        "q:GetTroubleshootingResults", 
-                        "q:UpdateTroubleshootingCommandResult", 
-                        "q:GetIdentityMetaData", 
-                        "q:GenerateCodeFromCommands", 
+                        "q:StartConversation",
+                        "q:SendMessage",
+                        "q:GetConversation",
+                        "q:ListConversations",
+                        "q:UpdateConversation",
+                        "q:DeleteConversation",
+                        "q:PassRequest",
+                        "q:StartTroubleshootingAnalysis",
+                        "q:StartTroubleshootingResolutionExplanation",
+                        "q:GetTroubleshootingResults",
+                        "q:UpdateTroubleshootingCommandResult",
+                        "q:GetIdentityMetaData",
+                        "q:GenerateCodeFromCommands",
                         "q:UsePlugin"
-                    ], 
-                    "Resource": "*", 
-                    "Effect": "Allow", 
-                    "Sid": "AllowAmazonQDeveloperAccess"
-                }, 
+                    ],
+                    "Resource": "*"
+                },
                 {
+                    "Sid": "AllowCloudControlReadAccess",
+                    "Effect": "Allow",
                     "Action": [
-                        "cloudformation:GetResource", 
+                        "cloudformation:GetResource",
                         "cloudformation:ListResources"
-                    ], 
-                    "Resource": "*", 
-                    "Effect": "Allow", 
-                    "Sid": "AllowCloudControlReadAccess"
-                }, 
+                    ],
+                    "Resource": "*"
+                },
                 {
+                    "Sid": "AllowSetTrustedIdentity",
+                    "Effect": "Allow",
                     "Action": [
                         "sts:SetContext"
-                    ], 
-                    "Resource": "arn:aws:sts::*:self", 
-                    "Effect": "Allow", 
-                    "Sid": "AllowSetTrustedIdentity"
+                    ],
+                    "Resource": "arn:aws:sts::*:self"
                 }
             ]
-        }, 
-        "IsDefaultVersion": true
+        },
+        "VersionId": "v6",
+        "IsDefaultVersion": true,
+        "CreateDate": "2026-02-12T18:00:28+00:00"
     }
 }
