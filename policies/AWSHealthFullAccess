@@ -1,38 +1,36 @@
 {
     "PolicyVersion": {
-        "CreateDate": "2020-11-16T18:11:34Z", 
-        "VersionId": "v3", 
         "Document": {
-            "Version": "2012-10-17", 
+            "Version": "2012-10-17",
             "Statement": [
                 {
+                    "Effect": "Allow",
                     "Action": [
-                        "organizations:EnableAWSServiceAccess", 
+                        "organizations:EnableAWSServiceAccess",
                         "organizations:DisableAWSServiceAccess"
-                    ], 
-                    "Resource": "*", 
-                    "Effect": "Allow", 
+                    ],
+                    "Resource": "*",
                     "Condition": {
                         "StringEquals": {
                             "organizations:ServicePrincipal": "health.amazonaws.com"
                         }
                     }
-                }, 
+                },
                 {
+                    "Effect": "Allow",
                     "Action": [
-                        "health:*", 
-                        "organizations:ListAccounts", 
-                        "organizations:ListParents", 
-                        "organizations:DescribeAccount", 
+                        "health:*",
+                        "organizations:ListAccounts",
+                        "organizations:ListParents",
+                        "organizations:DescribeAccount",
                         "organizations:ListDelegatedAdministrators"
-                    ], 
-                    "Resource": "*", 
-                    "Effect": "Allow"
-                }, 
+                    ],
+                    "Resource": "*"
+                },
                 {
-                    "Action": "iam:CreateServiceLinkedRole", 
-                    "Resource": "*", 
-                    "Effect": "Allow", 
+                    "Effect": "Allow",
+                    "Action": "iam:CreateServiceLinkedRole",
+                    "Resource": "*",
                     "Condition": {
                         "StringEquals": {
                             "iam:AWSServiceName": "health.amazonaws.com"
@@ -40,7 +38,9 @@
                     }
                 }
             ]
-        }, 
-        "IsDefaultVersion": true
+        },
+        "VersionId": "v3",
+        "IsDefaultVersion": true,
+        "CreateDate": "2020-11-16T18:11:34+00:00"
     }
 }
