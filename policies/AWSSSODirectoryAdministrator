@@ -1,37 +1,37 @@
 {
     "PolicyVersion": {
-        "CreateDate": "2026-02-12T17:58:23Z", 
-        "VersionId": "v7", 
         "Document": {
-            "Version": "2012-10-17", 
+            "Version": "2012-10-17",
             "Statement": [
                 {
+                    "Sid": "AWSSSODirectoryAdministrator",
+                    "Effect": "Allow",
                     "Action": [
-                        "sso-directory:*", 
-                        "identitystore:*", 
-                        "identitystore-auth:*", 
+                        "sso-directory:*",
+                        "identitystore:*",
+                        "identitystore-auth:*",
                         "sso:ListDirectoryAssociations"
-                    ], 
-                    "Resource": "*", 
-                    "Effect": "Allow", 
-                    "Sid": "AWSSSODirectoryAdministrator"
-                }, 
+                    ],
+                    "Resource": "*"
+                },
                 {
+                    "Sid": "AllowKMSKeyUseViaAWSIdentityStoreService",
+                    "Effect": "Allow",
                     "Action": [
                         "kms:Decrypt"
-                    ], 
-                    "Resource": "*", 
-                    "Effect": "Allow", 
+                    ],
+                    "Resource": "*",
                     "Condition": {
                         "StringLike": {
-                            "kms:ViaService": "identitystore.*.amazonaws.com", 
+                            "kms:ViaService": "identitystore.*.amazonaws.com",
                             "kms:EncryptionContext:aws:identitystore:identitystore-arn": "*"
                         }
-                    }, 
-                    "Sid": "AllowKMSKeyUseViaAWSIdentityStoreService"
+                    }
                 }
             ]
-        }, 
-        "IsDefaultVersion": true
+        },
+        "VersionId": "v7",
+        "IsDefaultVersion": true,
+        "CreateDate": "2026-02-12T17:58:23+00:00"
     }
 }
