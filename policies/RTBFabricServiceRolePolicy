@@ -1,97 +1,97 @@
 {
     "PolicyVersion": {
-        "CreateDate": "2026-02-12T17:59:37Z", 
-        "VersionId": "v6", 
         "Document": {
-            "Version": "2012-10-17", 
+            "Version": "2012-10-17",
             "Statement": [
                 {
+                    "Sid": "RTBFabricRoleCreateNetworkInterfaceActions",
+                    "Effect": "Allow",
                     "Action": [
                         "ec2:CreateNetworkInterface"
-                    ], 
+                    ],
                     "Resource": [
-                        "arn:aws:ec2:*:*:subnet/*", 
+                        "arn:aws:ec2:*:*:subnet/*",
                         "arn:aws:ec2:*:*:security-group/*"
-                    ], 
-                    "Effect": "Allow", 
-                    "Sid": "RTBFabricRoleCreateNetworkInterfaceActions"
-                }, 
+                    ]
+                },
                 {
+                    "Sid": "RTBFabricRoleCreateTaggedNetworkInterfaceActions",
+                    "Effect": "Allow",
                     "Action": [
                         "ec2:CreateNetworkInterface"
-                    ], 
-                    "Resource": "arn:aws:ec2:*:*:network-interface/*", 
-                    "Effect": "Allow", 
+                    ],
+                    "Resource": "arn:aws:ec2:*:*:network-interface/*",
                     "Condition": {
                         "StringEquals": {
                             "aws:RequestTag/RTBFabricManaged": "true"
                         }
-                    }, 
-                    "Sid": "RTBFabricRoleCreateTaggedNetworkInterfaceActions"
-                }, 
+                    }
+                },
                 {
-                    "Action": "ec2:CreateNetworkInterfacePermission", 
-                    "Resource": "arn:aws:ec2:*:*:network-interface/*", 
-                    "Effect": "Allow", 
+                    "Sid": "RTBFabricRoleCreateNetworkInterfacePermissionActions",
+                    "Effect": "Allow",
+                    "Action": "ec2:CreateNetworkInterfacePermission",
+                    "Resource": "arn:aws:ec2:*:*:network-interface/*",
                     "Condition": {
                         "StringEquals": {
                             "aws:ResourceTag/RTBFabricManaged": "true"
                         }
-                    }, 
-                    "Sid": "RTBFabricRoleCreateNetworkInterfacePermissionActions"
-                }, 
+                    }
+                },
                 {
+                    "Sid": "RTBFabricRoleModifyTaggedNetworkInterfaceActions",
+                    "Effect": "Allow",
                     "Action": [
-                        "ec2:DeleteNetworkInterface", 
+                        "ec2:DeleteNetworkInterface",
                         "ec2:DetachNetworkInterface"
-                    ], 
-                    "Resource": "arn:aws:ec2:*:*:network-interface/*", 
-                    "Effect": "Allow", 
+                    ],
+                    "Resource": "arn:aws:ec2:*:*:network-interface/*",
                     "Condition": {
                         "StringEquals": {
                             "aws:ResourceTag/RTBFabricManaged": "true"
                         }
-                    }, 
-                    "Sid": "RTBFabricRoleModifyTaggedNetworkInterfaceActions"
-                }, 
+                    }
+                },
                 {
+                    "Sid": "RTBFabricRoleTaggingActions",
+                    "Effect": "Allow",
                     "Action": [
                         "ec2:CreateTags"
-                    ], 
-                    "Resource": "arn:aws:ec2:*:*:network-interface/*", 
-                    "Effect": "Allow", 
+                    ],
+                    "Resource": "arn:aws:ec2:*:*:network-interface/*",
                     "Condition": {
                         "StringEquals": {
                             "ec2:CreateAction": "CreateNetworkInterface"
                         }
-                    }, 
-                    "Sid": "RTBFabricRoleTaggingActions"
-                }, 
+                    }
+                },
                 {
+                    "Sid": "RTBFabricRoleDescribeActions",
+                    "Effect": "Allow",
                     "Action": [
-                        "ec2:DescribeAvailabilityZones", 
-                        "ec2:DescribeNetworkInterfaces", 
-                        "ec2:DescribeSubnets", 
-                        "ec2:DescribeVpcs", 
+                        "ec2:DescribeAvailabilityZones",
+                        "ec2:DescribeNetworkInterfaces",
+                        "ec2:DescribeSubnets",
+                        "ec2:DescribeVpcs",
                         "ec2:DescribeSecurityGroups"
-                    ], 
-                    "Resource": "*", 
-                    "Effect": "Allow", 
-                    "Sid": "RTBFabricRoleDescribeActions"
-                }, 
+                    ],
+                    "Resource": "*"
+                },
                 {
-                    "Action": "cloudwatch:PutMetricData", 
-                    "Resource": "*", 
-                    "Effect": "Allow", 
+                    "Sid": "RTBFabricRolePutMetricDataActions",
+                    "Effect": "Allow",
+                    "Action": "cloudwatch:PutMetricData",
+                    "Resource": "*",
                     "Condition": {
                         "StringEquals": {
                             "cloudwatch:namespace": "AWS/RTBFabric"
                         }
-                    }, 
-                    "Sid": "RTBFabricRolePutMetricDataActions"
+                    }
                 }
             ]
-        }, 
-        "IsDefaultVersion": true
+        },
+        "VersionId": "v6",
+        "IsDefaultVersion": true,
+        "CreateDate": "2026-02-12T17:59:37+00:00"
     }
 }
