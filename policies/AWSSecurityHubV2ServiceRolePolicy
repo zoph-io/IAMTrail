@@ -1,131 +1,131 @@
 {
     "PolicyVersion": {
-        "CreateDate": "2026-02-12T17:57:50Z", 
-        "VersionId": "v6", 
         "Document": {
-            "Version": "2012-10-17", 
+            "Version": "2012-10-17",
             "Statement": [
                 {
+                    "Sid": "SecurityHubV2ServiceRoleAssetsConfig",
+                    "Effect": "Allow",
                     "Action": [
-                        "config:DeleteServiceLinkedConfigurationRecorder", 
-                        "config:DescribeConfigurationRecorders", 
-                        "config:DescribeConfigurationRecorderStatus", 
+                        "config:DeleteServiceLinkedConfigurationRecorder",
+                        "config:DescribeConfigurationRecorders",
+                        "config:DescribeConfigurationRecorderStatus",
                         "config:PutServiceLinkedConfigurationRecorder"
-                    ], 
+                    ],
                     "Resource": [
-                        "arn:aws:config:*:*:configuration-recorder/AWSConfigurationRecorderForSecurityHubAssets/*", 
+                        "arn:aws:config:*:*:configuration-recorder/AWSConfigurationRecorderForSecurityHubAssets/*",
                         "arn:aws:config:*:*:configuration-recorder/AWSConfigurationRecorderForSecurityHubAssetsGlobal/*"
-                    ], 
-                    "Effect": "Allow", 
-                    "Sid": "SecurityHubV2ServiceRoleAssetsConfig"
-                }, 
+                    ]
+                },
                 {
+                    "Sid": "SecurityHubV2ServiceRoleAssetsIamPermissions",
+                    "Effect": "Allow",
                     "Action": [
                         "iam:CreateServiceLinkedRole"
-                    ], 
-                    "Resource": "arn:aws:iam::*:role/aws-service-role/config.amazonaws.com/AWSServiceRoleForConfig", 
-                    "Effect": "Allow", 
+                    ],
+                    "Resource": "arn:aws:iam::*:role/aws-service-role/config.amazonaws.com/AWSServiceRoleForConfig",
                     "Condition": {
                         "StringEquals": {
                             "iam:AWSServiceName": "config.amazonaws.com"
                         }
-                    }, 
-                    "Sid": "SecurityHubV2ServiceRoleAssetsIamPermissions"
-                }, 
+                    }
+                },
                 {
+                    "Sid": "SecurityHubV2ServiceRoleSecurityHubPermissions",
+                    "Effect": "Allow",
                     "Action": [
-                        "securityhub:DisableSecurityHubV2", 
-                        "securityhub:EnableSecurityHubV2", 
+                        "securityhub:DisableSecurityHubV2",
+                        "securityhub:EnableSecurityHubV2",
                         "securityhub:DescribeSecurityHubV2"
-                    ], 
-                    "Resource": "arn:aws:securityhub:*:*:hubv2/*", 
-                    "Effect": "Allow", 
+                    ],
+                    "Resource": "arn:aws:securityhub:*:*:hubv2/*",
                     "Condition": {
                         "StringEquals": {
                             "aws:ResourceAccount": "${aws:PrincipalAccount}"
                         }
-                    }, 
-                    "Sid": "SecurityHubV2ServiceRoleSecurityHubPermissions"
-                }, 
+                    }
+                },
                 {
+                    "Sid": "SecurityHubV2ServiceRoleTagPermissions",
+                    "Effect": "Allow",
                     "Action": [
                         "tag:GetResources"
-                    ], 
-                    "Resource": "*", 
-                    "Effect": "Allow", 
-                    "Sid": "SecurityHubV2ServiceRoleTagPermissions"
-                }, 
+                    ],
+                    "Resource": "*"
+                },
                 {
+                    "Sid": "SecurityHubV2ServiceRoleOrganizationsPermissionsOnResources",
+                    "Effect": "Allow",
                     "Action": [
-                        "organizations:DescribeAccount", 
+                        "organizations:DescribeAccount",
                         "organizations:DescribeOrganizationalUnit"
-                    ], 
-                    "Resource": "arn:aws:organizations::*:*", 
-                    "Effect": "Allow", 
-                    "Sid": "SecurityHubV2ServiceRoleOrganizationsPermissionsOnResources"
-                }, 
+                    ],
+                    "Resource": "arn:aws:organizations::*:*"
+                },
                 {
+                    "Sid": "SecurityHubV2ServiceRoleOrganizationsPermissionsWithoutResources",
+                    "Effect": "Allow",
                     "Action": [
-                        "organizations:DescribeOrganization", 
-                        "organizations:ListAccounts", 
-                        "organizations:ListAWSServiceAccessForOrganization", 
+                        "organizations:DescribeOrganization",
+                        "organizations:ListAccounts",
+                        "organizations:ListAWSServiceAccessForOrganization",
                         "organizations:ListChildren"
-                    ], 
-                    "Resource": "*", 
-                    "Effect": "Allow", 
-                    "Sid": "SecurityHubV2ServiceRoleOrganizationsPermissionsWithoutResources"
-                }, 
+                    ],
+                    "Resource": "*"
+                },
                 {
+                    "Sid": "SecurityHubV2ServiceRoleDelegatedAdminPermissions",
+                    "Effect": "Allow",
                     "Action": [
                         "organizations:ListDelegatedAdministrators"
-                    ], 
-                    "Resource": "*", 
-                    "Effect": "Allow", 
+                    ],
+                    "Resource": "*",
                     "Condition": {
                         "StringEquals": {
                             "organizations:ServicePrincipal": [
                                 "securityhub.amazonaws.com"
                             ]
                         }
-                    }, 
-                    "Sid": "SecurityHubV2ServiceRoleDelegatedAdminPermissions"
-                }, 
+                    }
+                },
                 {
+                    "Sid": "SecurityHubV2ServiceRoleEcrListingPermissions",
+                    "Effect": "Allow",
                     "Action": [
-                        "ecr:DescribeImages", 
+                        "ecr:DescribeImages",
                         "ecr:DescribeRepositories"
-                    ], 
-                    "Resource": "*", 
-                    "Effect": "Allow", 
-                    "Sid": "SecurityHubV2ServiceRoleEcrListingPermissions"
-                }, 
+                    ],
+                    "Resource": "*"
+                },
                 {
+                    "Sid": "SecurityHubV2ServiceRoleLambdaMetricPermissions",
+                    "Effect": "Allow",
                     "Action": [
                         "cloudwatch:GetMetricData"
-                    ], 
-                    "Resource": "*", 
-                    "Effect": "Allow", 
-                    "Sid": "SecurityHubV2ServiceRoleLambdaMetricPermissions"
-                }, 
+                    ],
+                    "Resource": "*"
+                },
                 {
+                    "Sid": "SecurityHubV2ServiceRoleLambdaListingPermissions",
+                    "Effect": "Allow",
                     "Action": [
                         "lambda:ListFunctions"
-                    ], 
-                    "Resource": "*", 
-                    "Effect": "Allow", 
-                    "Sid": "SecurityHubV2ServiceRoleLambdaListingPermissions"
-                }, 
+                    ],
+                    "Resource": "*"
+                },
                 {
+                    "Sid": "SecurityHubV2ServiceRoleIamListingPermissions",
+                    "Effect": "Allow",
                     "Action": [
-                        "iam:ListRoles", 
+                        "iam:ListRoles",
                         "iam:GetAccountSummary"
-                    ], 
-                    "Resource": "*", 
-                    "Effect": "Allow", 
-                    "Sid": "SecurityHubV2ServiceRoleIamListingPermissions"
+                    ],
+                    "Resource": "*"
                 }
             ]
-        }, 
-        "IsDefaultVersion": true
+        },
+        "VersionId": "v6",
+        "IsDefaultVersion": true,
+        "CreateDate": "2026-02-12T17:57:50+00:00"
     }
 }
