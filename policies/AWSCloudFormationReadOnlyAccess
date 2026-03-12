@@ -1,25 +1,25 @@
 {
     "PolicyVersion": {
-        "CreateDate": "2026-02-12T18:02:00Z", 
-        "VersionId": "v7", 
         "Document": {
-            "Version": "2012-10-17", 
+            "Version": "2012-10-17",
             "Statement": [
                 {
+                    "Effect": "Allow",
                     "Action": [
-                        "cloudformation:Describe*", 
-                        "cloudformation:BatchDescribe*", 
-                        "cloudformation:EstimateTemplateCost", 
-                        "cloudformation:Get*", 
-                        "cloudformation:List*", 
-                        "cloudformation:ValidateTemplate", 
+                        "cloudformation:Describe*",
+                        "cloudformation:BatchDescribe*",
+                        "cloudformation:EstimateTemplateCost",
+                        "cloudformation:Get*",
+                        "cloudformation:List*",
+                        "cloudformation:ValidateTemplate",
                         "cloudformation:Detect*"
-                    ], 
-                    "Resource": "*", 
-                    "Effect": "Allow"
+                    ],
+                    "Resource": "*"
                 }
             ]
-        }, 
-        "IsDefaultVersion": true
+        },
+        "VersionId": "v7",
+        "IsDefaultVersion": true,
+        "CreateDate": "2026-02-12T18:02:00+00:00"
     }
 }
