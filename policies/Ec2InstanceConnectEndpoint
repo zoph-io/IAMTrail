@@ -1,50 +1,48 @@
 {
     "PolicyVersion": {
-        "CreateDate": "2025-07-31T17:49:06Z", 
-        "VersionId": "v2", 
         "Document": {
-            "Version": "2012-10-17", 
+            "Version": "2012-10-17",
             "Statement": [
                 {
+                    "Effect": "Allow",
                     "Action": [
-                        "ec2:DescribeNetworkInterfaces", 
+                        "ec2:DescribeNetworkInterfaces",
                         "ec2:DescribeAvailabilityZones"
-                    ], 
-                    "Resource": "*", 
-                    "Effect": "Allow"
-                }, 
+                    ],
+                    "Resource": "*"
+                },
                 {
+                    "Effect": "Allow",
                     "Action": [
                         "ec2:CreateNetworkInterface"
-                    ], 
-                    "Resource": "arn:aws:ec2:*:*:subnet/*", 
-                    "Effect": "Allow"
-                }, 
+                    ],
+                    "Resource": "arn:aws:ec2:*:*:subnet/*"
+                },
                 {
+                    "Effect": "Allow",
                     "Action": [
                         "ec2:CreateNetworkInterface"
-                    ], 
-                    "Resource": "arn:aws:ec2:*:*:network-interface/*", 
-                    "Effect": "Allow", 
+                    ],
+                    "Resource": "arn:aws:ec2:*:*:network-interface/*",
                     "Condition": {
-                        "StringLike": {
-                            "aws:RequestTag/InstanceConnectEndpointId": [
-                                "eice-*"
-                            ]
-                        }, 
                         "ForAllValues:StringEquals": {
                             "aws:TagKeys": [
                                 "InstanceConnectEndpointId"
                             ]
+                        },
+                        "StringLike": {
+                            "aws:RequestTag/InstanceConnectEndpointId": [
+                                "eice-*"
+                            ]
                         }
                     }
-                }, 
+                },
                 {
+                    "Effect": "Allow",
                     "Action": [
                         "ec2:ModifyNetworkInterfaceAttribute"
-                    ], 
-                    "Resource": "arn:aws:ec2:*:*:network-interface/*", 
-                    "Effect": "Allow", 
+                    ],
+                    "Resource": "arn:aws:ec2:*:*:network-interface/*",
                     "Condition": {
                         "StringLike": {
                             "aws:ResourceTag/InstanceConnectEndpointId": [
@@ -52,36 +50,36 @@
                             ]
                         }
                     }
-                }, 
+                },
                 {
+                    "Effect": "Allow",
                     "Action": [
                         "ec2:CreateTags"
-                    ], 
-                    "Resource": "arn:aws:ec2:*:*:network-interface/*", 
-                    "Effect": "Allow", 
+                    ],
+                    "Resource": "arn:aws:ec2:*:*:network-interface/*",
                     "Condition": {
-                        "StringLike": {
-                            "aws:RequestTag/InstanceConnectEndpointId": [
-                                "eice-*"
-                            ]
-                        }, 
                         "StringEquals": {
                             "ec2:CreateAction": "CreateNetworkInterface"
-                        }, 
+                        },
                         "ForAllValues:StringEquals": {
                             "aws:TagKeys": [
                                 "InstanceConnectEndpointId"
                             ]
+                        },
+                        "StringLike": {
+                            "aws:RequestTag/InstanceConnectEndpointId": [
+                                "eice-*"
+                            ]
                         }
                     }
-                }, 
+                },
                 {
+                    "Effect": "Allow",
                     "Action": [
-                        "ec2:AssignIpv6Addresses", 
+                        "ec2:AssignIpv6Addresses",
                         "ec2:UnassignIpv6Addresses"
-                    ], 
-                    "Resource": "arn:aws:ec2:*:*:network-interface/*", 
-                    "Effect": "Allow", 
+                    ],
+                    "Resource": "arn:aws:ec2:*:*:network-interface/*",
                     "Condition": {
                         "StringLike": {
                             "aws:ResourceTag/InstanceConnectEndpointId": [
@@ -89,18 +87,18 @@
                             ]
                         }
                     }
-                }, 
+                },
                 {
-                    "Action": "ec2:ModifyNetworkInterfaceAttribute", 
-                    "Resource": "arn:aws:ec2:*:*:security-group/*", 
-                    "Effect": "Allow"
-                }, 
+                    "Effect": "Allow",
+                    "Action": "ec2:ModifyNetworkInterfaceAttribute",
+                    "Resource": "arn:aws:ec2:*:*:security-group/*"
+                },
                 {
+                    "Effect": "Allow",
                     "Action": [
                         "ec2:DeleteNetworkInterface"
-                    ], 
-                    "Resource": "*", 
-                    "Effect": "Allow", 
+                    ],
+                    "Resource": "*",
                     "Condition": {
                         "StringLike": {
                             "aws:ResourceTag/InstanceConnectEndpointId": [
@@ -110,7 +108,9 @@
                     }
                 }
             ]
-        }, 
-        "IsDefaultVersion": true
+        },
+        "VersionId": "v2",
+        "IsDefaultVersion": true,
+        "CreateDate": "2025-07-31T17:49:06+00:00"
     }
 }
