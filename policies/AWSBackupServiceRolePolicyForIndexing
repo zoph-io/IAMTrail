@@ -1,50 +1,50 @@
 {
     "PolicyVersion": {
-        "CreateDate": "2026-02-12T18:02:44Z", 
-        "VersionId": "v3", 
         "Document": {
-            "Version": "2012-10-17", 
+            "Version": "2012-10-17",
             "Statement": [
                 {
+                    "Sid": "EBSReadOnlyPermissions",
+                    "Effect": "Allow",
                     "Action": [
                         "ec2:DescribeSnapshots"
-                    ], 
-                    "Resource": "*", 
-                    "Effect": "Allow", 
-                    "Sid": "EBSReadOnlyPermissions"
-                }, 
+                    ],
+                    "Resource": "*"
+                },
                 {
-                    "Action": "kms:DescribeKey", 
-                    "Resource": "arn:aws:kms:*:*:key/*", 
-                    "Effect": "Allow", 
-                    "Sid": "KMSReadOnlyPermissions"
-                }, 
+                    "Sid": "KMSReadOnlyPermissions",
+                    "Effect": "Allow",
+                    "Action": "kms:DescribeKey",
+                    "Resource": "arn:aws:kms:*:*:key/*"
+                },
                 {
+                    "Sid": "EBSDirectReadAPIPermissions",
+                    "Effect": "Allow",
                     "Action": [
-                        "ebs:ListSnapshotBlocks", 
+                        "ebs:ListSnapshotBlocks",
                         "ebs:GetSnapshotBlock"
-                    ], 
-                    "Resource": "arn:aws:ec2:*::snapshot/*", 
-                    "Effect": "Allow", 
-                    "Sid": "EBSDirectReadAPIPermissions"
-                }, 
+                    ],
+                    "Resource": "arn:aws:ec2:*::snapshot/*"
+                },
                 {
+                    "Sid": "KMSDataKeyForEC2Permissions",
+                    "Effect": "Allow",
                     "Action": [
                         "kms:Decrypt"
-                    ], 
-                    "Resource": "arn:aws:kms:*:*:key/*", 
-                    "Effect": "Allow", 
+                    ],
+                    "Resource": "arn:aws:kms:*:*:key/*",
                     "Condition": {
                         "StringLike": {
                             "kms:ViaService": [
                                 "ec2.*.amazonaws.com"
                             ]
                         }
-                    }, 
-                    "Sid": "KMSDataKeyForEC2Permissions"
+                    }
                 }
             ]
-        }, 
-        "IsDefaultVersion": true
+        },
+        "VersionId": "v3",
+        "IsDefaultVersion": true,
+        "CreateDate": "2026-02-12T18:02:44+00:00"
     }
 }
