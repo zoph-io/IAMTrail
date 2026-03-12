@@ -1,38 +1,38 @@
 {
     "PolicyVersion": {
-        "CreateDate": "2025-12-08T19:04:09Z", 
-        "VersionId": "v2", 
         "Document": {
-            "Version": "2012-10-17", 
+            "Version": "2012-10-17",
             "Statement": [
                 {
+                    "Sid": "OrganizationsDataSyncToServiceCatalog",
+                    "Effect": "Allow",
                     "Action": [
-                        "organizations:DescribeAccount", 
-                        "organizations:DescribeOrganization", 
-                        "organizations:ListAccounts", 
-                        "organizations:ListChildren", 
-                        "organizations:ListParents", 
+                        "organizations:DescribeAccount",
+                        "organizations:DescribeOrganization",
+                        "organizations:ListAccounts",
+                        "organizations:ListChildren",
+                        "organizations:ListParents",
                         "organizations:ListAWSServiceAccessForOrganization"
-                    ], 
-                    "Resource": "*", 
-                    "Effect": "Allow", 
-                    "Sid": "OrganizationsDataSyncToServiceCatalog"
-                }, 
+                    ],
+                    "Resource": "*"
+                },
                 {
+                    "Sid": "OrganizationsDataSyncToServiceCatalogRegions",
+                    "Effect": "Allow",
                     "Action": [
                         "account:ListRegions"
-                    ], 
-                    "Resource": "*", 
-                    "Effect": "Allow", 
+                    ],
+                    "Resource": "*",
                     "Condition": {
                         "StringEquals": {
                             "aws:ResourceAccount": "${aws:PrincipalAccount}"
                         }
-                    }, 
-                    "Sid": "OrganizationsDataSyncToServiceCatalogRegions"
+                    }
                 }
             ]
-        }, 
-        "IsDefaultVersion": true
+        },
+        "VersionId": "v2",
+        "IsDefaultVersion": true,
+        "CreateDate": "2025-12-08T19:04:09+00:00"
     }
 }
