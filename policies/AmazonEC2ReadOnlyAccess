@@ -1,39 +1,39 @@
 {
     "PolicyVersion": {
-        "CreateDate": "2026-02-12T18:03:17Z", 
-        "VersionId": "v5", 
         "Document": {
-            "Version": "2012-10-17", 
+            "Version": "2012-10-17",
             "Statement": [
                 {
+                    "Effect": "Allow",
                     "Action": [
-                        "ec2:Describe*", 
+                        "ec2:Describe*",
                         "ec2:GetSecurityGroupsForVpc"
-                    ], 
-                    "Resource": "*", 
-                    "Effect": "Allow"
-                }, 
+                    ],
+                    "Resource": "*"
+                },
                 {
-                    "Action": "elasticloadbalancing:Describe*", 
-                    "Resource": "*", 
-                    "Effect": "Allow"
-                }, 
+                    "Effect": "Allow",
+                    "Action": "elasticloadbalancing:Describe*",
+                    "Resource": "*"
+                },
                 {
+                    "Effect": "Allow",
                     "Action": [
-                        "cloudwatch:ListMetrics", 
-                        "cloudwatch:GetMetricStatistics", 
+                        "cloudwatch:ListMetrics",
+                        "cloudwatch:GetMetricStatistics",
                         "cloudwatch:Describe*"
-                    ], 
-                    "Resource": "*", 
-                    "Effect": "Allow"
-                }, 
+                    ],
+                    "Resource": "*"
+                },
                 {
-                    "Action": "autoscaling:Describe*", 
-                    "Resource": "*", 
-                    "Effect": "Allow"
+                    "Effect": "Allow",
+                    "Action": "autoscaling:Describe*",
+                    "Resource": "*"
                 }
             ]
-        }, 
-        "IsDefaultVersion": true
+        },
+        "VersionId": "v5",
+        "IsDefaultVersion": true,
+        "CreateDate": "2026-02-12T18:03:17+00:00"
     }
 }
