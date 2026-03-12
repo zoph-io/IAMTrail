@@ -1,98 +1,98 @@
 {
     "PolicyVersion": {
-        "CreateDate": "2024-10-30T20:18:13Z", 
-        "VersionId": "v1", 
         "Document": {
-            "Version": "2012-10-17", 
+            "Version": "2012-10-17",
             "Statement": [
                 {
+                    "Effect": "Allow",
                     "Action": [
-                        "ec2:AttachVolume", 
-                        "ec2:DetachVolume", 
-                        "ec2:ModifyVolume", 
+                        "ec2:AttachVolume",
+                        "ec2:DetachVolume",
+                        "ec2:ModifyVolume",
                         "ec2:EnableFastSnapshotRestores"
-                    ], 
-                    "Resource": "*", 
-                    "Effect": "Allow", 
+                    ],
+                    "Resource": "*",
                     "Condition": {
                         "StringEquals": {
                             "aws:ResourceTag/eks:eks-cluster-name": "${aws:PrincipalTag/eks:eks-cluster-name}"
                         }
                     }
-                }, 
+                },
                 {
-                    "Action": "ec2:CreateTags", 
-                    "Resource": "*", 
-                    "Effect": "Allow", 
+                    "Effect": "Allow",
+                    "Action": "ec2:CreateTags",
+                    "Resource": "*",
                     "Condition": {
                         "StringEquals": {
                             "ec2:CreateAction": [
-                                "CreateVolume", 
+                                "CreateVolume",
                                 "CreateSnapshot"
                             ]
                         }
                     }
-                }, 
+                },
                 {
+                    "Effect": "Allow",
                     "Action": [
                         "ec2:CreateVolume"
-                    ], 
-                    "Resource": "arn:aws:ec2:*:*:volume/*", 
-                    "Effect": "Allow", 
+                    ],
+                    "Resource": "arn:aws:ec2:*:*:volume/*",
                     "Condition": {
+                        "StringEquals": {
+                            "aws:RequestTag/eks:eks-cluster-name": "${aws:PrincipalTag/eks:eks-cluster-name}"
+                        },
                         "ForAllValues:StringLike": {
                             "aws:TagKeys": [
-                                "eks:eks-cluster-name", 
-                                "CSIVolumeName", 
-                                "ebs.csi.eks.amazonaws.com/cluster", 
-                                "kubernetes.io/cluster/*", 
-                                "kubernetes.io/created-for/*", 
-                                "Name", 
+                                "eks:eks-cluster-name",
+                                "CSIVolumeName",
+                                "ebs.csi.eks.amazonaws.com/cluster",
+                                "kubernetes.io/cluster/*",
+                                "kubernetes.io/created-for/*",
+                                "Name",
                                 "KubernetesCluster"
                             ]
-                        }, 
-                        "StringEquals": {
-                            "aws:RequestTag/eks:eks-cluster-name": "${aws:PrincipalTag/eks:eks-cluster-name}"
                         }
                     }
-                }, 
+                },
                 {
+                    "Effect": "Allow",
                     "Action": [
                         "ec2:CreateVolume"
-                    ], 
-                    "Resource": "arn:aws:ec2:*:*:snapshot/*", 
-                    "Effect": "Allow"
-                }, 
+                    ],
+                    "Resource": "arn:aws:ec2:*:*:snapshot/*"
+                },
                 {
+                    "Effect": "Allow",
                     "Action": [
                         "ec2:CreateSnapshot"
-                    ], 
-                    "Resource": "arn:aws:ec2:*:*:volume/*", 
-                    "Effect": "Allow"
-                }, 
+                    ],
+                    "Resource": "arn:aws:ec2:*:*:volume/*"
+                },
                 {
+                    "Effect": "Allow",
                     "Action": [
                         "ec2:CreateSnapshot"
-                    ], 
-                    "Resource": "arn:aws:ec2:*:*:snapshot/*", 
-                    "Effect": "Allow", 
+                    ],
+                    "Resource": "arn:aws:ec2:*:*:snapshot/*",
                     "Condition": {
-                        "ForAllValues:StringLike": {
-                            "aws:TagKeys": [
-                                "eks:eks-cluster-name", 
-                                "CSIVolumeSnapshotName", 
-                                "ebs.csi.eks.amazonaws.com/cluster", 
-                                "kubernetes.io/cluster/*", 
-                                "Name"
-                            ]
-                        }, 
                         "StringEquals": {
                             "aws:RequestTag/eks:eks-cluster-name": "${aws:PrincipalTag/eks:eks-cluster-name}"
+                        },
+                        "ForAllValues:StringLike": {
+                            "aws:TagKeys": [
+                                "eks:eks-cluster-name",
+                                "CSIVolumeSnapshotName",
+                                "ebs.csi.eks.amazonaws.com/cluster",
+                                "kubernetes.io/cluster/*",
+                                "Name"
+                            ]
                         }
                     }
                 }
             ]
-        }, 
-        "IsDefaultVersion": true
+        },
+        "VersionId": "v1",
+        "IsDefaultVersion": true,
+        "CreateDate": "2024-10-30T20:18:13+00:00"
     }
 }
