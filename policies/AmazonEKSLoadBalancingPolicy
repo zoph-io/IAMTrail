@@ -1,251 +1,249 @@
 {
     "PolicyVersion": {
-        "CreateDate": "2026-02-12T17:57:21Z", 
-        "VersionId": "v4", 
         "Document": {
-            "Version": "2012-10-17", 
+            "Version": "2012-10-17",
             "Statement": [
                 {
+                    "Effect": "Allow",
                     "Action": [
-                        "elasticloadbalancing:CreateLoadBalancer", 
-                        "elasticloadbalancing:CreateTargetGroup", 
-                        "elasticloadbalancing:CreateListener", 
-                        "elasticloadbalancing:CreateRule", 
+                        "elasticloadbalancing:CreateLoadBalancer",
+                        "elasticloadbalancing:CreateTargetGroup",
+                        "elasticloadbalancing:CreateListener",
+                        "elasticloadbalancing:CreateRule",
                         "ec2:CreateSecurityGroup"
-                    ], 
-                    "Resource": "*", 
-                    "Effect": "Allow", 
+                    ],
+                    "Resource": "*",
                     "Condition": {
                         "StringEquals": {
                             "aws:RequestTag/eks:eks-cluster-name": "${aws:PrincipalTag/eks:eks-cluster-name}"
-                        }, 
+                        },
                         "ForAllValues:StringEquals": {
                             "aws:TagKeys": [
-                                "eks:eks-cluster-name", 
-                                "ingress.eks.amazonaws.com/stack", 
-                                "ingress.eks.amazonaws.com/resource", 
-                                "service.eks.amazonaws.com/stack", 
+                                "eks:eks-cluster-name",
+                                "ingress.eks.amazonaws.com/stack",
+                                "ingress.eks.amazonaws.com/resource",
+                                "service.eks.amazonaws.com/stack",
                                 "service.eks.amazonaws.com/resource"
                             ]
                         }
                     }
-                }, 
+                },
                 {
+                    "Effect": "Allow",
                     "Action": [
                         "ec2:CreateSecurityGroup"
-                    ], 
-                    "Resource": "arn:aws:ec2:*:*:vpc/*", 
-                    "Effect": "Allow"
-                }, 
+                    ],
+                    "Resource": "arn:aws:ec2:*:*:vpc/*"
+                },
                 {
+                    "Effect": "Allow",
                     "Action": [
                         "elasticloadbalancing:RegisterTargets"
-                    ], 
-                    "Resource": "arn:aws:elasticloadbalancing:*:*:targetgroup/*/*", 
-                    "Effect": "Allow", 
+                    ],
+                    "Resource": "arn:aws:elasticloadbalancing:*:*:targetgroup/*/*",
                     "Condition": {
                         "StringEquals": {
                             "aws:ResourceTag/eks:eks-cluster-name": "${aws:PrincipalTag/eks:eks-cluster-name}"
                         }
                     }
-                }, 
+                },
                 {
+                    "Effect": "Allow",
                     "Action": [
                         "ec2:AuthorizeSecurityGroupIngress"
-                    ], 
-                    "Resource": "arn:aws:ec2:*:*:security-group-rule/*", 
-                    "Effect": "Allow", 
+                    ],
+                    "Resource": "arn:aws:ec2:*:*:security-group-rule/*",
                     "Condition": {
                         "StringEquals": {
                             "aws:RequestTag/eks:eks-cluster-name": "${aws:PrincipalTag/eks:eks-cluster-name}"
                         }
                     }
-                }, 
+                },
                 {
+                    "Effect": "Allow",
                     "Action": [
-                        "ec2:AuthorizeSecurityGroupIngress", 
+                        "ec2:AuthorizeSecurityGroupIngress",
                         "ec2:RevokeSecurityGroupIngress"
-                    ], 
-                    "Resource": "arn:aws:ec2:*:*:security-group/*", 
-                    "Effect": "Allow", 
+                    ],
+                    "Resource": "arn:aws:ec2:*:*:security-group/*",
                     "Condition": {
                         "StringLike": {
                             "aws:ResourceTag/Name": "eks-cluster-sg*"
                         }
                     }
-                }, 
+                },
                 {
+                    "Effect": "Allow",
                     "Action": [
-                        "ec2:AuthorizeSecurityGroupIngress", 
+                        "ec2:AuthorizeSecurityGroupIngress",
                         "ec2:RevokeSecurityGroupIngress"
-                    ], 
-                    "Resource": "arn:aws:ec2:*:*:security-group/*", 
-                    "Effect": "Allow", 
+                    ],
+                    "Resource": "arn:aws:ec2:*:*:security-group/*",
                     "Condition": {
                         "StringEquals": {
                             "aws:ResourceTag/eks:eks-cluster-name": "${aws:PrincipalTag/eks:eks-cluster-name}"
                         }
                     }
-                }, 
+                },
                 {
+                    "Effect": "Allow",
                     "Action": [
                         "elasticloadbalancing:AddTags"
-                    ], 
-                    "Resource": "*", 
-                    "Effect": "Allow", 
+                    ],
+                    "Resource": "*",
                     "Condition": {
                         "StringEquals": {
                             "elasticloadbalancing:CreateAction": [
-                                "CreateLoadBalancer", 
-                                "CreateTargetGroup", 
-                                "CreateListener", 
+                                "CreateLoadBalancer",
+                                "CreateTargetGroup",
+                                "CreateListener",
                                 "CreateRule"
                             ]
                         }
                     }
-                }, 
+                },
                 {
+                    "Effect": "Allow",
                     "Action": [
                         "ec2:CreateTags"
-                    ], 
-                    "Resource": "*", 
-                    "Effect": "Allow", 
+                    ],
+                    "Resource": "*",
                     "Condition": {
                         "StringEquals": {
                             "ec2:CreateAction": [
-                                "CreateSecurityGroup", 
+                                "CreateSecurityGroup",
                                 "AuthorizeSecurityGroupIngress"
                             ]
                         }
                     }
-                }, 
+                },
                 {
+                    "Effect": "Allow",
                     "Action": [
-                        "elasticloadbalancing:ModifyLoadBalancerAttributes", 
-                        "elasticloadbalancing:SetIpAddressType", 
-                        "elasticloadbalancing:SetSecurityGroups", 
-                        "elasticloadbalancing:SetSubnets", 
-                        "elasticloadbalancing:ModifyTargetGroup", 
-                        "elasticloadbalancing:ModifyTargetGroupAttributes", 
-                        "elasticloadbalancing:ModifyListener", 
-                        "elasticloadbalancing:AddListenerCertificates", 
-                        "elasticloadbalancing:ModifyListenerAttributes", 
-                        "elasticloadbalancing:RemoveListenerCertificates", 
+                        "elasticloadbalancing:ModifyLoadBalancerAttributes",
+                        "elasticloadbalancing:SetIpAddressType",
+                        "elasticloadbalancing:SetSecurityGroups",
+                        "elasticloadbalancing:SetSubnets",
+                        "elasticloadbalancing:ModifyTargetGroup",
+                        "elasticloadbalancing:ModifyTargetGroupAttributes",
+                        "elasticloadbalancing:ModifyListener",
+                        "elasticloadbalancing:AddListenerCertificates",
+                        "elasticloadbalancing:ModifyListenerAttributes",
+                        "elasticloadbalancing:RemoveListenerCertificates",
                         "elasticloadbalancing:ModifyRule"
-                    ], 
-                    "Resource": "*", 
-                    "Effect": "Allow", 
+                    ],
+                    "Resource": "*",
                     "Condition": {
                         "StringEquals": {
                             "aws:ResourceTag/eks:eks-cluster-name": "${aws:PrincipalTag/eks:eks-cluster-name}"
                         }
                     }
-                }, 
+                },
                 {
+                    "Effect": "Allow",
                     "Action": [
-                        "wafv2:AssociateWebACL", 
+                        "wafv2:AssociateWebACL",
                         "wafv2:DisassociateWebACL"
-                    ], 
+                    ],
                     "Resource": [
-                        "arn:aws:wafv2:*:*:*/webacl/*/*", 
+                        "arn:aws:wafv2:*:*:*/webacl/*/*",
                         "arn:aws:elasticloadbalancing:*:*:loadbalancer/app/*/*"
-                    ], 
-                    "Effect": "Allow"
-                }, 
+                    ]
+                },
                 {
+                    "Effect": "Allow",
                     "Action": [
                         "shield:CreateProtection"
-                    ], 
-                    "Resource": "*", 
-                    "Effect": "Allow", 
+                    ],
+                    "Resource": "*",
                     "Condition": {
                         "StringEquals": {
                             "aws:RequestTag/eks:eks-cluster-name": "${aws:PrincipalTag/eks:eks-cluster-name}"
-                        }, 
+                        },
                         "ForAllValues:StringEquals": {
                             "aws:TagKeys": [
-                                "eks:eks-cluster-name", 
-                                "ingress.eks.amazonaws.com/stack", 
-                                "ingress.eks.amazonaws.com/resource", 
-                                "service.eks.amazonaws.com/stack", 
+                                "eks:eks-cluster-name",
+                                "ingress.eks.amazonaws.com/stack",
+                                "ingress.eks.amazonaws.com/resource",
+                                "service.eks.amazonaws.com/stack",
                                 "service.eks.amazonaws.com/resource"
                             ]
                         }
                     }
-                }, 
+                },
                 {
+                    "Effect": "Allow",
                     "Action": [
                         "shield:DeleteProtection"
-                    ], 
-                    "Resource": "*", 
-                    "Effect": "Allow", 
+                    ],
+                    "Resource": "*",
                     "Condition": {
                         "StringEquals": {
                             "aws:ResourceTag/eks:eks-cluster-name": "${aws:PrincipalTag/eks:eks-cluster-name}"
                         }
                     }
-                }, 
+                },
                 {
+                    "Effect": "Allow",
                     "Action": [
                         "shield:TagResource"
-                    ], 
-                    "Resource": "arn:aws:shield::*:protection/*", 
-                    "Effect": "Allow", 
+                    ],
+                    "Resource": "arn:aws:shield::*:protection/*",
                     "Condition": {
                         "StringEquals": {
                             "aws:RequestTag/eks:eks-cluster-name": "${aws:PrincipalTag/eks:eks-cluster-name}"
-                        }, 
+                        },
                         "ForAllValues:StringEquals": {
                             "aws:TagKeys": [
-                                "eks:eks-cluster-name", 
-                                "ingress.eks.amazonaws.com/stack", 
-                                "ingress.eks.amazonaws.com/resource", 
-                                "service.eks.amazonaws.com/stack", 
+                                "eks:eks-cluster-name",
+                                "ingress.eks.amazonaws.com/stack",
+                                "ingress.eks.amazonaws.com/resource",
+                                "service.eks.amazonaws.com/stack",
                                 "service.eks.amazonaws.com/resource"
                             ]
                         }
                     }
-                }, 
+                },
                 {
+                    "Effect": "Allow",
                     "Action": [
-                        "cognito-idp:DescribeUserPoolClient", 
-                        "acm:ListCertificates", 
-                        "acm:DescribeCertificate", 
-                        "wafv2:GetWebACL", 
-                        "wafv2:GetWebACLForResource", 
-                        "elasticloadbalancing:SetWebAcl", 
+                        "cognito-idp:DescribeUserPoolClient",
+                        "acm:ListCertificates",
+                        "acm:DescribeCertificate",
+                        "wafv2:GetWebACL",
+                        "wafv2:GetWebACLForResource",
+                        "elasticloadbalancing:SetWebAcl",
                         "elasticloadbalancing:DescribeTargetGroups"
-                    ], 
-                    "Resource": "*", 
-                    "Effect": "Allow"
-                }, 
+                    ],
+                    "Resource": "*"
+                },
                 {
+                    "Effect": "Allow",
                     "Action": [
-                        "ec2:DescribeAccountAttributes", 
-                        "ec2:DescribeAddresses", 
-                        "ec2:DescribeInternetGateways", 
-                        "ec2:DescribeSecurityGroups", 
-                        "ec2:DescribeSubnets", 
-                        "ec2:DescribeVpcs", 
-                        "ec2:DescribeVpcClassicLink", 
-                        "ec2:DescribeInstances", 
-                        "ec2:DescribeNetworkInterfaces", 
-                        "ec2:DescribeClassicLinkInstances", 
-                        "ec2:DescribeRouteTables", 
-                        "ec2:DescribeCoipPools", 
-                        "ec2:GetCoipPoolUsage", 
-                        "ec2:GetSecurityGroupsForVpc", 
+                        "ec2:DescribeAccountAttributes",
+                        "ec2:DescribeAddresses",
+                        "ec2:DescribeInternetGateways",
+                        "ec2:DescribeSecurityGroups",
+                        "ec2:DescribeSubnets",
+                        "ec2:DescribeVpcs",
+                        "ec2:DescribeVpcClassicLink",
+                        "ec2:DescribeInstances",
+                        "ec2:DescribeNetworkInterfaces",
+                        "ec2:DescribeClassicLinkInstances",
+                        "ec2:DescribeRouteTables",
+                        "ec2:DescribeCoipPools",
+                        "ec2:GetCoipPoolUsage",
+                        "ec2:GetSecurityGroupsForVpc",
                         "ec2:DescribeVpcPeeringConnections"
-                    ], 
-                    "Resource": "*", 
-                    "Effect": "Allow"
-                }, 
+                    ],
+                    "Resource": "*"
+                },
                 {
+                    "Effect": "Allow",
                     "Action": [
                         "iam:CreateServiceLinkedRole"
-                    ], 
-                    "Resource": "arn:aws:iam::*:role/aws-service-role/elasticloadbalancing.amazonaws.com/AWSServiceRoleForElasticLoadBalancing", 
-                    "Effect": "Allow", 
+                    ],
+                    "Resource": "arn:aws:iam::*:role/aws-service-role/elasticloadbalancing.amazonaws.com/AWSServiceRoleForElasticLoadBalancing",
                     "Condition": {
                         "StringEquals": {
                             "iam:AWSServiceName": "elasticloadbalancing.amazonaws.com"
@@ -253,7 +251,9 @@
                     }
                 }
             ]
-        }, 
-        "IsDefaultVersion": true
+        },
+        "VersionId": "v4",
+        "IsDefaultVersion": true,
+        "CreateDate": "2026-02-12T17:57:21+00:00"
     }
 }
