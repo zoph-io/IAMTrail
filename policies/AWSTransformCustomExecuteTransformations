@@ -1,26 +1,26 @@
 {
     "PolicyVersion": {
-        "CreateDate": "2026-02-12T17:59:21Z", 
-        "VersionId": "v3", 
         "Document": {
-            "Version": "2012-10-17", 
+            "Version": "2012-10-17",
             "Statement": [
                 {
+                    "Sid": "AWSTransformCustomExecuteTransformations",
+                    "Effect": "Allow",
                     "Action": [
-                        "transform-custom:ConverseStream", 
-                        "transform-custom:ExecuteTransformation", 
-                        "transform-custom:GetCampaign", 
-                        "transform-custom:UpdateCampaignRepositoryStatus", 
+                        "transform-custom:ConverseStream",
+                        "transform-custom:ExecuteTransformation",
+                        "transform-custom:GetCampaign",
+                        "transform-custom:UpdateCampaignRepositoryStatus",
                         "transform-custom:UpdateCampaign"
-                    ], 
+                    ],
                     "Resource": [
                         "*"
-                    ], 
-                    "Effect": "Allow", 
-                    "Sid": "AWSTransformCustomExecuteTransformations"
+                    ]
                 }
             ]
-        }, 
-        "IsDefaultVersion": true
+        },
+        "VersionId": "v3",
+        "IsDefaultVersion": true,
+        "CreateDate": "2026-02-12T17:59:21+00:00"
     }
 }
