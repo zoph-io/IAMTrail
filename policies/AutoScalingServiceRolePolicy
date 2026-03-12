@@ -1,134 +1,134 @@
 {
     "PolicyVersion": {
-        "CreateDate": "2025-11-12T18:19:06Z", 
-        "VersionId": "v10", 
         "Document": {
-            "Version": "2012-10-17", 
+            "Version": "2012-10-17",
             "Statement": [
                 {
+                    "Sid": "EC2InstanceManagement",
+                    "Effect": "Allow",
                     "Action": [
-                        "ec2:AttachClassicLinkVpc", 
-                        "ec2:CancelSpotInstanceRequests", 
-                        "ec2:CreateReplaceRootVolumeTask", 
-                        "ec2:CreateFleet", 
-                        "ec2:CreateTags", 
-                        "ec2:DeleteTags", 
-                        "ec2:Describe*", 
-                        "ec2:DetachClassicLinkVpc", 
-                        "ec2:GetInstanceTypesFromInstanceRequirements", 
-                        "ec2:GetSecurityGroupsForVpc", 
-                        "ec2:ModifyInstanceAttribute", 
-                        "ec2:RequestSpotInstances", 
-                        "ec2:RunInstances", 
-                        "ec2:StartInstances", 
-                        "ec2:StopInstances", 
+                        "ec2:AttachClassicLinkVpc",
+                        "ec2:CancelSpotInstanceRequests",
+                        "ec2:CreateReplaceRootVolumeTask",
+                        "ec2:CreateFleet",
+                        "ec2:CreateTags",
+                        "ec2:DeleteTags",
+                        "ec2:Describe*",
+                        "ec2:DetachClassicLinkVpc",
+                        "ec2:GetInstanceTypesFromInstanceRequirements",
+                        "ec2:GetSecurityGroupsForVpc",
+                        "ec2:ModifyInstanceAttribute",
+                        "ec2:RequestSpotInstances",
+                        "ec2:RunInstances",
+                        "ec2:StartInstances",
+                        "ec2:StopInstances",
                         "ec2:TerminateInstances"
-                    ], 
-                    "Resource": "*", 
-                    "Effect": "Allow", 
-                    "Sid": "EC2InstanceManagement"
-                }, 
+                    ],
+                    "Resource": "*"
+                },
                 {
+                    "Sid": "EC2InstanceProfileManagement",
+                    "Effect": "Allow",
                     "Action": [
                         "iam:PassRole"
-                    ], 
-                    "Resource": "*", 
-                    "Effect": "Allow", 
+                    ],
+                    "Resource": "*",
                     "Condition": {
                         "StringLike": {
                             "iam:PassedToService": "ec2.amazonaws.com*"
                         }
-                    }, 
-                    "Sid": "EC2InstanceProfileManagement"
-                }, 
+                    }
+                },
                 {
+                    "Sid": "EC2SpotManagement",
+                    "Effect": "Allow",
                     "Action": [
                         "iam:CreateServiceLinkedRole"
-                    ], 
-                    "Resource": "*", 
-                    "Effect": "Allow", 
+                    ],
+                    "Resource": "*",
                     "Condition": {
                         "StringEquals": {
                             "iam:AWSServiceName": "spot.amazonaws.com"
                         }
-                    }, 
-                    "Sid": "EC2SpotManagement"
-                }, 
+                    }
+                },
                 {
+                    "Sid": "ELBManagement",
+                    "Effect": "Allow",
                     "Action": [
-                        "elasticloadbalancing:Register*", 
-                        "elasticloadbalancing:Deregister*", 
+                        "elasticloadbalancing:Register*",
+                        "elasticloadbalancing:Deregister*",
                         "elasticloadbalancing:Describe*"
-                    ], 
-                    "Resource": "*", 
-                    "Effect": "Allow", 
-                    "Sid": "ELBManagement"
-                }, 
+                    ],
+                    "Resource": "*"
+                },
                 {
+                    "Sid": "CWManagement",
+                    "Effect": "Allow",
                     "Action": [
-                        "cloudwatch:DeleteAlarms", 
-                        "cloudwatch:DescribeAlarms", 
-                        "cloudwatch:GetMetricData", 
+                        "cloudwatch:DeleteAlarms",
+                        "cloudwatch:DescribeAlarms",
+                        "cloudwatch:GetMetricData",
                         "cloudwatch:PutMetricAlarm"
-                    ], 
-                    "Resource": "*", 
-                    "Effect": "Allow", 
-                    "Sid": "CWManagement"
-                }, 
+                    ],
+                    "Resource": "*"
+                },
                 {
+                    "Sid": "SNSManagement",
+                    "Effect": "Allow",
                     "Action": [
                         "sns:Publish"
-                    ], 
-                    "Resource": "*", 
-                    "Effect": "Allow", 
-                    "Sid": "SNSManagement"
-                }, 
+                    ],
+                    "Resource": "*"
+                },
                 {
+                    "Sid": "EventBridgeRuleManagement",
+                    "Effect": "Allow",
                     "Action": [
-                        "events:PutRule", 
-                        "events:PutTargets", 
-                        "events:RemoveTargets", 
+                        "events:PutRule",
+                        "events:PutTargets",
+                        "events:RemoveTargets",
                         "events:DeleteRule"
-                    ], 
-                    "Resource": "*", 
-                    "Effect": "Allow", 
+                    ],
+                    "Resource": "*",
                     "Condition": {
                         "StringEquals": {
                             "events:ManagedBy": "autoscaling.amazonaws.com"
                         }
-                    }, 
-                    "Sid": "EventBridgeRuleManagement"
-                }, 
+                    }
+                },
                 {
+                    "Sid": "SystemsManagerParameterManagement",
+                    "Effect": "Allow",
                     "Action": [
                         "ssm:GetParameters"
-                    ], 
-                    "Resource": "*", 
-                    "Effect": "Allow", 
-                    "Sid": "SystemsManagerParameterManagement"
-                }, 
+                    ],
+                    "Resource": "*"
+                },
                 {
+                    "Sid": "VpcLatticeManagement",
+                    "Effect": "Allow",
                     "Action": [
-                        "vpc-lattice:DeregisterTargets", 
-                        "vpc-lattice:GetTargetGroup", 
-                        "vpc-lattice:ListTargets", 
-                        "vpc-lattice:ListTargetGroups", 
+                        "vpc-lattice:DeregisterTargets",
+                        "vpc-lattice:GetTargetGroup",
+                        "vpc-lattice:ListTargets",
+                        "vpc-lattice:ListTargetGroups",
                         "vpc-lattice:RegisterTargets"
-                    ], 
-                    "Resource": "*", 
-                    "Effect": "Allow", 
-                    "Sid": "VpcLatticeManagement"
-                }, 
+                    ],
+                    "Resource": "*"
+                },
                 {
+                    "Sid": "ResourceGroupsManagement",
+                    "Effect": "Allow",
                     "Action": [
                         "resource-groups:ListGroupResources"
-                    ], 
-                    "Resource": "arn:*:resource-groups:*:*:group/*", 
-                    "Effect": "Allow", 
-                    "Sid": "ResourceGroupsManagement"
+                    ],
+                    "Resource": "arn:*:resource-groups:*:*:group/*"
                 }
             ]
-        }, 
-        "IsDefaultVersion": true
+        },
+        "VersionId": "v10",
+        "IsDefaultVersion": true,
+        "CreateDate": "2025-11-12T18:19:06+00:00"
     }
 }
