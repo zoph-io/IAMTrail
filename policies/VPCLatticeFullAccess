@@ -1,48 +1,46 @@
 {
     "PolicyVersion": {
-        "CreateDate": "2026-02-12T17:57:35Z", 
-        "VersionId": "v4", 
         "Document": {
-            "Version": "2012-10-17", 
+            "Version": "2012-10-17",
             "Statement": [
                 {
+                    "Effect": "Allow",
                     "Action": [
-                        "vpc-lattice:*", 
-                        "acm:DescribeCertificate", 
-                        "acm:ListCertificates", 
-                        "cloudwatch:GetMetricData", 
-                        "cloudwatch:GetMetricStatistics", 
-                        "cloudwatch:ListMetrics", 
-                        "ec2:DescribeInstances", 
-                        "ec2:DescribeSecurityGroups", 
-                        "ec2:DescribeSubnets", 
-                        "ec2:DescribeVpcAttribute", 
-                        "ec2:DescribeVpcs", 
-                        "elasticloadbalancing:DescribeLoadBalancers", 
-                        "firehose:DescribeDeliveryStream", 
-                        "firehose:ListDeliveryStreams", 
-                        "logs:DescribeLogGroups", 
-                        "s3:ListAllMyBuckets", 
-                        "lambda:ListAliases", 
-                        "lambda:ListFunctions", 
-                        "lambda:ListVersionsByFunction", 
-                        "rds:DescribeDBInstances", 
+                        "vpc-lattice:*",
+                        "acm:DescribeCertificate",
+                        "acm:ListCertificates",
+                        "cloudwatch:GetMetricData",
+                        "cloudwatch:GetMetricStatistics",
+                        "cloudwatch:ListMetrics",
+                        "ec2:DescribeInstances",
+                        "ec2:DescribeSecurityGroups",
+                        "ec2:DescribeSubnets",
+                        "ec2:DescribeVpcAttribute",
+                        "ec2:DescribeVpcs",
+                        "elasticloadbalancing:DescribeLoadBalancers",
+                        "firehose:DescribeDeliveryStream",
+                        "firehose:ListDeliveryStreams",
+                        "logs:DescribeLogGroups",
+                        "s3:ListAllMyBuckets",
+                        "lambda:ListAliases",
+                        "lambda:ListFunctions",
+                        "lambda:ListVersionsByFunction",
+                        "rds:DescribeDBInstances",
                         "rds:DescribeDBClusters"
-                    ], 
-                    "Resource": "*", 
-                    "Effect": "Allow"
-                }, 
+                    ],
+                    "Resource": "*"
+                },
                 {
+                    "Effect": "Allow",
                     "Action": [
-                        "logs:CreateLogDelivery", 
-                        "logs:DeleteLogDelivery", 
-                        "logs:GetLogDelivery", 
-                        "logs:ListLogDeliveries", 
-                        "logs:UpdateLogDelivery", 
+                        "logs:CreateLogDelivery",
+                        "logs:DeleteLogDelivery",
+                        "logs:GetLogDelivery",
+                        "logs:ListLogDeliveries",
+                        "logs:UpdateLogDelivery",
                         "logs:DescribeResourcePolicies"
-                    ], 
-                    "Resource": "*", 
-                    "Effect": "Allow", 
+                    ],
+                    "Resource": "*",
                     "Condition": {
                         "ForAnyValue:StringEquals": {
                             "aws:CalledVia": [
@@ -50,37 +48,39 @@
                             ]
                         }
                     }
-                }, 
+                },
                 {
-                    "Action": "iam:CreateServiceLinkedRole", 
-                    "Resource": "arn:aws:iam::*:role/aws-service-role/vpc-lattice.amazonaws.com/AWSServiceRoleForVpcLattice", 
-                    "Effect": "Allow", 
+                    "Effect": "Allow",
+                    "Action": "iam:CreateServiceLinkedRole",
+                    "Resource": "arn:aws:iam::*:role/aws-service-role/vpc-lattice.amazonaws.com/AWSServiceRoleForVpcLattice",
                     "Condition": {
                         "StringLike": {
                             "iam:AWSServiceName": "vpc-lattice.amazonaws.com"
                         }
                     }
-                }, 
+                },
                 {
-                    "Action": "iam:CreateServiceLinkedRole", 
-                    "Resource": "arn:aws:iam::*:role/aws-service-role/delivery.logs.amazonaws.com/AWSServiceRoleForLogDelivery", 
-                    "Effect": "Allow", 
+                    "Effect": "Allow",
+                    "Action": "iam:CreateServiceLinkedRole",
+                    "Resource": "arn:aws:iam::*:role/aws-service-role/delivery.logs.amazonaws.com/AWSServiceRoleForLogDelivery",
                     "Condition": {
                         "StringLike": {
                             "iam:AWSServiceName": "delivery.logs.amazonaws.com"
                         }
                     }
-                }, 
+                },
                 {
+                    "Effect": "Allow",
                     "Action": [
-                        "iam:DeleteServiceLinkedRole", 
+                        "iam:DeleteServiceLinkedRole",
                         "iam:GetServiceLinkedRoleDeletionStatus"
-                    ], 
-                    "Resource": "arn:aws:iam::*:role/aws-service-role/vpc-lattice.amazonaws.com/AWSServiceRoleForVpcLattice", 
-                    "Effect": "Allow"
+                    ],
+                    "Resource": "arn:aws:iam::*:role/aws-service-role/vpc-lattice.amazonaws.com/AWSServiceRoleForVpcLattice"
                 }
             ]
-        }, 
-        "IsDefaultVersion": true
+        },
+        "VersionId": "v4",
+        "IsDefaultVersion": true,
+        "CreateDate": "2026-02-12T17:57:35+00:00"
     }
 }
