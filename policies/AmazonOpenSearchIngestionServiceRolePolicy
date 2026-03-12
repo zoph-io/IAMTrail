@@ -1,74 +1,72 @@
 {
     "PolicyVersion": {
-        "CreateDate": "2025-08-28T18:19:07Z", 
-        "VersionId": "v2", 
         "Document": {
-            "Version": "2012-10-17", 
+            "Version": "2012-10-17",
             "Statement": [
                 {
+                    "Effect": "Allow",
                     "Action": [
-                        "ec2:DescribeSubnets", 
-                        "ec2:DescribeSecurityGroups", 
+                        "ec2:DescribeSubnets",
+                        "ec2:DescribeSecurityGroups",
                         "ec2:DescribeVpcEndpoints"
-                    ], 
-                    "Resource": "*", 
-                    "Effect": "Allow"
-                }, 
+                    ],
+                    "Resource": "*"
+                },
                 {
+                    "Effect": "Allow",
                     "Action": [
                         "ec2:CreateVpcEndpoint"
-                    ], 
+                    ],
                     "Resource": [
-                        "arn:aws:ec2:*:*:vpc/*", 
-                        "arn:aws:ec2:*:*:security-group/*", 
-                        "arn:aws:ec2:*:*:subnet/*", 
+                        "arn:aws:ec2:*:*:vpc/*",
+                        "arn:aws:ec2:*:*:security-group/*",
+                        "arn:aws:ec2:*:*:subnet/*",
                         "arn:aws:ec2:*:*:route-table/*"
-                    ], 
-                    "Effect": "Allow"
-                }, 
+                    ]
+                },
                 {
-                    "Action": "ec2:CreateVpcEndpoint", 
+                    "Effect": "Allow",
+                    "Action": "ec2:CreateVpcEndpoint",
                     "Resource": [
                         "arn:aws:ec2:*:*:vpc-endpoint/*"
-                    ], 
-                    "Effect": "Allow", 
+                    ],
                     "Condition": {
                         "StringEquals": {
                             "aws:RequestTag/OSISManaged": "true"
                         }
                     }
-                }, 
+                },
                 {
+                    "Effect": "Allow",
                     "Action": [
-                        "ec2:ModifyVpcEndpoint", 
+                        "ec2:ModifyVpcEndpoint",
                         "ec2:DeleteVpcEndpoints"
-                    ], 
+                    ],
                     "Resource": [
                         "arn:aws:ec2:*:*:vpc-endpoint/*"
-                    ], 
-                    "Effect": "Allow", 
+                    ],
                     "Condition": {
                         "StringEquals": {
                             "aws:ResourceTag/OSISManaged": "true"
                         }
                     }
-                }, 
+                },
                 {
+                    "Effect": "Allow",
                     "Action": [
                         "ec2:CreateTags"
-                    ], 
-                    "Resource": "arn:aws:ec2:*:*:vpc-endpoint/*", 
-                    "Effect": "Allow", 
+                    ],
+                    "Resource": "arn:aws:ec2:*:*:vpc-endpoint/*",
                     "Condition": {
                         "StringEquals": {
                             "ec2:CreateAction": "CreateVpcEndpoint"
                         }
                     }
-                }, 
+                },
                 {
-                    "Action": "cloudwatch:PutMetricData", 
-                    "Resource": "*", 
-                    "Effect": "Allow", 
+                    "Effect": "Allow",
+                    "Action": "cloudwatch:PutMetricData",
+                    "Resource": "*",
                     "Condition": {
                         "StringEquals": {
                             "cloudwatch:namespace": "AWS/OSIS"
@@ -76,7 +74,9 @@
                     }
                 }
             ]
-        }, 
-        "IsDefaultVersion": true
+        },
+        "VersionId": "v2",
+        "IsDefaultVersion": true,
+        "CreateDate": "2025-08-28T18:19:07+00:00"
     }
 }
