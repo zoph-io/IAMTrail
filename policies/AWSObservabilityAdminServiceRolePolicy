@@ -1,51 +1,49 @@
 {
     "PolicyVersion": {
-        "CreateDate": "2024-11-27T19:36:07Z", 
-        "VersionId": "v1", 
         "Document": {
-            "Version": "2012-10-17", 
+            "Version": "2012-10-17",
             "Statement": [
                 {
+                    "Effect": "Allow",
                     "Action": [
-                        "organizations:ListAccounts", 
-                        "organizations:ListAccountsForParent", 
-                        "organizations:ListChildren", 
-                        "organizations:ListParents", 
-                        "organizations:DescribeOrganization", 
+                        "organizations:ListAccounts",
+                        "organizations:ListAccountsForParent",
+                        "organizations:ListChildren",
+                        "organizations:ListParents",
+                        "organizations:DescribeOrganization",
                         "organizations:DescribeOrganizationalUnit"
-                    ], 
-                    "Resource": "*", 
-                    "Effect": "Allow"
-                }, 
+                    ],
+                    "Resource": "*"
+                },
                 {
+                    "Effect": "Allow",
                     "Action": [
-                        "config:PutServiceLinkedConfigurationRecorder", 
+                        "config:PutServiceLinkedConfigurationRecorder",
                         "config:DeleteServiceLinkedConfigurationRecorder"
-                    ], 
+                    ],
                     "Resource": [
                         "arn:aws:config:*:*:configuration-recorder/AWSConfigurationRecorderForObservabilityAdmin/*"
-                    ], 
-                    "Effect": "Allow"
-                }, 
+                    ]
+                },
                 {
+                    "Effect": "Allow",
                     "Action": [
-                        "config:PutConfigurationAggregator", 
-                        "config:DeleteConfigurationAggregator", 
+                        "config:PutConfigurationAggregator",
+                        "config:DeleteConfigurationAggregator",
                         "config:SelectAggregateResourceConfig"
-                    ], 
+                    ],
                     "Resource": [
                         "arn:aws:config:*:*:config-aggregator/aws-service-config-aggregator/observabilityadmin.amazonaws.com/*"
-                    ], 
-                    "Effect": "Allow"
-                }, 
+                    ]
+                },
                 {
+                    "Effect": "Allow",
                     "Action": [
                         "iam:CreateServiceLinkedRole"
-                    ], 
+                    ],
                     "Resource": [
                         "arn:aws:iam::*:role/aws-service-role/config.amazonaws.com/AWSServiceRoleForConfig"
-                    ], 
-                    "Effect": "Allow", 
+                    ],
                     "Condition": {
                         "StringEquals": {
                             "iam:AWSServiceName": [
@@ -53,15 +51,15 @@
                             ]
                         }
                     }
-                }, 
+                },
                 {
+                    "Effect": "Allow",
                     "Action": [
                         "iam:PassRole"
-                    ], 
+                    ],
                     "Resource": [
                         "arn:aws:iam::*:role/aws-service-role/config.amazonaws.com/AWSServiceRoleForConfig"
-                    ], 
-                    "Effect": "Allow", 
+                    ],
                     "Condition": {
                         "StringEquals": {
                             "iam:PassedToService": [
@@ -69,13 +67,13 @@
                             ]
                         }
                     }
-                }, 
+                },
                 {
+                    "Effect": "Allow",
                     "Action": [
                         "organizations:EnableAWSServiceAccess"
-                    ], 
-                    "Resource": "*", 
-                    "Effect": "Allow", 
+                    ],
+                    "Resource": "*",
                     "Condition": {
                         "StringEquals": {
                             "organizations:ServicePrincipal": [
@@ -83,24 +81,26 @@
                             ]
                         }
                     }
-                }, 
+                },
                 {
+                    "Effect": "Allow",
                     "Action": [
                         "organizations:ListDelegatedAdministrators"
-                    ], 
-                    "Resource": "*", 
-                    "Effect": "Allow", 
+                    ],
+                    "Resource": "*",
                     "Condition": {
                         "StringEquals": {
                             "organizations:ServicePrincipal": [
-                                "observabilityadmin.amazonaws.com", 
+                                "observabilityadmin.amazonaws.com",
                                 "config.amazonaws.com"
                             ]
                         }
                     }
                 }
             ]
-        }, 
-        "IsDefaultVersion": true
+        },
+        "VersionId": "v1",
+        "IsDefaultVersion": true,
+        "CreateDate": "2024-11-27T19:36:07+00:00"
     }
 }
