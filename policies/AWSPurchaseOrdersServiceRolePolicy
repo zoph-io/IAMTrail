@@ -1,39 +1,39 @@
 {
     "PolicyVersion": {
-        "CreateDate": "2026-02-12T17:59:01Z", 
-        "VersionId": "v8", 
         "Document": {
-            "Version": "2012-10-17", 
+            "Version": "2012-10-17",
             "Statement": [
                 {
+                    "Effect": "Allow",
                     "Action": [
-                        "account:GetAccountInformation", 
-                        "account:GetContactInformation", 
-                        "aws-portal:*Billing", 
-                        "consolidatedbilling:GetAccountBillingRole", 
-                        "invoicing:GetInvoicePDF", 
-                        "invoicing:ListInvoiceUnits", 
-                        "payments:GetPaymentInstrument", 
-                        "payments:ListPaymentPreferences", 
-                        "purchase-orders:AddPurchaseOrder", 
-                        "purchase-orders:DeletePurchaseOrder", 
-                        "purchase-orders:GetPurchaseOrder", 
-                        "purchase-orders:ListPurchaseOrderInvoices", 
-                        "purchase-orders:ListPurchaseOrders", 
-                        "purchase-orders:ListTagsForResource", 
-                        "purchase-orders:ModifyPurchaseOrders", 
-                        "purchase-orders:TagResource", 
-                        "purchase-orders:UntagResource", 
-                        "purchase-orders:UpdatePurchaseOrder", 
-                        "purchase-orders:UpdatePurchaseOrderStatus", 
-                        "purchase-orders:ViewPurchaseOrders", 
+                        "account:GetAccountInformation",
+                        "account:GetContactInformation",
+                        "aws-portal:*Billing",
+                        "consolidatedbilling:GetAccountBillingRole",
+                        "invoicing:GetInvoicePDF",
+                        "invoicing:ListInvoiceUnits",
+                        "payments:GetPaymentInstrument",
+                        "payments:ListPaymentPreferences",
+                        "purchase-orders:AddPurchaseOrder",
+                        "purchase-orders:DeletePurchaseOrder",
+                        "purchase-orders:GetPurchaseOrder",
+                        "purchase-orders:ListPurchaseOrderInvoices",
+                        "purchase-orders:ListPurchaseOrders",
+                        "purchase-orders:ListTagsForResource",
+                        "purchase-orders:ModifyPurchaseOrders",
+                        "purchase-orders:TagResource",
+                        "purchase-orders:UntagResource",
+                        "purchase-orders:UpdatePurchaseOrder",
+                        "purchase-orders:UpdatePurchaseOrderStatus",
+                        "purchase-orders:ViewPurchaseOrders",
                         "tax:ListTaxRegistrations"
-                    ], 
-                    "Resource": "*", 
-                    "Effect": "Allow"
+                    ],
+                    "Resource": "*"
                 }
             ]
-        }, 
-        "IsDefaultVersion": true
+        },
+        "VersionId": "v8",
+        "IsDefaultVersion": true,
+        "CreateDate": "2026-02-12T17:59:01+00:00"
     }
 }
