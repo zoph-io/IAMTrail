@@ -1,61 +1,88 @@
 {
     "PolicyVersion": {
-        "CreateDate": "2020-09-09T19:38:36Z", 
-        "VersionId": "v7", 
         "Document": {
-            "Version": "2012-10-17", 
+            "Version": "2012-10-17",
             "Statement": [
                 {
+                    "Sid": "BucketAccess",
                     "Action": [
-                        "s3:Get*", 
-                        "s3:List*", 
+                        "s3:Get*",
+                        "s3:List*",
                         "s3:PutObject"
-                    ], 
+                    ],
+                    "Effect": "Allow",
                     "Resource": [
-                        "arn:aws:s3:::elasticbeanstalk-*", 
+                        "arn:aws:s3:::elasticbeanstalk-*",
                         "arn:aws:s3:::elasticbeanstalk-*/*"
-                    ], 
-                    "Effect": "Allow", 
-                    "Sid": "BucketAccess"
-                }, 
+                    ]
+                },
                 {
+                    "Sid": "XRayAccess",
                     "Action": [
-                        "xray:PutTraceSegments", 
-                        "xray:PutTelemetryRecords", 
-                        "xray:GetSamplingRules", 
-                        "xray:GetSamplingTargets", 
+                        "xray:PutTraceSegments",
+                        "xray:PutTelemetryRecords",
+                        "xray:GetSamplingRules",
+                        "xray:GetSamplingTargets",
                         "xray:GetSamplingStatisticSummaries"
-                    ], 
-                    "Resource": "*", 
-                    "Effect": "Allow", 
-                    "Sid": "XRayAccess"
-                }, 
+                    ],
+                    "Effect": "Allow",
+                    "Resource": "*"
+                },
                 {
+                    "Sid": "CloudWatchLogsAccess",
                     "Action": [
-                        "logs:PutLogEvents", 
-                        "logs:CreateLogStream", 
-                        "logs:DescribeLogStreams", 
+                        "logs:PutLogEvents",
+                        "logs:CreateLogStream",
+                        "logs:DescribeLogStreams",
                         "logs:DescribeLogGroups"
-                    ], 
+                    ],
+                    "Effect": "Allow",
                     "Resource": [
                         "arn:aws:logs:*:*:log-group:/aws/elasticbeanstalk*"
-                    ], 
-                    "Effect": "Allow", 
-                    "Sid": "CloudWatchLogsAccess"
-                }, 
+                    ]
+                },
                 {
+                    "Sid": "ElasticBeanstalkHealthAccess",
                     "Action": [
                         "elasticbeanstalk:PutInstanceStatistics"
-                    ], 
+                    ],
+                    "Effect": "Allow",
                     "Resource": [
-                        "arn:aws:elasticbeanstalk:*:*:application/*", 
+                        "arn:aws:elasticbeanstalk:*:*:application/*",
                         "arn:aws:elasticbeanstalk:*:*:environment/*"
-                    ], 
-                    "Effect": "Allow", 
-                    "Sid": "ElasticBeanstalkHealthAccess"
+                    ]
+                },
+                {
+                    "Sid": "AIEnvironmentAnalysisInvokeFoundationModel",
+                    "Effect": "Allow",
+                    "Action": "bedrock:InvokeModel",
+                    "Resource": "arn:aws:bedrock:*::foundation-model/anthropic.claude-*"
+                },
+                {
+                    "Sid": "AIEnvironmentAnalysisInvokeInferenceProfile",
+                    "Effect": "Allow",
+                    "Action": "bedrock:InvokeModel",
+                    "Resource": "arn:aws:bedrock:*:*:inference-profile/*anthropic.claude-*",
+                    "Condition": {
+                        "StringEquals": {
+                            "aws:ResourceAccount": "${aws:PrincipalAccount}"
+                        }
+                    }
+                },
+                {
+                    "Sid": "AIEnvironmentAnalysisReadOnly",
+                    "Effect": "Allow",
+                    "Action": [
+                        "bedrock:ListFoundationModels",
+                        "elasticbeanstalk:DescribeEvents",
+                        "elasticbeanstalk:DescribeEnvironmentHealth"
+                    ],
+                    "Resource": "*"
                 }
             ]
-        }, 
-        "IsDefaultVersion": true
+        },
+        "VersionId": "v8",
+        "IsDefaultVersion": true,
+        "CreateDate": "2026-03-12T14:27:13+00:00"
     }
 }
