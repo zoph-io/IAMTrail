@@ -1,85 +1,85 @@
 {
     "PolicyVersion": {
-        "CreateDate": "2026-02-18T19:27:07Z", 
-        "VersionId": "v4", 
         "Document": {
-            "Version": "2012-10-17", 
+            "Version": "2012-10-17",
             "Statement": [
                 {
+                    "Sid": "DSQL",
+                    "Effect": "Allow",
                     "Action": [
-                        "dsql:GetCluster", 
-                        "dsql:ListClusters", 
+                        "dsql:GetCluster",
+                        "dsql:ListClusters",
                         "dsql:ListTagsForResource"
-                    ], 
+                    ],
                     "Resource": [
                         "*"
-                    ], 
-                    "Effect": "Allow", 
-                    "Sid": "DSQL"
-                }, 
+                    ]
+                },
                 {
+                    "Sid": "DynamoDB",
+                    "Effect": "Allow",
                     "Action": [
-                        "dynamodb:ListTables", 
-                        "dynamodb:ListTagsOfResource", 
-                        "dynamodb:DescribeTimeToLive", 
-                        "dynamodb:DescribeTable", 
+                        "dynamodb:ListTables",
+                        "dynamodb:ListTagsOfResource",
+                        "dynamodb:DescribeTimeToLive",
+                        "dynamodb:DescribeTable",
                         "dynamodb:DescribeLimits"
-                    ], 
+                    ],
                     "Resource": [
                         "*"
-                    ], 
-                    "Effect": "Allow", 
-                    "Sid": "DynamoDB"
-                }, 
+                    ]
+                },
                 {
+                    "Sid": "Aurora",
+                    "Effect": "Allow",
                     "Action": [
-                        "rds:Describe*", 
-                        "rds:ListTagsForResource", 
+                        "rds:Describe*",
+                        "rds:ListTagsForResource",
                         "ec2:DescribeAvailabilityZones"
-                    ], 
+                    ],
                     "Resource": [
                         "*"
-                    ], 
-                    "Effect": "Allow", 
-                    "Sid": "Aurora"
-                }, 
+                    ]
+                },
                 {
+                    "Sid": "Observability",
+                    "Effect": "Allow",
                     "Action": [
-                        "cloudwatch:DescribeAlarms", 
-                        "cloudwatch:GetMetricData", 
-                        "cloudwatch:GetMetricStatistics", 
-                        "cloudwatch:ListMetrics", 
-                        "logs:DescribeLogStreams", 
-                        "logs:GetLogEvents", 
-                        "tag:GetTagKeys", 
+                        "cloudwatch:DescribeAlarms",
+                        "cloudwatch:GetMetricData",
+                        "cloudwatch:GetMetricStatistics",
+                        "cloudwatch:ListMetrics",
+                        "logs:DescribeLogStreams",
+                        "logs:GetLogEvents",
+                        "tag:GetTagKeys",
                         "tag:GetTagValues"
-                    ], 
+                    ],
                     "Resource": [
                         "*"
-                    ], 
-                    "Effect": "Allow", 
-                    "Sid": "Observability"
-                }, 
+                    ]
+                },
                 {
+                    "Sid": "ApplicationAutoscalingDescribeActions",
+                    "Effect": "Allow",
                     "Action": [
-                        "application-autoscaling:DescribeScalableTargets", 
-                        "application-autoscaling:DescribeScalingActivities", 
+                        "application-autoscaling:DescribeScalableTargets",
+                        "application-autoscaling:DescribeScalingActivities",
                         "application-autoscaling:DescribeScalingPolicies"
-                    ], 
-                    "Resource": "*", 
-                    "Effect": "Allow", 
-                    "Sid": "ApplicationAutoscalingDescribeActions"
-                }, 
+                    ],
+                    "Resource": "*"
+                },
                 {
+                    "Sid": "ViewFreeTierState",
+                    "Effect": "Allow",
                     "Action": [
                         "freetier:GetAccountPlanState"
-                    ], 
-                    "Resource": "*", 
-                    "Effect": "Allow", 
-                    "Sid": "ViewFreeTierState"
+                    ],
+                    "Resource": "*"
                 }
             ]
-        }, 
-        "IsDefaultVersion": true
+        },
+        "VersionId": "v4",
+        "IsDefaultVersion": true,
+        "CreateDate": "2026-02-18T19:27:07+00:00"
     }
 }
