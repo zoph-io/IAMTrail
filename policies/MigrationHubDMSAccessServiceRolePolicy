@@ -1,43 +1,43 @@
 {
     "PolicyVersion": {
-        "CreateDate": "2019-10-07T17:57:44Z", 
-        "VersionId": "v2", 
         "Document": {
-            "Version": "2012-10-17", 
+            "Version": "2012-10-17",
             "Statement": [
                 {
-                    "Action": "mgh:CreateProgressUpdateStream", 
-                    "Resource": "arn:aws:mgh:*:*:progressUpdateStream/DMS", 
-                    "Effect": "Allow"
-                }, 
+                    "Effect": "Allow",
+                    "Action": "mgh:CreateProgressUpdateStream",
+                    "Resource": "arn:aws:mgh:*:*:progressUpdateStream/DMS"
+                },
                 {
+                    "Effect": "Allow",
                     "Action": [
-                        "mgh:DescribeMigrationTask", 
-                        "mgh:AssociateDiscoveredResource", 
-                        "mgh:ListDiscoveredResources", 
-                        "mgh:ImportMigrationTask", 
-                        "mgh:ListCreatedArtifacts", 
-                        "mgh:DisassociateDiscoveredResource", 
-                        "mgh:AssociateCreatedArtifact", 
-                        "mgh:NotifyMigrationTaskState", 
-                        "mgh:DisassociateCreatedArtifact", 
+                        "mgh:DescribeMigrationTask",
+                        "mgh:AssociateDiscoveredResource",
+                        "mgh:ListDiscoveredResources",
+                        "mgh:ImportMigrationTask",
+                        "mgh:ListCreatedArtifacts",
+                        "mgh:DisassociateDiscoveredResource",
+                        "mgh:AssociateCreatedArtifact",
+                        "mgh:NotifyMigrationTaskState",
+                        "mgh:DisassociateCreatedArtifact",
                         "mgh:PutResourceAttributes"
-                    ], 
-                    "Resource": "arn:aws:mgh:*:*:progressUpdateStream/DMS/migrationTask/*", 
-                    "Effect": "Allow"
-                }, 
+                    ],
+                    "Resource": "arn:aws:mgh:*:*:progressUpdateStream/DMS/migrationTask/*"
+                },
                 {
+                    "Effect": "Allow",
                     "Action": [
-                        "mgh:ListMigrationTasks", 
-                        "mgh:NotifyApplicationState", 
-                        "mgh:DescribeApplicationState", 
+                        "mgh:ListMigrationTasks",
+                        "mgh:NotifyApplicationState",
+                        "mgh:DescribeApplicationState",
                         "mgh:GetHomeRegion"
-                    ], 
-                    "Resource": "*", 
-                    "Effect": "Allow"
+                    ],
+                    "Resource": "*"
                 }
             ]
-        }, 
-        "IsDefaultVersion": true
+        },
+        "VersionId": "v2",
+        "IsDefaultVersion": true,
+        "CreateDate": "2019-10-07T17:57:44+00:00"
     }
 }
