@@ -1,88 +1,88 @@
 {
     "PolicyVersion": {
-        "CreateDate": "2026-02-12T18:02:13Z", 
-        "VersionId": "v6", 
         "Document": {
-            "Version": "2012-10-17", 
+            "Version": "2012-10-17",
             "Statement": [
                 {
+                    "Sid": "ListAgreementActions",
+                    "Effect": "Allow",
                     "Action": [
-                        "artifact:ListAgreements", 
+                        "artifact:ListAgreements",
                         "artifact:ListCustomerAgreements"
-                    ], 
-                    "Resource": "*", 
-                    "Effect": "Allow", 
-                    "Sid": "ListAgreementActions"
-                }, 
+                    ],
+                    "Resource": "*"
+                },
                 {
+                    "Sid": "AWSAgreementActions",
+                    "Effect": "Allow",
                     "Action": [
-                        "artifact:GetAgreement", 
-                        "artifact:AcceptNdaForAgreement", 
-                        "artifact:GetNdaForAgreement", 
+                        "artifact:GetAgreement",
+                        "artifact:AcceptNdaForAgreement",
+                        "artifact:GetNdaForAgreement",
                         "artifact:AcceptAgreement"
-                    ], 
-                    "Resource": "arn:aws:artifact:::agreement/*", 
-                    "Effect": "Allow", 
-                    "Sid": "AWSAgreementActions"
-                }, 
+                    ],
+                    "Resource": "arn:aws:artifact:::agreement/*"
+                },
                 {
+                    "Sid": "CustomerAgreementActions",
+                    "Effect": "Allow",
                     "Action": [
-                        "artifact:GetCustomerAgreement", 
+                        "artifact:GetCustomerAgreement",
                         "artifact:TerminateAgreement"
-                    ], 
-                    "Resource": "arn:aws:artifact::*:customer-agreement/*", 
-                    "Effect": "Allow", 
-                    "Sid": "CustomerAgreementActions"
-                }, 
+                    ],
+                    "Resource": "arn:aws:artifact::*:customer-agreement/*"
+                },
                 {
+                    "Sid": "CreateServiceLinkedRoleForOrganizationsIntegration",
+                    "Effect": "Allow",
                     "Action": [
                         "iam:CreateServiceLinkedRole"
-                    ], 
-                    "Resource": "arn:aws:iam::*:role/aws-service-role/artifact.amazonaws.com/AWSServiceRoleForArtifact", 
-                    "Effect": "Allow", 
+                    ],
+                    "Resource": "arn:aws:iam::*:role/aws-service-role/artifact.amazonaws.com/AWSServiceRoleForArtifact",
                     "Condition": {
                         "StringEquals": {
                             "iam:AWSServiceName": [
                                 "artifact.amazonaws.com"
                             ]
                         }
-                    }, 
-                    "Sid": "CreateServiceLinkedRoleForOrganizationsIntegration"
-                }, 
+                    }
+                },
                 {
+                    "Sid": "GetRoleToCheckForRoleExistence",
+                    "Effect": "Allow",
                     "Action": [
                         "iam:GetRole"
-                    ], 
-                    "Resource": "arn:aws:iam::*:role/aws-service-role/artifact.amazonaws.com/AWSServiceRoleForArtifact", 
-                    "Effect": "Allow", 
-                    "Sid": "GetRoleToCheckForRoleExistence"
-                }, 
+                    ],
+                    "Resource": "arn:aws:iam::*:role/aws-service-role/artifact.amazonaws.com/AWSServiceRoleForArtifact"
+                },
                 {
+                    "Sid": "EnableServiceTrust",
+                    "Effect": "Allow",
                     "Action": [
-                        "organizations:ListAWSServiceAccessForOrganization", 
+                        "organizations:ListAWSServiceAccessForOrganization",
                         "organizations:DescribeOrganization"
-                    ], 
-                    "Resource": "*", 
-                    "Effect": "Allow", 
-                    "Sid": "EnableServiceTrust"
-                }, 
+                    ],
+                    "Resource": "*"
+                },
                 {
+                    "Sid": "EnableServiceTrustForArtifact",
+                    "Effect": "Allow",
                     "Action": [
                         "organizations:EnableAWSServiceAccess"
-                    ], 
-                    "Resource": "*", 
-                    "Effect": "Allow", 
+                    ],
+                    "Resource": "*",
                     "Condition": {
                         "StringEquals": {
                             "organizations:ServicePrincipal": [
                                 "aws-artifact-account-sync.amazonaws.com"
                             ]
                         }
-                    }, 
-                    "Sid": "EnableServiceTrustForArtifact"
+                    }
                 }
             ]
-        }, 
-        "IsDefaultVersion": true
+        },
+        "VersionId": "v6",
+        "IsDefaultVersion": true,
+        "CreateDate": "2026-02-12T18:02:13+00:00"
     }
 }
