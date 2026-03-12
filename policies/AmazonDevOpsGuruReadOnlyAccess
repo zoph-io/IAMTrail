@@ -1,83 +1,83 @@
 {
     "PolicyVersion": {
-        "CreateDate": "2022-08-25T18:11:21Z", 
-        "VersionId": "v6", 
         "Document": {
-            "Version": "2012-10-17", 
+            "Version": "2012-10-17",
             "Statement": [
                 {
+                    "Sid": "DevOpsGuruReadOnlyAccess",
+                    "Effect": "Allow",
                     "Action": [
-                        "devops-guru:DescribeAccountHealth", 
-                        "devops-guru:DescribeAccountOverview", 
-                        "devops-guru:DescribeAnomaly", 
-                        "devops-guru:DescribeEventSourcesConfig", 
-                        "devops-guru:DescribeFeedback", 
-                        "devops-guru:DescribeInsight", 
-                        "devops-guru:DescribeResourceCollectionHealth", 
-                        "devops-guru:DescribeServiceIntegration", 
-                        "devops-guru:GetCostEstimation", 
-                        "devops-guru:GetResourceCollection", 
-                        "devops-guru:ListAnomaliesForInsight", 
-                        "devops-guru:ListEvents", 
-                        "devops-guru:ListInsights", 
-                        "devops-guru:ListAnomalousLogGroups", 
-                        "devops-guru:ListMonitoredResources", 
-                        "devops-guru:ListNotificationChannels", 
-                        "devops-guru:ListRecommendations", 
-                        "devops-guru:SearchInsights", 
+                        "devops-guru:DescribeAccountHealth",
+                        "devops-guru:DescribeAccountOverview",
+                        "devops-guru:DescribeAnomaly",
+                        "devops-guru:DescribeEventSourcesConfig",
+                        "devops-guru:DescribeFeedback",
+                        "devops-guru:DescribeInsight",
+                        "devops-guru:DescribeResourceCollectionHealth",
+                        "devops-guru:DescribeServiceIntegration",
+                        "devops-guru:GetCostEstimation",
+                        "devops-guru:GetResourceCollection",
+                        "devops-guru:ListAnomaliesForInsight",
+                        "devops-guru:ListEvents",
+                        "devops-guru:ListInsights",
+                        "devops-guru:ListAnomalousLogGroups",
+                        "devops-guru:ListMonitoredResources",
+                        "devops-guru:ListNotificationChannels",
+                        "devops-guru:ListRecommendations",
+                        "devops-guru:SearchInsights",
                         "devops-guru:StartCostEstimation"
-                    ], 
-                    "Resource": "*", 
-                    "Effect": "Allow", 
-                    "Sid": "DevOpsGuruReadOnlyAccess"
-                }, 
+                    ],
+                    "Resource": "*"
+                },
                 {
+                    "Sid": "CloudFormationListStacksAccess",
+                    "Effect": "Allow",
                     "Action": [
-                        "cloudformation:DescribeStacks", 
+                        "cloudformation:DescribeStacks",
                         "cloudformation:ListStacks"
-                    ], 
-                    "Resource": "*", 
-                    "Effect": "Allow", 
-                    "Sid": "CloudFormationListStacksAccess"
-                }, 
+                    ],
+                    "Resource": "*"
+                },
                 {
+                    "Effect": "Allow",
                     "Action": [
                         "iam:GetRole"
-                    ], 
-                    "Resource": "arn:aws:iam::*:role/aws-service-role/devops-guru.amazonaws.com/AWSServiceRoleForDevOpsGuru", 
-                    "Effect": "Allow"
-                }, 
+                    ],
+                    "Resource": "arn:aws:iam::*:role/aws-service-role/devops-guru.amazonaws.com/AWSServiceRoleForDevOpsGuru"
+                },
                 {
+                    "Sid": "CloudWatchGetMetricDataAccess",
+                    "Effect": "Allow",
                     "Action": [
                         "cloudwatch:GetMetricData"
-                    ], 
-                    "Resource": "*", 
-                    "Effect": "Allow", 
-                    "Sid": "CloudWatchGetMetricDataAccess"
-                }, 
+                    ],
+                    "Resource": "*"
+                },
                 {
+                    "Sid": "RDSDescribeDBInstancesAccess",
+                    "Effect": "Allow",
                     "Action": [
                         "rds:DescribeDBInstances"
-                    ], 
-                    "Resource": "*", 
-                    "Effect": "Allow", 
-                    "Sid": "RDSDescribeDBInstancesAccess"
-                }, 
+                    ],
+                    "Resource": "*"
+                },
                 {
+                    "Sid": "CloudWatchLogsFilterLogEventsAccess",
+                    "Effect": "Allow",
                     "Action": [
                         "logs:FilterLogEvents"
-                    ], 
-                    "Resource": "arn:aws:logs:*:*:log-group:*", 
-                    "Effect": "Allow", 
+                    ],
+                    "Resource": "arn:aws:logs:*:*:log-group:*",
                     "Condition": {
                         "StringEquals": {
                             "aws:ResourceTag/DevOps-Guru-Analysis": "true"
                         }
-                    }, 
-                    "Sid": "CloudWatchLogsFilterLogEventsAccess"
+                    }
                 }
             ]
-        }, 
-        "IsDefaultVersion": true
+        },
+        "VersionId": "v6",
+        "IsDefaultVersion": true,
+        "CreateDate": "2022-08-25T18:11:21+00:00"
     }
 }
