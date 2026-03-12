@@ -1,71 +1,71 @@
 {
     "PolicyVersion": {
-        "CreateDate": "2026-02-12T18:02:39Z", 
-        "VersionId": "v5", 
         "Document": {
-            "Version": "2012-10-17", 
+            "Version": "2012-10-17",
             "Statement": [
                 {
+                    "Sid": "AmazonRDSPerformanceInsightsReadAccess",
+                    "Effect": "Allow",
                     "Action": [
-                        "pi:DescribeDimensionKeys", 
-                        "pi:GetDimensionKeyDetails", 
-                        "pi:GetResourceMetadata", 
-                        "pi:GetResourceMetrics", 
-                        "pi:ListAvailableResourceDimensions", 
+                        "pi:DescribeDimensionKeys",
+                        "pi:GetDimensionKeyDetails",
+                        "pi:GetResourceMetadata",
+                        "pi:GetResourceMetrics",
+                        "pi:ListAvailableResourceDimensions",
                         "pi:ListAvailableResourceMetrics"
-                    ], 
-                    "Resource": "arn:aws:pi:*:*:metrics/rds/*", 
-                    "Effect": "Allow", 
-                    "Sid": "AmazonRDSPerformanceInsightsReadAccess"
-                }, 
+                    ],
+                    "Resource": "arn:aws:pi:*:*:metrics/rds/*"
+                },
                 {
+                    "Sid": "AmazonRDSPerformanceInsightsAnalisysReportFullAccess",
+                    "Effect": "Allow",
                     "Action": [
-                        "pi:CreatePerformanceAnalysisReport", 
-                        "pi:GetPerformanceAnalysisReport", 
-                        "pi:ListPerformanceAnalysisReports", 
+                        "pi:CreatePerformanceAnalysisReport",
+                        "pi:GetPerformanceAnalysisReport",
+                        "pi:ListPerformanceAnalysisReports",
                         "pi:DeletePerformanceAnalysisReport"
-                    ], 
-                    "Resource": "arn:aws:pi:*:*:perf-reports/rds/*/*", 
-                    "Effect": "Allow", 
-                    "Sid": "AmazonRDSPerformanceInsightsAnalisysReportFullAccess"
-                }, 
+                    ],
+                    "Resource": "arn:aws:pi:*:*:perf-reports/rds/*/*"
+                },
                 {
+                    "Sid": "AmazonRDSPerformanceInsightsTaggingFullAccess",
+                    "Effect": "Allow",
                     "Action": [
-                        "pi:TagResource", 
-                        "pi:UntagResource", 
+                        "pi:TagResource",
+                        "pi:UntagResource",
                         "pi:ListTagsForResource"
-                    ], 
-                    "Resource": "arn:aws:pi:*:*:*/rds/*", 
-                    "Effect": "Allow", 
-                    "Sid": "AmazonRDSPerformanceInsightsTaggingFullAccess"
-                }, 
+                    ],
+                    "Resource": "arn:aws:pi:*:*:*/rds/*"
+                },
                 {
+                    "Sid": "AmazonRDSDescribeInstanceAccess",
+                    "Effect": "Allow",
                     "Action": [
-                        "rds:DescribeDBInstances", 
-                        "rds:DescribeDBClusters", 
-                        "rds:ListTagsForResource", 
+                        "rds:DescribeDBInstances",
+                        "rds:DescribeDBClusters",
+                        "rds:ListTagsForResource",
                         "rds:DescribeDBShardGroups"
-                    ], 
+                    ],
                     "Resource": [
-                        "arn:aws:rds:*:*:db:*", 
-                        "arn:aws:rds:*:*:cluster:*", 
+                        "arn:aws:rds:*:*:db:*",
+                        "arn:aws:rds:*:*:cluster:*",
                         "arn:aws:rds:*:*:shard-group:*"
-                    ], 
-                    "Effect": "Allow", 
-                    "Sid": "AmazonRDSDescribeInstanceAccess"
-                }, 
+                    ]
+                },
                 {
+                    "Sid": "AmazonCloudWatchReadAccess",
+                    "Effect": "Allow",
                     "Action": [
-                        "cloudwatch:GetMetricStatistics", 
-                        "cloudwatch:ListMetrics", 
+                        "cloudwatch:GetMetricStatistics",
+                        "cloudwatch:ListMetrics",
                         "cloudwatch:GetMetricData"
-                    ], 
-                    "Resource": "*", 
-                    "Effect": "Allow", 
-                    "Sid": "AmazonCloudWatchReadAccess"
+                    ],
+                    "Resource": "*"
                 }
             ]
-        }, 
-        "IsDefaultVersion": true
+        },
+        "VersionId": "v5",
+        "IsDefaultVersion": true,
+        "CreateDate": "2026-02-12T18:02:39+00:00"
     }
 }
