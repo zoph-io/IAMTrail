@@ -1,46 +1,46 @@
 {
     "PolicyVersion": {
-        "CreateDate": "2021-06-24T07:15:00Z", 
-        "VersionId": "v1", 
         "Document": {
-            "Version": "2012-10-17", 
+            "Version": "2012-10-17",
             "Statement": [
                 {
+                    "Sid": "CodeGuruReviewerPermission",
+                    "Effect": "Allow",
                     "Action": [
-                        "codeguru-reviewer:DescribeCodeReview", 
+                        "codeguru-reviewer:DescribeCodeReview",
                         "codeguru-reviewer:ListRecommendations"
-                    ], 
-                    "Resource": "*", 
-                    "Effect": "Allow", 
-                    "Sid": "CodeGuruReviewerPermission"
-                }, 
+                    ],
+                    "Resource": "*"
+                },
                 {
+                    "Sid": "CodeGuruProfilerPermission",
+                    "Effect": "Allow",
                     "Action": [
                         "codeguru-profiler:DescribeProfilingGroup"
-                    ], 
-                    "Resource": "*", 
-                    "Effect": "Allow", 
-                    "Sid": "CodeGuruProfilerPermission"
-                }, 
+                    ],
+                    "Resource": "*"
+                },
                 {
+                    "Sid": "AWSBugBustPlayerAccess",
+                    "Effect": "Allow",
                     "Action": [
-                        "bugbust:ListBugs", 
-                        "bugbust:ListProfilingGroups", 
-                        "bugbust:JoinEvent", 
-                        "bugbust:GetEvent", 
-                        "bugbust:ListEvents", 
-                        "bugbust:GetJoinEventStatus", 
-                        "bugbust:ListEventScores", 
-                        "bugbust:ListEventParticipants", 
-                        "bugbust:UpdateWorkItem", 
+                        "bugbust:ListBugs",
+                        "bugbust:ListProfilingGroups",
+                        "bugbust:JoinEvent",
+                        "bugbust:GetEvent",
+                        "bugbust:ListEvents",
+                        "bugbust:GetJoinEventStatus",
+                        "bugbust:ListEventScores",
+                        "bugbust:ListEventParticipants",
+                        "bugbust:UpdateWorkItem",
                         "bugbust:ListPullRequests"
-                    ], 
-                    "Resource": "*", 
-                    "Effect": "Allow", 
-                    "Sid": "AWSBugBustPlayerAccess"
+                    ],
+                    "Resource": "*"
                 }
             ]
-        }, 
-        "IsDefaultVersion": true
+        },
+        "VersionId": "v1",
+        "IsDefaultVersion": true,
+        "CreateDate": "2021-06-24T07:15:00+00:00"
     }
 }
