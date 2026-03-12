@@ -1,19 +1,19 @@
 {
     "PolicyVersion": {
-        "CreateDate": "2020-12-15T18:07:44Z", 
-        "VersionId": "v1", 
         "Document": {
-            "Version": "2012-10-17", 
+            "Version": "2012-10-17",
             "Statement": [
                 {
                     "Action": [
                         "cloudshell:*"
-                    ], 
-                    "Resource": "*", 
-                    "Effect": "Allow"
+                    ],
+                    "Effect": "Allow",
+                    "Resource": "*"
                 }
             ]
-        }, 
-        "IsDefaultVersion": true
+        },
+        "VersionId": "v1",
+        "IsDefaultVersion": true,
+        "CreateDate": "2020-12-15T18:07:44+00:00"
     }
 }
