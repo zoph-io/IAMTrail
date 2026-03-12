@@ -1,100 +1,100 @@
 {
     "PolicyVersion": {
-        "CreateDate": "2024-11-15T23:31:17Z", 
-        "VersionId": "v1", 
         "Document": {
-            "Version": "2012-10-17", 
+            "Version": "2012-10-17",
             "Statement": [
                 {
+                    "Sid": "AllowReadWriteToSsmDiagnosisBucketInSameAccount",
+                    "Effect": "Allow",
                     "Action": [
-                        "s3:PutObject", 
-                        "s3:GetObject", 
+                        "s3:PutObject",
+                        "s3:GetObject",
                         "s3:DeleteObject"
-                    ], 
-                    "Resource": "arn:aws:s3:::do-not-delete-ssm-diagnosis-*/actions/*/${aws:PrincipalAccount}/*", 
-                    "Effect": "Allow", 
+                    ],
+                    "Resource": "arn:aws:s3:::do-not-delete-ssm-diagnosis-*/actions/*/${aws:PrincipalAccount}/*",
                     "Condition": {
                         "StringEquals": {
                             "aws:ResourceAccount": "${aws:PrincipalAccount}"
                         }
-                    }, 
-                    "Sid": "AllowReadWriteToSsmDiagnosisBucketInSameAccount"
-                }, 
+                    }
+                },
                 {
+                    "Sid": "AllowReadWriteToSsmDiagnosisBucketWithinOrg",
+                    "Effect": "Allow",
                     "Action": [
-                        "s3:PutObject", 
-                        "s3:GetObject", 
+                        "s3:PutObject",
+                        "s3:GetObject",
                         "s3:DeleteObject"
-                    ], 
-                    "Resource": "arn:aws:s3:::do-not-delete-ssm-diagnosis-*/actions/*/${aws:PrincipalAccount}/*", 
-                    "Effect": "Allow", 
+                    ],
+                    "Resource": "arn:aws:s3:::do-not-delete-ssm-diagnosis-*/actions/*/${aws:PrincipalAccount}/*",
                     "Condition": {
                         "StringEquals": {
                             "aws:ResourceOrgId": "${aws:PrincipalOrgId}"
                         }
-                    }, 
-                    "Sid": "AllowReadWriteToSsmDiagnosisBucketWithinOrg"
-                }, 
+                    }
+                },
                 {
+                    "Sid": "AllowReadOnlyAccessListBucketOnSsmDiagnosisBucketInSameAccount",
+                    "Effect": "Allow",
                     "Action": [
                         "s3:ListBucket"
-                    ], 
-                    "Resource": "arn:aws:s3:::do-not-delete-ssm-diagnosis-*", 
-                    "Effect": "Allow", 
+                    ],
+                    "Resource": "arn:aws:s3:::do-not-delete-ssm-diagnosis-*",
                     "Condition": {
-                        "StringLike": {
-                            "s3:prefix": "*/${aws:PrincipalAccount}/*"
-                        }, 
                         "StringEquals": {
                             "aws:ResourceAccount": "${aws:PrincipalAccount}"
+                        },
+                        "StringLike": {
+                            "s3:prefix": "*/${aws:PrincipalAccount}/*"
                         }
-                    }, 
-                    "Sid": "AllowReadOnlyAccessListBucketOnSsmDiagnosisBucketInSameAccount"
-                }, 
+                    }
+                },
                 {
+                    "Sid": "AllowReadOnlyAccessListBucketOnSsmDiagnosisBucketWithinOrg",
+                    "Effect": "Allow",
                     "Action": [
                         "s3:ListBucket"
-                    ], 
-                    "Resource": "arn:aws:s3:::do-not-delete-ssm-diagnosis-*", 
-                    "Effect": "Allow", 
+                    ],
+                    "Resource": "arn:aws:s3:::do-not-delete-ssm-diagnosis-*",
                     "Condition": {
-                        "StringLike": {
-                            "s3:prefix": "*/${aws:PrincipalAccount}/*"
-                        }, 
                         "StringEquals": {
                             "aws:ResourceOrgId": "${aws:PrincipalOrgId}"
+                        },
+                        "StringLike": {
+                            "s3:prefix": "*/${aws:PrincipalAccount}/*"
                         }
-                    }, 
-                    "Sid": "AllowReadOnlyAccessListBucketOnSsmDiagnosisBucketWithinOrg"
-                }, 
+                    }
+                },
                 {
+                    "Sid": "AllowGetEncryptionConfigurationOnSsmDiagnosisBucketInSameAccount",
+                    "Effect": "Allow",
                     "Action": [
                         "s3:GetEncryptionConfiguration"
-                    ], 
-                    "Resource": "arn:aws:s3:::do-not-delete-ssm-diagnosis-*", 
-                    "Effect": "Allow", 
+                    ],
+                    "Resource": "arn:aws:s3:::do-not-delete-ssm-diagnosis-*",
                     "Condition": {
                         "StringEquals": {
                             "aws:ResourceAccount": "${aws:PrincipalAccount}"
                         }
-                    }, 
-                    "Sid": "AllowGetEncryptionConfigurationOnSsmDiagnosisBucketInSameAccount"
-                }, 
+                    }
+                },
                 {
+                    "Sid": "AllowGetEncryptionConfigurationOnSsmDiagnosisBucketWithinOrg",
+                    "Effect": "Allow",
                     "Action": [
                         "s3:GetEncryptionConfiguration"
-                    ], 
-                    "Resource": "arn:aws:s3:::do-not-delete-ssm-diagnosis-*", 
-                    "Effect": "Allow", 
+                    ],
+                    "Resource": "arn:aws:s3:::do-not-delete-ssm-diagnosis-*",
                     "Condition": {
                         "StringEquals": {
                             "aws:ResourceOrgId": "${aws:PrincipalOrgId}"
                         }
-                    }, 
-                    "Sid": "AllowGetEncryptionConfigurationOnSsmDiagnosisBucketWithinOrg"
+                    }
                 }
             ]
-        }, 
-        "IsDefaultVersion": true
+        },
+        "VersionId": "v1",
+        "IsDefaultVersion": true,
+        "CreateDate": "2024-11-15T23:31:17+00:00"
     }
 }
