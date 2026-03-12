@@ -1,64 +1,64 @@
 {
     "PolicyVersion": {
-        "CreateDate": "2026-02-12T18:02:05Z", 
-        "VersionId": "v5", 
         "Document": {
-            "Version": "2012-10-17", 
+            "Version": "2012-10-17",
             "Statement": [
                 {
+                    "Sid": "PanoramaDeviceCreateLogStream",
+                    "Effect": "Allow",
                     "Action": [
-                        "logs:CreateLogStream", 
-                        "logs:DescribeLogStreams", 
+                        "logs:CreateLogStream",
+                        "logs:DescribeLogStreams",
                         "logs:PutLogEvents"
-                    ], 
+                    ],
                     "Resource": [
-                        "arn:aws:logs:*:*:log-group:/aws/panorama_device*:log-stream:*", 
+                        "arn:aws:logs:*:*:log-group:/aws/panorama_device*:log-stream:*",
                         "arn:aws:logs:*:*:log-group:/aws/panorama/devices/*"
-                    ], 
-                    "Effect": "Allow", 
-                    "Sid": "PanoramaDeviceCreateLogStream"
-                }, 
+                    ]
+                },
                 {
-                    "Action": "logs:CreateLogGroup", 
+                    "Sid": "PanoramaDeviceCreateLogGroup",
+                    "Effect": "Allow",
+                    "Action": "logs:CreateLogGroup",
                     "Resource": [
-                        "arn:aws:logs:*:*:log-group:/aws/panorama_device*", 
+                        "arn:aws:logs:*:*:log-group:/aws/panorama_device*",
                         "arn:aws:logs:*:*:log-group:/aws/panorama/devices/*"
-                    ], 
-                    "Effect": "Allow", 
-                    "Sid": "PanoramaDeviceCreateLogGroup"
-                }, 
+                    ]
+                },
                 {
-                    "Action": "cloudwatch:PutMetricData", 
-                    "Resource": "*", 
-                    "Effect": "Allow", 
+                    "Sid": "PanoramaDevicePutMetric",
+                    "Effect": "Allow",
+                    "Action": "cloudwatch:PutMetricData",
+                    "Resource": "*",
                     "Condition": {
                         "StringEquals": {
                             "cloudwatch:namespace": "PanoramaDeviceMetrics"
                         }
-                    }, 
-                    "Sid": "PanoramaDevicePutMetric"
-                }, 
+                    }
+                },
                 {
+                    "Sid": "PanoramaDeviceS3Access",
+                    "Effect": "Allow",
                     "Action": [
-                        "s3:GetObject", 
-                        "s3:ListBucket", 
+                        "s3:GetObject",
+                        "s3:ListBucket",
                         "s3:GetObjectVersion"
-                    ], 
+                    ],
                     "Resource": [
-                        "arn:aws:s3:::*-nodepackage-store-*", 
-                        "arn:aws:s3:::*-application-payload-store-*", 
+                        "arn:aws:s3:::*-nodepackage-store-*",
+                        "arn:aws:s3:::*-application-payload-store-*",
                         "arn:aws:s3:*:*:accesspoint/panorama*"
-                    ], 
-                    "Effect": "Allow", 
+                    ],
                     "Condition": {
                         "ArnLike": {
                             "s3:DataAccessPointArn": "arn:aws:s3:*:*:accesspoint/panorama*"
                         }
-                    }, 
-                    "Sid": "PanoramaDeviceS3Access"
+                    }
                 }
             ]
-        }, 
-        "IsDefaultVersion": true
+        },
+        "VersionId": "v5",
+        "IsDefaultVersion": true,
+        "CreateDate": "2026-02-12T18:02:05+00:00"
     }
 }
