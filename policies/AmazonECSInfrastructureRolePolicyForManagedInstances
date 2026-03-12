@@ -1,195 +1,195 @@
 {
     "PolicyVersion": {
-        "CreateDate": "2026-02-26T18:27:10Z", 
-        "VersionId": "v11", 
         "Document": {
-            "Version": "2012-10-17", 
+            "Version": "2012-10-17",
             "Statement": [
                 {
+                    "Sid": "CreateLaunchTemplateForManagedInstances",
+                    "Effect": "Allow",
                     "Action": [
                         "ec2:CreateLaunchTemplate"
-                    ], 
+                    ],
                     "Resource": [
                         "arn:aws:ec2:*:*:launch-template/*"
-                    ], 
-                    "Effect": "Allow", 
+                    ],
                     "Condition": {
                         "StringEquals": {
                             "aws:RequestTag/AmazonECSManaged": "true"
                         }
-                    }, 
-                    "Sid": "CreateLaunchTemplateForManagedInstances"
-                }, 
+                    }
+                },
                 {
+                    "Sid": "CreateLaunchTemplateVersionsForManagedInstances",
+                    "Effect": "Allow",
                     "Action": [
-                        "ec2:CreateLaunchTemplateVersion", 
+                        "ec2:CreateLaunchTemplateVersion",
                         "ec2:ModifyLaunchTemplate"
-                    ], 
+                    ],
                     "Resource": [
                         "arn:aws:ec2:*:*:launch-template/*"
-                    ], 
-                    "Effect": "Allow", 
+                    ],
                     "Condition": {
                         "StringEquals": {
                             "ec2:ManagedResourceOperator": "ecs.amazonaws.com"
                         }
-                    }, 
-                    "Sid": "CreateLaunchTemplateVersionsForManagedInstances"
-                }, 
+                    }
+                },
                 {
+                    "Sid": "ProvisionEC2InstancesForManagedInstances",
+                    "Effect": "Allow",
                     "Action": [
                         "ec2:CreateFleet"
-                    ], 
+                    ],
                     "Resource": [
-                        "arn:aws:ec2:*:*:fleet/*", 
-                        "arn:aws:ec2:*:*:instance/*", 
-                        "arn:aws:ec2:*:*:network-interface/*", 
-                        "arn:aws:ec2:*:*:launch-template/*", 
+                        "arn:aws:ec2:*:*:fleet/*",
+                        "arn:aws:ec2:*:*:instance/*",
+                        "arn:aws:ec2:*:*:network-interface/*",
+                        "arn:aws:ec2:*:*:launch-template/*",
                         "arn:aws:ec2:*:*:volume/*"
-                    ], 
-                    "Effect": "Allow", 
+                    ],
                     "Condition": {
                         "StringEquals": {
                             "aws:RequestTag/AmazonECSManaged": "true"
                         }
-                    }, 
-                    "Sid": "ProvisionEC2InstancesForManagedInstances"
-                }, 
+                    }
+                },
                 {
+                    "Sid": "CreateFleetForSupportingResources",
+                    "Effect": "Allow",
                     "Action": [
                         "ec2:CreateFleet"
-                    ], 
+                    ],
                     "Resource": [
-                        "arn:aws:ec2:*:*:subnet/*", 
-                        "arn:aws:ec2:*:*:security-group/*", 
+                        "arn:aws:ec2:*:*:subnet/*",
+                        "arn:aws:ec2:*:*:security-group/*",
                         "arn:aws:ec2:*::image/*"
-                    ], 
-                    "Effect": "Allow", 
-                    "Sid": "CreateFleetForSupportingResources"
-                }, 
+                    ]
+                },
                 {
+                    "Sid": "RunInstancesForManagedInstances",
+                    "Effect": "Allow",
                     "Action": [
                         "ec2:RunInstances"
-                    ], 
+                    ],
                     "Resource": [
-                        "arn:aws:ec2:*:*:instance/*", 
-                        "arn:aws:ec2:*:*:volume/*", 
+                        "arn:aws:ec2:*:*:instance/*",
+                        "arn:aws:ec2:*:*:volume/*",
                         "arn:aws:ec2:*:*:network-interface/*"
-                    ], 
-                    "Effect": "Allow", 
+                    ],
                     "Condition": {
                         "StringEquals": {
                             "aws:RequestTag/AmazonECSManaged": "true"
                         }
-                    }, 
-                    "Sid": "RunInstancesForManagedInstances"
-                }, 
+                    }
+                },
                 {
+                    "Sid": "RunInstancesForECSManagedLaunchTemplates",
+                    "Effect": "Allow",
                     "Action": [
                         "ec2:RunInstances"
-                    ], 
+                    ],
                     "Resource": [
                         "arn:aws:ec2:*:*:launch-template/*"
-                    ], 
-                    "Effect": "Allow", 
+                    ],
                     "Condition": {
                         "StringEquals": {
                             "ec2:ResourceTag/AmazonECSManaged": "true"
                         }
-                    }, 
-                    "Sid": "RunInstancesForECSManagedLaunchTemplates"
-                }, 
+                    }
+                },
                 {
+                    "Sid": "RunInstancesForSupportingResources",
+                    "Effect": "Allow",
                     "Action": [
                         "ec2:RunInstances"
-                    ], 
+                    ],
                     "Resource": [
-                        "arn:aws:ec2:*:*:subnet/*", 
-                        "arn:aws:ec2:*:*:security-group/*", 
-                        "arn:aws:ec2:*::image/*", 
+                        "arn:aws:ec2:*:*:subnet/*",
+                        "arn:aws:ec2:*:*:security-group/*",
+                        "arn:aws:ec2:*::image/*",
                         "arn:aws:resource-groups:*:*:group/*"
-                    ], 
-                    "Effect": "Allow", 
-                    "Sid": "RunInstancesForSupportingResources"
-                }, 
+                    ]
+                },
                 {
+                    "Sid": "TagOnCreateEC2ResourcesForManagedInstances",
+                    "Effect": "Allow",
                     "Action": [
                         "ec2:CreateTags"
-                    ], 
+                    ],
                     "Resource": [
-                        "arn:aws:ec2:*:*:fleet/*", 
-                        "arn:aws:ec2:*:*:launch-template/*", 
-                        "arn:aws:ec2:*:*:network-interface/*", 
-                        "arn:aws:ec2:*:*:instance/*", 
+                        "arn:aws:ec2:*:*:fleet/*",
+                        "arn:aws:ec2:*:*:launch-template/*",
+                        "arn:aws:ec2:*:*:network-interface/*",
+                        "arn:aws:ec2:*:*:instance/*",
                         "arn:aws:ec2:*:*:volume/*"
-                    ], 
-                    "Effect": "Allow", 
+                    ],
                     "Condition": {
                         "StringEquals": {
                             "ec2:CreateAction": [
-                                "CreateFleet", 
-                                "CreateLaunchTemplate", 
+                                "CreateFleet",
+                                "CreateLaunchTemplate",
                                 "RunInstances"
                             ]
                         }
-                    }, 
-                    "Sid": "TagOnCreateEC2ResourcesForManagedInstances"
-                }, 
+                    }
+                },
                 {
+                    "Sid": "PassInstanceRoleForManagedInstances",
+                    "Effect": "Allow",
                     "Action": [
                         "iam:PassRole"
-                    ], 
+                    ],
                     "Resource": [
                         "arn:aws:iam::*:role/ecsInstanceRole*"
-                    ], 
-                    "Effect": "Allow", 
+                    ],
                     "Condition": {
                         "StringLike": {
                             "iam:PassedToService": "ec2.*"
                         }
-                    }, 
-                    "Sid": "PassInstanceRoleForManagedInstances"
-                }, 
+                    }
+                },
                 {
+                    "Sid": "CreateServiceLinkedRoleForEC2Spot",
+                    "Effect": "Allow",
                     "Action": [
                         "iam:CreateServiceLinkedRole"
-                    ], 
+                    ],
                     "Resource": [
                         "arn:aws:iam::*:role/aws-service-role/spot.amazonaws.com/AWSServiceRoleForEC2Spot"
-                    ], 
-                    "Effect": "Allow", 
-                    "Sid": "CreateServiceLinkedRoleForEC2Spot"
-                }, 
+                    ]
+                },
                 {
+                    "Sid": "DescribeEC2ResourcesManagedByECS",
+                    "Effect": "Allow",
                     "Action": [
-                        "ec2:DescribeInstances", 
-                        "ec2:DescribeInstanceTypes", 
-                        "ec2:DescribeLaunchTemplates", 
-                        "ec2:DescribeNetworkInterfaces", 
-                        "ec2:DescribeInstanceTypeOfferings", 
-                        "ec2:DescribeAvailabilityZones", 
-                        "ec2:DescribeSecurityGroups", 
-                        "ec2:DescribeSubnets", 
-                        "ec2:DescribeVpcs", 
+                        "ec2:DescribeInstances",
+                        "ec2:DescribeInstanceTypes",
+                        "ec2:DescribeLaunchTemplates",
+                        "ec2:DescribeNetworkInterfaces",
+                        "ec2:DescribeInstanceTypeOfferings",
+                        "ec2:DescribeAvailabilityZones",
+                        "ec2:DescribeSecurityGroups",
+                        "ec2:DescribeSubnets",
+                        "ec2:DescribeVpcs",
                         "ec2:DescribeCapacityReservations"
-                    ], 
-                    "Resource": "*", 
-                    "Effect": "Allow", 
-                    "Sid": "DescribeEC2ResourcesManagedByECS"
-                }, 
+                    ],
+                    "Resource": "*"
+                },
                 {
+                    "Sid": "ListResourceGroupResources",
+                    "Effect": "Allow",
                     "Action": [
-                        "resource-groups:ListGroupResources", 
-                        "cloudformation:DescribeStacks", 
-                        "cloudformation:ListStackResources", 
+                        "resource-groups:ListGroupResources",
+                        "cloudformation:DescribeStacks",
+                        "cloudformation:ListStackResources",
                         "tag:GetResources"
-                    ], 
-                    "Resource": "*", 
-                    "Effect": "Allow", 
-                    "Sid": "ListResourceGroupResources"
+                    ],
+                    "Resource": "*"
                 }
             ]
-        }, 
-        "IsDefaultVersion": true
+        },
+        "VersionId": "v11",
+        "IsDefaultVersion": true,
+        "CreateDate": "2026-02-26T18:27:10+00:00"
     }
 }
