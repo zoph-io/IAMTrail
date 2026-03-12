@@ -1,37 +1,35 @@
 {
     "PolicyVersion": {
-        "CreateDate": "2020-12-04T19:17:26Z", 
-        "VersionId": "v6", 
         "Document": {
-            "Version": "2012-10-17", 
+            "Version": "2012-10-17",
             "Statement": [
                 {
                     "Action": [
                         "globalaccelerator:*"
-                    ], 
-                    "Resource": "*", 
-                    "Effect": "Allow"
-                }, 
+                    ],
+                    "Effect": "Allow",
+                    "Resource": "*"
+                },
                 {
-                    "Action": "elasticloadbalancing:DescribeLoadBalancers", 
-                    "Resource": "*", 
-                    "Effect": "Allow"
-                }, 
+                    "Action": "elasticloadbalancing:DescribeLoadBalancers",
+                    "Effect": "Allow",
+                    "Resource": "*"
+                },
                 {
                     "Action": [
-                        "ec2:DescribeAddresses", 
-                        "ec2:DescribeInstances", 
-                        "ec2:DescribeInternetGateways", 
-                        "ec2:DescribeRegions", 
+                        "ec2:DescribeAddresses",
+                        "ec2:DescribeInstances",
+                        "ec2:DescribeInternetGateways",
+                        "ec2:DescribeRegions",
                         "ec2:DescribeSubnets"
-                    ], 
-                    "Resource": "*", 
-                    "Effect": "Allow"
-                }, 
+                    ],
+                    "Effect": "Allow",
+                    "Resource": "*"
+                },
                 {
-                    "Action": "iam:CreateServiceLinkedRole", 
-                    "Resource": "arn:aws:iam::*:role/aws-service-role/globalaccelerator.amazonaws.com/AWSServiceRoleForGlobalAccelerator*", 
-                    "Effect": "Allow", 
+                    "Effect": "Allow",
+                    "Action": "iam:CreateServiceLinkedRole",
+                    "Resource": "arn:aws:iam::*:role/aws-service-role/globalaccelerator.amazonaws.com/AWSServiceRoleForGlobalAccelerator*",
                     "Condition": {
                         "StringEquals": {
                             "iam:AWSServiceName": "globalaccelerator.amazonaws.com"
@@ -39,7 +37,9 @@
                     }
                 }
             ]
-        }, 
-        "IsDefaultVersion": true
+        },
+        "VersionId": "v6",
+        "IsDefaultVersion": true,
+        "CreateDate": "2020-12-04T19:17:26+00:00"
     }
 }
