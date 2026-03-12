@@ -1,61 +1,61 @@
 {
     "PolicyVersion": {
-        "CreateDate": "2026-02-12T17:59:03Z", 
-        "VersionId": "v12", 
         "Document": {
-            "Version": "2012-10-17", 
+            "Version": "2012-10-17",
             "Statement": [
                 {
+                    "Sid": "AWSSSOReadOnly",
+                    "Effect": "Allow",
                     "Action": [
-                        "ds:DescribeDirectories", 
-                        "ds:DescribeTrusts", 
-                        "iam:ListPolicies", 
-                        "organizations:DescribeOrganization", 
-                        "organizations:DescribeAccount", 
-                        "organizations:ListParents", 
-                        "organizations:ListChildren", 
-                        "organizations:ListAccounts", 
-                        "organizations:ListRoots", 
-                        "organizations:ListAccountsForParent", 
-                        "organizations:ListOrganizationalUnitsForParent", 
-                        "organizations:ListDelegatedAdministrators", 
-                        "sso:Describe*", 
-                        "sso:Get*", 
-                        "sso:List*", 
-                        "sso:Search*", 
-                        "sso-directory:DescribeDirectory", 
-                        "access-analyzer:ValidatePolicy", 
+                        "ds:DescribeDirectories",
+                        "ds:DescribeTrusts",
+                        "iam:ListPolicies",
+                        "organizations:DescribeOrganization",
+                        "organizations:DescribeAccount",
+                        "organizations:ListParents",
+                        "organizations:ListChildren",
+                        "organizations:ListAccounts",
+                        "organizations:ListRoots",
+                        "organizations:ListAccountsForParent",
+                        "organizations:ListOrganizationalUnitsForParent",
+                        "organizations:ListDelegatedAdministrators",
+                        "sso:Describe*",
+                        "sso:Get*",
+                        "sso:List*",
+                        "sso:Search*",
+                        "sso-directory:DescribeDirectory",
+                        "access-analyzer:ValidatePolicy",
                         "signin:ListTrustedIdentityPropagationApplicationsForConsole"
-                    ], 
-                    "Resource": "*", 
-                    "Effect": "Allow", 
-                    "Sid": "AWSSSOReadOnly"
-                }, 
+                    ],
+                    "Resource": "*"
+                },
                 {
+                    "Sid": "AllowKMSKeyUseViaAWSIAMIdentityCenterService",
+                    "Effect": "Allow",
                     "Action": [
                         "kms:Decrypt"
-                    ], 
-                    "Resource": "*", 
-                    "Effect": "Allow", 
+                    ],
+                    "Resource": "*",
                     "Condition": {
                         "StringLike": {
-                            "kms:ViaService": "sso.*.amazonaws.com", 
+                            "kms:ViaService": "sso.*.amazonaws.com",
                             "kms:EncryptionContext:aws:sso:instance-arn": "*"
                         }
-                    }, 
-                    "Sid": "AllowKMSKeyUseViaAWSIAMIdentityCenterService"
-                }, 
+                    }
+                },
                 {
+                    "Sid": "AllowKMSKeyDiscovery",
+                    "Effect": "Allow",
                     "Action": [
-                        "kms:ListAliases", 
+                        "kms:ListAliases",
                         "kms:DescribeKey"
-                    ], 
-                    "Resource": "*", 
-                    "Effect": "Allow", 
-                    "Sid": "AllowKMSKeyDiscovery"
+                    ],
+                    "Resource": "*"
                 }
             ]
-        }, 
-        "IsDefaultVersion": true
+        },
+        "VersionId": "v12",
+        "IsDefaultVersion": true,
+        "CreateDate": "2026-02-12T17:59:03+00:00"
     }
 }
