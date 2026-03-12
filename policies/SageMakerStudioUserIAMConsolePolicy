@@ -1,67 +1,67 @@
 {
     "PolicyVersion": {
-        "CreateDate": "2026-02-12T18:00:10Z", 
-        "VersionId": "v9", 
         "Document": {
-            "Version": "2012-10-17", 
+            "Version": "2012-10-17",
             "Statement": [
                 {
+                    "Sid": "AmazonDataZoneStatement",
+                    "Effect": "Allow",
                     "Action": [
-                        "datazone:ListDomains", 
-                        "datazone:GetDomain", 
-                        "datazone:GetUserProfile", 
-                        "datazone:ListProjects", 
-                        "datazone:ListProjectProfiles", 
-                        "datazone:CreateProject", 
-                        "datazone:GetProject", 
-                        "datazone:DeleteProject", 
-                        "datazone:GetIamPortalLoginUrl", 
-                        "datazone:ListEnvironmentBlueprints", 
-                        "datazone:ListEnvironments", 
-                        "datazone:GetEnvironment", 
-                        "datazone:GetEnvironmentCredentials", 
-                        "datazone:GetGroupProfile", 
-                        "datazone:SearchGroupProfiles", 
-                        "datazone:SearchUserProfiles", 
+                        "datazone:ListDomains",
+                        "datazone:GetDomain",
+                        "datazone:GetUserProfile",
+                        "datazone:ListProjects",
+                        "datazone:ListProjectProfiles",
+                        "datazone:CreateProject",
+                        "datazone:GetProject",
+                        "datazone:DeleteProject",
+                        "datazone:GetIamPortalLoginUrl",
+                        "datazone:ListEnvironmentBlueprints",
+                        "datazone:ListEnvironments",
+                        "datazone:GetEnvironment",
+                        "datazone:GetEnvironmentCredentials",
+                        "datazone:GetGroupProfile",
+                        "datazone:SearchGroupProfiles",
+                        "datazone:SearchUserProfiles",
                         "datazone:ListProjectMemberships"
-                    ], 
+                    ],
                     "Resource": [
                         "*"
-                    ], 
-                    "Effect": "Allow", 
-                    "Sid": "AmazonDataZoneStatement"
-                }, 
+                    ]
+                },
                 {
+                    "Sid": "ReadOnlyStatement",
+                    "Effect": "Allow",
                     "Action": [
-                        "iam:ListRoles", 
-                        "iam:GetRole", 
+                        "iam:ListRoles",
+                        "iam:GetRole",
                         "iam:GetUser"
-                    ], 
+                    ],
                     "Resource": [
                         "*"
-                    ], 
-                    "Effect": "Allow", 
-                    "Sid": "ReadOnlyStatement"
-                }, 
+                    ]
+                },
                 {
+                    "Sid": "DataZoneKMSPermissions",
+                    "Effect": "Allow",
                     "Action": [
-                        "kms:Decrypt", 
+                        "kms:Decrypt",
                         "kms:GenerateDataKey"
-                    ], 
-                    "Resource": "*", 
-                    "Effect": "Allow", 
+                    ],
+                    "Resource": "*",
                     "Condition": {
-                        "ForAnyValue:StringEquals": {
-                            "kms:EncryptionContextKeys": "aws:datazone:domainId"
-                        }, 
                         "StringLike": {
                             "kms:ViaService": "datazone.*.amazonaws.com"
+                        },
+                        "ForAnyValue:StringEquals": {
+                            "kms:EncryptionContextKeys": "aws:datazone:domainId"
                         }
-                    }, 
-                    "Sid": "DataZoneKMSPermissions"
+                    }
                 }
             ]
-        }, 
-        "IsDefaultVersion": true
+        },
+        "VersionId": "v9",
+        "IsDefaultVersion": true,
+        "CreateDate": "2026-02-12T18:00:10+00:00"
     }
 }
