@@ -1,34 +1,32 @@
 {
     "PolicyVersion": {
-        "CreateDate": "2023-04-26T18:11:38Z", 
-        "VersionId": "v1", 
         "Document": {
-            "Version": "2012-10-17", 
+            "Version": "2012-10-17",
             "Statement": [
                 {
+                    "Effect": "Allow",
                     "Action": [
-                        "osis:CreatePipeline", 
-                        "osis:UpdatePipeline", 
-                        "osis:DeletePipeline", 
-                        "osis:StartPipeline", 
-                        "osis:StopPipeline", 
-                        "osis:ListPipelines", 
-                        "osis:GetPipeline", 
-                        "osis:GetPipelineChangeProgress", 
-                        "osis:ValidatePipeline", 
-                        "osis:GetPipelineBlueprint", 
-                        "osis:ListPipelineBlueprints", 
-                        "osis:TagResource", 
-                        "osis:UntagResource", 
+                        "osis:CreatePipeline",
+                        "osis:UpdatePipeline",
+                        "osis:DeletePipeline",
+                        "osis:StartPipeline",
+                        "osis:StopPipeline",
+                        "osis:ListPipelines",
+                        "osis:GetPipeline",
+                        "osis:GetPipelineChangeProgress",
+                        "osis:ValidatePipeline",
+                        "osis:GetPipelineBlueprint",
+                        "osis:ListPipelineBlueprints",
+                        "osis:TagResource",
+                        "osis:UntagResource",
                         "osis:ListTagsForResource"
-                    ], 
-                    "Resource": "*", 
-                    "Effect": "Allow"
-                }, 
+                    ],
+                    "Resource": "*"
+                },
                 {
-                    "Action": "iam:CreateServiceLinkedRole", 
-                    "Resource": "arn:aws:iam::*:role/aws-service-role/osis.amazonaws.com/AWSServiceRoleForAmazonOpenSearchIngestionService", 
-                    "Effect": "Allow", 
+                    "Effect": "Allow",
+                    "Action": "iam:CreateServiceLinkedRole",
+                    "Resource": "arn:aws:iam::*:role/aws-service-role/osis.amazonaws.com/AWSServiceRoleForAmazonOpenSearchIngestionService",
                     "Condition": {
                         "StringLike": {
                             "iam:AWSServiceName": "osis.amazonaws.com"
@@ -36,7 +34,9 @@
                     }
                 }
             ]
-        }, 
-        "IsDefaultVersion": true
+        },
+        "VersionId": "v1",
+        "IsDefaultVersion": true,
+        "CreateDate": "2023-04-26T18:11:38+00:00"
     }
 }
