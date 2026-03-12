@@ -1,39 +1,39 @@
 {
     "PolicyVersion": {
-        "CreateDate": "2026-02-12T18:00:18Z", 
-        "VersionId": "v3", 
         "Document": {
-            "Version": "2012-10-17", 
+            "Version": "2012-10-17",
             "Statement": [
                 {
+                    "Sid": "Statement1",
+                    "Effect": "Allow",
                     "Action": [
-                        "aiops:PutFact", 
-                        "aiops:UpdateReport", 
-                        "aiops:GetReport", 
-                        "aiops:GenerateReport", 
-                        "aiops:CreateReport", 
-                        "aiops:GetFact", 
-                        "aiops:ListFacts", 
-                        "aiops:GetFactVersions", 
-                        "aiops:GetInvestigation", 
-                        "aiops:ListInvestigationEvents", 
+                        "aiops:PutFact",
+                        "aiops:UpdateReport",
+                        "aiops:GetReport",
+                        "aiops:GenerateReport",
+                        "aiops:CreateReport",
+                        "aiops:GetFact",
+                        "aiops:ListFacts",
+                        "aiops:GetFactVersions",
+                        "aiops:GetInvestigation",
+                        "aiops:ListInvestigationEvents",
                         "aiops:GetInvestigationEvent"
-                    ], 
+                    ],
                     "Resource": [
                         "arn:aws:aiops:*:*:investigation-group/*"
-                    ], 
-                    "Effect": "Allow", 
+                    ],
                     "Condition": {
                         "StringEquals": {
                             "aws:PrincipalAccount": [
                                 "${aws:ResourceAccount}"
                             ]
                         }
-                    }, 
-                    "Sid": "Statement1"
+                    }
                 }
             ]
-        }, 
-        "IsDefaultVersion": true
+        },
+        "VersionId": "v3",
+        "IsDefaultVersion": true,
+        "CreateDate": "2026-02-12T18:00:18+00:00"
     }
 }
