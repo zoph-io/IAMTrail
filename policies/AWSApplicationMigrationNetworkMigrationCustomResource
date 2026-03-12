@@ -1,28 +1,28 @@
 {
     "PolicyVersion": {
-        "CreateDate": "2026-02-12T17:58:53Z", 
-        "VersionId": "v3", 
         "Document": {
-            "Version": "2012-10-17", 
+            "Version": "2012-10-17",
             "Statement": [
                 {
+                    "Sid": "ModifyTGW",
+                    "Effect": "Allow",
                     "Action": [
                         "ec2:ModifyTransitGateway"
-                    ], 
+                    ],
                     "Resource": [
-                        "arn:aws:ec2:*:*:transit-gateway/*", 
+                        "arn:aws:ec2:*:*:transit-gateway/*",
                         "arn:aws:ec2:*:*:transit-gateway-route-table/*"
-                    ], 
-                    "Effect": "Allow", 
+                    ],
                     "Condition": {
                         "StringEquals": {
                             "aws:ResourceTag/CreatedBy": "AWSApplicationMigrationService"
                         }
-                    }, 
-                    "Sid": "ModifyTGW"
+                    }
                 }
             ]
-        }, 
-        "IsDefaultVersion": true
+        },
+        "VersionId": "v3",
+        "IsDefaultVersion": true,
+        "CreateDate": "2026-02-12T17:58:53+00:00"
     }
 }
