@@ -1,103 +1,103 @@
 {
     "PolicyVersion": {
-        "CreateDate": "2026-02-12T18:02:56Z", 
-        "VersionId": "v6", 
         "Document": {
-            "Version": "2012-10-17", 
+            "Version": "2012-10-17",
             "Statement": [
                 {
+                    "Sid": "MpaFullAccess",
+                    "Effect": "Allow",
                     "Action": [
                         "mpa:*"
-                    ], 
-                    "Resource": "*", 
-                    "Effect": "Allow", 
-                    "Sid": "MpaFullAccess"
-                }, 
+                    ],
+                    "Resource": "*"
+                },
                 {
+                    "Sid": "OrganizationsAccess",
+                    "Effect": "Allow",
                     "Action": [
-                        "organizations:ListDelegatedAdministrators", 
+                        "organizations:ListDelegatedAdministrators",
                         "organizations:DescribeOrganization"
-                    ], 
-                    "Resource": "*", 
-                    "Effect": "Allow", 
-                    "Sid": "OrganizationsAccess"
-                }, 
+                    ],
+                    "Resource": "*"
+                },
                 {
+                    "Sid": "SSOCreateApplication",
+                    "Effect": "Allow",
                     "Action": [
                         "sso:CreateApplication"
-                    ], 
+                    ],
                     "Resource": [
-                        "arn:aws:sso:::instance/*", 
+                        "arn:aws:sso:::instance/*",
                         "arn:aws:sso::aws:applicationProvider/mpa"
-                    ], 
-                    "Effect": "Allow", 
-                    "Sid": "SSOCreateApplication"
-                }, 
+                    ]
+                },
                 {
+                    "Sid": "SSOApplicationManagement",
+                    "Effect": "Allow",
                     "Action": [
-                        "sso:DescribeApplication", 
-                        "sso:PutApplicationAssignmentConfiguration", 
-                        "sso:PutApplicationGrant", 
-                        "sso:PutApplicationAuthenticationMethod", 
-                        "sso:PutApplicationAccessScope", 
+                        "sso:DescribeApplication",
+                        "sso:PutApplicationAssignmentConfiguration",
+                        "sso:PutApplicationGrant",
+                        "sso:PutApplicationAuthenticationMethod",
+                        "sso:PutApplicationAccessScope",
                         "sso:DeleteApplication"
-                    ], 
-                    "Resource": "*", 
-                    "Effect": "Allow", 
+                    ],
+                    "Resource": "*",
                     "Condition": {
                         "StringEqualsIfExists": {
                             "aws:CalledViaLast": "mpa.amazonaws.com"
                         }
-                    }, 
-                    "Sid": "SSOApplicationManagement"
-                }, 
+                    }
+                },
                 {
+                    "Sid": "SSOManagementAccess",
+                    "Effect": "Allow",
                     "Action": [
-                        "sso:DescribeInstance", 
-                        "sso:DescribeRegisteredRegions", 
-                        "sso:GetSharedSsoConfiguration", 
-                        "sso-directory:DescribeUsers", 
-                        "sso-directory:SearchUsers", 
+                        "sso:DescribeInstance",
+                        "sso:DescribeRegisteredRegions",
+                        "sso:GetSharedSsoConfiguration",
+                        "sso-directory:DescribeUsers",
+                        "sso-directory:SearchUsers",
                         "sso:ListInstances"
-                    ], 
-                    "Resource": "*", 
-                    "Effect": "Allow", 
-                    "Sid": "SSOManagementAccess"
-                }, 
+                    ],
+                    "Resource": "*"
+                },
                 {
+                    "Sid": "AllowKmsAccessViaIdentityCenter",
+                    "Effect": "Allow",
                     "Action": [
                         "kms:Decrypt"
-                    ], 
-                    "Resource": "*", 
-                    "Effect": "Allow", 
+                    ],
+                    "Resource": "*",
                     "Condition": {
                         "ArnLike": {
                             "kms:EncryptionContext:aws:sso:instance-arn": "arn:*:sso:::instance/*"
-                        }, 
+                        },
                         "StringLike": {
                             "kms:ViaService": "sso.*.amazonaws.com"
                         }
-                    }, 
-                    "Sid": "AllowKmsAccessViaIdentityCenter"
-                }, 
+                    }
+                },
                 {
+                    "Sid": "AllowKmsAccessViaIdentityStore",
+                    "Effect": "Allow",
                     "Action": [
                         "kms:Decrypt"
-                    ], 
-                    "Resource": "*", 
-                    "Effect": "Allow", 
+                    ],
+                    "Resource": "*",
                     "Condition": {
                         "ArnLike": {
                             "kms:EncryptionContext:aws:identitystore:identitystore-arn": "arn:*:identitystore::*:identitystore/*"
-                        }, 
+                        },
                         "StringLike": {
                             "kms:ViaService": "identitystore.*.amazonaws.com"
                         }
-                    }, 
-                    "Sid": "AllowKmsAccessViaIdentityStore"
+                    }
                 }
             ]
-        }, 
-        "IsDefaultVersion": true
+        },
+        "VersionId": "v6",
+        "IsDefaultVersion": true,
+        "CreateDate": "2026-02-12T18:02:56+00:00"
     }
 }
