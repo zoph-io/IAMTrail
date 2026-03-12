@@ -1,152 +1,150 @@
 {
     "PolicyVersion": {
-        "CreateDate": "2023-06-28T22:53:43Z", 
-        "VersionId": "v2", 
         "Document": {
-            "Version": "2012-10-17", 
+            "Version": "2012-10-17",
             "Statement": [
                 {
+                    "Effect": "Allow",
                     "Action": [
-                        "ssm:GetOpsItem", 
+                        "ssm:GetOpsItem",
                         "ssm:UpdateOpsItem"
-                    ], 
-                    "Resource": "*", 
-                    "Effect": "Allow", 
+                    ],
+                    "Resource": "*",
                     "Condition": {
                         "StringEquals": {
                             "aws:ResourceTag/ExplorerSecurityHubOpsItem": "true"
                         }
                     }
-                }, 
+                },
                 {
+                    "Effect": "Allow",
                     "Action": [
                         "ssm:CreateOpsItem"
-                    ], 
-                    "Resource": "*", 
-                    "Effect": "Allow"
-                }, 
+                    ],
+                    "Resource": "*"
+                },
                 {
+                    "Effect": "Allow",
                     "Action": [
                         "ssm:AddTagsToResource"
-                    ], 
-                    "Resource": "arn:aws:ssm:*:*:opsitem/*", 
-                    "Effect": "Allow"
-                }, 
+                    ],
+                    "Resource": "arn:aws:ssm:*:*:opsitem/*"
+                },
                 {
+                    "Effect": "Allow",
                     "Action": [
-                        "ssm:UpdateServiceSetting", 
+                        "ssm:UpdateServiceSetting",
                         "ssm:GetServiceSetting"
-                    ], 
+                    ],
                     "Resource": [
-                        "arn:aws:ssm:*:*:servicesetting/ssm/opsitem/*", 
+                        "arn:aws:ssm:*:*:servicesetting/ssm/opsitem/*",
                         "arn:aws:ssm:*:*:servicesetting/ssm/opsdata/*"
-                    ], 
-                    "Effect": "Allow"
-                }, 
+                    ]
+                },
                 {
+                    "Effect": "Allow",
                     "Action": [
-                        "securityhub:GetFindings", 
+                        "securityhub:GetFindings",
                         "securityhub:BatchUpdateFindings"
-                    ], 
+                    ],
                     "Resource": [
                         "*"
-                    ], 
-                    "Effect": "Allow"
-                }, 
+                    ]
+                },
                 {
-                    "Action": "securityhub:BatchUpdateFindings", 
-                    "Resource": "*", 
-                    "Effect": "Deny", 
+                    "Effect": "Deny",
+                    "Action": "securityhub:BatchUpdateFindings",
+                    "Resource": "*",
                     "Condition": {
                         "StringEquals": {
                             "securityhub:ASFFSyntaxPath/Workflow.Status": "SUPPRESSED"
                         }
                     }
-                }, 
+                },
                 {
-                    "Action": "securityhub:BatchUpdateFindings", 
-                    "Resource": "*", 
-                    "Effect": "Deny", 
+                    "Effect": "Deny",
+                    "Action": "securityhub:BatchUpdateFindings",
+                    "Resource": "*",
                     "Condition": {
                         "Null": {
                             "securityhub:ASFFSyntaxPath/Confidence": false
                         }
                     }
-                }, 
+                },
                 {
-                    "Action": "securityhub:BatchUpdateFindings", 
-                    "Resource": "*", 
-                    "Effect": "Deny", 
+                    "Effect": "Deny",
+                    "Action": "securityhub:BatchUpdateFindings",
+                    "Resource": "*",
                     "Condition": {
                         "Null": {
                             "securityhub:ASFFSyntaxPath/Criticality": false
                         }
                     }
-                }, 
+                },
                 {
-                    "Action": "securityhub:BatchUpdateFindings", 
-                    "Resource": "*", 
-                    "Effect": "Deny", 
+                    "Effect": "Deny",
+                    "Action": "securityhub:BatchUpdateFindings",
+                    "Resource": "*",
                     "Condition": {
                         "Null": {
                             "securityhub:ASFFSyntaxPath/Note.Text": false
                         }
                     }
-                }, 
+                },
                 {
-                    "Action": "securityhub:BatchUpdateFindings", 
-                    "Resource": "*", 
-                    "Effect": "Deny", 
+                    "Effect": "Deny",
+                    "Action": "securityhub:BatchUpdateFindings",
+                    "Resource": "*",
                     "Condition": {
                         "Null": {
                             "securityhub:ASFFSyntaxPath/Note.UpdatedBy": false
                         }
                     }
-                }, 
+                },
                 {
-                    "Action": "securityhub:BatchUpdateFindings", 
-                    "Resource": "*", 
-                    "Effect": "Deny", 
+                    "Effect": "Deny",
+                    "Action": "securityhub:BatchUpdateFindings",
+                    "Resource": "*",
                     "Condition": {
                         "Null": {
                             "securityhub:ASFFSyntaxPath/RelatedFindings": false
                         }
                     }
-                }, 
+                },
                 {
-                    "Action": "securityhub:BatchUpdateFindings", 
-                    "Resource": "*", 
-                    "Effect": "Deny", 
+                    "Effect": "Deny",
+                    "Action": "securityhub:BatchUpdateFindings",
+                    "Resource": "*",
                     "Condition": {
                         "Null": {
                             "securityhub:ASFFSyntaxPath/Types": false
                         }
                     }
-                }, 
+                },
                 {
-                    "Action": "securityhub:BatchUpdateFindings", 
-                    "Resource": "*", 
-                    "Effect": "Deny", 
+                    "Effect": "Deny",
+                    "Action": "securityhub:BatchUpdateFindings",
+                    "Resource": "*",
                     "Condition": {
                         "Null": {
                             "securityhub:ASFFSyntaxPath/UserDefinedFields.key": false
                         }
                     }
-                }, 
+                },
                 {
-                    "Action": "securityhub:BatchUpdateFindings", 
-                    "Resource": "*", 
-                    "Effect": "Deny", 
+                    "Effect": "Deny",
+                    "Action": "securityhub:BatchUpdateFindings",
+                    "Resource": "*",
                     "Condition": {
                         "Null": {
                             "securityhub:ASFFSyntaxPath/UserDefinedFields.value": false
                         }
                     }
-                }, 
+                },
                 {
-                    "Action": "securityhub:BatchUpdateFindings", 
-                    "Resource": "*", 
-                    "Effect": "Deny", 
+                    "Effect": "Deny",
+                    "Action": "securityhub:BatchUpdateFindings",
+                    "Resource": "*",
                     "Condition": {
                         "Null": {
                             "securityhub:ASFFSyntaxPath/VerificationState": false
@@ -154,7 +152,9 @@
                     }
                 }
             ]
-        }, 
-        "IsDefaultVersion": true
+        },
+        "VersionId": "v2",
+        "IsDefaultVersion": true,
+        "CreateDate": "2023-06-28T22:53:43+00:00"
     }
 }
