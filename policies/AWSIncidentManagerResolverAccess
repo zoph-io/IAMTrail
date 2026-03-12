@@ -1,47 +1,47 @@
 {
     "PolicyVersion": {
-        "CreateDate": "2026-02-12T18:01:23Z", 
-        "VersionId": "v4", 
         "Document": {
-            "Version": "2012-10-17", 
+            "Version": "2012-10-17",
             "Statement": [
                 {
+                    "Sid": "StartIncidentPermissions",
+                    "Effect": "Allow",
                     "Action": [
-                        "ssm-incidents:StartIncident", 
+                        "ssm-incidents:StartIncident",
                         "ssm-contacts:StartEngagement"
-                    ], 
-                    "Resource": "*", 
-                    "Effect": "Allow", 
-                    "Sid": "StartIncidentPermissions"
-                }, 
+                    ],
+                    "Resource": "*"
+                },
                 {
+                    "Sid": "ResponsePlanReadOnlyPermissions",
+                    "Effect": "Allow",
                     "Action": [
-                        "ssm-incidents:ListResponsePlans", 
+                        "ssm-incidents:ListResponsePlans",
                         "ssm-incidents:GetResponsePlan"
-                    ], 
-                    "Resource": "*", 
-                    "Effect": "Allow", 
-                    "Sid": "ResponsePlanReadOnlyPermissions"
-                }, 
+                    ],
+                    "Resource": "*"
+                },
                 {
+                    "Sid": "IncidentRecordResolverPermissions",
+                    "Effect": "Allow",
                     "Action": [
-                        "ssm-incidents:ListIncidentRecords", 
-                        "ssm-incidents:GetIncidentRecord", 
-                        "ssm-incidents:UpdateIncidentRecord", 
-                        "ssm-incidents:ListTimelineEvents", 
-                        "ssm-incidents:CreateTimelineEvent", 
-                        "ssm-incidents:GetTimelineEvent", 
-                        "ssm-incidents:UpdateTimelineEvent", 
-                        "ssm-incidents:DeleteTimelineEvent", 
-                        "ssm-incidents:ListRelatedItems", 
+                        "ssm-incidents:ListIncidentRecords",
+                        "ssm-incidents:GetIncidentRecord",
+                        "ssm-incidents:UpdateIncidentRecord",
+                        "ssm-incidents:ListTimelineEvents",
+                        "ssm-incidents:CreateTimelineEvent",
+                        "ssm-incidents:GetTimelineEvent",
+                        "ssm-incidents:UpdateTimelineEvent",
+                        "ssm-incidents:DeleteTimelineEvent",
+                        "ssm-incidents:ListRelatedItems",
                         "ssm-incidents:UpdateRelatedItems"
-                    ], 
-                    "Resource": "*", 
-                    "Effect": "Allow", 
-                    "Sid": "IncidentRecordResolverPermissions"
+                    ],
+                    "Resource": "*"
                 }
             ]
-        }, 
-        "IsDefaultVersion": true
+        },
+        "VersionId": "v4",
+        "IsDefaultVersion": true,
+        "CreateDate": "2026-02-12T18:01:23+00:00"
     }
 }
