@@ -1,45 +1,45 @@
 {
     "PolicyVersion": {
-        "CreateDate": "2026-02-12T18:00:18Z", 
-        "VersionId": "v3", 
         "Document": {
-            "Version": "2012-10-17", 
+            "Version": "2012-10-17",
             "Statement": [
                 {
+                    "Sid": "GitLabDuoUsagePermissions",
+                    "Effect": "Allow",
                     "Action": [
-                        "q:SendEvent", 
-                        "q:CreateAuthGrant", 
-                        "q:UpdateAuthGrant", 
-                        "q:GenerateCodeRecommendations", 
-                        "q:SendMessage", 
-                        "q:ListPlugins", 
+                        "q:SendEvent",
+                        "q:CreateAuthGrant",
+                        "q:UpdateAuthGrant",
+                        "q:GenerateCodeRecommendations",
+                        "q:SendMessage",
+                        "q:ListPlugins",
                         "q:VerifyOAuthAppConnection"
-                    ], 
-                    "Resource": "*", 
-                    "Effect": "Allow", 
-                    "Sid": "GitLabDuoUsagePermissions"
-                }, 
+                    ],
+                    "Resource": "*"
+                },
                 {
+                    "Sid": "GitLabDuoManagementPermissions",
+                    "Effect": "Allow",
                     "Action": [
-                        "q:CreateOAuthAppConnection", 
+                        "q:CreateOAuthAppConnection",
                         "q:DeleteOAuthAppConnection"
-                    ], 
-                    "Resource": "*", 
-                    "Effect": "Allow", 
-                    "Sid": "GitLabDuoManagementPermissions"
-                }, 
+                    ],
+                    "Resource": "*"
+                },
                 {
+                    "Sid": "GitLabDuoPluginPermissions",
+                    "Effect": "Allow",
                     "Action": [
-                        "q:CreatePlugin", 
-                        "q:DeletePlugin", 
+                        "q:CreatePlugin",
+                        "q:DeletePlugin",
                         "q:GetPlugin"
-                    ], 
-                    "Resource": "arn:aws:qdeveloper:*:*:plugin/GitLabDuoWithAmazonQ/*", 
-                    "Effect": "Allow", 
-                    "Sid": "GitLabDuoPluginPermissions"
+                    ],
+                    "Resource": "arn:aws:qdeveloper:*:*:plugin/GitLabDuoWithAmazonQ/*"
                 }
             ]
-        }, 
-        "IsDefaultVersion": true
+        },
+        "VersionId": "v3",
+        "IsDefaultVersion": true,
+        "CreateDate": "2026-02-12T18:00:18+00:00"
     }
 }
