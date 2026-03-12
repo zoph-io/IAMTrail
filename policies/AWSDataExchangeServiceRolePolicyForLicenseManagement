@@ -1,26 +1,26 @@
 {
     "PolicyVersion": {
-        "CreateDate": "2024-10-10T14:54:27Z", 
-        "VersionId": "v1", 
         "Document": {
-            "Version": "2012-10-17", 
+            "Version": "2012-10-17",
             "Statement": [
                 {
+                    "Sid": "AllowLicenseManagerActions",
+                    "Effect": "Allow",
                     "Action": [
-                        "organizations:DescribeOrganization", 
-                        "license-manager:ListDistributedGrants", 
-                        "license-manager:GetGrant", 
-                        "license-manager:CreateGrantVersion", 
+                        "organizations:DescribeOrganization",
+                        "license-manager:ListDistributedGrants",
+                        "license-manager:GetGrant",
+                        "license-manager:CreateGrantVersion",
                         "license-manager:DeleteGrant"
-                    ], 
+                    ],
                     "Resource": [
                         "*"
-                    ], 
-                    "Effect": "Allow", 
-                    "Sid": "AllowLicenseManagerActions"
+                    ]
                 }
             ]
-        }, 
-        "IsDefaultVersion": true
+        },
+        "VersionId": "v1",
+        "IsDefaultVersion": true,
+        "CreateDate": "2024-10-10T14:54:27+00:00"
     }
 }
