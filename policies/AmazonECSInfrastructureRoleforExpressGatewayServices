@@ -1,281 +1,281 @@
 {
     "PolicyVersion": {
-        "CreateDate": "2026-02-12T18:01:54Z", 
-        "VersionId": "v6", 
         "Document": {
-            "Version": "2012-10-17", 
+            "Version": "2012-10-17",
             "Statement": [
                 {
-                    "Action": "iam:CreateServiceLinkedRole", 
-                    "Resource": "*", 
-                    "Effect": "Allow", 
+                    "Sid": "ServiceLinkedRoleCreateOperations",
+                    "Effect": "Allow",
+                    "Action": "iam:CreateServiceLinkedRole",
+                    "Resource": "*",
                     "Condition": {
                         "StringEquals": {
                             "iam:AWSServiceName": [
-                                "ecs.application-autoscaling.amazonaws.com", 
+                                "ecs.application-autoscaling.amazonaws.com",
                                 "elasticloadbalancing.amazonaws.com"
                             ]
                         }
-                    }, 
-                    "Sid": "ServiceLinkedRoleCreateOperations"
-                }, 
+                    }
+                },
                 {
+                    "Sid": "ELBOperations",
+                    "Effect": "Allow",
                     "Action": [
-                        "elasticloadbalancing:CreateListener", 
-                        "elasticloadbalancing:CreateLoadBalancer", 
-                        "elasticloadbalancing:CreateRule", 
-                        "elasticloadbalancing:CreateTargetGroup", 
-                        "elasticloadbalancing:ModifyListener", 
-                        "elasticloadbalancing:ModifyRule", 
-                        "elasticloadbalancing:AddListenerCertificates", 
-                        "elasticloadbalancing:RemoveListenerCertificates", 
-                        "elasticloadbalancing:RegisterTargets", 
-                        "elasticloadbalancing:DeregisterTargets", 
-                        "elasticloadbalancing:DeleteTargetGroup", 
-                        "elasticloadbalancing:DeleteLoadBalancer", 
-                        "elasticloadbalancing:DeleteRule", 
+                        "elasticloadbalancing:CreateListener",
+                        "elasticloadbalancing:CreateLoadBalancer",
+                        "elasticloadbalancing:CreateRule",
+                        "elasticloadbalancing:CreateTargetGroup",
+                        "elasticloadbalancing:ModifyListener",
+                        "elasticloadbalancing:ModifyRule",
+                        "elasticloadbalancing:AddListenerCertificates",
+                        "elasticloadbalancing:RemoveListenerCertificates",
+                        "elasticloadbalancing:RegisterTargets",
+                        "elasticloadbalancing:DeregisterTargets",
+                        "elasticloadbalancing:DeleteTargetGroup",
+                        "elasticloadbalancing:DeleteLoadBalancer",
+                        "elasticloadbalancing:DeleteRule",
                         "elasticloadbalancing:DeleteListener"
-                    ], 
+                    ],
                     "Resource": [
-                        "arn:aws:elasticloadbalancing:*:*:loadbalancer/app/*/*", 
-                        "arn:aws:elasticloadbalancing:*:*:listener/app/*/*/*", 
-                        "arn:aws:elasticloadbalancing:*:*:listener-rule/app/*/*/*/*", 
+                        "arn:aws:elasticloadbalancing:*:*:loadbalancer/app/*/*",
+                        "arn:aws:elasticloadbalancing:*:*:listener/app/*/*/*",
+                        "arn:aws:elasticloadbalancing:*:*:listener-rule/app/*/*/*/*",
                         "arn:aws:elasticloadbalancing:*:*:targetgroup/*/*"
-                    ], 
-                    "Effect": "Allow", 
+                    ],
                     "Condition": {
                         "StringEquals": {
                             "aws:ResourceTag/AmazonECSManaged": "true"
                         }
-                    }, 
-                    "Sid": "ELBOperations"
-                }, 
+                    }
+                },
                 {
-                    "Action": "elasticloadbalancing:AddTags", 
+                    "Sid": "TagOnCreateELBResources",
+                    "Effect": "Allow",
+                    "Action": "elasticloadbalancing:AddTags",
                     "Resource": [
-                        "arn:aws:elasticloadbalancing:*:*:loadbalancer/app/*/*", 
-                        "arn:aws:elasticloadbalancing:*:*:listener/app/*/*/*", 
-                        "arn:aws:elasticloadbalancing:*:*:listener-rule/app/*/*/*/*", 
+                        "arn:aws:elasticloadbalancing:*:*:loadbalancer/app/*/*",
+                        "arn:aws:elasticloadbalancing:*:*:listener/app/*/*/*",
+                        "arn:aws:elasticloadbalancing:*:*:listener-rule/app/*/*/*/*",
                         "arn:aws:elasticloadbalancing:*:*:targetgroup/*/*"
-                    ], 
-                    "Effect": "Allow", 
+                    ],
                     "Condition": {
                         "StringEquals": {
                             "elasticloadbalancing:CreateAction": [
-                                "CreateLoadBalancer", 
-                                "CreateListener", 
-                                "CreateRule", 
+                                "CreateLoadBalancer",
+                                "CreateListener",
+                                "CreateRule",
                                 "CreateTargetGroup"
                             ]
                         }
-                    }, 
-                    "Sid": "TagOnCreateELBResources"
-                }, 
+                    }
+                },
                 {
-                    "Action": "ec2:CreateSecurityGroup", 
-                    "Resource": "arn:aws:ec2:*:*:vpc/*", 
-                    "Effect": "Allow", 
-                    "Sid": "BlanketAllowCreateSecurityGroupsInVPCs"
-                }, 
+                    "Sid": "BlanketAllowCreateSecurityGroupsInVPCs",
+                    "Effect": "Allow",
+                    "Action": "ec2:CreateSecurityGroup",
+                    "Resource": "arn:aws:ec2:*:*:vpc/*"
+                },
                 {
+                    "Sid": "CreateSecurityGroupResourcesWithTags",
+                    "Effect": "Allow",
                     "Action": [
-                        "ec2:CreateSecurityGroup", 
-                        "ec2:AuthorizeSecurityGroupEgress", 
+                        "ec2:CreateSecurityGroup",
+                        "ec2:AuthorizeSecurityGroupEgress",
                         "ec2:AuthorizeSecurityGroupIngress"
-                    ], 
+                    ],
                     "Resource": [
-                        "arn:aws:ec2:*:*:security-group/*", 
-                        "arn:aws:ec2:*:*:security-group-rule/*", 
+                        "arn:aws:ec2:*:*:security-group/*",
+                        "arn:aws:ec2:*:*:security-group-rule/*",
                         "arn:aws:ec2:*:*:vpc/*"
-                    ], 
-                    "Effect": "Allow", 
+                    ],
                     "Condition": {
                         "StringEquals": {
                             "aws:RequestTag/AmazonECSManaged": "true"
                         }
-                    }, 
-                    "Sid": "CreateSecurityGroupResourcesWithTags"
-                }, 
+                    }
+                },
                 {
+                    "Sid": "ModifySecurityGroupOperations",
+                    "Effect": "Allow",
                     "Action": [
-                        "ec2:AuthorizeSecurityGroupEgress", 
-                        "ec2:AuthorizeSecurityGroupIngress", 
-                        "ec2:DeleteSecurityGroup", 
-                        "ec2:RevokeSecurityGroupEgress", 
+                        "ec2:AuthorizeSecurityGroupEgress",
+                        "ec2:AuthorizeSecurityGroupIngress",
+                        "ec2:DeleteSecurityGroup",
+                        "ec2:RevokeSecurityGroupEgress",
                         "ec2:RevokeSecurityGroupIngress"
-                    ], 
+                    ],
                     "Resource": [
-                        "arn:aws:ec2:*:*:security-group/*", 
+                        "arn:aws:ec2:*:*:security-group/*",
                         "arn:aws:ec2:*:*:vpc/*"
-                    ], 
-                    "Effect": "Allow", 
+                    ],
                     "Condition": {
                         "StringEquals": {
                             "aws:ResourceTag/AmazonECSManaged": "true"
                         }
-                    }, 
-                    "Sid": "ModifySecurityGroupOperations"
-                }, 
+                    }
+                },
                 {
-                    "Action": "ec2:CreateTags", 
+                    "Sid": "TagOnCreateEC2Resources",
+                    "Effect": "Allow",
+                    "Action": "ec2:CreateTags",
                     "Resource": [
-                        "arn:aws:ec2:*:*:security-group/*", 
+                        "arn:aws:ec2:*:*:security-group/*",
                         "arn:aws:ec2:*:*:security-group-rule/*"
-                    ], 
-                    "Effect": "Allow", 
+                    ],
                     "Condition": {
                         "StringEquals": {
                             "ec2:CreateAction": [
-                                "CreateSecurityGroup", 
-                                "AuthorizeSecurityGroupIngress", 
+                                "CreateSecurityGroup",
+                                "AuthorizeSecurityGroupIngress",
                                 "AuthorizeSecurityGroupEgress"
                             ]
                         }
-                    }, 
-                    "Sid": "TagOnCreateEC2Resources"
-                }, 
+                    }
+                },
                 {
+                    "Sid": "CertificateOperations",
+                    "Effect": "Allow",
                     "Action": [
-                        "acm:RequestCertificate", 
-                        "acm:AddTagsToCertificate", 
-                        "acm:DeleteCertificate", 
+                        "acm:RequestCertificate",
+                        "acm:AddTagsToCertificate",
+                        "acm:DeleteCertificate",
                         "acm:DescribeCertificate"
-                    ], 
+                    ],
                     "Resource": [
                         "arn:aws:acm:*:*:certificate/*"
-                    ], 
-                    "Effect": "Allow", 
+                    ],
                     "Condition": {
                         "StringEquals": {
                             "aws:ResourceTag/AmazonECSManaged": "true"
                         }
-                    }, 
-                    "Sid": "CertificateOperations"
-                }, 
+                    }
+                },
                 {
+                    "Sid": "ApplicationAutoscalingCreateOperations",
+                    "Effect": "Allow",
                     "Action": [
-                        "application-autoscaling:RegisterScalableTarget", 
-                        "application-autoscaling:TagResource", 
+                        "application-autoscaling:RegisterScalableTarget",
+                        "application-autoscaling:TagResource",
                         "application-autoscaling:DeregisterScalableTarget"
-                    ], 
+                    ],
                     "Resource": [
                         "arn:aws:application-autoscaling:*:*:scalable-target/*"
-                    ], 
-                    "Effect": "Allow", 
+                    ],
                     "Condition": {
                         "StringEquals": {
                             "aws:ResourceTag/AmazonECSManaged": "true"
                         }
-                    }, 
-                    "Sid": "ApplicationAutoscalingCreateOperations"
-                }, 
+                    }
+                },
                 {
+                    "Sid": "ApplicationAutoscalingPolicyOperations",
+                    "Effect": "Allow",
                     "Action": [
-                        "application-autoscaling:PutScalingPolicy", 
+                        "application-autoscaling:PutScalingPolicy",
                         "application-autoscaling:DeleteScalingPolicy"
-                    ], 
+                    ],
                     "Resource": [
                         "arn:aws:application-autoscaling:*:*:scalable-target/*"
-                    ], 
-                    "Effect": "Allow", 
+                    ],
                     "Condition": {
                         "StringEquals": {
                             "application-autoscaling:service-namespace": "ecs"
                         }
-                    }, 
-                    "Sid": "ApplicationAutoscalingPolicyOperations"
-                }, 
+                    }
+                },
                 {
+                    "Sid": "ApplicationAutoscalingReadOperations",
+                    "Effect": "Allow",
                     "Action": [
-                        "application-autoscaling:DescribeScalableTargets", 
-                        "application-autoscaling:DescribeScalingPolicies", 
+                        "application-autoscaling:DescribeScalableTargets",
+                        "application-autoscaling:DescribeScalingPolicies",
                         "application-autoscaling:DescribeScalingActivities"
-                    ], 
+                    ],
                     "Resource": [
                         "arn:aws:application-autoscaling:*:*:scalable-target/*"
-                    ], 
-                    "Effect": "Allow", 
-                    "Sid": "ApplicationAutoscalingReadOperations"
-                }, 
+                    ]
+                },
                 {
+                    "Sid": "CloudWatchAlarmCreateOperations",
+                    "Effect": "Allow",
                     "Action": [
-                        "cloudwatch:PutMetricAlarm", 
+                        "cloudwatch:PutMetricAlarm",
                         "cloudwatch:TagResource"
-                    ], 
+                    ],
                     "Resource": [
                         "arn:aws:cloudwatch:*:*:alarm:*"
-                    ], 
-                    "Effect": "Allow", 
+                    ],
                     "Condition": {
                         "StringEquals": {
                             "aws:RequestTag/AmazonECSManaged": "true"
                         }
-                    }, 
-                    "Sid": "CloudWatchAlarmCreateOperations"
-                }, 
+                    }
+                },
                 {
+                    "Sid": "CloudWatchAlarmOperations",
+                    "Effect": "Allow",
                     "Action": [
-                        "cloudwatch:DeleteAlarms", 
+                        "cloudwatch:DeleteAlarms",
                         "cloudwatch:DescribeAlarms"
-                    ], 
+                    ],
                     "Resource": [
                         "arn:aws:cloudwatch:*:*:alarm:*"
-                    ], 
-                    "Effect": "Allow", 
+                    ],
                     "Condition": {
                         "StringEquals": {
                             "aws:ResourceTag/AmazonECSManaged": "true"
                         }
-                    }, 
-                    "Sid": "CloudWatchAlarmOperations"
-                }, 
+                    }
+                },
                 {
+                    "Sid": "ELBReadOperations",
+                    "Effect": "Allow",
                     "Action": [
-                        "elasticloadbalancing:DescribeLoadBalancers", 
-                        "elasticloadbalancing:DescribeTargetGroups", 
-                        "elasticloadbalancing:DescribeTargetHealth", 
-                        "elasticloadbalancing:DescribeListeners", 
+                        "elasticloadbalancing:DescribeLoadBalancers",
+                        "elasticloadbalancing:DescribeTargetGroups",
+                        "elasticloadbalancing:DescribeTargetHealth",
+                        "elasticloadbalancing:DescribeListeners",
                         "elasticloadbalancing:DescribeRules"
-                    ], 
-                    "Resource": "*", 
-                    "Effect": "Allow", 
-                    "Sid": "ELBReadOperations"
-                }, 
+                    ],
+                    "Resource": "*"
+                },
                 {
+                    "Sid": "VPCReadOperations",
+                    "Effect": "Allow",
                     "Action": [
-                        "ec2:DescribeSecurityGroups", 
-                        "ec2:DescribeSubnets", 
-                        "ec2:DescribeRouteTables", 
+                        "ec2:DescribeSecurityGroups",
+                        "ec2:DescribeSubnets",
+                        "ec2:DescribeRouteTables",
                         "ec2:DescribeVpcs"
-                    ], 
-                    "Resource": "*", 
-                    "Effect": "Allow", 
-                    "Sid": "VPCReadOperations"
-                }, 
+                    ],
+                    "Resource": "*"
+                },
                 {
+                    "Sid": "CloudWatchLogsCreateOperations",
+                    "Effect": "Allow",
                     "Action": [
-                        "logs:CreateLogGroup", 
+                        "logs:CreateLogGroup",
                         "logs:TagResource"
-                    ], 
-                    "Resource": "arn:aws:logs:*:*:log-group:*", 
-                    "Effect": "Allow", 
+                    ],
+                    "Resource": "arn:aws:logs:*:*:log-group:*",
                     "Condition": {
                         "StringEquals": {
                             "aws:RequestTag/AmazonECSManaged": "true"
                         }
-                    }, 
-                    "Sid": "CloudWatchLogsCreateOperations"
-                }, 
+                    }
+                },
                 {
+                    "Sid": "CloudWatchLogsReadOperations",
+                    "Effect": "Allow",
                     "Action": [
                         "logs:DescribeLogGroups"
-                    ], 
-                    "Resource": "*", 
-                    "Effect": "Allow", 
-                    "Sid": "CloudWatchLogsReadOperations"
+                    ],
+                    "Resource": "*"
                 }
             ]
-        }, 
-        "IsDefaultVersion": true
+        },
+        "VersionId": "v6",
+        "IsDefaultVersion": true,
+        "CreateDate": "2026-02-12T18:01:54+00:00"
     }
 }
