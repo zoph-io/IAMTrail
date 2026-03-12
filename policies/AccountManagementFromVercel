@@ -1,30 +1,28 @@
 {
     "PolicyVersion": {
-        "CreateDate": "2026-02-12T18:00:32Z", 
-        "VersionId": "v3", 
         "Document": {
-            "Version": "2012-10-17", 
+            "Version": "2012-10-17",
             "Statement": [
                 {
+                    "Effect": "Allow",
                     "Action": [
-                        "account:CloseAccount", 
-                        "bcm-recommended-actions:ListRecommendedActions", 
-                        "ce:GetCostAndUsage", 
-                        "cur:GetUsageReport", 
-                        "iam:ListSAMLProviders", 
-                        "freetier:GetFreeTierUsage", 
+                        "account:CloseAccount",
+                        "bcm-recommended-actions:ListRecommendedActions",
+                        "ce:GetCostAndUsage",
+                        "cur:GetUsageReport",
+                        "iam:ListSAMLProviders",
+                        "freetier:GetFreeTierUsage",
                         "freetier:GetAccountPlanState"
-                    ], 
-                    "Resource": "*", 
-                    "Effect": "Allow"
-                }, 
+                    ],
+                    "Resource": "*"
+                },
                 {
+                    "Effect": "Allow",
                     "Action": [
-                        "iam:UpdateSamlProvider", 
+                        "iam:UpdateSamlProvider",
                         "iam:GetSamlProvider"
-                    ], 
-                    "Resource": "*", 
-                    "Effect": "Allow", 
+                    ],
+                    "Resource": "*",
                     "Condition": {
                         "StringEquals": {
                             "aws:ResourceTag/VercelInstallId": "${aws:PrincipalTag/VercelInstallId}"
@@ -32,7 +30,9 @@
                     }
                 }
             ]
-        }, 
-        "IsDefaultVersion": true
+        },
+        "VersionId": "v3",
+        "IsDefaultVersion": true,
+        "CreateDate": "2026-02-12T18:00:32+00:00"
     }
 }
