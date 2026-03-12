@@ -1,27 +1,27 @@
 {
     "PolicyVersion": {
-        "CreateDate": "2025-10-16T04:04:07Z", 
-        "VersionId": "v2", 
         "Document": {
-            "Version": "2012-10-17", 
+            "Version": "2012-10-17",
             "Statement": [
                 {
+                    "Effect": "Allow",
                     "Action": [
                         "cloudwatch:PutMetricData"
-                    ], 
-                    "Resource": "*", 
-                    "Effect": "Allow", 
+                    ],
+                    "Resource": "*",
                     "Condition": {
                         "StringEquals": {
                             "cloudwatch:namespace": [
-                                "AWS/IoTFleetWise", 
+                                "AWS/IoTFleetWise",
                                 "AWS/Usage"
                             ]
                         }
                     }
                 }
             ]
-        }, 
-        "IsDefaultVersion": true
+        },
+        "VersionId": "v2",
+        "IsDefaultVersion": true,
+        "CreateDate": "2025-10-16T04:04:07+00:00"
     }
 }
