@@ -1,64 +1,64 @@
 {
     "PolicyVersion": {
-        "CreateDate": "2026-02-12T17:59:19Z", 
-        "VersionId": "v9", 
         "Document": {
-            "Version": "2012-10-17", 
+            "Version": "2012-10-17",
             "Statement": [
                 {
+                    "Sid": "ComputeOptimizerFullAccess",
+                    "Effect": "Allow",
                     "Action": [
                         "compute-optimizer:*"
-                    ], 
-                    "Resource": "*", 
-                    "Effect": "Allow", 
-                    "Sid": "ComputeOptimizerFullAccess"
-                }, 
+                    ],
+                    "Resource": "*"
+                },
                 {
+                    "Sid": "AwsOrgsAccess",
+                    "Effect": "Allow",
                     "Action": [
-                        "organizations:DescribeOrganization", 
-                        "organizations:ListAccounts", 
-                        "organizations:ListAWSServiceAccessForOrganization", 
+                        "organizations:DescribeOrganization",
+                        "organizations:ListAccounts",
+                        "organizations:ListAWSServiceAccessForOrganization",
                         "organizations:ListDelegatedAdministrators"
-                    ], 
+                    ],
                     "Resource": [
                         "*"
-                    ], 
-                    "Effect": "Allow", 
-                    "Sid": "AwsOrgsAccess"
-                }, 
+                    ]
+                },
                 {
+                    "Sid": "CloudWatchAccess",
+                    "Effect": "Allow",
                     "Action": [
-                        "cloudwatch:GetMetricData", 
+                        "cloudwatch:GetMetricData",
                         "cloudwatch:DescribeAlarms"
-                    ], 
-                    "Resource": "*", 
-                    "Effect": "Allow", 
-                    "Sid": "CloudWatchAccess"
-                }, 
+                    ],
+                    "Resource": "*"
+                },
                 {
+                    "Sid": "AutoScalingAccess",
+                    "Effect": "Allow",
                     "Action": [
-                        "autoscaling:DescribeAutoScalingInstances", 
-                        "autoscaling:DescribeAutoScalingGroups", 
-                        "autoscaling:DescribePolicies", 
+                        "autoscaling:DescribeAutoScalingInstances",
+                        "autoscaling:DescribeAutoScalingGroups",
+                        "autoscaling:DescribePolicies",
                         "autoscaling:DescribeScheduledActions"
-                    ], 
-                    "Resource": "*", 
-                    "Effect": "Allow", 
-                    "Sid": "AutoScalingAccess"
-                }, 
+                    ],
+                    "Resource": "*"
+                },
                 {
+                    "Sid": "Ec2Access",
+                    "Effect": "Allow",
                     "Action": [
-                        "ec2:DescribeInstances", 
-                        "ec2:DescribeVolumes", 
-                        "ec2:DescribeNatGateways", 
+                        "ec2:DescribeInstances",
+                        "ec2:DescribeVolumes",
+                        "ec2:DescribeNatGateways",
                         "ec2:DescribeRouteTables"
-                    ], 
-                    "Resource": "*", 
-                    "Effect": "Allow", 
-                    "Sid": "Ec2Access"
+                    ],
+                    "Resource": "*"
                 }
             ]
-        }, 
-        "IsDefaultVersion": true
+        },
+        "VersionId": "v9",
+        "IsDefaultVersion": true,
+        "CreateDate": "2026-02-12T17:59:19+00:00"
     }
 }
