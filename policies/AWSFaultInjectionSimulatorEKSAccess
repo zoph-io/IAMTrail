@@ -1,50 +1,50 @@
 {
     "PolicyVersion": {
-        "CreateDate": "2026-02-12T17:58:33Z", 
-        "VersionId": "v6", 
         "Document": {
-            "Version": "2012-10-17", 
+            "Version": "2012-10-17",
             "Statement": [
                 {
-                    "Action": "ec2:DescribeInstances", 
-                    "Resource": "*", 
-                    "Effect": "Allow", 
-                    "Sid": "DescribeInstances"
-                }, 
+                    "Sid": "DescribeInstances",
+                    "Effect": "Allow",
+                    "Action": "ec2:DescribeInstances",
+                    "Resource": "*"
+                },
                 {
-                    "Action": "ec2:TerminateInstances", 
-                    "Resource": "arn:aws:ec2:*:*:instance/*", 
-                    "Effect": "Allow", 
-                    "Sid": "TerminateInstances"
-                }, 
+                    "Sid": "TerminateInstances",
+                    "Effect": "Allow",
+                    "Action": "ec2:TerminateInstances",
+                    "Resource": "arn:aws:ec2:*:*:instance/*"
+                },
                 {
-                    "Action": "ec2:DescribeSubnets", 
-                    "Resource": "*", 
-                    "Effect": "Allow", 
-                    "Sid": "DescribeSubnets"
-                }, 
+                    "Sid": "DescribeSubnets",
+                    "Effect": "Allow",
+                    "Action": "ec2:DescribeSubnets",
+                    "Resource": "*"
+                },
                 {
-                    "Action": "eks:DescribeCluster", 
-                    "Resource": "arn:aws:eks:*:*:cluster/*", 
-                    "Effect": "Allow", 
-                    "Sid": "DescribeCluster"
-                }, 
+                    "Sid": "DescribeCluster",
+                    "Effect": "Allow",
+                    "Action": "eks:DescribeCluster",
+                    "Resource": "arn:aws:eks:*:*:cluster/*"
+                },
                 {
-                    "Action": "eks:DescribeNodegroup", 
-                    "Resource": "arn:aws:eks:*:*:nodegroup/*", 
-                    "Effect": "Allow", 
-                    "Sid": "DescribeNodeGroup"
-                }, 
+                    "Sid": "DescribeNodeGroup",
+                    "Effect": "Allow",
+                    "Action": "eks:DescribeNodegroup",
+                    "Resource": "arn:aws:eks:*:*:nodegroup/*"
+                },
                 {
+                    "Sid": "TargetResolutionByTags",
+                    "Effect": "Allow",
                     "Action": [
                         "tag:GetResources"
-                    ], 
-                    "Resource": "*", 
-                    "Effect": "Allow", 
-                    "Sid": "TargetResolutionByTags"
+                    ],
+                    "Resource": "*"
                 }
             ]
-        }, 
-        "IsDefaultVersion": true
+        },
+        "VersionId": "v6",
+        "IsDefaultVersion": true,
+        "CreateDate": "2026-02-12T17:58:33+00:00"
     }
 }
