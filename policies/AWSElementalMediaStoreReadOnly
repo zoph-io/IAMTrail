@@ -1,18 +1,16 @@
 {
     "PolicyVersion": {
-        "CreateDate": "2018-03-08T19:48:22Z", 
-        "VersionId": "v1", 
         "Document": {
-            "Version": "2012-10-17", 
+            "Version": "2012-10-17",
             "Statement": [
                 {
                     "Action": [
-                        "mediastore:Get*", 
-                        "mediastore:List*", 
+                        "mediastore:Get*",
+                        "mediastore:List*",
                         "mediastore:Describe*"
-                    ], 
-                    "Resource": "*", 
-                    "Effect": "Allow", 
+                    ],
+                    "Effect": "Allow",
+                    "Resource": "*",
                     "Condition": {
                         "Bool": {
                             "aws:SecureTransport": "true"
@@ -20,7 +18,9 @@
                     }
                 }
             ]
-        }, 
-        "IsDefaultVersion": true
+        },
+        "VersionId": "v1",
+        "IsDefaultVersion": true,
+        "CreateDate": "2018-03-08T19:48:22+00:00"
     }
 }
