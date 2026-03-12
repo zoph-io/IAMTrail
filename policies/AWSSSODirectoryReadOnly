@@ -1,41 +1,41 @@
 {
     "PolicyVersion": {
-        "CreateDate": "2026-02-12T17:58:41Z", 
-        "VersionId": "v7", 
         "Document": {
-            "Version": "2012-10-17", 
+            "Version": "2012-10-17",
             "Statement": [
                 {
+                    "Sid": "AWSSSODirectoryReadOnly",
+                    "Effect": "Allow",
                     "Action": [
-                        "sso-directory:Search*", 
-                        "sso-directory:Describe*", 
-                        "sso-directory:List*", 
-                        "sso-directory:Get*", 
-                        "identitystore:Describe*", 
-                        "identitystore:List*", 
-                        "identitystore-auth:ListSessions", 
+                        "sso-directory:Search*",
+                        "sso-directory:Describe*",
+                        "sso-directory:List*",
+                        "sso-directory:Get*",
+                        "identitystore:Describe*",
+                        "identitystore:List*",
+                        "identitystore-auth:ListSessions",
                         "identitystore-auth:BatchGetSession"
-                    ], 
-                    "Resource": "*", 
-                    "Effect": "Allow", 
-                    "Sid": "AWSSSODirectoryReadOnly"
-                }, 
+                    ],
+                    "Resource": "*"
+                },
                 {
+                    "Sid": "AllowKMSKeyUseViaAWSIdentityStoreService",
+                    "Effect": "Allow",
                     "Action": [
                         "kms:Decrypt"
-                    ], 
-                    "Resource": "*", 
-                    "Effect": "Allow", 
+                    ],
+                    "Resource": "*",
                     "Condition": {
                         "StringLike": {
-                            "kms:ViaService": "identitystore.*.amazonaws.com", 
+                            "kms:ViaService": "identitystore.*.amazonaws.com",
                             "kms:EncryptionContext:aws:identitystore:identitystore-arn": "*"
                         }
-                    }, 
-                    "Sid": "AllowKMSKeyUseViaAWSIdentityStoreService"
+                    }
                 }
             ]
-        }, 
-        "IsDefaultVersion": true
+        },
+        "VersionId": "v7",
+        "IsDefaultVersion": true,
+        "CreateDate": "2026-02-12T17:58:41+00:00"
     }
 }
