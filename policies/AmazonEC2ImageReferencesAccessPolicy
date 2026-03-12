@@ -1,28 +1,26 @@
 {
     "PolicyVersion": {
-        "CreateDate": "2026-02-12T17:59:36Z", 
-        "VersionId": "v3", 
         "Document": {
-            "Version": "2012-10-17", 
+            "Version": "2012-10-17",
             "Statement": [
                 {
-                    "Action": "ec2:DescribeImageReferences", 
-                    "Resource": "*", 
-                    "Effect": "Allow"
-                }, 
+                    "Effect": "Allow",
+                    "Action": "ec2:DescribeImageReferences",
+                    "Resource": "*"
+                },
                 {
+                    "Effect": "Allow",
                     "Action": [
-                        "ec2:DescribeInstances", 
-                        "ec2:DescribeLaunchTemplates", 
-                        "ec2:DescribeLaunchTemplateVersions", 
-                        "ssm:DescribeParameters", 
-                        "ssm:GetParameters", 
-                        "imagebuilder:ListImageRecipes", 
-                        "imagebuilder:ListContainerRecipes", 
+                        "ec2:DescribeInstances",
+                        "ec2:DescribeLaunchTemplates",
+                        "ec2:DescribeLaunchTemplateVersions",
+                        "ssm:DescribeParameters",
+                        "ssm:GetParameters",
+                        "imagebuilder:ListImageRecipes",
+                        "imagebuilder:ListContainerRecipes",
                         "imagebuilder:GetContainerRecipe"
-                    ], 
-                    "Resource": "*", 
-                    "Effect": "Allow", 
+                    ],
+                    "Resource": "*",
                     "Condition": {
                         "ForAnyValue:StringEquals": {
                             "aws:CalledVia": [
@@ -32,7 +30,9 @@
                     }
                 }
             ]
-        }, 
-        "IsDefaultVersion": true
+        },
+        "VersionId": "v3",
+        "IsDefaultVersion": true,
+        "CreateDate": "2026-02-12T17:59:36+00:00"
     }
 }
