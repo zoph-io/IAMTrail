@@ -1,58 +1,58 @@
 {
     "PolicyVersion": {
-        "CreateDate": "2026-02-12T17:59:25Z", 
-        "VersionId": "v7", 
         "Document": {
-            "Version": "2012-10-17", 
+            "Version": "2012-10-17",
             "Statement": [
                 {
+                    "Sid": "AllowThinClientFullAccess",
+                    "Effect": "Allow",
                     "Action": [
                         "thinclient:*"
-                    ], 
-                    "Resource": "*", 
-                    "Effect": "Allow", 
-                    "Sid": "AllowThinClientFullAccess"
-                }, 
+                    ],
+                    "Resource": "*"
+                },
                 {
+                    "Sid": "AllowWorkSpacesAccess",
+                    "Effect": "Allow",
                     "Action": [
-                        "workspaces:DescribeConnectionAliases", 
+                        "workspaces:DescribeConnectionAliases",
                         "workspaces:DescribeWorkspaceDirectories"
-                    ], 
-                    "Resource": "*", 
-                    "Effect": "Allow", 
-                    "Sid": "AllowWorkSpacesAccess"
-                }, 
+                    ],
+                    "Resource": "*"
+                },
                 {
+                    "Sid": "AllowWorkSpacesSecureBrowserAccess",
+                    "Effect": "Allow",
                     "Action": [
-                        "workspaces-web:GetPortal", 
-                        "workspaces-web:GetUserSettings", 
+                        "workspaces-web:GetPortal",
+                        "workspaces-web:GetUserSettings",
                         "workspaces-web:ListPortals"
-                    ], 
-                    "Resource": "*", 
-                    "Effect": "Allow", 
-                    "Sid": "AllowWorkSpacesSecureBrowserAccess"
-                }, 
+                    ],
+                    "Resource": "*"
+                },
                 {
+                    "Sid": "AllowAppStreamAccess",
+                    "Effect": "Allow",
                     "Action": [
                         "appstream:DescribeStacks"
-                    ], 
-                    "Resource": "*", 
-                    "Effect": "Allow", 
-                    "Sid": "AllowAppStreamAccess"
-                }, 
+                    ],
+                    "Resource": "*"
+                },
                 {
-                    "Action": "iam:CreateServiceLinkedRole", 
-                    "Resource": "arn:aws:iam::*:role/aws-service-role/monitoring.thinclient.amazonaws.com/AWSServiceRoleForAmazonWorkSpacesThinClientMonitoring", 
-                    "Effect": "Allow", 
+                    "Sid": "AllowCreateServiceLinkedRole",
+                    "Effect": "Allow",
+                    "Action": "iam:CreateServiceLinkedRole",
+                    "Resource": "arn:aws:iam::*:role/aws-service-role/monitoring.thinclient.amazonaws.com/AWSServiceRoleForAmazonWorkSpacesThinClientMonitoring",
                     "Condition": {
                         "StringEquals": {
                             "iam:AWSServiceName": "monitoring.thinclient.amazonaws.com"
                         }
-                    }, 
-                    "Sid": "AllowCreateServiceLinkedRole"
+                    }
                 }
             ]
-        }, 
-        "IsDefaultVersion": true
+        },
+        "VersionId": "v7",
+        "IsDefaultVersion": true,
+        "CreateDate": "2026-02-12T17:59:25+00:00"
     }
 }
