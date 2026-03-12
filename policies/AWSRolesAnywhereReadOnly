@@ -1,66 +1,66 @@
 {
     "PolicyVersion": {
-        "CreateDate": "2026-02-12T18:00:43Z", 
-        "VersionId": "v3", 
         "Document": {
-            "Version": "2012-10-17", 
+            "Version": "2012-10-17",
             "Statement": [
                 {
+                    "Sid": "Profiles",
+                    "Effect": "Allow",
                     "Action": [
-                        "rolesanywhere:ListProfiles", 
+                        "rolesanywhere:ListProfiles",
                         "rolesanywhere:GetProfile"
-                    ], 
+                    ],
                     "Resource": [
                         "arn:aws:rolesanywhere:*:*:profile/*"
-                    ], 
-                    "Effect": "Allow", 
-                    "Sid": "Profiles"
-                }, 
+                    ]
+                },
                 {
+                    "Sid": "CRLs",
+                    "Effect": "Allow",
                     "Action": [
-                        "rolesanywhere:ListCrls", 
+                        "rolesanywhere:ListCrls",
                         "rolesanywhere:GetCrl"
-                    ], 
+                    ],
                     "Resource": [
                         "arn:aws:rolesanywhere:*:*:crl/*"
-                    ], 
-                    "Effect": "Allow", 
-                    "Sid": "CRLs"
-                }, 
+                    ]
+                },
                 {
+                    "Sid": "Subjects",
+                    "Effect": "Allow",
                     "Action": [
-                        "rolesanywhere:ListSubjects", 
+                        "rolesanywhere:ListSubjects",
                         "rolesanywhere:GetSubject"
-                    ], 
+                    ],
                     "Resource": [
                         "arn:aws:rolesanywhere:*:*:subject/*"
-                    ], 
-                    "Effect": "Allow", 
-                    "Sid": "Subjects"
-                }, 
+                    ]
+                },
                 {
+                    "Sid": "TrustAnchors",
+                    "Effect": "Allow",
                     "Action": [
-                        "rolesanywhere:ListTrustAnchors", 
+                        "rolesanywhere:ListTrustAnchors",
                         "rolesanywhere:GetTrustAnchor"
-                    ], 
+                    ],
                     "Resource": [
                         "arn:aws:rolesanywhere:*:*:trust-anchor/*"
-                    ], 
-                    "Effect": "Allow", 
-                    "Sid": "TrustAnchors"
-                }, 
+                    ]
+                },
                 {
+                    "Sid": "Tags",
+                    "Effect": "Allow",
                     "Action": [
                         "rolesanywhere:ListTagsForResource"
-                    ], 
+                    ],
                     "Resource": [
                         "*"
-                    ], 
-                    "Effect": "Allow", 
-                    "Sid": "Tags"
+                    ]
                 }
             ]
-        }, 
-        "IsDefaultVersion": true
+        },
+        "VersionId": "v3",
+        "IsDefaultVersion": true,
+        "CreateDate": "2026-02-12T18:00:43+00:00"
     }
 }
