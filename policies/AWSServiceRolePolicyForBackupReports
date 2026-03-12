@@ -1,54 +1,54 @@
 {
     "PolicyVersion": {
-        "CreateDate": "2023-03-10T00:51:25Z", 
-        "VersionId": "v2", 
         "Document": {
-            "Version": "2012-10-17", 
+            "Version": "2012-10-17",
             "Statement": [
                 {
+                    "Effect": "Allow",
                     "Action": [
-                        "backup:DescribeFramework", 
-                        "backup:ListBackupJobs", 
-                        "backup:ListRestoreJobs", 
+                        "backup:DescribeFramework",
+                        "backup:ListBackupJobs",
+                        "backup:ListRestoreJobs",
                         "backup:ListCopyJobs"
-                    ], 
-                    "Resource": "*", 
-                    "Effect": "Allow"
-                }, 
+                    ],
+                    "Resource": "*"
+                },
                 {
+                    "Effect": "Allow",
                     "Action": [
-                        "config:DescribeConfigurationRecorders", 
-                        "config:DescribeConfigurationRecorderStatus", 
-                        "config:BatchGetResourceConfig", 
-                        "config:SelectResourceConfig", 
-                        "config:DescribeConfigurationAggregators", 
-                        "config:SelectAggregateResourceConfig", 
-                        "config:DescribeConfigRuleEvaluationStatus", 
-                        "config:DescribeConfigRules", 
+                        "config:DescribeConfigurationRecorders",
+                        "config:DescribeConfigurationRecorderStatus",
+                        "config:BatchGetResourceConfig",
+                        "config:SelectResourceConfig",
+                        "config:DescribeConfigurationAggregators",
+                        "config:SelectAggregateResourceConfig",
+                        "config:DescribeConfigRuleEvaluationStatus",
+                        "config:DescribeConfigRules",
                         "s3:GetBucketLocation"
-                    ], 
-                    "Resource": "*", 
-                    "Effect": "Allow"
-                }, 
+                    ],
+                    "Resource": "*"
+                },
                 {
+                    "Effect": "Allow",
                     "Action": [
-                        "config:GetComplianceDetailsByConfigRule", 
-                        "config:PutConfigRule", 
+                        "config:GetComplianceDetailsByConfigRule",
+                        "config:PutConfigRule",
                         "config:DeleteConfigRule"
-                    ], 
-                    "Resource": "arn:aws:config:*:*:config-rule/aws-service-rule/backup.amazonaws.com*", 
-                    "Effect": "Allow"
-                }, 
+                    ],
+                    "Resource": "arn:aws:config:*:*:config-rule/aws-service-rule/backup.amazonaws.com*"
+                },
                 {
+                    "Effect": "Allow",
                     "Action": [
-                        "config:DeleteConfigurationAggregator", 
+                        "config:DeleteConfigurationAggregator",
                         "config:PutConfigurationAggregator"
-                    ], 
-                    "Resource": "arn:aws:config:*:*:config-aggregator/aws-service-config-aggregator/backup.amazonaws.com*", 
-                    "Effect": "Allow"
+                    ],
+                    "Resource": "arn:aws:config:*:*:config-aggregator/aws-service-config-aggregator/backup.amazonaws.com*"
                 }
             ]
-        }, 
-        "IsDefaultVersion": true
+        },
+        "VersionId": "v2",
+        "IsDefaultVersion": true,
+        "CreateDate": "2023-03-10T00:51:25+00:00"
     }
 }
