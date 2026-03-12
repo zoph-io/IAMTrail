@@ -1,37 +1,37 @@
 {
     "PolicyVersion": {
-        "CreateDate": "2026-02-12T17:59:06Z", 
-        "VersionId": "v12", 
         "Document": {
-            "Version": "2012-10-17", 
+            "Version": "2012-10-17",
             "Statement": [
                 {
+                    "Sid": "cfReadOnly",
+                    "Effect": "Allow",
                     "Action": [
-                        "acm:DescribeCertificate", 
-                        "acm:ListCertificates", 
-                        "cloudfront:Describe*", 
-                        "cloudfront:Get*", 
-                        "cloudfront:List*", 
-                        "cloudfront-keyvaluestore:Describe*", 
-                        "cloudfront-keyvaluestore:Get*", 
-                        "cloudfront-keyvaluestore:List*", 
-                        "iam:ListServerCertificates", 
-                        "route53:List*", 
-                        "waf:ListWebACLs", 
-                        "waf:GetWebACL", 
-                        "wafv2:ListWebACLs", 
-                        "wafv2:GetWebACL", 
-                        "ec2:DescribeIpamPools", 
-                        "ec2:GetIpamPoolCidrs", 
-                        "pricingplanmanager:ListSubscriptions", 
+                        "acm:DescribeCertificate",
+                        "acm:ListCertificates",
+                        "cloudfront:Describe*",
+                        "cloudfront:Get*",
+                        "cloudfront:List*",
+                        "cloudfront-keyvaluestore:Describe*",
+                        "cloudfront-keyvaluestore:Get*",
+                        "cloudfront-keyvaluestore:List*",
+                        "iam:ListServerCertificates",
+                        "route53:List*",
+                        "waf:ListWebACLs",
+                        "waf:GetWebACL",
+                        "wafv2:ListWebACLs",
+                        "wafv2:GetWebACL",
+                        "ec2:DescribeIpamPools",
+                        "ec2:GetIpamPoolCidrs",
+                        "pricingplanmanager:ListSubscriptions",
                         "pricingplanmanager:GetSubscription"
-                    ], 
-                    "Resource": "*", 
-                    "Effect": "Allow", 
-                    "Sid": "cfReadOnly"
+                    ],
+                    "Resource": "*"
                 }
             ]
-        }, 
-        "IsDefaultVersion": true
+        },
+        "VersionId": "v12",
+        "IsDefaultVersion": true,
+        "CreateDate": "2026-02-12T17:59:06+00:00"
     }
 }
