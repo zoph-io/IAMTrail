@@ -1,135 +1,135 @@
 {
     "PolicyVersion": {
-        "CreateDate": "2026-02-12T18:00:05Z", 
-        "VersionId": "v11", 
         "Document": {
-            "Version": "2012-10-17", 
+            "Version": "2012-10-17",
             "Statement": [
                 {
+                    "Sid": "XRayPermission",
+                    "Effect": "Allow",
                     "Action": [
                         "xray:GetServiceGraph"
-                    ], 
+                    ],
                     "Resource": [
                         "*"
-                    ], 
-                    "Effect": "Allow", 
+                    ],
                     "Condition": {
                         "StringEquals": {
                             "aws:ResourceAccount": "${aws:PrincipalAccount}"
                         }
-                    }, 
-                    "Sid": "XRayPermission"
-                }, 
+                    }
+                },
                 {
+                    "Sid": "CWLogsPermission",
+                    "Effect": "Allow",
                     "Action": [
-                        "logs:StartQuery", 
+                        "logs:StartQuery",
                         "logs:GetQueryResults"
-                    ], 
+                    ],
                     "Resource": [
-                        "arn:aws:logs:*:*:log-group:/aws/appsignals/*:*", 
+                        "arn:aws:logs:*:*:log-group:/aws/appsignals/*:*",
                         "arn:aws:logs:*:*:log-group:/aws/application-signals/data:*"
-                    ], 
-                    "Effect": "Allow", 
+                    ],
                     "Condition": {
                         "StringEquals": {
                             "aws:ResourceAccount": "${aws:PrincipalAccount}"
                         }
-                    }, 
-                    "Sid": "CWLogsPermission"
-                }, 
+                    }
+                },
                 {
+                    "Sid": "CWListMetricsPermission",
+                    "Effect": "Allow",
                     "Action": [
                         "cloudwatch:ListMetrics"
-                    ], 
+                    ],
                     "Resource": [
                         "*"
-                    ], 
-                    "Effect": "Allow", 
+                    ],
                     "Condition": {
                         "StringEquals": {
                             "aws:ResourceAccount": "${aws:PrincipalAccount}"
                         }
-                    }, 
-                    "Sid": "CWListMetricsPermission"
-                }, 
+                    }
+                },
                 {
+                    "Sid": "CWGetMetricDataPermission",
+                    "Effect": "Allow",
                     "Action": [
                         "cloudwatch:GetMetricData"
-                    ], 
+                    ],
                     "Resource": [
                         "*"
-                    ], 
-                    "Effect": "Allow", 
-                    "Sid": "CWGetMetricDataPermission"
-                }, 
+                    ]
+                },
                 {
+                    "Sid": "TagsPermission",
+                    "Effect": "Allow",
                     "Action": [
                         "tag:GetResources"
-                    ], 
+                    ],
                     "Resource": [
                         "*"
-                    ], 
-                    "Effect": "Allow", 
+                    ],
                     "Condition": {
                         "StringEquals": {
                             "aws:ResourceAccount": "${aws:PrincipalAccount}"
                         }
-                    }, 
-                    "Sid": "TagsPermission"
-                }, 
+                    }
+                },
                 {
+                    "Sid": "ApplicationSignalsPermission",
+                    "Effect": "Allow",
                     "Action": [
-                        "application-signals:ListServiceLevelObjectiveExclusionWindows", 
+                        "application-signals:ListServiceLevelObjectiveExclusionWindows",
                         "application-signals:GetServiceLevelObjective"
-                    ], 
+                    ],
                     "Resource": [
                         "*"
-                    ], 
-                    "Effect": "Allow", 
+                    ],
                     "Condition": {
                         "StringEquals": {
                             "aws:ResourceAccount": "${aws:PrincipalAccount}"
                         }
-                    }, 
-                    "Sid": "ApplicationSignalsPermission"
-                }, 
+                    }
+                },
                 {
+                    "Sid": "EC2AutoScalingPermission",
+                    "Effect": "Allow",
                     "Action": [
                         "autoscaling:DescribeAutoScalingGroups"
-                    ], 
+                    ],
                     "Resource": [
                         "*"
-                    ], 
-                    "Effect": "Allow", 
+                    ],
                     "Condition": {
                         "StringEquals": {
                             "aws:ResourceAccount": "${aws:PrincipalAccount}"
                         }
-                    }, 
-                    "Sid": "EC2AutoScalingPermission"
-                }, 
+                    }
+                },
                 {
+                    "Sid": "ResourceExplorerReadOnlyAccess",
+                    "Effect": "Allow",
                     "Action": [
                         "resource-explorer-2:Search"
-                    ], 
+                    ],
                     "Resource": [
                         "*"
-                    ], 
-                    "Effect": "Allow", 
-                    "Sid": "ResourceExplorerReadOnlyAccess"
-                }, 
+                    ]
+                },
                 {
+                    "Sid": "CloudTrailServiceLinkedChannelCreationPermission",
+                    "Effect": "Allow",
                     "Action": [
                         "cloudtrail:CreateServiceLinkedChannel"
-                    ], 
+                    ],
                     "Resource": [
                         "arn:aws:cloudtrail:*:*:channel/aws-service-channel/application-signals/*"
-                    ], 
-                    "Effect": "Allow", 
-                    "Sid": "CloudTrailServiceLinkedChannelCreationPermission"
+                    ]
                 }
             ]
-        }, 
-        "IsDefaultVersion": true
+        },
+        "VersionId": "v11",
+        "IsDefaultVersion": true,
+        "CreateDate": "2026-02-12T18:00:05+00:00"
     }
 }
