@@ -1,46 +1,46 @@
 {
     "PolicyVersion": {
-        "CreateDate": "2026-02-12T18:00:59Z", 
-        "VersionId": "v3", 
         "Document": {
-            "Version": "2012-10-17", 
+            "Version": "2012-10-17",
             "Statement": [
                 {
+                    "Sid": "ListAgreementsActions",
+                    "Effect": "Allow",
                     "Action": [
-                        "artifact:ListAgreements", 
+                        "artifact:ListAgreements",
                         "artifact:ListCustomerAgreements"
-                    ], 
-                    "Resource": "*", 
-                    "Effect": "Allow", 
-                    "Sid": "ListAgreementsActions"
-                }, 
+                    ],
+                    "Resource": "*"
+                },
                 {
+                    "Sid": "GetCustomerAgreementActions",
+                    "Effect": "Allow",
                     "Action": [
                         "artifact:GetCustomerAgreement"
-                    ], 
-                    "Resource": "arn:aws:artifact::*:customer-agreement/*", 
-                    "Effect": "Allow", 
-                    "Sid": "GetCustomerAgreementActions"
-                }, 
+                    ],
+                    "Resource": "arn:aws:artifact::*:customer-agreement/*"
+                },
                 {
+                    "Sid": "AWSOrganizationActions",
+                    "Effect": "Allow",
                     "Action": [
-                        "organizations:ListAWSServiceAccessForOrganization", 
+                        "organizations:ListAWSServiceAccessForOrganization",
                         "organizations:DescribeOrganization"
-                    ], 
-                    "Resource": "*", 
-                    "Effect": "Allow", 
-                    "Sid": "AWSOrganizationActions"
-                }, 
+                    ],
+                    "Resource": "*"
+                },
                 {
+                    "Sid": "GetRole",
+                    "Effect": "Allow",
                     "Action": [
                         "iam:GetRole"
-                    ], 
-                    "Resource": "arn:aws:iam::*:role/aws-service-role/artifact.amazonaws.com/AWSServiceRoleForArtifact", 
-                    "Effect": "Allow", 
-                    "Sid": "GetRole"
+                    ],
+                    "Resource": "arn:aws:iam::*:role/aws-service-role/artifact.amazonaws.com/AWSServiceRoleForArtifact"
                 }
             ]
-        }, 
-        "IsDefaultVersion": true
+        },
+        "VersionId": "v3",
+        "IsDefaultVersion": true,
+        "CreateDate": "2026-02-12T18:00:59+00:00"
     }
 }
