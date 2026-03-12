@@ -1,132 +1,130 @@
 {
     "PolicyVersion": {
-        "CreateDate": "2026-02-12T18:01:26Z", 
-        "VersionId": "v12", 
         "Document": {
-            "Version": "2012-10-17", 
+            "Version": "2012-10-17",
             "Statement": [
                 {
+                    "Effect": "Allow",
                     "Action": [
-                        "s3:GetObject", 
-                        "s3:PutObject", 
-                        "s3:ListBucket", 
-                        "s3:CreateBucket", 
-                        "s3:PutBucketPublicAccessBlock", 
+                        "s3:GetObject",
+                        "s3:PutObject",
+                        "s3:ListBucket",
+                        "s3:CreateBucket",
+                        "s3:PutBucketPublicAccessBlock",
                         "s3:PutBucketPolicy"
-                    ], 
-                    "Resource": "arn:aws:s3:::amazon-braket-*", 
-                    "Effect": "Allow", 
+                    ],
+                    "Resource": "arn:aws:s3:::amazon-braket-*",
                     "Condition": {
                         "StringEquals": {
                             "aws:ResourceAccount": "${aws:PrincipalAccount}"
                         }
                     }
-                }, 
+                },
                 {
+                    "Effect": "Allow",
                     "Action": [
-                        "s3:ListAllMyBuckets", 
-                        "servicequotas:GetServiceQuota", 
-                        "cloudwatch:GetMetricData", 
+                        "s3:ListAllMyBuckets",
+                        "servicequotas:GetServiceQuota",
+                        "cloudwatch:GetMetricData",
                         "pricing:GetProducts"
-                    ], 
-                    "Resource": "*", 
-                    "Effect": "Allow"
-                }, 
+                    ],
+                    "Resource": "*"
+                },
                 {
+                    "Effect": "Allow",
                     "Action": [
-                        "ecr:GetDownloadUrlForLayer", 
-                        "ecr:BatchGetImage", 
+                        "ecr:GetDownloadUrlForLayer",
+                        "ecr:BatchGetImage",
                         "ecr:BatchCheckLayerAvailability"
-                    ], 
-                    "Resource": "arn:aws:ecr:*:*:repository/amazon-braket*", 
-                    "Effect": "Allow"
-                }, 
+                    ],
+                    "Resource": "arn:aws:ecr:*:*:repository/amazon-braket*"
+                },
                 {
+                    "Effect": "Allow",
                     "Action": [
                         "ecr:GetAuthorizationToken"
-                    ], 
-                    "Resource": "*", 
-                    "Effect": "Allow"
-                }, 
+                    ],
+                    "Resource": "*"
+                },
                 {
+                    "Effect": "Allow",
                     "Action": [
-                        "logs:Describe*", 
-                        "logs:Get*", 
-                        "logs:List*", 
-                        "logs:StartQuery", 
-                        "logs:StopQuery", 
-                        "logs:TestMetricFilter", 
+                        "logs:Describe*",
+                        "logs:Get*",
+                        "logs:List*",
+                        "logs:StartQuery",
+                        "logs:StopQuery",
+                        "logs:TestMetricFilter",
                         "logs:FilterLogEvents"
-                    ], 
-                    "Resource": "arn:aws:logs:*:*:log-group:/aws/braket*", 
-                    "Effect": "Allow"
-                }, 
+                    ],
+                    "Resource": "arn:aws:logs:*:*:log-group:/aws/braket*"
+                },
                 {
+                    "Effect": "Allow",
                     "Action": [
-                        "iam:ListRoles", 
-                        "iam:ListRolePolicies", 
-                        "iam:GetRole", 
-                        "iam:GetRolePolicy", 
+                        "iam:ListRoles",
+                        "iam:ListRolePolicies",
+                        "iam:GetRole",
+                        "iam:GetRolePolicy",
                         "iam:ListAttachedRolePolicies"
-                    ], 
-                    "Resource": "*", 
-                    "Effect": "Allow"
-                }, 
+                    ],
+                    "Resource": "*"
+                },
                 {
+                    "Effect": "Allow",
                     "Action": [
                         "sagemaker:ListNotebookInstances"
-                    ], 
-                    "Resource": "*", 
-                    "Effect": "Allow"
-                }, 
+                    ],
+                    "Resource": "*"
+                },
                 {
+                    "Effect": "Allow",
                     "Action": [
-                        "sagemaker:CreatePresignedNotebookInstanceUrl", 
-                        "sagemaker:CreateNotebookInstance", 
-                        "sagemaker:DeleteNotebookInstance", 
-                        "sagemaker:DescribeNotebookInstance", 
-                        "sagemaker:StartNotebookInstance", 
-                        "sagemaker:StopNotebookInstance", 
-                        "sagemaker:UpdateNotebookInstance", 
-                        "sagemaker:ListTags", 
-                        "sagemaker:AddTags", 
+                        "sagemaker:CreatePresignedNotebookInstanceUrl",
+                        "sagemaker:CreateNotebookInstance",
+                        "sagemaker:DeleteNotebookInstance",
+                        "sagemaker:DescribeNotebookInstance",
+                        "sagemaker:StartNotebookInstance",
+                        "sagemaker:StopNotebookInstance",
+                        "sagemaker:UpdateNotebookInstance",
+                        "sagemaker:ListTags",
+                        "sagemaker:AddTags",
                         "sagemaker:DeleteTags"
-                    ], 
-                    "Resource": "arn:aws:sagemaker:*:*:notebook-instance/amazon-braket-*", 
-                    "Effect": "Allow"
-                }, 
+                    ],
+                    "Resource": "arn:aws:sagemaker:*:*:notebook-instance/amazon-braket-*"
+                },
                 {
+                    "Effect": "Allow",
                     "Action": [
-                        "sagemaker:DescribeNotebookInstanceLifecycleConfig", 
-                        "sagemaker:CreateNotebookInstanceLifecycleConfig", 
-                        "sagemaker:DeleteNotebookInstanceLifecycleConfig", 
-                        "sagemaker:ListNotebookInstanceLifecycleConfigs", 
+                        "sagemaker:DescribeNotebookInstanceLifecycleConfig",
+                        "sagemaker:CreateNotebookInstanceLifecycleConfig",
+                        "sagemaker:DeleteNotebookInstanceLifecycleConfig",
+                        "sagemaker:ListNotebookInstanceLifecycleConfigs",
                         "sagemaker:UpdateNotebookInstanceLifecycleConfig"
-                    ], 
-                    "Resource": "arn:aws:sagemaker:*:*:notebook-instance-lifecycle-config/amazon-braket-*", 
-                    "Effect": "Allow"
-                }, 
+                    ],
+                    "Resource": "arn:aws:sagemaker:*:*:notebook-instance-lifecycle-config/amazon-braket-*"
+                },
                 {
-                    "Action": "braket:*", 
-                    "Resource": "*", 
-                    "Effect": "Allow"
-                }, 
+                    "Effect": "Allow",
+                    "Action": "braket:*",
+                    "Resource": "*"
+                },
                 {
-                    "Action": "iam:CreateServiceLinkedRole", 
-                    "Resource": "arn:aws:iam::*:role/aws-service-role/braket.amazonaws.com/AWSServiceRoleForAmazonBraket*", 
-                    "Effect": "Allow", 
+                    "Effect": "Allow",
+                    "Action": "iam:CreateServiceLinkedRole",
+                    "Resource": "arn:aws:iam::*:role/aws-service-role/braket.amazonaws.com/AWSServiceRoleForAmazonBraket*",
                     "Condition": {
                         "StringEquals": {
                             "iam:AWSServiceName": "braket.amazonaws.com"
                         }
                     }
-                }, 
+                },
                 {
+                    "Effect": "Allow",
                     "Action": [
                         "iam:PassRole"
-                    ], 
-                    "Resource": "arn:aws:iam::*:role/service-role/AmazonBraketServiceSageMakerNotebookRole*", 
-                    "Effect": "Allow", 
+                    ],
+                    "Resource": "arn:aws:iam::*:role/service-role/AmazonBraketServiceSageMakerNotebookRole*",
                     "Condition": {
                         "StringLike": {
                             "iam:PassedToService": [
@@ -134,13 +132,13 @@
                             ]
                         }
                     }
-                }, 
+                },
                 {
+                    "Effect": "Allow",
                     "Action": [
                         "iam:PassRole"
-                    ], 
-                    "Resource": "arn:aws:iam::*:role/service-role/AmazonBraketJobsExecutionRole*", 
-                    "Effect": "Allow", 
+                    ],
+                    "Resource": "arn:aws:iam::*:role/service-role/AmazonBraketJobsExecutionRole*",
                     "Condition": {
                         "StringLike": {
                             "iam:PassedToService": [
@@ -148,29 +146,29 @@
                             ]
                         }
                     }
-                }, 
+                },
                 {
+                    "Effect": "Allow",
                     "Action": [
                         "logs:GetQueryResults"
-                    ], 
+                    ],
                     "Resource": [
                         "arn:aws:logs:*:*:log-group:*"
-                    ], 
-                    "Effect": "Allow"
-                }, 
+                    ]
+                },
                 {
+                    "Effect": "Allow",
                     "Action": [
-                        "logs:PutLogEvents", 
-                        "logs:CreateLogStream", 
+                        "logs:PutLogEvents",
+                        "logs:CreateLogStream",
                         "logs:CreateLogGroup"
-                    ], 
-                    "Resource": "arn:aws:logs:*:*:log-group:/aws/braket*", 
-                    "Effect": "Allow"
-                }, 
+                    ],
+                    "Resource": "arn:aws:logs:*:*:log-group:/aws/braket*"
+                },
                 {
-                    "Action": "cloudwatch:PutMetricData", 
-                    "Resource": "*", 
-                    "Effect": "Allow", 
+                    "Effect": "Allow",
+                    "Action": "cloudwatch:PutMetricData",
+                    "Resource": "*",
                     "Condition": {
                         "StringEquals": {
                             "cloudwatch:namespace": "/aws/braket"
@@ -178,7 +176,9 @@
                     }
                 }
             ]
-        }, 
-        "IsDefaultVersion": true
+        },
+        "VersionId": "v12",
+        "IsDefaultVersion": true,
+        "CreateDate": "2026-02-12T18:01:26+00:00"
     }
 }
