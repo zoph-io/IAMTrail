@@ -1,174 +1,174 @@
 {
     "PolicyVersion": {
-        "CreateDate": "2024-05-15T23:46:15Z", 
-        "VersionId": "v3", 
         "Document": {
-            "Version": "2012-10-17", 
+            "Version": "2012-10-17",
             "Statement": [
                 {
+                    "Sid": "AuditManagerAccess",
+                    "Effect": "Allow",
                     "Action": [
                         "auditmanager:*"
-                    ], 
-                    "Resource": "*", 
-                    "Effect": "Allow", 
-                    "Sid": "AuditManagerAccess"
-                }, 
+                    ],
+                    "Resource": "*"
+                },
                 {
+                    "Sid": "OrganizationsAccess",
+                    "Effect": "Allow",
                     "Action": [
-                        "organizations:ListAccountsForParent", 
-                        "organizations:ListAccounts", 
-                        "organizations:DescribeOrganization", 
-                        "organizations:DescribeOrganizationalUnit", 
-                        "organizations:DescribeAccount", 
-                        "organizations:ListParents", 
+                        "organizations:ListAccountsForParent",
+                        "organizations:ListAccounts",
+                        "organizations:DescribeOrganization",
+                        "organizations:DescribeOrganizationalUnit",
+                        "organizations:DescribeAccount",
+                        "organizations:ListParents",
                         "organizations:ListChildren"
-                    ], 
-                    "Resource": "*", 
-                    "Effect": "Allow", 
-                    "Sid": "OrganizationsAccess"
-                }, 
+                    ],
+                    "Resource": "*"
+                },
                 {
+                    "Sid": "AllowOnlyAuditManagerIntegration",
+                    "Effect": "Allow",
                     "Action": [
-                        "organizations:RegisterDelegatedAdministrator", 
-                        "organizations:DeregisterDelegatedAdministrator", 
+                        "organizations:RegisterDelegatedAdministrator",
+                        "organizations:DeregisterDelegatedAdministrator",
                         "organizations:EnableAWSServiceAccess"
-                    ], 
-                    "Resource": "*", 
-                    "Effect": "Allow", 
+                    ],
+                    "Resource": "*",
                     "Condition": {
                         "StringLikeIfExists": {
                             "organizations:ServicePrincipal": [
                                 "auditmanager.amazonaws.com"
                             ]
                         }
-                    }, 
-                    "Sid": "AllowOnlyAuditManagerIntegration"
-                }, 
+                    }
+                },
                 {
+                    "Sid": "IAMAccess",
+                    "Effect": "Allow",
                     "Action": [
-                        "iam:GetUser", 
-                        "iam:ListUsers", 
+                        "iam:GetUser",
+                        "iam:ListUsers",
                         "iam:ListRoles"
-                    ], 
-                    "Resource": "*", 
-                    "Effect": "Allow", 
-                    "Sid": "IAMAccess"
-                }, 
+                    ],
+                    "Resource": "*"
+                },
                 {
-                    "Action": "iam:CreateServiceLinkedRole", 
-                    "Resource": "arn:aws:iam::*:role/aws-service-role/auditmanager.amazonaws.com/AWSServiceRoleForAuditManager*", 
-                    "Effect": "Allow", 
+                    "Sid": "IAMAccessCreateSLR",
+                    "Effect": "Allow",
+                    "Action": "iam:CreateServiceLinkedRole",
+                    "Resource": "arn:aws:iam::*:role/aws-service-role/auditmanager.amazonaws.com/AWSServiceRoleForAuditManager*",
                     "Condition": {
                         "StringLike": {
                             "iam:AWSServiceName": "auditmanager.amazonaws.com"
                         }
-                    }, 
-                    "Sid": "IAMAccessCreateSLR"
-                }, 
+                    }
+                },
                 {
+                    "Sid": "IAMAccessManageSLR",
+                    "Effect": "Allow",
                     "Action": [
-                        "iam:DeleteServiceLinkedRole", 
-                        "iam:UpdateRoleDescription", 
+                        "iam:DeleteServiceLinkedRole",
+                        "iam:UpdateRoleDescription",
                         "iam:GetServiceLinkedRoleDeletionStatus"
-                    ], 
-                    "Resource": "arn:aws:iam::*:role/aws-service-role/auditmanager.amazonaws.com/AWSServiceRoleForAuditManager*", 
-                    "Effect": "Allow", 
-                    "Sid": "IAMAccessManageSLR"
-                }, 
+                    ],
+                    "Resource": "arn:aws:iam::*:role/aws-service-role/auditmanager.amazonaws.com/AWSServiceRoleForAuditManager*"
+                },
                 {
+                    "Sid": "S3Access",
+                    "Effect": "Allow",
                     "Action": [
                         "s3:ListAllMyBuckets"
-                    ], 
-                    "Resource": "*", 
-                    "Effect": "Allow", 
-                    "Sid": "S3Access"
-                }, 
+                    ],
+                    "Resource": "*"
+                },
                 {
+                    "Sid": "KmsAccess",
+                    "Effect": "Allow",
                     "Action": [
-                        "kms:DescribeKey", 
-                        "kms:ListKeys", 
+                        "kms:DescribeKey",
+                        "kms:ListKeys",
                         "kms:ListAliases"
-                    ], 
-                    "Resource": "*", 
-                    "Effect": "Allow", 
-                    "Sid": "KmsAccess"
-                }, 
+                    ],
+                    "Resource": "*"
+                },
                 {
+                    "Sid": "KmsCreateGrantAccess",
+                    "Effect": "Allow",
                     "Action": [
                         "kms:CreateGrant"
-                    ], 
-                    "Resource": "*", 
-                    "Effect": "Allow", 
+                    ],
+                    "Resource": "*",
                     "Condition": {
-                        "StringLike": {
-                            "kms:ViaService": "auditmanager.*.amazonaws.com"
-                        }, 
                         "Bool": {
                             "kms:GrantIsForAWSResource": "true"
+                        },
+                        "StringLike": {
+                            "kms:ViaService": "auditmanager.*.amazonaws.com"
                         }
-                    }, 
-                    "Sid": "KmsCreateGrantAccess"
-                }, 
+                    }
+                },
                 {
+                    "Sid": "SNSAccess",
+                    "Effect": "Allow",
                     "Action": [
                         "sns:ListTopics"
-                    ], 
-                    "Resource": "*", 
-                    "Effect": "Allow", 
-                    "Sid": "SNSAccess"
-                }, 
+                    ],
+                    "Resource": "*"
+                },
                 {
+                    "Sid": "CreateEventsAccess",
+                    "Effect": "Allow",
                     "Action": [
                         "events:PutRule"
-                    ], 
-                    "Resource": "*", 
-                    "Effect": "Allow", 
+                    ],
+                    "Resource": "*",
                     "Condition": {
                         "StringEquals": {
                             "events:detail-type": "Security Hub Findings - Imported"
-                        }, 
+                        },
                         "ForAllValues:StringEquals": {
                             "events:source": [
                                 "aws.securityhub"
                             ]
                         }
-                    }, 
-                    "Sid": "CreateEventsAccess"
-                }, 
+                    }
+                },
                 {
+                    "Sid": "EventsAccess",
+                    "Effect": "Allow",
                     "Action": [
-                        "events:DeleteRule", 
-                        "events:DescribeRule", 
-                        "events:EnableRule", 
-                        "events:DisableRule", 
-                        "events:ListTargetsByRule", 
-                        "events:PutTargets", 
+                        "events:DeleteRule",
+                        "events:DescribeRule",
+                        "events:EnableRule",
+                        "events:DisableRule",
+                        "events:ListTargetsByRule",
+                        "events:PutTargets",
                         "events:RemoveTargets"
-                    ], 
-                    "Resource": "arn:aws:events:*:*:rule/AuditManagerSecurityHubFindingsReceiver", 
-                    "Effect": "Allow", 
-                    "Sid": "EventsAccess"
-                }, 
+                    ],
+                    "Resource": "arn:aws:events:*:*:rule/AuditManagerSecurityHubFindingsReceiver"
+                },
                 {
+                    "Sid": "TagAccess",
+                    "Effect": "Allow",
                     "Action": [
                         "tag:GetResources"
-                    ], 
-                    "Resource": "*", 
-                    "Effect": "Allow", 
-                    "Sid": "TagAccess"
-                }, 
+                    ],
+                    "Resource": "*"
+                },
                 {
+                    "Sid": "ControlCatalogAccess",
+                    "Effect": "Allow",
                     "Action": [
-                        "controlcatalog:ListCommonControls", 
-                        "controlcatalog:ListDomains", 
+                        "controlcatalog:ListCommonControls",
+                        "controlcatalog:ListDomains",
                         "controlcatalog:ListObjectives"
-                    ], 
-                    "Resource": "*", 
-                    "Effect": "Allow", 
-                    "Sid": "ControlCatalogAccess"
+                    ],
+                    "Resource": "*"
                 }
             ]
-        }, 
-        "IsDefaultVersion": true
+        },
+        "VersionId": "v3",
+        "IsDefaultVersion": true,
+        "CreateDate": "2024-05-15T23:46:15+00:00"
     }
 }
