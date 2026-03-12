@@ -1,141 +1,141 @@
 {
     "PolicyVersion": {
-        "CreateDate": "2026-02-12T17:57:24Z", 
-        "VersionId": "v3", 
         "Document": {
-            "Version": "2012-10-17", 
+            "Version": "2012-10-17",
             "Statement": [
                 {
-                    "Action": "s3:GetObject", 
-                    "Resource": "arn:aws:s3:::${aws:PrincipalTag/DomainBucketName}/${aws:PrincipalTag/AmazonDataZoneDomain}/certificate_location/*", 
-                    "Effect": "Allow", 
+                    "Sid": "AccessCertificateLocationS3Permission",
+                    "Effect": "Allow",
+                    "Action": "s3:GetObject",
+                    "Resource": "arn:aws:s3:::${aws:PrincipalTag/DomainBucketName}/${aws:PrincipalTag/AmazonDataZoneDomain}/certificate_location/*",
                     "Condition": {
+                        "StringNotEquals": {
+                            "aws:PrincipalTag/DomainBucketName": "",
+                            "aws:PrincipalTag/AmazonDataZoneDomain": ""
+                        },
                         "Null": {
                             "aws:PrincipalTag/AmazonDataZoneProject": "false"
-                        }, 
+                        },
                         "StringEquals": {
                             "aws:ResourceAccount": "${aws:PrincipalAccount}"
-                        }, 
-                        "StringNotEquals": {
-                            "aws:PrincipalTag/DomainBucketName": "", 
-                            "aws:PrincipalTag/AmazonDataZoneDomain": ""
                         }
-                    }, 
-                    "Sid": "AccessCertificateLocationS3Permission"
-                }, 
+                    }
+                },
                 {
-                    "Action": "s3:GetObject", 
+                    "Sid": "AccessPatchingRPMsS3Permission",
+                    "Effect": "Allow",
+                    "Action": "s3:GetObject",
                     "Resource": [
-                        "arn:aws:s3:::default-env-blueprint-*/*", 
+                        "arn:aws:s3:::default-env-blueprint-*/*",
                         "arn:aws:s3:*:*:accesspoint/env-blueprint-accesspoint*"
-                    ], 
-                    "Effect": "Allow", 
+                    ],
                     "Condition": {
                         "ArnLike": {
                             "s3:DataAccessPointArn": "arn:aws:s3:*:*:accesspoint/env-blueprint-accesspoint"
-                        }, 
+                        },
                         "StringNotEquals": {
                             "aws:ResourceAccount": "${aws:PrincipalAccount}"
                         }
-                    }, 
-                    "Sid": "AccessPatchingRPMsS3Permission"
-                }, 
+                    }
+                },
                 {
-                    "Action": "s3:GetObject", 
-                    "Resource": "arn:aws:s3:::${aws:PrincipalTag/DomainBucketName}/${aws:PrincipalTag/AmazonDataZoneDomain}/${aws:PrincipalTag/AmazonDataZoneProject}/${aws:PrincipalTag/AmazonDataZoneScopeName}/sys/emr/bootstrap-script/*", 
-                    "Effect": "Allow", 
+                    "Sid": "AccessBootstrapActionScriptS3Permission",
+                    "Effect": "Allow",
+                    "Action": "s3:GetObject",
+                    "Resource": "arn:aws:s3:::${aws:PrincipalTag/DomainBucketName}/${aws:PrincipalTag/AmazonDataZoneDomain}/${aws:PrincipalTag/AmazonDataZoneProject}/${aws:PrincipalTag/AmazonDataZoneScopeName}/sys/emr/bootstrap-script/*",
                     "Condition": {
+                        "StringNotEquals": {
+                            "aws:PrincipalTag/DomainBucketName": "",
+                            "aws:PrincipalTag/AmazonDataZoneDomain": "",
+                            "aws:PrincipalTag/AmazonDataZoneProject": "",
+                            "aws:PrincipalTag/AmazonDataZoneScopeName": ""
+                        },
                         "Null": {
                             "aws:PrincipalTag/AmazonDataZoneProject": "false"
-                        }, 
+                        },
                         "StringEquals": {
                             "aws:ResourceAccount": "${aws:PrincipalAccount}"
-                        }, 
-                        "StringNotEquals": {
-                            "aws:PrincipalTag/DomainBucketName": "", 
-                            "aws:PrincipalTag/AmazonDataZoneProject": "", 
-                            "aws:PrincipalTag/AmazonDataZoneScopeName": "", 
-                            "aws:PrincipalTag/AmazonDataZoneDomain": ""
                         }
-                    }, 
-                    "Sid": "AccessBootstrapActionScriptS3Permission"
-                }, 
+                    }
+                },
                 {
-                    "Action": "s3:PutObject", 
-                    "Resource": "arn:aws:s3:::${aws:PrincipalTag/DomainBucketName}/${aws:PrincipalTag/AmazonDataZoneDomain}/${aws:PrincipalTag/AmazonDataZoneProject}/${aws:PrincipalTag/AmazonDataZoneScopeName}/sys/emr/*", 
-                    "Effect": "Allow", 
+                    "Sid": "EMRClusterLogUploadS3Permission",
+                    "Effect": "Allow",
+                    "Action": "s3:PutObject",
+                    "Resource": "arn:aws:s3:::${aws:PrincipalTag/DomainBucketName}/${aws:PrincipalTag/AmazonDataZoneDomain}/${aws:PrincipalTag/AmazonDataZoneProject}/${aws:PrincipalTag/AmazonDataZoneScopeName}/sys/emr/*",
                     "Condition": {
+                        "StringNotEquals": {
+                            "aws:PrincipalTag/DomainBucketName": "",
+                            "aws:PrincipalTag/AmazonDataZoneDomain": "",
+                            "aws:PrincipalTag/AmazonDataZoneProject": "",
+                            "aws:PrincipalTag/AmazonDataZoneScopeName": ""
+                        },
                         "Null": {
                             "aws:PrincipalTag/AmazonDataZoneProject": "false"
-                        }, 
+                        },
                         "StringEquals": {
                             "aws:ResourceAccount": "${aws:PrincipalAccount}"
-                        }, 
-                        "StringNotEquals": {
-                            "aws:PrincipalTag/DomainBucketName": "", 
-                            "aws:PrincipalTag/AmazonDataZoneProject": "", 
-                            "aws:PrincipalTag/AmazonDataZoneScopeName": "", 
-                            "aws:PrincipalTag/AmazonDataZoneDomain": ""
                         }
-                    }, 
-                    "Sid": "EMRClusterLogUploadS3Permission"
-                }, 
+                    }
+                },
                 {
+                    "Sid": "EMRRuntimeRoleAssumePermissions",
+                    "Effect": "Allow",
                     "Action": [
-                        "sts:AssumeRole", 
+                        "sts:AssumeRole",
                         "sts:TagSession"
-                    ], 
-                    "Resource": "*", 
-                    "Effect": "Allow", 
+                    ],
+                    "Resource": "*",
                     "Condition": {
-                        "StringEquals": {
-                            "iam:ResourceTag/AmazonDataZoneProject": "${aws:PrincipalTag/AmazonDataZoneProject}"
-                        }, 
                         "ForAllValues:StringEquals": {
                             "aws:TagKeys": [
                                 "LakeFormationAuthorizedCaller"
                             ]
-                        }
-                    }, 
-                    "Sid": "EMRRuntimeRoleAssumePermissions"
-                }, 
-                {
-                    "Action": [
-                        "kms:CreateGrant", 
-                        "kms:Decrypt", 
-                        "kms:Encrypt", 
-                        "kms:GenerateDataKeyWithoutPlaintext"
-                    ], 
-                    "Resource": "arn:aws:kms:*:*:key/${aws:PrincipalTag/KmsKeyId}", 
-                    "Effect": "Allow", 
-                    "Condition": {
+                        },
                         "StringEquals": {
-                            "aws:ResourceAccount": "${aws:PrincipalAccount}"
-                        }, 
-                        "Null": {
-                            "kms:EncryptionContextKeys": "false"
-                        }, 
+                            "iam:ResourceTag/AmazonDataZoneProject": "${aws:PrincipalTag/AmazonDataZoneProject}"
+                        }
+                    }
+                },
+                {
+                    "Sid": "EMRKMSPermissions",
+                    "Effect": "Allow",
+                    "Action": [
+                        "kms:CreateGrant",
+                        "kms:Decrypt",
+                        "kms:Encrypt",
+                        "kms:GenerateDataKeyWithoutPlaintext"
+                    ],
+                    "Resource": "arn:aws:kms:*:*:key/${aws:PrincipalTag/KmsKeyId}",
+                    "Condition": {
                         "StringLike": {
                             "kms:ViaService": [
                                 "ec2.*.amazonaws.com"
                             ]
+                        },
+                        "StringEquals": {
+                            "aws:ResourceAccount": "${aws:PrincipalAccount}"
+                        },
+                        "Null": {
+                            "kms:EncryptionContextKeys": "false"
                         }
-                    }, 
-                    "Sid": "EMRKMSPermissions"
-                }, 
+                    }
+                },
                 {
-                    "Action": "kms:GenerateDataKey", 
-                    "Resource": "arn:aws:kms:*:*:key/${aws:PrincipalTag/KmsKeyId}", 
-                    "Effect": "Allow", 
+                    "Sid": "AllowGenerateDataKeyForEbsEncryption",
+                    "Effect": "Allow",
+                    "Action": "kms:GenerateDataKey",
+                    "Resource": "arn:aws:kms:*:*:key/${aws:PrincipalTag/KmsKeyId}",
                     "Condition": {
                         "StringEquals": {
                             "aws:ResourceAccount": "${aws:PrincipalAccount}"
                         }
-                    }, 
-                    "Sid": "AllowGenerateDataKeyForEbsEncryption"
+                    }
                 }
             ]
-        }, 
-        "IsDefaultVersion": true
+        },
+        "VersionId": "v3",
+        "IsDefaultVersion": true,
+        "CreateDate": "2026-02-12T17:57:24+00:00"
     }
 }
