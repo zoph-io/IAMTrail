@@ -1,65 +1,65 @@
 {
     "PolicyVersion": {
-        "CreateDate": "2022-09-13T17:25:36Z", 
-        "VersionId": "v1", 
         "Document": {
-            "Version": "2012-10-17", 
+            "Version": "2012-10-17",
             "Statement": [
                 {
-                    "Action": "appconfig:StartDeployment", 
+                    "Effect": "Allow",
+                    "Action": "appconfig:StartDeployment",
                     "Resource": [
-                        "arn:aws:appconfig:*:*:application/*", 
+                        "arn:aws:appconfig:*:*:application/*",
                         "arn:aws:appconfig:*:*:deploymentstrategy/*"
-                    ], 
-                    "Effect": "Allow", 
+                    ],
                     "Condition": {
                         "StringEquals": {
                             "aws:RequestTag/DeployedBy": "Evidently"
                         }
                     }
-                }, 
+                },
                 {
-                    "Action": "appconfig:StartDeployment", 
-                    "Resource": "arn:aws:appconfig:*:*:application/*/configurationprofile/*", 
-                    "Effect": "Deny", 
+                    "Effect": "Deny",
+                    "Action": "appconfig:StartDeployment",
+                    "Resource": "arn:aws:appconfig:*:*:application/*/configurationprofile/*",
                     "Condition": {
                         "StringNotEquals": {
                             "aws:ResourceTag/Owner": "Evidently"
                         }
                     }
-                }, 
+                },
                 {
-                    "Action": "appconfig:TagResource", 
-                    "Resource": "arn:aws:appconfig:*:*:application/*/environment/*/deployment/*", 
-                    "Effect": "Allow", 
+                    "Effect": "Allow",
+                    "Action": "appconfig:TagResource",
+                    "Resource": "arn:aws:appconfig:*:*:application/*/environment/*/deployment/*",
                     "Condition": {
                         "StringEquals": {
                             "aws:RequestTag/DeployedBy": "Evidently"
                         }
                     }
-                }, 
+                },
                 {
-                    "Action": "appconfig:StopDeployment", 
-                    "Resource": "arn:aws:appconfig:*:*:application/*", 
-                    "Effect": "Allow"
-                }, 
+                    "Effect": "Allow",
+                    "Action": "appconfig:StopDeployment",
+                    "Resource": "arn:aws:appconfig:*:*:application/*"
+                },
                 {
-                    "Action": "appconfig:StopDeployment", 
-                    "Resource": "arn:aws:appconfig:*:*:application/*/environment/*/deployment/*", 
-                    "Effect": "Deny", 
+                    "Effect": "Deny",
+                    "Action": "appconfig:StopDeployment",
+                    "Resource": "arn:aws:appconfig:*:*:application/*/environment/*/deployment/*",
                     "Condition": {
                         "StringNotEquals": {
                             "aws:ResourceTag/DeployedBy": "Evidently"
                         }
                     }
-                }, 
+                },
                 {
-                    "Action": "appconfig:ListDeployments", 
-                    "Resource": "arn:aws:appconfig:*:*:application/*", 
-                    "Effect": "Allow"
+                    "Effect": "Allow",
+                    "Action": "appconfig:ListDeployments",
+                    "Resource": "arn:aws:appconfig:*:*:application/*"
                 }
             ]
-        }, 
-        "IsDefaultVersion": true
+        },
+        "VersionId": "v1",
+        "IsDefaultVersion": true,
+        "CreateDate": "2022-09-13T17:25:36+00:00"
     }
 }
