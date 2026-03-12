@@ -1,94 +1,94 @@
 {
     "PolicyVersion": {
-        "CreateDate": "2026-02-12T18:02:56Z", 
-        "VersionId": "v6", 
         "Document": {
-            "Version": "2012-10-17", 
+            "Version": "2012-10-17",
             "Statement": [
                 {
-                    "Action": "rds:DescribeDBInstances", 
-                    "Resource": "arn:aws:rds:*:*:db:*", 
-                    "Effect": "Allow", 
-                    "Sid": "AmazonRDSDescribeDBInstances"
-                }, 
+                    "Sid": "AmazonRDSDescribeDBInstances",
+                    "Effect": "Allow",
+                    "Action": "rds:DescribeDBInstances",
+                    "Resource": "arn:aws:rds:*:*:db:*"
+                },
                 {
-                    "Action": "rds:DescribeDBClusters", 
-                    "Resource": "arn:aws:rds:*:*:cluster:*", 
-                    "Effect": "Allow", 
-                    "Sid": "AmazonRDSDescribeDBClusters"
-                }, 
+                    "Sid": "AmazonRDSDescribeDBClusters",
+                    "Effect": "Allow",
+                    "Action": "rds:DescribeDBClusters",
+                    "Resource": "arn:aws:rds:*:*:cluster:*"
+                },
                 {
-                    "Action": "rds:DescribeDBShardGroups", 
-                    "Resource": "arn:aws:rds:*:*:shard-group:*", 
-                    "Effect": "Allow", 
-                    "Sid": "AmazonRDSDescribeDBShardGroups"
-                }, 
+                    "Sid": "AmazonRDSDescribeDBShardGroups",
+                    "Effect": "Allow",
+                    "Action": "rds:DescribeDBShardGroups",
+                    "Resource": "arn:aws:rds:*:*:shard-group:*"
+                },
                 {
-                    "Action": "rds:ListTagsForResource", 
+                    "Sid": "AmazonRDSListTagsForResource",
+                    "Effect": "Allow",
+                    "Action": "rds:ListTagsForResource",
                     "Resource": [
-                        "arn:aws:rds:*:*:db:*", 
-                        "arn:aws:rds:*:*:shard-group:*", 
+                        "arn:aws:rds:*:*:db:*",
+                        "arn:aws:rds:*:*:shard-group:*",
                         "arn:aws:rds:*:*:cluster:*"
-                    ], 
-                    "Effect": "Allow", 
-                    "Sid": "AmazonRDSListTagsForResource"
-                }, 
+                    ]
+                },
                 {
-                    "Action": "pi:DescribeDimensionKeys", 
-                    "Resource": "arn:aws:pi:*:*:metrics/rds/*", 
-                    "Effect": "Allow", 
-                    "Sid": "AmazonRDSPerformanceInsightsDescribeDimensionKeys"
-                }, 
+                    "Sid": "AmazonRDSPerformanceInsightsDescribeDimensionKeys",
+                    "Effect": "Allow",
+                    "Action": "pi:DescribeDimensionKeys",
+                    "Resource": "arn:aws:pi:*:*:metrics/rds/*"
+                },
                 {
-                    "Action": "pi:GetDimensionKeyDetails", 
-                    "Resource": "arn:aws:pi:*:*:metrics/rds/*", 
-                    "Effect": "Allow", 
-                    "Sid": "AmazonRDSPerformanceInsightsGetDimensionKeyDetails"
-                }, 
+                    "Sid": "AmazonRDSPerformanceInsightsGetDimensionKeyDetails",
+                    "Effect": "Allow",
+                    "Action": "pi:GetDimensionKeyDetails",
+                    "Resource": "arn:aws:pi:*:*:metrics/rds/*"
+                },
                 {
-                    "Action": "pi:GetResourceMetadata", 
-                    "Resource": "arn:aws:pi:*:*:metrics/rds/*", 
-                    "Effect": "Allow", 
-                    "Sid": "AmazonRDSPerformanceInsightsGetResourceMetadata"
-                }, 
+                    "Sid": "AmazonRDSPerformanceInsightsGetResourceMetadata",
+                    "Effect": "Allow",
+                    "Action": "pi:GetResourceMetadata",
+                    "Resource": "arn:aws:pi:*:*:metrics/rds/*"
+                },
                 {
-                    "Action": "pi:GetResourceMetrics", 
-                    "Resource": "arn:aws:pi:*:*:metrics/rds/*", 
-                    "Effect": "Allow", 
-                    "Sid": "AmazonRDSPerformanceInsightsGetResourceMetrics"
-                }, 
+                    "Sid": "AmazonRDSPerformanceInsightsGetResourceMetrics",
+                    "Effect": "Allow",
+                    "Action": "pi:GetResourceMetrics",
+                    "Resource": "arn:aws:pi:*:*:metrics/rds/*"
+                },
                 {
-                    "Action": "pi:ListAvailableResourceDimensions", 
-                    "Resource": "arn:aws:pi:*:*:metrics/rds/*", 
-                    "Effect": "Allow", 
-                    "Sid": "AmazonRDSPerformanceInsightsListAvailableResourceDimensions"
-                }, 
+                    "Sid": "AmazonRDSPerformanceInsightsListAvailableResourceDimensions",
+                    "Effect": "Allow",
+                    "Action": "pi:ListAvailableResourceDimensions",
+                    "Resource": "arn:aws:pi:*:*:metrics/rds/*"
+                },
                 {
-                    "Action": "pi:ListAvailableResourceMetrics", 
-                    "Resource": "arn:aws:pi:*:*:metrics/rds/*", 
-                    "Effect": "Allow", 
-                    "Sid": "AmazonRDSPerformanceInsightsListAvailableResourceMetrics"
-                }, 
+                    "Sid": "AmazonRDSPerformanceInsightsListAvailableResourceMetrics",
+                    "Effect": "Allow",
+                    "Action": "pi:ListAvailableResourceMetrics",
+                    "Resource": "arn:aws:pi:*:*:metrics/rds/*"
+                },
                 {
-                    "Action": "pi:GetPerformanceAnalysisReport", 
-                    "Resource": "arn:aws:pi:*:*:perf-reports/rds/*/*", 
-                    "Effect": "Allow", 
-                    "Sid": "AmazonRDSPerformanceInsightsGetPerformanceAnalysisReport"
-                }, 
+                    "Sid": "AmazonRDSPerformanceInsightsGetPerformanceAnalysisReport",
+                    "Effect": "Allow",
+                    "Action": "pi:GetPerformanceAnalysisReport",
+                    "Resource": "arn:aws:pi:*:*:perf-reports/rds/*/*"
+                },
                 {
-                    "Action": "pi:ListPerformanceAnalysisReports", 
-                    "Resource": "arn:aws:pi:*:*:perf-reports/rds/*/*", 
-                    "Effect": "Allow", 
-                    "Sid": "AmazonRDSPerformanceInsightsListPerformanceAnalysisReports"
-                }, 
+                    "Sid": "AmazonRDSPerformanceInsightsListPerformanceAnalysisReports",
+                    "Effect": "Allow",
+                    "Action": "pi:ListPerformanceAnalysisReports",
+                    "Resource": "arn:aws:pi:*:*:perf-reports/rds/*/*"
+                },
                 {
-                    "Action": "pi:ListTagsForResource", 
-                    "Resource": "arn:aws:pi:*:*:*/rds/*", 
-                    "Effect": "Allow", 
-                    "Sid": "AmazonRDSPerformanceInsightsListTagsForResource"
+                    "Sid": "AmazonRDSPerformanceInsightsListTagsForResource",
+                    "Effect": "Allow",
+                    "Action": "pi:ListTagsForResource",
+                    "Resource": "arn:aws:pi:*:*:*/rds/*"
                 }
             ]
-        }, 
-        "IsDefaultVersion": true
+        },
+        "VersionId": "v6",
+        "IsDefaultVersion": true,
+        "CreateDate": "2026-02-12T18:02:56+00:00"
     }
 }
