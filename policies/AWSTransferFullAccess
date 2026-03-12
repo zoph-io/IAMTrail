@@ -1,36 +1,36 @@
 {
     "PolicyVersion": {
-        "CreateDate": "2020-12-14T19:37:23Z", 
-        "VersionId": "v1", 
         "Document": {
-            "Version": "2012-10-17", 
+            "Version": "2012-10-17",
             "Statement": [
                 {
-                    "Action": "transfer:*", 
-                    "Resource": "*", 
-                    "Effect": "Allow"
-                }, 
+                    "Effect": "Allow",
+                    "Action": "transfer:*",
+                    "Resource": "*"
+                },
                 {
-                    "Action": "iam:PassRole", 
-                    "Resource": "*", 
-                    "Effect": "Allow", 
+                    "Effect": "Allow",
+                    "Action": "iam:PassRole",
+                    "Resource": "*",
                     "Condition": {
                         "StringEquals": {
                             "iam:PassedToService": "transfer.amazonaws.com"
                         }
                     }
-                }, 
+                },
                 {
+                    "Effect": "Allow",
                     "Action": [
-                        "ec2:DescribeVpcEndpoints", 
-                        "ec2:DescribeNetworkInterfaces", 
+                        "ec2:DescribeVpcEndpoints",
+                        "ec2:DescribeNetworkInterfaces",
                         "ec2:DescribeAddresses"
-                    ], 
-                    "Resource": "*", 
-                    "Effect": "Allow"
+                    ],
+                    "Resource": "*"
                 }
             ]
-        }, 
-        "IsDefaultVersion": true
+        },
+        "VersionId": "v1",
+        "IsDefaultVersion": true,
+        "CreateDate": "2020-12-14T19:37:23+00:00"
     }
 }
