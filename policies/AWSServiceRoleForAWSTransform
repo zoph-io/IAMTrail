@@ -1,97 +1,97 @@
 {
     "PolicyVersion": {
-        "CreateDate": "2026-02-12T18:03:10Z", 
-        "VersionId": "v12", 
         "Document": {
-            "Version": "2012-10-17", 
+            "Version": "2012-10-17",
             "Statement": [
                 {
+                    "Sid": "PublishCloudWatchMetrics",
+                    "Effect": "Allow",
                     "Action": [
                         "cloudwatch:PutMetricData"
-                    ], 
-                    "Resource": "*", 
-                    "Effect": "Allow", 
+                    ],
+                    "Resource": "*",
                     "Condition": {
                         "StringEquals": {
                             "cloudwatch:namespace": [
                                 "AWS/Transform"
                             ]
                         }
-                    }, 
-                    "Sid": "PublishCloudWatchMetrics"
-                }, 
+                    }
+                },
                 {
+                    "Sid": "UserManagementPolicy",
+                    "Effect": "Allow",
                     "Action": [
-                        "sso:DescribeApplication", 
-                        "sso:GetApplicationAssignmentConfiguration", 
+                        "sso:DescribeApplication",
+                        "sso:GetApplicationAssignmentConfiguration",
                         "sso:ListApplicationAssignmentsForPrincipal"
-                    ], 
+                    ],
                     "Resource": [
                         "*"
-                    ], 
-                    "Effect": "Allow", 
-                    "Sid": "UserManagementPolicy"
-                }, 
+                    ]
+                },
                 {
+                    "Sid": "AllowKmsAccessViaIdentityCenter",
+                    "Effect": "Allow",
                     "Action": [
                         "kms:Decrypt"
-                    ], 
-                    "Resource": "*", 
-                    "Effect": "Allow", 
+                    ],
+                    "Resource": "*",
                     "Condition": {
                         "ArnLike": {
                             "kms:EncryptionContext:aws:sso:instance-arn": "arn:*:sso:::instance/*"
-                        }, 
+                        },
                         "StringLike": {
                             "kms:ViaService": "sso.*.amazonaws.com"
                         }
-                    }, 
-                    "Sid": "AllowKmsAccessViaIdentityCenter"
-                }, 
+                    }
+                },
                 {
+                    "Sid": "AllowKmsAccessViaIdentityStore",
+                    "Effect": "Allow",
                     "Action": [
                         "kms:Decrypt"
-                    ], 
-                    "Resource": "*", 
-                    "Effect": "Allow", 
+                    ],
+                    "Resource": "*",
                     "Condition": {
                         "ArnLike": {
                             "kms:EncryptionContext:aws:identitystore:identitystore-arn": "arn:*:identitystore::*:identitystore/*"
-                        }, 
+                        },
                         "StringLike": {
                             "kms:ViaService": "identitystore.*.amazonaws.com"
                         }
-                    }, 
-                    "Sid": "AllowKmsAccessViaIdentityStore"
-                }, 
+                    }
+                },
                 {
+                    "Sid": "SupportCaseManagement",
+                    "Effect": "Allow",
                     "Action": [
-                        "support:CreateCase", 
-                        "support:DescribeCases", 
-                        "support:DescribeCommunications", 
-                        "support:AddCommunicationToCase", 
+                        "support:CreateCase",
+                        "support:DescribeCases",
+                        "support:DescribeCommunications",
+                        "support:AddCommunicationToCase",
                         "support:ResolveCase"
-                    ], 
-                    "Resource": "*", 
-                    "Effect": "Allow", 
-                    "Sid": "SupportCaseManagement"
-                }, 
+                    ],
+                    "Resource": "*"
+                },
                 {
+                    "Sid": "ExternalIdpSecretsAccess",
+                    "Effect": "Allow",
                     "Action": [
                         "secretsmanager:GetSecretValue"
-                    ], 
-                    "Resource": "arn:aws:secretsmanager:*:*:secret:transform!*", 
-                    "Effect": "Allow", 
+                    ],
+                    "Resource": "arn:aws:secretsmanager:*:*:secret:transform!*",
                     "Condition": {
                         "StringEquals": {
-                            "secretsmanager:ResourceTag/aws:secretsmanager:owningService": "transform", 
+                            "secretsmanager:ResourceTag/aws:secretsmanager:owningService": "transform",
                             "aws:ResourceAccount": "${aws:PrincipalAccount}"
                         }
-                    }, 
-                    "Sid": "ExternalIdpSecretsAccess"
+                    }
                 }
             ]
-        }, 
-        "IsDefaultVersion": true
+        },
+        "VersionId": "v12",
+        "IsDefaultVersion": true,
+        "CreateDate": "2026-02-12T18:03:10+00:00"
     }
 }
