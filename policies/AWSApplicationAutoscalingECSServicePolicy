@@ -1,26 +1,26 @@
 {
     "PolicyVersion": {
-        "CreateDate": "2024-10-24T20:05:50Z", 
-        "VersionId": "v2", 
         "Document": {
-            "Version": "2012-10-17", 
+            "Version": "2012-10-17",
             "Statement": [
                 {
+                    "Effect": "Allow",
                     "Action": [
-                        "ecs:DescribeServices", 
-                        "ecs:UpdateService", 
-                        "cloudwatch:PutMetricAlarm", 
-                        "cloudwatch:DescribeAlarms", 
-                        "cloudwatch:GetMetricData", 
+                        "ecs:DescribeServices",
+                        "ecs:UpdateService",
+                        "cloudwatch:PutMetricAlarm",
+                        "cloudwatch:DescribeAlarms",
+                        "cloudwatch:GetMetricData",
                         "cloudwatch:DeleteAlarms"
-                    ], 
+                    ],
                     "Resource": [
                         "*"
-                    ], 
-                    "Effect": "Allow"
+                    ]
                 }
             ]
-        }, 
-        "IsDefaultVersion": true
+        },
+        "VersionId": "v2",
+        "IsDefaultVersion": true,
+        "CreateDate": "2024-10-24T20:05:50+00:00"
     }
 }
