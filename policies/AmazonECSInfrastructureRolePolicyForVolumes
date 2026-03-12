@@ -1,101 +1,101 @@
 {
     "PolicyVersion": {
-        "CreateDate": "2026-02-12T18:02:34Z", 
-        "VersionId": "v5", 
         "Document": {
-            "Version": "2012-10-17", 
+            "Version": "2012-10-17",
             "Statement": [
                 {
-                    "Action": "ec2:CreateVolume", 
-                    "Resource": "arn:aws:ec2:*:*:volume/*", 
-                    "Effect": "Allow", 
+                    "Sid": "CreateEBSManagedVolume",
+                    "Effect": "Allow",
+                    "Action": "ec2:CreateVolume",
+                    "Resource": "arn:aws:ec2:*:*:volume/*",
                     "Condition": {
                         "ArnLike": {
                             "aws:RequestTag/AmazonECSCreated": "arn:aws:ecs:*:*:task/*"
-                        }, 
+                        },
                         "StringEquals": {
                             "aws:RequestTag/AmazonECSManaged": "true"
                         }
-                    }, 
-                    "Sid": "CreateEBSManagedVolume"
-                }, 
+                    }
+                },
                 {
-                    "Action": "ec2:CreateVolume", 
-                    "Resource": "arn:aws:ec2:*:*:snapshot/*", 
-                    "Effect": "Allow", 
-                    "Sid": "CreateEBSManagedVolumeFromSnapshot"
-                }, 
+                    "Sid": "CreateEBSManagedVolumeFromSnapshot",
+                    "Effect": "Allow",
+                    "Action": "ec2:CreateVolume",
+                    "Resource": "arn:aws:ec2:*:*:snapshot/*"
+                },
                 {
-                    "Action": "ec2:CreateTags", 
-                    "Resource": "arn:aws:ec2:*:*:volume/*", 
-                    "Effect": "Allow", 
+                    "Sid": "TagOnCreateVolume",
+                    "Effect": "Allow",
+                    "Action": "ec2:CreateTags",
+                    "Resource": "arn:aws:ec2:*:*:volume/*",
                     "Condition": {
                         "ArnLike": {
                             "aws:RequestTag/AmazonECSCreated": "arn:aws:ecs:*:*:task/*"
-                        }, 
+                        },
                         "StringEquals": {
-                            "ec2:CreateAction": "CreateVolume", 
+                            "ec2:CreateAction": "CreateVolume",
                             "aws:RequestTag/AmazonECSManaged": "true"
                         }
-                    }, 
-                    "Sid": "TagOnCreateVolume"
-                }, 
+                    }
+                },
                 {
+                    "Sid": "DescribeVolumesForLifecycle",
+                    "Effect": "Allow",
                     "Action": [
-                        "ec2:DescribeVolumes", 
+                        "ec2:DescribeVolumes",
                         "ec2:DescribeAvailabilityZones"
-                    ], 
-                    "Resource": "*", 
-                    "Effect": "Allow", 
-                    "Sid": "DescribeVolumesForLifecycle"
-                }, 
+                    ],
+                    "Resource": "*"
+                },
                 {
+                    "Sid": "DescribeInstancesForAttachingVolume",
+                    "Effect": "Allow",
                     "Action": [
                         "ec2:DescribeInstances"
-                    ], 
-                    "Resource": "*", 
-                    "Effect": "Allow", 
-                    "Sid": "DescribeInstancesForAttachingVolume"
-                }, 
+                    ],
+                    "Resource": "*"
+                },
                 {
+                    "Sid": "ManageEBSVolumeLifecycle",
+                    "Effect": "Allow",
                     "Action": [
-                        "ec2:AttachVolume", 
+                        "ec2:AttachVolume",
                         "ec2:DetachVolume"
-                    ], 
-                    "Resource": "arn:aws:ec2:*:*:volume/*", 
-                    "Effect": "Allow", 
+                    ],
+                    "Resource": "arn:aws:ec2:*:*:volume/*",
                     "Condition": {
                         "StringEquals": {
                             "aws:ResourceTag/AmazonECSManaged": "true"
                         }
-                    }, 
-                    "Sid": "ManageEBSVolumeLifecycle"
-                }, 
+                    }
+                },
                 {
+                    "Sid": "ManageVolumeAttachmentsForEC2",
+                    "Effect": "Allow",
                     "Action": [
-                        "ec2:AttachVolume", 
+                        "ec2:AttachVolume",
                         "ec2:DetachVolume"
-                    ], 
-                    "Resource": "arn:aws:ec2:*:*:instance/*", 
-                    "Effect": "Allow", 
-                    "Sid": "ManageVolumeAttachmentsForEC2"
-                }, 
+                    ],
+                    "Resource": "arn:aws:ec2:*:*:instance/*"
+                },
                 {
-                    "Action": "ec2:DeleteVolume", 
-                    "Resource": "arn:aws:ec2:*:*:volume/*", 
-                    "Effect": "Allow", 
+                    "Sid": "DeleteEBSManagedVolume",
+                    "Effect": "Allow",
+                    "Action": "ec2:DeleteVolume",
+                    "Resource": "arn:aws:ec2:*:*:volume/*",
                     "Condition": {
                         "ArnLike": {
                             "aws:ResourceTag/AmazonECSCreated": "arn:aws:ecs:*:*:task/*"
-                        }, 
+                        },
                         "StringEquals": {
                             "aws:ResourceTag/AmazonECSManaged": "true"
                         }
-                    }, 
-                    "Sid": "DeleteEBSManagedVolume"
+                    }
                 }
             ]
-        }, 
-        "IsDefaultVersion": true
+        },
+        "VersionId": "v5",
+        "IsDefaultVersion": true,
+        "CreateDate": "2026-02-12T18:02:34+00:00"
     }
 }
