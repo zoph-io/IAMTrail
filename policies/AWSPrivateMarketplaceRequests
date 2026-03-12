@@ -1,82 +1,82 @@
 {
     "PolicyVersion": {
-        "CreateDate": "2026-02-12T17:57:10Z", 
-        "VersionId": "v4", 
         "Document": {
-            "Version": "2012-10-17", 
+            "Version": "2012-10-17",
             "Statement": [
                 {
+                    "Sid": "LegacyPrivateMarketplaceRequestsPermissions",
+                    "Effect": "Allow",
                     "Action": [
-                        "aws-marketplace:CreatePrivateMarketplaceRequests", 
-                        "aws-marketplace:ListPrivateMarketplaceRequests", 
+                        "aws-marketplace:CreatePrivateMarketplaceRequests",
+                        "aws-marketplace:ListPrivateMarketplaceRequests",
                         "aws-marketplace:DescribePrivateMarketplaceRequests"
-                    ], 
-                    "Resource": "*", 
-                    "Effect": "Allow", 
-                    "Sid": "LegacyPrivateMarketplaceRequestsPermissions"
-                }, 
+                    ],
+                    "Resource": "*"
+                },
                 {
+                    "Sid": "PrivateMarketplaceManageRequestsPermissions",
+                    "Effect": "Allow",
                     "Action": [
                         "aws-marketplace:StartChangeSet"
-                    ], 
+                    ],
                     "Resource": [
-                        "arn:aws:aws-marketplace:*:*:AWSMarketplace/ProductProcurementRequest/*", 
+                        "arn:aws:aws-marketplace:*:*:AWSMarketplace/ProductProcurementRequest/*",
                         "arn:aws:aws-marketplace:*:*:AWSMarketplace/ChangeSet/*"
-                    ], 
-                    "Effect": "Allow", 
+                    ],
                     "Condition": {
                         "StringEquals": {
                             "catalog:ChangeType": [
-                                "CreateProductProcurementRequest", 
+                                "CreateProductProcurementRequest",
                                 "CancelProductProcurementRequest"
                             ]
                         }
-                    }, 
-                    "Sid": "PrivateMarketplaceManageRequestsPermissions"
-                }, 
+                    }
+                },
                 {
+                    "Sid": "PrivateMarketplaceReadRequestsPermissions",
+                    "Effect": "Allow",
                     "Action": [
                         "aws-marketplace:DescribeEntity"
-                    ], 
+                    ],
                     "Resource": [
                         "arn:aws:aws-marketplace:*:*:AWSMarketplace/ProductProcurementRequest/*"
-                    ], 
-                    "Effect": "Allow", 
-                    "Sid": "PrivateMarketplaceReadRequestsPermissions"
-                }, 
+                    ]
+                },
                 {
+                    "Sid": "PrivateMarketplaceListRequestsPermissions",
+                    "Effect": "Allow",
                     "Action": [
-                        "aws-marketplace:ListEntities", 
+                        "aws-marketplace:ListEntities",
                         "aws-marketplace:ListChangeSets"
-                    ], 
-                    "Resource": "*", 
-                    "Effect": "Allow", 
-                    "Sid": "PrivateMarketplaceListRequestsPermissions"
-                }, 
+                    ],
+                    "Resource": "*"
+                },
                 {
+                    "Sid": "PrivateMarketplaceReadChangeSetPermissions",
+                    "Effect": "Allow",
                     "Action": [
                         "aws-marketplace:DescribeChangeSet"
-                    ], 
+                    ],
                     "Resource": [
                         "arn:aws:aws-marketplace:*:*:AWSMarketplace/ChangeSet/*"
-                    ], 
-                    "Effect": "Allow", 
-                    "Sid": "PrivateMarketplaceReadChangeSetPermissions"
-                }, 
+                    ]
+                },
                 {
+                    "Sid": "PrivateMarketplaceTaggingRequestsPermissions",
+                    "Effect": "Allow",
                     "Action": [
-                        "aws-marketplace:TagResource", 
-                        "aws-marketplace:UntagResource", 
+                        "aws-marketplace:TagResource",
+                        "aws-marketplace:UntagResource",
                         "aws-marketplace:ListTagsForResource"
-                    ], 
+                    ],
                     "Resource": [
                         "arn:aws:aws-marketplace:*:*:AWSMarketplace/ProductProcurementRequest/*"
-                    ], 
-                    "Effect": "Allow", 
-                    "Sid": "PrivateMarketplaceTaggingRequestsPermissions"
+                    ]
                 }
             ]
-        }, 
-        "IsDefaultVersion": true
+        },
+        "VersionId": "v4",
+        "IsDefaultVersion": true,
+        "CreateDate": "2026-02-12T17:57:10+00:00"
     }
 }
