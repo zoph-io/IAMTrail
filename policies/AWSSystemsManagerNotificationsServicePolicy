@@ -1,57 +1,57 @@
 {
     "PolicyVersion": {
-        "CreateDate": "2025-04-17T20:52:07Z", 
-        "VersionId": "v1", 
         "Document": {
-            "Version": "2012-10-17", 
+            "Version": "2012-10-17",
             "Statement": [
                 {
+                    "Sid": "AllowIdentityStoreActions",
+                    "Effect": "Allow",
                     "Action": [
-                        "identitystore:ListGroupMembershipsForMember", 
-                        "identitystore:ListGroupMemberships", 
+                        "identitystore:ListGroupMembershipsForMember",
+                        "identitystore:ListGroupMemberships",
                         "identitystore:DescribeUser"
-                    ], 
+                    ],
                     "Resource": [
                         "*"
-                    ], 
-                    "Effect": "Allow", 
-                    "Sid": "AllowIdentityStoreActions"
-                }, 
+                    ]
+                },
                 {
+                    "Sid": "AllowSSOActions",
+                    "Effect": "Allow",
                     "Action": [
-                        "sso:ListInstances", 
-                        "sso:DescribeRegisteredRegions", 
+                        "sso:ListInstances",
+                        "sso:DescribeRegisteredRegions",
                         "sso:ListDirectoryAssociations"
-                    ], 
+                    ],
                     "Resource": [
                         "*"
-                    ], 
-                    "Effect": "Allow", 
-                    "Sid": "AllowSSOActions"
-                }, 
+                    ]
+                },
                 {
+                    "Sid": "AllowSSODirectoryActions",
+                    "Effect": "Allow",
                     "Action": [
-                        "sso-directory:DescribeUser", 
+                        "sso-directory:DescribeUser",
                         "sso-directory:ListMembersInGroup"
-                    ], 
+                    ],
                     "Resource": [
                         "*"
-                    ], 
-                    "Effect": "Allow", 
-                    "Sid": "AllowSSODirectoryActions"
-                }, 
+                    ]
+                },
                 {
+                    "Sid": "AllowIamActions",
+                    "Effect": "Allow",
                     "Action": [
                         "iam:GetRole"
-                    ], 
+                    ],
                     "Resource": [
                         "*"
-                    ], 
-                    "Effect": "Allow", 
-                    "Sid": "AllowIamActions"
+                    ]
                 }
             ]
-        }, 
-        "IsDefaultVersion": true
+        },
+        "VersionId": "v1",
+        "IsDefaultVersion": true,
+        "CreateDate": "2025-04-17T20:52:07+00:00"
     }
 }
