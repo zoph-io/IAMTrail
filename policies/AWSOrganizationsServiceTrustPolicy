@@ -1,36 +1,36 @@
 {
     "PolicyVersion": {
-        "CreateDate": "2026-03-05T19:12:09Z", 
-        "VersionId": "v3", 
         "Document": {
-            "Version": "2012-10-17", 
+            "Version": "2012-10-17",
             "Statement": [
                 {
+                    "Sid": "AllowDeletionOfServiceLinkedRoleForOrganizations",
+                    "Effect": "Allow",
                     "Action": [
                         "iam:DeleteRole"
-                    ], 
+                    ],
                     "Resource": [
                         "arn:aws:iam::*:role/aws-service-role/organizations.amazonaws.com/*"
-                    ], 
-                    "Effect": "Allow", 
-                    "Sid": "AllowDeletionOfServiceLinkedRoleForOrganizations"
-                }, 
+                    ]
+                },
                 {
+                    "Sid": "AllowCreationOfServiceLinkedRoles",
+                    "Effect": "Allow",
                     "Action": [
                         "iam:CreateServiceLinkedRole"
-                    ], 
-                    "Resource": "*", 
-                    "Effect": "Allow", 
-                    "Sid": "AllowCreationOfServiceLinkedRoles"
-                }, 
+                    ],
+                    "Resource": "*"
+                },
                 {
-                    "Action": "iam:ListRoles", 
-                    "Resource": "arn:aws:iam::*:role/aws-service-role/*", 
-                    "Effect": "Allow", 
-                    "Sid": "ListRolesSLR"
+                    "Sid": "ListRolesSLR",
+                    "Effect": "Allow",
+                    "Action": "iam:ListRoles",
+                    "Resource": "arn:aws:iam::*:role/aws-service-role/*"
                 }
             ]
-        }, 
-        "IsDefaultVersion": true
+        },
+        "VersionId": "v3",
+        "IsDefaultVersion": true,
+        "CreateDate": "2026-03-05T19:12:09+00:00"
     }
 }
