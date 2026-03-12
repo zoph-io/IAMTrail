@@ -1,49 +1,49 @@
 {
     "PolicyVersion": {
-        "CreateDate": "2026-02-12T17:59:13Z", 
-        "VersionId": "v3", 
         "Document": {
-            "Version": "2012-10-17", 
+            "Version": "2012-10-17",
             "Statement": [
                 {
+                    "Sid": "AmazonEKSDashboardReadOnly",
+                    "Effect": "Allow",
                     "Action": [
-                        "eks:ListDashboardData", 
-                        "eks:ListDashboardResources", 
+                        "eks:ListDashboardData",
+                        "eks:ListDashboardResources",
                         "eks:DescribeClusterVersions"
-                    ], 
-                    "Resource": "*", 
-                    "Effect": "Allow", 
-                    "Sid": "AmazonEKSDashboardReadOnly"
-                }, 
+                    ],
+                    "Resource": "*"
+                },
                 {
+                    "Sid": "AmazonOrganizationsReadOnly",
+                    "Effect": "Allow",
                     "Action": [
-                        "organizations:DescribeOrganization", 
-                        "organizations:ListAWSServiceAccessForOrganization", 
-                        "organizations:ListRoots", 
-                        "organizations:ListAccountsForParent", 
+                        "organizations:DescribeOrganization",
+                        "organizations:ListAWSServiceAccessForOrganization",
+                        "organizations:ListRoots",
+                        "organizations:ListAccountsForParent",
                         "organizations:ListOrganizationalUnitsForParent"
-                    ], 
-                    "Resource": "*", 
-                    "Effect": "Allow", 
-                    "Sid": "AmazonOrganizationsReadOnly"
-                }, 
+                    ],
+                    "Resource": "*"
+                },
                 {
+                    "Sid": "AmazonOrganizationsDelegatedAdmin",
+                    "Effect": "Allow",
                     "Action": [
                         "organizations:ListDelegatedAdministrators"
-                    ], 
+                    ],
                     "Resource": [
                         "*"
-                    ], 
-                    "Effect": "Allow", 
+                    ],
                     "Condition": {
                         "StringEquals": {
                             "organizations:ServicePrincipal": "eks.amazonaws.com"
                         }
-                    }, 
-                    "Sid": "AmazonOrganizationsDelegatedAdmin"
+                    }
                 }
             ]
-        }, 
-        "IsDefaultVersion": true
+        },
+        "VersionId": "v3",
+        "IsDefaultVersion": true,
+        "CreateDate": "2026-02-12T17:59:13+00:00"
     }
 }
