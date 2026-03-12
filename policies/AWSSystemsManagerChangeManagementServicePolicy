@@ -1,65 +1,63 @@
 {
     "PolicyVersion": {
-        "CreateDate": "2025-10-23T21:19:07Z", 
-        "VersionId": "v2", 
         "Document": {
-            "Version": "2012-10-17", 
+            "Version": "2012-10-17",
             "Statement": [
                 {
+                    "Effect": "Allow",
                     "Action": [
-                        "ssm:CreateAssociation", 
-                        "ssm:DeleteAssociation", 
-                        "ssm:CreateOpsItem", 
-                        "ssm:GetOpsItem", 
-                        "ssm:UpdateOpsItem", 
-                        "ssm:StartAutomationExecution", 
-                        "ssm:StopAutomationExecution", 
-                        "ssm:GetAutomationExecution", 
-                        "ssm:GetCalendarState", 
+                        "ssm:CreateAssociation",
+                        "ssm:DeleteAssociation",
+                        "ssm:CreateOpsItem",
+                        "ssm:GetOpsItem",
+                        "ssm:UpdateOpsItem",
+                        "ssm:StartAutomationExecution",
+                        "ssm:StopAutomationExecution",
+                        "ssm:GetAutomationExecution",
+                        "ssm:GetCalendarState",
                         "ssm:GetDocument"
-                    ], 
+                    ],
                     "Resource": [
                         "*"
-                    ], 
-                    "Effect": "Allow"
-                }, 
+                    ]
+                },
                 {
+                    "Effect": "Allow",
                     "Action": [
                         "cloudwatch:DescribeAlarms"
-                    ], 
+                    ],
                     "Resource": [
                         "*"
-                    ], 
-                    "Effect": "Allow"
-                }, 
+                    ]
+                },
                 {
+                    "Effect": "Allow",
                     "Action": [
                         "sso:ListDirectoryAssociations"
-                    ], 
+                    ],
                     "Resource": [
                         "*"
-                    ], 
-                    "Effect": "Allow"
-                }, 
+                    ]
+                },
                 {
+                    "Effect": "Allow",
                     "Action": [
-                        "sso-directory:DescribeUsers", 
+                        "sso-directory:DescribeUsers",
                         "sso-directory:IsMemberInGroup"
-                    ], 
+                    ],
                     "Resource": [
                         "*"
-                    ], 
-                    "Effect": "Allow"
-                }, 
+                    ]
+                },
                 {
-                    "Action": "iam:GetGroup", 
-                    "Resource": "*", 
-                    "Effect": "Allow"
-                }, 
+                    "Effect": "Allow",
+                    "Action": "iam:GetGroup",
+                    "Resource": "*"
+                },
                 {
-                    "Action": "iam:PassRole", 
-                    "Resource": "*", 
-                    "Effect": "Allow", 
+                    "Effect": "Allow",
+                    "Action": "iam:PassRole",
+                    "Resource": "*",
                     "Condition": {
                         "StringEquals": {
                             "iam:PassedToService": [
@@ -67,41 +65,43 @@
                             ]
                         }
                     }
-                }, 
+                },
                 {
+                    "Sid": "AllowKmsAccessViaIdentityCenter",
+                    "Effect": "Allow",
                     "Action": [
                         "kms:Decrypt"
-                    ], 
-                    "Resource": "*", 
-                    "Effect": "Allow", 
+                    ],
+                    "Resource": "*",
                     "Condition": {
                         "ArnLike": {
                             "kms:EncryptionContext:aws:sso:instance-arn": "arn:*:sso:::instance/*"
-                        }, 
+                        },
                         "StringLike": {
                             "kms:ViaService": "sso.*.amazonaws.com"
                         }
-                    }, 
-                    "Sid": "AllowKmsAccessViaIdentityCenter"
-                }, 
+                    }
+                },
                 {
+                    "Sid": "AllowKmsAccessViaIdentityStore",
+                    "Effect": "Allow",
                     "Action": [
                         "kms:Decrypt"
-                    ], 
-                    "Resource": "*", 
-                    "Effect": "Allow", 
+                    ],
+                    "Resource": "*",
                     "Condition": {
                         "ArnLike": {
                             "kms:EncryptionContext:aws:identitystore:identitystore-arn": "arn:*:identitystore::*:identitystore/*"
-                        }, 
+                        },
                         "StringLike": {
                             "kms:ViaService": "identitystore.*.amazonaws.com"
                         }
-                    }, 
-                    "Sid": "AllowKmsAccessViaIdentityStore"
+                    }
                 }
             ]
-        }, 
-        "IsDefaultVersion": true
+        },
+        "VersionId": "v2",
+        "IsDefaultVersion": true,
+        "CreateDate": "2025-10-23T21:19:07+00:00"
     }
 }
