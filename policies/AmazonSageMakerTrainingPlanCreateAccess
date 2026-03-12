@@ -1,69 +1,69 @@
 {
     "PolicyVersion": {
-        "CreateDate": "2026-02-12T18:03:21Z", 
-        "VersionId": "v6", 
         "Document": {
-            "Version": "2012-10-17", 
+            "Version": "2012-10-17",
             "Statement": [
                 {
+                    "Sid": "CreateTrainingPlanPermissions",
+                    "Effect": "Allow",
                     "Action": [
-                        "sagemaker:CreateTrainingPlan", 
-                        "sagemaker:CreateReservedCapacity", 
+                        "sagemaker:CreateTrainingPlan",
+                        "sagemaker:CreateReservedCapacity",
                         "sagemaker:DescribeReservedCapacity"
-                    ], 
+                    ],
                     "Resource": [
-                        "arn:aws:sagemaker:*:*:training-plan/*", 
+                        "arn:aws:sagemaker:*:*:training-plan/*",
                         "arn:aws:sagemaker:*:*:reserved-capacity/*"
-                    ], 
-                    "Effect": "Allow", 
-                    "Sid": "CreateTrainingPlanPermissions"
-                }, 
+                    ]
+                },
                 {
+                    "Sid": "AddTagsToTrainingPlanPermissions",
+                    "Effect": "Allow",
                     "Action": [
                         "sagemaker:AddTags"
-                    ], 
+                    ],
                     "Resource": [
-                        "arn:aws:sagemaker:*:*:training-plan/*", 
+                        "arn:aws:sagemaker:*:*:training-plan/*",
                         "arn:aws:sagemaker:*:*:reserved-capacity/*"
-                    ], 
-                    "Effect": "Allow", 
+                    ],
                     "Condition": {
                         "StringEquals": {
                             "sagemaker:TaggingAction": [
-                                "CreateTrainingPlan", 
+                                "CreateTrainingPlan",
                                 "CreateReservedCapacity"
                             ]
                         }
-                    }, 
-                    "Sid": "AddTagsToTrainingPlanPermissions"
-                }, 
+                    }
+                },
                 {
-                    "Action": "sagemaker:DescribeTrainingPlan", 
+                    "Sid": "DescribeTrainingPlanPermissions",
+                    "Effect": "Allow",
+                    "Action": "sagemaker:DescribeTrainingPlan",
                     "Resource": [
                         "arn:aws:sagemaker:*:*:training-plan/*"
-                    ], 
-                    "Effect": "Allow", 
-                    "Sid": "DescribeTrainingPlanPermissions"
-                }, 
+                    ]
+                },
                 {
+                    "Sid": "NonResourceLevelTrainingPlanPermissions",
+                    "Effect": "Allow",
                     "Action": [
-                        "sagemaker:SearchTrainingPlanOfferings", 
+                        "sagemaker:SearchTrainingPlanOfferings",
                         "sagemaker:ListTrainingPlans"
-                    ], 
-                    "Resource": "*", 
-                    "Effect": "Allow", 
-                    "Sid": "NonResourceLevelTrainingPlanPermissions"
-                }, 
+                    ],
+                    "Resource": "*"
+                },
                 {
-                    "Action": "sagemaker:ListUltraServersByReservedCapacity", 
+                    "Sid": "ListUltraServersByReservedCapacityPermissions",
+                    "Effect": "Allow",
+                    "Action": "sagemaker:ListUltraServersByReservedCapacity",
                     "Resource": [
                         "arn:aws:sagemaker:*:*:reserved-capacity/*"
-                    ], 
-                    "Effect": "Allow", 
-                    "Sid": "ListUltraServersByReservedCapacityPermissions"
+                    ]
                 }
             ]
-        }, 
-        "IsDefaultVersion": true
+        },
+        "VersionId": "v6",
+        "IsDefaultVersion": true,
+        "CreateDate": "2026-02-12T18:03:21+00:00"
     }
 }
