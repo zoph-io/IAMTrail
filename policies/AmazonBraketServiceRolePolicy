@@ -1,34 +1,32 @@
 {
     "PolicyVersion": {
-        "CreateDate": "2025-07-11T21:37:07Z", 
-        "VersionId": "v3", 
         "Document": {
-            "Version": "2012-10-17", 
+            "Version": "2012-10-17",
             "Statement": [
                 {
+                    "Effect": "Allow",
                     "Action": [
-                        "s3:PutObject", 
-                        "s3:GetObject", 
+                        "s3:PutObject",
+                        "s3:GetObject",
                         "s3:ListBucket"
-                    ], 
-                    "Resource": "arn:aws:s3:::amazon-braket-*", 
-                    "Effect": "Allow", 
+                    ],
+                    "Resource": "arn:aws:s3:::amazon-braket-*",
                     "Condition": {
                         "StringEquals": {
                             "aws:ResourceAccount": "${aws:PrincipalAccount}"
                         }
                     }
-                }, 
+                },
                 {
+                    "Effect": "Allow",
                     "Action": [
-                        "logs:PutLogEvents", 
-                        "logs:CreateLogStream", 
-                        "logs:DescribeLogStreams", 
-                        "logs:CreateLogGroup", 
+                        "logs:PutLogEvents",
+                        "logs:CreateLogStream",
+                        "logs:DescribeLogStreams",
+                        "logs:CreateLogGroup",
                         "logs:DescribeLogGroups"
-                    ], 
-                    "Resource": "arn:aws:logs:*:*:log-group:/aws/braket:*", 
-                    "Effect": "Allow", 
+                    ],
+                    "Resource": "arn:aws:logs:*:*:log-group:/aws/braket:*",
                     "Condition": {
                         "StringEquals": {
                             "aws:ResourceAccount": "${aws:PrincipalAccount}"
@@ -36,7 +34,9 @@
                     }
                 }
             ]
-        }, 
-        "IsDefaultVersion": true
+        },
+        "VersionId": "v3",
+        "IsDefaultVersion": true,
+        "CreateDate": "2025-07-11T21:37:07+00:00"
     }
 }
