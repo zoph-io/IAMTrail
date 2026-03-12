@@ -1,264 +1,264 @@
 {
     "PolicyVersion": {
-        "CreateDate": "2026-02-12T17:58:49Z", 
-        "VersionId": "v4", 
         "Document": {
-            "Version": "2012-10-17", 
+            "Version": "2012-10-17",
             "Statement": [
                 {
+                    "Sid": "AllowReadOnlyAccessSSMResource",
+                    "Effect": "Allow",
                     "Action": [
-                        "ssm:GetAutomationExecution", 
-                        "ssm:DescribeAutomationExecutions", 
+                        "ssm:GetAutomationExecution",
+                        "ssm:DescribeAutomationExecutions",
                         "ssm:DescribeAutomationStepExecutions"
-                    ], 
-                    "Resource": "*", 
-                    "Effect": "Allow", 
-                    "Sid": "AllowReadOnlyAccessSSMResource"
-                }, 
+                    ],
+                    "Resource": "*"
+                },
                 {
+                    "Sid": "AllowReadOnlyAccessEC2Resource",
+                    "Effect": "Allow",
                     "Action": [
-                        "ec2:DescribeVpcAttribute", 
-                        "ec2:DescribeSubnets", 
-                        "ec2:DescribeVpcs", 
-                        "ec2:DescribeVpcEndpoints", 
+                        "ec2:DescribeVpcAttribute",
+                        "ec2:DescribeSubnets",
+                        "ec2:DescribeVpcs",
+                        "ec2:DescribeVpcEndpoints",
                         "ec2:DescribeSecurityGroups"
-                    ], 
-                    "Resource": "*", 
-                    "Effect": "Allow", 
-                    "Sid": "AllowReadOnlyAccessEC2Resource"
-                }, 
+                    ],
+                    "Resource": "*"
+                },
                 {
+                    "Sid": "AllowCreateVpcEndpointForTaggedSecurityGroup",
+                    "Effect": "Allow",
                     "Action": [
                         "ec2:CreateVpcEndpoint"
-                    ], 
+                    ],
                     "Resource": [
                         "arn:aws:ec2:*:*:security-group/*"
-                    ], 
-                    "Effect": "Allow", 
+                    ],
                     "Condition": {
                         "StringEquals": {
                             "aws:ResourceTag/SystemsManager::FindingNetworkingSecurityGroups::VPCE::SG": "VPCEndpointSecurityGroup"
                         }
-                    }, 
-                    "Sid": "AllowCreateVpcEndpointForTaggedSecurityGroup"
-                }, 
+                    }
+                },
                 {
+                    "Sid": "AllowCreateVpcEndpoint",
+                    "Effect": "Allow",
                     "Action": [
                         "ec2:CreateVpcEndpoint"
-                    ], 
+                    ],
                     "Resource": [
-                        "arn:aws:ec2:*:*:vpc/*", 
+                        "arn:aws:ec2:*:*:vpc/*",
                         "arn:aws:ec2:*:*:subnet/*"
-                    ], 
-                    "Effect": "Allow", 
-                    "Sid": "AllowCreateVpcEndpoint"
-                }, 
+                    ]
+                },
                 {
+                    "Sid": "RestrictCreateVpcEndpointForSSMService",
+                    "Effect": "Allow",
                     "Action": [
                         "ec2:CreateVpcEndpoint"
-                    ], 
+                    ],
                     "Resource": [
                         "arn:aws:ec2:*:*:vpc-endpoint/*"
-                    ], 
-                    "Effect": "Allow", 
+                    ],
                     "Condition": {
-                        "StringEquals": {
-                            "aws:RequestTag/SystemsManager::FindingNetworkingVPCEndpoints::VPCE": "VPCEndpoint"
-                        }, 
                         "StringLike": {
                             "ec2:VpceServiceName": [
-                                "com.amazonaws.*.ssm", 
-                                "com.amazonaws.*.ssmmessages", 
+                                "com.amazonaws.*.ssm",
+                                "com.amazonaws.*.ssmmessages",
                                 "com.amazonaws.*.ec2messages"
                             ]
+                        },
+                        "StringEquals": {
+                            "aws:RequestTag/SystemsManager::FindingNetworkingVPCEndpoints::VPCE": "VPCEndpoint"
                         }
-                    }, 
-                    "Sid": "RestrictCreateVpcEndpointForSSMService"
-                }, 
+                    }
+                },
                 {
-                    "Action": "ec2:CreateTags", 
+                    "Sid": "RestrictCreateVpcEndpointWithTag",
+                    "Effect": "Allow",
+                    "Action": "ec2:CreateTags",
                     "Resource": [
                         "arn:aws:ec2:*:*:vpc-endpoint/*"
-                    ], 
-                    "Effect": "Allow", 
+                    ],
                     "Condition": {
                         "StringEquals": {
-                            "aws:RequestTag/SystemsManager::FindingNetworkingVPCEndpoints::VPCE": "VPCEndpoint", 
+                            "aws:RequestTag/SystemsManager::FindingNetworkingVPCEndpoints::VPCE": "VPCEndpoint",
                             "ec2:CreateAction": [
                                 "CreateVpcEndpoint"
                             ]
                         }
-                    }, 
-                    "Sid": "RestrictCreateVpcEndpointWithTag"
-                }, 
+                    }
+                },
                 {
+                    "Sid": "AllowModifyVpcAttributeForDns",
+                    "Effect": "Allow",
                     "Action": [
                         "ec2:ModifyVpcAttribute"
-                    ], 
+                    ],
                     "Resource": [
                         "arn:aws:ec2:*:*:vpc/*"
-                    ], 
-                    "Effect": "Allow", 
+                    ],
                     "Condition": {
                         "StringEquals": {
                             "ec2:Attribute": [
-                                "EnableDnsSupport", 
+                                "EnableDnsSupport",
                                 "EnableDnsHostnames"
                             ]
                         }
-                    }, 
-                    "Sid": "AllowModifyVpcAttributeForDns"
-                }, 
+                    }
+                },
                 {
+                    "Sid": "AllowSecurityGroupRuleUpdate",
+                    "Effect": "Allow",
                     "Action": [
                         "ec2:AuthorizeSecurityGroupEgress"
-                    ], 
+                    ],
                     "Resource": [
                         "arn:aws:ec2:*:*:security-group/*"
-                    ], 
-                    "Effect": "Allow", 
-                    "Sid": "AllowSecurityGroupRuleUpdate"
-                }, 
+                    ]
+                },
                 {
+                    "Sid": "AllowSecurityGroupRuleUpdateForTaggedResource",
+                    "Effect": "Allow",
                     "Action": [
-                        "ec2:RevokeSecurityGroupEgress", 
+                        "ec2:RevokeSecurityGroupEgress",
                         "ec2:AuthorizeSecurityGroupIngress"
-                    ], 
+                    ],
                     "Resource": [
                         "arn:aws:ec2:*:*:security-group/*"
-                    ], 
-                    "Effect": "Allow", 
+                    ],
                     "Condition": {
                         "StringEquals": {
                             "aws:ResourceTag/SystemsManager::FindingNetworkingSecurityGroups::VPCE::SG": "VPCEndpointSecurityGroup"
                         }
-                    }, 
-                    "Sid": "AllowSecurityGroupRuleUpdateForTaggedResource"
-                }, 
+                    }
+                },
                 {
+                    "Sid": "AllowSecurityGroupRuleUpdateWithTag",
+                    "Effect": "Allow",
                     "Action": [
-                        "ec2:AuthorizeSecurityGroupEgress", 
+                        "ec2:AuthorizeSecurityGroupEgress",
                         "ec2:AuthorizeSecurityGroupIngress"
-                    ], 
+                    ],
                     "Resource": [
                         "arn:aws:ec2:*:*:security-group-rule/*"
-                    ], 
-                    "Effect": "Allow", 
+                    ],
                     "Condition": {
                         "StringEquals": {
                             "aws:RequestTag/SystemsManager::FindingNetworkingSecurityGroups::SG::Rule": "HTTPSAccess"
                         }
-                    }, 
-                    "Sid": "AllowSecurityGroupRuleUpdateWithTag"
-                }, 
+                    }
+                },
                 {
-                    "Action": "ec2:CreateTags", 
+                    "Sid": "AllowSecurityGroupRuleUpdateTagRule",
+                    "Effect": "Allow",
+                    "Action": "ec2:CreateTags",
                     "Resource": [
                         "arn:aws:ec2:*:*:security-group-rule/*"
-                    ], 
-                    "Effect": "Allow", 
+                    ],
                     "Condition": {
                         "StringEquals": {
-                            "aws:RequestTag/SystemsManager::FindingNetworkingSecurityGroups::SG::Rule": "HTTPSAccess", 
+                            "aws:RequestTag/SystemsManager::FindingNetworkingSecurityGroups::SG::Rule": "HTTPSAccess",
                             "ec2:CreateAction": [
-                                "AuthorizeSecurityGroupEgress", 
+                                "AuthorizeSecurityGroupEgress",
                                 "AuthorizeSecurityGroupIngress"
                             ]
                         }
-                    }, 
-                    "Sid": "AllowSecurityGroupRuleUpdateTagRule"
-                }, 
+                    }
+                },
                 {
+                    "Sid": "AllowCreateSecurityGroupForVPCEndpoint",
+                    "Effect": "Allow",
                     "Action": [
                         "ec2:CreateSecurityGroup"
-                    ], 
+                    ],
                     "Resource": [
                         "arn:aws:ec2:*:*:vpc/*"
-                    ], 
-                    "Effect": "Allow", 
-                    "Sid": "AllowCreateSecurityGroupForVPCEndpoint"
-                }, 
+                    ]
+                },
                 {
+                    "Sid": "AllowCreateSecurityGroupWithTag",
+                    "Effect": "Allow",
                     "Action": [
                         "ec2:CreateSecurityGroup"
-                    ], 
+                    ],
                     "Resource": [
                         "arn:aws:ec2:*:*:security-group/*"
-                    ], 
-                    "Effect": "Allow", 
+                    ],
                     "Condition": {
                         "StringEquals": {
                             "aws:RequestTag/SystemsManager::FindingNetworkingSecurityGroups::VPCE::SG": "VPCEndpointSecurityGroup"
                         }
-                    }, 
-                    "Sid": "AllowCreateSecurityGroupWithTag"
-                }, 
+                    }
+                },
                 {
-                    "Action": "ec2:CreateTags", 
+                    "Sid": "AllowTagCreationForSecurityGroupTags",
+                    "Effect": "Allow",
+                    "Action": "ec2:CreateTags",
                     "Resource": [
                         "arn:aws:ec2:*:*:security-group/*"
-                    ], 
-                    "Effect": "Allow", 
+                    ],
                     "Condition": {
                         "StringEquals": {
+                            "aws:RequestTag/SystemsManager::FindingNetworkingSecurityGroups::VPCE::SG": "VPCEndpointSecurityGroup",
                             "ec2:CreateAction": [
                                 "CreateSecurityGroup"
-                            ], 
-                            "aws:RequestTag/SystemsManager::FindingNetworkingSecurityGroups::VPCE::SG": "VPCEndpointSecurityGroup"
+                            ]
                         }
-                    }, 
-                    "Sid": "AllowTagCreationForSecurityGroupTags"
-                }, 
+                    }
+                },
                 {
+                    "Sid": "AllowExecuteSSMAutomation",
+                    "Effect": "Allow",
                     "Action": [
                         "ssm:StartAutomationExecution"
-                    ], 
+                    ],
                     "Resource": [
-                        "arn:aws:ssm:*:*:document/AWS-OrchestrateUnmanagedEC2Actions", 
-                        "arn:aws:ssm:*:*:document/AWS-RemediateSSMAgent*", 
-                        "arn:aws:ssm:*:*:automation-execution/*", 
-                        "arn:aws:ssm:*:*:automation-definition/AWS-OrchestrateUnmanagedEC2Actions:*", 
+                        "arn:aws:ssm:*:*:document/AWS-OrchestrateUnmanagedEC2Actions",
+                        "arn:aws:ssm:*:*:document/AWS-RemediateSSMAgent*",
+                        "arn:aws:ssm:*:*:automation-execution/*",
+                        "arn:aws:ssm:*:*:automation-definition/AWS-OrchestrateUnmanagedEC2Actions:*",
                         "arn:aws:ssm:*:*:automation-definition/AWS-RemediateSSMAgent*:*"
-                    ], 
-                    "Effect": "Allow", 
-                    "Sid": "AllowExecuteSSMAutomation"
-                }, 
+                    ]
+                },
                 {
+                    "Sid": "AllowKMSOperations",
+                    "Effect": "Allow",
                     "Action": [
-                        "kms:Decrypt", 
+                        "kms:Decrypt",
                         "kms:GenerateDataKey"
-                    ], 
-                    "Resource": "arn:aws:kms:*:*:key/*", 
-                    "Effect": "Allow", 
+                    ],
+                    "Resource": "arn:aws:kms:*:*:key/*",
                     "Condition": {
-                        "StringLike": {
-                            "kms:ViaService": "s3.*.amazonaws.com"
-                        }, 
-                        "ArnLike": {
-                            "kms:EncryptionContext:aws:s3:arn": "arn:aws:s3:::do-not-delete-ssm-diagnosis-*"
-                        }, 
                         "StringEquals": {
                             "aws:ResourceTag/SystemsManagerManaged": "true"
-                        }, 
+                        },
+                        "ArnLike": {
+                            "kms:EncryptionContext:aws:s3:arn": "arn:aws:s3:::do-not-delete-ssm-diagnosis-*"
+                        },
+                        "StringLike": {
+                            "kms:ViaService": "s3.*.amazonaws.com"
+                        },
                         "Bool": {
                             "aws:ViaAWSService": "true"
                         }
-                    }, 
-                    "Sid": "AllowKMSOperations"
-                }, 
+                    }
+                },
                 {
-                    "Action": "iam:PassRole", 
-                    "Resource": "arn:aws:iam::*:role/AWS-SSM-RemediationExecutionRole*", 
-                    "Effect": "Allow", 
+                    "Sid": "AllowPassRoleOnSelfToSsm",
+                    "Effect": "Allow",
+                    "Action": "iam:PassRole",
+                    "Resource": "arn:aws:iam::*:role/AWS-SSM-RemediationExecutionRole*",
                     "Condition": {
                         "StringEquals": {
                             "iam:PassedToService": "ssm.amazonaws.com"
                         }
-                    }, 
-                    "Sid": "AllowPassRoleOnSelfToSsm"
+                    }
                 }
             ]
-        }, 
-        "IsDefaultVersion": true
+        },
+        "VersionId": "v4",
+        "IsDefaultVersion": true,
+        "CreateDate": "2026-02-12T17:58:49+00:00"
     }
 }
