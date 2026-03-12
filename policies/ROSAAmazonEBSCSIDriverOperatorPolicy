@@ -1,140 +1,140 @@
 {
     "PolicyVersion": {
-        "CreateDate": "2026-02-12T17:58:07Z", 
-        "VersionId": "v6", 
         "Document": {
-            "Version": "2012-10-17", 
+            "Version": "2012-10-17",
             "Statement": [
                 {
+                    "Effect": "Allow",
                     "Action": [
-                        "ec2:DescribeInstances", 
-                        "ec2:DescribeSnapshots", 
-                        "ec2:DescribeTags", 
-                        "ec2:DescribeVolumes", 
+                        "ec2:DescribeInstances",
+                        "ec2:DescribeSnapshots",
+                        "ec2:DescribeTags",
+                        "ec2:DescribeVolumes",
                         "ec2:DescribeVolumesModifications"
-                    ], 
-                    "Resource": "*", 
-                    "Effect": "Allow"
-                }, 
+                    ],
+                    "Resource": "*"
+                },
                 {
+                    "Effect": "Allow",
                     "Action": [
-                        "ec2:AttachVolume", 
+                        "ec2:AttachVolume",
                         "ec2:DetachVolume"
-                    ], 
+                    ],
                     "Resource": [
-                        "arn:aws:ec2:*:*:instance/*", 
+                        "arn:aws:ec2:*:*:instance/*",
                         "arn:aws:ec2:*:*:volume/*"
-                    ], 
-                    "Effect": "Allow", 
+                    ],
                     "Condition": {
                         "StringEquals": {
                             "aws:ResourceTag/red-hat-managed": "true"
                         }
                     }
-                }, 
+                },
                 {
+                    "Effect": "Allow",
                     "Action": [
-                        "ec2:DeleteVolume", 
+                        "ec2:DeleteVolume",
                         "ec2:ModifyVolume"
-                    ], 
+                    ],
                     "Resource": [
                         "arn:aws:ec2:*:*:volume/*"
-                    ], 
-                    "Effect": "Allow", 
+                    ],
                     "Condition": {
                         "StringEquals": {
                             "aws:ResourceTag/red-hat-managed": "true"
                         }
                     }
-                }, 
+                },
                 {
+                    "Effect": "Allow",
                     "Action": [
                         "ec2:CreateVolume"
-                    ], 
+                    ],
                     "Resource": [
                         "arn:aws:ec2:*:*:volume/*"
-                    ], 
-                    "Effect": "Allow", 
+                    ],
                     "Condition": {
                         "StringEquals": {
                             "aws:RequestTag/red-hat-managed": "true"
                         }
                     }
-                }, 
+                },
                 {
+                    "Sid": "CreateVolumeFromSnapshot",
+                    "Effect": "Allow",
                     "Action": [
                         "ec2:CreateVolume"
-                    ], 
+                    ],
                     "Resource": [
                         "arn:aws:ec2:*:*:snapshot/*"
-                    ], 
-                    "Effect": "Allow", 
-                    "Sid": "CreateVolumeFromSnapshot"
-                }, 
+                    ]
+                },
                 {
+                    "Sid": "CreateSnapshotResourceTag",
+                    "Effect": "Allow",
                     "Action": [
                         "ec2:CreateSnapshot"
-                    ], 
+                    ],
                     "Resource": [
                         "arn:aws:ec2:*:*:volume/*"
-                    ], 
-                    "Effect": "Allow", 
+                    ],
                     "Condition": {
                         "StringEquals": {
                             "aws:ResourceTag/red-hat-managed": "true"
                         }
-                    }, 
-                    "Sid": "CreateSnapshotResourceTag"
-                }, 
+                    }
+                },
                 {
+                    "Sid": "CreateSnapshotRequestTag",
+                    "Effect": "Allow",
                     "Action": [
                         "ec2:CreateSnapshot"
-                    ], 
+                    ],
                     "Resource": [
                         "arn:aws:ec2:*:*:snapshot/*"
-                    ], 
-                    "Effect": "Allow", 
+                    ],
                     "Condition": {
                         "StringEquals": {
                             "aws:RequestTag/red-hat-managed": "true"
                         }
-                    }, 
-                    "Sid": "CreateSnapshotRequestTag"
-                }, 
+                    }
+                },
                 {
+                    "Effect": "Allow",
                     "Action": [
                         "ec2:DeleteSnapshot"
-                    ], 
+                    ],
                     "Resource": [
                         "arn:aws:ec2:*:*:snapshot/*"
-                    ], 
-                    "Effect": "Allow", 
+                    ],
                     "Condition": {
                         "StringEquals": {
                             "aws:ResourceTag/red-hat-managed": "true"
                         }
                     }
-                }, 
+                },
                 {
+                    "Effect": "Allow",
                     "Action": [
                         "ec2:CreateTags"
-                    ], 
+                    ],
                     "Resource": [
-                        "arn:aws:ec2:*:*:volume/*", 
+                        "arn:aws:ec2:*:*:volume/*",
                         "arn:aws:ec2:*:*:snapshot/*"
-                    ], 
-                    "Effect": "Allow", 
+                    ],
                     "Condition": {
                         "StringEquals": {
                             "ec2:CreateAction": [
-                                "CreateVolume", 
+                                "CreateVolume",
                                 "CreateSnapshot"
                             ]
                         }
                     }
                 }
             ]
-        }, 
-        "IsDefaultVersion": true
+        },
+        "VersionId": "v6",
+        "IsDefaultVersion": true,
+        "CreateDate": "2026-02-12T17:58:07+00:00"
     }
 }
