@@ -1,7 +1,7 @@
 {
     "PolicyVersion": {
-        "CreateDate": "2026-02-12T18:01:51Z", 
-        "VersionId": "v6", 
+        "CreateDate": "2026-03-11T22:27:18Z", 
+        "VersionId": "v7", 
         "Document": {
             "Version": "2012-10-17", 
             "Statement": [
@@ -11,7 +11,9 @@
                         "ec2:DescribeVpcs", 
                         "logs:DescribeLogGroups", 
                         "logs:DescribeResourcePolicies", 
-                        "logs:ListLogGroups"
+                        "logs:ListLogGroups", 
+                        "ec2:MonitorInstances", 
+                        "logs:DescribeDeliverySources"
                     ], 
                     "Resource": "*", 
                     "Effect": "Allow", 
