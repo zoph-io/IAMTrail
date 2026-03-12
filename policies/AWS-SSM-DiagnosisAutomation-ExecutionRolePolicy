@@ -1,87 +1,87 @@
 {
     "PolicyVersion": {
-        "CreateDate": "2026-02-12T18:02:31Z", 
-        "VersionId": "v7", 
         "Document": {
-            "Version": "2012-10-17", 
+            "Version": "2012-10-17",
             "Statement": [
                 {
+                    "Sid": "AllowReadOnlyAccessEC2Resource",
+                    "Effect": "Allow",
                     "Action": [
-                        "ec2:DescribeVpcs", 
-                        "ec2:DescribeVpcAttribute", 
-                        "ec2:DescribeVpcEndpoints", 
-                        "ec2:DescribeSubnets", 
-                        "ec2:DescribeSecurityGroups", 
-                        "ec2:DescribeInstances", 
-                        "ec2:DescribeInternetGateways", 
-                        "ec2:DescribeInstanceStatus", 
+                        "ec2:DescribeVpcs",
+                        "ec2:DescribeVpcAttribute",
+                        "ec2:DescribeVpcEndpoints",
+                        "ec2:DescribeSubnets",
+                        "ec2:DescribeSecurityGroups",
+                        "ec2:DescribeInstances",
+                        "ec2:DescribeInternetGateways",
+                        "ec2:DescribeInstanceStatus",
                         "ec2:DescribeNetworkAcls"
-                    ], 
-                    "Resource": "*", 
-                    "Effect": "Allow", 
-                    "Sid": "AllowReadOnlyAccessEC2Resource"
-                }, 
+                    ],
+                    "Resource": "*"
+                },
                 {
+                    "Sid": "AllowReadOnlyAccessSSMResource",
+                    "Effect": "Allow",
                     "Action": [
-                        "ssm:DescribeAutomationStepExecutions", 
-                        "ssm:DescribeInstanceInformation", 
-                        "ssm:DescribeAutomationExecutions", 
-                        "ssm:DescribeActivations", 
-                        "ssm:GetAutomationExecution", 
+                        "ssm:DescribeAutomationStepExecutions",
+                        "ssm:DescribeInstanceInformation",
+                        "ssm:DescribeAutomationExecutions",
+                        "ssm:DescribeActivations",
+                        "ssm:GetAutomationExecution",
                         "ssm:GetServiceSetting"
-                    ], 
-                    "Resource": "*", 
-                    "Effect": "Allow", 
-                    "Sid": "AllowReadOnlyAccessSSMResource"
-                }, 
+                    ],
+                    "Resource": "*"
+                },
                 {
+                    "Sid": "AllowExecuteSSMAutomation",
+                    "Effect": "Allow",
                     "Action": [
                         "ssm:StartAutomationExecution"
-                    ], 
+                    ],
                     "Resource": [
-                        "arn:aws:ssm:*:*:document/AWS-*UnmanagedEC2*", 
-                        "arn:aws:ssm:*:*:automation-execution/*", 
+                        "arn:aws:ssm:*:*:document/AWS-*UnmanagedEC2*",
+                        "arn:aws:ssm:*:*:automation-execution/*",
                         "arn:aws:ssm:*:*:automation-definition/AWS-*UnmanagedEC2*:*"
-                    ], 
-                    "Effect": "Allow", 
-                    "Sid": "AllowExecuteSSMAutomation"
-                }, 
+                    ]
+                },
                 {
+                    "Sid": "AllowKMSOperations",
+                    "Effect": "Allow",
                     "Action": [
-                        "kms:Decrypt", 
+                        "kms:Decrypt",
                         "kms:GenerateDataKey"
-                    ], 
-                    "Resource": "arn:aws:kms:*:*:key/*", 
-                    "Effect": "Allow", 
+                    ],
+                    "Resource": "arn:aws:kms:*:*:key/*",
                     "Condition": {
-                        "StringLike": {
-                            "kms:ViaService": "s3.*.amazonaws.com"
-                        }, 
-                        "ArnLike": {
-                            "kms:EncryptionContext:aws:s3:arn": "arn:aws:s3:::do-not-delete-ssm-diagnosis-*"
-                        }, 
                         "StringEquals": {
                             "aws:ResourceTag/SystemsManagerManaged": "true"
-                        }, 
+                        },
+                        "ArnLike": {
+                            "kms:EncryptionContext:aws:s3:arn": "arn:aws:s3:::do-not-delete-ssm-diagnosis-*"
+                        },
+                        "StringLike": {
+                            "kms:ViaService": "s3.*.amazonaws.com"
+                        },
                         "Bool": {
                             "aws:ViaAWSService": "true"
                         }
-                    }, 
-                    "Sid": "AllowKMSOperations"
-                }, 
+                    }
+                },
                 {
-                    "Action": "iam:PassRole", 
-                    "Resource": "arn:aws:iam::*:role/AWS-SSM-DiagnosisExecutionRole*", 
-                    "Effect": "Allow", 
+                    "Sid": "AllowPassRoleOnSelfToSsm",
+                    "Effect": "Allow",
+                    "Action": "iam:PassRole",
+                    "Resource": "arn:aws:iam::*:role/AWS-SSM-DiagnosisExecutionRole*",
                     "Condition": {
                         "StringEquals": {
                             "iam:PassedToService": "ssm.amazonaws.com"
                         }
-                    }, 
-                    "Sid": "AllowPassRoleOnSelfToSsm"
+                    }
                 }
             ]
-        }, 
-        "IsDefaultVersion": true
+        },
+        "VersionId": "v7",
+        "IsDefaultVersion": true,
+        "CreateDate": "2026-02-12T18:02:31+00:00"
     }
 }
