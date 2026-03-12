@@ -1,141 +1,141 @@
 {
     "PolicyVersion": {
-        "CreateDate": "2026-02-12T18:02:20Z", 
-        "VersionId": "v5", 
         "Document": {
-            "Version": "2012-10-17", 
+            "Version": "2012-10-17",
             "Statement": [
                 {
+                    "Sid": "EntityResolutionAccess",
+                    "Effect": "Allow",
                     "Action": [
                         "entityresolution:*"
-                    ], 
-                    "Resource": "*", 
-                    "Effect": "Allow", 
-                    "Sid": "EntityResolutionAccess"
-                }, 
+                    ],
+                    "Resource": "*"
+                },
                 {
+                    "Sid": "GlueSourcesConsoleDisplay",
+                    "Effect": "Allow",
                     "Action": [
-                        "glue:GetSchema", 
-                        "glue:SearchTables", 
-                        "glue:GetSchemaByDefinition", 
-                        "glue:GetSchemaVersion", 
-                        "glue:GetSchemaVersionsDiff", 
-                        "glue:GetDatabase", 
-                        "glue:GetDatabases", 
-                        "glue:GetTable", 
-                        "glue:GetTables", 
-                        "glue:GetTableVersion", 
+                        "glue:GetSchema",
+                        "glue:SearchTables",
+                        "glue:GetSchemaByDefinition",
+                        "glue:GetSchemaVersion",
+                        "glue:GetSchemaVersionsDiff",
+                        "glue:GetDatabase",
+                        "glue:GetDatabases",
+                        "glue:GetTable",
+                        "glue:GetTables",
+                        "glue:GetTableVersion",
                         "glue:GetTableVersions"
-                    ], 
-                    "Resource": "*", 
-                    "Effect": "Allow", 
-                    "Sid": "GlueSourcesConsoleDisplay"
-                }, 
+                    ],
+                    "Resource": "*"
+                },
                 {
+                    "Sid": "S3BucketsConsoleDisplay",
+                    "Effect": "Allow",
                     "Action": [
                         "s3:ListAllMyBuckets"
-                    ], 
-                    "Resource": "*", 
-                    "Effect": "Allow", 
-                    "Sid": "S3BucketsConsoleDisplay"
-                }, 
+                    ],
+                    "Resource": "*"
+                },
                 {
+                    "Sid": "S3SourcesConsoleDisplay",
+                    "Effect": "Allow",
                     "Action": [
-                        "s3:ListBucket", 
-                        "s3:GetBucketLocation", 
-                        "s3:ListBucketVersions", 
+                        "s3:ListBucket",
+                        "s3:GetBucketLocation",
+                        "s3:ListBucketVersions",
                         "s3:GetBucketVersioning"
-                    ], 
-                    "Resource": "*", 
-                    "Effect": "Allow", 
-                    "Sid": "S3SourcesConsoleDisplay"
-                }, 
+                    ],
+                    "Resource": "*"
+                },
                 {
+                    "Sid": "TaggingConsoleDisplay",
+                    "Effect": "Allow",
                     "Action": [
-                        "tag:GetTagKeys", 
+                        "tag:GetTagKeys",
                         "tag:GetTagValues"
-                    ], 
-                    "Resource": "*", 
-                    "Effect": "Allow", 
-                    "Sid": "TaggingConsoleDisplay"
-                }, 
+                    ],
+                    "Resource": "*"
+                },
                 {
+                    "Sid": "KMSConsoleDisplay",
+                    "Effect": "Allow",
                     "Action": [
-                        "kms:DescribeKey", 
+                        "kms:DescribeKey",
                         "kms:ListAliases"
-                    ], 
-                    "Resource": "*", 
-                    "Effect": "Allow", 
-                    "Sid": "KMSConsoleDisplay"
-                }, 
+                    ],
+                    "Resource": "*"
+                },
                 {
+                    "Sid": "ListRolesToPickRoleForPassing",
+                    "Effect": "Allow",
                     "Action": [
                         "iam:ListRoles"
-                    ], 
-                    "Resource": "*", 
-                    "Effect": "Allow", 
-                    "Sid": "ListRolesToPickRoleForPassing"
-                }, 
+                    ],
+                    "Resource": "*"
+                },
                 {
+                    "Sid": "PassRoleToEntityResolutionService",
+                    "Effect": "Allow",
                     "Action": [
                         "iam:PassRole"
-                    ], 
-                    "Resource": "arn:aws:iam::*:role/*entityresolution*", 
-                    "Effect": "Allow", 
+                    ],
+                    "Resource": "arn:aws:iam::*:role/*entityresolution*",
                     "Condition": {
                         "StringEquals": {
                             "iam:PassedToService": [
                                 "entityresolution.amazonaws.com"
                             ]
                         }
-                    }, 
-                    "Sid": "PassRoleToEntityResolutionService"
-                }, 
+                    }
+                },
                 {
+                    "Sid": "ManageEventBridgeRules",
+                    "Effect": "Allow",
                     "Action": [
-                        "events:DeleteRule", 
-                        "events:PutTargets", 
+                        "events:DeleteRule",
+                        "events:PutTargets",
                         "events:PutRule"
-                    ], 
+                    ],
                     "Resource": [
                         "arn:aws:events:*:*:rule/entity-resolution-automatic*"
-                    ], 
-                    "Effect": "Allow", 
-                    "Sid": "ManageEventBridgeRules"
-                }, 
+                    ]
+                },
                 {
+                    "Sid": "ADXReadAccess",
+                    "Effect": "Allow",
                     "Action": [
                         "dataexchange:GetDataSet"
-                    ], 
-                    "Resource": "*", 
-                    "Effect": "Allow", 
-                    "Sid": "ADXReadAccess"
-                }, 
+                    ],
+                    "Resource": "*"
+                },
                 {
+                    "Sid": "CustomerProfilesIntegrationReadAccess",
+                    "Effect": "Allow",
                     "Action": [
-                        "connect:ListInstances", 
-                        "profile:ListDomains", 
-                        "profile:GetDomain", 
-                        "profile:ListIntegrations", 
-                        "profile:ListAccountIntegrations", 
+                        "connect:ListInstances",
+                        "profile:ListDomains",
+                        "profile:GetDomain",
+                        "profile:ListIntegrations",
+                        "profile:ListAccountIntegrations",
                         "profile:ListProfileObjectTypes"
-                    ], 
-                    "Resource": "*", 
-                    "Effect": "Allow", 
-                    "Sid": "CustomerProfilesIntegrationReadAccess"
-                }, 
+                    ],
+                    "Resource": "*"
+                },
                 {
+                    "Sid": "CustomerProfilesIntegrationWriteAccess",
+                    "Effect": "Allow",
                     "Action": [
                         "profile:PutProfileObjectType"
-                    ], 
+                    ],
                     "Resource": [
                         "arn:aws:profile:*:*:domains/*/object-types/*"
-                    ], 
-                    "Effect": "Allow", 
-                    "Sid": "CustomerProfilesIntegrationWriteAccess"
+                    ]
                 }
             ]
-        }, 
-        "IsDefaultVersion": true
+        },
+        "VersionId": "v5",
+        "IsDefaultVersion": true,
+        "CreateDate": "2026-02-12T18:02:20+00:00"
     }
 }
