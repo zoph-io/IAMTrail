@@ -1,224 +1,224 @@
 {
     "PolicyVersion": {
-        "CreateDate": "2026-02-12T18:01:38Z", 
-        "VersionId": "v10", 
         "Document": {
-            "Version": "2012-10-17", 
+            "Version": "2012-10-17",
             "Statement": [
                 {
-                    "Action": "events:PutRule", 
-                    "Resource": "arn:aws:events:*:*:rule/*ControlTower*", 
-                    "Effect": "Allow", 
+                    "Sid": "AllowPutRuleOnSpecificSourcesAndDetailTypes",
+                    "Effect": "Allow",
+                    "Action": "events:PutRule",
+                    "Resource": "arn:aws:events:*:*:rule/*ControlTower*",
                     "Condition": {
                         "ForAnyValue:StringEquals": {
                             "events:source": "aws.securityhub"
-                        }, 
-                        "Null": {
-                            "events:detail-type": "false"
-                        }, 
-                        "StringEquals": {
-                            "events:ManagedBy": "controltower.amazonaws.com"
-                        }, 
+                        },
                         "ForAllValues:StringEquals": {
                             "events:detail-type": "Security Hub Findings - Imported"
+                        },
+                        "Null": {
+                            "events:detail-type": "false"
+                        },
+                        "StringEquals": {
+                            "events:ManagedBy": "controltower.amazonaws.com"
                         }
-                    }, 
-                    "Sid": "AllowPutRuleOnSpecificSourcesAndDetailTypes"
-                }, 
+                    }
+                },
                 {
+                    "Sid": "AllowOtherOperationsOnRulesManagedByControlTower",
+                    "Effect": "Allow",
                     "Action": [
-                        "events:DeleteRule", 
-                        "events:EnableRule", 
-                        "events:DisableRule", 
-                        "events:PutTargets", 
+                        "events:DeleteRule",
+                        "events:EnableRule",
+                        "events:DisableRule",
+                        "events:PutTargets",
                         "events:RemoveTargets"
-                    ], 
-                    "Resource": "arn:aws:events:*:*:rule/*ControlTower*", 
-                    "Effect": "Allow", 
+                    ],
+                    "Resource": "arn:aws:events:*:*:rule/*ControlTower*",
                     "Condition": {
                         "StringEquals": {
                             "events:ManagedBy": "controltower.amazonaws.com"
                         }
-                    }, 
-                    "Sid": "AllowOtherOperationsOnRulesManagedByControlTower"
-                }, 
+                    }
+                },
                 {
+                    "Sid": "AllowDescribeOperationsOnRulesManagedByControlTower",
+                    "Effect": "Allow",
                     "Action": [
-                        "events:DescribeRule", 
+                        "events:DescribeRule",
                         "events:ListTargetsByRule"
-                    ], 
-                    "Resource": "arn:aws:events:*:*:rule/*ControlTower*", 
-                    "Effect": "Allow", 
-                    "Sid": "AllowDescribeOperationsOnRulesManagedByControlTower"
-                }, 
+                    ],
+                    "Resource": "arn:aws:events:*:*:rule/*ControlTower*"
+                },
                 {
-                    "Action": "sns:publish", 
-                    "Resource": "arn:aws:sns:*:*:aws-controltower-AggregateSecurityNotifications", 
-                    "Effect": "Allow", 
+                    "Sid": "AllowControlTowerToPublishSecurityNotifications",
+                    "Effect": "Allow",
+                    "Action": "sns:publish",
+                    "Resource": "arn:aws:sns:*:*:aws-controltower-AggregateSecurityNotifications",
                     "Condition": {
                         "StringEquals": {
                             "aws:PrincipalAccount": "${aws:ResourceAccount}"
                         }
-                    }, 
-                    "Sid": "AllowControlTowerToPublishSecurityNotifications"
-                }, 
+                    }
+                },
                 {
+                    "Sid": "AllowActionsForSecurityHubIntegration",
+                    "Effect": "Allow",
                     "Action": [
-                        "securityhub:DescribeStandardsControls", 
+                        "securityhub:DescribeStandardsControls",
                         "securityhub:GetEnabledStandards"
-                    ], 
-                    "Resource": "arn:aws:securityhub:*:*:hub/default", 
-                    "Effect": "Allow", 
-                    "Sid": "AllowActionsForSecurityHubIntegration"
-                }, 
+                    ],
+                    "Resource": "arn:aws:securityhub:*:*:hub/default"
+                },
                 {
+                    "Sid": "AllowDeleteConfigRule",
+                    "Effect": "Allow",
                     "Action": [
                         "config:DeleteConfigRule"
-                    ], 
-                    "Resource": "arn:aws:config:*:*:config-rule/aws-service-rule/controltower.*/*", 
-                    "Effect": "Allow", 
-                    "Sid": "AllowDeleteConfigRule"
-                }, 
+                    ],
+                    "Resource": "arn:aws:config:*:*:config-rule/aws-service-rule/controltower.*/*"
+                },
                 {
+                    "Sid": "AllowPutConfigRule",
+                    "Effect": "Allow",
                     "Action": [
                         "config:PutConfigRule"
-                    ], 
-                    "Resource": "arn:aws:config:*:*:config-rule/aws-service-rule/controltower.*/*", 
-                    "Effect": "Allow", 
-                    "Sid": "AllowPutConfigRule"
-                }, 
+                    ],
+                    "Resource": "arn:aws:config:*:*:config-rule/aws-service-rule/controltower.*/*"
+                },
                 {
+                    "Sid": "AllowConfigTagResource",
+                    "Effect": "Allow",
                     "Action": [
                         "config:TagResource"
-                    ], 
-                    "Resource": "arn:aws:config:*:*:config-rule/aws-service-rule/controltower.*/*", 
-                    "Effect": "Allow", 
+                    ],
+                    "Resource": "arn:aws:config:*:*:config-rule/aws-service-rule/controltower.*/*",
                     "Condition": {
                         "StringEquals": {
                             "aws:RequestTag/aws-control-tower": "managed-by-control-tower"
                         }
-                    }, 
-                    "Sid": "AllowConfigTagResource"
-                }, 
+                    }
+                },
                 {
+                    "Sid": "AllowConfigRulesDescribe",
+                    "Effect": "Allow",
                     "Action": [
                         "config:DescribeConfigRules"
-                    ], 
-                    "Resource": "*", 
-                    "Effect": "Allow", 
-                    "Sid": "AllowConfigRulesDescribe"
-                }, 
+                    ],
+                    "Resource": "*"
+                },
                 {
+                    "Sid": "AllowControlTowerToCreateConfigAggregator",
+                    "Effect": "Allow",
                     "Action": [
                         "config:PutConfigurationAggregator"
-                    ], 
+                    ],
                     "Resource": [
                         "arn:aws:config:*:*:config-aggregator/aws-service-config-aggregator/controltower.amazonaws.com/*"
-                    ], 
-                    "Effect": "Allow", 
+                    ],
                     "Condition": {
                         "StringEquals": {
                             "aws:ResourceAccount": "${aws:PrincipalAccount}"
                         }
-                    }, 
-                    "Sid": "AllowControlTowerToCreateConfigAggregator"
-                }, 
+                    }
+                },
                 {
+                    "Sid": "AllowControlTowerToManageConfigAggregator",
+                    "Effect": "Allow",
                     "Action": [
-                        "config:DeleteConfigurationAggregator", 
-                        "config:DescribeAggregateComplianceByConfigRules", 
+                        "config:DeleteConfigurationAggregator",
+                        "config:DescribeAggregateComplianceByConfigRules",
                         "config:SelectAggregateResourceConfig"
-                    ], 
+                    ],
                     "Resource": [
                         "arn:aws:config:*:*:config-aggregator/aws-service-config-aggregator/controltower.amazonaws.com/config-aggregator-*"
-                    ], 
-                    "Effect": "Allow", 
+                    ],
                     "Condition": {
                         "StringEquals": {
                             "aws:ResourceAccount": "${aws:PrincipalAccount}"
                         }
-                    }, 
-                    "Sid": "AllowControlTowerToManageConfigAggregator"
-                }, 
+                    }
+                },
                 {
+                    "Sid": "AllowControlTowerToTagConfigAggregator",
+                    "Effect": "Allow",
                     "Action": [
                         "config:TagResource"
-                    ], 
+                    ],
                     "Resource": [
                         "arn:aws:config:*:*:config-aggregator/aws-service-config-aggregator/controltower.amazonaws.com/*"
-                    ], 
-                    "Effect": "Allow", 
+                    ],
                     "Condition": {
                         "StringEquals": {
-                            "aws:RequestTag/aws-control-tower": "managed-by-control-tower", 
+                            "aws:RequestTag/aws-control-tower": "managed-by-control-tower",
                             "aws:ResourceAccount": "${aws:PrincipalAccount}"
                         }
-                    }, 
-                    "Sid": "AllowControlTowerToTagConfigAggregator"
-                }, 
+                    }
+                },
                 {
+                    "Sid": "AllowControlTowerToPassAggregatorRoleToConfig",
+                    "Effect": "Allow",
                     "Action": [
                         "iam:PassRole"
-                    ], 
+                    ],
                     "Resource": [
                         "arn:aws:iam::*:role/aws-service-role/config.amazonaws.com/AWSServiceRoleForConfig"
-                    ], 
-                    "Effect": "Allow", 
+                    ],
                     "Condition": {
                         "StringEquals": {
-                            "iam:PassedToService": "config.amazonaws.com", 
+                            "iam:PassedToService": "config.amazonaws.com",
                             "aws:ResourceAccount": "${aws:PrincipalAccount}"
                         }
-                    }, 
-                    "Sid": "AllowControlTowerToPassAggregatorRoleToConfig"
-                }, 
+                    }
+                },
                 {
+                    "Sid": "AllowDescribeConfigurationAggregators",
+                    "Effect": "Allow",
                     "Action": [
                         "config:DescribeConfigurationAggregators"
-                    ], 
+                    ],
                     "Resource": [
                         "*"
-                    ], 
-                    "Effect": "Allow", 
-                    "Sid": "AllowDescribeConfigurationAggregators"
-                }, 
+                    ]
+                },
                 {
+                    "Sid": "AllowListDelegatedAdministratorsForConfig",
+                    "Effect": "Allow",
                     "Action": [
                         "organizations:ListDelegatedAdministrators"
-                    ], 
+                    ],
                     "Resource": [
                         "*"
-                    ], 
-                    "Effect": "Allow", 
+                    ],
                     "Condition": {
                         "StringEquals": {
                             "organizations:ServicePrincipal": "config.amazonaws.com"
                         }
-                    }, 
-                    "Sid": "AllowListDelegatedAdministratorsForConfig"
-                }, 
+                    }
+                },
                 {
+                    "Sid": "AllowListDescribeOrganization",
+                    "Effect": "Allow",
                     "Action": [
                         "organizations:DescribeOrganization"
-                    ], 
+                    ],
                     "Resource": [
                         "*"
-                    ], 
-                    "Effect": "Allow", 
-                    "Sid": "AllowListDescribeOrganization"
-                }, 
+                    ]
+                },
                 {
+                    "Sid": "AllowActionsForCloudFormationHooksIntegration",
+                    "Effect": "Allow",
                     "Action": [
-                        "cloudformation:SetTypeConfiguration", 
-                        "cloudformation:DeactivateType", 
+                        "cloudformation:SetTypeConfiguration",
+                        "cloudformation:DeactivateType",
                         "cloudformation:ActivateType"
-                    ], 
-                    "Resource": "arn:aws:cloudformation:*:*:type/hook/AWS-ControlTower*", 
-                    "Effect": "Allow", 
-                    "Sid": "AllowActionsForCloudFormationHooksIntegration"
+                    ],
+                    "Resource": "arn:aws:cloudformation:*:*:type/hook/AWS-ControlTower*"
                 }
             ]
-        }, 
-        "IsDefaultVersion": true
+        },
+        "VersionId": "v10",
+        "IsDefaultVersion": true,
+        "CreateDate": "2026-02-12T18:01:38+00:00"
     }
 }
