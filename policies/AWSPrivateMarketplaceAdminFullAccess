@@ -1,117 +1,117 @@
 {
     "PolicyVersion": {
-        "CreateDate": "2026-02-12T18:01:07Z", 
-        "VersionId": "v9", 
         "Document": {
-            "Version": "2012-10-17", 
+            "Version": "2012-10-17",
             "Statement": [
                 {
+                    "Sid": "PrivateMarketplaceGetRolePermissions",
+                    "Effect": "Allow",
                     "Action": [
                         "iam:GetRole"
-                    ], 
+                    ],
                     "Resource": [
                         "arn:aws:iam::*:role/*AWSServiceRoleForPrivateMarketplaceAdmin"
-                    ], 
-                    "Effect": "Allow", 
-                    "Sid": "PrivateMarketplaceGetRolePermissions"
-                }, 
+                    ]
+                },
                 {
+                    "Sid": "PrivateMarketplaceCreateSLRPermissions",
+                    "Effect": "Allow",
                     "Action": [
                         "iam:CreateServiceLinkedRole"
-                    ], 
+                    ],
                     "Resource": [
                         "arn:aws:iam::*:role/aws-service-role/private-marketplace.marketplace.amazonaws.com/AWSServiceRoleForPrivateMarketplaceAdmin"
-                    ], 
-                    "Effect": "Allow", 
+                    ],
                     "Condition": {
                         "StringEquals": {
                             "iam:AWSServiceName": "private-marketplace.marketplace.amazonaws.com"
                         }
-                    }, 
-                    "Sid": "PrivateMarketplaceCreateSLRPermissions"
-                }, 
+                    }
+                },
                 {
+                    "Sid": "PrivateMarketplaceManageDelegatedAdministratorPermissions",
+                    "Effect": "Allow",
                     "Action": [
-                        "organizations:RegisterDelegatedAdministrator", 
+                        "organizations:RegisterDelegatedAdministrator",
                         "organizations:DeregisterDelegatedAdministrator"
-                    ], 
-                    "Resource": "*", 
-                    "Effect": "Allow", 
+                    ],
+                    "Resource": "*",
                     "Condition": {
                         "StringEquals": {
                             "organizations:ServicePrincipal": "private-marketplace.marketplace.amazonaws.com"
                         }
-                    }, 
-                    "Sid": "PrivateMarketplaceManageDelegatedAdministratorPermissions"
-                }, 
+                    }
+                },
                 {
+                    "Sid": "PrivateMarketplaceEnableServiceAccessPermissions",
+                    "Effect": "Allow",
                     "Action": [
                         "organizations:EnableAWSServiceAccess"
-                    ], 
-                    "Resource": "*", 
-                    "Effect": "Allow", 
+                    ],
+                    "Resource": "*",
                     "Condition": {
                         "StringEquals": {
                             "organizations:ServicePrincipal": "private-marketplace.marketplace.amazonaws.com"
                         }
-                    }, 
-                    "Sid": "PrivateMarketplaceEnableServiceAccessPermissions"
-                }, 
+                    }
+                },
                 {
+                    "Sid": "PrivateMarketplaceRequestPermissions",
+                    "Effect": "Allow",
                     "Action": [
-                        "aws-marketplace:AssociateProductsWithPrivateMarketplace", 
-                        "aws-marketplace:DisassociateProductsFromPrivateMarketplace", 
-                        "aws-marketplace:ListPrivateMarketplaceRequests", 
+                        "aws-marketplace:AssociateProductsWithPrivateMarketplace",
+                        "aws-marketplace:DisassociateProductsFromPrivateMarketplace",
+                        "aws-marketplace:ListPrivateMarketplaceRequests",
                         "aws-marketplace:DescribePrivateMarketplaceRequests"
-                    ], 
+                    ],
                     "Resource": [
                         "*"
-                    ], 
-                    "Effect": "Allow", 
-                    "Sid": "PrivateMarketplaceRequestPermissions"
-                }, 
+                    ]
+                },
                 {
+                    "Sid": "PrivateMarketplaceCatalogAPIPermissions",
+                    "Effect": "Allow",
                     "Action": [
-                        "aws-marketplace:ListEntities", 
-                        "aws-marketplace:DescribeEntity", 
-                        "aws-marketplace:StartChangeSet", 
-                        "aws-marketplace:ListChangeSets", 
-                        "aws-marketplace:DescribeChangeSet", 
+                        "aws-marketplace:ListEntities",
+                        "aws-marketplace:DescribeEntity",
+                        "aws-marketplace:StartChangeSet",
+                        "aws-marketplace:ListChangeSets",
+                        "aws-marketplace:DescribeChangeSet",
                         "aws-marketplace:CancelChangeSet"
-                    ], 
-                    "Resource": "*", 
-                    "Effect": "Allow", 
-                    "Sid": "PrivateMarketplaceCatalogAPIPermissions"
-                }, 
+                    ],
+                    "Resource": "*"
+                },
                 {
+                    "Sid": "PrivateMarketplaceCatalogTaggingPermissions",
+                    "Effect": "Allow",
                     "Action": [
-                        "aws-marketplace:TagResource", 
-                        "aws-marketplace:UntagResource", 
+                        "aws-marketplace:TagResource",
+                        "aws-marketplace:UntagResource",
                         "aws-marketplace:ListTagsForResource"
-                    ], 
-                    "Resource": "arn:aws:aws-marketplace:*:*:AWSMarketplace/*", 
-                    "Effect": "Allow", 
-                    "Sid": "PrivateMarketplaceCatalogTaggingPermissions"
-                }, 
+                    ],
+                    "Resource": "arn:aws:aws-marketplace:*:*:AWSMarketplace/*"
+                },
                 {
+                    "Sid": "PrivateMarketplaceOrganizationPermissions",
+                    "Effect": "Allow",
                     "Action": [
-                        "organizations:DescribeOrganization", 
-                        "organizations:DescribeOrganizationalUnit", 
-                        "organizations:DescribeAccount", 
-                        "organizations:ListRoots", 
-                        "organizations:ListParents", 
-                        "organizations:ListOrganizationalUnitsForParent", 
-                        "organizations:ListAccountsForParent", 
-                        "organizations:ListAccounts", 
-                        "organizations:ListAWSServiceAccessForOrganization", 
+                        "organizations:DescribeOrganization",
+                        "organizations:DescribeOrganizationalUnit",
+                        "organizations:DescribeAccount",
+                        "organizations:ListRoots",
+                        "organizations:ListParents",
+                        "organizations:ListOrganizationalUnitsForParent",
+                        "organizations:ListAccountsForParent",
+                        "organizations:ListAccounts",
+                        "organizations:ListAWSServiceAccessForOrganization",
                         "organizations:ListDelegatedAdministrators"
-                    ], 
-                    "Resource": "*", 
-                    "Effect": "Allow", 
-                    "Sid": "PrivateMarketplaceOrganizationPermissions"
+                    ],
+                    "Resource": "*"
                 }
             ]
-        }, 
-        "IsDefaultVersion": true
+        },
+        "VersionId": "v9",
+        "IsDefaultVersion": true,
+        "CreateDate": "2026-02-12T18:01:07+00:00"
     }
 }
