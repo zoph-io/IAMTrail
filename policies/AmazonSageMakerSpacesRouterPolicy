@@ -1,35 +1,35 @@
 {
     "PolicyVersion": {
-        "CreateDate": "2026-02-12T17:58:24Z", 
-        "VersionId": "v3", 
         "Document": {
-            "Version": "2012-10-17", 
+            "Version": "2012-10-17",
             "Statement": [
                 {
+                    "Sid": "KMSDescribeKey",
+                    "Effect": "Allow",
                     "Action": [
                         "kms:DescribeKey"
-                    ], 
-                    "Resource": "arn:aws:kms:*:*:key/*", 
-                    "Effect": "Allow", 
-                    "Sid": "KMSDescribeKey"
-                }, 
+                    ],
+                    "Resource": "arn:aws:kms:*:*:key/*"
+                },
                 {
+                    "Sid": "KMSKeyOperations",
+                    "Effect": "Allow",
                     "Action": [
-                        "kms:GenerateDataKey", 
+                        "kms:GenerateDataKey",
                         "kms:Decrypt"
-                    ], 
-                    "Resource": "arn:aws:kms:*:*:key/*", 
-                    "Effect": "Allow", 
+                    ],
+                    "Resource": "arn:aws:kms:*:*:key/*",
                     "Condition": {
                         "StringEquals": {
-                            "kms:EncryptionContext:sagemaker:component": "amazon-sagemaker-spaces", 
+                            "kms:EncryptionContext:sagemaker:component": "amazon-sagemaker-spaces",
                             "kms:EncryptionContext:sagemaker:eks-cluster-arn": "${aws:PrincipalTag/eks-cluster-arn}"
                         }
-                    }, 
-                    "Sid": "KMSKeyOperations"
+                    }
                 }
             ]
-        }, 
-        "IsDefaultVersion": true
+        },
+        "VersionId": "v3",
+        "IsDefaultVersion": true,
+        "CreateDate": "2026-02-12T17:58:24+00:00"
     }
 }
