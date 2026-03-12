@@ -1,62 +1,62 @@
 {
     "PolicyVersion": {
-        "CreateDate": "2026-02-12T17:58:22Z", 
-        "VersionId": "v8", 
         "Document": {
-            "Version": "2012-10-17", 
+            "Version": "2012-10-17",
             "Statement": [
                 {
+                    "Effect": "Allow",
                     "Action": [
-                        "organizations:ListDelegatedAdministrators", 
-                        "organizations:ListAWSServiceAccessForOrganization", 
-                        "organizations:DescribeOrganizationalUnit", 
-                        "organizations:DescribeAccount", 
-                        "organizations:DescribeOrganization", 
-                        "inspector2:BatchGet*", 
-                        "inspector2:List*", 
-                        "inspector2:Describe*", 
-                        "inspector2:Get*", 
-                        "inspector2:Search*", 
-                        "codeguru-security:BatchGetFindings", 
+                        "organizations:ListDelegatedAdministrators",
+                        "organizations:ListAWSServiceAccessForOrganization",
+                        "organizations:DescribeOrganizationalUnit",
+                        "organizations:DescribeAccount",
+                        "organizations:DescribeOrganization",
+                        "inspector2:BatchGet*",
+                        "inspector2:List*",
+                        "inspector2:Describe*",
+                        "inspector2:Get*",
+                        "inspector2:Search*",
+                        "codeguru-security:BatchGetFindings",
                         "codeguru-security:GetAccountConfiguration"
-                    ], 
-                    "Resource": "*", 
-                    "Effect": "Allow"
-                }, 
+                    ],
+                    "Resource": "*"
+                },
                 {
-                    "Action": "organizations:ListPolicies", 
-                    "Resource": "*", 
-                    "Effect": "Allow", 
+                    "Sid": "AllowListPoliciesForInspectorPolicyType",
+                    "Effect": "Allow",
+                    "Action": "organizations:ListPolicies",
+                    "Resource": "*",
                     "Condition": {
                         "StringEquals": {
                             "organizations:PolicyType": [
                                 "INSPECTOR_POLICY"
                             ]
                         }
-                    }, 
-                    "Sid": "AllowListPoliciesForInspectorPolicyType"
-                }, 
+                    }
+                },
                 {
-                    "Action": "organizations:DescribeResourcePolicy", 
-                    "Resource": "*", 
-                    "Effect": "Allow", 
-                    "Sid": "AllowDescribeResourcePolicyForDelegation"
-                }, 
+                    "Sid": "AllowDescribeResourcePolicyForDelegation",
+                    "Effect": "Allow",
+                    "Action": "organizations:DescribeResourcePolicy",
+                    "Resource": "*"
+                },
                 {
-                    "Action": "organizations:DescribeEffectivePolicy", 
-                    "Resource": "*", 
-                    "Effect": "Allow", 
+                    "Sid": "AllowDescribeEffectivePolicyForInspector",
+                    "Effect": "Allow",
+                    "Action": "organizations:DescribeEffectivePolicy",
+                    "Resource": "*",
                     "Condition": {
                         "StringEquals": {
                             "organizations:PolicyType": [
                                 "INSPECTOR_POLICY"
                             ]
                         }
-                    }, 
-                    "Sid": "AllowDescribeEffectivePolicyForInspector"
+                    }
                 }
             ]
-        }, 
-        "IsDefaultVersion": true
+        },
+        "VersionId": "v8",
+        "IsDefaultVersion": true,
+        "CreateDate": "2026-02-12T17:58:22+00:00"
     }
 }
