@@ -1,103 +1,103 @@
 {
     "PolicyVersion": {
-        "CreateDate": "2026-02-12T17:58:17Z", 
-        "VersionId": "v6", 
         "Document": {
-            "Version": "2012-10-17", 
+            "Version": "2012-10-17",
             "Statement": [
                 {
+                    "Effect": "Allow",
                     "Action": [
-                        "events:DeleteRule", 
-                        "events:PutRule", 
-                        "events:PutTargets", 
+                        "events:DeleteRule",
+                        "events:PutRule",
+                        "events:PutTargets",
                         "events:RemoveTargets"
-                    ], 
-                    "Resource": "*", 
-                    "Effect": "Allow", 
+                    ],
+                    "Resource": "*",
                     "Condition": {
                         "StringEquals": {
                             "events:ManagedBy": "triage.security-ir.amazonaws.com"
                         }
                     }
-                }, 
+                },
                 {
+                    "Effect": "Allow",
                     "Action": [
-                        "events:DescribeRule", 
+                        "events:DescribeRule",
                         "events:ListTargetsByRule"
-                    ], 
-                    "Resource": "*", 
-                    "Effect": "Allow"
-                }, 
+                    ],
+                    "Resource": "*"
+                },
                 {
+                    "Effect": "Allow",
                     "Action": [
-                        "guardduty:ArchiveFindings", 
-                        "guardduty:CreateFilter", 
-                        "guardduty:DescribeMalwareScans", 
-                        "guardduty:GetAdministratorAccount", 
-                        "guardduty:GetDetector", 
-                        "guardduty:GetFilter", 
-                        "guardduty:GetFindings", 
-                        "guardduty:ListDetectors", 
-                        "guardduty:ListFilters", 
-                        "guardduty:StartMalwareScan", 
+                        "guardduty:ArchiveFindings",
+                        "guardduty:CreateFilter",
+                        "guardduty:DescribeMalwareScans",
+                        "guardduty:GetAdministratorAccount",
+                        "guardduty:GetDetector",
+                        "guardduty:GetFilter",
+                        "guardduty:GetFindings",
+                        "guardduty:ListDetectors",
+                        "guardduty:ListFilters",
+                        "guardduty:StartMalwareScan",
                         "guardduty:UpdateFindingsFeedback"
-                    ], 
-                    "Resource": "*", 
-                    "Effect": "Allow"
-                }, 
+                    ],
+                    "Resource": "*"
+                },
                 {
+                    "Effect": "Allow",
                     "Action": [
-                        "securityhub:BatchUpdateFindings", 
-                        "securityhub:DescribeHub", 
-                        "securityhub:GetEnabledStandards", 
-                        "securityhub:GetFindings", 
-                        "securityhub:ListEnabledProductsForImport", 
+                        "securityhub:BatchUpdateFindings",
+                        "securityhub:DescribeHub",
+                        "securityhub:GetEnabledStandards",
+                        "securityhub:GetFindings",
+                        "securityhub:ListEnabledProductsForImport",
                         "securityhub:UpdateFindings"
-                    ], 
-                    "Resource": "arn:aws:securityhub:*:*:hub/default", 
-                    "Effect": "Allow"
-                }, 
+                    ],
+                    "Resource": "arn:aws:securityhub:*:*:hub/default"
+                },
                 {
+                    "Effect": "Allow",
                     "Action": [
-                        "security-ir:CreateCase", 
+                        "security-ir:CreateCase",
                         "security-ir:TagResource"
-                    ], 
-                    "Resource": "*", 
-                    "Effect": "Allow", 
+                    ],
+                    "Resource": "*",
                     "Condition": {
-                        "StringEquals": {
-                            "aws:RequestTag/SecurityIncidentResponseManaged": "true", 
-                            "aws:ResourceTag/SecurityIncidentResponseManaged": "true"
-                        }, 
                         "ForAllValues:StringEquals": {
                             "aws:TagKeys": [
                                 "SecurityIncidentResponseManaged"
                             ]
+                        },
+                        "StringEquals": {
+                            "aws:RequestTag/SecurityIncidentResponseManaged": "true",
+                            "aws:ResourceTag/SecurityIncidentResponseManaged": "true"
                         }
                     }
-                }, 
+                },
                 {
+                    "Effect": "Allow",
                     "Action": [
                         "security-ir:UpdateCase"
-                    ], 
-                    "Resource": "*", 
-                    "Effect": "Allow", 
+                    ],
+                    "Resource": "*",
                     "Condition": {
                         "StringEquals": {
                             "aws:ResourceTag/SecurityIncidentResponseManaged": "true"
                         }
                     }
-                }, 
+                },
                 {
+                    "Effect": "Allow",
                     "Action": [
-                        "security-ir:GetMembership", 
+                        "security-ir:GetMembership",
                         "security-ir:ListMemberships"
-                    ], 
-                    "Resource": "*", 
-                    "Effect": "Allow"
+                    ],
+                    "Resource": "*"
                 }
             ]
-        }, 
-        "IsDefaultVersion": true
+        },
+        "VersionId": "v6",
+        "IsDefaultVersion": true,
+        "CreateDate": "2026-02-12T17:58:17+00:00"
     }
 }
