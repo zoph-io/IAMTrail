@@ -1,36 +1,36 @@
 {
     "PolicyVersion": {
-        "CreateDate": "2026-02-12T17:59:14Z", 
-        "VersionId": "v12", 
         "Document": {
-            "Version": "2012-10-17", 
+            "Version": "2012-10-17",
             "Statement": [
                 {
+                    "Effect": "Allow",
                     "NotAction": [
-                        "iam:*", 
-                        "organizations:*", 
+                        "iam:*",
+                        "organizations:*",
                         "account:*"
-                    ], 
-                    "Resource": "*", 
-                    "Effect": "Allow"
-                }, 
+                    ],
+                    "Resource": "*"
+                },
                 {
+                    "Effect": "Allow",
                     "Action": [
-                        "account:GetAccountInformation", 
-                        "account:GetGovCloudAccountInformation", 
-                        "account:GetPrimaryEmail", 
-                        "account:ListRegions", 
-                        "iam:CreateServiceLinkedRole", 
-                        "iam:DeleteServiceLinkedRole", 
-                        "iam:ListRoles", 
-                        "organizations:DescribeEffectivePolicy", 
+                        "account:GetAccountInformation",
+                        "account:GetGovCloudAccountInformation",
+                        "account:GetPrimaryEmail",
+                        "account:ListRegions",
+                        "iam:CreateServiceLinkedRole",
+                        "iam:DeleteServiceLinkedRole",
+                        "iam:ListRoles",
+                        "organizations:DescribeEffectivePolicy",
                         "organizations:DescribeOrganization"
-                    ], 
-                    "Resource": "*", 
-                    "Effect": "Allow"
+                    ],
+                    "Resource": "*"
                 }
             ]
-        }, 
-        "IsDefaultVersion": true
+        },
+        "VersionId": "v12",
+        "IsDefaultVersion": true,
+        "CreateDate": "2026-02-12T17:59:14+00:00"
     }
 }
