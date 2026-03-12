@@ -1,54 +1,54 @@
 {
     "PolicyVersion": {
-        "CreateDate": "2026-02-12T17:58:24Z", 
-        "VersionId": "v3", 
         "Document": {
-            "Version": "2012-10-17", 
+            "Version": "2012-10-17",
             "Statement": [
                 {
+                    "Sid": "ECSAgentDiscoverPollEndpointPermissions",
+                    "Effect": "Allow",
                     "Action": [
                         "ecs:DiscoverPollEndpoint"
-                    ], 
-                    "Resource": "*", 
-                    "Effect": "Allow", 
-                    "Sid": "ECSAgentDiscoverPollEndpointPermissions"
-                }, 
+                    ],
+                    "Resource": "*"
+                },
                 {
+                    "Sid": "ECSAgentRegisterPermissions",
+                    "Effect": "Allow",
                     "Action": [
                         "ecs:RegisterContainerInstance"
-                    ], 
-                    "Resource": "arn:aws:ecs:*:*:cluster/*", 
-                    "Effect": "Allow", 
-                    "Sid": "ECSAgentRegisterPermissions"
-                }, 
+                    ],
+                    "Resource": "arn:aws:ecs:*:*:cluster/*"
+                },
                 {
+                    "Sid": "ECSAgentPollPermissions",
+                    "Effect": "Allow",
                     "Action": [
                         "ecs:Poll"
-                    ], 
-                    "Resource": "arn:aws:ecs:*:*:container-instance/*", 
-                    "Effect": "Allow", 
-                    "Sid": "ECSAgentPollPermissions"
-                }, 
+                    ],
+                    "Resource": "arn:aws:ecs:*:*:container-instance/*"
+                },
                 {
+                    "Sid": "ECSAgentTelemetryPermissions",
+                    "Effect": "Allow",
                     "Action": [
-                        "ecs:StartTelemetrySession", 
+                        "ecs:StartTelemetrySession",
                         "ecs:PutSystemLogEvents"
-                    ], 
-                    "Resource": "arn:aws:ecs:*:*:container-instance/*", 
-                    "Effect": "Allow", 
-                    "Sid": "ECSAgentTelemetryPermissions"
-                }, 
+                    ],
+                    "Resource": "arn:aws:ecs:*:*:container-instance/*"
+                },
                 {
+                    "Sid": "ECSAgentStateChangePermissions",
+                    "Effect": "Allow",
                     "Action": [
-                        "ecs:SubmitAttachmentStateChanges", 
+                        "ecs:SubmitAttachmentStateChanges",
                         "ecs:SubmitTaskStateChange"
-                    ], 
-                    "Resource": "arn:aws:ecs:*:*:cluster/*", 
-                    "Effect": "Allow", 
-                    "Sid": "ECSAgentStateChangePermissions"
+                    ],
+                    "Resource": "arn:aws:ecs:*:*:cluster/*"
                 }
             ]
-        }, 
-        "IsDefaultVersion": true
+        },
+        "VersionId": "v3",
+        "IsDefaultVersion": true,
+        "CreateDate": "2026-02-12T17:58:24+00:00"
     }
 }
