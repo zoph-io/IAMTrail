@@ -1,7 +1,7 @@
 {
     "PolicyVersion": {
-        "CreateDate": "2026-02-12T18:02:52Z", 
-        "VersionId": "v10", 
+        "CreateDate": "2026-03-11T21:12:10Z", 
+        "VersionId": "v11", 
         "Document": {
             "Version": "2012-10-17", 
             "Statement": [
@@ -1187,6 +1187,14 @@
                     "Resource": "*", 
                     "Effect": "Deny", 
                     "Sid": "DenyNotAction"
+                }, 
+                {
+                    "Action": [
+                        "sagemaker:UpdateNotebookInstanceLifecycleConfig"
+                    ], 
+                    "Resource": "*", 
+                    "Effect": "Deny", 
+                    "Sid": "DenyUpdateNotebookInstanceLifecycleConfig"
                 }
             ]
         }, 
