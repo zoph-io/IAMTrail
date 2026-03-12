@@ -1,25 +1,25 @@
 {
     "PolicyVersion": {
-        "CreateDate": "2026-02-12T18:00:33Z", 
-        "VersionId": "v8", 
         "Document": {
-            "Version": "2012-10-17", 
+            "Version": "2012-10-17",
             "Statement": [
                 {
+                    "Sid": "CloudWatchLogsFullAccess",
+                    "Effect": "Allow",
                     "Action": [
-                        "logs:*", 
-                        "cloudwatch:GenerateQuery", 
-                        "cloudwatch:GenerateQueryResultsSummary", 
-                        "observabilityadmin:GetS3TableIntegration", 
-                        "observabilityadmin:ListS3TableIntegrations", 
+                        "logs:*",
+                        "cloudwatch:GenerateQuery",
+                        "cloudwatch:GenerateQueryResultsSummary",
+                        "observabilityadmin:GetS3TableIntegration",
+                        "observabilityadmin:ListS3TableIntegrations",
                         "observabilityadmin:ListTelemetryPipelines"
-                    ], 
-                    "Resource": "*", 
-                    "Effect": "Allow", 
-                    "Sid": "CloudWatchLogsFullAccess"
+                    ],
+                    "Resource": "*"
                 }
             ]
-        }, 
-        "IsDefaultVersion": true
+        },
+        "VersionId": "v8",
+        "IsDefaultVersion": true,
+        "CreateDate": "2026-02-12T18:00:33+00:00"
     }
 }
