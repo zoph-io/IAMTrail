@@ -1,56 +1,56 @@
 {
     "PolicyVersion": {
-        "CreateDate": "2026-02-12T18:01:05Z", 
-        "VersionId": "v6", 
         "Document": {
-            "Version": "2012-10-17", 
+            "Version": "2012-10-17",
             "Statement": [
                 {
+                    "Sid": "ELBReadOperations",
+                    "Effect": "Allow",
                     "Action": [
-                        "elasticloadbalancing:DescribeListeners", 
-                        "elasticloadbalancing:DescribeRules", 
-                        "elasticloadbalancing:DescribeTargetGroups", 
+                        "elasticloadbalancing:DescribeListeners",
+                        "elasticloadbalancing:DescribeRules",
+                        "elasticloadbalancing:DescribeTargetGroups",
                         "elasticloadbalancing:DescribeTargetHealth"
-                    ], 
-                    "Resource": "*", 
-                    "Effect": "Allow", 
-                    "Sid": "ELBReadOperations"
-                }, 
+                    ],
+                    "Resource": "*"
+                },
                 {
+                    "Sid": "TargetGroupOperations",
+                    "Effect": "Allow",
                     "Action": [
-                        "elasticloadbalancing:RegisterTargets", 
+                        "elasticloadbalancing:RegisterTargets",
                         "elasticloadbalancing:DeregisterTargets"
-                    ], 
-                    "Resource": "arn:aws:elasticloadbalancing:*:*:targetgroup/*/*", 
-                    "Effect": "Allow", 
-                    "Sid": "TargetGroupOperations"
-                }, 
+                    ],
+                    "Resource": "arn:aws:elasticloadbalancing:*:*:targetgroup/*/*"
+                },
                 {
-                    "Action": "elasticloadbalancing:ModifyListener", 
+                    "Sid": "ALBModifyListeners",
+                    "Effect": "Allow",
+                    "Action": "elasticloadbalancing:ModifyListener",
                     "Resource": [
                         "arn:aws:elasticloadbalancing:*:*:listener/app/*/*/*"
-                    ], 
-                    "Effect": "Allow", 
-                    "Sid": "ALBModifyListeners"
-                }, 
+                    ]
+                },
                 {
-                    "Action": "elasticloadbalancing:ModifyListener", 
+                    "Sid": "NLBModifyListeners",
+                    "Effect": "Allow",
+                    "Action": "elasticloadbalancing:ModifyListener",
                     "Resource": [
                         "arn:aws:elasticloadbalancing:*:*:listener/net/*/*/*"
-                    ], 
-                    "Effect": "Allow", 
-                    "Sid": "NLBModifyListeners"
-                }, 
+                    ]
+                },
                 {
-                    "Action": "elasticloadbalancing:ModifyRule", 
+                    "Sid": "ALBModifyRules",
+                    "Effect": "Allow",
+                    "Action": "elasticloadbalancing:ModifyRule",
                     "Resource": [
                         "arn:aws:elasticloadbalancing:*:*:listener-rule/app/*/*/*/*"
-                    ], 
-                    "Effect": "Allow", 
-                    "Sid": "ALBModifyRules"
+                    ]
                 }
             ]
-        }, 
-        "IsDefaultVersion": true
+        },
+        "VersionId": "v6",
+        "IsDefaultVersion": true,
+        "CreateDate": "2026-02-12T18:01:05+00:00"
     }
 }
