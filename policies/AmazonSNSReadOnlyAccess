@@ -1,45 +1,45 @@
 {
     "PolicyVersion": {
-        "CreateDate": "2024-09-24T22:13:12Z", 
-        "VersionId": "v2", 
         "Document": {
-            "Version": "2012-10-17", 
+            "Version": "2012-10-17",
             "Statement": [
                 {
+                    "Sid": "SNSReadOnlyAccess",
+                    "Effect": "Allow",
                     "Action": [
-                        "sns:GetTopicAttributes", 
-                        "sns:List*", 
-                        "sns:CheckIfPhoneNumberIsOptedOut", 
-                        "sns:GetEndpointAttributes", 
-                        "sns:GetDataProtectionPolicy", 
-                        "sns:GetPlatformApplicationAttributes", 
-                        "sns:GetSMSAttributes", 
-                        "sns:GetSMSSandboxAccountStatus", 
+                        "sns:GetTopicAttributes",
+                        "sns:List*",
+                        "sns:CheckIfPhoneNumberIsOptedOut",
+                        "sns:GetEndpointAttributes",
+                        "sns:GetDataProtectionPolicy",
+                        "sns:GetPlatformApplicationAttributes",
+                        "sns:GetSMSAttributes",
+                        "sns:GetSMSSandboxAccountStatus",
                         "sns:GetSubscriptionAttributes"
-                    ], 
-                    "Resource": "*", 
-                    "Effect": "Allow", 
-                    "Sid": "SNSReadOnlyAccess"
-                }, 
+                    ],
+                    "Resource": "*"
+                },
                 {
+                    "Sid": "SMSAccessViaSNS",
+                    "Effect": "Allow",
                     "Action": [
-                        "sms-voice:DescribeVerifiedDestinationNumbers", 
-                        "sms-voice:DescribeAccountAttributes", 
-                        "sms-voice:DescribeSpendLimits", 
-                        "sms-voice:DescribePhoneNumbers", 
+                        "sms-voice:DescribeVerifiedDestinationNumbers",
+                        "sms-voice:DescribeAccountAttributes",
+                        "sms-voice:DescribeSpendLimits",
+                        "sms-voice:DescribePhoneNumbers",
                         "sms-voice:DescribeOptedOutNumbers"
-                    ], 
-                    "Resource": "*", 
-                    "Effect": "Allow", 
+                    ],
+                    "Resource": "*",
                     "Condition": {
                         "StringEquals": {
                             "aws:CalledViaLast": "sns.amazonaws.com"
                         }
-                    }, 
-                    "Sid": "SMSAccessViaSNS"
+                    }
                 }
             ]
-        }, 
-        "IsDefaultVersion": true
+        },
+        "VersionId": "v2",
+        "IsDefaultVersion": true,
+        "CreateDate": "2024-09-24T22:13:12+00:00"
     }
 }
