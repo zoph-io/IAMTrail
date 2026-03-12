@@ -1,109 +1,109 @@
 {
     "PolicyVersion": {
-        "CreateDate": "2026-02-14T00:57:08Z", 
-        "VersionId": "v4", 
         "Document": {
-            "Version": "2012-10-17", 
+            "Version": "2012-10-17",
             "Statement": [
                 {
+                    "Sid": "PartnerCentralMarketingAccess",
+                    "Effect": "Allow",
                     "Action": [
                         "partnercentral-account-management:AccessMarketingCentral"
-                    ], 
-                    "Resource": "*", 
-                    "Effect": "Allow", 
-                    "Sid": "PartnerCentralMarketingAccess"
-                }, 
+                    ],
+                    "Resource": "*"
+                },
                 {
+                    "Sid": "LegacyPartnerCentralAccess",
+                    "Effect": "Allow",
                     "Action": [
                         "partnercentral-account-management:AccessLegacyPartnerCentral"
-                    ], 
-                    "Resource": "*", 
-                    "Effect": "Allow", 
+                    ],
+                    "Resource": "*",
                     "Condition": {
                         "ForAnyValue:StringEquals": {
                             "partnercentral-account-management:LegacyPartnerCentralRole": "MarketingStaff"
                         }
-                    }, 
-                    "Sid": "LegacyPartnerCentralAccess"
-                }, 
+                    }
+                },
                 {
+                    "Sid": "PartnerDiscoveryAccess",
+                    "Effect": "Allow",
                     "Action": [
-                        "partnercentral:SearchPartnerProfiles", 
+                        "partnercentral:SearchPartnerProfiles",
                         "partnercentral:GetPartnerProfile"
-                    ], 
-                    "Resource": "*", 
-                    "Effect": "Allow", 
-                    "Sid": "PartnerDiscoveryAccess"
-                }, 
+                    ],
+                    "Resource": "*"
+                },
                 {
+                    "Sid": "PartnerProfileAccess",
+                    "Effect": "Allow",
                     "Action": [
-                        "partnercentral:StartProfileUpdateTask", 
-                        "partnercentral:GetProfileUpdateTask", 
-                        "partnercentral:CancelProfileUpdateTask", 
-                        "partnercentral:PutProfileVisibility", 
+                        "partnercentral:StartProfileUpdateTask",
+                        "partnercentral:GetProfileUpdateTask",
+                        "partnercentral:CancelProfileUpdateTask",
+                        "partnercentral:PutProfileVisibility",
                         "partnercentral:GetProfileVisibility"
-                    ], 
-                    "Resource": "arn:aws:partnercentral:*:*:catalog/*/partner/*", 
-                    "Effect": "Allow", 
+                    ],
+                    "Resource": "arn:aws:partnercentral:*:*:catalog/*/partner/*",
                     "Condition": {
                         "StringEquals": {
                             "partnercentral:Catalog": [
-                                "AWS", 
+                                "AWS",
                                 "Sandbox"
                             ]
                         }
-                    }, 
-                    "Sid": "PartnerProfileAccess"
-                }, 
+                    }
+                },
                 {
+                    "Sid": "PartnerResourceAccess",
+                    "Effect": "Allow",
                     "Action": [
-                        "partnercentral:ListPartners", 
+                        "partnercentral:ListPartners",
                         "partnercentral:GetPartner"
-                    ], 
-                    "Resource": "*", 
-                    "Effect": "Allow", 
+                    ],
+                    "Resource": "*",
                     "Condition": {
                         "StringEquals": {
                             "partnercentral:Catalog": [
-                                "AWS", 
+                                "AWS",
                                 "Sandbox"
                             ]
                         }
-                    }, 
-                    "Sid": "PartnerResourceAccess"
-                }, 
+                    }
+                },
                 {
+                    "Sid": "PartnerCentralEphemeralWriteS3Access",
+                    "Effect": "Allow",
                     "Action": [
                         "s3:PutObject"
-                    ], 
-                    "Resource": "arn:aws:s3:::aws-partner-central-marketplace-ephemeral-writeonly-files/${aws:PrincipalAccount}/*", 
-                    "Effect": "Allow", 
-                    "Sid": "PartnerCentralEphemeralWriteS3Access"
-                }, 
+                    ],
+                    "Resource": "arn:aws:s3:::aws-partner-central-marketplace-ephemeral-writeonly-files/${aws:PrincipalAccount}/*"
+                },
                 {
+                    "Sid": "PartnerDashboardAccess",
+                    "Effect": "Allow",
                     "Action": [
                         "partnercentral:GetPartnerDashboard"
-                    ], 
+                    ],
                     "Resource": [
                         "arn:aws:partnercentral::*:catalog/AWS/ReportingData/MarketingCampaign_V1/Dashboard/*"
-                    ], 
-                    "Effect": "Allow", 
-                    "Sid": "PartnerDashboardAccess"
-                }, 
+                    ]
+                },
                 {
+                    "Sid": "AmazonQPartnerAssistantAccess",
+                    "Effect": "Allow",
                     "Action": [
-                        "q:StartConversation", 
-                        "q:SendMessage", 
-                        "q:GetConversation", 
-                        "q:ListConversations", 
+                        "q:StartConversation",
+                        "q:SendMessage",
+                        "q:GetConversation",
+                        "q:ListConversations",
                         "q:PassRequest"
-                    ], 
-                    "Resource": "*", 
-                    "Effect": "Allow", 
-                    "Sid": "AmazonQPartnerAssistantAccess"
+                    ],
+                    "Resource": "*"
                 }
             ]
-        }, 
-        "IsDefaultVersion": true
+        },
+        "VersionId": "v4",
+        "IsDefaultVersion": true,
+        "CreateDate": "2026-02-14T00:57:08+00:00"
     }
 }
