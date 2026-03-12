@@ -1,298 +1,298 @@
 {
     "PolicyVersion": {
-        "CreateDate": "2026-02-12T17:57:10Z", 
-        "VersionId": "v19", 
         "Document": {
-            "Version": "2012-10-17", 
+            "Version": "2012-10-17",
             "Statement": [
                 {
+                    "Sid": "AllowReadOnlyOfAWSWAFClassic",
+                    "Effect": "Allow",
                     "Action": [
-                        "waf:Get*", 
-                        "waf:List*", 
-                        "waf-regional:Get*", 
+                        "waf:Get*",
+                        "waf:List*",
+                        "waf-regional:Get*",
                         "waf-regional:List*"
-                    ], 
+                    ],
                     "Resource": [
-                        "arn:aws:waf::*:bytematchset/*", 
-                        "arn:aws:waf::*:ipset/*", 
-                        "arn:aws:waf::*:ratebasedrule/*", 
-                        "arn:aws:waf::*:rule/*", 
-                        "arn:aws:waf::*:sizeconstraintset/*", 
-                        "arn:aws:waf::*:sqlinjectionset/*", 
-                        "arn:aws:waf::*:webacl/*", 
-                        "arn:aws:waf::*:xssmatchset/*", 
-                        "arn:aws:waf::*:regexmatch/*", 
-                        "arn:aws:waf::*:regexpatternset/*", 
-                        "arn:aws:waf::*:geomatchset/*", 
-                        "arn:aws:waf::*:rulegroup/*", 
-                        "arn:aws:waf:*:*:changetoken/*", 
-                        "arn:aws:waf-regional:*:*:bytematchset/*", 
-                        "arn:aws:waf-regional:*:*:ipset/*", 
-                        "arn:aws:waf-regional:*:*:ratebasedrule/*", 
-                        "arn:aws:waf-regional:*:*:rule/*", 
-                        "arn:aws:waf-regional:*:*:sizeconstraintset/*", 
-                        "arn:aws:waf-regional:*:*:sqlinjectionset/*", 
-                        "arn:aws:waf-regional:*:*:webacl/*", 
-                        "arn:aws:waf-regional:*:*:xssmatchset/*", 
-                        "arn:aws:waf-regional:*:*:regexmatch/*", 
-                        "arn:aws:waf-regional:*:*:regexpatternset/*", 
-                        "arn:aws:waf-regional:*:*:geomatchset/*", 
-                        "arn:aws:waf-regional:*:*:rulegroup/*", 
+                        "arn:aws:waf::*:bytematchset/*",
+                        "arn:aws:waf::*:ipset/*",
+                        "arn:aws:waf::*:ratebasedrule/*",
+                        "arn:aws:waf::*:rule/*",
+                        "arn:aws:waf::*:sizeconstraintset/*",
+                        "arn:aws:waf::*:sqlinjectionset/*",
+                        "arn:aws:waf::*:webacl/*",
+                        "arn:aws:waf::*:xssmatchset/*",
+                        "arn:aws:waf::*:regexmatch/*",
+                        "arn:aws:waf::*:regexpatternset/*",
+                        "arn:aws:waf::*:geomatchset/*",
+                        "arn:aws:waf::*:rulegroup/*",
+                        "arn:aws:waf:*:*:changetoken/*",
+                        "arn:aws:waf-regional:*:*:bytematchset/*",
+                        "arn:aws:waf-regional:*:*:ipset/*",
+                        "arn:aws:waf-regional:*:*:ratebasedrule/*",
+                        "arn:aws:waf-regional:*:*:rule/*",
+                        "arn:aws:waf-regional:*:*:sizeconstraintset/*",
+                        "arn:aws:waf-regional:*:*:sqlinjectionset/*",
+                        "arn:aws:waf-regional:*:*:webacl/*",
+                        "arn:aws:waf-regional:*:*:xssmatchset/*",
+                        "arn:aws:waf-regional:*:*:regexmatch/*",
+                        "arn:aws:waf-regional:*:*:regexpatternset/*",
+                        "arn:aws:waf-regional:*:*:geomatchset/*",
+                        "arn:aws:waf-regional:*:*:rulegroup/*",
                         "arn:aws:waf-regional:*:*:changetoken/*"
-                    ], 
-                    "Effect": "Allow", 
-                    "Sid": "AllowReadOnlyOfAWSWAFClassic"
-                }, 
+                    ]
+                },
                 {
+                    "Sid": "AllowWAFClassicGetWebACLForResource",
+                    "Effect": "Allow",
                     "Action": [
                         "waf-regional:GetWebACLForResource"
-                    ], 
-                    "Resource": "arn:aws:waf-regional:*:*:*/*", 
-                    "Effect": "Allow", 
-                    "Sid": "AllowWAFClassicGetWebACLForResource"
-                }, 
+                    ],
+                    "Resource": "arn:aws:waf-regional:*:*:*/*"
+                },
                 {
+                    "Sid": "AllowReadOnlyOfAWSWAF",
+                    "Effect": "Allow",
                     "Action": [
-                        "wafv2:Get*", 
-                        "wafv2:List*", 
-                        "wafv2:Describe*", 
+                        "wafv2:Get*",
+                        "wafv2:List*",
+                        "wafv2:Describe*",
                         "wafv2:CheckCapacity"
-                    ], 
+                    ],
                     "Resource": [
-                        "arn:aws:wafv2:*:*:*/webacl/*/*", 
-                        "arn:aws:wafv2:*:*:*/ipset/*/*", 
-                        "arn:aws:wafv2:*:*:*/managedruleset/*/*", 
-                        "arn:aws:wafv2:*:*:*/rulegroup/*/*", 
+                        "arn:aws:wafv2:*:*:*/webacl/*/*",
+                        "arn:aws:wafv2:*:*:*/ipset/*/*",
+                        "arn:aws:wafv2:*:*:*/managedruleset/*/*",
+                        "arn:aws:wafv2:*:*:*/rulegroup/*/*",
                         "arn:aws:wafv2:*:*:*/regexpatternset/*/*"
-                    ], 
-                    "Effect": "Allow", 
-                    "Sid": "AllowReadOnlyOfAWSWAF"
-                }, 
+                    ]
+                },
                 {
+                    "Sid": "AllowEC2DescribeRegions",
+                    "Effect": "Allow",
                     "Action": [
                         "ec2:DescribeRegions"
-                    ], 
-                    "Resource": "*", 
-                    "Effect": "Allow", 
-                    "Sid": "AllowEC2DescribeRegions"
-                }, 
+                    ],
+                    "Resource": "*"
+                },
                 {
+                    "Sid": "AllowListActionsForCloudWatch",
+                    "Effect": "Allow",
                     "Action": [
-                        "cloudwatch:GetMetricData", 
-                        "cloudwatch:GetMetricStatistics", 
+                        "cloudwatch:GetMetricData",
+                        "cloudwatch:GetMetricStatistics",
                         "cloudwatch:ListMetrics"
-                    ], 
-                    "Resource": "*", 
-                    "Effect": "Allow", 
-                    "Sid": "AllowListActionsForCloudWatch"
-                }, 
+                    ],
+                    "Resource": "*"
+                },
                 {
+                    "Sid": "AllowGetActionForCloudFront",
+                    "Effect": "Allow",
                     "Action": [
-                        "cloudfront:GetDistributionConfig", 
+                        "cloudfront:GetDistributionConfig",
                         "cloudfront:GetDistribution"
-                    ], 
-                    "Resource": "arn:aws:cloudfront::*:distribution/*", 
-                    "Effect": "Allow", 
-                    "Sid": "AllowGetActionForCloudFront"
-                }, 
+                    ],
+                    "Resource": "arn:aws:cloudfront::*:distribution/*"
+                },
                 {
+                    "Sid": "AllowListActionsForCloudFront",
+                    "Effect": "Allow",
                     "Action": [
-                        "cloudfront:ListDistributions", 
+                        "cloudfront:ListDistributions",
                         "cloudfront:ListDistributionsByWebACLId"
-                    ], 
-                    "Resource": "*", 
-                    "Effect": "Allow", 
-                    "Sid": "AllowListActionsForCloudFront"
-                }, 
+                    ],
+                    "Resource": "*"
+                },
                 {
+                    "Sid": "AllowGetActionForCloudFrontTenant",
+                    "Effect": "Allow",
                     "Action": [
                         "cloudfront:GetDistributionTenant"
-                    ], 
-                    "Resource": "arn:aws:cloudfront::*:distribution-tenant/*", 
-                    "Effect": "Allow", 
-                    "Sid": "AllowGetActionForCloudFrontTenant"
-                }, 
+                    ],
+                    "Resource": "arn:aws:cloudfront::*:distribution-tenant/*"
+                },
                 {
+                    "Sid": "AllowListActionsForCloudFrontTenant",
+                    "Effect": "Allow",
                     "Action": [
-                        "cloudfront:ListDistributionTenants", 
+                        "cloudfront:ListDistributionTenants",
                         "cloudfront:ListDistributionTenantsByCustomization"
-                    ], 
-                    "Resource": "*", 
-                    "Effect": "Allow", 
-                    "Sid": "AllowListActionsForCloudFrontTenant"
-                }, 
+                    ],
+                    "Resource": "*"
+                },
                 {
+                    "Sid": "AllowListActionsForALB",
+                    "Effect": "Allow",
                     "Action": [
                         "elasticloadbalancing:DescribeLoadBalancers"
-                    ], 
-                    "Resource": "*", 
-                    "Effect": "Allow", 
-                    "Sid": "AllowListActionsForALB"
-                }, 
+                    ],
+                    "Resource": "*"
+                },
                 {
+                    "Sid": "AllowListActionsForAPIGateway",
+                    "Effect": "Allow",
                     "Action": [
                         "apigateway:GET"
-                    ], 
-                    "Resource": "arn:aws:apigateway:*::/*", 
-                    "Effect": "Allow", 
-                    "Sid": "AllowListActionsForAPIGateway"
-                }, 
+                    ],
+                    "Resource": "arn:aws:apigateway:*::/*"
+                },
                 {
+                    "Sid": "AllowListActionsForAppSync",
+                    "Effect": "Allow",
                     "Action": [
-                        "appsync:ListGraphqlApis", 
+                        "appsync:ListGraphqlApis",
                         "appsync:ListApis"
-                    ], 
-                    "Resource": "*", 
-                    "Effect": "Allow", 
-                    "Sid": "AllowListActionsForAppSync"
-                }, 
+                    ],
+                    "Resource": "*"
+                },
                 {
+                    "Sid": "AllowGetActionForCognito",
+                    "Effect": "Allow",
                     "Action": [
                         "cognito-idp:GetWebACLForResource"
-                    ], 
-                    "Resource": "arn:aws:cognito-idp:*:*:userpool/*", 
-                    "Effect": "Allow", 
-                    "Sid": "AllowGetActionForCognito"
-                }, 
+                    ],
+                    "Resource": "arn:aws:cognito-idp:*:*:userpool/*"
+                },
                 {
+                    "Sid": "AllowListActionsForCognito",
+                    "Effect": "Allow",
                     "Action": [
-                        "cognito-idp:ListUserPools", 
+                        "cognito-idp:ListUserPools",
                         "cognito-idp:ListResourcesForWebACL"
-                    ], 
-                    "Resource": "*", 
-                    "Effect": "Allow", 
-                    "Sid": "AllowListActionsForCognito"
-                }, 
+                    ],
+                    "Resource": "*"
+                },
                 {
+                    "Sid": "AllowGetActionForAppRunner",
+                    "Effect": "Allow",
                     "Action": [
                         "apprunner:DescribeWebAclForService"
-                    ], 
-                    "Resource": "arn:aws:apprunner:*:*:service/*/*", 
-                    "Effect": "Allow", 
-                    "Sid": "AllowGetActionForAppRunner"
-                }, 
+                    ],
+                    "Resource": "arn:aws:apprunner:*:*:service/*/*"
+                },
                 {
+                    "Sid": "AllowListActionsForAppRunner",
+                    "Effect": "Allow",
                     "Action": [
-                        "apprunner:ListServices", 
+                        "apprunner:ListServices",
                         "apprunner:ListAssociatedServicesForWebAcl"
-                    ], 
-                    "Resource": "*", 
-                    "Effect": "Allow", 
-                    "Sid": "AllowListActionsForAppRunner"
-                }, 
+                    ],
+                    "Resource": "*"
+                },
                 {
+                    "Sid": "AllowGetActionForAVA",
+                    "Effect": "Allow",
                     "Action": [
                         "ec2:GetVerifiedAccessInstanceWebAcl"
-                    ], 
-                    "Resource": "arn:aws:ec2:*:*:verified-access-instance/*", 
-                    "Effect": "Allow", 
-                    "Sid": "AllowGetActionForAVA"
-                }, 
+                    ],
+                    "Resource": "arn:aws:ec2:*:*:verified-access-instance/*"
+                },
                 {
+                    "Sid": "AllowListActionsForAVA",
+                    "Effect": "Allow",
                     "Action": [
-                        "ec2:DescribeVerifiedAccessInstances", 
+                        "ec2:DescribeVerifiedAccessInstances",
                         "ec2:DescribeVerifiedAccessInstanceWebAclAssociations"
-                    ], 
-                    "Resource": "*", 
-                    "Effect": "Allow", 
-                    "Sid": "AllowListActionsForAVA"
-                }, 
+                    ],
+                    "Resource": "*"
+                },
                 {
+                    "Sid": "AllowGetActionForAmplify",
+                    "Effect": "Allow",
                     "Action": [
                         "amplify:GetWebACLForResource"
-                    ], 
-                    "Resource": "arn:aws:amplify:*:*:apps/*", 
-                    "Effect": "Allow", 
-                    "Sid": "AllowGetActionForAmplify"
-                }, 
+                    ],
+                    "Resource": "arn:aws:amplify:*:*:apps/*"
+                },
                 {
+                    "Sid": "AllowListActionsForAmplify",
+                    "Effect": "Allow",
                     "Action": [
-                        "amplify:ListApps", 
+                        "amplify:ListApps",
                         "amplify:ListResourcesForWebACL"
-                    ], 
-                    "Resource": "*", 
-                    "Effect": "Allow", 
-                    "Sid": "AllowListActionsForAmplify"
-                }, 
+                    ],
+                    "Resource": "*"
+                },
                 {
+                    "Sid": "AllowS3ListAllMyBuckets",
+                    "Effect": "Allow",
                     "Action": [
                         "s3:ListAllMyBuckets"
-                    ], 
-                    "Resource": "*", 
-                    "Effect": "Allow", 
-                    "Sid": "AllowS3ListAllMyBuckets"
-                }, 
+                    ],
+                    "Resource": "*"
+                },
                 {
+                    "Sid": "AllowLogGroupDescribeActions",
+                    "Effect": "Allow",
                     "Action": [
-                        "logs:DescribeResourcePolicies", 
+                        "logs:DescribeResourcePolicies",
                         "logs:DescribeLogGroups"
-                    ], 
-                    "Resource": "*", 
-                    "Effect": "Allow", 
-                    "Sid": "AllowLogGroupDescribeActions"
-                }, 
+                    ],
+                    "Resource": "*"
+                },
                 {
+                    "Sid": "AllowListActionForFirehoseStream",
+                    "Effect": "Allow",
                     "Action": [
                         "firehose:ListDeliveryStreams"
-                    ], 
-                    "Resource": "*", 
-                    "Effect": "Allow", 
-                    "Sid": "AllowListActionForFirehoseStream"
-                }, 
+                    ],
+                    "Resource": "*"
+                },
                 {
+                    "Sid": "AllowActionsForPricing",
+                    "Effect": "Allow",
                     "Action": [
-                        "pricing:ListPriceLists", 
+                        "pricing:ListPriceLists",
                         "pricing:GetPriceListFileUrl"
-                    ], 
-                    "Resource": "*", 
-                    "Effect": "Allow", 
-                    "Sid": "AllowActionsForPricing"
-                }, 
+                    ],
+                    "Resource": "*"
+                },
                 {
+                    "Sid": "AllowMarketplaceViewSubscriptions",
+                    "Effect": "Allow",
                     "Action": [
                         "aws-marketplace:ViewSubscriptions"
-                    ], 
-                    "Resource": "*", 
-                    "Effect": "Allow", 
-                    "Sid": "AllowMarketplaceViewSubscriptions"
-                }, 
+                    ],
+                    "Resource": "*"
+                },
                 {
+                    "Sid": "AllowLogQueryActions",
+                    "Effect": "Allow",
                     "Action": [
-                        "logs:StartQuery", 
-                        "logs:DescribeQueryDefinitions", 
+                        "logs:StartQuery",
+                        "logs:DescribeQueryDefinitions",
                         "logs:GetQueryResults"
-                    ], 
-                    "Resource": "arn:aws:logs:*:*:log-group:aws-waf-logs-*", 
-                    "Effect": "Allow", 
-                    "Sid": "AllowLogQueryActions"
-                }, 
+                    ],
+                    "Resource": "arn:aws:logs:*:*:log-group:aws-waf-logs-*"
+                },
                 {
+                    "Sid": "AllowListActionsForPricingPlanManager",
+                    "Effect": "Allow",
                     "Action": [
                         "pricingplanmanager:GetSubscription"
-                    ], 
-                    "Resource": "arn:aws:pricingplanmanager::*:subscription:*", 
-                    "Effect": "Allow", 
-                    "Sid": "AllowListActionsForPricingPlanManager"
-                }, 
+                    ],
+                    "Resource": "arn:aws:pricingplanmanager::*:subscription:*"
+                },
                 {
+                    "Sid": "AllowListActionsForRoute53",
+                    "Effect": "Allow",
                     "Action": [
-                        "route53:ListHostedZones", 
+                        "route53:ListHostedZones",
                         "route53:GetHostedZone"
-                    ], 
-                    "Resource": "*", 
-                    "Effect": "Allow", 
-                    "Sid": "AllowListActionsForRoute53"
-                }, 
+                    ],
+                    "Resource": "*"
+                },
                 {
+                    "Sid": "AllowListSubscriptionsForPricingPlanManager",
+                    "Effect": "Allow",
                     "Action": [
                         "pricingplanmanager:ListSubscriptions"
-                    ], 
-                    "Resource": "*", 
-                    "Effect": "Allow", 
-                    "Sid": "AllowListSubscriptionsForPricingPlanManager"
+                    ],
+                    "Resource": "*"
                 }
             ]
-        }, 
-        "IsDefaultVersion": true
+        },
+        "VersionId": "v19",
+        "IsDefaultVersion": true,
+        "CreateDate": "2026-02-12T17:57:10+00:00"
     }
 }
