@@ -1,54 +1,52 @@
 {
     "PolicyVersion": {
-        "CreateDate": "2025-07-15T21:37:06Z", 
-        "VersionId": "v1", 
         "Document": {
-            "Version": "2012-10-17", 
+            "Version": "2012-10-17",
             "Statement": [
                 {
+                    "Effect": "Allow",
                     "Action": [
-                        "sagemaker:CreateTrainingJob", 
-                        "sagemaker:DescribeTrainingJob", 
-                        "sagemaker:StopTrainingJob", 
+                        "sagemaker:CreateTrainingJob",
+                        "sagemaker:DescribeTrainingJob",
+                        "sagemaker:StopTrainingJob",
                         "sagemaker:ListTags"
-                    ], 
-                    "Resource": "arn:aws:sagemaker:*:*:training-job/AWSBatch*", 
-                    "Effect": "Allow"
-                }, 
+                    ],
+                    "Resource": "arn:aws:sagemaker:*:*:training-job/AWSBatch*"
+                },
                 {
+                    "Effect": "Allow",
                     "Action": [
                         "sagemaker:CreateTrainingJob"
-                    ], 
+                    ],
                     "Resource": [
-                        "arn:aws:sagemaker:*:*:training-plan/*", 
+                        "arn:aws:sagemaker:*:*:training-plan/*",
                         "arn:aws:sagemaker:*:*:reserved-capacity/*"
-                    ], 
-                    "Effect": "Allow"
-                }, 
+                    ]
+                },
                 {
+                    "Effect": "Allow",
                     "Action": [
                         "sagemaker:AddTags"
-                    ], 
-                    "Resource": "arn:aws:sagemaker:*:*:training-job/AWSBatch*", 
-                    "Effect": "Allow", 
+                    ],
+                    "Resource": "arn:aws:sagemaker:*:*:training-job/AWSBatch*",
                     "Condition": {
                         "StringEquals": {
                             "sagemaker:TaggingAction": "CreateTrainingJob"
                         }
                     }
-                }, 
+                },
                 {
+                    "Effect": "Allow",
                     "Action": [
-                        "sagemaker:ListTrainingJobs", 
+                        "sagemaker:ListTrainingJobs",
                         "sagemaker:Search"
-                    ], 
-                    "Resource": "*", 
-                    "Effect": "Allow"
-                }, 
+                    ],
+                    "Resource": "*"
+                },
                 {
-                    "Action": "iam:PassRole", 
-                    "Resource": "*", 
-                    "Effect": "Allow", 
+                    "Effect": "Allow",
+                    "Action": "iam:PassRole",
+                    "Resource": "*",
                     "Condition": {
                         "StringEquals": {
                             "iam:PassedToService": [
@@ -58,7 +56,9 @@
                     }
                 }
             ]
-        }, 
-        "IsDefaultVersion": true
+        },
+        "VersionId": "v1",
+        "IsDefaultVersion": true,
+        "CreateDate": "2025-07-15T21:37:06+00:00"
     }
 }
