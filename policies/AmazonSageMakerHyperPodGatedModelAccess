@@ -1,28 +1,28 @@
 {
     "PolicyVersion": {
-        "CreateDate": "2026-02-12T18:00:37Z", 
-        "VersionId": "v3", 
         "Document": {
-            "Version": "2012-10-17", 
+            "Version": "2012-10-17",
             "Statement": [
                 {
+                    "Sid": "CreatePresignedUrlAccess",
+                    "Effect": "Allow",
                     "Action": [
                         "sagemaker:CreateHubContentPresignedUrls"
-                    ], 
+                    ],
                     "Resource": [
-                        "arn:aws:sagemaker:*:*:hub/SageMakerPublicHub", 
+                        "arn:aws:sagemaker:*:*:hub/SageMakerPublicHub",
                         "arn:aws:sagemaker:*:*:hub-content/SageMakerPublicHub/*/*"
-                    ], 
-                    "Effect": "Allow", 
+                    ],
                     "Condition": {
                         "StringEquals": {
                             "aws:ResourceAccount": "${aws:PrincipalAccount}"
                         }
-                    }, 
-                    "Sid": "CreatePresignedUrlAccess"
+                    }
                 }
             ]
-        }, 
-        "IsDefaultVersion": true
+        },
+        "VersionId": "v3",
+        "IsDefaultVersion": true,
+        "CreateDate": "2026-02-12T18:00:37+00:00"
     }
 }
