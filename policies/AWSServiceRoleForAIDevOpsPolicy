@@ -1,27 +1,27 @@
 {
     "PolicyVersion": {
-        "CreateDate": "2026-02-16T14:27:07Z", 
-        "VersionId": "v1", 
         "Document": {
-            "Version": "2012-10-17", 
+            "Version": "2012-10-17",
             "Statement": [
                 {
+                    "Sid": "sid1",
+                    "Effect": "Allow",
                     "Action": [
                         "cloudwatch:PutMetricData"
-                    ], 
-                    "Resource": "*", 
-                    "Effect": "Allow", 
+                    ],
+                    "Resource": "*",
                     "Condition": {
                         "StringEquals": {
                             "cloudwatch:namespace": [
                                 "AWS/AIDevOps"
                             ]
                         }
-                    }, 
-                    "Sid": "sid1"
+                    }
                 }
             ]
-        }, 
-        "IsDefaultVersion": true
+        },
+        "VersionId": "v1",
+        "IsDefaultVersion": true,
+        "CreateDate": "2026-02-16T14:27:07+00:00"
     }
 }
