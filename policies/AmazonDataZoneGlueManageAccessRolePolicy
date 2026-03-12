@@ -1,341 +1,341 @@
 {
     "PolicyVersion": {
-        "CreateDate": "2026-02-12T18:00:04Z", 
-        "VersionId": "v18", 
         "Document": {
-            "Version": "2012-10-17", 
+            "Version": "2012-10-17",
             "Statement": [
                 {
+                    "Sid": "GlueTagDatabase",
+                    "Effect": "Allow",
                     "Action": [
-                        "glue:TagResource", 
+                        "glue:TagResource",
                         "glue:UntagResource"
-                    ], 
-                    "Resource": "*", 
-                    "Effect": "Allow", 
+                    ],
+                    "Resource": "*",
                     "Condition": {
+                        "StringEquals": {
+                            "aws:ResourceAccount": "${aws:PrincipalAccount}"
+                        },
                         "ForAnyValue:StringLikeIfExists": {
                             "aws:TagKeys": "DataZoneDiscoverable_*"
-                        }, 
-                        "StringEquals": {
-                            "aws:ResourceAccount": "${aws:PrincipalAccount}"
                         }
-                    }, 
-                    "Sid": "GlueTagDatabase"
-                }, 
+                    }
+                },
                 {
+                    "Sid": "GlueDataQuality",
+                    "Effect": "Allow",
                     "Action": [
-                        "glue:ListDataQualityResults", 
+                        "glue:ListDataQualityResults",
                         "glue:GetDataQualityResult"
-                    ], 
-                    "Resource": "arn:aws:glue:*:*:dataQualityRuleset/*", 
-                    "Effect": "Allow", 
+                    ],
+                    "Resource": "arn:aws:glue:*:*:dataQualityRuleset/*",
                     "Condition": {
                         "StringEquals": {
                             "aws:ResourceAccount": "${aws:PrincipalAccount}"
                         }
-                    }, 
-                    "Sid": "GlueDataQuality"
-                }, 
+                    }
+                },
                 {
-                    "Action": "glue:ListCrawls", 
-                    "Resource": "arn:aws:glue:*:*:crawler/*", 
-                    "Effect": "Allow", 
+                    "Sid": "GlueCrawler",
+                    "Effect": "Allow",
+                    "Action": "glue:ListCrawls",
+                    "Resource": "arn:aws:glue:*:*:crawler/*",
                     "Condition": {
                         "StringEquals": {
                             "aws:ResourceAccount": "${aws:PrincipalAccount}"
                         }
-                    }, 
-                    "Sid": "GlueCrawler"
-                }, 
+                    }
+                },
                 {
-                    "Action": "glue:GetConnection", 
+                    "Sid": "GlueConnection",
+                    "Effect": "Allow",
+                    "Action": "glue:GetConnection",
                     "Resource": [
-                        "arn:aws:glue:*:*:connection/*", 
+                        "arn:aws:glue:*:*:connection/*",
                         "arn:aws:glue:*:*:catalog"
-                    ], 
-                    "Effect": "Allow", 
+                    ],
                     "Condition": {
                         "StringEquals": {
                             "aws:ResourceAccount": "${aws:PrincipalAccount}"
                         }
-                    }, 
-                    "Sid": "GlueConnection"
-                }, 
+                    }
+                },
                 {
+                    "Sid": "GlueTableDatabaseCatalog",
+                    "Effect": "Allow",
                     "Action": [
-                        "glue:CreateTable", 
-                        "glue:DeleteTable", 
-                        "glue:GetDatabases", 
-                        "glue:GetTables", 
-                        "glue:SearchTables", 
-                        "glue:CreateCatalog", 
-                        "glue:CreateDatabase", 
-                        "glue:DeleteCatalog", 
+                        "glue:CreateTable",
+                        "glue:DeleteTable",
+                        "glue:GetDatabases",
+                        "glue:GetTables",
+                        "glue:SearchTables",
+                        "glue:CreateCatalog",
+                        "glue:CreateDatabase",
+                        "glue:DeleteCatalog",
                         "glue:DeleteDatabase"
-                    ], 
+                    ],
                     "Resource": [
-                        "arn:aws:glue:*:*:catalog", 
-                        "arn:aws:glue:*:*:catalog/*", 
-                        "arn:aws:glue:*:*:database/*", 
-                        "arn:aws:glue:*:*:table/*", 
+                        "arn:aws:glue:*:*:catalog",
+                        "arn:aws:glue:*:*:catalog/*",
+                        "arn:aws:glue:*:*:database/*",
+                        "arn:aws:glue:*:*:table/*",
                         "arn:aws:glue:*:*:userDefinedFunction/*"
-                    ], 
-                    "Effect": "Allow", 
+                    ],
                     "Condition": {
                         "StringEquals": {
                             "aws:ResourceAccount": "${aws:PrincipalAccount}"
                         }
-                    }, 
-                    "Sid": "GlueTableDatabaseCatalog"
-                }, 
+                    }
+                },
                 {
+                    "Sid": "GlueGetTags",
+                    "Effect": "Allow",
                     "Action": [
-                        "glue:GetTags", 
+                        "glue:GetTags",
                         "glue:GetCatalog"
-                    ], 
+                    ],
                     "Resource": [
-                        "arn:aws:glue:*:*:catalog", 
-                        "arn:aws:glue:*:*:catalog/*", 
+                        "arn:aws:glue:*:*:catalog",
+                        "arn:aws:glue:*:*:catalog/*",
                         "arn:aws:glue:*:*:database/*"
-                    ], 
-                    "Effect": "Allow", 
+                    ],
                     "Condition": {
                         "StringEquals": {
                             "aws:ResourceAccount": "${aws:PrincipalAccount}"
                         }
-                    }, 
-                    "Sid": "GlueGetTags"
-                }, 
+                    }
+                },
                 {
+                    "Sid": "LakeformationResourceSharing",
+                    "Effect": "Allow",
                     "Action": [
-                        "lakeformation:BatchGrantPermissions", 
-                        "lakeformation:BatchRevokePermissions", 
-                        "lakeformation:CreateDataCellsFilter", 
-                        "lakeformation:CreateLakeFormationOptIn", 
-                        "lakeformation:DeleteDataCellsFilter", 
-                        "lakeformation:DeleteLakeFormationOptIn", 
-                        "lakeformation:GrantPermissions", 
-                        "lakeformation:GetDataCellsFilter", 
-                        "lakeformation:GetResourceLFTags", 
-                        "lakeformation:ListDataCellsFilter", 
-                        "lakeformation:ListLakeFormationOptIns", 
-                        "lakeformation:ListPermissions", 
-                        "lakeformation:RegisterResource", 
-                        "lakeformation:RevokePermissions", 
-                        "lakeformation:UpdateDataCellsFilter", 
-                        "glue:GetDatabase", 
-                        "glue:GetTable", 
-                        "organizations:DescribeOrganization", 
-                        "ram:GetResourceShareInvitations", 
+                        "lakeformation:BatchGrantPermissions",
+                        "lakeformation:BatchRevokePermissions",
+                        "lakeformation:CreateDataCellsFilter",
+                        "lakeformation:CreateLakeFormationOptIn",
+                        "lakeformation:DeleteDataCellsFilter",
+                        "lakeformation:DeleteLakeFormationOptIn",
+                        "lakeformation:GrantPermissions",
+                        "lakeformation:GetDataCellsFilter",
+                        "lakeformation:GetResourceLFTags",
+                        "lakeformation:ListDataCellsFilter",
+                        "lakeformation:ListLakeFormationOptIns",
+                        "lakeformation:ListPermissions",
+                        "lakeformation:RegisterResource",
+                        "lakeformation:RevokePermissions",
+                        "lakeformation:UpdateDataCellsFilter",
+                        "glue:GetDatabase",
+                        "glue:GetTable",
+                        "organizations:DescribeOrganization",
+                        "ram:GetResourceShareInvitations",
                         "ram:ListResources"
-                    ], 
-                    "Resource": "*", 
-                    "Effect": "Allow", 
-                    "Sid": "LakeformationResourceSharing"
-                }, 
+                    ],
+                    "Resource": "*"
+                },
                 {
+                    "Sid": "LakeformationResourceFederatedSharing",
+                    "Effect": "Allow",
                     "Action": [
                         "lakeformation:GetDataAccess"
-                    ], 
-                    "Resource": "*", 
-                    "Effect": "Allow", 
+                    ],
+                    "Resource": "*",
                     "Condition": {
-                        "ForAnyValue:StringEquals": {
-                            "aws:CalledVia": [
-                                "glue.amazonaws.com", 
-                                "lakeformation.amazonaws.com"
-                            ]
-                        }, 
                         "Null": {
                             "lakeformation:GlueARN": "true"
+                        },
+                        "ForAnyValue:StringEquals": {
+                            "aws:CalledVia": [
+                                "glue.amazonaws.com",
+                                "lakeformation.amazonaws.com"
+                            ]
                         }
-                    }, 
-                    "Sid": "LakeformationResourceFederatedSharing"
-                }, 
+                    }
+                },
                 {
+                    "Sid": "CrossAccountRAMResourceSharing",
+                    "Effect": "Allow",
                     "Action": [
-                        "glue:DeleteResourcePolicy", 
+                        "glue:DeleteResourcePolicy",
                         "glue:PutResourcePolicy"
-                    ], 
+                    ],
                     "Resource": [
-                        "arn:aws:glue:*:*:catalog", 
-                        "arn:aws:glue:*:*:catalog/*", 
-                        "arn:aws:glue:*:*:database/*", 
+                        "arn:aws:glue:*:*:catalog",
+                        "arn:aws:glue:*:*:catalog/*",
+                        "arn:aws:glue:*:*:database/*",
                         "arn:aws:glue:*:*:table/*"
-                    ], 
-                    "Effect": "Allow", 
+                    ],
                     "Condition": {
                         "ForAnyValue:StringEquals": {
                             "aws:CalledVia": [
                                 "ram.amazonaws.com"
                             ]
                         }
-                    }, 
-                    "Sid": "CrossAccountRAMResourceSharing"
-                }, 
+                    }
+                },
                 {
+                    "Sid": "CrossAccountLakeFormationResourceSharing",
+                    "Effect": "Allow",
                     "Action": [
                         "ram:CreateResourceShare"
-                    ], 
-                    "Resource": "*", 
-                    "Effect": "Allow", 
+                    ],
+                    "Resource": "*",
                     "Condition": {
                         "StringEqualsIfExists": {
                             "ram:RequestedResourceType": [
-                                "glue:Table", 
-                                "glue:Database", 
+                                "glue:Table",
+                                "glue:Database",
                                 "glue:Catalog"
                             ]
-                        }, 
+                        },
                         "ForAnyValue:StringEquals": {
                             "aws:CalledVia": [
                                 "lakeformation.amazonaws.com"
                             ]
                         }
-                    }, 
-                    "Sid": "CrossAccountLakeFormationResourceSharing"
-                }, 
+                    }
+                },
                 {
+                    "Sid": "CrossAccountRAMResourceShareInvitation",
+                    "Effect": "Allow",
                     "Action": [
                         "ram:AcceptResourceShareInvitation"
-                    ], 
-                    "Resource": "arn:aws:ram:*:*:resource-share-invitation/*", 
-                    "Effect": "Allow", 
-                    "Sid": "CrossAccountRAMResourceShareInvitation"
-                }, 
+                    ],
+                    "Resource": "arn:aws:ram:*:*:resource-share-invitation/*"
+                },
                 {
+                    "Sid": "CrossAccountRAMResourceSharingViaLakeFormation",
+                    "Effect": "Allow",
                     "Action": [
-                        "ram:AssociateResourceShare", 
-                        "ram:DeleteResourceShare", 
-                        "ram:DisassociateResourceShare", 
-                        "ram:ListResourceSharePermissions", 
+                        "ram:AssociateResourceShare",
+                        "ram:DeleteResourceShare",
+                        "ram:DisassociateResourceShare",
+                        "ram:ListResourceSharePermissions",
                         "ram:UpdateResourceShare"
-                    ], 
-                    "Resource": "*", 
-                    "Effect": "Allow", 
+                    ],
+                    "Resource": "*",
                     "Condition": {
-                        "ForAnyValue:StringEquals": {
-                            "aws:CalledVia": [
-                                "lakeformation.amazonaws.com"
-                            ]
-                        }, 
                         "StringLike": {
                             "ram:ResourceShareName": [
                                 "LakeFormation*"
                             ]
+                        },
+                        "ForAnyValue:StringEquals": {
+                            "aws:CalledVia": [
+                                "lakeformation.amazonaws.com"
+                            ]
                         }
-                    }, 
-                    "Sid": "CrossAccountRAMResourceSharingViaLakeFormation"
-                }, 
+                    }
+                },
                 {
-                    "Action": "ram:GetResourceShares", 
-                    "Resource": "*", 
-                    "Effect": "Allow", 
+                    "Sid": "GetResourceSharesViaLakeFormation",
+                    "Effect": "Allow",
+                    "Action": "ram:GetResourceShares",
+                    "Resource": "*",
                     "Condition": {
                         "ForAnyValue:StringEquals": {
                             "aws:CalledVia": [
                                 "lakeformation.amazonaws.com"
                             ]
                         }
-                    }, 
-                    "Sid": "GetResourceSharesViaLakeFormation"
-                }, 
+                    }
+                },
                 {
-                    "Action": "ram:AssociateResourceSharePermission", 
-                    "Resource": "*", 
-                    "Effect": "Allow", 
+                    "Sid": "CrossAccountRAMResourceSharingViaLakeFormationHybrid",
+                    "Effect": "Allow",
+                    "Action": "ram:AssociateResourceSharePermission",
+                    "Resource": "*",
                     "Condition": {
-                        "ForAnyValue:StringEquals": {
-                            "aws:CalledVia": [
-                                "lakeformation.amazonaws.com"
-                            ]
-                        }, 
                         "ArnLike": {
                             "ram:PermissionArn": "arn:aws:ram::aws:permission/AWSRAMLFEnabled*"
+                        },
+                        "ForAnyValue:StringEquals": {
+                            "aws:CalledVia": [
+                                "lakeformation.amazonaws.com"
+                            ]
                         }
-                    }, 
-                    "Sid": "CrossAccountRAMResourceSharingViaLakeFormationHybrid"
-                }, 
+                    }
+                },
                 {
+                    "Sid": "KMSDecrypt",
+                    "Effect": "Allow",
                     "Action": [
                         "kms:Decrypt"
-                    ], 
-                    "Resource": "*", 
-                    "Effect": "Allow", 
+                    ],
+                    "Resource": "*",
                     "Condition": {
                         "StringEquals": {
                             "aws:ResourceTag/datazone:projectId": "proj-all"
                         }
-                    }, 
-                    "Sid": "KMSDecrypt"
-                }, 
+                    }
+                },
                 {
+                    "Sid": "GetRoleForDataZone",
+                    "Effect": "Allow",
                     "Action": [
                         "iam:GetRole"
-                    ], 
+                    ],
                     "Resource": [
-                        "arn:aws:iam::*:role/AmazonDataZone*", 
-                        "arn:aws:iam::*:role/service-role/AmazonDataZone*", 
-                        "arn:aws:iam::*:role/AmazonSageMakerManageAccess*", 
+                        "arn:aws:iam::*:role/AmazonDataZone*",
+                        "arn:aws:iam::*:role/service-role/AmazonDataZone*",
+                        "arn:aws:iam::*:role/AmazonSageMakerManageAccess*",
                         "arn:aws:iam::*:role/service-role/AmazonSageMakerManageAccess*"
-                    ], 
-                    "Effect": "Allow", 
-                    "Sid": "GetRoleForDataZone"
-                }, 
+                    ]
+                },
                 {
+                    "Sid": "PassRoleForDataLocationRegistration",
+                    "Effect": "Allow",
                     "Action": [
                         "iam:PassRole"
-                    ], 
+                    ],
                     "Resource": [
-                        "arn:aws:iam::*:role/AmazonDataZone*", 
-                        "arn:aws:iam::*:role/service-role/AmazonDataZone*", 
-                        "arn:aws:iam::*:role/AmazonSageMakerManageAccess*", 
-                        "arn:aws:iam::*:role/service-role/AmazonSageMakerManageAccess*", 
+                        "arn:aws:iam::*:role/AmazonDataZone*",
+                        "arn:aws:iam::*:role/service-role/AmazonDataZone*",
+                        "arn:aws:iam::*:role/AmazonSageMakerManageAccess*",
+                        "arn:aws:iam::*:role/service-role/AmazonSageMakerManageAccess*",
                         "arn:aws:iam::*:role/datazone_usr_role*"
-                    ], 
-                    "Effect": "Allow", 
+                    ],
                     "Condition": {
                         "StringEquals": {
                             "iam:PassedToService": [
-                                "lakeformation.amazonaws.com", 
+                                "lakeformation.amazonaws.com",
                                 "glue.amazonaws.com"
                             ]
                         }
-                    }, 
-                    "Sid": "PassRoleForDataLocationRegistration"
-                }, 
+                    }
+                },
                 {
+                    "Sid": "CreateCatalogEC2",
+                    "Effect": "Allow",
                     "Action": [
-                        "ec2:DescribeAccountAttributes", 
-                        "ec2:DescribeSubnets", 
-                        "ec2:DescribeSecurityGroups", 
+                        "ec2:DescribeAccountAttributes",
+                        "ec2:DescribeSubnets",
+                        "ec2:DescribeSecurityGroups",
                         "ec2:DescribeAvailabilityZones"
-                    ], 
-                    "Resource": "*", 
-                    "Effect": "Allow", 
-                    "Sid": "CreateCatalogEC2"
-                }, 
+                    ],
+                    "Resource": "*"
+                },
                 {
+                    "Sid": "CreateCatalogS3",
+                    "Effect": "Allow",
                     "Action": [
-                        "s3:CreateBucket", 
-                        "s3:DeleteBucket", 
-                        "s3:PutBucketPolicy", 
-                        "s3:PutEncryptionConfiguration", 
-                        "s3:PutLifecycleConfiguration", 
-                        "s3:PutBucketVersioning", 
+                        "s3:CreateBucket",
+                        "s3:DeleteBucket",
+                        "s3:PutBucketPolicy",
+                        "s3:PutEncryptionConfiguration",
+                        "s3:PutLifecycleConfiguration",
+                        "s3:PutBucketVersioning",
                         "s3:PutBucketTagging"
-                    ], 
-                    "Resource": "arn:aws:s3:::redshift-staging-bucket*", 
-                    "Effect": "Allow", 
+                    ],
+                    "Resource": "arn:aws:s3:::redshift-staging-bucket*",
                     "Condition": {
                         "StringEquals": {
                             "aws:ResourceAccount": "${aws:PrincipalAccount}"
                         }
-                    }, 
-                    "Sid": "CreateCatalogS3"
+                    }
                 }
             ]
-        }, 
-        "IsDefaultVersion": true
+        },
+        "VersionId": "v18",
+        "IsDefaultVersion": true,
+        "CreateDate": "2026-02-12T18:00:04+00:00"
     }
 }
