@@ -1,76 +1,76 @@
 {
     "PolicyVersion": {
-        "CreateDate": "2025-11-15T01:19:07Z", 
-        "VersionId": "v1", 
         "Document": {
-            "Version": "2012-10-17", 
+            "Version": "2012-10-17",
             "Statement": [
                 {
+                    "Sid": "EBSReadOnly",
+                    "Effect": "Allow",
                     "Action": [
-                        "ec2:DescribeVolumes", 
-                        "ec2:DescribeSnapshots", 
+                        "ec2:DescribeVolumes",
+                        "ec2:DescribeSnapshots",
                         "ec2:DescribeVolumesModifications"
-                    ], 
-                    "Resource": "*", 
-                    "Effect": "Allow", 
-                    "Sid": "EBSReadOnly"
-                }, 
+                    ],
+                    "Resource": "*"
+                },
                 {
+                    "Sid": "EBSVolumeModification",
+                    "Effect": "Allow",
                     "Action": [
-                        "ec2:ModifyVolume", 
+                        "ec2:ModifyVolume",
                         "ec2:DeleteVolume"
-                    ], 
-                    "Resource": "*", 
-                    "Effect": "Allow", 
+                    ],
+                    "Resource": "*",
                     "Condition": {
                         "Null": {
                             "aws:ResourceTag/exclude-from-compute-optimizer-automation": "true"
                         }
-                    }, 
-                    "Sid": "EBSVolumeModification"
-                }, 
+                    }
+                },
                 {
+                    "Sid": "CreateEBSSnapshot",
+                    "Effect": "Allow",
                     "Action": [
                         "ec2:CreateSnapshot"
-                    ], 
-                    "Resource": "*", 
-                    "Effect": "Allow", 
-                    "Sid": "CreateEBSSnapshot"
-                }, 
+                    ],
+                    "Resource": "*"
+                },
                 {
+                    "Sid": "RollbackEBSVolumeDeletion",
+                    "Effect": "Allow",
                     "Action": [
                         "ec2:CreateVolume"
-                    ], 
-                    "Resource": "*", 
-                    "Effect": "Allow", 
+                    ],
+                    "Resource": "*",
                     "Condition": {
                         "StringEquals": {
                             "aws:ResourceAccount": "${aws:PrincipalAccount}"
                         }
-                    }, 
-                    "Sid": "RollbackEBSVolumeDeletion"
-                }, 
+                    }
+                },
                 {
+                    "Sid": "Tag",
+                    "Effect": "Allow",
                     "Action": [
                         "ec2:CreateTags"
-                    ], 
+                    ],
                     "Resource": [
-                        "arn:aws:ec2:*:*:volume/*", 
+                        "arn:aws:ec2:*:*:volume/*",
                         "arn:aws:ec2:*:*:snapshot/*"
-                    ], 
-                    "Effect": "Allow", 
+                    ],
                     "Condition": {
                         "StringEquals": {
                             "ec2:CreateAction": [
-                                "CreateVolume", 
+                                "CreateVolume",
                                 "CreateSnapshot"
                             ]
                         }
-                    }, 
-                    "Sid": "Tag"
+                    }
                 }
             ]
-        }, 
-        "IsDefaultVersion": true
+        },
+        "VersionId": "v1",
+        "IsDefaultVersion": true,
+        "CreateDate": "2025-11-15T01:19:07+00:00"
     }
 }
