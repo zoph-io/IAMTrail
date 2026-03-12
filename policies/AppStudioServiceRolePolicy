@@ -1,100 +1,100 @@
 {
     "PolicyVersion": {
-        "CreateDate": "2025-03-13T20:37:07Z", 
-        "VersionId": "v2", 
         "Document": {
-            "Version": "2012-10-17", 
+            "Version": "2012-10-17",
             "Statement": [
                 {
+                    "Sid": "AppStudioResourcePermissionsForCloudWatch",
+                    "Effect": "Allow",
                     "Action": [
-                        "logs:CreateLogGroup", 
-                        "logs:CreateLogStream", 
+                        "logs:CreateLogGroup",
+                        "logs:CreateLogStream",
                         "logs:PutLogEvents"
-                    ], 
+                    ],
                     "Resource": [
                         "arn:aws:logs:*:*:log-group:/aws/appstudio/*"
-                    ], 
-                    "Effect": "Allow", 
+                    ],
                     "Condition": {
                         "StringEquals": {
                             "aws:ResourceAccount": "${aws:PrincipalAccount}"
                         }
-                    }, 
-                    "Sid": "AppStudioResourcePermissionsForCloudWatch"
-                }, 
+                    }
+                },
                 {
+                    "Sid": "AppStudioResourcePermissionsForSecretsManager",
+                    "Effect": "Allow",
                     "Action": [
-                        "secretsmanager:CreateSecret", 
-                        "secretsmanager:DeleteSecret", 
-                        "secretsmanager:DescribeSecret", 
-                        "secretsmanager:GetSecretValue", 
-                        "secretsmanager:PutSecretValue", 
-                        "secretsmanager:UpdateSecret", 
+                        "secretsmanager:CreateSecret",
+                        "secretsmanager:DeleteSecret",
+                        "secretsmanager:DescribeSecret",
+                        "secretsmanager:GetSecretValue",
+                        "secretsmanager:PutSecretValue",
+                        "secretsmanager:UpdateSecret",
                         "secretsmanager:TagResource"
-                    ], 
-                    "Resource": "arn:aws:secretsmanager:*:*:secret:appstudio-*", 
-                    "Effect": "Allow", 
+                    ],
+                    "Resource": "arn:aws:secretsmanager:*:*:secret:appstudio-*",
                     "Condition": {
-                        "StringEquals": {
-                            "aws:ResourceTag/IsAppStudioSecret": "true", 
-                            "aws:ResourceAccount": "${aws:PrincipalAccount}"
-                        }, 
                         "ForAllValues:StringEquals": {
                             "aws:TagKeys": [
                                 "IsAppStudioSecret"
                             ]
+                        },
+                        "StringEquals": {
+                            "aws:ResourceAccount": "${aws:PrincipalAccount}",
+                            "aws:ResourceTag/IsAppStudioSecret": "true"
                         }
-                    }, 
-                    "Sid": "AppStudioResourcePermissionsForSecretsManager"
-                }, 
+                    }
+                },
                 {
+                    "Sid": "AppStudioResourcePermissionsForManagedSecrets",
+                    "Effect": "Allow",
                     "Action": [
-                        "secretsmanager:DeleteSecret", 
-                        "secretsmanager:DescribeSecret", 
-                        "secretsmanager:GetSecretValue", 
-                        "secretsmanager:PutSecretValue", 
+                        "secretsmanager:DeleteSecret",
+                        "secretsmanager:DescribeSecret",
+                        "secretsmanager:GetSecretValue",
+                        "secretsmanager:PutSecretValue",
                         "secretsmanager:UpdateSecret"
-                    ], 
-                    "Resource": "arn:aws:secretsmanager:*:*:secret:appstudio!*", 
-                    "Effect": "Allow", 
+                    ],
+                    "Resource": "arn:aws:secretsmanager:*:*:secret:appstudio!*",
                     "Condition": {
                         "StringEquals": {
-                            "secretsmanager:ResourceTag/aws:secretsmanager:owningService": "appstudio", 
-                            "aws:ResourceAccount": "${aws:PrincipalAccount}"
+                            "aws:ResourceAccount": "${aws:PrincipalAccount}",
+                            "secretsmanager:ResourceTag/aws:secretsmanager:owningService": "appstudio"
                         }
-                    }, 
-                    "Sid": "AppStudioResourcePermissionsForManagedSecrets"
-                }, 
+                    }
+                },
                 {
+                    "Sid": "AppStudioResourceWritePermissionsForManagedSecrets",
+                    "Effect": "Allow",
                     "Action": [
                         "secretsmanager:CreateSecret"
-                    ], 
-                    "Resource": "arn:aws:secretsmanager:*:*:secret:appstudio!*", 
-                    "Effect": "Allow", 
+                    ],
+                    "Resource": "arn:aws:secretsmanager:*:*:secret:appstudio!*",
                     "Condition": {
                         "StringEquals": {
                             "aws:ResourceAccount": "${aws:PrincipalAccount}"
                         }
-                    }, 
-                    "Sid": "AppStudioResourceWritePermissionsForManagedSecrets"
-                }, 
+                    }
+                },
                 {
+                    "Sid": "AppStudioResourcePermissionsForSSO",
+                    "Effect": "Allow",
                     "Action": [
-                        "sso:GetManagedApplicationInstance", 
-                        "sso-directory:DescribeUsers", 
+                        "sso:GetManagedApplicationInstance",
+                        "sso-directory:DescribeUsers",
                         "sso-directory:ListMembersInGroup"
-                    ], 
-                    "Resource": "*", 
-                    "Effect": "Allow", 
+                    ],
+                    "Resource": "*",
                     "Condition": {
                         "StringEquals": {
                             "aws:ResourceAccount": "${aws:PrincipalAccount}"
                         }
-                    }, 
-                    "Sid": "AppStudioResourcePermissionsForSSO"
+                    }
                 }
             ]
-        }, 
-        "IsDefaultVersion": true
+        },
+        "VersionId": "v2",
+        "IsDefaultVersion": true,
+        "CreateDate": "2025-03-13T20:37:07+00:00"
     }
 }
