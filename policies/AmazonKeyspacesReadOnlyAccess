@@ -1,37 +1,37 @@
 {
     "PolicyVersion": {
-        "CreateDate": "2026-02-12T18:00:32Z", 
-        "VersionId": "v6", 
         "Document": {
-            "Version": "2012-10-17", 
+            "Version": "2012-10-17",
             "Statement": [
                 {
+                    "Effect": "Allow",
                     "Action": [
-                        "cassandra:Select", 
-                        "cassandra:ListStreams", 
-                        "cassandra:GetStream", 
-                        "cassandra:GetShardIterator", 
+                        "cassandra:Select",
+                        "cassandra:ListStreams",
+                        "cassandra:GetStream",
+                        "cassandra:GetShardIterator",
                         "cassandra:GetRecords"
-                    ], 
-                    "Resource": "*", 
-                    "Effect": "Allow"
-                }, 
+                    ],
+                    "Resource": "*"
+                },
                 {
+                    "Effect": "Allow",
                     "Action": [
-                        "application-autoscaling:DescribeScalableTargets", 
-                        "application-autoscaling:DescribeScalingActivities", 
-                        "application-autoscaling:DescribeScalingPolicies", 
-                        "application-autoscaling:DescribeScheduledActions", 
-                        "cloudwatch:DescribeAlarms", 
-                        "cloudwatch:GetMetricData", 
-                        "kms:DescribeKey", 
+                        "application-autoscaling:DescribeScalableTargets",
+                        "application-autoscaling:DescribeScalingActivities",
+                        "application-autoscaling:DescribeScalingPolicies",
+                        "application-autoscaling:DescribeScheduledActions",
+                        "cloudwatch:DescribeAlarms",
+                        "cloudwatch:GetMetricData",
+                        "kms:DescribeKey",
                         "kms:ListAliases"
-                    ], 
-                    "Resource": "*", 
-                    "Effect": "Allow"
+                    ],
+                    "Resource": "*"
                 }
             ]
-        }, 
-        "IsDefaultVersion": true
+        },
+        "VersionId": "v6",
+        "IsDefaultVersion": true,
+        "CreateDate": "2026-02-12T18:00:32+00:00"
     }
 }
