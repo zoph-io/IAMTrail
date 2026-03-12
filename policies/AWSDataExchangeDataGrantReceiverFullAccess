@@ -1,67 +1,67 @@
 {
     "PolicyVersion": {
-        "CreateDate": "2024-10-24T14:45:58Z", 
-        "VersionId": "v1", 
         "Document": {
-            "Version": "2012-10-17", 
+            "Version": "2012-10-17",
             "Statement": [
                 {
+                    "Sid": "DataExchangeReadOnlyActions",
+                    "Effect": "Allow",
                     "Action": [
-                        "dataexchange:GetDataSet", 
-                        "dataexchange:ListDataSets", 
-                        "dataexchange:GetRevision", 
-                        "dataexchange:ListDataSetRevisions", 
-                        "dataexchange:GetAsset", 
-                        "dataexchange:ListRevisionAssets", 
+                        "dataexchange:GetDataSet",
+                        "dataexchange:ListDataSets",
+                        "dataexchange:GetRevision",
+                        "dataexchange:ListDataSetRevisions",
+                        "dataexchange:GetAsset",
+                        "dataexchange:ListRevisionAssets",
                         "dataexchange:SendApiAsset"
-                    ], 
-                    "Resource": "*", 
-                    "Effect": "Allow", 
-                    "Sid": "DataExchangeReadOnlyActions"
-                }, 
+                    ],
+                    "Resource": "*"
+                },
                 {
+                    "Sid": "DataExchangeExportActions",
+                    "Effect": "Allow",
                     "Action": [
-                        "dataexchange:CreateJob", 
-                        "dataexchange:StartJob", 
+                        "dataexchange:CreateJob",
+                        "dataexchange:StartJob",
                         "dataexchange:CancelJob"
-                    ], 
-                    "Resource": "*", 
-                    "Effect": "Allow", 
+                    ],
+                    "Resource": "*",
                     "Condition": {
                         "StringEquals": {
                             "dataexchange:JobType": [
-                                "EXPORT_ASSETS_TO_S3", 
-                                "EXPORT_ASSET_TO_SIGNED_URL", 
+                                "EXPORT_ASSETS_TO_S3",
+                                "EXPORT_ASSET_TO_SIGNED_URL",
                                 "EXPORT_REVISIONS_TO_S3"
                             ]
                         }
-                    }, 
-                    "Sid": "DataExchangeExportActions"
-                }, 
+                    }
+                },
                 {
+                    "Sid": "DataExchangeEventActionActions",
+                    "Effect": "Allow",
                     "Action": [
-                        "dataexchange:CreateEventAction", 
-                        "dataexchange:UpdateEventAction", 
-                        "dataexchange:DeleteEventAction", 
-                        "dataexchange:GetEventAction", 
+                        "dataexchange:CreateEventAction",
+                        "dataexchange:UpdateEventAction",
+                        "dataexchange:DeleteEventAction",
+                        "dataexchange:GetEventAction",
                         "dataexchange:ListEventActions"
-                    ], 
-                    "Resource": "*", 
-                    "Effect": "Allow", 
-                    "Sid": "DataExchangeEventActionActions"
-                }, 
+                    ],
+                    "Resource": "*"
+                },
                 {
+                    "Sid": "DataExchangeDataGrantActions",
+                    "Effect": "Allow",
                     "Action": [
-                        "dataexchange:AcceptDataGrant", 
-                        "dataexchange:ListReceivedDataGrants", 
+                        "dataexchange:AcceptDataGrant",
+                        "dataexchange:ListReceivedDataGrants",
                         "dataexchange:GetReceivedDataGrant"
-                    ], 
-                    "Resource": "*", 
-                    "Effect": "Allow", 
-                    "Sid": "DataExchangeDataGrantActions"
+                    ],
+                    "Resource": "*"
                 }
             ]
-        }, 
-        "IsDefaultVersion": true
+        },
+        "VersionId": "v1",
+        "IsDefaultVersion": true,
+        "CreateDate": "2024-10-24T14:45:58+00:00"
     }
 }
