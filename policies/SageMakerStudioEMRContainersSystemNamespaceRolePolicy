@@ -1,71 +1,71 @@
 {
     "PolicyVersion": {
-        "CreateDate": "2026-02-12T18:01:48Z", 
-        "VersionId": "v6", 
         "Document": {
-            "Version": "2012-10-17", 
+            "Version": "2012-10-17",
             "Statement": [
                 {
+                    "Sid": "AssumeProjectRoles",
+                    "Effect": "Allow",
                     "Action": [
                         "sts:AssumeRole"
-                    ], 
+                    ],
                     "Resource": [
                         "arn:aws:iam::*:role/datazone_usr_role_*"
-                    ], 
-                    "Effect": "Allow", 
+                    ],
                     "Condition": {
                         "StringEquals": {
                             "aws:ResourceTag/AmazonDataZoneProject": "${aws:PrincipalTag/AmazonDataZoneProject}"
                         }
-                    }, 
-                    "Sid": "AssumeProjectRoles"
-                }, 
+                    }
+                },
                 {
+                    "Sid": "TagSessionProjectRoles",
+                    "Effect": "Allow",
                     "Action": [
                         "sts:TagSession"
-                    ], 
+                    ],
                     "Resource": [
                         "arn:aws:iam::*:role/datazone_usr_role_*"
-                    ], 
-                    "Effect": "Allow", 
+                    ],
                     "Condition": {
-                        "StringEquals": {
-                            "aws:ResourceTag/AmazonDataZoneProject": "${aws:PrincipalTag/AmazonDataZoneProject}", 
-                            "aws:RequestTag/LakeFormationAuthorizedCaller": "EMR on EKS Engine"
-                        }, 
                         "ForAllValues:StringEquals": {
                             "aws:TagKeys": [
                                 "LakeFormationAuthorizedCaller"
                             ]
+                        },
+                        "StringEquals": {
+                            "aws:RequestTag/LakeFormationAuthorizedCaller": "EMR on EKS Engine",
+                            "aws:ResourceTag/AmazonDataZoneProject": "${aws:PrincipalTag/AmazonDataZoneProject}"
                         }
-                    }, 
-                    "Sid": "TagSessionProjectRoles"
-                }, 
+                    }
+                },
                 {
+                    "Sid": "SetContextProjectRoles",
+                    "Effect": "Allow",
                     "Action": [
                         "sts:SetContext"
-                    ], 
+                    ],
                     "Resource": [
                         "arn:aws:iam::*:role/datazone_usr_role_*"
-                    ], 
-                    "Effect": "Allow", 
+                    ],
                     "Condition": {
-                        "Null": {
-                            "sts:RequestContextProviders": "false"
-                        }, 
-                        "StringEquals": {
-                            "aws:ResourceTag/AmazonDataZoneProject": "${aws:PrincipalTag/AmazonDataZoneProject}"
-                        }, 
                         "ForAllValues:ArnEquals": {
                             "sts:RequestContextProviders": [
                                 "arn:aws:iam::aws:contextProvider/IdentityCenter"
                             ]
+                        },
+                        "Null": {
+                            "sts:RequestContextProviders": "false"
+                        },
+                        "StringEquals": {
+                            "aws:ResourceTag/AmazonDataZoneProject": "${aws:PrincipalTag/AmazonDataZoneProject}"
                         }
-                    }, 
-                    "Sid": "SetContextProjectRoles"
+                    }
                 }
             ]
-        }, 
-        "IsDefaultVersion": true
+        },
+        "VersionId": "v6",
+        "IsDefaultVersion": true,
+        "CreateDate": "2026-02-12T18:01:48+00:00"
     }
 }
