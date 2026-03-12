@@ -1,21 +1,21 @@
 {
     "PolicyVersion": {
-        "CreateDate": "2017-11-29T17:00:54Z", 
-        "VersionId": "v1", 
         "Document": {
-            "Version": "2012-10-17", 
+            "Version": "2012-10-17",
             "Statement": [
                 {
                     "Action": [
-                        "iotanalytics:ListDatasets", 
-                        "iotanalytics:DescribeDataset", 
+                        "iotanalytics:ListDatasets",
+                        "iotanalytics:DescribeDataset",
                         "iotanalytics:GetDatasetContent"
-                    ], 
-                    "Resource": "*", 
-                    "Effect": "Allow"
+                    ],
+                    "Effect": "Allow",
+                    "Resource": "*"
                 }
             ]
-        }, 
-        "IsDefaultVersion": true
+        },
+        "VersionId": "v1",
+        "IsDefaultVersion": true,
+        "CreateDate": "2017-11-29T17:00:54+00:00"
     }
 }
