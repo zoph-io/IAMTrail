@@ -1,35 +1,35 @@
 {
     "PolicyVersion": {
-        "CreateDate": "2021-06-16T20:12:52Z", 
-        "VersionId": "v1", 
         "Document": {
-            "Version": "2012-10-17", 
+            "Version": "2012-10-17",
             "Statement": [
                 {
+                    "Sid": "AllowCreateOpsItem",
+                    "Effect": "Allow",
                     "Action": [
-                        "ssm:CreateOpsItem", 
+                        "ssm:CreateOpsItem",
                         "ssm:AddTagsToResource"
-                    ], 
-                    "Resource": "*", 
-                    "Effect": "Allow", 
-                    "Sid": "AllowCreateOpsItem"
-                }, 
+                    ],
+                    "Resource": "*"
+                },
                 {
+                    "Sid": "AllowAccessOpsItem",
+                    "Effect": "Allow",
                     "Action": [
-                        "ssm:UpdateOpsItem", 
+                        "ssm:UpdateOpsItem",
                         "ssm:GetOpsItem"
-                    ], 
-                    "Resource": "*", 
-                    "Effect": "Allow", 
+                    ],
+                    "Resource": "*",
                     "Condition": {
                         "StringEquals": {
                             "aws:ResourceTag/SsmOperationalInsight": "true"
                         }
-                    }, 
-                    "Sid": "AllowAccessOpsItem"
+                    }
                 }
             ]
-        }, 
-        "IsDefaultVersion": true
+        },
+        "VersionId": "v1",
+        "IsDefaultVersion": true,
+        "CreateDate": "2021-06-16T20:12:52+00:00"
     }
 }
