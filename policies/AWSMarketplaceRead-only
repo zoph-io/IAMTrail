@@ -1,55 +1,55 @@
 {
     "PolicyVersion": {
-        "CreateDate": "2026-02-12T18:01:12Z", 
-        "VersionId": "v11", 
         "Document": {
-            "Version": "2012-10-17", 
+            "Version": "2012-10-17",
             "Statement": [
                 {
+                    "Effect": "Allow",
                     "Action": [
-                        "aws-marketplace:ViewSubscriptions", 
-                        "aws-marketplace:ListAgreementCharges", 
-                        "ec2:DescribeAccountAttributes", 
-                        "ec2:DescribeAddresses", 
-                        "ec2:DescribeImages", 
-                        "ec2:DescribeInstances", 
-                        "ec2:DescribeKeyPairs", 
-                        "ec2:DescribeSecurityGroups", 
-                        "ec2:DescribeSubnets", 
+                        "aws-marketplace:ViewSubscriptions",
+                        "aws-marketplace:ListAgreementCharges",
+                        "ec2:DescribeAccountAttributes",
+                        "ec2:DescribeAddresses",
+                        "ec2:DescribeImages",
+                        "ec2:DescribeInstances",
+                        "ec2:DescribeKeyPairs",
+                        "ec2:DescribeSecurityGroups",
+                        "ec2:DescribeSubnets",
                         "ec2:DescribeVpcs"
-                    ], 
-                    "Resource": "*", 
-                    "Effect": "Allow"
-                }, 
+                    ],
+                    "Resource": "*"
+                },
                 {
+                    "Effect": "Allow",
                     "Action": [
-                        "iam:ListRoles", 
-                        "iam:ListInstanceProfiles", 
-                        "sns:GetTopicAttributes", 
+                        "iam:ListRoles",
+                        "iam:ListInstanceProfiles",
+                        "sns:GetTopicAttributes",
                         "sns:ListTopics"
-                    ], 
-                    "Resource": "*", 
-                    "Effect": "Allow"
-                }, 
+                    ],
+                    "Resource": "*"
+                },
                 {
+                    "Effect": "Allow",
                     "Action": [
-                        "aws-marketplace:ListPrivateMarketplaceRequests", 
-                        "aws-marketplace:DescribePrivateMarketplaceRequests", 
-                        "aws-marketplace:GetAgreementPaymentRequest", 
+                        "aws-marketplace:ListPrivateMarketplaceRequests",
+                        "aws-marketplace:DescribePrivateMarketplaceRequests",
+                        "aws-marketplace:GetAgreementPaymentRequest",
                         "aws-marketplace:ListAgreementPaymentRequests"
-                    ], 
-                    "Resource": "*", 
-                    "Effect": "Allow"
-                }, 
+                    ],
+                    "Resource": "*"
+                },
                 {
+                    "Effect": "Allow",
                     "Action": [
                         "aws-marketplace:ListPrivateListings"
-                    ], 
-                    "Resource": "*", 
-                    "Effect": "Allow"
+                    ],
+                    "Resource": "*"
                 }
             ]
-        }, 
-        "IsDefaultVersion": true
+        },
+        "VersionId": "v11",
+        "IsDefaultVersion": true,
+        "CreateDate": "2026-02-12T18:01:12+00:00"
     }
 }
