@@ -1,27 +1,27 @@
 {
     "PolicyVersion": {
-        "CreateDate": "2025-01-16T21:37:06Z", 
-        "VersionId": "v4", 
         "Document": {
-            "Version": "2012-10-17", 
+            "Version": "2012-10-17",
             "Statement": [
                 {
+                    "Sid": "LogDeliveryToFirehose",
+                    "Effect": "Allow",
                     "Action": [
-                        "firehose:PutRecord", 
-                        "firehose:PutRecordBatch", 
+                        "firehose:PutRecord",
+                        "firehose:PutRecordBatch",
                         "firehose:ListTagsForDeliveryStream"
-                    ], 
-                    "Resource": "*", 
-                    "Effect": "Allow", 
+                    ],
+                    "Resource": "*",
                     "Condition": {
                         "StringEquals": {
                             "aws:ResourceTag/LogDeliveryEnabled": "true"
                         }
-                    }, 
-                    "Sid": "LogDeliveryToFirehose"
+                    }
                 }
             ]
-        }, 
-        "IsDefaultVersion": true
+        },
+        "VersionId": "v4",
+        "IsDefaultVersion": true,
+        "CreateDate": "2025-01-16T21:37:06+00:00"
     }
 }
