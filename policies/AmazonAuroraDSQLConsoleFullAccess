@@ -1,91 +1,91 @@
 {
     "PolicyVersion": {
-        "CreateDate": "2026-02-12T18:00:39Z", 
-        "VersionId": "v15", 
         "Document": {
-            "Version": "2012-10-17", 
+            "Version": "2012-10-17",
             "Statement": [
                 {
+                    "Sid": "DsqlAllPermissions",
+                    "Effect": "Allow",
                     "Action": [
-                        "dsql:PutClusterPolicy", 
-                        "dsql:GetClusterPolicy", 
-                        "dsql:DeleteClusterPolicy", 
-                        "dsql:CreateCluster", 
-                        "dsql:GetCluster", 
-                        "dsql:UpdateCluster", 
-                        "dsql:DeleteCluster", 
-                        "dsql:ListClusters", 
-                        "dsql:TagResource", 
-                        "dsql:UntagResource", 
-                        "dsql:ListTagsForResource", 
-                        "dsql:DbConnectAdmin", 
-                        "dsql:DbConnect", 
-                        "dsql:PutMultiRegionProperties", 
-                        "dsql:PutWitnessRegion", 
-                        "dsql:AddPeerCluster", 
-                        "dsql:RemovePeerCluster", 
-                        "dsql:GetVpcEndpointServiceName", 
-                        "dsql:StartBackupJob", 
-                        "dsql:GetBackupJob", 
-                        "dsql:StopBackupJob", 
-                        "dsql:StartRestoreJob", 
-                        "dsql:GetRestoreJob", 
-                        "dsql:StopRestoreJob", 
+                        "dsql:PutClusterPolicy",
+                        "dsql:GetClusterPolicy",
+                        "dsql:DeleteClusterPolicy",
+                        "dsql:CreateCluster",
+                        "dsql:GetCluster",
+                        "dsql:UpdateCluster",
+                        "dsql:DeleteCluster",
+                        "dsql:ListClusters",
+                        "dsql:TagResource",
+                        "dsql:UntagResource",
+                        "dsql:ListTagsForResource",
+                        "dsql:DbConnectAdmin",
+                        "dsql:DbConnect",
+                        "dsql:PutMultiRegionProperties",
+                        "dsql:PutWitnessRegion",
+                        "dsql:AddPeerCluster",
+                        "dsql:RemovePeerCluster",
+                        "dsql:GetVpcEndpointServiceName",
+                        "dsql:StartBackupJob",
+                        "dsql:GetBackupJob",
+                        "dsql:StopBackupJob",
+                        "dsql:StartRestoreJob",
+                        "dsql:GetRestoreJob",
+                        "dsql:StopRestoreJob",
                         "dsql:InjectError"
-                    ], 
-                    "Resource": "*", 
-                    "Effect": "Allow", 
-                    "Sid": "DsqlAllPermissions"
-                }, 
+                    ],
+                    "Resource": "*"
+                },
                 {
+                    "Sid": "DsqlConsolePermissions",
+                    "Effect": "Allow",
                     "Action": [
-                        "access-analyzer:ValidatePolicy", 
-                        "tag:GetTagKeys", 
-                        "tag:GetTagValues", 
-                        "cloudwatch:GetMetricData", 
-                        "ec2:DescribeVpcEndpoints", 
-                        "kms:ListAliases", 
+                        "access-analyzer:ValidatePolicy",
+                        "tag:GetTagKeys",
+                        "tag:GetTagValues",
+                        "cloudwatch:GetMetricData",
+                        "ec2:DescribeVpcEndpoints",
+                        "kms:ListAliases",
                         "kms:DescribeKey"
-                    ], 
-                    "Resource": "*", 
-                    "Effect": "Allow", 
-                    "Sid": "DsqlConsolePermissions"
-                }, 
+                    ],
+                    "Resource": "*"
+                },
                 {
+                    "Sid": "KMSCryptographicPermissions",
+                    "Effect": "Allow",
                     "Action": [
-                        "kms:Decrypt", 
-                        "kms:Encrypt", 
-                        "kms:GenerateDataKey", 
-                        "kms:ReEncryptTo", 
+                        "kms:Decrypt",
+                        "kms:Encrypt",
+                        "kms:GenerateDataKey",
+                        "kms:ReEncryptTo",
                         "kms:ReEncryptFrom"
-                    ], 
-                    "Resource": "*", 
-                    "Effect": "Allow", 
+                    ],
+                    "Resource": "*",
                     "Condition": {
-                        "ForAnyValue:StringEquals": {
-                            "kms:EncryptionContextKeys": "aws:dsql:ClusterId"
-                        }, 
                         "StringLike": {
                             "kms:ViaService": [
                                 "dsql.*.amazonaws.com"
                             ]
+                        },
+                        "ForAnyValue:StringEquals": {
+                            "kms:EncryptionContextKeys": "aws:dsql:ClusterId"
                         }
-                    }, 
-                    "Sid": "KMSCryptographicPermissions"
-                }, 
+                    }
+                },
                 {
-                    "Action": "iam:CreateServiceLinkedRole", 
-                    "Resource": "*", 
-                    "Effect": "Allow", 
+                    "Sid": "CreateDsqlServiceLinkedRole",
+                    "Effect": "Allow",
+                    "Action": "iam:CreateServiceLinkedRole",
+                    "Resource": "*",
                     "Condition": {
                         "StringEquals": {
                             "iam:AWSServiceName": "dsql.amazonaws.com"
                         }
-                    }, 
-                    "Sid": "CreateDsqlServiceLinkedRole"
+                    }
                 }
             ]
-        }, 
-        "IsDefaultVersion": true
+        },
+        "VersionId": "v15",
+        "IsDefaultVersion": true,
+        "CreateDate": "2026-02-12T18:00:39+00:00"
     }
 }
