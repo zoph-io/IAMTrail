@@ -1,22 +1,22 @@
 {
     "PolicyVersion": {
-        "CreateDate": "2026-02-12T18:02:36Z", 
-        "VersionId": "v4", 
         "Document": {
-            "Version": "2012-10-17", 
+            "Version": "2012-10-17",
             "Statement": [
                 {
+                    "Effect": "Allow",
                     "Action": [
-                        "groundstation:RegisterAgent", 
-                        "groundstation:UpdateAgentStatus", 
-                        "groundstation:GetAgentConfiguration", 
+                        "groundstation:RegisterAgent",
+                        "groundstation:UpdateAgentStatus",
+                        "groundstation:GetAgentConfiguration",
                         "groundstation:GetAgentTaskResponseUrl"
-                    ], 
-                    "Resource": "*", 
-                    "Effect": "Allow"
+                    ],
+                    "Resource": "*"
                 }
             ]
-        }, 
-        "IsDefaultVersion": true
+        },
+        "VersionId": "v4",
+        "IsDefaultVersion": true,
+        "CreateDate": "2026-02-12T18:02:36+00:00"
     }
 }
