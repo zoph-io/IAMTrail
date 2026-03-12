@@ -1,49 +1,49 @@
 {
     "PolicyVersion": {
-        "CreateDate": "2025-03-26T17:37:06Z", 
-        "VersionId": "v2", 
         "Document": {
-            "Version": "2012-10-17", 
+            "Version": "2012-10-17",
             "Statement": [
                 {
+                    "Sid": "ElastiCacheActionsOnAllClusters",
+                    "Effect": "Allow",
                     "Action": [
-                        "elasticache:DescribeReplicationGroups", 
-                        "elasticache:ModifyCacheCluster", 
-                        "elasticache:ModifyReplicationGroupShardConfiguration", 
-                        "elasticache:IncreaseReplicaCount", 
-                        "elasticache:DecreaseReplicaCount", 
-                        "elasticache:DescribeCacheClusters", 
+                        "elasticache:DescribeReplicationGroups",
+                        "elasticache:ModifyCacheCluster",
+                        "elasticache:ModifyReplicationGroupShardConfiguration",
+                        "elasticache:IncreaseReplicaCount",
+                        "elasticache:DecreaseReplicaCount",
+                        "elasticache:DescribeCacheClusters",
                         "elasticache:DescribeCacheParameters"
-                    ], 
+                    ],
                     "Resource": [
                         "*"
-                    ], 
-                    "Effect": "Allow", 
-                    "Sid": "ElastiCacheActionsOnAllClusters"
-                }, 
+                    ]
+                },
                 {
+                    "Sid": "CloudWatchActionsOnAllAlarms",
+                    "Effect": "Allow",
                     "Action": [
                         "cloudwatch:DescribeAlarms"
-                    ], 
+                    ],
                     "Resource": [
                         "arn:aws:cloudwatch:*:*:alarm:*"
-                    ], 
-                    "Effect": "Allow", 
-                    "Sid": "CloudWatchActionsOnAllAlarms"
-                }, 
+                    ]
+                },
                 {
+                    "Sid": "CloudWatchActionsOnTargetTrackingAlarms",
+                    "Effect": "Allow",
                     "Action": [
-                        "cloudwatch:PutMetricAlarm", 
+                        "cloudwatch:PutMetricAlarm",
                         "cloudwatch:DeleteAlarms"
-                    ], 
+                    ],
                     "Resource": [
                         "arn:aws:cloudwatch:*:*:alarm:TargetTracking*"
-                    ], 
-                    "Effect": "Allow", 
-                    "Sid": "CloudWatchActionsOnTargetTrackingAlarms"
+                    ]
                 }
             ]
-        }, 
-        "IsDefaultVersion": true
+        },
+        "VersionId": "v2",
+        "IsDefaultVersion": true,
+        "CreateDate": "2025-03-26T17:37:06+00:00"
     }
 }
