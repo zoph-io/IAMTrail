@@ -1,246 +1,246 @@
 {
     "PolicyVersion": {
-        "CreateDate": "2026-02-17T18:42:07Z", 
-        "VersionId": "v11", 
         "Document": {
-            "Version": "2012-10-17", 
+            "Version": "2012-10-17",
             "Statement": [
                 {
+                    "Sid": "SharedSecurityGroupRelatedPermissions",
+                    "Effect": "Allow",
                     "Action": [
-                        "ec2:RevokeSecurityGroupIngress", 
-                        "ec2:AuthorizeSecurityGroupEgress", 
-                        "ec2:AuthorizeSecurityGroupIngress", 
-                        "ec2:DescribeInstances", 
-                        "ec2:RevokeSecurityGroupEgress", 
+                        "ec2:RevokeSecurityGroupIngress",
+                        "ec2:AuthorizeSecurityGroupEgress",
+                        "ec2:AuthorizeSecurityGroupIngress",
+                        "ec2:DescribeInstances",
+                        "ec2:RevokeSecurityGroupEgress",
                         "ec2:DeleteSecurityGroup"
-                    ], 
-                    "Resource": "*", 
-                    "Effect": "Allow", 
+                    ],
+                    "Resource": "*",
                     "Condition": {
                         "StringLike": {
                             "ec2:ResourceTag/eks": "*"
                         }
-                    }, 
-                    "Sid": "SharedSecurityGroupRelatedPermissions"
-                }, 
+                    }
+                },
                 {
+                    "Sid": "EKSCreatedSecurityGroupRelatedPermissions",
+                    "Effect": "Allow",
                     "Action": [
-                        "ec2:RevokeSecurityGroupIngress", 
-                        "ec2:AuthorizeSecurityGroupEgress", 
-                        "ec2:AuthorizeSecurityGroupIngress", 
-                        "ec2:DescribeInstances", 
-                        "ec2:RevokeSecurityGroupEgress", 
+                        "ec2:RevokeSecurityGroupIngress",
+                        "ec2:AuthorizeSecurityGroupEgress",
+                        "ec2:AuthorizeSecurityGroupIngress",
+                        "ec2:DescribeInstances",
+                        "ec2:RevokeSecurityGroupEgress",
                         "ec2:DeleteSecurityGroup"
-                    ], 
-                    "Resource": "*", 
-                    "Effect": "Allow", 
+                    ],
+                    "Resource": "*",
                     "Condition": {
                         "StringLike": {
                             "ec2:ResourceTag/eks:nodegroup-name": "*"
                         }
-                    }, 
-                    "Sid": "EKSCreatedSecurityGroupRelatedPermissions"
-                }, 
+                    }
+                },
                 {
+                    "Sid": "LaunchTemplateRelatedPermissions",
+                    "Effect": "Allow",
                     "Action": [
-                        "ec2:DeleteLaunchTemplate", 
+                        "ec2:DeleteLaunchTemplate",
                         "ec2:CreateLaunchTemplateVersion"
-                    ], 
-                    "Resource": "*", 
-                    "Effect": "Allow", 
+                    ],
+                    "Resource": "*",
                     "Condition": {
                         "StringLike": {
                             "ec2:ResourceTag/eks:nodegroup-name": "*"
                         }
-                    }, 
-                    "Sid": "LaunchTemplateRelatedPermissions"
-                }, 
+                    }
+                },
                 {
+                    "Sid": "AutoscalingRelatedPermissions",
+                    "Effect": "Allow",
                     "Action": [
-                        "autoscaling:UpdateAutoScalingGroup", 
-                        "autoscaling:DeleteAutoScalingGroup", 
-                        "autoscaling:TerminateInstanceInAutoScalingGroup", 
-                        "autoscaling:CompleteLifecycleAction", 
-                        "autoscaling:PutLifecycleHook", 
-                        "autoscaling:PutNotificationConfiguration", 
-                        "autoscaling:EnableMetricsCollection", 
-                        "autoscaling:PutScheduledUpdateGroupAction", 
-                        "autoscaling:ResumeProcesses", 
-                        "autoscaling:SuspendProcesses", 
-                        "autoscaling:PutWarmPool", 
+                        "autoscaling:UpdateAutoScalingGroup",
+                        "autoscaling:DeleteAutoScalingGroup",
+                        "autoscaling:TerminateInstanceInAutoScalingGroup",
+                        "autoscaling:CompleteLifecycleAction",
+                        "autoscaling:PutLifecycleHook",
+                        "autoscaling:PutNotificationConfiguration",
+                        "autoscaling:EnableMetricsCollection",
+                        "autoscaling:PutScheduledUpdateGroupAction",
+                        "autoscaling:ResumeProcesses",
+                        "autoscaling:SuspendProcesses",
+                        "autoscaling:PutWarmPool",
                         "autoscaling:DeleteWarmPool"
-                    ], 
-                    "Resource": "arn:aws:autoscaling:*:*:*:autoScalingGroupName/eks-*", 
-                    "Effect": "Allow", 
-                    "Sid": "AutoscalingRelatedPermissions"
-                }, 
+                    ],
+                    "Resource": "arn:aws:autoscaling:*:*:*:autoScalingGroupName/eks-*"
+                },
                 {
-                    "Action": "iam:CreateServiceLinkedRole", 
-                    "Resource": "*", 
-                    "Effect": "Allow", 
+                    "Sid": "AllowAutoscalingToCreateSLR",
+                    "Effect": "Allow",
                     "Condition": {
                         "StringEquals": {
                             "iam:AWSServiceName": "autoscaling.amazonaws.com"
                         }
-                    }, 
-                    "Sid": "AllowAutoscalingToCreateSLR"
-                }, 
+                    },
+                    "Action": "iam:CreateServiceLinkedRole",
+                    "Resource": "*"
+                },
                 {
+                    "Sid": "AllowASGCreationByEKS",
+                    "Effect": "Allow",
                     "Action": [
-                        "autoscaling:CreateOrUpdateTags", 
+                        "autoscaling:CreateOrUpdateTags",
                         "autoscaling:CreateAutoScalingGroup"
-                    ], 
-                    "Resource": "*", 
-                    "Effect": "Allow", 
+                    ],
+                    "Resource": "*",
                     "Condition": {
                         "ForAnyValue:StringEquals": {
                             "aws:TagKeys": [
-                                "eks", 
-                                "eks:cluster-name", 
+                                "eks",
+                                "eks:cluster-name",
                                 "eks:nodegroup-name"
                             ]
                         }
-                    }, 
-                    "Sid": "AllowASGCreationByEKS"
-                }, 
+                    }
+                },
                 {
-                    "Action": "iam:PassRole", 
-                    "Resource": "*", 
-                    "Effect": "Allow", 
+                    "Sid": "AllowPassRoleToAutoscaling",
+                    "Effect": "Allow",
+                    "Action": "iam:PassRole",
+                    "Resource": "*",
                     "Condition": {
                         "StringEquals": {
                             "iam:PassedToService": "autoscaling.amazonaws.com"
                         }
-                    }, 
-                    "Sid": "AllowPassRoleToAutoscaling"
-                }, 
+                    }
+                },
                 {
-                    "Action": "iam:PassRole", 
-                    "Resource": "*", 
-                    "Effect": "Allow", 
+                    "Sid": "AllowPassRoleToEC2",
+                    "Effect": "Allow",
+                    "Action": "iam:PassRole",
+                    "Resource": "*",
                     "Condition": {
                         "StringEqualsIfExists": {
                             "iam:PassedToService": [
                                 "ec2.amazonaws.com"
                             ]
                         }
-                    }, 
-                    "Sid": "AllowPassRoleToEC2"
-                }, 
+                    }
+                },
                 {
+                    "Sid": "PermissionsToManageResourcesForNodegroups",
+                    "Effect": "Allow",
                     "Action": [
-                        "iam:GetRole", 
-                        "ec2:CreateLaunchTemplate", 
-                        "ec2:DescribeInstances", 
-                        "iam:GetInstanceProfile", 
-                        "ec2:DescribeLaunchTemplates", 
-                        "autoscaling:DescribeAutoScalingGroups", 
-                        "ec2:CreateSecurityGroup", 
-                        "ec2:DescribeLaunchTemplateVersions", 
-                        "ec2:RunInstances", 
-                        "ec2:DescribeSecurityGroups", 
-                        "ec2:GetConsoleOutput", 
-                        "ec2:DescribeRouteTables", 
-                        "ec2:DescribeSubnets", 
-                        "ec2:DescribeCapacityReservations", 
+                        "iam:GetRole",
+                        "ec2:CreateLaunchTemplate",
+                        "ec2:DescribeInstances",
+                        "iam:GetInstanceProfile",
+                        "ec2:DescribeLaunchTemplates",
+                        "autoscaling:DescribeAutoScalingGroups",
+                        "ec2:CreateSecurityGroup",
+                        "ec2:DescribeLaunchTemplateVersions",
+                        "ec2:RunInstances",
+                        "ec2:DescribeSecurityGroups",
+                        "ec2:GetConsoleOutput",
+                        "ec2:DescribeRouteTables",
+                        "ec2:DescribeSubnets",
+                        "ec2:DescribeCapacityReservations",
                         "autoscaling:DescribeWarmPool"
-                    ], 
-                    "Resource": "*", 
-                    "Effect": "Allow", 
-                    "Sid": "PermissionsToManageResourcesForNodegroups"
-                }, 
+                    ],
+                    "Resource": "*"
+                },
                 {
+                    "Sid": "PermissionsToCreateAndManageInstanceProfiles",
+                    "Effect": "Allow",
                     "Action": [
-                        "iam:CreateInstanceProfile", 
-                        "iam:DeleteInstanceProfile", 
-                        "iam:RemoveRoleFromInstanceProfile", 
+                        "iam:CreateInstanceProfile",
+                        "iam:DeleteInstanceProfile",
+                        "iam:RemoveRoleFromInstanceProfile",
                         "iam:AddRoleToInstanceProfile"
-                    ], 
-                    "Resource": "arn:aws:iam::*:instance-profile/eks-*", 
-                    "Effect": "Allow", 
-                    "Sid": "PermissionsToCreateAndManageInstanceProfiles"
-                }, 
+                    ],
+                    "Resource": "arn:aws:iam::*:instance-profile/eks-*"
+                },
                 {
+                    "Sid": "PermissionsToDeleteEKSAndKubernetesTags",
+                    "Effect": "Allow",
                     "Action": [
                         "ec2:DeleteTags"
-                    ], 
-                    "Resource": "*", 
-                    "Effect": "Allow", 
+                    ],
+                    "Resource": "*",
                     "Condition": {
                         "ForAnyValue:StringLike": {
                             "aws:TagKeys": [
-                                "eks", 
-                                "eks:cluster-name", 
-                                "eks:nodegroup-name", 
+                                "eks",
+                                "eks:cluster-name",
+                                "eks:nodegroup-name",
                                 "kubernetes.io/cluster/*"
                             ]
                         }
-                    }, 
-                    "Sid": "PermissionsToDeleteEKSAndKubernetesTags"
-                }, 
+                    }
+                },
                 {
+                    "Sid": "PermissionsForManagedNodegroupsAutoRepair",
+                    "Effect": "Allow",
                     "Action": [
                         "ec2:RebootInstances"
-                    ], 
-                    "Resource": "*", 
-                    "Effect": "Allow", 
+                    ],
+                    "Resource": "*",
                     "Condition": {
                         "StringLike": {
                             "ec2:ResourceTag/eks:nodegroup-name": "*"
                         }
-                    }, 
-                    "Sid": "PermissionsForManagedNodegroupsAutoRepair"
-                }, 
+                    }
+                },
                 {
+                    "Sid": "PermissionsToCreateEKSAndKubernetesTags",
+                    "Effect": "Allow",
                     "Action": [
                         "ec2:CreateTags"
-                    ], 
+                    ],
                     "Resource": [
-                        "arn:*:ec2:*:*:security-group/*", 
+                        "arn:*:ec2:*:*:security-group/*",
                         "arn:*:ec2:*:*:launch-template/*"
-                    ], 
-                    "Effect": "Allow", 
+                    ],
                     "Condition": {
                         "ForAnyValue:StringLike": {
                             "aws:TagKeys": [
-                                "eks", 
-                                "eks:cluster-name", 
-                                "eks:nodegroup-name", 
+                                "eks",
+                                "eks:cluster-name",
+                                "eks:nodegroup-name",
                                 "kubernetes.io/cluster/*"
                             ]
                         }
-                    }, 
-                    "Sid": "PermissionsToCreateEKSAndKubernetesTags"
-                }, 
+                    }
+                },
                 {
+                    "Sid": "AllowTaggingEC2ResourcesOnlyDuringInstanceCreation",
+                    "Effect": "Allow",
                     "Action": [
                         "ec2:CreateTags"
-                    ], 
+                    ],
                     "Resource": [
-                        "arn:*:ec2:*:*:instance/*", 
-                        "arn:*:ec2:*:*:volume/*", 
+                        "arn:*:ec2:*:*:instance/*",
+                        "arn:*:ec2:*:*:volume/*",
                         "arn:*:ec2:*:*:network-interface/*"
-                    ], 
-                    "Effect": "Allow", 
+                    ],
                     "Condition": {
                         "StringEquals": {
                             "ec2:CreateAction": [
                                 "RunInstances"
                             ]
-                        }, 
+                        },
                         "ForAnyValue:StringLike": {
                             "aws:TagKeys": [
-                                "eks", 
-                                "eks:cluster-name", 
-                                "eks:nodegroup-name", 
+                                "eks",
+                                "eks:cluster-name",
+                                "eks:nodegroup-name",
                                 "kubernetes.io/cluster/*"
                             ]
                         }
-                    }, 
-                    "Sid": "AllowTaggingEC2ResourcesOnlyDuringInstanceCreation"
+                    }
                 }
             ]
-        }, 
-        "IsDefaultVersion": true
+        },
+        "VersionId": "v11",
+        "IsDefaultVersion": true,
+        "CreateDate": "2026-02-17T18:42:07+00:00"
     }
 }
