@@ -1,57 +1,57 @@
 {
     "PolicyVersion": {
-        "CreateDate": "2021-11-15T23:50:52Z", 
-        "VersionId": "v1", 
         "Document": {
-            "Version": "2012-10-17", 
+            "Version": "2012-10-17",
             "Statement": [
                 {
+                    "Sid": "DevOpsGuruOrganizationsAccess",
+                    "Effect": "Allow",
                     "Action": [
-                        "devops-guru:DescribeOrganizationHealth", 
-                        "devops-guru:DescribeOrganizationResourceCollectionHealth", 
-                        "devops-guru:DescribeOrganizationOverview", 
-                        "devops-guru:ListOrganizationInsights", 
+                        "devops-guru:DescribeOrganizationHealth",
+                        "devops-guru:DescribeOrganizationResourceCollectionHealth",
+                        "devops-guru:DescribeOrganizationOverview",
+                        "devops-guru:ListOrganizationInsights",
                         "devops-guru:SearchOrganizationInsights"
-                    ], 
-                    "Resource": "*", 
-                    "Effect": "Allow", 
-                    "Sid": "DevOpsGuruOrganizationsAccess"
-                }, 
+                    ],
+                    "Resource": "*"
+                },
                 {
+                    "Sid": "OrganizationsDataAccess",
+                    "Effect": "Allow",
                     "Action": [
-                        "organizations:DescribeAccount", 
-                        "organizations:DescribeOrganization", 
-                        "organizations:ListAWSServiceAccessForOrganization", 
-                        "organizations:ListAccounts", 
-                        "organizations:ListChildren", 
-                        "organizations:ListOrganizationalUnitsForParent", 
+                        "organizations:DescribeAccount",
+                        "organizations:DescribeOrganization",
+                        "organizations:ListAWSServiceAccessForOrganization",
+                        "organizations:ListAccounts",
+                        "organizations:ListChildren",
+                        "organizations:ListOrganizationalUnitsForParent",
                         "organizations:ListRoots"
-                    ], 
-                    "Resource": "arn:aws:organizations::*:", 
-                    "Effect": "Allow", 
-                    "Sid": "OrganizationsDataAccess"
-                }, 
+                    ],
+                    "Resource": "arn:aws:organizations::*:"
+                },
                 {
+                    "Sid": "OrganizationsAdminDataAccess",
+                    "Effect": "Allow",
                     "Action": [
-                        "organizations:DeregisterDelegatedAdministrator", 
-                        "organizations:RegisterDelegatedAdministrator", 
-                        "organizations:ListDelegatedAdministrators", 
-                        "organizations:EnableAWSServiceAccess", 
+                        "organizations:DeregisterDelegatedAdministrator",
+                        "organizations:RegisterDelegatedAdministrator",
+                        "organizations:ListDelegatedAdministrators",
+                        "organizations:EnableAWSServiceAccess",
                         "organizations:DisableAWSServiceAccess"
-                    ], 
-                    "Resource": "*", 
-                    "Effect": "Allow", 
+                    ],
+                    "Resource": "*",
                     "Condition": {
                         "StringEquals": {
                             "organizations:ServicePrincipal": [
                                 "devops-guru.amazonaws.com"
                             ]
                         }
-                    }, 
-                    "Sid": "OrganizationsAdminDataAccess"
+                    }
                 }
             ]
-        }, 
-        "IsDefaultVersion": true
+        },
+        "VersionId": "v1",
+        "IsDefaultVersion": true,
+        "CreateDate": "2021-11-15T23:50:52+00:00"
     }
 }
