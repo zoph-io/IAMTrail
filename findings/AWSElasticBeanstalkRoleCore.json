@@ -23,13 +23,13 @@
         "span": {
           "start": {
             "line": 1,
-            "column": 1914,
-            "offset": 1914
+            "column": 1949,
+            "offset": 1949
           },
           "end": {
             "line": 1,
-            "column": 1949,
-            "offset": 1949
+            "column": 1984,
+            "offset": 1984
           }
         }
       },
@@ -51,13 +51,13 @@
         "span": {
           "start": {
             "line": 1,
-            "column": 1951,
-            "offset": 1951
+            "column": 1986,
+            "offset": 1986
           },
           "end": {
             "line": 1,
-            "column": 2000,
-            "offset": 2000
+            "column": 2035,
+            "offset": 2035
           }
         }
       }

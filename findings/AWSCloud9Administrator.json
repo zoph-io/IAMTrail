@@ -26,13 +26,13 @@
         "span": {
           "start": {
             "line": 1,
-            "column": 655,
-            "offset": 655
+            "column": 591,
+            "offset": 591
           },
           "end": {
             "line": 1,
-            "column": 658,
-            "offset": 658
+            "column": 594,
+            "offset": 594
           }
         }
       }

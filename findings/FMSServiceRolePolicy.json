@@ -49,13 +49,13 @@
         "span": {
           "start": {
             "line": 1,
-            "column": 5370,
-            "offset": 5370
+            "column": 5407,
+            "offset": 5407
           },
           "end": {
             "line": 1,
-            "column": 5373,
-            "offset": 5373
+            "column": 5410,
+            "offset": 5410
           }
         }
       }

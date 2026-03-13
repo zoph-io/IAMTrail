@@ -29,13 +29,13 @@
         "span": {
           "start": {
             "line": 1,
-            "column": 1859,
-            "offset": 1859
+            "column": 1879,
+            "offset": 1879
           },
           "end": {
             "line": 1,
-            "column": 1862,
-            "offset": 1862
+            "column": 1882,
+            "offset": 1882
           }
         }
       }

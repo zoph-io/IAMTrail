@@ -23,13 +23,13 @@
         "span": {
           "start": {
             "line": 1,
-            "column": 2208,
-            "offset": 2208
+            "column": 2227,
+            "offset": 2227
           },
           "end": {
             "line": 1,
-            "column": 2241,
-            "offset": 2241
+            "column": 2260,
+            "offset": 2260
           }
         }
       },
@@ -51,13 +51,13 @@
         "span": {
           "start": {
             "line": 1,
-            "column": 2243,
-            "offset": 2243
+            "column": 2262,
+            "offset": 2262
           },
           "end": {
             "line": 1,
-            "column": 2278,
-            "offset": 2278
+            "column": 2297,
+            "offset": 2297
           }
         }
       },
@@ -79,13 +79,13 @@
         "span": {
           "start": {
             "line": 1,
-            "column": 2280,
-            "offset": 2280
+            "column": 2299,
+            "offset": 2299
           },
           "end": {
             "line": 1,
-            "column": 2305,
-            "offset": 2305
+            "column": 2324,
+            "offset": 2324
           }
         }
       },
@@ -107,13 +107,13 @@
         "span": {
           "start": {
             "line": 1,
-            "column": 2307,
-            "offset": 2307
+            "column": 2326,
+            "offset": 2326
           },
           "end": {
             "line": 1,
-            "column": 2334,
-            "offset": 2334
+            "column": 2353,
+            "offset": 2353
           }
         }
       }
@@ -143,13 +143,13 @@
         "span": {
           "start": {
             "line": 1,
-            "column": 2596,
-            "offset": 2596
+            "column": 2615,
+            "offset": 2615
           },
           "end": {
             "line": 1,
-            "column": 2635,
-            "offset": 2635
+            "column": 2654,
+            "offset": 2654
           }
         }
       },
@@ -171,13 +171,13 @@
         "span": {
           "start": {
             "line": 1,
-            "column": 2637,
-            "offset": 2637
+            "column": 2656,
+            "offset": 2656
           },
           "end": {
             "line": 1,
-            "column": 2684,
-            "offset": 2684
+            "column": 2703,
+            "offset": 2703
           }
         }
       }

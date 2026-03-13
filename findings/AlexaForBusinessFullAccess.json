@@ -48,13 +48,13 @@
         "span": {
           "start": {
             "line": 1,
-            "column": 174,
-            "offset": 174
+            "column": 193,
+            "offset": 193
           },
           "end": {
             "line": 1,
-            "column": 177,
-            "offset": 177
+            "column": 196,
+            "offset": 196
           }
         }
       }

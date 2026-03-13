@@ -46,13 +46,13 @@
         "span": {
           "start": {
             "line": 1,
-            "column": 8845,
-            "offset": 8845
+            "column": 8885,
+            "offset": 8885
           },
           "end": {
             "line": 1,
-            "column": 8873,
-            "offset": 8873
+            "column": 8913,
+            "offset": 8913
           }
         }
       },
@@ -74,13 +74,13 @@
         "span": {
           "start": {
             "line": 1,
-            "column": 8875,
-            "offset": 8875
+            "column": 8915,
+            "offset": 8915
           },
           "end": {
             "line": 1,
-            "column": 8905,
-            "offset": 8905
+            "column": 8945,
+            "offset": 8945
           }
         }
       }
@@ -110,13 +110,13 @@
         "span": {
           "start": {
             "line": 1,
-            "column": 12615,
-            "offset": 12615
+            "column": 12657,
+            "offset": 12657
           },
           "end": {
             "line": 1,
-            "column": 12657,
-            "offset": 12657
+            "column": 12699,
+            "offset": 12699
           }
         }
       },
@@ -138,13 +138,13 @@
         "span": {
           "start": {
             "line": 1,
-            "column": 12659,
-            "offset": 12659
+            "column": 12701,
+            "offset": 12701
           },
           "end": {
             "line": 1,
-            "column": 12714,
-            "offset": 12714
+            "column": 12756,
+            "offset": 12756
           }
         }
       }

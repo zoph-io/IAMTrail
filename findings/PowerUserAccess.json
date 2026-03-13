@@ -23,13 +23,13 @@
         "span": {
           "start": {
             "line": 1,
-            "column": 270,
-            "offset": 270
+            "column": 289,
+            "offset": 289
           },
           "end": {
             "line": 1,
-            "column": 299,
-            "offset": 299
+            "column": 318,
+            "offset": 318
           }
         }
       },
@@ -48,13 +48,13 @@
         "span": {
           "start": {
             "line": 1,
-            "column": 441,
-            "offset": 441
+            "column": 460,
+            "offset": 460
           },
           "end": {
             "line": 1,
-            "column": 444,
-            "offset": 444
+            "column": 463,
+            "offset": 463
           }
         }
       }
