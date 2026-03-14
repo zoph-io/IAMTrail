@@ -3349,18 +3349,6 @@
             "UpdateDate": "2023-11-16T23:07:06+00:00"
         },
         {
-            "PolicyName": "AmazonGuardDutyFullAccess",
-            "PolicyId": "ANPAIKUTKSN4KC63VDQUM",
-            "Arn": "arn:aws:iam::aws:policy/AmazonGuardDutyFullAccess",
-            "Path": "/",
-            "DefaultVersionId": "v9",
-            "AttachmentCount": 0,
-            "PermissionsBoundaryUsageCount": 0,
-            "IsAttachable": true,
-            "CreateDate": "2017-11-28T22:31:30+00:00",
-            "UpdateDate": "2026-02-12T17:57:42+00:00"
-        },
-        {
             "PolicyName": "AmazonSageMakerReadOnly",
             "PolicyId": "ANPAJTZ2FTFCQ6CFLQA2O",
             "Arn": "arn:aws:iam::aws:policy/AmazonSageMakerReadOnly",
@@ -6545,12 +6533,12 @@
             "PolicyId": "ANPAZKAPJZG4HVFNJB4NR",
             "Arn": "arn:aws:iam::aws:policy/aws-service-role/AWSElasticBeanstalkManagedUpdatesServiceRolePolicy",
             "Path": "/aws-service-role/",
-            "DefaultVersionId": "v9",
+            "DefaultVersionId": "v10",
             "AttachmentCount": 0,
             "PermissionsBoundaryUsageCount": 0,
             "IsAttachable": true,
             "CreateDate": "2019-11-21T22:35:06+00:00",
-            "UpdateDate": "2024-04-29T23:11:34+00:00"
+            "UpdateDate": "2026-03-13T16:12:13+00:00"
         },
         {
             "PolicyName": "AmazonEKSFargatePodExecutionRolePolicy",

@@ -10,6 +10,7 @@
   "AmazonEC2RolePolicyForApplicationWizard": "Unknown",
   "AmazonEC2SpotFleetRole": "Unknown",
   "AmazonEverestServicePolicy": "Unknown",
+  "AmazonGuardDutyFullAccess": "2026-03-14",
   "AmazonLambdaRolePolicyForLaunchWizardSAP": "Unknown",
   "AmazonLaunchWizard_Fullaccess": "Unknown",
   "AmazonLaunchWizardFullaccess": "Unknown",

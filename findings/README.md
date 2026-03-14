@@ -1,13 +1,14 @@
-# AWS Access Analyzer - Findings - 2026-03-13
+# AWS Access Analyzer - Findings - 2026-03-14
 
-- **Policies analyzed:** `1446`
-- **Errors:** `22`
+- **Policies analyzed:** `1445`
+- **Errors:** `23`
   - [`AWSAuditManagerAdministratorAccess`](./AWSAuditManagerAdministratorAccess.json)
   - [`AWSAuditManagerServiceRolePolicy`](./AWSAuditManagerServiceRolePolicy.json)
   - [`AWSCodeStarFullAccess`](./AWSCodeStarFullAccess.json)
   - [`AWSIAMIdentityCenterAllowListForIdentityContext`](./AWSIAMIdentityCenterAllowListForIdentityContext.json)
   - [`AmazonDataZoneGlueManageAccessRolePolicy`](./AmazonDataZoneGlueManageAccessRolePolicy.json)
   - [`AmazonDataZoneSageMakerEnvironmentRolePermissionsBoundary`](./AmazonDataZoneSageMakerEnvironmentRolePermissionsBoundary.json)
+  - [`AmazonRoute53RecoveryControlConfigReadOnlyAccess`](./AmazonRoute53RecoveryControlConfigReadOnlyAccess.json)
   - [`AmazonSageMakerFullAccess`](./AmazonSageMakerFullAccess.json)
   - [`BatchServiceRolePolicy`](./BatchServiceRolePolicy.json)
   - [`CloudTrailEventContext`](./CloudTrailEventContext.json)
@@ -159,7 +160,7 @@
   - `SageMakerStudioProjectProvisioningRolePolicy`
   - `SageMakerStudioProjectUserRolePermissionsBoundary`
   - `SageMakerStudioProjectUserRolePolicy`
-- **Deprecated policies:** `73`
+- **Deprecated policies:** `74`
   - [`AWSB9InternalServicePolicy`](../policies/AWSB9InternalServicePolicy) (deprecated: Unknown)
   - [`AWSBackupAdminPolicy`](../policies/AWSBackupAdminPolicy) (deprecated: Unknown)
   - [`AWSBackupOperatorPolicy`](../policies/AWSBackupOperatorPolicy) (deprecated: Unknown)
@@ -212,6 +213,7 @@
   - [`AmazonEC2RolePolicyForApplicationWizard`](../policies/AmazonEC2RolePolicyForApplicationWizard) (deprecated: Unknown)
   - [`AmazonEC2SpotFleetRole`](../policies/AmazonEC2SpotFleetRole) (deprecated: Unknown)
   - [`AmazonEverestServicePolicy`](../policies/AmazonEverestServicePolicy) (deprecated: Unknown)
+  - [`AmazonGuardDutyFullAccess`](../policies/AmazonGuardDutyFullAccess) (deprecated: 2026-03-14)
   - [`AmazonLambdaRolePolicyForLaunchWizardSAP`](../policies/AmazonLambdaRolePolicyForLaunchWizardSAP) (deprecated: Unknown)
   - [`AmazonLaunchWizardFullaccess`](../policies/AmazonLaunchWizardFullaccess) (deprecated: Unknown)
   - [`AmazonLaunchWizard_Fullaccess`](../policies/AmazonLaunchWizard_Fullaccess) (deprecated: Unknown)
