@@ -8,9 +8,6 @@ import {
   vs,
 } from "react-syntax-highlighter/dist/esm/styles/prism";
 
-// Get base path based on deployment target
-const basePath = process.env.NEXT_PUBLIC_USE_BASE_PATH === "true" ? "/MAMIP" : "";
-
 interface PolicyVersion {
   hash: string;
   date: string;
@@ -41,7 +38,6 @@ export default function PolicyDetailClient({
   const [error, setError] = useState<string | null>(null);
   const [isDark, setIsDark] = useState(false);
 
-  // Detect dark mode
   useEffect(() => {
     const mediaQuery = window.matchMedia("(prefers-color-scheme: dark)");
     setIsDark(mediaQuery.matches);
@@ -54,9 +50,8 @@ export default function PolicyDetailClient({
   useEffect(() => {
     async function loadPolicy() {
       try {
-        const basePath = process.env.NEXT_PUBLIC_USE_BASE_PATH === "true" ? "/MAMIP" : "";
         const response = await fetch(
-          `${basePath}/data/${encodeURIComponent(decodedName)}.json`
+          `/data/${encodeURIComponent(decodedName)}.json`
         );
         if (!response.ok) {
           throw new Error("Policy not found");
@@ -114,8 +109,8 @@ export default function PolicyDetailClient({
   if (loading) {
     return (
       <div className="text-center py-16">
-        <div className="animate-spin text-6xl mb-4">⏳</div>
-        <p className="text-slate-600 dark:text-slate-400">Loading policy...</p>
+        <div className="animate-spin inline-block w-6 h-6 border-2 border-zinc-300 border-t-red-600 rounded-full mb-4"></div>
+        <p className="text-zinc-600 dark:text-zinc-400 text-sm font-mono">Loading policy...</p>
       </div>
     );
   }
@@ -123,18 +118,17 @@ export default function PolicyDetailClient({
   if (error || !policy) {
     return (
       <div className="text-center py-16">
-        <div className="text-6xl mb-4">❌</div>
-        <h1 className="text-2xl font-bold text-slate-900 dark:text-white mb-2">
+        <h1 className="text-xl font-bold font-mono text-zinc-900 dark:text-white mb-2">
           Policy Not Found
         </h1>
-        <p className="text-slate-600 dark:text-slate-400 mb-6">
+        <p className="text-sm text-zinc-600 dark:text-zinc-400 mb-6">
           {error || "The requested policy could not be found."}
         </p>
         <Link
-          href={`${basePath}/policies`}
-          className="inline-flex items-center px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
+          href="/policies"
+          className="inline-flex items-center px-4 py-2 bg-red-600 text-white rounded font-mono text-sm hover:bg-red-700 transition-colors"
         >
-          ← Back to Policies
+          Back to Policies
         </Link>
       </div>
     );
@@ -143,64 +137,64 @@ export default function PolicyDetailClient({
   return (
     <div className="space-y-6">
       {/* Breadcrumb */}
-      <nav className="flex items-center space-x-2 text-sm text-slate-600 dark:text-slate-400">
+      <nav className="flex items-center space-x-2 text-xs font-mono text-zinc-500 dark:text-zinc-400">
         <Link
-          href={`${basePath}/`}
-          className="hover:text-slate-900 dark:hover:text-white"
+          href="/"
+          className="hover:text-red-600 dark:hover:text-red-400 transition-colors"
         >
           Home
         </Link>
         <span>/</span>
         <Link
-          href={`${basePath}/policies`}
-          className="hover:text-slate-900 dark:hover:text-white"
+          href="/policies"
+          className="hover:text-red-600 dark:hover:text-red-400 transition-colors"
         >
           Policies
         </Link>
         <span>/</span>
-        <span className="text-slate-900 dark:text-white truncate">
+        <span className="text-zinc-900 dark:text-white truncate">
           {policy.name}
         </span>
       </nav>
 
       {/* Header */}
-      <div className="bg-white dark:bg-slate-800 rounded-xl shadow-sm border border-slate-200 dark:border-slate-700 p-6">
-        <h1 className="text-3xl font-bold text-slate-900 dark:text-white mb-4">
+      <div className="bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 rounded-lg p-5">
+        <h1 className="text-2xl font-bold font-mono text-zinc-900 dark:text-white mb-4">
           {policy.name}
         </h1>
         <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
           <div>
-            <p className="text-xs text-slate-500 dark:text-slate-400 mb-1">
+            <p className="text-[10px] font-mono uppercase tracking-widest text-zinc-500 dark:text-zinc-400 mb-1">
               Last Modified
             </p>
-            <p className="font-medium text-slate-900 dark:text-white">
+            <p className="text-sm font-medium text-zinc-900 dark:text-white">
               {getRelativeTime(policy.lastModified)}
             </p>
-            <p className="text-xs text-slate-500 dark:text-slate-400">
+            <p className="text-xs font-mono text-zinc-500 dark:text-zinc-400">
               {formatDate(policy.lastModified)}
             </p>
           </div>
           <div>
-            <p className="text-xs text-slate-500 dark:text-slate-400 mb-1">
+            <p className="text-[10px] font-mono uppercase tracking-widest text-zinc-500 dark:text-zinc-400 mb-1">
               Version
             </p>
-            <p className="font-medium text-slate-900 dark:text-white">
+            <p className="text-sm font-medium font-mono text-zinc-900 dark:text-white">
               {policy.versionId || "N/A"}
             </p>
           </div>
           <div>
-            <p className="text-xs text-slate-500 dark:text-slate-400 mb-1">
+            <p className="text-[10px] font-mono uppercase tracking-widest text-zinc-500 dark:text-zinc-400 mb-1">
               Total Versions
             </p>
-            <p className="font-medium text-slate-900 dark:text-white">
+            <p className="text-sm font-medium font-mono text-zinc-900 dark:text-white">
               {policy.versionsCount}
             </p>
           </div>
           <div>
-            <p className="text-xs text-slate-500 dark:text-slate-400 mb-1">
+            <p className="text-[10px] font-mono uppercase tracking-widest text-zinc-500 dark:text-zinc-400 mb-1">
               Created
             </p>
-            <p className="font-medium text-slate-900 dark:text-white">
+            <p className="text-sm font-medium text-zinc-900 dark:text-white">
               {policy.createDate
                 ? new Date(policy.createDate).toLocaleDateString()
                 : "N/A"}
@@ -208,10 +202,10 @@ export default function PolicyDetailClient({
           </div>
           {policy.actionCount !== undefined && (
             <div>
-              <p className="text-xs text-slate-500 dark:text-slate-400 mb-1">
+              <p className="text-[10px] font-mono uppercase tracking-widest text-zinc-500 dark:text-zinc-400 mb-1">
                 Actions
               </p>
-              <p className="font-medium text-slate-900 dark:text-white">
+              <p className="text-sm font-medium font-mono text-zinc-900 dark:text-white">
                 {policy.actionCount}
               </p>
             </div>
@@ -220,18 +214,18 @@ export default function PolicyDetailClient({
       </div>
 
       {/* Policy Content */}
-      <div className="bg-white dark:bg-slate-800 rounded-xl shadow-sm border border-slate-200 dark:border-slate-700 overflow-hidden">
-        <div className="px-6 py-4 border-b border-slate-200 dark:border-slate-700 flex items-center justify-between">
-          <h2 className="text-lg font-semibold text-slate-900 dark:text-white">
+      <div className="bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 rounded-lg overflow-hidden">
+        <div className="px-5 py-3 border-b border-zinc-200 dark:border-zinc-800 flex items-center justify-between">
+          <h2 className="text-sm font-semibold font-mono uppercase tracking-wider text-zinc-900 dark:text-white">
             Policy Document
           </h2>
           <a
-            href={`https://github.com/z0ph/MAMIP/blob/master/policies/${policy.name}`}
+            href={`https://github.com/zoph-io/IAMTrail/blob/master/policies/${policy.name}`}
             target="_blank"
             rel="noopener noreferrer"
-            className="text-sm text-blue-600 dark:text-blue-400 hover:underline"
+            className="text-xs font-mono text-red-600 dark:text-red-400 hover:underline"
           >
-            View on GitHub →
+            View on GitHub
           </a>
         </div>
         <div className="overflow-hidden">
@@ -243,20 +237,20 @@ export default function PolicyDetailClient({
             customStyle={{
               margin: 0,
               borderRadius: 0,
-              fontSize: "0.875rem",
+              fontSize: "0.8rem",
               lineHeight: "1.5",
-              background: isDark ? "#1e293b" : "#f8fafc",
+              background: isDark ? "#18181b" : "#fafafa",
             }}
             lineNumberStyle={{
               minWidth: "3.5em",
               paddingRight: "1em",
-              color: isDark ? "#64748b" : "#94a3b8",
+              color: isDark ? "#52525b" : "#a1a1aa",
               userSelect: "none",
               textAlign: "right",
             }}
             codeTagProps={{
               style: {
-                fontFamily: "'Monaco', 'Menlo', 'Ubuntu Mono', monospace",
+                fontFamily: "var(--font-mono, 'JetBrains Mono', monospace)",
               },
             }}
           >
@@ -267,56 +261,56 @@ export default function PolicyDetailClient({
 
       {/* Version History */}
       {policy.history && policy.history.length > 0 && (
-        <div className="bg-white dark:bg-slate-800 rounded-xl shadow-sm border border-slate-200 dark:border-slate-700 overflow-hidden">
-          <div className="px-6 py-4 border-b border-slate-200 dark:border-slate-700">
-            <h2 className="text-lg font-semibold text-slate-900 dark:text-white">
+        <div className="bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 rounded-lg overflow-hidden">
+          <div className="px-5 py-3 border-b border-zinc-200 dark:border-zinc-800">
+            <h2 className="text-sm font-semibold font-mono uppercase tracking-wider text-zinc-900 dark:text-white">
               Version History ({policy.versionsCount} total)
             </h2>
           </div>
-          <div className="divide-y divide-slate-200 dark:divide-slate-700">
+          <div className="divide-y divide-zinc-100 dark:divide-zinc-800">
             {policy.history.map((version) => (
               <div
                 key={version.hash}
-                className="px-6 py-4 hover:bg-slate-50 dark:hover:bg-slate-700/50"
+                className="px-5 py-3 hover:bg-zinc-50 dark:hover:bg-zinc-800/50 transition-colors"
               >
-                <div className="flex items-start justify-between mb-2">
+                <div className="flex items-start justify-between mb-1">
                   <div className="flex-1">
                     <div className="flex items-center space-x-3">
-                      <span className="font-mono text-xs px-2 py-1 bg-slate-100 dark:bg-slate-700 rounded">
+                      <span className="font-mono text-xs px-1.5 py-0.5 bg-zinc-100 dark:bg-zinc-800 rounded text-zinc-600 dark:text-zinc-400">
                         {version.hash.substring(0, 7)}
                       </span>
-                      <span className="text-sm text-slate-600 dark:text-slate-400">
+                      <span className="text-xs text-zinc-500 dark:text-zinc-400">
                         {version.author}
                       </span>
-                      <span className="text-xs text-slate-500 dark:text-slate-500">
+                      <span className="text-xs font-mono text-zinc-400 dark:text-zinc-500">
                         {getRelativeTime(version.date)}
                       </span>
                     </div>
-                    <p className="mt-1 text-sm text-slate-900 dark:text-white">
+                    <p className="mt-1 text-sm text-zinc-900 dark:text-white">
                       {version.message}
                     </p>
                   </div>
                   <a
-                    href={`https://github.com/z0ph/MAMIP/commit/${version.hash}`}
+                    href={`https://github.com/zoph-io/IAMTrail/commit/${version.hash}`}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="ml-4 text-blue-600 dark:text-blue-400 hover:underline text-sm"
+                    className="ml-4 text-red-600 dark:text-red-400 hover:underline text-xs font-mono"
                   >
-                    View diff →
+                    View diff
                   </a>
                 </div>
               </div>
             ))}
           </div>
           {policy.versionsCount > policy.history.length && (
-            <div className="px-6 py-4 bg-slate-50 dark:bg-slate-900 text-center">
+            <div className="px-5 py-3 bg-zinc-50 dark:bg-zinc-900 text-center border-t border-zinc-100 dark:border-zinc-800">
               <a
-                href={`https://github.com/z0ph/MAMIP/commits/master/policies/${policy.name}`}
+                href={`https://github.com/zoph-io/IAMTrail/commits/master/policies/${policy.name}`}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-sm text-blue-600 dark:text-blue-400 hover:underline"
+                className="text-xs font-mono text-red-600 dark:text-red-400 hover:underline"
               >
-                View all {policy.versionsCount} versions on GitHub →
+                View all {policy.versionsCount} versions on GitHub
               </a>
             </div>
           )}

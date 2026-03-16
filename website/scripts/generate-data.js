@@ -9,7 +9,7 @@ const POLICIES_DIR = path.join(REPO_ROOT, "policies");
 const FINDINGS_DIR = path.join(REPO_ROOT, "findings");
 const OUTPUT_DIR = path.join(__dirname, "../public/data");
 const PUBLIC_DIR = path.join(__dirname, "../public");
-const SITE_URL = "https://mamip.zoph.io";
+const SITE_URL = "https://iamtrail.com";
 const git = simpleGit(REPO_ROOT);
 
 function fetchUrl(url) {
@@ -40,6 +40,7 @@ async function generatePolicyData() {
 
   const policies = [];
   const errors = [];
+  const allCommitEntries = [];
 
   for (const policyName of policyFiles) {
     try {
@@ -58,6 +59,10 @@ async function generatePolicyData() {
 
       // Get git history
       const logs = await git.log({ file: relativePath, maxCount: 100 });
+
+      for (const entry of logs.all) {
+        allCommitEntries.push({ date: entry.date, message: entry.message });
+      }
 
       // Get file stats
       const stats = fs.statSync(policyPath);
@@ -197,6 +202,141 @@ async function generatePolicyData() {
     serviceGrowth[year].sort();
   }
   stats.serviceGrowth = serviceGrowth;
+
+  // --- New chart data aggregations ---
+  // 2019 is always excluded: it's the initial fork/import, not real activity.
+  console.log("📈 Computing chart data from git history...");
+
+  // Build a lookup of each policy's first-seen year and date
+  const newPoliciesByYear = {};
+  const newPoliciesByReinventYear = {};
+  for (const p of policies) {
+    const d = new Date(p.firstSeen);
+    const yr = d.getUTCFullYear();
+    if (yr === 2019) continue;
+    const yrStr = yr.toString();
+    newPoliciesByYear[yrStr] = (newPoliciesByYear[yrStr] || 0) + 1;
+
+    const mo = d.getUTCMonth() + 1;
+    const day = d.getUTCDate();
+    if ((mo === 11 && day >= 15) || (mo === 12 && day <= 15)) {
+      newPoliciesByReinventYear[yrStr] =
+        (newPoliciesByReinventYear[yrStr] || 0) + 1;
+    }
+  }
+
+  // Filter commit entries to exclude 2019
+  const filteredEntries = allCommitEntries.filter(
+    (e) => new Date(e.date).getUTCFullYear() !== 2019
+  );
+
+  // Exclude bulk-reformat days where detection logic changes (e.g. jq -S
+  // key-sorting, invisible character normalization) caused every policy to
+  // appear modified. Any day with >= BULK_DAY_THRESHOLD per-policy changes
+  // is treated as a false-positive bulk day.
+  const BULK_DAY_THRESHOLD = 50;
+  const commitsByDate = {};
+  for (const e of filteredEntries) {
+    const dateKey = new Date(e.date).toISOString().slice(0, 10);
+    commitsByDate[dateKey] = (commitsByDate[dateKey] || 0) + 1;
+  }
+  const bulkDays = new Set(
+    Object.entries(commitsByDate)
+      .filter(([, count]) => count >= BULK_DAY_THRESHOLD)
+      .map(([date]) => date)
+  );
+  if (bulkDays.size > 0) {
+    console.log(
+      `   ⚠️  Excluding ${bulkDays.size} bulk-reformat day(s): ${[...bulkDays].join(", ")}`
+    );
+  }
+  const cleanEntries = filteredEntries.filter(
+    (e) => !bulkDays.has(new Date(e.date).toISOString().slice(0, 10))
+  );
+  const cleanDates = cleanEntries.map((e) => new Date(e.date));
+
+  stats.bulkDaysExcluded = [...bulkDays].sort();
+
+  // Monthly seasonality: aggregate commits by calendar month (01-12)
+  const changesByMonth = {};
+  for (let m = 1; m <= 12; m++) {
+    changesByMonth[String(m).padStart(2, "0")] = 0;
+  }
+  for (const d of cleanDates) {
+    const mo = String(d.getUTCMonth() + 1).padStart(2, "0");
+    changesByMonth[mo]++;
+  }
+  stats.changesByMonth = changesByMonth;
+
+  // re:Invent pulse: Nov 15 - Dec 15 window per year
+  const reinventByYear = {};
+  for (const e of cleanEntries) {
+    const d = new Date(e.date);
+    const mo = d.getUTCMonth() + 1;
+    const day = d.getUTCDate();
+    const yr = d.getUTCFullYear().toString();
+    if ((mo === 11 && day >= 15) || (mo === 12 && day <= 15)) {
+      reinventByYear[yr] = (reinventByYear[yr] || 0) + 1;
+    }
+  }
+  const reinventYears = Object.keys(reinventByYear).sort();
+  stats.reinventPulse = reinventYears.map((yr) => ({
+    year: yr,
+    changes: reinventByYear[yr] || 0,
+    newPolicies: newPoliciesByReinventYear[yr] || 0,
+  }));
+
+  // Version distribution: count policies at each current version
+  const versionDist = {};
+  for (const p of policies) {
+    const v = p.versionId || "unknown";
+    versionDist[v] = (versionDist[v] || 0) + 1;
+  }
+  stats.versionDistribution = versionDist;
+
+  // Top version policies (the most-revised outliers)
+  stats.topVersionPolicies = [...policies]
+    .map((p) => {
+      const num = parseInt((p.versionId || "v0").replace("v", ""), 10) || 0;
+      return { name: p.name, version: p.versionId || "v0", versionNumber: num };
+    })
+    .sort((a, b) => b.versionNumber - a.versionNumber)
+    .slice(0, 10);
+
+  // Yearly velocity: total commits per year, with new-launches from firstSeen
+  const velocityTotalByYear = {};
+  for (const e of cleanEntries) {
+    const yr = new Date(e.date).getUTCFullYear().toString();
+    velocityTotalByYear[yr] = (velocityTotalByYear[yr] || 0) + 1;
+  }
+  const velYears = Object.keys(velocityTotalByYear).sort();
+  stats.yearlyVelocity = velYears.map((yr) => {
+    const total = velocityTotalByYear[yr] || 0;
+    const np = newPoliciesByYear[yr] || 0;
+    return { year: yr, total, newPolicies: np, updates: total - np };
+  });
+
+  // Most volatile this year (trailing 12 months)
+  const oneYearAgo = new Date();
+  oneYearAgo.setFullYear(oneYearAgo.getFullYear() - 1);
+  const recentChanges = {};
+  for (const p of policies) {
+    let count = 0;
+    for (const h of p.history) {
+      if (new Date(h.date) >= oneYearAgo) count++;
+    }
+    if (count > 1) recentChanges[p.name] = count;
+  }
+  stats.volatileThisYear = Object.entries(recentChanges)
+    .sort((a, b) => b[1] - a[1])
+    .slice(0, 10)
+    .map(([name, changesThisYear]) => ({ name, changesThisYear }));
+
+  console.log(
+    `   📈 Chart data: ${cleanEntries.length} commit entries (excl. 2019 + ${bulkDays.size} bulk day(s)), ` +
+      `${reinventYears.length} re:Invent years, ` +
+      `${stats.volatileThisYear.length} volatile policies`
+  );
 
   // Read deprecated policies
   const deprecatedPath = path.join(REPO_ROOT, "DEPRECATED.json");

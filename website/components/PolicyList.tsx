@@ -1,7 +1,5 @@
 import Link from "next/link";
-
-// Get base path based on deployment target
-const basePath = process.env.NEXT_PUBLIC_USE_BASE_PATH === "true" ? "/MAMIP" : "";
+import { ChevronRight } from "lucide-react";
 
 interface Policy {
   name: string;
@@ -62,35 +60,35 @@ export default function PolicyList({
   };
 
   return (
-    <div className="bg-white dark:bg-slate-800 rounded-xl shadow-sm border border-slate-200 dark:border-slate-700 overflow-hidden">
-      <div className="px-6 py-4 border-b border-slate-200 dark:border-slate-700">
-        <h2 className="text-lg font-semibold text-slate-900 dark:text-white">
+    <div className="bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 rounded-lg overflow-hidden">
+      <div className="px-5 py-3 border-b border-zinc-200 dark:border-zinc-800">
+        <h2 className="text-sm font-semibold font-mono uppercase tracking-wider text-zinc-900 dark:text-white">
           {title}
         </h2>
       </div>
-      <div className="divide-y divide-slate-200 dark:divide-slate-700">
+      <div className="divide-y divide-zinc-100 dark:divide-zinc-800">
         {policies.length === 0 ? (
-          <div className="px-6 py-8 text-center text-slate-500">
+          <div className="px-5 py-8 text-center text-zinc-500">
             No policies found
           </div>
         ) : (
           policies.map((policy) => (
             <Link
               key={policy.name}
-              href={`${basePath}/policies/${encodeURIComponent(policy.name)}`}
-              className="block px-6 py-4 hover:bg-slate-50 dark:hover:bg-slate-700/50 transition-colors"
+              href={`/policies/${encodeURIComponent(policy.name)}`}
+              className="block px-5 py-3 hover:bg-zinc-50 dark:hover:bg-zinc-800/50 transition-colors"
             >
               <div className="flex items-center justify-between">
                 <div className="flex-1 min-w-0">
-                  <p className="text-sm font-medium text-slate-900 dark:text-white truncate">
+                  <p className="text-sm font-medium text-zinc-900 dark:text-white truncate">
                     {policy.name}
                   </p>
-                  <div className="mt-1 flex items-center space-x-3 text-xs text-slate-500 dark:text-slate-400">
+                  <div className="mt-0.5 flex items-center space-x-3 text-xs text-zinc-500 dark:text-zinc-400 font-mono">
                     {showCreateDatePrimary && policy.createDate ? (
                       <>
                         <span>Created {formatDate(policy.createDate)}</span>
                         <span className="hidden sm:inline">
-                          • Updated {getRelativeTime(policy.lastModified)}
+                          / Updated {getRelativeTime(policy.lastModified)}
                         </span>
                       </>
                     ) : (
@@ -98,32 +96,20 @@ export default function PolicyList({
                         <span>{getRelativeTime(policy.lastModified)}</span>
                         {showVersions && (
                           <span>
-                            • {policy.versionsCount} version
+                            / {policy.versionsCount} version
                             {policy.versionsCount !== 1 ? "s" : ""}
                           </span>
                         )}
                         {policy.createDate && (
                           <span className="hidden sm:inline">
-                            • Created {formatDate(policy.createDate)}
+                            / Created {formatDate(policy.createDate)}
                           </span>
                         )}
                       </>
                     )}
                   </div>
                 </div>
-                <div className="ml-4 flex-shrink-0">
-                  <svg
-                    className="w-5 h-5 text-slate-400"
-                    fill="none"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="2"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                  >
-                    <path d="M9 5l7 7-7 7" />
-                  </svg>
-                </div>
+                <ChevronRight className="ml-4 w-4 h-4 text-zinc-300 dark:text-zinc-600 flex-shrink-0" />
               </div>
             </Link>
           ))

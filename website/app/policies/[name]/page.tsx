@@ -27,12 +27,12 @@ export async function generateMetadata(props: {
     title: `${policyName} - AWS Managed IAM Policy`,
     description: `View the full version history, JSON document, and change log for the ${policyName} AWS Managed IAM Policy.`,
     alternates: {
-      canonical: `https://mamip.zoph.io/policies/${encodeURIComponent(policyName)}`,
+      canonical: `https://iamtrail.com/policies/${encodeURIComponent(policyName)}`,
     },
     openGraph: {
-      title: `${policyName} | MAMIP`,
+      title: `${policyName} | IAMTrail`,
       description: `Version history and details for the ${policyName} AWS Managed IAM Policy.`,
-      url: `https://mamip.zoph.io/policies/${encodeURIComponent(policyName)}`,
+      url: `https://iamtrail.com/policies/${encodeURIComponent(policyName)}`,
     },
   };
 }

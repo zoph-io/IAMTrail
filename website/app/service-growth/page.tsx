@@ -5,7 +5,7 @@ export const metadata: Metadata = {
   description:
     "See when new AWS IAM service namespaces first appeared in managed policies. Track the growth of the AWS ecosystem over time.",
   alternates: {
-    canonical: "https://mamip.zoph.io/service-growth",
+    canonical: "https://iamtrail.com/service-growth",
   },
 };
 
@@ -23,7 +23,7 @@ export default async function ServiceGrowthPage() {
   if (!summaryData) {
     return (
       <div className="text-center py-16">
-        <p className="text-slate-600 dark:text-slate-400">No data available.</p>
+        <p className="text-zinc-600 dark:text-zinc-400 text-sm">No data available.</p>
       </div>
     );
   }
@@ -42,24 +42,24 @@ export default async function ServiceGrowthPage() {
 
   return (
     <div className="max-w-4xl mx-auto space-y-8">
-      <div className="text-center py-8">
-        <h1 className="text-4xl font-bold text-slate-900 dark:text-white mb-3">
+      <div className="py-8 border-b border-zinc-100 dark:border-zinc-800">
+        <h1 className="text-2xl font-bold font-mono text-zinc-900 dark:text-white mb-2">
           AWS Service Growth Timeline
         </h1>
-        <p className="text-lg text-slate-600 dark:text-slate-400 max-w-2xl mx-auto">
+        <p className="text-sm text-zinc-600 dark:text-zinc-400 max-w-2xl">
           When new IAM service namespaces first appeared in AWS managed policies
           - tracking the growth of the AWS ecosystem
         </p>
-        <div className="mt-4 inline-flex items-center gap-4 text-sm text-slate-500 dark:text-slate-400">
+        <div className="mt-3 flex items-center gap-4 text-xs font-mono text-zinc-500 dark:text-zinc-400">
           <span>
-            <strong className="text-slate-900 dark:text-white">
+            <strong className="text-zinc-900 dark:text-white">
               {totalServices}
             </strong>{" "}
             service namespaces
           </span>
-          <span className="text-slate-300 dark:text-slate-600">|</span>
+          <span className="text-zinc-300 dark:text-zinc-600">|</span>
           <span>
-            <strong className="text-slate-900 dark:text-white">
+            <strong className="text-zinc-900 dark:text-white">
               {years.length}
             </strong>{" "}
             years of data
@@ -67,7 +67,7 @@ export default async function ServiceGrowthPage() {
         </div>
       </div>
 
-      <div className="space-y-6">
+      <div className="space-y-4">
         {years.map((year) => {
           const services = serviceGrowth[year];
           const barWidth = Math.max(
@@ -80,49 +80,49 @@ export default async function ServiceGrowthPage() {
           return (
             <div
               key={year}
-              className="bg-white dark:bg-slate-800 rounded-xl shadow-sm border border-slate-200 dark:border-slate-700 overflow-hidden"
+              className="bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 rounded-lg overflow-hidden"
             >
-              <div className="px-6 py-4 flex items-center gap-4">
+              <div className="px-5 py-3 flex items-center gap-4">
                 <h2
-                  className={`text-2xl font-bold tabular-nums flex-shrink-0 ${
+                  className={`text-xl font-bold font-mono tabular-nums flex-shrink-0 ${
                     isRecent
-                      ? "text-blue-600 dark:text-blue-400"
-                      : "text-slate-900 dark:text-white"
+                      ? "text-red-600 dark:text-red-400"
+                      : "text-zinc-900 dark:text-white"
                   }`}
                 >
                   {year}
                 </h2>
                 <div className="flex-1">
-                  <div className="h-2 bg-slate-100 dark:bg-slate-700 rounded-full overflow-hidden">
+                  <div className="h-1.5 bg-zinc-100 dark:bg-zinc-800 rounded-full overflow-hidden">
                     <div
                       className={`h-full rounded-full transition-all ${
                         isRecent
-                          ? "bg-blue-500 dark:bg-blue-400"
-                          : "bg-slate-400 dark:bg-slate-500"
+                          ? "bg-red-500 dark:bg-red-400"
+                          : "bg-zinc-400 dark:bg-zinc-600"
                       }`}
                       style={{ width: `${barWidth}%` }}
                     />
                   </div>
                 </div>
                 <span
-                  className={`text-sm font-medium flex-shrink-0 ${
+                  className={`text-xs font-mono font-medium flex-shrink-0 ${
                     isRecent
-                      ? "text-blue-600 dark:text-blue-400"
-                      : "text-slate-500 dark:text-slate-400"
+                      ? "text-red-600 dark:text-red-400"
+                      : "text-zinc-500 dark:text-zinc-400"
                   }`}
                 >
                   +{services.length} new
                 </span>
               </div>
-              <div className="px-6 pb-4">
+              <div className="px-5 pb-4">
                 <div className="flex flex-wrap gap-1.5">
                   {services.map((svc) => (
                     <span
                       key={svc}
-                      className={`inline-flex items-center px-2.5 py-1 rounded-md text-xs font-mono ${
+                      className={`inline-flex items-center px-2 py-0.5 rounded text-xs font-mono ${
                         isRecent
-                          ? "bg-blue-50 text-blue-700 dark:bg-blue-900/30 dark:text-blue-300"
-                          : "bg-slate-100 text-slate-700 dark:bg-slate-700 dark:text-slate-300"
+                          ? "bg-red-50 text-red-700 dark:bg-red-900/20 dark:text-red-300 border border-red-200 dark:border-red-800"
+                          : "bg-zinc-100 text-zinc-700 dark:bg-zinc-800 dark:text-zinc-300"
                       }`}
                     >
                       {svc}

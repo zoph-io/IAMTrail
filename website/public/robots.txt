@@ -2,4 +2,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://mamip.zoph.io/sitemap.xml
+Sitemap: https://iamtrail.com/sitemap.xml

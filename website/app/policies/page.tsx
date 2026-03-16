@@ -22,8 +22,7 @@ export default function PoliciesPage() {
   useEffect(() => {
     async function loadPolicies() {
       try {
-        const basePath = process.env.NEXT_PUBLIC_USE_BASE_PATH === "true" ? "/MAMIP" : "";
-        const response = await fetch(`${basePath}/data/summary.json`);
+        const response = await fetch("/data/summary.json");
         const data = await response.json();
         setPolicies(data.policies);
       } catch (error) {
@@ -89,8 +88,8 @@ export default function PoliciesPage() {
   if (loading) {
     return (
       <div className="text-center py-16">
-        <div className="animate-spin text-6xl mb-4">⏳</div>
-        <p className="text-slate-600 dark:text-slate-400">
+        <div className="animate-spin inline-block w-6 h-6 border-2 border-zinc-300 border-t-red-600 rounded-full mb-4"></div>
+        <p className="text-zinc-600 dark:text-zinc-400 text-sm font-mono">
           Loading policies...
         </p>
       </div>
@@ -100,23 +99,23 @@ export default function PoliciesPage() {
   return (
     <div className="space-y-6">
       {/* Header */}
-      <div>
-        <h1 className="text-3xl font-bold text-slate-900 dark:text-white mb-2">
+      <div className="py-4 border-b border-zinc-100 dark:border-zinc-800">
+        <h1 className="text-2xl font-bold font-mono text-zinc-900 dark:text-white mb-1">
           All Policies
         </h1>
-        <p className="text-slate-600 dark:text-slate-400">
+        <p className="text-sm text-zinc-600 dark:text-zinc-400">
           Browse and search {policies.length} AWS Managed IAM Policies
         </p>
       </div>
 
       {/* Search and Filter */}
-      <div className="bg-white dark:bg-slate-800 rounded-xl shadow-sm border border-slate-200 dark:border-slate-700 p-4">
-        <div className="flex flex-col sm:flex-row gap-4">
+      <div className="bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 rounded-lg p-4">
+        <div className="flex flex-col sm:flex-row gap-3">
           <div className="flex-1">
             <div className="relative">
               <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
                 <svg
-                  className="h-5 w-5 text-slate-400"
+                  className="h-4 w-4 text-zinc-400"
                   fill="none"
                   strokeLinecap="round"
                   strokeLinejoin="round"
@@ -129,7 +128,7 @@ export default function PoliciesPage() {
               </div>
               <input
                 type="text"
-                className="block w-full pl-10 pr-3 py-2 border border-slate-300 dark:border-slate-600 rounded-lg bg-white dark:bg-slate-900 text-slate-900 dark:text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                className="block w-full pl-10 pr-3 py-2 border border-zinc-200 dark:border-zinc-700 rounded bg-white dark:bg-zinc-900 text-zinc-900 dark:text-white placeholder-zinc-400 focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-transparent text-sm font-mono"
                 placeholder="Search policies..."
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
@@ -138,7 +137,7 @@ export default function PoliciesPage() {
           </div>
           <div className="flex gap-2">
             <select
-              className="px-4 py-2 border border-slate-300 dark:border-slate-600 rounded-lg bg-white dark:bg-slate-900 text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="px-3 py-2 border border-zinc-200 dark:border-zinc-700 rounded bg-white dark:bg-zinc-900 text-zinc-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-red-500 text-sm"
               value={sortBy}
               onChange={(e) => setSortBy(e.target.value as any)}
             >
@@ -148,28 +147,26 @@ export default function PoliciesPage() {
             </select>
           </div>
         </div>
-        <div className="mt-3 text-sm text-slate-600 dark:text-slate-400">
+        <div className="mt-3 text-xs font-mono text-zinc-500 dark:text-zinc-400">
           Showing {filteredAndSortedPolicies.length} of {policies.length}{" "}
           policies
         </div>
       </div>
 
       {/* Policies Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
         {filteredAndSortedPolicies.map((policy) => (
           <Link
             key={policy.name}
-            href={`${
-              process.env.NEXT_PUBLIC_USE_BASE_PATH === "true" ? "/MAMIP" : ""
-            }/policies/${encodeURIComponent(policy.name)}`}
-            className="group bg-white dark:bg-slate-800 rounded-lg shadow-sm border border-slate-200 dark:border-slate-700 p-4 hover:shadow-lg hover:border-blue-400 dark:hover:border-blue-600 transition-all transform hover:-translate-y-0.5"
+            href={`/policies/${encodeURIComponent(policy.name)}`}
+            className="group bg-white dark:bg-zinc-900 rounded-lg border border-zinc-200 dark:border-zinc-800 p-4 hover:border-red-300 dark:hover:border-red-800 transition-colors"
           >
             <div className="flex items-start justify-between mb-2">
-              <h3 className="font-medium text-slate-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors line-clamp-2">
+              <h3 className="font-medium text-sm text-zinc-900 dark:text-white group-hover:text-red-600 dark:group-hover:text-red-400 transition-colors line-clamp-2">
                 {policy.name}
               </h3>
               <svg
-                className="w-5 h-5 text-slate-400 flex-shrink-0 ml-2 group-hover:text-blue-500 transition-colors"
+                className="w-4 h-4 text-zinc-300 dark:text-zinc-600 flex-shrink-0 ml-2 group-hover:text-red-500 transition-colors"
                 fill="none"
                 strokeLinecap="round"
                 strokeLinejoin="round"
@@ -180,7 +177,7 @@ export default function PoliciesPage() {
                 <path d="M9 5l7 7-7 7" />
               </svg>
             </div>
-            <div className="space-y-1 text-xs text-slate-500 dark:text-slate-400">
+            <div className="space-y-1 text-xs text-zinc-500 dark:text-zinc-400 font-mono">
               <div className="flex items-center justify-between">
                 <span>Last modified</span>
                 <span className="font-medium">
@@ -206,11 +203,10 @@ export default function PoliciesPage() {
 
       {filteredAndSortedPolicies.length === 0 && (
         <div className="text-center py-16">
-          <div className="text-6xl mb-4">🔍</div>
-          <h3 className="text-xl font-semibold text-slate-900 dark:text-white mb-2">
+          <h3 className="text-lg font-semibold font-mono text-zinc-900 dark:text-white mb-2">
             No policies found
           </h3>
-          <p className="text-slate-600 dark:text-slate-400">
+          <p className="text-sm text-zinc-600 dark:text-zinc-400">
             Try adjusting your search term
           </p>
         </div>
