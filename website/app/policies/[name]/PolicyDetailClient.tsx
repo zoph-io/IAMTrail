@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
+import { Bell } from "lucide-react";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import {
   vscDarkPlus,
@@ -210,6 +211,15 @@ export default function PolicyDetailClient({
               </p>
             </div>
           )}
+        </div>
+        <div className="mt-4 pt-4 border-t border-zinc-200 dark:border-zinc-800">
+          <Link
+            href={`/subscribe?policy=${encodeURIComponent(policy.name)}`}
+            className="inline-flex items-center gap-2 px-4 py-2 bg-red-600 text-white rounded font-mono text-sm font-medium hover:bg-red-700 transition-colors"
+          >
+            <Bell className="w-4 h-4" />
+            Subscribe to updates
+          </Link>
         </div>
       </div>
 

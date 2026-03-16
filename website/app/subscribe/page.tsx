@@ -15,11 +15,14 @@ function SubscribeContent() {
   const searchParams = useSearchParams();
   const status = searchParams.get("status");
   const urlError = searchParams.get("error");
+  const preselectedPolicy = searchParams.get("policy");
 
   const [email, setEmail] = useState("");
   const [frequency, setFrequency] = useState<"daily" | "weekly" | "instant">("daily");
-  const [allPolicies, setAllPolicies] = useState(true);
-  const [selectedPolicies, setSelectedPolicies] = useState<string[]>([]);
+  const [allPolicies, setAllPolicies] = useState(!preselectedPolicy);
+  const [selectedPolicies, setSelectedPolicies] = useState<string[]>(
+    preselectedPolicy ? [preselectedPolicy] : []
+  );
   const [policySearch, setPolicySearch] = useState("");
   const [policies, setPolicies] = useState<Policy[]>([]);
   const [loading, setLoading] = useState(false);
