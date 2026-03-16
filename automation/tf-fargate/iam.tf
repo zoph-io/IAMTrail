@@ -55,6 +55,13 @@ data "aws_iam_policy_document" "ecs_service_policy" {
       "secretsmanager:GetSecretValue"
     ]
   }
+  statement {
+    effect    = "Allow"
+    resources = ["arn:aws:ssm:${var.aws_region}:${data.aws_caller_identity.current.account_id}:parameter/iamtrail/discord-webhook-url"]
+    actions = [
+      "ssm:GetParameter"
+    ]
+  }
 }
 
 data "aws_iam_policy_document" "ecs_service_assume_role_policy" {

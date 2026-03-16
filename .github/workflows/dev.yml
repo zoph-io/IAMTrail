@@ -7,7 +7,7 @@ on:
   workflow_dispatch:
 
 env:
-  tf_version: "0.13.5"
+  tf_version: "1.9.8"
   tf_working_dir: "./automation/tf-fargate"
   env: "dev"
   project: "mamip"

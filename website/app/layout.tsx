@@ -1,15 +1,15 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import Link from "next/link";
+import NavBar from "@/components/NavBar";
 
 export const metadata: Metadata = {
   title: {
-    default: "MAMIP - AWS Managed Policy Changes Archive (Unofficial) | zoph.io",
-    template: "%s | MAMIP",
+    default: "IAMTrail - AWS Managed Policy Changes Archive (Unofficial) | zoph.io",
+    template: "%s | IAMTrail",
   },
   description:
     "Track every change to AWS Managed IAM Policies with full version history. An unofficial archive by zoph.io - AWS Cloud Advisory Boutique.",
-  metadataBase: new URL("https://mamip.zoph.io"),
+  metadataBase: new URL("https://iamtrail.com"),
   keywords: [
     "AWS",
     "IAM",
@@ -20,15 +20,16 @@ export const metadata: Metadata = {
     "cloud security",
     "policy monitoring",
     "AWS managed IAM policies",
+    "IAMTrail",
   ],
   authors: [{ name: "zoph.io", url: "https://zoph.io" }],
   creator: "zoph.io",
   openGraph: {
     type: "website",
     locale: "en_US",
-    url: "https://mamip.zoph.io",
-    siteName: "MAMIP - AWS Managed Policy Changes Archive",
-    title: "MAMIP - AWS Managed Policy Changes Archive (Unofficial)",
+    url: "https://iamtrail.com",
+    siteName: "IAMTrail - AWS Managed Policy Changes Archive",
+    title: "IAMTrail - AWS Managed Policy Changes Archive (Unofficial)",
     description:
       "Track every change to AWS Managed IAM Policies with full version history. An unofficial archive by zoph.io.",
     images: [
@@ -36,21 +37,21 @@ export const metadata: Metadata = {
         url: "/social.png",
         width: 1200,
         height: 630,
-        alt: "MAMIP - AWS Managed Policy Changes Archive by zoph.io",
+        alt: "IAMTrail - AWS Managed Policy Changes Archive by zoph.io",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    site: "@mamip_aws",
+    site: "@iamtrail_",
     creator: "@zaborovjak",
-    title: "MAMIP - AWS Managed Policy Changes Archive",
+    title: "IAMTrail - AWS Managed Policy Changes Archive",
     description:
       "Track every change to AWS Managed IAM Policies with full version history.",
     images: ["/social.png"],
   },
   alternates: {
-    canonical: "https://mamip.zoph.io",
+    canonical: "https://iamtrail.com",
   },
   robots: {
     index: true,
@@ -61,10 +62,6 @@ export const metadata: Metadata = {
     },
   },
 };
-
-// Get base path based on deployment target
-const basePath =
-  process.env.NEXT_PUBLIC_USE_BASE_PATH === "true" ? "/MAMIP" : "";
 
 export default function RootLayout({
   children,
@@ -85,8 +82,8 @@ export default function RootLayout({
             __html: JSON.stringify({
               "@context": "https://schema.org",
               "@type": "WebSite",
-              name: "MAMIP - AWS Managed Policy Changes Archive",
-              url: "https://mamip.zoph.io",
+              name: "IAMTrail - AWS Managed Policy Changes Archive",
+              url: "https://iamtrail.com",
               description:
                 "Track every change to AWS Managed IAM Policies with full version history.",
               publisher: {
@@ -96,7 +93,7 @@ export default function RootLayout({
               },
               potentialAction: {
                 "@type": "SearchAction",
-                target: "https://mamip.zoph.io/policies?q={search_term_string}",
+                target: "https://iamtrail.com/policies?q={search_term_string}",
                 "query-input": "required name=search_term_string",
               },
             }),
@@ -104,95 +101,35 @@ export default function RootLayout({
         />
       </head>
       <body
-        className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50/30 to-slate-100 dark:from-slate-950 dark:via-blue-950/20 dark:to-slate-900"
+        className="min-h-screen bg-white dark:bg-zinc-950"
         suppressHydrationWarning
       >
-        <nav className="border-b border-slate-200/60 dark:border-slate-800/60 bg-white/80 dark:bg-slate-950/80 backdrop-blur-md sticky top-0 z-50 shadow-sm">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="flex justify-between items-center h-16">
-              <Link
-                href={`${basePath}/`}
-                className="flex items-center space-x-3 group"
-              >
-                <img
-                  src={`${basePath}/zoph-logo.png`}
-                  alt="zoph.io"
-                  className="h-9 w-auto group-hover:scale-105 transition-transform dark:brightness-110"
-                />
-                <div className="border-l border-slate-300 dark:border-slate-700 pl-3 h-8 flex items-center">
-                  <h1 className="text-lg font-bold bg-gradient-to-r from-blue-600 to-blue-400 dark:from-blue-400 dark:to-blue-300 bg-clip-text text-transparent">
-                    MAMIP
-                  </h1>
-                </div>
-              </Link>
-              <div className="flex space-x-1">
-                <Link
-                  href={`${basePath}/`}
-                  className="px-4 py-2 text-sm font-medium text-slate-700 hover:text-blue-600 dark:text-slate-300 dark:hover:text-blue-400 hover:bg-blue-50 dark:hover:bg-blue-950/30 rounded-lg transition-all"
-                >
-                  Dashboard
-                </Link>
-                <Link
-                  href={`${basePath}/policies`}
-                  className="px-4 py-2 text-sm font-medium text-slate-700 hover:text-blue-600 dark:text-slate-300 dark:hover:text-blue-400 hover:bg-blue-50 dark:hover:bg-blue-950/30 rounded-lg transition-all"
-                >
-                  Policies
-                </Link>
-                <Link
-                  href={`${basePath}/accounts`}
-                  className="px-4 py-2 text-sm font-medium text-slate-700 hover:text-blue-600 dark:text-slate-300 dark:hover:text-blue-400 hover:bg-blue-50 dark:hover:bg-blue-950/30 rounded-lg transition-all"
-                >
-                  Accounts
-                </Link>
-                <Link
-                  href={`${basePath}/findings`}
-                  className="px-4 py-2 text-sm font-medium text-slate-700 hover:text-blue-600 dark:text-slate-300 dark:hover:text-blue-400 hover:bg-blue-50 dark:hover:bg-blue-950/30 rounded-lg transition-all"
-                >
-                  Findings
-                </Link>
-                <Link
-                  href={`${basePath}/about`}
-                  className="px-4 py-2 text-sm font-medium text-slate-700 hover:text-blue-600 dark:text-slate-300 dark:hover:text-blue-400 hover:bg-blue-50 dark:hover:bg-blue-950/30 rounded-lg transition-all"
-                >
-                  About
-                </Link>
-                <a
-                  href="https://github.com/z0ph/MAMIP"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="px-4 py-2 text-sm font-medium text-slate-700 hover:text-blue-600 dark:text-slate-300 dark:hover:text-blue-400 hover:bg-blue-50 dark:hover:bg-blue-950/30 rounded-lg transition-all"
-                >
-                  GitHub
-                </a>
-              </div>
-            </div>
-          </div>
-        </nav>
+        <NavBar />
         <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
           {children}
         </main>
-        <footer className="border-t border-slate-200 dark:border-slate-800 mt-16">
+        <footer className="border-t border-zinc-200 dark:border-zinc-800 mt-16">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
             <div className="flex flex-col items-center space-y-4">
-              <p className="text-center text-sm text-slate-600 dark:text-slate-400">
-                MAMIP - AWS Managed Policy Changes Archive •{" "}
+              <p className="text-center text-sm text-zinc-500 dark:text-zinc-400 font-mono">
+                IAMTrail - AWS Managed Policy Changes Archive{" "}
+                <span className="text-zinc-300 dark:text-zinc-700">|</span>{" "}
                 <a
-                  href="https://github.com/z0ph/MAMIP"
+                  href="https://github.com/zoph-io/IAMTrail"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="hover:text-slate-900 dark:hover:text-white"
+                  className="hover:text-red-600 dark:hover:text-red-400 transition-colors"
                 >
                   Open Source
                 </a>
               </p>
 
-              {/* Social Links */}
               <div className="flex items-center gap-4">
                 <a
-                  href="https://bsky.app/profile/mamip.bsky.social"
+                  href="https://bsky.app/profile/iamtrail.bsky.social"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-slate-600 hover:text-blue-600 dark:text-slate-400 dark:hover:text-blue-400 transition-colors"
+                  className="text-zinc-400 hover:text-red-600 dark:text-zinc-500 dark:hover:text-red-400 transition-colors"
                   title="Follow on Bluesky"
                 >
                   <svg
@@ -204,10 +141,10 @@ export default function RootLayout({
                   </svg>
                 </a>
                 <a
-                  href="https://x.com/mamip_aws"
+                  href="https://x.com/iamtrail_"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-slate-600 hover:text-slate-900 dark:text-slate-400 dark:hover:text-white transition-colors"
+                  className="text-zinc-400 hover:text-zinc-900 dark:text-zinc-500 dark:hover:text-white transition-colors"
                   title="Follow on X/Twitter"
                 >
                   <svg
@@ -219,10 +156,10 @@ export default function RootLayout({
                   </svg>
                 </a>
                 <a
-                  href="https://github.com/z0ph/MAMIP"
+                  href="https://github.com/zoph-io/IAMTrail"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-slate-600 hover:text-slate-900 dark:text-slate-400 dark:hover:text-white transition-colors"
+                  className="text-zinc-400 hover:text-zinc-900 dark:text-zinc-500 dark:hover:text-white transition-colors"
                   title="View on GitHub"
                 >
                   <svg
@@ -240,9 +177,8 @@ export default function RootLayout({
               </div>
 
               <div className="flex items-center space-x-2">
-                <span className="text-sm text-slate-500 dark:text-slate-500">
-                  Made with{" "}
-                  <span className="text-red-500 animate-pulse">❤️</span> by
+                <span className="text-sm text-zinc-400 dark:text-zinc-500">
+                  Built by
                 </span>
                 <a
                   href="https://zoph.io"
@@ -251,13 +187,13 @@ export default function RootLayout({
                   className="group flex items-center space-x-2 hover:opacity-80 transition-opacity"
                 >
                   <img
-                    src={`${basePath}/zoph-logo.png`}
+                    src="/zoph-logo.png"
                     alt="zoph.io"
                     className="h-8 w-auto dark:brightness-110"
                   />
                 </a>
               </div>
-              <p className="text-center text-xs text-slate-500 dark:text-slate-500 max-w-2xl">
+              <p className="text-center text-xs text-zinc-400 dark:text-zinc-500 max-w-2xl">
                 This is an unofficial archive and is not affiliated with,
                 endorsed by, or sponsored by Amazon Web Services (AWS). AWS and
                 related marks are trademarks of Amazon.com, Inc. or its

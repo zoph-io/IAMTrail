@@ -2,9 +2,6 @@
 const nextConfig = {
   output: "export",
   trailingSlash: true,
-  // Use basePath only for GitHub Pages deployment
-  // Set NEXT_PUBLIC_USE_BASE_PATH=true for GitHub Pages
-  basePath: process.env.NEXT_PUBLIC_USE_BASE_PATH === "true" ? "/MAMIP" : "",
   images: {
     unoptimized: true,
   },

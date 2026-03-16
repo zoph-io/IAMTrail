@@ -5,7 +5,8 @@ help:
 	@echo "${DESCRIPTION}"
 	@echo ""
 	@echo "Docker & Infrastructure:"
-	@echo "	build-docker - build docker image"
+	@echo "	build-docker - build and push docker image to ECR"
+	@echo "	run-task - manually trigger the ECS Fargate task"
 	@echo "	init - init IaC using Terraform"
 	@echo "	validate - validate the IaC using Terraform"
 	@echo "	plan - plan (dryrun) IaC using Terraform"
@@ -15,12 +16,21 @@ help:
 	@echo "	deploy-cf-function - deploy CloudFront URL rewrite function (CloudFormation)"
 	@echo "	delete-cf-function - delete CloudFront URL rewrite function stack"
 	@echo ""
+	@echo "Subscriptions Infrastructure (local deploy, no git push):"
+	@echo "	infra-plan - plan subscription infra only (DNS, SES, API GW, Lambdas, DynamoDB)"
+	@echo "	infra-apply - deploy subscription infra only"
+	@echo "	infra-plan-all - plan all infrastructure (ECS + subscriptions)"
+	@echo "	infra-apply-all - deploy all infrastructure"
+	@echo ""
 	@echo "Website:"
 	@echo "	website-install - install website dependencies"
-	@echo "	website-dev - run website development server"
+	@echo "	website-dev - run website development server (with data generation)"
+	@echo "	website-dev-fast - run website development server (skip data generation)"
 	@echo "	website-generate-data - generate policy data for website"
 	@echo "	website-build - build static website for production"
-	@echo "	website-deploy - build + deploy to S3 and CloudFront (mamip.zoph.io)"
+	@echo "	website-build-fast - build static website (skip data generation)"
+	@echo "	website-deploy - build + deploy to S3 and CloudFront (iamtrail.com)"
+	@echo "	website-deploy-fast - deploy without regenerating data (UI-only changes)"
 	@echo "	website-sync - sync existing build to S3 (no rebuild)"
 	@echo "	website-clean - clean website build artifacts"
 	@echo ""
@@ -31,7 +41,7 @@ help:
 
 ################ Project #######################
 PROJECT ?= mamip
-DESCRIPTION ?= Monitor AWS Managed IAM Policies Changes
+DESCRIPTION ?= IAMTrail - Monitor AWS Managed IAM Policies Changes
 ################################################
 
 ################ Config ########################
@@ -52,32 +62,123 @@ build-docker: login
 	@docker tag mamip-image $(ECR)
 	@docker push $(ECR)
 
+ECS_CLUSTER ?= $(PROJECT)_ecs_cluster_$(ENV)
+ECS_TASK_DEF ?= $(PROJECT)_task_definition_$(ENV)
+SUBNETS ?= subnet-0877cf6c,subnet-b3e648c5,subnet-40738a18
+SECURITY_GROUP ?= sg-0f669a11a7a45c8dd
+
+run-task:
+	@echo "Triggering ECS Fargate task manually..."
+	@aws ecs run-task \
+		--cluster $(ECS_CLUSTER) \
+		--task-definition $(ECS_TASK_DEF) \
+		--launch-type FARGATE \
+		--platform-version LATEST \
+		--network-configuration "awsvpcConfiguration={subnets=[$(SUBNETS)],securityGroups=[$(SECURITY_GROUP)],assignPublicIp=ENABLED}" \
+		--region $(AWS_REGION) \
+		--query 'tasks[0].taskArn' \
+		--output text
+	@echo "Task started. Check logs at: /ecs/$(PROJECT)-$(ENV)"
+
 ################ Terraform #####################
 init:
-	@terraform init \
+	@terraform -chdir=./automation/tf-fargate/ init \
 		-backend-config="bucket=$(S3_BUCKET)" \
-		-backend-config="key=$(PROJECT)/terraform.tfstate" \
-		./automation/tf-fargate/
+		-backend-config="key=$(PROJECT)/terraform.tfstate"
 
 validate:
-	@terraform validate ./automation/tf-fargate/
+	@terraform -chdir=./automation/tf-fargate/ validate
 
 plan:
-	@terraform plan \
+	@terraform -chdir=./automation/tf-fargate/ plan \
+		-var="env=$(ENV)" \
+		-var="project=$(PROJECT)" \
+		-var="description=$(DESCRIPTION)" \
+		-var="aws_region=$(AWS_REGION)" \
+		-var="artifacts_bucket=$(S3_BUCKET)"
+
+apply:
+	@terraform -chdir=./automation/tf-fargate/ apply \
+		-var="env=$(ENV)" \
+		-var="project=$(PROJECT)" \
+		-var="description=$(DESCRIPTION)" \
+		-var="notification_email=$(NOTIFICATION_EMAIL)" \
+		-compact-warnings
+
+################ Subscriptions Infrastructure ###
+# Deploy subscription infra locally without pushing to master.
+# Uses -target to scope to subscription resources only.
+
+SUBSCRIPTION_TARGETS = \
+	-target=aws_route53_zone.iamtrail \
+	-target=aws_acm_certificate.iamtrail \
+	-target=aws_acm_certificate.api \
+	-target=aws_acm_certificate_validation.iamtrail \
+	-target=aws_acm_certificate_validation.api \
+	-target=aws_s3_bucket.website \
+	-target=aws_s3_bucket_public_access_block.website \
+	-target=aws_s3_bucket_policy.website \
+	-target=aws_cloudfront_origin_access_identity.website \
+	-target=aws_cloudfront_distribution.website \
+	-target=aws_cloudfront_function.redirect_mamip \
+	-target=aws_ses_domain_identity.iamtrail \
+	-target=aws_ses_domain_dkim.iamtrail \
+	-target=aws_ses_domain_mail_from.iamtrail \
+	-target=aws_dynamodb_table.subscriptions \
+	-target=aws_dynamodb_table.policy_changes \
+	-target=aws_sqs_queue.changes \
+	-target=aws_sqs_queue_policy.changes \
+	-target=aws_sns_topic_subscription.changes \
+	-target=aws_lambda_function.subscription_api \
+	-target=aws_lambda_function.change_recorder \
+	-target=aws_lambda_function.digest_sender \
+	-target=aws_apigatewayv2_api.subscriptions \
+	-target=aws_apigatewayv2_stage.default \
+	-target=aws_apigatewayv2_domain_name.api \
+	-target=aws_apigatewayv2_api_mapping.api \
+	-target=aws_iam_role.subscription_api \
+	-target=aws_iam_role.change_recorder \
+	-target=aws_iam_role.digest_sender \
+	-target=aws_cloudwatch_event_rule.daily_digest
+
+infra-plan:
+	@echo "📋 Planning subscription infrastructure (targeted)..."
+	@terraform -chdir=./automation/tf-fargate/ plan \
 		-var="env=$(ENV)" \
 		-var="project=$(PROJECT)" \
 		-var="description=$(DESCRIPTION)" \
 		-var="aws_region=$(AWS_REGION)" \
 		-var="artifacts_bucket=$(S3_BUCKET)" \
-		./automation/tf-fargate/
+		$(SUBSCRIPTION_TARGETS)
 
-apply:
-	@terraform apply \
+infra-apply:
+	@echo "🚀 Deploying subscription infrastructure (targeted)..."
+	@terraform -chdir=./automation/tf-fargate/ apply \
 		-var="env=$(ENV)" \
 		-var="project=$(PROJECT)" \
 		-var="description=$(DESCRIPTION)" \
 		-var="notification_email=$(NOTIFICATION_EMAIL)" \
-		-compact-warnings ./automation/tf-fargate/
+		-compact-warnings \
+		$(SUBSCRIPTION_TARGETS)
+
+infra-plan-all:
+	@echo "📋 Planning all infrastructure..."
+	@terraform -chdir=./automation/tf-fargate/ plan \
+		-var="env=$(ENV)" \
+		-var="project=$(PROJECT)" \
+		-var="description=$(DESCRIPTION)" \
+		-var="aws_region=$(AWS_REGION)" \
+		-var="artifacts_bucket=$(S3_BUCKET)"
+
+infra-apply-all:
+	@echo "🚀 Deploying all infrastructure..."
+	@terraform -chdir=./automation/tf-fargate/ apply \
+		-var="env=$(ENV)" \
+		-var="project=$(PROJECT)" \
+		-var="description=$(DESCRIPTION)" \
+		-var="notification_email=$(NOTIFICATION_EMAIL)" \
+		-compact-warnings
+####################################################
 
 longest:
 	@find ./policies -type f | awk -F/ '{print length($$NF), $$NF}' | sort -nr | head -10
@@ -87,7 +188,7 @@ shortest:
 
 destroy:
 	@read -p "Are you sure that you want to destroy: '$(PROJECT)-$(ENV)-$(AWS_REGION)'? [yes/N]: " sure && [ $${sure:-N} = 'yes' ]
-	@terraform destroy ./automation/tf-fargate/
+	@terraform -chdir=./automation/tf-fargate/ destroy
 
 update-runbook:
 	@echo "Copying runbook scripts in artifacts s3 bucket"
@@ -95,7 +196,7 @@ update-runbook:
 
 ################ CloudFront Function ###########
 CF_STACK_NAME ?= mamip-cloudfront-url-rewrite
-CF_DISTRIBUTION_ID ?= E9B7QP8QWPHLW
+CF_DISTRIBUTION_ID ?= E2R2N8OZK7U78U
 
 deploy-cf-function:
 	@echo "☁️  Deploying CloudFront URL rewrite function..."
@@ -133,27 +234,53 @@ website-dev: website-generate-data
 	@echo "🚀 Starting development server..."
 	@cd website && npm run dev
 
+website-dev-fast:
+	@echo "🚀 Starting development server (skip data generation)..."
+	@cd website && npm run dev
+
 website-generate-data:
 	@echo "📊 Generating policy data..."
 	@cd website && npm run generate-data
 
 website-build: website-generate-data
 	@echo "🏗️  Building static website..."
-	@cd website && NEXT_PUBLIC_USE_BASE_PATH=false npm run build
+	@cd website && npm run build
+
+website-build-fast:
+	@echo "🏗️  Building static website (skip data generation)..."
+	@if [ ! -d "website/public/data" ] || [ -z "$$(ls -A website/public/data/*.json 2>/dev/null)" ]; then \
+		echo "⚠️  No data found in website/public/data/. Running generate-data first..."; \
+		cd website && npm run generate-data; \
+	fi
+	@cd website && npm run build
 
 website-deploy: website-build
 	@echo "☁️  Deploying to S3 and CloudFront..."
-	@echo "📦 Syncing to s3://mamip.zoph.io..."
-	@aws s3 sync website/out/ s3://mamip.zoph.io/ \
+	@echo "📦 Syncing to s3://iamtrail.com..."
+	@aws s3 sync website/out/ s3://iamtrail.com/ \
 		--delete \
 		--cache-control "public, max-age=31536000, immutable" \
 		--exclude "*.html" --exclude "*.json" --exclude "*.txt" --exclude "*.xml"
-	@aws s3 sync website/out/ s3://mamip.zoph.io/ \
+	@aws s3 sync website/out/ s3://iamtrail.com/ \
 		--cache-control "public, max-age=0, must-revalidate" \
 		--exclude "*" --include "*.html" --include "*.json" --include "*.txt" --include "*.xml"
 	@echo "🔄 Creating CloudFront invalidation..."
-	@aws cloudfront create-invalidation --distribution-id E9B7QP8QWPHLW --paths "/*"
-	@echo "✅ Deployed to https://mamip.zoph.io"
+	@aws cloudfront create-invalidation --distribution-id E2R2N8OZK7U78U --paths "/*"
+	@echo "✅ Deployed to https://iamtrail.com"
+
+website-deploy-fast: website-build-fast
+	@echo "☁️  Deploying to S3 and CloudFront (no data regeneration)..."
+	@echo "📦 Syncing to s3://iamtrail.com..."
+	@aws s3 sync website/out/ s3://iamtrail.com/ \
+		--delete \
+		--cache-control "public, max-age=31536000, immutable" \
+		--exclude "*.html" --exclude "*.json" --exclude "*.txt" --exclude "*.xml"
+	@aws s3 sync website/out/ s3://iamtrail.com/ \
+		--cache-control "public, max-age=0, must-revalidate" \
+		--exclude "*" --include "*.html" --include "*.json" --include "*.txt" --include "*.xml"
+	@echo "🔄 Creating CloudFront invalidation..."
+	@aws cloudfront create-invalidation --distribution-id E2R2N8OZK7U78U --paths "/*"
+	@echo "✅ Deployed to https://iamtrail.com"
 
 website-sync:
 	@echo "☁️  Syncing to S3 and CloudFront (no rebuild)..."
@@ -161,17 +288,17 @@ website-sync:
 		echo "❌ Error: website/out directory not found. Run 'make website-build' first."; \
 		exit 1; \
 	fi
-	@echo "📦 Syncing to s3://mamip.zoph.io..."
-	@aws s3 sync website/out/ s3://mamip.zoph.io/ \
+	@echo "📦 Syncing to s3://iamtrail.com..."
+	@aws s3 sync website/out/ s3://iamtrail.com/ \
 		--delete \
 		--cache-control "public, max-age=31536000, immutable" \
 		--exclude "*.html" --exclude "*.json" --exclude "*.txt" --exclude "*.xml"
-	@aws s3 sync website/out/ s3://mamip.zoph.io/ \
+	@aws s3 sync website/out/ s3://iamtrail.com/ \
 		--cache-control "public, max-age=0, must-revalidate" \
 		--exclude "*" --include "*.html" --include "*.json" --include "*.txt" --include "*.xml"
 	@echo "🔄 Creating CloudFront invalidation..."
-	@aws cloudfront create-invalidation --distribution-id E9B7QP8QWPHLW --paths "/*"
-	@echo "✅ Deployed to https://mamip.zoph.io"
+	@aws cloudfront create-invalidation --distribution-id E2R2N8OZK7U78U --paths "/*"
+	@echo "✅ Deployed to https://iamtrail.com"
 
 website-clean:
 	@echo "🧹 Cleaning website build artifacts..."

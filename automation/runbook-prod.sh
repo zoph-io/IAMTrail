@@ -10,7 +10,7 @@ set -euo pipefail
 DATE=$(date +%Y-%m-%d-%H-%M)
 
 # Repository settings
-REPO_URL="https://github.com/z0ph/MAMIP.git"
+REPO_URL="https://github.com/zoph-io/IAMTrail.git"
 REPO_PATH="/tmp/MAMIP"
 GIT_USER_NAME="MAMIP Bot"
 GIT_USER_EMAIL="mamip_bot@github.com"
@@ -21,6 +21,7 @@ GITHUB_SECRET_ARN="arn:aws:secretsmanager:eu-west-1:567589703415:secret:mamip/pr
 SNS_TOPIC_ARN="arn:aws:sns:eu-west-1:567589703415:mamip-sns-topic"
 SQS_TWITTER_URL="https://sqs.eu-west-1.amazonaws.com/567589703415/qtweet-mamip-sqs-queue.fifo"
 SQS_BLUESKY_URL="https://sqs.eu-west-1.amazonaws.com/567589703415/qbsky-mamip-prod-sqs-queue.fifo"
+DISCORD_WEBHOOK_SSM="/iamtrail/discord-webhook-url"
 
 # File processing
 WORD_TO_REMOVE="policies/"
@@ -35,8 +36,59 @@ log() {
     echo "$(date +'%Y-%m-%d %H:%M:%S') - $message"
 }
 
+# Retrieve Discord webhook URL from SSM (cached)
+DISCORD_WEBHOOK_URL=""
+get_discord_webhook() {
+    if [ -n "$DISCORD_WEBHOOK_URL" ]; then
+        return
+    fi
+    DISCORD_WEBHOOK_URL=$(aws ssm get-parameter \
+        --name "$DISCORD_WEBHOOK_SSM" \
+        --with-decryption \
+        --region "$REGION" \
+        --query 'Parameter.Value' \
+        --output text 2>/dev/null || true)
+}
+
+# Send a Discord embed notification
+# Usage: discord_notify <color_decimal> <title> <description> [field_name:field_value ...]
+discord_notify() {
+    get_discord_webhook
+    if [ -z "$DISCORD_WEBHOOK_URL" ]; then
+        return
+    fi
+
+    local color="$1"
+    local title="$2"
+    local description="$3"
+    shift 3
+
+    local fields=""
+    for field in "$@"; do
+        local fname="${field%%:*}"
+        local fvalue="${field#*:}"
+        if [ -n "$fields" ]; then
+            fields="$fields,"
+        fi
+        fields="$fields{\"name\":\"$fname\",\"value\":\"$fvalue\",\"inline\":true}"
+    done
+
+    local timestamp
+    timestamp=$(date -u +"%Y-%m-%dT%H:%M:%SZ")
+
+    local payload
+    if [ -n "$fields" ]; then
+        payload="{\"embeds\":[{\"title\":\"$title\",\"description\":\"$description\",\"color\":$color,\"fields\":[$fields],\"footer\":{\"text\":\"IAMTrail - runbook-prod\"},\"timestamp\":\"$timestamp\"}]}"
+    else
+        payload="{\"embeds\":[{\"title\":\"$title\",\"description\":\"$description\",\"color\":$color,\"footer\":{\"text\":\"IAMTrail - runbook-prod\"},\"timestamp\":\"$timestamp\"}]}"
+    fi
+
+    curl -s -o /dev/null -H "Content-Type: application/json" -d "$payload" "$DISCORD_WEBHOOK_URL" || true
+}
+
 # Function to handle errors
 error_handler() {
+    discord_notify 15158332 "Runbook Error" "An error occurred during the MAMIP update process"
     log "An error occurred. Exiting..."
     exit 1
 }
@@ -95,7 +147,7 @@ process_policies() {
     cd "$REPO_PATH"
     aws iam list-policies --output json |
         jq -cr '.Policies[] | select(.Arn | contains("iam::aws")) | .Arn + " " + .DefaultVersionId + " " + .PolicyName' |
-        xargs -P 4 -n3 sh -c 'mkdir -p policies && aws iam get-policy-version --policy-arn $1 --version-id $2 > "policies/$3"' sh
+        xargs -P 4 -n3 sh -c 'mkdir -p policies && aws iam get-policy-version --policy-arn $1 --version-id $2 | jq -S --indent 4 . > "policies/$3"' sh
 }
 
 # Send notifications to various platforms
@@ -152,9 +204,6 @@ process_changes() {
                 git commit -m "$COMMIT_MESSAGE"
                 COMMIT_ID=$(git log --format="%h" -n 1)
                 ALL_COMMITS+=("$COMMIT_ID")
-                
-                # Create individual tag for this commit
-                git tag "${DATE}-${POLICY_NAME}"
             fi
         done
 
@@ -166,20 +215,28 @@ process_changes() {
             LAST_COMMIT_ID="${ALL_COMMITS[-1]}"
             
             # Format messages
-            MESSAGE="{\"UpdatedPolicies\": \"$POLICY_NAMES\", \"CommitUrl\": \"https://github.com/zoph-io/MAMIP/commit/$LAST_COMMIT_ID\", \"Date\": \"$DATE\", \"CommitCount\": \"${#ALL_COMMITS[@]}\"}"
-            MESSAGE_BODY="$TWEET_DIFF https://github.com/z0ph/MAMIP/commit/$LAST_COMMIT_ID"
+            MESSAGE="{\"UpdatedPolicies\": \"$POLICY_NAMES\", \"CommitUrl\": \"https://github.com/zoph-io/IAMTrail/commit/$LAST_COMMIT_ID\", \"Date\": \"$DATE\", \"CommitCount\": \"${#ALL_COMMITS[@]}\"}"
+            MESSAGE_BODY="$TWEET_DIFF https://github.com/zoph-io/IAMTrail/commit/$LAST_COMMIT_ID"
 
             # Send notifications
             send_notifications "$MESSAGE_BODY" "$MESSAGE"
 
-            # Push changes
+            # Tag the run with a single summary tag
+            git tag "${DATE}-update-${#ALL_COMMITS[@]}-policies"
+
+            # Push commits first, then tags separately
             log "Pushing ${#ALL_COMMITS[@]} commits to master"
-            git push origin master --tags
+            git push origin master
+            git push origin --tags
+
+            discord_notify 3066993 "Policy Changes Pushed" "${#ALL_COMMITS[@]} policies updated and pushed to master" "Policies:${POLICY_NAMES:0:200}" "Commit:[View](https://github.com/zoph-io/IAMTrail/commit/$LAST_COMMIT_ID)"
         else
             log "No policy files were changed"
+            discord_notify 3447003 "No Policy Changes" "Files changed but no policy updates detected"
         fi
     else
         log "No changes detected"
+        discord_notify 3447003 "No Changes Detected" "All AWS managed policies are up to date"
     fi
 }
 
@@ -189,11 +246,13 @@ process_changes() {
 
 main() {
     log "Starting MAMIP update process"
+    discord_notify 3447003 "Runbook Started" "MAMIP update process initiated"
     setup_git_auth
     clone_repo
     process_policies
     process_changes
     log "Job completed successfully"
+    discord_notify 3066993 "Runbook Complete" "MAMIP update process finished successfully"
 }
 
 main

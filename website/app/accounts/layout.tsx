@@ -5,13 +5,13 @@ export const metadata: Metadata = {
   description:
     "Search for AWS account IDs to identify their owners. Powered by the fwdcloudsec community database of known AWS vendor accounts.",
   alternates: {
-    canonical: "https://mamip.zoph.io/accounts",
+    canonical: "https://iamtrail.com/accounts",
   },
   openGraph: {
-    title: "Known AWS Account Lookup | MAMIP",
+    title: "Known AWS Account Lookup | IAMTrail",
     description:
       "Search for AWS account IDs to identify their owners. Community-driven database of known vendor accounts.",
-    url: "https://mamip.zoph.io/accounts",
+    url: "https://iamtrail.com/accounts",
   },
 };
 

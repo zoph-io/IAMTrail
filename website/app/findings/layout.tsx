@@ -5,13 +5,13 @@ export const metadata: Metadata = {
   description:
     "AWS IAM Access Analyzer findings on AWS's own Managed IAM Policies. Discover errors, security warnings, and suggestions in policies that AWS ships.",
   alternates: {
-    canonical: "https://mamip.zoph.io/findings",
+    canonical: "https://iamtrail.com/findings",
   },
   openGraph: {
-    title: "Policy Validation Findings | MAMIP",
+    title: "Policy Validation Findings | IAMTrail",
     description:
-      "Using AWS's own IAM Access Analyzer to validate AWS Managed IAM Policies — reviewing the reviewer.",
-    url: "https://mamip.zoph.io/findings",
+      "Using AWS's own IAM Access Analyzer to validate AWS Managed IAM Policies - reviewing the reviewer.",
+    url: "https://iamtrail.com/findings",
   },
 };
 

@@ -1,5 +1,5 @@
 {
-  "name": "mamip-website",
+  "name": "iamtrail-website",
   "version": "1.0.0",
   "description": "Static website for browsing AWS Managed IAM Policies",
   "scripts": {
@@ -22,6 +22,7 @@
     "@types/react": "^19.0.6",
     "@types/react-syntax-highlighter": "^15.5.13",
     "autoprefixer": "^10.4.20",
+    "lucide-react": "^0.577.0",
     "next": "^15.1.6",
     "postcss": "^8.4.49",
     "react": "^19.0.0",

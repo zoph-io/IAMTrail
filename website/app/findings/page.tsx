@@ -25,38 +25,34 @@ interface FindingsData {
 
 const SEVERITY_CONFIG: Record<
   string,
-  { label: string; color: string; bg: string; border: string; icon: string; sortOrder: number }
+  { label: string; color: string; bg: string; border: string; sortOrder: number }
 > = {
   ERROR: {
     label: "Error",
     color: "text-red-700 dark:text-red-400",
-    bg: "bg-red-50 dark:bg-red-950/40",
+    bg: "bg-red-50 dark:bg-red-950/30",
     border: "border-red-200 dark:border-red-800",
-    icon: "🔴",
     sortOrder: 0,
   },
   SECURITY_WARNING: {
     label: "Security Warning",
     color: "text-orange-700 dark:text-orange-400",
-    bg: "bg-orange-50 dark:bg-orange-950/40",
+    bg: "bg-orange-50 dark:bg-orange-950/30",
     border: "border-orange-200 dark:border-orange-800",
-    icon: "🟠",
     sortOrder: 1,
   },
   WARNING: {
     label: "Warning",
     color: "text-yellow-700 dark:text-yellow-400",
-    bg: "bg-yellow-50 dark:bg-yellow-950/40",
+    bg: "bg-yellow-50 dark:bg-yellow-950/30",
     border: "border-yellow-200 dark:border-yellow-800",
-    icon: "🟡",
     sortOrder: 2,
   },
   SUGGESTION: {
     label: "Suggestion",
-    color: "text-blue-700 dark:text-blue-400",
-    bg: "bg-blue-50 dark:bg-blue-950/40",
-    border: "border-blue-200 dark:border-blue-800",
-    icon: "🔵",
+    color: "text-zinc-600 dark:text-zinc-400",
+    bg: "bg-zinc-50 dark:bg-zinc-800",
+    border: "border-zinc-200 dark:border-zinc-700",
     sortOrder: 3,
   },
 };
@@ -65,7 +61,7 @@ function SeverityBadge({ type }: { type: string }) {
   const config = SEVERITY_CONFIG[type] || SEVERITY_CONFIG.SUGGESTION;
   return (
     <span
-      className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${config.bg} ${config.color} border ${config.border}`}
+      className={`inline-flex items-center px-2 py-0.5 rounded text-xs font-mono font-medium ${config.bg} ${config.color} border ${config.border}`}
     >
       {config.label}
     </span>
@@ -78,13 +74,10 @@ export default function FindingsPage() {
   const [severityFilter, setSeverityFilter] = useState<string>("ALL");
   const [loading, setLoading] = useState(true);
 
-  const basePath =
-    process.env.NEXT_PUBLIC_USE_BASE_PATH === "true" ? "/MAMIP" : "";
-
   useEffect(() => {
     async function loadFindings() {
       try {
-        const response = await fetch(`${basePath}/data/findings.json`);
+        const response = await fetch("/data/findings.json");
         const json = await response.json();
         setData(json);
       } catch (error) {
@@ -94,7 +87,7 @@ export default function FindingsPage() {
       }
     }
     loadFindings();
-  }, [basePath]);
+  }, []);
 
   const filteredPolicies = useMemo(() => {
     if (!data) return [];
@@ -125,8 +118,8 @@ export default function FindingsPage() {
   if (loading) {
     return (
       <div className="text-center py-16">
-        <div className="animate-spin text-6xl mb-4">⏳</div>
-        <p className="text-slate-600 dark:text-slate-400">
+        <div className="animate-spin inline-block w-6 h-6 border-2 border-zinc-300 border-t-red-600 rounded-full mb-4"></div>
+        <p className="text-zinc-600 dark:text-zinc-400 text-sm font-mono">
           Loading findings...
         </p>
       </div>
@@ -136,7 +129,7 @@ export default function FindingsPage() {
   if (!data) {
     return (
       <div className="text-center py-16">
-        <p className="text-slate-600 dark:text-slate-400">
+        <p className="text-zinc-600 dark:text-zinc-400 text-sm">
           No findings data available.
         </p>
       </div>
@@ -144,41 +137,38 @@ export default function FindingsPage() {
   }
 
   return (
-    <div className="space-y-8">
+    <div className="space-y-6">
       {/* Header */}
-      <div className="text-center py-8">
-        <h1 className="text-4xl font-bold text-slate-900 dark:text-white mb-3">
+      <div className="py-8 border-b border-zinc-100 dark:border-zinc-800">
+        <h1 className="text-2xl font-bold font-mono text-zinc-900 dark:text-white mb-2">
           Policy Validation Findings
         </h1>
-        <p className="text-lg text-slate-600 dark:text-slate-400 max-w-3xl mx-auto">
+        <p className="text-sm text-zinc-600 dark:text-zinc-400 max-w-3xl">
           Using AWS IAM Access Analyzer to validate AWS&apos;s own Managed IAM
-          Policies &mdash; reviewing the reviewer.
+          Policies - reviewing the reviewer.
         </p>
-        <p className="mt-2 text-sm text-slate-500 dark:text-slate-500">
+        <p className="mt-2 text-xs font-mono text-zinc-400 dark:text-zinc-500">
           Last updated: {data.lastUpdated}
         </p>
       </div>
 
       {/* Summary Stats */}
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
         <button
           onClick={() => setSeverityFilter(severityFilter === "ERROR" ? "ALL" : "ERROR")}
-          className={`rounded-xl shadow-sm border p-5 text-left transition-all hover:shadow-md ${
+          className={`bg-white dark:bg-zinc-900 rounded-lg border p-4 text-left transition-all hover:border-red-300 dark:hover:border-red-800 ${
             severityFilter === "ERROR"
               ? "ring-2 ring-red-500 border-red-300 dark:border-red-700"
-              : "border-slate-200 dark:border-slate-700"
-          } bg-white dark:bg-slate-800`}
+              : "border-zinc-200 dark:border-zinc-800"
+          }`}
         >
-          <div className="flex items-center justify-between">
-            <p className="text-sm font-medium text-red-600 dark:text-red-400">
-              Errors
-            </p>
-            <span className="text-2xl opacity-50">🔴</span>
-          </div>
-          <p className="mt-2 text-3xl font-bold text-slate-900 dark:text-white">
+          <p className="text-xs font-mono uppercase tracking-wider text-red-600 dark:text-red-400">
+            Errors
+          </p>
+          <p className="mt-1 text-2xl font-bold font-mono text-zinc-900 dark:text-white">
             {data.byType.ERROR || 0}
           </p>
-          <p className="mt-1 text-xs text-slate-500 dark:text-slate-500">
+          <p className="mt-0.5 text-[10px] text-zinc-500 dark:text-zinc-500">
             Invalid policy elements
           </p>
         </button>
@@ -187,44 +177,38 @@ export default function FindingsPage() {
           onClick={() =>
             setSeverityFilter(severityFilter === "SECURITY_WARNING" ? "ALL" : "SECURITY_WARNING")
           }
-          className={`rounded-xl shadow-sm border p-5 text-left transition-all hover:shadow-md ${
+          className={`bg-white dark:bg-zinc-900 rounded-lg border p-4 text-left transition-all hover:border-orange-300 dark:hover:border-orange-800 ${
             severityFilter === "SECURITY_WARNING"
               ? "ring-2 ring-orange-500 border-orange-300 dark:border-orange-700"
-              : "border-slate-200 dark:border-slate-700"
-          } bg-white dark:bg-slate-800`}
+              : "border-zinc-200 dark:border-zinc-800"
+          }`}
         >
-          <div className="flex items-center justify-between">
-            <p className="text-sm font-medium text-orange-600 dark:text-orange-400">
-              Security Warnings
-            </p>
-            <span className="text-2xl opacity-50">🟠</span>
-          </div>
-          <p className="mt-2 text-3xl font-bold text-slate-900 dark:text-white">
+          <p className="text-xs font-mono uppercase tracking-wider text-orange-600 dark:text-orange-400">
+            Security Warnings
+          </p>
+          <p className="mt-1 text-2xl font-bold font-mono text-zinc-900 dark:text-white">
             {data.byType.SECURITY_WARNING || 0}
           </p>
-          <p className="mt-1 text-xs text-slate-500 dark:text-slate-500">
+          <p className="mt-0.5 text-[10px] text-zinc-500 dark:text-zinc-500">
             Potential security risks
           </p>
         </button>
 
         <button
           onClick={() => setSeverityFilter(severityFilter === "WARNING" ? "ALL" : "WARNING")}
-          className={`rounded-xl shadow-sm border p-5 text-left transition-all hover:shadow-md ${
+          className={`bg-white dark:bg-zinc-900 rounded-lg border p-4 text-left transition-all hover:border-yellow-300 dark:hover:border-yellow-800 ${
             severityFilter === "WARNING"
               ? "ring-2 ring-yellow-500 border-yellow-300 dark:border-yellow-700"
-              : "border-slate-200 dark:border-slate-700"
-          } bg-white dark:bg-slate-800`}
+              : "border-zinc-200 dark:border-zinc-800"
+          }`}
         >
-          <div className="flex items-center justify-between">
-            <p className="text-sm font-medium text-yellow-600 dark:text-yellow-400">
-              Warnings
-            </p>
-            <span className="text-2xl opacity-50">🟡</span>
-          </div>
-          <p className="mt-2 text-3xl font-bold text-slate-900 dark:text-white">
+          <p className="text-xs font-mono uppercase tracking-wider text-yellow-600 dark:text-yellow-400">
+            Warnings
+          </p>
+          <p className="mt-1 text-2xl font-bold font-mono text-zinc-900 dark:text-white">
             {data.byType.WARNING || 0}
           </p>
-          <p className="mt-1 text-xs text-slate-500 dark:text-slate-500">
+          <p className="mt-0.5 text-[10px] text-zinc-500 dark:text-zinc-500">
             General policy issues
           </p>
         </button>
@@ -233,43 +217,40 @@ export default function FindingsPage() {
           onClick={() =>
             setSeverityFilter(severityFilter === "SUGGESTION" ? "ALL" : "SUGGESTION")
           }
-          className={`rounded-xl shadow-sm border p-5 text-left transition-all hover:shadow-md ${
+          className={`bg-white dark:bg-zinc-900 rounded-lg border p-4 text-left transition-all hover:border-zinc-300 dark:hover:border-zinc-600 ${
             severityFilter === "SUGGESTION"
-              ? "ring-2 ring-blue-500 border-blue-300 dark:border-blue-700"
-              : "border-slate-200 dark:border-slate-700"
-          } bg-white dark:bg-slate-800`}
+              ? "ring-2 ring-zinc-400 border-zinc-300 dark:border-zinc-600"
+              : "border-zinc-200 dark:border-zinc-800"
+          }`}
         >
-          <div className="flex items-center justify-between">
-            <p className="text-sm font-medium text-blue-600 dark:text-blue-400">
-              Suggestions
-            </p>
-            <span className="text-2xl opacity-50">🔵</span>
-          </div>
-          <p className="mt-2 text-3xl font-bold text-slate-900 dark:text-white">
+          <p className="text-xs font-mono uppercase tracking-wider text-zinc-500 dark:text-zinc-400">
+            Suggestions
+          </p>
+          <p className="mt-1 text-2xl font-bold font-mono text-zinc-900 dark:text-white">
             {data.byType.SUGGESTION || 0}
           </p>
-          <p className="mt-1 text-xs text-slate-500 dark:text-slate-500">
+          <p className="mt-0.5 text-[10px] text-zinc-500 dark:text-zinc-500">
             Improvement opportunities
           </p>
         </button>
       </div>
 
       {/* Overview bar */}
-      <div className="bg-white dark:bg-slate-800 rounded-xl shadow-sm border border-slate-200 dark:border-slate-700 p-4 flex flex-wrap items-center gap-x-6 gap-y-2 text-sm text-slate-600 dark:text-slate-400">
+      <div className="bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 rounded-lg p-4 flex flex-wrap items-center gap-x-6 gap-y-2 text-xs font-mono text-zinc-500 dark:text-zinc-400">
         <span>
-          <strong className="text-slate-900 dark:text-white">
+          <strong className="text-zinc-900 dark:text-white">
             {data.totalPoliciesAnalyzed.toLocaleString()}
           </strong>{" "}
           policies analyzed
         </span>
         <span>
-          <strong className="text-slate-900 dark:text-white">
+          <strong className="text-zinc-900 dark:text-white">
             {data.policiesWithFindings}
           </strong>{" "}
           with findings
         </span>
         <span>
-          <strong className="text-slate-900 dark:text-white">
+          <strong className="text-zinc-900 dark:text-white">
             {Object.values(data.byType).reduce((a, b) => a + b, 0)}
           </strong>{" "}
           total findings
@@ -277,13 +258,13 @@ export default function FindingsPage() {
       </div>
 
       {/* Search and Filter */}
-      <div className="bg-white dark:bg-slate-800 rounded-xl shadow-sm border border-slate-200 dark:border-slate-700 p-4">
-        <div className="flex flex-col sm:flex-row gap-4">
+      <div className="bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 rounded-lg p-4">
+        <div className="flex flex-col sm:flex-row gap-3">
           <div className="flex-1">
             <div className="relative">
               <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
                 <svg
-                  className="h-5 w-5 text-slate-400"
+                  className="h-4 w-4 text-zinc-400"
                   fill="none"
                   strokeLinecap="round"
                   strokeLinejoin="round"
@@ -296,7 +277,7 @@ export default function FindingsPage() {
               </div>
               <input
                 type="text"
-                className="block w-full pl-10 pr-3 py-2 border border-slate-300 dark:border-slate-600 rounded-lg bg-white dark:bg-slate-900 text-slate-900 dark:text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                className="block w-full pl-10 pr-3 py-2 border border-zinc-200 dark:border-zinc-700 rounded bg-white dark:bg-zinc-900 text-zinc-900 dark:text-white placeholder-zinc-400 focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-transparent text-sm font-mono"
                 placeholder="Search by policy name, issue code, or description..."
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
@@ -305,7 +286,7 @@ export default function FindingsPage() {
           </div>
           <div>
             <select
-              className="px-4 py-2 border border-slate-300 dark:border-slate-600 rounded-lg bg-white dark:bg-slate-900 text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="px-3 py-2 border border-zinc-200 dark:border-zinc-700 rounded bg-white dark:bg-zinc-900 text-zinc-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-red-500 text-sm"
               value={severityFilter}
               onChange={(e) => setSeverityFilter(e.target.value)}
             >
@@ -317,7 +298,7 @@ export default function FindingsPage() {
             </select>
           </div>
         </div>
-        <div className="mt-3 text-sm text-slate-600 dark:text-slate-400">
+        <div className="mt-3 text-xs font-mono text-zinc-500 dark:text-zinc-400">
           Showing {totalFilteredFindings} finding
           {totalFilteredFindings !== 1 ? "s" : ""} across{" "}
           {filteredPolicies.length} polic
@@ -326,25 +307,25 @@ export default function FindingsPage() {
       </div>
 
       {/* Results */}
-      <div className="space-y-4">
+      <div className="space-y-3">
         {filteredPolicies.map((policy) => (
           <div
             key={policy.name}
-            className="bg-white dark:bg-slate-800 rounded-xl shadow-sm border border-slate-200 dark:border-slate-700 overflow-hidden"
+            className="bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 rounded-lg overflow-hidden"
           >
-            <div className="px-6 py-4 border-b border-slate-200 dark:border-slate-700 flex items-center justify-between">
+            <div className="px-5 py-3 border-b border-zinc-200 dark:border-zinc-800 flex items-center justify-between">
               <Link
-                href={`${basePath}/policies/${encodeURIComponent(policy.name)}`}
-                className="text-base font-semibold text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300 hover:underline transition-colors"
+                href={`/policies/${encodeURIComponent(policy.name)}`}
+                className="text-sm font-semibold text-red-600 dark:text-red-400 hover:text-red-800 dark:hover:text-red-300 hover:underline transition-colors"
               >
                 {policy.name}
               </Link>
-              <span className="text-xs text-slate-500 dark:text-slate-400 ml-2 flex-shrink-0">
+              <span className="text-xs font-mono text-zinc-500 dark:text-zinc-400 ml-2 flex-shrink-0">
                 {policy.findings.length} finding
                 {policy.findings.length !== 1 ? "s" : ""}
               </span>
             </div>
-            <div className="divide-y divide-slate-100 dark:divide-slate-700/50">
+            <div className="divide-y divide-zinc-100 dark:divide-zinc-800">
               {policy.findings
                 .sort(
                   (a, b) =>
@@ -352,14 +333,14 @@ export default function FindingsPage() {
                     (SEVERITY_CONFIG[b.findingType]?.sortOrder ?? 99)
                 )
                 .map((finding, idx) => (
-                  <div key={idx} className="px-6 py-4">
+                  <div key={idx} className="px-5 py-3">
                     <div className="flex flex-wrap items-center gap-2 mb-2">
                       <SeverityBadge type={finding.findingType} />
-                      <code className="text-xs font-mono px-2 py-0.5 rounded bg-slate-100 dark:bg-slate-700 text-slate-700 dark:text-slate-300">
+                      <code className="text-xs font-mono px-1.5 py-0.5 rounded bg-zinc-100 dark:bg-zinc-800 text-zinc-600 dark:text-zinc-400">
                         {finding.issueCode}
                       </code>
                     </div>
-                    <p className="text-sm text-slate-700 dark:text-slate-300 leading-relaxed">
+                    <p className="text-sm text-zinc-700 dark:text-zinc-300 leading-relaxed">
                       {finding.findingDetails}
                     </p>
                     {finding.learnMoreLink && (
@@ -367,7 +348,7 @@ export default function FindingsPage() {
                         href={finding.learnMoreLink}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="inline-flex items-center mt-2 text-xs text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300 hover:underline transition-colors"
+                        className="inline-flex items-center mt-2 text-xs font-mono text-red-600 dark:text-red-400 hover:text-red-800 dark:hover:text-red-300 hover:underline transition-colors"
                       >
                         Learn more
                         <svg
@@ -392,11 +373,10 @@ export default function FindingsPage() {
 
       {filteredPolicies.length === 0 && (
         <div className="text-center py-16">
-          <div className="text-6xl mb-4">🔍</div>
-          <h3 className="text-xl font-semibold text-slate-900 dark:text-white mb-2">
+          <h3 className="text-lg font-semibold font-mono text-zinc-900 dark:text-white mb-2">
             No findings match your filters
           </h3>
-          <p className="text-slate-600 dark:text-slate-400">
+          <p className="text-sm text-zinc-600 dark:text-zinc-400">
             Try adjusting your search term or severity filter
           </p>
         </div>

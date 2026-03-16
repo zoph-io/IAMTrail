@@ -1,423 +1,274 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import {
+  Info,
+  Clock,
+  GitBranch,
+  ShieldCheck,
+  Bell,
+  Search,
+  ExternalLink,
+  ArrowRight,
+  AlertTriangle,
+} from "lucide-react";
 
 export const metadata: Metadata = {
-  title: "About MAMIP - How We Track AWS IAM Policy Changes",
+  title: "About IAMTrail - How We Track AWS IAM Policy Changes",
   description:
-    "Learn how MAMIP monitors and archives every change to AWS Managed IAM Policies using automated infrastructure, git version control, and policy validation.",
+    "Learn how IAMTrail monitors and archives every change to AWS Managed IAM Policies using automated infrastructure, git version control, and policy validation.",
   alternates: {
-    canonical: "https://mamip.zoph.io/about",
+    canonical: "https://iamtrail.com/about",
   },
   openGraph: {
-    title: "About MAMIP | AWS Managed Policy Changes Archive",
+    title: "About IAMTrail | AWS Managed Policy Changes Archive",
     description:
-      "Learn how MAMIP monitors and archives every change to AWS Managed IAM Policies.",
-    url: "https://mamip.zoph.io/about",
+      "Learn how IAMTrail monitors and archives every change to AWS Managed IAM Policies.",
+    url: "https://iamtrail.com/about",
   },
 };
 
-const basePath = process.env.NEXT_PUBLIC_USE_BASE_PATH === "true" ? "/MAMIP" : "";
-
 export default function AboutPage() {
   return (
-    <div className="max-w-4xl mx-auto space-y-8">
+    <div className="max-w-4xl mx-auto space-y-10">
       {/* Header */}
-      <div className="text-center">
-        <h1 className="text-4xl font-bold text-slate-900 dark:text-white mb-4">
-          About This Archive
+      <div className="py-8 border-b border-zinc-100 dark:border-zinc-800">
+        <h1 className="text-3xl font-bold font-mono text-zinc-900 dark:text-white mb-3">
+          About IAMTrail
         </h1>
-        <p className="text-lg text-slate-600 dark:text-slate-400">
-          How we track and historize AWS Managed IAM Policy changes
+        <p className="text-base text-zinc-600 dark:text-zinc-400 max-w-2xl">
+          An unofficial archive tracking every change to AWS Managed IAM
+          Policies since 2019 - with full version history, diffs, and policy
+          validation.
         </p>
       </div>
 
-      {/* Main Content */}
-      <div className="bg-white dark:bg-slate-800 rounded-xl shadow-sm border border-slate-200 dark:border-slate-700 p-8 space-y-6">
-        {/* What is MAMIP */}
-        <section>
-          <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-4">
-            🔊 What is MAMIP?
-          </h2>
-          <p className="text-slate-600 dark:text-slate-400 leading-relaxed mb-4">
-            MAMIP (Monitor AWS Managed IAM Policies) is an{" "}
-            <strong>unofficial archive</strong> that continuously tracks every
-            change made to AWS Managed IAM Policies. We provide a comprehensive,
-            searchable history of policy modifications with full version control
-            through Git.
-          </p>
-          <p className="text-slate-600 dark:text-slate-400 leading-relaxed">
-            This service is particularly valuable for AWS practitioners who need
-            to stay informed about security changes, spot new AWS service
-            launches early (via v1 policies), and maintain compliance
-            documentation.
-          </p>
-        </section>
+      {/* What & Why */}
+      <section className="bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 rounded-lg p-6">
+        <div className="flex items-start gap-4">
+          <div className="p-2 bg-red-50 dark:bg-red-950/30 rounded flex-shrink-0">
+            <Info className="w-5 h-5 text-red-600 dark:text-red-400" />
+          </div>
+          <div className="space-y-3">
+            <h2 className="text-xl font-bold font-mono text-zinc-900 dark:text-white">
+              What is IAMTrail?
+            </h2>
+            <p className="text-sm text-zinc-600 dark:text-zinc-400 leading-relaxed">
+              AWS updates its managed IAM policies constantly - often without
+              announcement. IAMTrail catches every change and stores full
+              version history in Git, so you can see exactly what was added,
+              removed, or modified.
+            </p>
+            <p className="text-sm text-zinc-600 dark:text-zinc-400 leading-relaxed">
+              This is useful for staying on top of security changes, spotting
+              new AWS service launches early (via v1 policies), and keeping
+              compliance documentation current.
+            </p>
+          </div>
+        </div>
+      </section>
 
-        {/* How It Works */}
-        <section>
-          <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-4">
-            ⚙️ How Does It Work?
-          </h2>
-
-          <div className="space-y-4">
-            <div className="border-l-4 border-blue-500 pl-4">
-              <h3 className="text-lg font-semibold text-slate-900 dark:text-white mb-2">
-                1. Automated Collection (Every 4 Hours)
-              </h3>
-              <p className="text-slate-600 dark:text-slate-400 leading-relaxed">
-                Our system runs on <strong>AWS ECS Fargate</strong> with Spot
-                instances for cost optimization. A scheduled CloudWatch Event
-                triggers the collection process every 4 hours during weekdays
-                (Monday to Friday), using the cron expression:{" "}
-                <code className="px-2 py-1 bg-slate-100 dark:bg-slate-900 rounded text-sm">
-                  cron(0 */4 ? * MON-FRI *)
-                </code>
-              </p>
-            </div>
-
-            <div className="border-l-4 border-green-500 pl-4">
-              <h3 className="text-lg font-semibold text-slate-900 dark:text-white mb-2">
-                2. Policy Retrieval via AWS CLI
-              </h3>
-              <p className="text-slate-600 dark:text-slate-400 leading-relaxed mb-3">
-                We use the official AWS CLI to fetch all managed policies:
-              </p>
-              <div className="bg-slate-100 dark:bg-slate-900 rounded-lg p-4 font-mono text-sm overflow-x-auto">
-                <div className="text-slate-800 dark:text-slate-200">
-                  # List all AWS managed policies
-                  <br />
-                  aws iam list-policies --scope AWS
-                  <br />
-                  <br />
-                  # Retrieve each policy document
-                  <br />
-                  aws iam get-policy-version \<br />
-                  &nbsp;&nbsp;--policy-arn arn:aws:iam::aws:policy/[PolicyName]
-                  \<br />
-                  &nbsp;&nbsp;--version-id [VersionId]
-                </div>
+      {/* How It Works */}
+      <section className="space-y-4">
+        <h2 className="text-xl font-bold font-mono text-zinc-900 dark:text-white">
+          How It Works
+        </h2>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div className="bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 rounded-lg p-5">
+            <div className="flex items-center gap-3 mb-3">
+              <div className="p-1.5 bg-red-50 dark:bg-red-950/30 rounded">
+                <Clock className="w-4 h-4 text-red-600 dark:text-red-400" />
               </div>
-            </div>
-
-            <div className="border-l-4 border-purple-500 pl-4">
-              <h3 className="text-lg font-semibold text-slate-900 dark:text-white mb-2">
-                3. Change Detection & Version Control
+              <h3 className="font-semibold text-sm text-zinc-900 dark:text-white">
+                Automated Collection
               </h3>
-              <p className="text-slate-600 dark:text-slate-400 leading-relaxed">
-                Each policy is compared against our Git repository. When changes
-                are detected:
-              </p>
-              <ul className="list-disc list-inside text-slate-600 dark:text-slate-400 space-y-2 mt-3">
-                <li>Policy documents are stored as individual JSON files</li>
-                <li>Each change gets its own Git commit with timestamp</li>
-                <li>Version history is preserved indefinitely</li>
-                <li>Diffs are automatically generated</li>
-              </ul>
             </div>
-
-            <div className="border-l-4 border-orange-500 pl-4">
-              <h3 className="text-lg font-semibold text-slate-900 dark:text-white mb-2">
-                4. Policy Validation
-              </h3>
-              <p className="text-slate-600 dark:text-slate-400 leading-relaxed">
-                Every policy is validated using{" "}
-                <strong>AWS IAM Access Analyzer</strong> to identify:
-              </p>
-              <ul className="list-disc list-inside text-slate-600 dark:text-slate-400 space-y-1 mt-2">
-                <li>Security warnings</li>
-                <li>Best practice recommendations</li>
-                <li>Syntax issues</li>
-                <li>Redundant statements</li>
-              </ul>
-            </div>
-
-            <div className="border-l-4 border-red-500 pl-4">
-              <h3 className="text-lg font-semibold text-slate-900 dark:text-white mb-2">
-                5. Multi-Channel Notifications
-              </h3>
-              <p className="text-slate-600 dark:text-slate-400 leading-relaxed">
-                Policy changes are broadcast through multiple channels:
-              </p>
-              <ul className="list-disc list-inside text-slate-600 dark:text-slate-400 space-y-1 mt-2">
-                <li>Bluesky (@mamip.bsky.social)</li>
-                <li>Twitter/𝕏 (@mamip_aws)</li>
-                <li>
-                  AWS SNS Topic
-                  (arn:aws:sns:eu-west-1:567589703415:mamip-sns-topic)
-                </li>
-                <li>GitHub commits & releases</li>
-              </ul>
-            </div>
+            <p className="text-sm text-zinc-600 dark:text-zinc-400 leading-relaxed">
+              A scheduled task fetches all AWS managed policies via the AWS API
+              multiple times per day on weekdays.
+            </p>
           </div>
-        </section>
 
-        {/* Technology Stack */}
-        <section>
-          <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-4">
-            🏗️ Technology Stack
-          </h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <div className="bg-slate-50 dark:bg-slate-900 rounded-lg p-4">
-              <h4 className="font-semibold text-slate-900 dark:text-white mb-2">
-                Infrastructure
-              </h4>
-              <ul className="text-sm text-slate-600 dark:text-slate-400 space-y-1">
-                <li>• AWS ECS Fargate (Spot)</li>
-                <li>• AWS CloudWatch Events</li>
-                <li>• AWS Secrets Manager</li>
-                <li>• Terraform (IaC)</li>
-              </ul>
+          <div className="bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 rounded-lg p-5">
+            <div className="flex items-center gap-3 mb-3">
+              <div className="p-1.5 bg-zinc-100 dark:bg-zinc-800 rounded">
+                <GitBranch className="w-4 h-4 text-zinc-600 dark:text-zinc-400" />
+              </div>
+              <h3 className="font-semibold text-sm text-zinc-900 dark:text-white">
+                Git Version Control
+              </h3>
             </div>
-            <div className="bg-slate-50 dark:bg-slate-900 rounded-lg p-4">
-              <h4 className="font-semibold text-slate-900 dark:text-white mb-2">
-                Application
-              </h4>
-              <ul className="text-sm text-slate-600 dark:text-slate-400 space-y-1">
-                <li>• Python 3.x</li>
-                <li>• AWS CLI & Boto3</li>
-                <li>• Docker</li>
-                <li>• Git</li>
-              </ul>
-            </div>
-            <div className="bg-slate-50 dark:bg-slate-900 rounded-lg p-4">
-              <h4 className="font-semibold text-slate-900 dark:text-white mb-2">
-                Website
-              </h4>
-              <ul className="text-sm text-slate-600 dark:text-slate-400 space-y-1">
-                <li>• Next.js 15 (SSG)</li>
-                <li>• TypeScript</li>
-                <li>• Tailwind CSS</li>
-                <li>• GitHub Pages</li>
-              </ul>
-            </div>
-            <div className="bg-slate-50 dark:bg-slate-900 rounded-lg p-4">
-              <h4 className="font-semibold text-slate-900 dark:text-white mb-2">
-                Validation
-              </h4>
-              <ul className="text-sm text-slate-600 dark:text-slate-400 space-y-1">
-                <li>• AWS IAM Access Analyzer</li>
-                <li>• Policy validation API</li>
-                <li>• Security findings</li>
-              </ul>
-            </div>
+            <p className="text-sm text-zinc-600 dark:text-zinc-400 leading-relaxed">
+              Each policy is stored as a JSON file. When changes are detected,
+              they are committed to Git with full diff history preserved
+              indefinitely.
+            </p>
           </div>
-        </section>
 
-        {/* Credits */}
-        <section className="border-t border-slate-200 dark:border-slate-700 pt-6">
-          <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-4">
-            💡 Credits & Inspiration
-          </h2>
-          <div className="bg-slate-50 dark:bg-slate-900 rounded-lg p-6 mb-6">
-            <p className="text-slate-600 dark:text-slate-400 leading-relaxed mb-3">
-              The initial idea for tracking AWS Managed IAM Policies comes from{" "}
-              <strong>
-                <a
-                  href="https://twitter.com/0xdabbad00"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300"
-                >
-                  Scott Piper (@0xdabbad00)
-                </a>
-              </strong>{" "}
-              from SummitRoute, who created the{" "}
+          <div className="bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 rounded-lg p-5">
+            <div className="flex items-center gap-3 mb-3">
+              <div className="p-1.5 bg-red-50 dark:bg-red-950/30 rounded">
+                <ShieldCheck className="w-4 h-4 text-red-600 dark:text-red-400" />
+              </div>
+              <h3 className="font-semibold text-sm text-zinc-900 dark:text-white">
+                Policy Validation
+              </h3>
+            </div>
+            <p className="text-sm text-zinc-600 dark:text-zinc-400 leading-relaxed">
+              Every policy is validated using AWS IAM Access Analyzer to flag
+              security warnings, best practice issues, and redundant
+              statements.
+            </p>
+          </div>
+
+          <div className="bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 rounded-lg p-5">
+            <div className="flex items-center gap-3 mb-3">
+              <div className="p-1.5 bg-zinc-100 dark:bg-zinc-800 rounded">
+                <Bell className="w-4 h-4 text-zinc-600 dark:text-zinc-400" />
+              </div>
+              <h3 className="font-semibold text-sm text-zinc-900 dark:text-white">
+                Notifications
+              </h3>
+            </div>
+            <p className="text-sm text-zinc-600 dark:text-zinc-400 leading-relaxed">
+              Policy changes are broadcast on{" "}
               <a
-                href="https://github.com/SummitRoute/aws_managed_policies"
+                href="https://bsky.app/profile/iamtrail.bsky.social"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300"
+                className="text-red-600 dark:text-red-400 hover:underline"
               >
-                original aws_managed_policies repository
+                Bluesky
               </a>
+              ,{" "}
+              <a
+                href="https://x.com/iamtrail_"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-red-600 dark:text-red-400 hover:underline"
+              >
+                X
+              </a>
+              , and via{" "}
+              <Link
+                href="/subscribe"
+                className="text-red-600 dark:text-red-400 hover:underline"
+              >
+                email digests
+              </Link>
               .
             </p>
-            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">
-              MAMIP extends this concept by adding automated infrastructure,
-              continuous monitoring, policy validation, multi-channel
-              notifications, and this searchable web interface. Scott's work
-              laid the foundation for tracking these important security changes
-              in the AWS ecosystem.
+          </div>
+        </div>
+      </section>
+
+      {/* AWS Account Lookup */}
+      <section className="bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 rounded-lg p-6">
+        <div className="flex items-start gap-4">
+          <div className="p-2 bg-zinc-100 dark:bg-zinc-800 rounded flex-shrink-0">
+            <Search className="w-5 h-5 text-zinc-600 dark:text-zinc-400" />
+          </div>
+          <div className="space-y-3">
+            <h2 className="text-xl font-bold font-mono text-zinc-900 dark:text-white">
+              AWS Account Lookup
+            </h2>
+            <p className="text-sm text-zinc-600 dark:text-zinc-400 leading-relaxed">
+              IAMTrail includes a{" "}
+              <Link
+                href="/accounts"
+                className="text-red-600 dark:text-red-400 hover:underline font-medium"
+              >
+                Known AWS Account Lookup
+              </Link>{" "}
+              tool powered by the{" "}
+              <a
+                href="https://github.com/fwdcloudsec/known_aws_accounts"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-red-600 dark:text-red-400 hover:underline font-medium"
+              >
+                fwdcloudsec/known_aws_accounts
+              </a>{" "}
+              community dataset. Paste an AWS account ID to identify its
+              owner - useful when investigating CloudTrail logs, S3 bucket
+              policies, or IAM trust relationships.
             </p>
           </div>
-        </section>
+        </div>
+      </section>
 
-        {/* Known AWS Accounts & fwd:cloudsec */}
-        <section className="border-t border-slate-200 dark:border-slate-700 pt-6">
-          <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-4">
-            🔎 Known AWS Account Lookup
-          </h2>
-          <div className="flex flex-col sm:flex-row items-start gap-5">
+      {/* Credits */}
+      <section className="bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 rounded-lg p-6 space-y-4">
+        <h2 className="text-xl font-bold font-mono text-zinc-900 dark:text-white">
+          Credits
+        </h2>
+        <div className="space-y-4">
+          <p className="text-sm text-zinc-600 dark:text-zinc-400 leading-relaxed">
+            The original idea for tracking AWS Managed IAM Policies comes from{" "}
             <a
-              href="https://fwdcloudsec.org/"
+              href="https://twitter.com/0xdabbad00"
               target="_blank"
               rel="noopener noreferrer"
-              className="flex-shrink-0 hover:opacity-80 transition-opacity"
+              className="text-red-600 dark:text-red-400 hover:underline font-medium"
             >
-              <img
-                src="https://fwdcloudsec.org/assets/img/logo.svg"
-                alt="fwd:cloudsec"
-                className="h-12 w-auto dark:invert"
-              />
-            </a>
-            <div className="space-y-3">
-              <p className="text-slate-600 dark:text-slate-400 leading-relaxed">
-                MAMIP includes a{" "}
-                <Link
-                  href={`${basePath}/accounts`}
-                  className="text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 font-medium"
-                >
-                  Known AWS Account Lookup
-                </Link>{" "}
-                tool powered by the{" "}
-                <a
-                  href="https://github.com/fwdcloudsec/known_aws_accounts"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 font-medium"
-                >
-                  fwdcloudsec/known_aws_accounts
-                </a>{" "}
-                community dataset. Paste an AWS account ID to identify its owner
-                - useful when investigating CloudTrail logs, S3 bucket policies,
-                or IAM trust relationships.
-              </p>
-              <p className="text-slate-600 dark:text-slate-400 leading-relaxed">
-                This dataset is maintained under the{" "}
-                <a
-                  href="https://fwdcloudsec.org/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 font-medium"
-                >
-                  fwd:cloudsec
-                </a>{" "}
-                organization, a non-profit conference on cloud security. At this
-                conference you can expect discussions about all the major cloud
-                platforms, both attack and defense research, limitations of
-                security features, the pros and cons of different security
-                strategies, and generally the types of things cloud practitioners
-                want to know, but that don't fit neatly into a vendor conference
-                schedule.
-              </p>
-            </div>
-          </div>
-        </section>
-
-        {/* About the Creator */}
-        <section>
-          <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-4">
-            👨‍💻 About the Maintainer
-          </h2>
-          <div className="flex items-start space-x-4">
-            <img
-              src={`${basePath}/zoph-logo.png`}
-              alt="zoph.io"
-              className="h-16 w-auto dark:brightness-110 flex-shrink-0"
-            />
-            <div className="space-y-3">
-              <p className="text-slate-600 dark:text-slate-400 leading-relaxed">
-                MAMIP is created and maintained by{" "}
-                <strong>
-                  <a
-                    href="https://zoph.io"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300"
-                  >
-                    zoph.io
-                  </a>
-                </strong>
-                , an <strong>AWS Cloud Advisory Boutique</strong> based in
-                France.
-              </p>
-              <p className="text-slate-600 dark:text-slate-400 leading-relaxed">
-                As a freelance AWS consultant specializing in cloud security,
-                compliance, and infrastructure automation, I created this tool
-                to help the AWS community stay informed about IAM policy changes
-                and maintain better security posture.
-              </p>
-              <p className="text-slate-600 dark:text-slate-400 leading-relaxed">
-                This project combines my expertise in AWS security, DevOps
-                practices, and open-source development to provide a valuable
-                resource for AWS practitioners worldwide.
-              </p>
-            </div>
-          </div>
-        </section>
-
-        {/* Links */}
-        <section className="bg-blue-50 dark:bg-blue-950/30 rounded-lg p-6">
-          <h2 className="text-xl font-bold text-slate-900 dark:text-white mb-4">
-            🔗 Useful Links
-          </h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              Scott Piper
+            </a>{" "}
+            (SummitRoute), who created the{" "}
             <a
-              href="https://github.com/z0ph/MAMIP"
+              href="https://github.com/SummitRoute/aws_managed_policies"
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center space-x-2 text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300"
+              className="text-red-600 dark:text-red-400 hover:underline font-medium"
             >
-              <span>→</span>
-              <span>GitHub Repository</span>
-            </a>
-            <a
-              href="https://bsky.app/profile/mamip.bsky.social"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center space-x-2 text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300"
-            >
-              <span>→</span>
-              <span>Follow on Bluesky</span>
-            </a>
-            <a
-              href="https://x.com/mamip_aws"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center space-x-2 text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300"
-            >
-              <span>→</span>
-              <span>Follow on Twitter/𝕏</span>
-            </a>
-            <a
-              href="https://zoph.io"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center space-x-2 text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300"
-            >
-              <span>→</span>
-              <span>AWS Cloud Advisory Services</span>
-            </a>
-          </div>
-        </section>
-
-        {/* Disclaimer */}
-        <section className="bg-amber-50 dark:bg-amber-950/20 border border-amber-200 dark:border-amber-800 rounded-lg p-6">
-          <h2 className="text-lg font-bold text-amber-900 dark:text-amber-200 mb-2 flex items-center">
-            <span className="mr-2">⚠️</span>
-            Important Disclaimer
-          </h2>
-          <p className="text-sm text-amber-800 dark:text-amber-300 leading-relaxed">
-            This is an <strong>unofficial archive</strong> and is{" "}
-            <strong>
-              not affiliated with, endorsed by, or sponsored by Amazon Web
-              Services (AWS)
-            </strong>
-            . AWS, Amazon Web Services, and all related marks are trademarks of
-            Amazon.com, Inc. or its affiliates. This project is independently
-            operated and maintained for educational and informational purposes.
+              aws_managed_policies
+            </a>{" "}
+            repository. IAMTrail builds on that idea with automated
+            infrastructure, continuous monitoring, policy validation, and this
+            web interface.
           </p>
-        </section>
+          <div className="flex items-start gap-4 pt-2">
+            <img
+              src="/zoph-logo.png"
+              alt="zoph.io"
+              className="h-10 w-auto dark:brightness-110 flex-shrink-0"
+            />
+            <p className="text-sm text-zinc-600 dark:text-zinc-400 leading-relaxed">
+              Created and maintained by{" "}
+              <a
+                href="https://zoph.io"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-red-600 dark:text-red-400 hover:underline font-medium"
+              >
+                zoph.io
+              </a>
+              , an AWS Cloud Advisory Boutique based in France, specializing
+              in cloud security, compliance, and infrastructure automation.
+            </p>
+          </div>
+        </div>
+      </section>
 
-        {/* CTA */}
-        <section className="text-center pt-6">
-          <Link
-            href={`${basePath}/policies`}
-            className="inline-flex items-center px-6 py-3 bg-blue-600 text-white rounded-lg font-semibold hover:bg-blue-700 transition-colors"
-          >
-            Explore Policy Archive →
-          </Link>
-        </section>
+      {/* Disclaimer */}
+      <section className="bg-amber-50 dark:bg-amber-950/20 border border-amber-200 dark:border-amber-800 rounded-lg p-5">
+        <div className="flex items-start gap-3">
+          <AlertTriangle className="w-4 h-4 text-amber-600 dark:text-amber-400 flex-shrink-0 mt-0.5" />
+          <p className="text-xs text-amber-800 dark:text-amber-300 leading-relaxed">
+            This is an <strong>unofficial archive</strong> and is not
+            affiliated with, endorsed by, or sponsored by Amazon Web Services
+            (AWS). AWS and related marks are trademarks of Amazon.com, Inc.
+          </p>
+        </div>
+      </section>
+
+      {/* CTA */}
+      <div className="text-center pb-4">
+        <Link
+          href="/policies"
+          className="inline-flex items-center gap-2 px-5 py-2.5 bg-red-600 text-white rounded font-mono font-semibold text-sm hover:bg-red-700 transition-colors"
+        >
+          Explore Policy Archive
+          <ArrowRight className="w-4 h-4" />
+        </Link>
       </div>
     </div>
   );

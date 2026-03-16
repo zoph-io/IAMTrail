@@ -1,11 +1,20 @@
 import StatsCard from "@/components/StatsCard";
 import PolicyList from "@/components/PolicyList";
 import PolicyAgeChart from "@/components/PolicyAgeChart";
+import SeasonalityChart from "@/components/SeasonalityChart";
+import ReinventPulseChart from "@/components/ReinventPulseChart";
+import VersionDistributionChart from "@/components/VersionDistributionChart";
+import VelocityChart from "@/components/VelocityChart";
 import Link from "next/link";
-
-// Get base path based on deployment target
-const basePath =
-  process.env.NEXT_PUBLIC_USE_BASE_PATH === "true" ? "/MAMIP" : "";
+import {
+  FileText,
+  Sparkles,
+  Trash2,
+  TrendingUp,
+  Ruler,
+  Layers,
+  ChevronRight,
+} from "lucide-react";
 
 async function getSummaryData() {
   try {
@@ -31,13 +40,12 @@ export default async function Home() {
   if (!summaryData) {
     return (
       <div className="text-center py-16">
-        <div className="text-6xl mb-4">📊</div>
-        <h1 className="text-2xl font-bold text-slate-900 dark:text-white mb-2">
+        <h1 className="text-2xl font-bold text-zinc-900 dark:text-white mb-2 font-mono">
           No Data Available
         </h1>
-        <p className="text-slate-600 dark:text-slate-400 mb-6">
+        <p className="text-zinc-600 dark:text-zinc-400 mb-6">
           Run{" "}
-          <code className="px-2 py-1 bg-slate-200 dark:bg-slate-700 rounded">
+          <code className="px-2 py-1 bg-zinc-100 dark:bg-zinc-800 rounded font-mono text-sm">
             npm run generate-data
           </code>{" "}
           to generate the policy data.
@@ -50,269 +58,275 @@ export default async function Home() {
   const deprecatedCount = Object.keys(deprecated).length;
 
   return (
-    <div className="space-y-8">
+    <div className="space-y-10">
       {/* Hero Section */}
-      <div className="text-center py-12">
-        <div className="flex justify-center mb-6">
-          <img
-            src={`${basePath}/zoph-logo.png`}
-            alt="zoph.io"
-            className="h-20 w-auto dark:brightness-110"
-          />
+      <div className="py-12 border-b border-zinc-100 dark:border-zinc-800">
+        <div className="max-w-3xl">
+          <div className="flex items-center gap-3 mb-4">
+            <h1 className="text-4xl md:text-5xl font-extrabold font-mono text-zinc-900 dark:text-white tracking-tight">
+              IAMTrail
+            </h1>
+            <span className="inline-block px-2 py-0.5 text-[10px] font-mono font-semibold uppercase tracking-widest bg-zinc-100 dark:bg-zinc-800 text-zinc-500 dark:text-zinc-400 rounded">
+              Unofficial
+            </span>
+          </div>
+          <p className="text-lg md:text-xl text-zinc-900 dark:text-white leading-relaxed">
+            AWS silently updates Managed IAM policies all the time.
+            <br />
+            <span className="text-red-600 dark:text-red-400 font-semibold">We catch every single change.</span>
+          </p>
+          <p className="mt-4 text-sm text-zinc-500 dark:text-zinc-400">
+            Full version history and diffs for{" "}
+            <span className="font-mono font-semibold text-zinc-700 dark:text-zinc-300">{stats.totalPolicies}</span>{" "}
+            AWS Managed IAM Policies, archived since 2019.
+            <span className="text-zinc-300 dark:text-zinc-700"> | </span>
+            A service by{" "}
+            <a
+              href="https://zoph.io"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="font-semibold text-zinc-700 dark:text-zinc-300 hover:text-red-600 dark:hover:text-red-400 transition-colors"
+            >
+              zoph.io
+            </a>
+          </p>
         </div>
-        <h1 className="text-4xl md:text-5xl font-bold text-slate-900 dark:text-white mb-2">
-          AWS Managed Policy Changes Archive
-        </h1>
-        <span className="inline-block px-3 py-1 text-sm font-medium bg-slate-200 dark:bg-slate-700 text-slate-600 dark:text-slate-400 rounded-full mb-4">
-          Unofficial
-        </span>
-        <p className="text-lg md:text-xl text-slate-600 dark:text-slate-400 max-w-3xl mx-auto mb-4">
-          Track every change to AWS Managed IAM Policies with full version
-          history.
-        </p>
-        <p className="text-sm text-slate-500 dark:text-slate-500">
-          A service by{" "}
-          <a
-            href="https://zoph.io"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="font-semibold text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 transition-colors"
-          >
-            zoph.io
-          </a>{" "}
-          - AWS Cloud Advisory Boutique
-        </p>
       </div>
 
       {/* Stats Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-        <Link href={`${basePath}/policies`}>
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+        <Link href="/policies">
           <StatsCard
             title="Total Policies"
             value={stats.totalPolicies.toLocaleString()}
             description="Active AWS Managed Policies"
-            icon="📋"
+            icon={<FileText className="w-8 h-8" />}
           />
         </Link>
-        <StatsCard
-          title="Brand New (v1)"
-          value={stats.brandNew?.length || 0}
-          description="New AWS services/features"
-          icon="🆕"
-        />
-        <Link href={`${basePath}/deprecated`}>
+        <Link href="/brand-new">
+          <StatsCard
+            title="Brand New (v1)"
+            value={stats.brandNew?.length || 0}
+            description="New AWS services/features"
+            icon={<Sparkles className="w-8 h-8" />}
+          />
+        </Link>
+        <Link href="/deprecated">
           <StatsCard
             title="Deprecated"
             value={deprecatedCount.toLocaleString()}
             description="Removed from AWS"
-            icon="🗑️"
+            icon={<Trash2 className="w-8 h-8" />}
           />
         </Link>
-        <Link href={`${basePath}/most-active`}>
+        <Link href="/most-active">
           <StatsCard
             title="Most Active"
             value={stats.mostModified[0]?.versionsCount || 0}
             description={`${stats.mostModified[0]?.name.substring(0, 20)}...`}
-            icon="📈"
+            icon={<TrendingUp className="w-8 h-8" />}
           />
         </Link>
       </div>
 
       {/* Brand New Policies Spotlight */}
       {stats.brandNew && stats.brandNew.length > 0 && (
-        <div className="relative overflow-hidden bg-gradient-to-br from-emerald-600 via-emerald-500 to-teal-600 dark:from-emerald-700 dark:via-emerald-600 dark:to-teal-700 rounded-2xl p-8 text-white shadow-xl">
-          <div className="absolute inset-0 bg-grid-white/10 [mask-image:linear-gradient(0deg,transparent,black)]"></div>
-          <div className="relative">
-            <div className="flex items-center space-x-3 mb-4">
-              <span className="text-4xl">🆕</span>
+        <div className="border border-red-200 dark:border-red-900/50 rounded-lg overflow-hidden">
+          <div className="px-6 py-4 bg-red-50 dark:bg-red-950/30 border-b border-red-200 dark:border-red-900/50">
+            <div className="flex items-center space-x-3">
+              <Sparkles className="w-5 h-5 text-red-600 dark:text-red-400" />
               <div>
-                <h3 className="text-2xl font-bold">Brand New Policies (v1)</h3>
-                <p className="text-emerald-100">
+                <h3 className="text-sm font-bold font-mono uppercase tracking-wider text-red-700 dark:text-red-400">
+                  Brand New Policies (v1)
+                </h3>
+                <p className="text-xs text-red-600/70 dark:text-red-400/70 mt-0.5">
                   Spot upcoming AWS services early - {stats.brandNew.length} new
                   policies detected
                 </p>
               </div>
             </div>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-3 mt-6">
-              {stats.brandNew.slice(0, 6).map((policy: any) => (
-                <Link
-                  key={policy.name}
-                  href={`${basePath}/policies/${encodeURIComponent(
-                    policy.name
-                  )}`}
-                  className="bg-white/10 hover:bg-white/20 backdrop-blur-sm rounded-lg p-4 transition-all group"
-                >
-                  <div className="flex items-center justify-between">
-                    <div className="flex-1 min-w-0">
-                      <p className="text-sm font-semibold text-white truncate group-hover:text-emerald-50">
-                        {policy.name}
-                      </p>
-                      <p className="text-xs text-emerald-100 mt-1">
-                        Version {policy.versionId} • Created{" "}
-                        {policy.createDate
-                          ? new Date(policy.createDate).toLocaleDateString()
-                          : "recently"}
-                      </p>
-                    </div>
-                    <svg
-                      className="w-5 h-5 text-emerald-200 flex-shrink-0 ml-2 group-hover:translate-x-1 transition-transform"
-                      fill="none"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth="2"
-                      viewBox="0 0 24 24"
-                      stroke="currentColor"
-                    >
-                      <path d="M9 5l7 7-7 7" />
-                    </svg>
-                  </div>
-                </Link>
-              ))}
-            </div>
           </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 divide-y md:divide-y-0 md:divide-x divide-zinc-100 dark:divide-zinc-800">
+            {stats.brandNew.slice(0, 6).map((policy: any) => (
+              <Link
+                key={policy.name}
+                href={`/policies/${encodeURIComponent(policy.name)}`}
+                className="flex items-center justify-between px-5 py-3 hover:bg-zinc-50 dark:hover:bg-zinc-800/50 transition-colors group"
+              >
+                <div className="flex-1 min-w-0">
+                  <p className="text-sm font-medium text-zinc-900 dark:text-white truncate group-hover:text-red-600 dark:group-hover:text-red-400 transition-colors">
+                    {policy.name}
+                  </p>
+                  <p className="text-xs text-zinc-500 dark:text-zinc-400 font-mono mt-0.5">
+                    {policy.versionId} / {policy.createDate
+                      ? new Date(policy.createDate).toLocaleDateString()
+                      : "recently"}
+                  </p>
+                </div>
+                <ChevronRight className="w-4 h-4 text-zinc-300 dark:text-zinc-600 flex-shrink-0 ml-2 group-hover:text-red-500 transition-colors" />
+              </Link>
+            ))}
+          </div>
+          {stats.brandNew.length > 6 && (
+            <div className="px-5 py-3 border-t border-zinc-100 dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-900">
+              <Link
+                href="/brand-new"
+                className="inline-flex items-center gap-1 text-sm font-medium font-mono text-red-600 dark:text-red-400 hover:text-red-700 dark:hover:text-red-300 transition-colors"
+              >
+                View all {stats.brandNew.length} new policies
+                <ChevronRight className="w-4 h-4" />
+              </Link>
+            </div>
+          )}
         </div>
       )}
 
-      {/* Quick Actions */}
-      <div className="relative overflow-hidden bg-gradient-to-br from-blue-600 via-blue-500 to-blue-700 dark:from-blue-700 dark:via-blue-600 dark:to-blue-800 rounded-2xl p-8 text-white shadow-xl">
-        <div className="absolute inset-0 bg-grid-white/10 [mask-image:linear-gradient(0deg,transparent,black)]"></div>
-        <div className="relative flex items-center justify-between">
-          <div>
-            <h3 className="text-2xl font-bold mb-2">Browse All Policies</h3>
-            <p className="text-blue-100">
-              Search, filter, and explore {stats.totalPolicies} AWS Managed IAM
-              Policies
+      {/* Subscribe CTA */}
+      <div className="border border-zinc-900 dark:border-zinc-100 rounded-lg p-6 bg-zinc-900 dark:bg-zinc-100">
+        <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+          <div className="flex-1">
+            <div className="flex items-center gap-2 mb-2">
+              <span className="inline-block w-1.5 h-1.5 bg-green-400 rounded-full animate-pulse"></span>
+              <span className="text-[10px] font-mono font-semibold text-green-400 dark:text-green-600 uppercase tracking-widest">
+                Free - No account needed
+              </span>
+            </div>
+            <h3 className="text-lg font-bold font-mono text-white dark:text-zinc-900">
+              Get notified when policies change
+            </h3>
+            <p className="text-sm text-zinc-400 dark:text-zinc-600 mt-1">
+              Daily or weekly email digests with inline diffs. Pick specific policies or track them all.
             </p>
           </div>
           <Link
-            href={`${basePath}/policies`}
-            className="px-6 py-3 bg-white text-blue-600 rounded-lg font-semibold hover:bg-blue-50 hover:shadow-lg transition-all transform hover:scale-105"
+            href="/subscribe"
+            className="px-5 py-2.5 bg-red-600 text-white rounded font-mono font-semibold text-sm hover:bg-red-700 transition-colors flex-shrink-0"
           >
-            Explore →
+            Subscribe
           </Link>
         </div>
       </div>
 
-      {/* Policy Age Histogram + New Stats */}
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+      {/* Policy Age Histogram + Stats */}
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
         <div className="lg:col-span-2">
           {stats.policiesByYear && (
             <PolicyAgeChart policiesByYear={stats.policiesByYear} />
           )}
         </div>
-        <div className="space-y-6">
-          <Link href={`${basePath}/largest-policies`}>
+        <div className="space-y-4">
+          <Link href="/largest-policies">
             <StatsCard
               title="Largest Policy"
               value={`${stats.largestByActionCount?.[0]?.actionCount || 0} actions`}
               description={
-                stats.largestByActionCount?.[0]?.name.substring(0, 25) + "..." ||
-                "N/A"
+                stats.largestByActionCount?.[0]?.name.substring(0, 25) +
+                  "..." || "N/A"
               }
-              icon="📐"
+              icon={<Ruler className="w-8 h-8" />}
             />
           </Link>
-          <Link href={`${basePath}/service-growth`}>
+          <Link href="/service-growth">
             <StatsCard
               title="AWS Services Tracked"
               value={
                 stats.serviceGrowth
                   ? Object.values(
-                      stats.serviceGrowth as Record<string, string[]>
+                      stats.serviceGrowth as Record<string, string[]>,
                     ).reduce((sum, arr) => sum + arr.length, 0)
                   : 0
               }
               description="IAM service namespaces over time"
-              icon="🚀"
+              icon={<Layers className="w-8 h-8" />}
             />
           </Link>
         </div>
       </div>
 
+      {/* Velocity + Version Distribution */}
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+        {stats.yearlyVelocity && (
+          <VelocityChart
+            yearlyVelocity={stats.yearlyVelocity}
+            bulkDaysExcluded={stats.bulkDaysExcluded}
+          />
+        )}
+        {stats.versionDistribution && (
+          <VersionDistributionChart
+            versionDistribution={stats.versionDistribution}
+            topVersionPolicies={stats.topVersionPolicies || []}
+          />
+        )}
+      </div>
+
+      {/* Seasonality + re:Invent Pulse */}
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
+        <div className="lg:col-span-2">
+          {stats.changesByMonth && (
+            <SeasonalityChart changesByMonth={stats.changesByMonth} />
+          )}
+        </div>
+        {stats.reinventPulse && (
+          <ReinventPulseChart reinventPulse={stats.reinventPulse} />
+        )}
+      </div>
+
       {/* Policy Lists Grid */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
         <PolicyList
-          title="📅 Recently Updated"
+          title="Recently Updated"
           policies={stats.recentlyUpdated}
           showVersions={true}
         />
-        <PolicyList
-          title="🔥 Most Modified"
-          policies={stats.mostModified}
-          showVersions={true}
-        />
+        {stats.volatileThisYear && stats.volatileThisYear.length > 0 ? (
+          <div className="bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 rounded-lg overflow-hidden">
+            <div className="px-5 py-3 border-b border-zinc-200 dark:border-zinc-800">
+              <h3 className="text-sm font-semibold font-mono uppercase tracking-wider text-zinc-900 dark:text-white">
+                Most Volatile (Trailing 12 Months)
+              </h3>
+            </div>
+            <div className="divide-y divide-zinc-100 dark:divide-zinc-800">
+              {stats.volatileThisYear.map(
+                (p: { name: string; changesThisYear: number }) => (
+                  <Link
+                    key={p.name}
+                    href={`/policies/${encodeURIComponent(p.name)}`}
+                    className="flex items-center justify-between px-5 py-3 hover:bg-zinc-50 dark:hover:bg-zinc-800/50 transition-colors"
+                  >
+                    <span className="text-sm text-zinc-900 dark:text-white truncate mr-3">
+                      {p.name}
+                    </span>
+                    <span className="flex-shrink-0 inline-flex items-center px-2 py-0.5 rounded text-xs font-mono font-medium bg-amber-50 text-amber-700 dark:bg-amber-900/30 dark:text-amber-300 border border-amber-200 dark:border-amber-800">
+                      {p.changesThisYear} changes
+                    </span>
+                  </Link>
+                ),
+              )}
+            </div>
+          </div>
+        ) : (
+          <PolicyList
+            title="Newest Policies"
+            policies={stats.newest}
+            showVersions={false}
+          />
+        )}
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-        <PolicyList
-          title="🆕 Newest Policies"
-          policies={stats.newest}
-          showVersions={false}
-        />
-        <PolicyList
-          title="⏳ Oldest Policies"
-          policies={stats.oldest}
-          showVersions={false}
-        />
-      </div>
-
-      {/* Info Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-8">
-        <div className="group bg-white dark:bg-slate-800 rounded-xl shadow-sm border border-slate-200 dark:border-slate-700 p-6 hover:shadow-md hover:border-blue-200 dark:hover:border-blue-800 transition-all">
-          <div className="text-3xl mb-3 group-hover:scale-110 transition-transform inline-block">
-            📢
-          </div>
-          <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
-            Stay Updated
-          </h3>
-          <p className="text-sm text-slate-600 dark:text-slate-400">
-            Follow{" "}
-            <a
-              href="https://bsky.app/profile/mamip.bsky.social"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 font-medium hover:underline transition-colors"
-            >
-              @mamip.bsky.social
-            </a>{" "}
-            for real-time policy updates
-          </p>
+      {stats.volatileThisYear && stats.volatileThisYear.length > 0 && (
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+          <PolicyList
+            title="Newest Policies"
+            policies={stats.newest}
+            showVersions={false}
+          />
+          <PolicyList
+            title="Oldest Policies"
+            policies={stats.oldest}
+            showVersions={false}
+          />
         </div>
-
-        <div className="group bg-white dark:bg-slate-800 rounded-xl shadow-sm border border-slate-200 dark:border-slate-700 p-6 hover:shadow-md hover:border-blue-200 dark:hover:border-blue-800 transition-all">
-          <div className="text-3xl mb-3 group-hover:scale-110 transition-transform inline-block">
-            🔍
-          </div>
-          <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
-            Version History
-          </h3>
-          <p className="text-sm text-slate-600 dark:text-slate-400">
-            Every policy change is tracked in git with full version history and
-            diffs
-          </p>
-        </div>
-
-        <div className="group bg-white dark:bg-slate-800 rounded-xl shadow-sm border border-slate-200 dark:border-slate-700 p-6 hover:shadow-md hover:border-blue-200 dark:hover:border-blue-800 transition-all">
-          <div className="text-3xl mb-3 group-hover:scale-110 transition-transform inline-block">
-            ⚡
-          </div>
-          <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
-            Open Source
-          </h3>
-          <p className="text-sm text-slate-600 dark:text-slate-400">
-            View the source on{" "}
-            <a
-              href="https://github.com/z0ph/MAMIP"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 font-medium hover:underline transition-colors"
-            >
-              GitHub
-            </a>{" "}
-            and contribute
-          </p>
-        </div>
-      </div>
+      )}
     </div>
   );
 }

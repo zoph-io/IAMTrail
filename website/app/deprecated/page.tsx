@@ -6,12 +6,9 @@ export const metadata: Metadata = {
   description:
     "Complete list of deprecated AWS Managed IAM Policies with deprecation dates. Track which policies have been removed from AWS.",
   alternates: {
-    canonical: "https://mamip.zoph.io/deprecated",
+    canonical: "https://iamtrail.com/deprecated",
   },
 };
-
-const basePath =
-  process.env.NEXT_PUBLIC_USE_BASE_PATH === "true" ? "/MAMIP" : "";
 
 async function getSummaryData() {
   const fs = require("fs");
@@ -27,7 +24,7 @@ export default async function DeprecatedPage() {
   if (!summaryData) {
     return (
       <div className="text-center py-16">
-        <p className="text-slate-600 dark:text-slate-400">No data available.</p>
+        <p className="text-zinc-600 dark:text-zinc-400 text-sm">No data available.</p>
       </div>
     );
   }
@@ -47,35 +44,35 @@ export default async function DeprecatedPage() {
 
   return (
     <div className="max-w-4xl mx-auto space-y-8">
-      <div className="text-center py-8">
-        <h1 className="text-4xl font-bold text-slate-900 dark:text-white mb-3">
+      <div className="py-8 border-b border-zinc-100 dark:border-zinc-800">
+        <h1 className="text-2xl font-bold font-mono text-zinc-900 dark:text-white mb-2">
           Deprecated Policies
         </h1>
-        <p className="text-lg text-slate-600 dark:text-slate-400">
+        <p className="text-sm text-zinc-600 dark:text-zinc-400">
           {items.length} AWS Managed IAM Policies that have been removed
         </p>
       </div>
 
       {withDate.length > 0 && (
-        <div className="bg-white dark:bg-slate-800 rounded-xl shadow-sm border border-slate-200 dark:border-slate-700 overflow-hidden">
-          <div className="px-6 py-4 border-b border-slate-200 dark:border-slate-700">
-            <h2 className="text-lg font-semibold text-slate-900 dark:text-white">
+        <div className="bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 rounded-lg overflow-hidden">
+          <div className="px-5 py-3 border-b border-zinc-200 dark:border-zinc-800">
+            <h2 className="text-sm font-semibold font-mono uppercase tracking-wider text-zinc-900 dark:text-white">
               With known deprecation date ({withDate.length})
             </h2>
           </div>
-          <div className="divide-y divide-slate-200 dark:divide-slate-700">
+          <div className="divide-y divide-zinc-100 dark:divide-zinc-800">
             {withDate.map((item) => (
               <Link
                 key={item.name}
-                href={`${basePath}/policies/${encodeURIComponent(item.name)}`}
-                className="flex items-center justify-between px-6 py-4 hover:bg-slate-50 dark:hover:bg-slate-700/50 transition-colors"
+                href={`/policies/${encodeURIComponent(item.name)}`}
+                className="flex items-center justify-between px-5 py-3 hover:bg-zinc-50 dark:hover:bg-zinc-800/50 transition-colors"
               >
                 <div className="flex-1 min-w-0">
-                  <p className="text-sm font-medium text-slate-900 dark:text-white truncate">
+                  <p className="text-sm font-medium text-zinc-900 dark:text-white truncate">
                     {item.name}
                   </p>
                 </div>
-                <span className="ml-4 flex-shrink-0 text-sm text-slate-500 dark:text-slate-400">
+                <span className="ml-4 flex-shrink-0 text-xs font-mono text-zinc-500 dark:text-zinc-400">
                   {item.date}
                 </span>
               </Link>
@@ -85,27 +82,27 @@ export default async function DeprecatedPage() {
       )}
 
       {withoutDate.length > 0 && (
-        <div className="bg-white dark:bg-slate-800 rounded-xl shadow-sm border border-slate-200 dark:border-slate-700 overflow-hidden">
-          <div className="px-6 py-4 border-b border-slate-200 dark:border-slate-700">
-            <h2 className="text-lg font-semibold text-slate-900 dark:text-white">
+        <div className="bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 rounded-lg overflow-hidden">
+          <div className="px-5 py-3 border-b border-zinc-200 dark:border-zinc-800">
+            <h2 className="text-sm font-semibold font-mono uppercase tracking-wider text-zinc-900 dark:text-white">
               Unknown deprecation date ({withoutDate.length})
             </h2>
           </div>
-          <div className="divide-y divide-slate-200 dark:divide-slate-700">
+          <div className="divide-y divide-zinc-100 dark:divide-zinc-800">
             {withoutDate
               .sort((a, b) => a.name.localeCompare(b.name))
               .map((item) => (
                 <Link
                   key={item.name}
-                  href={`${basePath}/policies/${encodeURIComponent(item.name)}`}
-                  className="flex items-center justify-between px-6 py-4 hover:bg-slate-50 dark:hover:bg-slate-700/50 transition-colors"
+                  href={`/policies/${encodeURIComponent(item.name)}`}
+                  className="flex items-center justify-between px-5 py-3 hover:bg-zinc-50 dark:hover:bg-zinc-800/50 transition-colors"
                 >
                   <div className="flex-1 min-w-0">
-                    <p className="text-sm font-medium text-slate-900 dark:text-white truncate">
+                    <p className="text-sm font-medium text-zinc-900 dark:text-white truncate">
                       {item.name}
                     </p>
                   </div>
-                  <span className="ml-4 flex-shrink-0 text-xs text-slate-400 dark:text-slate-500">
+                  <span className="ml-4 flex-shrink-0 text-xs font-mono text-zinc-400 dark:text-zinc-500">
                     Unknown
                   </span>
                 </Link>

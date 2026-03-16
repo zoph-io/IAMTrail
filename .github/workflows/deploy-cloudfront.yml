@@ -16,8 +16,8 @@ permissions:
 
 env:
   AWS_REGION: eu-west-1
-  S3_BUCKET: mamip.zoph.io
-  CLOUDFRONT_DISTRIBUTION_ID: E9B7QP8QWPHLW
+  S3_BUCKET: iamtrail.com
+  CLOUDFRONT_DISTRIBUTION_ID: E2R2N8OZK7U78U  # TODO: Update after Terraform creates new distribution for iamtrail.com
 
 jobs:
   build-and-deploy:
@@ -53,7 +53,7 @@ jobs:
         uses: aws-actions/configure-aws-credentials@v4
         with:
           role-to-assume: ${{ secrets.ROLE_TO_ASSUME }}
-          role-session-name: GH-Actions-MAMIP-Website-Deploy
+          role-session-name: GH-Actions-IAMTrail-Website-Deploy
           aws-region: ${{ env.AWS_REGION }}
 
       - name: Sync to S3
@@ -85,7 +85,7 @@ jobs:
       - name: Deployment summary
         run: |
           echo "✅ Website deployed successfully!"
-          echo "🌐 URL: https://mamip.zoph.io"
+          echo "🌐 URL: https://iamtrail.com"
           echo "📦 S3 Bucket: s3://${{ env.S3_BUCKET }}"
           echo "☁️  CloudFront Distribution: ${{ env.CLOUDFRONT_DISTRIBUTION_ID }}"
           echo "🔄 Cache invalidated"
