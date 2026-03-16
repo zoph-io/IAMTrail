@@ -42,7 +42,7 @@ jobs:
           tf_actions_subcommand: "init"
           tf_actions_working_dir: ${{ env.tf_working_dir }}
           tf_actions_comment: false
-          args: '-backend-config="bucket=${{ secrets.TF_STATE_S3_BUCKET }}" -backend-config="key=mamip/terraform-${{ env.env }}.tfstate"'
+          args: '-backend-config="bucket=${{ secrets.TF_STATE_S3_BUCKET }}" -backend-config="key=${{ env.project }}/terraform.tfstate"'
 
       - name: "Terraform Plan"
         id: plan
