@@ -7,9 +7,9 @@
                     "Sid": "AllowPassRoleToElasticBeanstalkAndDownstreamServices",
                     "Effect": "Allow",
                     "Action": "iam:PassRole",
-                    "Resource": "*",
+                    "Resource": "arn:aws:iam::*:role/*",
                     "Condition": {
-                        "StringLikeIfExists": {
+                        "StringEquals": {
                             "iam:PassedToService": [
                                 "elasticbeanstalk.amazonaws.com",
                                 "ec2.amazonaws.com",
@@ -224,11 +224,26 @@
                             ]
                         }
                     }
+                },
+                {
+                    "Sid": "LaunchTemplateTagPropagationPermissions",
+                    "Effect": "Allow",
+                    "Action": "ec2:createTags",
+                    "Resource": "*",
+                    "Condition": {
+                        "StringEquals": {
+                            "ec2:CreateAction": [
+                                "CreateLaunchTemplate",
+                                "RunInstances",
+                                "AllocateAddress"
+                            ]
+                        }
+                    }
                 }
             ]
         },
-        "VersionId": "v9",
-        "IsDefaultVersion": false,
-        "CreateDate": "2024-04-29T23:11:34+00:00"
+        "VersionId": "v10",
+        "IsDefaultVersion": true,
+        "CreateDate": "2026-03-13T16:12:13+00:00"
     }
 }
