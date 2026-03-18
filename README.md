@@ -22,7 +22,7 @@ Track every change to AWS Managed IAM Policies with full version history and val
 
 Explore AWS Managed IAM Policies through a searchable web interface at **[iamtrail.com](https://iamtrail.com)**:
 
-[![IAMTrail Website](assets/compagnion-website.png)](https://iamtrail.com)
+[![IAMTrail Website](assets/screenshot.png)](https://iamtrail.com)
 
 - Search and filter across 1,465+ managed policies
 - Full version history with git diffs for every policy
