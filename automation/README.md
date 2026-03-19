@@ -204,4 +204,4 @@ When contributing to this script:
 
 ## License
 
-This script is part of the MAMIP project. See the main project LICENSE file for details.
+This script is part of the IAMTrail project. See the main project LICENSE file for details.

@@ -245,14 +245,14 @@ process_changes() {
 ####################
 
 main() {
-    log "Starting MAMIP update process"
-    discord_notify 3447003 "Runbook Started" "MAMIP update process initiated"
+    log "Starting IAMTrail update process"
+    discord_notify 3447003 "Runbook Started" "IAMTrail update process initiated"
     setup_git_auth
     clone_repo
     process_policies
     process_changes
     log "Job completed successfully"
-    discord_notify 3066993 "Runbook Complete" "MAMIP update process finished successfully"
+    discord_notify 3066993 "Runbook Complete" "IAMTrail update process finished successfully"
 }
 
 main

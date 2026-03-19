@@ -70,7 +70,7 @@ resource "aws_cloudwatch_event_target" "ecs_task_failure_target" {
     }
     input_template = <<EOF
 {
-  "Subject": "🚨 MAMIP ECS Task Failed",
+  "Subject": "🚨 IAMTrail ECS Task Failed",
   "Message": "ECS Task failed in cluster <clusterArn>.\nTask ARN: <taskArn>\nStatus: <lastStatus>\nReason: <stoppedReason>\nContainers: <containers>"
 }
 EOF
