@@ -14,7 +14,53 @@ import {
   Ruler,
   Layers,
   ChevronRight,
+  Globe,
 } from "lucide-react";
+
+const ENDPOINT_CHANGE_BADGE: Record<
+  string,
+  { label: string; color: string; bg: string; border: string }
+> = {
+  new_region: {
+    label: "New Region",
+    color: "text-emerald-700 dark:text-emerald-400",
+    bg: "bg-emerald-50 dark:bg-emerald-950/30",
+    border: "border-emerald-200 dark:border-emerald-800",
+  },
+  new_service: {
+    label: "New Service",
+    color: "text-blue-700 dark:text-blue-400",
+    bg: "bg-blue-50 dark:bg-blue-950/30",
+    border: "border-blue-200 dark:border-blue-800",
+  },
+  service_expansion: {
+    label: "Expansion",
+    color: "text-indigo-700 dark:text-indigo-400",
+    bg: "bg-indigo-50 dark:bg-indigo-950/30",
+    border: "border-indigo-200 dark:border-indigo-800",
+  },
+  removed_region: {
+    label: "Removed",
+    color: "text-red-700 dark:text-red-400",
+    bg: "bg-red-50 dark:bg-red-950/30",
+    border: "border-red-200 dark:border-red-800",
+  },
+};
+
+async function getEndpointsSummary() {
+  try {
+    const fs = require("fs");
+    const path = require("path");
+    const dataPath = path.join(
+      process.cwd(),
+      "public/data/endpoints-summary.json"
+    );
+    if (!fs.existsSync(dataPath)) return null;
+    return JSON.parse(fs.readFileSync(dataPath, "utf8"));
+  } catch {
+    return null;
+  }
+}
 
 async function getSummaryData() {
   try {
@@ -36,6 +82,7 @@ async function getSummaryData() {
 
 export default async function Home() {
   const summaryData = await getSummaryData();
+  const endpointsData = await getEndpointsSummary();
 
   if (!summaryData) {
     return (
@@ -206,6 +253,90 @@ export default async function Home() {
           </Link>
         </div>
       </div>
+
+      {/* Endpoint Signals */}
+      {endpointsData && (
+        <div className="border border-zinc-200 dark:border-zinc-800 rounded-lg overflow-hidden">
+          <div className="px-6 py-4 bg-zinc-50 dark:bg-zinc-900 border-b border-zinc-200 dark:border-zinc-800">
+            <div className="flex items-center space-x-3">
+              <Globe className="w-5 h-5 text-zinc-500 dark:text-zinc-400" />
+              <div>
+                <h3 className="text-sm font-bold font-mono uppercase tracking-wider text-zinc-700 dark:text-zinc-300">
+                  Endpoint Signals
+                </h3>
+                <p className="text-xs text-zinc-500 dark:text-zinc-400 mt-0.5">
+                  {endpointsData.currentState.totalRegions} regions,{" "}
+                  {endpointsData.currentState.partitions.find((p: any) => p.partition === "aws")?.serviceCount || endpointsData.currentState.totalServices} services tracked from botocore
+                </p>
+              </div>
+            </div>
+          </div>
+          {endpointsData.recentChanges.length > 0 ? (
+            <>
+              <div className="divide-y divide-zinc-100 dark:divide-zinc-800">
+                {endpointsData.recentChanges
+                  .slice(0, 3)
+                  .flatMap((record: any) =>
+                    record.changes.slice(0, 5).map((change: any, cIdx: number) => ({
+                      ...change,
+                      detected_at: record.detected_at,
+                      key: `${record.detected_at}-${cIdx}`,
+                    }))
+                  )
+                  .slice(0, 5)
+                  .map((change: any) => {
+                    const badge = ENDPOINT_CHANGE_BADGE[change.type] || {
+                      label: change.type,
+                      color: "text-zinc-600 dark:text-zinc-400",
+                      bg: "bg-zinc-50 dark:bg-zinc-800",
+                      border: "border-zinc-200 dark:border-zinc-700",
+                    };
+                    return (
+                      <div
+                        key={change.key}
+                        className="px-5 py-3 flex items-center gap-3"
+                      >
+                        <span
+                          className={`flex-shrink-0 inline-flex items-center px-2 py-0.5 rounded text-[10px] font-mono font-medium ${badge.bg} ${badge.color} border ${badge.border}`}
+                        >
+                          {badge.label}
+                        </span>
+                        <span className="text-sm text-zinc-700 dark:text-zinc-300 truncate">
+                          {change.description}
+                        </span>
+                        <span className="text-xs text-zinc-400 dark:text-zinc-500 flex-shrink-0 ml-auto font-mono">
+                          {change.partition}
+                        </span>
+                      </div>
+                    );
+                  })}
+              </div>
+              <div className="px-5 py-3 border-t border-zinc-100 dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-900">
+                <Link
+                  href="/endpoints"
+                  className="inline-flex items-center gap-1 text-sm font-medium font-mono text-red-600 dark:text-red-400 hover:text-red-700 dark:hover:text-red-300 transition-colors"
+                >
+                  View all endpoint changes
+                  <ChevronRight className="w-4 h-4" />
+                </Link>
+              </div>
+            </>
+          ) : (
+            <div className="px-5 py-4 flex items-center justify-between">
+              <span className="text-sm text-zinc-500 dark:text-zinc-400">
+                No recent changes detected
+              </span>
+              <Link
+                href="/endpoints"
+                className="inline-flex items-center gap-1 text-sm font-medium font-mono text-red-600 dark:text-red-400 hover:text-red-700 dark:hover:text-red-300 transition-colors"
+              >
+                Explore endpoints
+                <ChevronRight className="w-4 h-4" />
+              </Link>
+            </div>
+          )}
+        </div>
+      )}
 
       {/* Policy Age Histogram + Stats */}
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">

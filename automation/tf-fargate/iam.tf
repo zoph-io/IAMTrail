@@ -42,14 +42,14 @@ data "aws_iam_policy_document" "ecs_service_policy" {
     ]
   }
   statement {
-    effect = "Allow"
+    effect    = "Allow"
     resources = ["arn:aws:sns:${var.aws_region}:${data.aws_caller_identity.current.account_id}:mamip-sns-topic"]
     actions = [
       "sns:Publish"
     ]
   }
   statement {
-    effect = "Allow"
+    effect    = "Allow"
     resources = ["arn:aws:secretsmanager:${var.aws_region}:${data.aws_caller_identity.current.account_id}:secret:mamip/prod/github-*"]
     actions = [
       "secretsmanager:GetSecretValue"
@@ -79,6 +79,23 @@ resource "aws_iam_role_policy" "ecs_service_role_policy" {
   name   = "${var.project}_ecs_service_role_policy_${var.env}"
   policy = data.aws_iam_policy_document.ecs_service_policy.json
   role   = aws_iam_role.ecs_role.id
+}
+
+# ──────────────────────────────────────────────
+# GitHub Actions IAM Policy (GhA-MAMIP-Role)
+# ──────────────────────────────────────────────
+
+resource "aws_iam_policy" "github_actions" {
+  name        = "iamtrail-github-actions-policy"
+  description = "IAM policy for IAMTrail GitHub Actions workflows (Terraform, website deploy, endpoint monitor)"
+  policy      = file("${path.module}/../github-actions-iam-policy.json")
+
+  tags = var.tags
+}
+
+resource "aws_iam_role_policy_attachment" "github_actions" {
+  role       = "GhA-MAMIP-Role"
+  policy_arn = aws_iam_policy.github_actions.arn
 }
 
 # SNS Topic Policy to allow CloudWatch Events to publish

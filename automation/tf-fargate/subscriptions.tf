@@ -298,6 +298,29 @@ resource "aws_dynamodb_table" "policy_changes" {
   }
 }
 
+# ──────────────────────────────────────
+# DynamoDB - Endpoint Changes (botocore)
+# ──────────────────────────────────────
+
+resource "aws_dynamodb_table" "endpoint_changes" {
+  name         = "iamtrail-endpoint-changes"
+  billing_mode = "PAY_PER_REQUEST"
+  hash_key     = "detected_date"
+  range_key    = "change_id"
+
+  attribute {
+    name = "detected_date"
+    type = "S"
+  }
+
+  attribute {
+    name = "change_id"
+    type = "S"
+  }
+
+  tags = var.tags
+}
+
 # ──────────────────────────────
 # SQS Queue for Change Recording
 # ──────────────────────────────

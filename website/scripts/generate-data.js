@@ -444,6 +444,7 @@ async function generatePolicyData() {
     { loc: "/accounts/", priority: "0.7", changefreq: "weekly" },
     { loc: "/largest-policies/", priority: "0.7", changefreq: "weekly" },
     { loc: "/service-growth/", priority: "0.7", changefreq: "weekly" },
+    { loc: "/endpoints/", priority: "0.8", changefreq: "daily" },
     { loc: "/about/", priority: "0.5", changefreq: "monthly" },
   ];
   policies.forEach((p) => {
@@ -475,12 +476,116 @@ ${sitemapEntries
   console.log(`   📊 Output directory: ${OUTPUT_DIR}`);
 }
 
+const ENDPOINTS_PATH = path.join(REPO_ROOT, "data/endpoints.json");
+const ENDPOINT_CHANGES_DIR = path.join(REPO_ROOT, "data/endpoint-changes");
+
+async function generateEndpointsData() {
+  console.log("\n🌐 Generating endpoints data...");
+
+  if (!fs.existsSync(ENDPOINTS_PATH)) {
+    console.log("   ⚠️  No data/endpoints.json found, skipping endpoints data generation");
+    return;
+  }
+
+  const endpointsRaw = JSON.parse(fs.readFileSync(ENDPOINTS_PATH, "utf8"));
+  const partitions = endpointsRaw.partitions || [];
+
+  let totalRegions = 0;
+  let totalServices = 0;
+  const partitionSummaries = [];
+
+  for (const p of partitions) {
+    const regions = Object.entries(p.regions || {}).map(([code, info]) => ({
+      code,
+      name: info.description || code,
+    }));
+    regions.sort((a, b) => a.code.localeCompare(b.code));
+
+    const services = Object.entries(p.services || {}).map(([id, svc]) => {
+      const endpoints = Object.keys(svc.endpoints || {});
+      const nonFipsEndpoints = endpoints.filter(
+        (e) =>
+          !e.startsWith("fips-") &&
+          e !== "aws-global" &&
+          e !== "aws-cn-global" &&
+          e !== "aws-us-gov-global"
+      );
+      return {
+        id,
+        endpointCount: endpoints.length,
+        regionCount: nonFipsEndpoints.length,
+        isRegionalized: svc.isRegionalized !== false,
+      };
+    });
+    services.sort((a, b) => a.id.localeCompare(b.id));
+
+    totalRegions += regions.length;
+    totalServices += services.length;
+
+    partitionSummaries.push({
+      partition: p.partition,
+      partitionName: p.partitionName,
+      dnsSuffix: p.dnsSuffix,
+      regionCount: regions.length,
+      serviceCount: services.length,
+      regions,
+      services,
+    });
+  }
+
+  let recentChanges = [];
+  if (fs.existsSync(ENDPOINT_CHANGES_DIR)) {
+    const changeFiles = fs
+      .readdirSync(ENDPOINT_CHANGES_DIR)
+      .filter((f) => f.endsWith(".json"))
+      .sort()
+      .reverse()
+      .slice(0, 200);
+
+    for (const file of changeFiles) {
+      try {
+        const data = JSON.parse(
+          fs.readFileSync(path.join(ENDPOINT_CHANGES_DIR, file), "utf8")
+        );
+        recentChanges.push(data);
+      } catch (e) {
+        console.warn(`   ⚠️  Could not parse ${file}: ${e.message}`);
+      }
+    }
+  }
+
+  const endpointsSummary = {
+    lastUpdated: new Date().toISOString(),
+    currentState: {
+      totalRegions,
+      totalServices,
+      totalPartitions: partitions.length,
+      partitions: partitionSummaries,
+    },
+    recentChanges,
+  };
+
+  fs.writeFileSync(
+    path.join(OUTPUT_DIR, "endpoints-summary.json"),
+    JSON.stringify(endpointsSummary, null, 2)
+  );
+
+  console.log(
+    `   🌐 Endpoints: ${totalRegions} regions, ${totalServices} services across ${partitions.length} partitions, ${recentChanges.length} change record(s)`
+  );
+}
+
 // Ensure output directory exists
 if (!fs.existsSync(OUTPUT_DIR)) {
   fs.mkdirSync(OUTPUT_DIR, { recursive: true });
 }
 
-generatePolicyData().catch((error) => {
+async function main() {
+  await generatePolicyData();
+  await generateEndpointsData();
+}
+
+main().catch((error) => {
   console.error("💥 Fatal error:", error);
   process.exit(1);
 });
