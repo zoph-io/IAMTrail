@@ -1,0 +1,41 @@
+{
+  "detected_at": "2022-04-01T01:41:39.000Z",
+  "botocore_commit": "e050cd",
+  "botocore_commit_url": "https://github.com/boto/botocore/commit/e050cd",
+  "summary": "3 service expansion(s)",
+  "source": "mase-import",
+  "changes": [
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "servicequotas",
+      "id": "servicequotas",
+      "new_regions": [
+        "ap-southeast-3"
+      ],
+      "description": "servicequotas expanded to ap-southeast-3"
+    },
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "cloudcontrolapi",
+      "id": "cloudcontrolapi",
+      "new_regions": [
+        "cn-north-1",
+        "cn-northwest-1"
+      ],
+      "description": "cloudcontrolapi expanded to cn-north-1, cn-northwest-1"
+    },
+    {
+      "type": "service_expansion",
+      "partition": "aws-cn",
+      "service": "cloudcontrolapi",
+      "id": "cloudcontrolapi",
+      "new_regions": [
+        "cn-north-1",
+        "cn-northwest-1"
+      ],
+      "description": "cloudcontrolapi expanded to cn-north-1, cn-northwest-1"
+    }
+  ]
+}

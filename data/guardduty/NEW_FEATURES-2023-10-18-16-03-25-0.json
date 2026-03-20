@@ -1,0 +1,18 @@
+{
+  "description": "For all DNS_REQUEST findings a new finding field containing the finding's 'domain' truncated to the top level and second level domain is now available. This new field called 'domainWithSuffix' is available for use in finding filters and suppression rules.",
+  "detected_at": "2023-10-18T16:03:25Z",
+  "gist_url": "https://gist.github.com/z0ph/72f4d6fc42c06595a19a849b50625431",
+  "link": "https://docs.aws.amazon.com/guardduty/latest/ug/guardduty_filter-findings.html",
+  "raw_sns_message": {
+    "featureDetails": [
+      {
+        "featureDescription": "For all DNS_REQUEST findings a new finding field containing the finding's 'domain' truncated to the top level and second level domain is now available. This new field called 'domainWithSuffix' is available for use in finding filters and suppression rules.",
+        "featureLink": "https://docs.aws.amazon.com/guardduty/latest/ug/guardduty_filter-findings.html"
+      }
+    ],
+    "type": "NEW_FEATURES",
+    "version": "1"
+  },
+  "short_description": "For all DNS_REQUEST findings a new finding field containing the finding's 'domain' truncated to the top level and second level domain is now available",
+  "type": "NEW_FEATURES"
+}

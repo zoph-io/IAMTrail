@@ -1,0 +1,19 @@
+{
+  "detected_at": "2026-03-06T00:39:05.000Z",
+  "botocore_commit": "fe37883",
+  "botocore_commit_url": "https://github.com/boto/botocore/commit/fe37883",
+  "summary": "1 service expansion(s)",
+  "source": "mase-import",
+  "changes": [
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "fms",
+      "id": "fms",
+      "new_regions": [
+        "ap-southeast-6"
+      ],
+      "description": "fms expanded to ap-southeast-6"
+    }
+  ]
+}

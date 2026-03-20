@@ -1,0 +1,19 @@
+{
+  "detected_at": "2024-10-25T00:22:48.000Z",
+  "botocore_commit": "b901d63",
+  "botocore_commit_url": "https://github.com/boto/botocore/commit/b901d63",
+  "summary": "1 service expansion(s)",
+  "source": "mase-import",
+  "changes": [
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "cloudhsmv2",
+      "id": "cloudhsmv2",
+      "new_regions": [
+        "af-south-1"
+      ],
+      "description": "cloudhsmv2 expanded to af-south-1"
+    }
+  ]
+}

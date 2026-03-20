@@ -1,0 +1,40 @@
+{
+  "detected_at": "2023-05-02T01:14:22.000Z",
+  "botocore_commit": "057f040",
+  "botocore_commit_url": "https://github.com/boto/botocore/commit/057f040",
+  "summary": "3 service expansion(s)",
+  "source": "mase-import",
+  "changes": [
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "emr-serverless",
+      "id": "emr-serverless",
+      "new_regions": [
+        "ap-east-1",
+        "me-south-1"
+      ],
+      "description": "emr-serverless expanded to ap-east-1, me-south-1"
+    },
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "kafka",
+      "id": "kafka",
+      "new_regions": [
+        "ca-central-1"
+      ],
+      "description": "kafka expanded to ca-central-1"
+    },
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "route53resolver",
+      "id": "route53resolver",
+      "new_regions": [
+        "ap-southeast-4"
+      ],
+      "description": "route53resolver expanded to ap-southeast-4"
+    }
+  ]
+}

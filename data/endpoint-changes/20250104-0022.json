@@ -1,0 +1,84 @@
+{
+  "detected_at": "2025-01-04T00:22:18.000Z",
+  "botocore_commit": "d0dfe26",
+  "botocore_commit_url": "https://github.com/boto/botocore/commit/d0dfe26",
+  "summary": "7 service expansion(s)",
+  "source": "mase-import",
+  "changes": [
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "api.ecr",
+      "id": "api.ecr",
+      "new_regions": [
+        "af-south-1"
+      ],
+      "description": "api.ecr expanded to af-south-1"
+    },
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "api.ecr-public",
+      "id": "api.ecr-public",
+      "new_regions": [
+        "us-east-1"
+      ],
+      "description": "api.ecr-public expanded to us-east-1"
+    },
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "fsx",
+      "id": "fsx",
+      "new_regions": [
+        "ap-southeast-5"
+      ],
+      "description": "fsx expanded to ap-southeast-5"
+    },
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "metrics.sagemaker",
+      "id": "metrics.sagemaker",
+      "new_regions": [
+        "ap-southeast-5"
+      ],
+      "description": "metrics.sagemaker expanded to ap-southeast-5"
+    },
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "opsworks-cm",
+      "id": "opsworks-cm",
+      "new_regions": [
+        "ap-northeast-1",
+        "ap-southeast-1",
+        "eu-central-1",
+        "us-east-2",
+        "us-west-1",
+        "us-west-2"
+      ],
+      "description": "opsworks-cm expanded to ap-northeast-1, ap-southeast-1, eu-central-1, us-east-2, us-west-1, us-west-2"
+    },
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "api.ecr",
+      "id": "api.ecr",
+      "new_regions": [
+        "cn-north-1"
+      ],
+      "description": "api.ecr expanded to cn-north-1"
+    },
+    {
+      "type": "service_expansion",
+      "partition": "aws-cn",
+      "service": "api.ecr",
+      "id": "api.ecr",
+      "new_regions": [
+        "cn-north-1"
+      ],
+      "description": "api.ecr expanded to cn-north-1"
+    }
+  ]
+}

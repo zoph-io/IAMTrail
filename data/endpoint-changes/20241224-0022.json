@@ -1,0 +1,79 @@
+{
+  "detected_at": "2024-12-24T00:22:46.000Z",
+  "botocore_commit": "831cacc",
+  "botocore_commit_url": "https://github.com/boto/botocore/commit/831cacc",
+  "summary": "7 service expansion(s)",
+  "source": "mase-import",
+  "changes": [
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "glue",
+      "id": "glue",
+      "new_regions": [
+        "af-south-1"
+      ],
+      "description": "glue expanded to af-south-1"
+    },
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "macie2",
+      "id": "macie2",
+      "new_regions": [
+        "af-south-1"
+      ],
+      "description": "macie2 expanded to af-south-1"
+    },
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "mediaconvert",
+      "id": "mediaconvert",
+      "new_regions": [
+        "af-south-1"
+      ],
+      "description": "mediaconvert expanded to af-south-1"
+    },
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "glue",
+      "id": "glue",
+      "new_regions": [
+        "cn-north-1"
+      ],
+      "description": "glue expanded to cn-north-1"
+    },
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "mediaconvert",
+      "id": "mediaconvert",
+      "new_regions": [
+        "cn-northwest-1"
+      ],
+      "description": "mediaconvert expanded to cn-northwest-1"
+    },
+    {
+      "type": "service_expansion",
+      "partition": "aws-cn",
+      "service": "glue",
+      "id": "glue",
+      "new_regions": [
+        "cn-north-1"
+      ],
+      "description": "glue expanded to cn-north-1"
+    },
+    {
+      "type": "service_expansion",
+      "partition": "aws-cn",
+      "service": "mediaconvert",
+      "id": "mediaconvert",
+      "new_regions": [
+        "cn-northwest-1"
+      ],
+      "description": "mediaconvert expanded to cn-northwest-1"
+    }
+  ]
+}

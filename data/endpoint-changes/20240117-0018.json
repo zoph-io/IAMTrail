@@ -1,0 +1,19 @@
+{
+  "detected_at": "2024-01-17T00:18:08.000Z",
+  "botocore_commit": "9c3988c",
+  "botocore_commit_url": "https://github.com/boto/botocore/commit/9c3988c",
+  "summary": "1 service expansion(s)",
+  "source": "mase-import",
+  "changes": [
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "oidc",
+      "id": "oidc",
+      "new_regions": [
+        "me-central-1"
+      ],
+      "description": "oidc expanded to me-central-1"
+    }
+  ]
+}

@@ -1,0 +1,41 @@
+{
+  "detected_at": "2025-08-06T00:29:21.000Z",
+  "botocore_commit": "e44658a",
+  "botocore_commit_url": "https://github.com/boto/botocore/commit/e44658a",
+  "summary": "3 service expansion(s)",
+  "source": "mase-import",
+  "changes": [
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "data.jobs.iot",
+      "id": "data.jobs.iot",
+      "new_regions": [
+        "ap-southeast-5",
+        "eu-south-2",
+        "me-central-1"
+      ],
+      "description": "data.jobs.iot expanded to ap-southeast-5, eu-south-2, me-central-1"
+    },
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "license-manager",
+      "id": "license-manager",
+      "new_regions": [
+        "ap-east-2"
+      ],
+      "description": "license-manager expanded to ap-east-2"
+    },
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "license-manager-user-subscriptions",
+      "id": "license-manager-user-subscriptions",
+      "new_regions": [
+        "ap-east-2"
+      ],
+      "description": "license-manager-user-subscriptions expanded to ap-east-2"
+    }
+  ]
+}

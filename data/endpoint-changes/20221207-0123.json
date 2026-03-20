@@ -1,0 +1,29 @@
+{
+  "detected_at": "2022-12-07T01:23:26.000Z",
+  "botocore_commit": "d9fe215",
+  "botocore_commit_url": "https://github.com/boto/botocore/commit/d9fe215",
+  "summary": "2 service expansion(s)",
+  "source": "mase-import",
+  "changes": [
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "cognito-identity",
+      "id": "cognito-identity",
+      "new_regions": [
+        "eu-south-1"
+      ],
+      "description": "cognito-identity expanded to eu-south-1"
+    },
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "network-firewall",
+      "id": "network-firewall",
+      "new_regions": [
+        "ap-southeast-3"
+      ],
+      "description": "network-firewall expanded to ap-southeast-3"
+    }
+  ]
+}

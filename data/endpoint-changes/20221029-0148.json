@@ -1,0 +1,20 @@
+{
+  "detected_at": "2022-10-29T01:48:53.000Z",
+  "botocore_commit": "64e682f",
+  "botocore_commit_url": "https://github.com/boto/botocore/commit/64e682f",
+  "summary": "1 service expansion(s)",
+  "source": "mase-import",
+  "changes": [
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "api.iotwireless",
+      "id": "api.iotwireless",
+      "new_regions": [
+        "eu-central-1",
+        "sa-east-1"
+      ],
+      "description": "api.iotwireless expanded to eu-central-1, sa-east-1"
+    }
+  ]
+}

@@ -1,0 +1,19 @@
+{
+  "description": "This finding informs you that a host outside of AWS has attempted to run AWS API operations using temporary AWS credentials that were created on a Lambda resource in your AWS environment.",
+  "detected_at": "2025-12-17T19:57:30Z",
+  "gist_url": "https://gist.github.com/z0ph/f90de69af608dfda6375a8f4528baede",
+  "link": "https://docs.aws.amazon.com/guardduty/latest/ug/guardduty_finding-types-iam.html#unauthorizedaccess-iam-resourcecredentialexfiltrationoutsideaws",
+  "raw_sns_message": {
+    "findingDetails": [
+      {
+        "findingDescription": "This finding informs you that a host outside of AWS has attempted to run AWS API operations using temporary AWS credentials that were created on a Lambda resource in your AWS environment.",
+        "findingType": "UnauthorizedAccess:IAMUser/ResourceCredentialExfiltration.OutsideAWS",
+        "link": "https://docs.aws.amazon.com/guardduty/latest/ug/guardduty_finding-types-iam.html#unauthorizedaccess-iam-resourcecredentialexfiltrationoutsideaws"
+      }
+    ],
+    "type": "NEW_FINDINGS",
+    "version": "1"
+  },
+  "short_description": "UnauthorizedAccess:IAMUser/ResourceCredentialExfiltration.OutsideAWS",
+  "type": "NEW_FINDINGS"
+}

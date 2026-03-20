@@ -1,0 +1,19 @@
+{
+  "detected_at": "2024-05-23T00:18:00.000Z",
+  "botocore_commit": "66f09d9",
+  "botocore_commit_url": "https://github.com/boto/botocore/commit/66f09d9",
+  "summary": "1 service expansion(s)",
+  "source": "mase-import",
+  "changes": [
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "s3-control",
+      "id": "s3-control",
+      "new_regions": [
+        "ca-west-1"
+      ],
+      "description": "s3-control expanded to ca-west-1"
+    }
+  ]
+}

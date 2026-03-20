@@ -1,0 +1,28 @@
+{
+  "detected_at": "2022-04-15T01:26:08.000Z",
+  "botocore_commit": "d2e1f7",
+  "botocore_commit_url": "https://github.com/boto/botocore/commit/d2e1f7",
+  "summary": "1 service expansion(s)",
+  "source": "mase-import",
+  "changes": [
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "sms-voice",
+      "id": "sms-voice",
+      "new_regions": [
+        "ap-northeast-1",
+        "ap-south-1",
+        "ap-southeast-1",
+        "ap-southeast-2",
+        "ca-central-1",
+        "eu-central-1",
+        "eu-west-1",
+        "eu-west-2",
+        "us-east-1",
+        "us-west-2"
+      ],
+      "description": "sms-voice expanded to ap-northeast-1, ap-south-1, ap-southeast-1, ap-southeast-2, ca-central-1, eu-central-1, eu-west-1, eu-west-2, us-east-1, us-west-2"
+    }
+  ]
+}

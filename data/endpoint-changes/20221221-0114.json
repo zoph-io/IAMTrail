@@ -1,0 +1,43 @@
+{
+  "detected_at": "2022-12-21T01:14:45.000Z",
+  "botocore_commit": "17196e3",
+  "botocore_commit_url": "https://github.com/boto/botocore/commit/17196e3",
+  "summary": "3 service expansion(s)",
+  "source": "mase-import",
+  "changes": [
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "cloudhsmv2",
+      "id": "cloudhsmv2",
+      "new_regions": [
+        "eu-central-2"
+      ],
+      "description": "cloudhsmv2 expanded to eu-central-2"
+    },
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "portal.sso",
+      "id": "portal.sso",
+      "new_regions": [
+        "af-south-1",
+        "ap-southeast-3",
+        "us-west-1"
+      ],
+      "description": "portal.sso expanded to af-south-1, ap-southeast-3, us-west-1"
+    },
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "sso",
+      "id": "sso",
+      "new_regions": [
+        "af-south-1",
+        "ap-southeast-3",
+        "us-west-1"
+      ],
+      "description": "sso expanded to af-south-1, ap-southeast-3, us-west-1"
+    }
+  ]
+}

@@ -1,0 +1,29 @@
+{
+  "detected_at": "2023-01-10T01:22:34.000Z",
+  "botocore_commit": "302d8bf",
+  "botocore_commit_url": "https://github.com/boto/botocore/commit/302d8bf",
+  "summary": "2 service expansion(s)",
+  "source": "mase-import",
+  "changes": [
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "batch",
+      "id": "batch",
+      "new_regions": [
+        "me-central-1"
+      ],
+      "description": "batch expanded to me-central-1"
+    },
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "route53resolver",
+      "id": "route53resolver",
+      "new_regions": [
+        "me-central-1"
+      ],
+      "description": "route53resolver expanded to me-central-1"
+    }
+  ]
+}

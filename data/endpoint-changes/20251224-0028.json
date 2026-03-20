@@ -1,0 +1,19 @@
+{
+  "detected_at": "2025-12-24T00:28:29.000Z",
+  "botocore_commit": "1a3ebe3",
+  "botocore_commit_url": "https://github.com/boto/botocore/commit/1a3ebe3",
+  "summary": "1 service expansion(s)",
+  "source": "mase-import",
+  "changes": [
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "kafka",
+      "id": "kafka",
+      "new_regions": [
+        "ap-southeast-6"
+      ],
+      "description": "kafka expanded to ap-southeast-6"
+    }
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "detected_at": "2025-01-15T00:22:30.000Z",
+  "botocore_commit": "9ce40fe",
+  "botocore_commit_url": "https://github.com/boto/botocore/commit/9ce40fe",
+  "summary": "1 new region(s)",
+  "source": "mase-import",
+  "changes": [
+    {
+      "type": "new_region",
+      "partition": "aws",
+      "id": "mx-central-1",
+      "description": "mx-central-1"
+    }
+  ]
+}

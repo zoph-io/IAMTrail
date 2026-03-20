@@ -1,0 +1,18 @@
+{
+  "description": "Important update on GuardDuty RDS Protection preview conclusion and general availability launch: On Thursday, March 16 (US Pacific Time), GuardDuty RDS Protection will transition from preview to general availability. If you are participating in the preview, your account(s) will no longer be enabled for GuardDuty RDS Protection when we conclude the transition to general availability. If you wish to continue using GuardDuty RDS Protection, please send an email to amazon-guardduty-rds-protection-preview@amazon.com by 9:00AM, Thursday, March 16, 2023 (US Pacific Time) with the AWS account ID of the account(s) where you want to continue using this feature. When the preview concludes, these account(s) will automatically transition to a 30-day GuardDuty RDS Protection free trial period, followed by an automatic transition to paid usage. Alternatively, you can visit the RDS Protection page in the Amazon GuardDuty console to activate the feature after general availability is announced. During the 30-day free trial period, you can view estimated GuardDuty RDS Protection spend for your account(s) in the Usage page of the Amazon GuardDuty console.",
+  "detected_at": "2023-03-14T23:40:37Z",
+  "gist_url": "https://gist.github.com/z0ph/7c310409ffe43467711e41b7e234af89",
+  "link": "",
+  "raw_sns_message": {
+    "featureDetails": [
+      {
+        "featureDescription": "Important update on GuardDuty RDS Protection preview conclusion and general availability launch: On Thursday, March 16 (US Pacific Time), GuardDuty RDS Protection will transition from preview to general availability. If you are participating in the preview, your account(s) will no longer be enabled for GuardDuty RDS Protection when we conclude the transition to general availability. If you wish to continue using GuardDuty RDS Protection, please send an email to amazon-guardduty-rds-protection-preview@amazon.com by 9:00AM, Thursday, March 16, 2023 (US Pacific Time) with the AWS account ID of the account(s) where you want to continue using this feature. When the preview concludes, these account(s) will automatically transition to a 30-day GuardDuty RDS Protection free trial period, followed by an automatic transition to paid usage. Alternatively, you can visit the RDS Protection page in the Amazon GuardDuty console to activate the feature after general availability is announced. During the 30-day free trial period, you can view estimated GuardDuty RDS Protection spend for your account(s) in the Usage page of the Amazon GuardDuty console.",
+        "link": "https://docs.aws.amazon.com/guardduty/latest/ug/rds-protection.html"
+      }
+    ],
+    "type": "NEW_FEATURES",
+    "version": "1"
+  },
+  "short_description": "Important update on GuardDuty RDS Protection preview conclusion and general availability launch: On Thursday, March 16 (US Pacific Time), GuardDuty RD",
+  "type": "NEW_FEATURES"
+}

@@ -1,0 +1,49 @@
+{
+  "detected_at": "2025-03-26T00:24:18.000Z",
+  "botocore_commit": "651eb41",
+  "botocore_commit_url": "https://github.com/boto/botocore/commit/651eb41",
+  "summary": "4 service expansion(s)",
+  "source": "mase-import",
+  "changes": [
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "portal.sso",
+      "id": "portal.sso",
+      "new_regions": [
+        "ap-southeast-5"
+      ],
+      "description": "portal.sso expanded to ap-southeast-5"
+    },
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "sqs",
+      "id": "sqs",
+      "new_regions": [
+        "af-south-1"
+      ],
+      "description": "sqs expanded to af-south-1"
+    },
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "sqs",
+      "id": "sqs",
+      "new_regions": [
+        "cn-north-1"
+      ],
+      "description": "sqs expanded to cn-north-1"
+    },
+    {
+      "type": "service_expansion",
+      "partition": "aws-cn",
+      "service": "sqs",
+      "id": "sqs",
+      "new_regions": [
+        "cn-north-1"
+      ],
+      "description": "sqs expanded to cn-north-1"
+    }
+  ]
+}

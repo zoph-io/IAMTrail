@@ -1,0 +1,19 @@
+{
+  "detected_at": "2023-02-18T01:21:49.000Z",
+  "botocore_commit": "08148ae",
+  "botocore_commit_url": "https://github.com/boto/botocore/commit/08148ae",
+  "summary": "1 service expansion(s)",
+  "source": "mase-import",
+  "changes": [
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "elasticfilesystem",
+      "id": "elasticfilesystem",
+      "new_regions": [
+        "ap-south-2"
+      ],
+      "description": "elasticfilesystem expanded to ap-south-2"
+    }
+  ]
+}

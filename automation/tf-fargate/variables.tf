@@ -92,3 +92,17 @@ variable "notification_email" {
   default     = ""
   description = "Email address for ECS task failure notifications"
 }
+
+# ──────────────────────────────
+# GuardDuty Announcements
+# ──────────────────────────────
+
+variable "guardduty_sns_topic_arn" {
+  default     = "arn:aws:sns:eu-west-1:965013871422:GuardDutyAnnouncements"
+  description = "AWS-owned GuardDuty Announcements SNS topic ARN (eu-west-1)"
+}
+
+variable "mgda_x_api_secret_arn" {
+  default     = ""
+  description = "Secrets Manager ARN for @mgda_aws X/Twitter API credentials"
+}

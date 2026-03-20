@@ -1,0 +1,29 @@
+{
+  "detected_at": "2025-03-08T00:19:15.000Z",
+  "botocore_commit": "a09fb4e",
+  "botocore_commit_url": "https://github.com/boto/botocore/commit/a09fb4e",
+  "summary": "2 service expansion(s)",
+  "source": "mase-import",
+  "changes": [
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "cognito-identity",
+      "id": "cognito-identity",
+      "new_regions": [
+        "ap-southeast-5"
+      ],
+      "description": "cognito-identity expanded to ap-southeast-5"
+    },
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "cognito-idp",
+      "id": "cognito-idp",
+      "new_regions": [
+        "ap-southeast-5"
+      ],
+      "description": "cognito-idp expanded to ap-southeast-5"
+    }
+  ]
+}

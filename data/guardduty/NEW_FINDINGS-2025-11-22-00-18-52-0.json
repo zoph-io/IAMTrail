@@ -1,0 +1,19 @@
+{
+  "description": "Amazon GuardDuty has added a new finding type that notifies you when logging for Amazon Bedrock model invocations is disabled. This finding helps detect attempts to evade detection by disabling audit logs that track AI workload activity.",
+  "detected_at": "2025-11-22T00:18:52Z",
+  "gist_url": "https://gist.github.com/z0ph/37ee2438e7982ba87d5d120d60435791",
+  "link": "https://docs.aws.amazon.com/guardduty/latest/ug/guardduty_finding-types-iam.html#defenseevasion-iam-bedrockloggingdisabled",
+  "raw_sns_message": {
+    "findingDetails": [
+      {
+        "findingDescription": "Amazon GuardDuty has added a new finding type that notifies you when logging for Amazon Bedrock model invocations is disabled. This finding helps detect attempts to evade detection by disabling audit logs that track AI workload activity.",
+        "findingType": "DefenseEvasion:IAMUser/BedrockLoggingDisabled",
+        "link": "https://docs.aws.amazon.com/guardduty/latest/ug/guardduty_finding-types-iam.html#defenseevasion-iam-bedrockloggingdisabled"
+      }
+    ],
+    "type": "NEW_FINDINGS",
+    "version": "1"
+  },
+  "short_description": "DefenseEvasion:IAMUser/BedrockLoggingDisabled",
+  "type": "NEW_FINDINGS"
+}

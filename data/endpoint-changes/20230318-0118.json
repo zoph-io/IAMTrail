@@ -1,0 +1,19 @@
+{
+  "detected_at": "2023-03-18T01:18:27.000Z",
+  "botocore_commit": "d8ca686",
+  "botocore_commit_url": "https://github.com/boto/botocore/commit/d8ca686",
+  "summary": "1 service expansion(s)",
+  "source": "mase-import",
+  "changes": [
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "servicediscovery",
+      "id": "servicediscovery",
+      "new_regions": [
+        "ap-southeast-4"
+      ],
+      "description": "servicediscovery expanded to ap-southeast-4"
+    }
+  ]
+}

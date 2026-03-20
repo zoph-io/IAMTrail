@@ -1,0 +1,49 @@
+{
+  "detected_at": "2023-01-13T01:22:25.000Z",
+  "botocore_commit": "2486896",
+  "botocore_commit_url": "https://github.com/boto/botocore/commit/2486896",
+  "summary": "3 service expansion(s)",
+  "source": "mase-import",
+  "changes": [
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "waf-regional",
+      "id": "waf-regional",
+      "new_regions": [
+        "me-central-1"
+      ],
+      "description": "waf-regional expanded to me-central-1"
+    },
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "wafv2",
+      "id": "wafv2",
+      "new_regions": [
+        "me-central-1"
+      ],
+      "description": "wafv2 expanded to me-central-1"
+    },
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "cleanrooms",
+      "id": "cleanrooms",
+      "new_regions": [
+        "ap-northeast-1",
+        "ap-northeast-2",
+        "ap-southeast-1",
+        "ap-southeast-2",
+        "eu-central-1",
+        "eu-north-1",
+        "eu-west-1",
+        "eu-west-2",
+        "us-east-1",
+        "us-east-2",
+        "us-west-2"
+      ],
+      "description": "cleanrooms expanded to ap-northeast-1, ap-northeast-2, ap-southeast-1, ap-southeast-2, eu-central-1, eu-north-1, eu-west-1, eu-west-2, us-east-1, us-east-2, us-west-2"
+    }
+  ]
+}

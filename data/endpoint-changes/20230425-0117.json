@@ -1,0 +1,29 @@
+{
+  "detected_at": "2023-04-25T01:17:24.000Z",
+  "botocore_commit": "e3e8beb",
+  "botocore_commit_url": "https://github.com/boto/botocore/commit/e3e8beb",
+  "summary": "2 service expansion(s)",
+  "source": "mase-import",
+  "changes": [
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "connect",
+      "id": "connect",
+      "new_regions": [
+        "us-east-1"
+      ],
+      "description": "connect expanded to us-east-1"
+    },
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "metrics.sagemaker",
+      "id": "metrics.sagemaker",
+      "new_regions": [
+        "ap-southeast-4"
+      ],
+      "description": "metrics.sagemaker expanded to ap-southeast-4"
+    }
+  ]
+}

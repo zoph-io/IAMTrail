@@ -1,0 +1,19 @@
+{
+  "detected_at": "2025-07-25T00:28:53.000Z",
+  "botocore_commit": "193d284",
+  "botocore_commit_url": "https://github.com/boto/botocore/commit/193d284",
+  "summary": "1 service expansion(s)",
+  "source": "mase-import",
+  "changes": [
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "controltower",
+      "id": "controltower",
+      "new_regions": [
+        "ap-east-2"
+      ],
+      "description": "controltower expanded to ap-east-2"
+    }
+  ]
+}

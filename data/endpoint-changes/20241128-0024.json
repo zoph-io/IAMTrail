@@ -1,0 +1,19 @@
+{
+  "detected_at": "2024-11-28T00:24:25.000Z",
+  "botocore_commit": "c14162b",
+  "botocore_commit_url": "https://github.com/boto/botocore/commit/c14162b",
+  "summary": "1 service expansion(s)",
+  "source": "mase-import",
+  "changes": [
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "swf",
+      "id": "swf",
+      "new_regions": [
+        "ca-central-1"
+      ],
+      "description": "swf expanded to ca-central-1"
+    }
+  ]
+}

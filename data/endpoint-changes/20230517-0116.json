@@ -1,0 +1,19 @@
+{
+  "detected_at": "2023-05-17T01:16:39.000Z",
+  "botocore_commit": "a3ada11",
+  "botocore_commit_url": "https://github.com/boto/botocore/commit/a3ada11",
+  "summary": "1 service expansion(s)",
+  "source": "mase-import",
+  "changes": [
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "profile",
+      "id": "profile",
+      "new_regions": [
+        "ca-central-1"
+      ],
+      "description": "profile expanded to ca-central-1"
+    }
+  ]
+}

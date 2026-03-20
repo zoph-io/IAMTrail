@@ -1,0 +1,19 @@
+{
+  "detected_at": "2023-01-25T01:17:57.000Z",
+  "botocore_commit": "24cfc9e",
+  "botocore_commit_url": "https://github.com/boto/botocore/commit/24cfc9e",
+  "summary": "1 service expansion(s)",
+  "source": "mase-import",
+  "changes": [
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "dlm",
+      "id": "dlm",
+      "new_regions": [
+        "ap-southeast-4"
+      ],
+      "description": "dlm expanded to ap-southeast-4"
+    }
+  ]
+}

@@ -1,0 +1,30 @@
+{
+  "detected_at": "2024-01-20T00:17:34.000Z",
+  "botocore_commit": "357b9ee",
+  "botocore_commit_url": "https://github.com/boto/botocore/commit/357b9ee",
+  "summary": "2 service expansion(s)",
+  "source": "mase-import",
+  "changes": [
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "appsync",
+      "id": "appsync",
+      "new_regions": [
+        "ap-southeast-4",
+        "il-central-1"
+      ],
+      "description": "appsync expanded to ap-southeast-4, il-central-1"
+    },
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "sso",
+      "id": "sso",
+      "new_regions": [
+        "me-central-1"
+      ],
+      "description": "sso expanded to me-central-1"
+    }
+  ]
+}

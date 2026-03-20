@@ -1,0 +1,43 @@
+{
+  "detected_at": "2023-05-24T01:18:13.000Z",
+  "botocore_commit": "9762c89",
+  "botocore_commit_url": "https://github.com/boto/botocore/commit/9762c89",
+  "summary": "2 service expansion(s)",
+  "source": "mase-import",
+  "changes": [
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "runtime.sagemaker",
+      "id": "runtime.sagemaker",
+      "new_regions": [
+        "ap-southeast-4"
+      ],
+      "description": "runtime.sagemaker expanded to ap-southeast-4"
+    },
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "mediapackagev2",
+      "id": "mediapackagev2",
+      "new_regions": [
+        "ap-northeast-1",
+        "ap-northeast-2",
+        "ap-south-1",
+        "ap-southeast-1",
+        "ap-southeast-2",
+        "eu-central-1",
+        "eu-north-1",
+        "eu-west-1",
+        "eu-west-2",
+        "eu-west-3",
+        "sa-east-1",
+        "us-east-1",
+        "us-east-2",
+        "us-west-1",
+        "us-west-2"
+      ],
+      "description": "mediapackagev2 expanded to ap-northeast-1, ap-northeast-2, ap-south-1, ap-southeast-1, ap-southeast-2, eu-central-1, eu-north-1, eu-west-1, eu-west-2, eu-west-3, sa-east-1, us-east-1, us-east-2, us-west-1, us-west-2"
+    }
+  ]
+}

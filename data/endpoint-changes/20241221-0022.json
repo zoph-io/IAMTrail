@@ -1,0 +1,69 @@
+{
+  "detected_at": "2024-12-21T00:22:14.000Z",
+  "botocore_commit": "ed96558",
+  "botocore_commit_url": "https://github.com/boto/botocore/commit/ed96558",
+  "summary": "6 service expansion(s)",
+  "source": "mase-import",
+  "changes": [
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "cognito-idp",
+      "id": "cognito-idp",
+      "new_regions": [
+        "af-south-1"
+      ],
+      "description": "cognito-idp expanded to af-south-1"
+    },
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "rbin",
+      "id": "rbin",
+      "new_regions": [
+        "af-south-1"
+      ],
+      "description": "rbin expanded to af-south-1"
+    },
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "api.tunneling.iot",
+      "id": "api.tunneling.iot",
+      "new_regions": [
+        "cn-north-1"
+      ],
+      "description": "api.tunneling.iot expanded to cn-north-1"
+    },
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "rbin",
+      "id": "rbin",
+      "new_regions": [
+        "cn-north-1"
+      ],
+      "description": "rbin expanded to cn-north-1"
+    },
+    {
+      "type": "service_expansion",
+      "partition": "aws-cn",
+      "service": "api.tunneling.iot",
+      "id": "api.tunneling.iot",
+      "new_regions": [
+        "cn-north-1"
+      ],
+      "description": "api.tunneling.iot expanded to cn-north-1"
+    },
+    {
+      "type": "service_expansion",
+      "partition": "aws-cn",
+      "service": "rbin",
+      "id": "rbin",
+      "new_regions": [
+        "cn-north-1"
+      ],
+      "description": "rbin expanded to cn-north-1"
+    }
+  ]
+}

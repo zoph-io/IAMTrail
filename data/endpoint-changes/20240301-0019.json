@@ -1,0 +1,39 @@
+{
+  "detected_at": "2024-03-01T00:19:00.000Z",
+  "botocore_commit": "73acc04",
+  "botocore_commit_url": "https://github.com/boto/botocore/commit/73acc04",
+  "summary": "3 service expansion(s)",
+  "source": "mase-import",
+  "changes": [
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "emr-serverless",
+      "id": "emr-serverless",
+      "new_regions": [
+        "eu-south-2"
+      ],
+      "description": "emr-serverless expanded to eu-south-2"
+    },
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "glue",
+      "id": "glue",
+      "new_regions": [
+        "ca-west-1"
+      ],
+      "description": "glue expanded to ca-west-1"
+    },
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "logs",
+      "id": "logs",
+      "new_regions": [
+        "af-south-1"
+      ],
+      "description": "logs expanded to af-south-1"
+    }
+  ]
+}

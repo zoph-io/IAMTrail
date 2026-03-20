@@ -1,0 +1,45 @@
+{
+  "detected_at": "2022-06-09T01:40:22.000Z",
+  "botocore_commit": "cf8941",
+  "botocore_commit_url": "https://github.com/boto/botocore/commit/cf8941",
+  "summary": "2 service expansion(s)",
+  "source": "mase-import",
+  "changes": [
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "m2",
+      "id": "m2",
+      "new_regions": [
+        "ap-southeast-2",
+        "ca-central-1",
+        "eu-central-1",
+        "eu-west-1",
+        "sa-east-1",
+        "us-east-1",
+        "us-west-2"
+      ],
+      "description": "m2 expanded to ap-southeast-2, ca-central-1, eu-central-1, eu-west-1, sa-east-1, us-east-1, us-west-2"
+    },
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "redshift-serverless",
+      "id": "redshift-serverless",
+      "new_regions": [
+        "ap-northeast-1",
+        "ap-northeast-2",
+        "ap-southeast-1",
+        "ap-southeast-2",
+        "eu-central-1",
+        "eu-north-1",
+        "eu-west-1",
+        "eu-west-2",
+        "us-east-1",
+        "us-east-2",
+        "us-west-2"
+      ],
+      "description": "redshift-serverless expanded to ap-northeast-1, ap-northeast-2, ap-southeast-1, ap-southeast-2, eu-central-1, eu-north-1, eu-west-1, eu-west-2, us-east-1, us-east-2, us-west-2"
+    }
+  ]
+}

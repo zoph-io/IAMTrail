@@ -1,0 +1,18 @@
+{
+  "description": "Amazon GuardDuty Now Available in Europe (Zurich) Region",
+  "detected_at": "2022-12-19T12:38:06Z",
+  "gist_url": "https://gist.github.com/z0ph/56e57e613073865b2cbcc7469cb4c4fa",
+  "link": "https://aws.amazon.com/about-aws/whats-new/2022/12/amazon-guardduty-available-aws-europe-zurich-region/",
+  "raw_sns_message": {
+    "regionDetails": [
+      {
+        "description": "Amazon GuardDuty Now Available in Europe (Zurich) Region",
+        "link": "https://aws.amazon.com/about-aws/whats-new/2022/12/amazon-guardduty-available-aws-europe-zurich-region/"
+      }
+    ],
+    "type": "NEW_REGION",
+    "version": "1"
+  },
+  "short_description": "Amazon GuardDuty Now Available in Europe (Zurich) Region",
+  "type": "NEW_REGION"
+}

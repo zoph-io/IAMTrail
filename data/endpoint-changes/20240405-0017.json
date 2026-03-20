@@ -1,0 +1,30 @@
+{
+  "detected_at": "2024-04-05T00:17:35.000Z",
+  "botocore_commit": "b764e9b",
+  "botocore_commit_url": "https://github.com/boto/botocore/commit/b764e9b",
+  "summary": "2 service expansion(s)",
+  "source": "mase-import",
+  "changes": [
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "api.mediatailor",
+      "id": "api.mediatailor",
+      "new_regions": [
+        "ap-south-2",
+        "me-central-1"
+      ],
+      "description": "api.mediatailor expanded to ap-south-2, me-central-1"
+    },
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "bedrock",
+      "id": "bedrock",
+      "new_regions": [
+        "eu-west-3"
+      ],
+      "description": "bedrock expanded to eu-west-3"
+    }
+  ]
+}

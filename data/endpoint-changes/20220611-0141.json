@@ -1,0 +1,39 @@
+{
+  "detected_at": "2022-06-11T01:41:34.000Z",
+  "botocore_commit": "0b95d9",
+  "botocore_commit_url": "https://github.com/boto/botocore/commit/0b95d9",
+  "summary": "3 service expansion(s)",
+  "source": "mase-import",
+  "changes": [
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "elasticbeanstalk",
+      "id": "elasticbeanstalk",
+      "new_regions": [
+        "ap-southeast-3"
+      ],
+      "description": "elasticbeanstalk expanded to ap-southeast-3"
+    },
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "securityhub",
+      "id": "securityhub",
+      "new_regions": [
+        "ap-southeast-3"
+      ],
+      "description": "securityhub expanded to ap-southeast-3"
+    },
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "servicecatalog",
+      "id": "servicecatalog",
+      "new_regions": [
+        "ap-southeast-3"
+      ],
+      "description": "servicecatalog expanded to ap-southeast-3"
+    }
+  ]
+}

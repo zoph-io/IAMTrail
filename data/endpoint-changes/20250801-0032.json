@@ -1,0 +1,48 @@
+{
+  "detected_at": "2025-08-01T00:32:49.000Z",
+  "botocore_commit": "5600878",
+  "botocore_commit_url": "https://github.com/boto/botocore/commit/5600878",
+  "summary": "3 service expansion(s)",
+  "source": "mase-import",
+  "changes": [
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "bedrock",
+      "id": "bedrock",
+      "new_regions": [
+        "ap-southeast-4"
+      ],
+      "description": "bedrock expanded to ap-southeast-4"
+    },
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "transfer",
+      "id": "transfer",
+      "new_regions": [
+        "ap-southeast-7"
+      ],
+      "description": "transfer expanded to ap-southeast-7"
+    },
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "codeguru-profiler",
+      "id": "codeguru-profiler",
+      "new_regions": [
+        "ap-northeast-1",
+        "ap-southeast-1",
+        "ap-southeast-2",
+        "eu-central-1",
+        "eu-north-1",
+        "eu-west-1",
+        "eu-west-2",
+        "us-east-1",
+        "us-east-2",
+        "us-west-2"
+      ],
+      "description": "codeguru-profiler expanded to ap-northeast-1, ap-southeast-1, ap-southeast-2, eu-central-1, eu-north-1, eu-west-1, eu-west-2, us-east-1, us-east-2, us-west-2"
+    }
+  ]
+}

@@ -1,0 +1,21 @@
+{
+  "detected_at": "2025-05-24T01:41:56.000Z",
+  "botocore_commit": "3366825",
+  "botocore_commit_url": "https://github.com/boto/botocore/commit/3366825",
+  "summary": "1 service expansion(s)",
+  "source": "mase-import",
+  "changes": [
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "route53profiles",
+      "id": "route53profiles",
+      "new_regions": [
+        "ap-southeast-5",
+        "ap-southeast-7",
+        "mx-central-1"
+      ],
+      "description": "route53profiles expanded to ap-southeast-5, ap-southeast-7, mx-central-1"
+    }
+  ]
+}

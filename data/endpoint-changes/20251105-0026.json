@@ -1,0 +1,19 @@
+{
+  "detected_at": "2025-11-05T00:26:54.000Z",
+  "botocore_commit": "a010827",
+  "botocore_commit_url": "https://github.com/boto/botocore/commit/a010827",
+  "summary": "1 service expansion(s)",
+  "source": "mase-import",
+  "changes": [
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "cassandra",
+      "id": "cassandra",
+      "new_regions": [
+        "me-central-1"
+      ],
+      "description": "cassandra expanded to me-central-1"
+    }
+  ]
+}

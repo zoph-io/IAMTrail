@@ -1,0 +1,18 @@
+{
+  "description": "",
+  "detected_at": "2025-10-15T23:49:16Z",
+  "gist_url": "https://gist.github.com/z0ph/163b6fa6001e8060b1cace51a36f3c5e",
+  "link": "",
+  "raw_sns_message": {
+    "featureDetails": [
+      {
+        "featureDescription": "The new GuardDuty Runtime Monitoring finding type, DefenseEvasion:Runtime/KernelModuleLoaded, helps you identify defense evasion techniques where threat actors use kernel modules to bypass security controls, modify system operations, and gain persistent system access.",
+        "featureLink": "https://docs.aws.amazon.com/guardduty/latest/ug/findings-runtime-monitoring.html#defenseevasion-runtime-kernelmoduleloaded"
+      }
+    ],
+    "type": "NEW_FINDINGS",
+    "version": "1"
+  },
+  "short_description": "",
+  "type": "NEW_FINDINGS"
+}

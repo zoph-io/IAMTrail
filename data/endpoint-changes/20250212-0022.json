@@ -1,0 +1,39 @@
+{
+  "detected_at": "2025-02-12T00:22:44.000Z",
+  "botocore_commit": "5df50a6",
+  "botocore_commit_url": "https://github.com/boto/botocore/commit/5df50a6",
+  "summary": "3 service expansion(s)",
+  "source": "mase-import",
+  "changes": [
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "ram",
+      "id": "ram",
+      "new_regions": [
+        "af-south-1"
+      ],
+      "description": "ram expanded to af-south-1"
+    },
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "ram",
+      "id": "ram",
+      "new_regions": [
+        "cn-north-1"
+      ],
+      "description": "ram expanded to cn-north-1"
+    },
+    {
+      "type": "service_expansion",
+      "partition": "aws-cn",
+      "service": "ram",
+      "id": "ram",
+      "new_regions": [
+        "cn-north-1"
+      ],
+      "description": "ram expanded to cn-north-1"
+    }
+  ]
+}

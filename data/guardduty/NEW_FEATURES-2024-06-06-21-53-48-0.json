@@ -1,0 +1,18 @@
+{
+  "description": "Amazon GuardDuty expands its generally-available RDS Protection feature to now also support RDS for PostgreSQL login activity monitoring, in addition to already monitoring Amazon Aurora databases. As part of this expansion, GuardDuty will automatically begin monitoring login data from RDS for PostgreSQL databases for accounts that are currently enabled with GuardDuty RDS Protection monitors. For new accounts that are not enabled with GuardDuty RDS Protection yet, customers can enable the feature with a single step in the GuardDuty console that will begin continuous monitoring for existing and new Amazon Aurora and RDS for PostgreSQL database workloads.",
+  "detected_at": "2024-06-06T21:53:48Z",
+  "gist_url": "https://gist.github.com/z0ph/8977c915ba2957b6ab1788a7b96ab607",
+  "link": "https://docs.aws.amazon.com/guardduty/latest/ug/rds-protection.html#rds-pro-supported-db",
+  "raw_sns_message": {
+    "featureDetails": [
+      {
+        "featureDescription": "Amazon GuardDuty expands its generally-available RDS Protection feature to now also support RDS for PostgreSQL login activity monitoring, in addition to already monitoring Amazon Aurora databases. As part of this expansion, GuardDuty will automatically begin monitoring login data from RDS for PostgreSQL databases for accounts that are currently enabled with GuardDuty RDS Protection monitors. For new accounts that are not enabled with GuardDuty RDS Protection yet, customers can enable the feature with a single step in the GuardDuty console that will begin continuous monitoring for existing and new Amazon Aurora and RDS for PostgreSQL database workloads.",
+        "featureLink": "https://docs.aws.amazon.com/guardduty/latest/ug/rds-protection.html#rds-pro-supported-db"
+      }
+    ],
+    "type": "NEW_FEATURES",
+    "version": "1"
+  },
+  "short_description": "Amazon GuardDuty expands its generally-available RDS Protection feature to now also support RDS for PostgreSQL login activity monitoring, in addition ",
+  "type": "NEW_FEATURES"
+}

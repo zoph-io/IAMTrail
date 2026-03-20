@@ -1,0 +1,19 @@
+{
+  "detected_at": "2025-05-21T01:46:14.000Z",
+  "botocore_commit": "fc6910f",
+  "botocore_commit_url": "https://github.com/boto/botocore/commit/fc6910f",
+  "summary": "1 service expansion(s)",
+  "source": "mase-import",
+  "changes": [
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "aoss",
+      "id": "aoss",
+      "new_regions": [
+        "ap-south-2"
+      ],
+      "description": "aoss expanded to ap-south-2"
+    }
+  ]
+}

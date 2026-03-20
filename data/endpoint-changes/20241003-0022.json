@@ -1,0 +1,30 @@
+{
+  "detected_at": "2024-10-03T00:22:17.000Z",
+  "botocore_commit": "ffcfe55",
+  "botocore_commit_url": "https://github.com/boto/botocore/commit/ffcfe55",
+  "summary": "2 service expansion(s)",
+  "source": "mase-import",
+  "changes": [
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "bedrock",
+      "id": "bedrock",
+      "new_regions": [
+        "ap-northeast-2",
+        "us-east-2"
+      ],
+      "description": "bedrock expanded to ap-northeast-2, us-east-2"
+    },
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "firehose",
+      "id": "firehose",
+      "new_regions": [
+        "af-south-1"
+      ],
+      "description": "firehose expanded to af-south-1"
+    }
+  ]
+}

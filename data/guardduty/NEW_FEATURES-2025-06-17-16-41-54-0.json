@@ -1,0 +1,18 @@
+{
+  "description": "GuardDuty Extended Threat Detection connects individual findings and signals into an attack sequence, a critical severity finding. This capability now includes coverage for multi-stage attacks targeting Amazon EKS clusters in your AWS environment. GuardDuty correlates multiple security signals across Amazon EKS audit logs, runtime behavior of processes, and AWS API activity to detect sophisticated attack patterns. Enable EKS Protection, Runtime Monitoring (EKS), or both to maximize your detection coverage. Feature availability varies in AWS GovCloud (US) and AWS China Regions.",
+  "detected_at": "2025-06-17T16:41:54Z",
+  "gist_url": "https://gist.github.com/z0ph/8bb759f04b2cef6144ab0b5ed2158a3c",
+  "link": "https://aws.amazon.com/blogs/aws/amazon-guardduty-expands-extended-threat-detection-coverage-to-amazon-eks-clusters",
+  "raw_sns_message": {
+    "featureDetails": [
+      {
+        "featureDescription": "GuardDuty Extended Threat Detection connects individual findings and signals into an attack sequence, a critical severity finding. This capability now includes coverage for multi-stage attacks targeting Amazon EKS clusters in your AWS environment. GuardDuty correlates multiple security signals across Amazon EKS audit logs, runtime behavior of processes, and AWS API activity to detect sophisticated attack patterns. Enable EKS Protection, Runtime Monitoring (EKS), or both to maximize your detection coverage. Feature availability varies in AWS GovCloud (US) and AWS China Regions.",
+        "featureLink": "https://aws.amazon.com/blogs/aws/amazon-guardduty-expands-extended-threat-detection-coverage-to-amazon-eks-clusters"
+      }
+    ],
+    "type": "NEW_FEATURES",
+    "version": "1"
+  },
+  "short_description": "GuardDuty Extended Threat Detection connects individual findings and signals into an attack sequence, a critical severity finding. This capability now",
+  "type": "NEW_FEATURES"
+}

@@ -1,0 +1,38 @@
+{
+  "detected_at": "2022-09-16T02:24:14.000Z",
+  "botocore_commit": "0323abf",
+  "botocore_commit_url": "https://github.com/boto/botocore/commit/0323abf",
+  "summary": "2 service expansion(s)",
+  "source": "mase-import",
+  "changes": [
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "snowball",
+      "id": "snowball",
+      "new_regions": [
+        "ap-southeast-3"
+      ],
+      "description": "snowball expanded to ap-southeast-3"
+    },
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "participant.connect",
+      "id": "participant.connect",
+      "new_regions": [
+        "af-south-1",
+        "ap-northeast-1",
+        "ap-northeast-2",
+        "ap-southeast-1",
+        "ap-southeast-2",
+        "ca-central-1",
+        "eu-central-1",
+        "eu-west-2",
+        "us-east-1",
+        "us-west-2"
+      ],
+      "description": "participant.connect expanded to af-south-1, ap-northeast-1, ap-northeast-2, ap-southeast-1, ap-southeast-2, ca-central-1, eu-central-1, eu-west-2, us-east-1, us-west-2"
+    }
+  ]
+}

@@ -1,0 +1,19 @@
+{
+  "detected_at": "2025-02-06T00:22:58.000Z",
+  "botocore_commit": "730f008",
+  "botocore_commit_url": "https://github.com/boto/botocore/commit/730f008",
+  "summary": "1 service expansion(s)",
+  "source": "mase-import",
+  "changes": [
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "cassandra",
+      "id": "cassandra",
+      "new_regions": [
+        "af-south-1"
+      ],
+      "description": "cassandra expanded to af-south-1"
+    }
+  ]
+}

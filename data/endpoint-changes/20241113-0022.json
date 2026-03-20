@@ -1,0 +1,19 @@
+{
+  "detected_at": "2024-11-13T00:22:35.000Z",
+  "botocore_commit": "664880e",
+  "botocore_commit_url": "https://github.com/boto/botocore/commit/664880e",
+  "summary": "1 service expansion(s)",
+  "source": "mase-import",
+  "changes": [
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "kinesisanalytics",
+      "id": "kinesisanalytics",
+      "new_regions": [
+        "ap-southeast-5"
+      ],
+      "description": "kinesisanalytics expanded to ap-southeast-5"
+    }
+  ]
+}

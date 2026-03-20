@@ -1,0 +1,19 @@
+{
+  "detected_at": "2025-06-11T00:26:53.000Z",
+  "botocore_commit": "9dfd70f",
+  "botocore_commit_url": "https://github.com/boto/botocore/commit/9dfd70f",
+  "summary": "1 service expansion(s)",
+  "source": "mase-import",
+  "changes": [
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "storagegateway",
+      "id": "storagegateway",
+      "new_regions": [
+        "ap-east-2"
+      ],
+      "description": "storagegateway expanded to ap-east-2"
+    }
+  ]
+}

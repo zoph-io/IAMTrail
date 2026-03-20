@@ -1,0 +1,22 @@
+{
+  "detected_at": "2023-10-28T00:15:53.000Z",
+  "botocore_commit": "0bdada3",
+  "botocore_commit_url": "https://github.com/boto/botocore/commit/0bdada3",
+  "summary": "1 service expansion(s)",
+  "source": "mase-import",
+  "changes": [
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "securitylake",
+      "id": "securitylake",
+      "new_regions": [
+        "ap-northeast-3",
+        "ca-central-1",
+        "eu-north-1",
+        "eu-west-3"
+      ],
+      "description": "securitylake expanded to ap-northeast-3, ca-central-1, eu-north-1, eu-west-3"
+    }
+  ]
+}

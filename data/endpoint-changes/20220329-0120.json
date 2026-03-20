@@ -1,0 +1,20 @@
+{
+  "detected_at": "2022-03-29T01:20:43.000Z",
+  "botocore_commit": "79f294",
+  "botocore_commit_url": "https://github.com/boto/botocore/commit/79f294",
+  "summary": "1 service expansion(s)",
+  "source": "mase-import",
+  "changes": [
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "profile",
+      "id": "profile",
+      "new_regions": [
+        "af-south-1",
+        "ap-northeast-2"
+      ],
+      "description": "profile expanded to af-south-1, ap-northeast-2"
+    }
+  ]
+}

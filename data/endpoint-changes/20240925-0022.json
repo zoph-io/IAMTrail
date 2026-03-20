@@ -1,0 +1,19 @@
+{
+  "detected_at": "2024-09-25T00:22:24.000Z",
+  "botocore_commit": "aaaaaf0",
+  "botocore_commit_url": "https://github.com/boto/botocore/commit/aaaaaf0",
+  "summary": "1 service expansion(s)",
+  "source": "mase-import",
+  "changes": [
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "applicationinsights",
+      "id": "applicationinsights",
+      "new_regions": [
+        "ca-west-1"
+      ],
+      "description": "applicationinsights expanded to ca-west-1"
+    }
+  ]
+}

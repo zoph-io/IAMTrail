@@ -1,0 +1,59 @@
+{
+  "detected_at": "2024-07-09T00:19:07.000Z",
+  "botocore_commit": "9ffd58f",
+  "botocore_commit_url": "https://github.com/boto/botocore/commit/9ffd58f",
+  "summary": "5 service expansion(s)",
+  "source": "mase-import",
+  "changes": [
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "cognito-identity",
+      "id": "cognito-identity",
+      "new_regions": [
+        "ap-east-1"
+      ],
+      "description": "cognito-identity expanded to ap-east-1"
+    },
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "pi",
+      "id": "pi",
+      "new_regions": [
+        "af-south-1"
+      ],
+      "description": "pi expanded to af-south-1"
+    },
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "translate",
+      "id": "translate",
+      "new_regions": [
+        "us-west-1"
+      ],
+      "description": "translate expanded to us-west-1"
+    },
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "pi",
+      "id": "pi",
+      "new_regions": [
+        "cn-north-1"
+      ],
+      "description": "pi expanded to cn-north-1"
+    },
+    {
+      "type": "service_expansion",
+      "partition": "aws-cn",
+      "service": "pi",
+      "id": "pi",
+      "new_regions": [
+        "cn-north-1"
+      ],
+      "description": "pi expanded to cn-north-1"
+    }
+  ]
+}

@@ -1,0 +1,82 @@
+{
+  "detected_at": "2024-03-16T00:16:17.000Z",
+  "botocore_commit": "a3cba44",
+  "botocore_commit_url": "https://github.com/boto/botocore/commit/a3cba44",
+  "summary": "7 service expansion(s)",
+  "source": "mase-import",
+  "changes": [
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "backup",
+      "id": "backup",
+      "new_regions": [
+        "ca-west-1"
+      ],
+      "description": "backup expanded to ca-west-1"
+    },
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "cognito-identity",
+      "id": "cognito-identity",
+      "new_regions": [
+        "eu-central-2",
+        "me-central-1"
+      ],
+      "description": "cognito-identity expanded to eu-central-2, me-central-1"
+    },
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "cognito-idp",
+      "id": "cognito-idp",
+      "new_regions": [
+        "eu-central-2",
+        "me-central-1"
+      ],
+      "description": "cognito-idp expanded to eu-central-2, me-central-1"
+    },
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "comprehendmedical",
+      "id": "comprehendmedical",
+      "new_regions": [
+        "ca-central-1"
+      ],
+      "description": "comprehendmedical expanded to ca-central-1"
+    },
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "emr-containers",
+      "id": "emr-containers",
+      "new_regions": [
+        "eu-south-2"
+      ],
+      "description": "emr-containers expanded to eu-south-2"
+    },
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "identitystore",
+      "id": "identitystore",
+      "new_regions": [
+        "ap-south-2",
+        "eu-south-2"
+      ],
+      "description": "identitystore expanded to ap-south-2, eu-south-2"
+    },
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "kinesisanalytics",
+      "id": "kinesisanalytics",
+      "new_regions": [
+        "ca-west-1"
+      ],
+      "description": "kinesisanalytics expanded to ca-west-1"
+    }
+  ]
+}

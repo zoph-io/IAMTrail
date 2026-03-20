@@ -1,0 +1,21 @@
+{
+  "detected_at": "2022-09-14T02:09:16.000Z",
+  "botocore_commit": "ac41731",
+  "botocore_commit_url": "https://github.com/boto/botocore/commit/ac41731",
+  "summary": "1 service expansion(s)",
+  "source": "mase-import",
+  "changes": [
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "rolesanywhere",
+      "id": "rolesanywhere",
+      "new_regions": [
+        "af-south-1",
+        "ap-southeast-3",
+        "eu-south-1"
+      ],
+      "description": "rolesanywhere expanded to af-south-1, ap-southeast-3, eu-south-1"
+    }
+  ]
+}

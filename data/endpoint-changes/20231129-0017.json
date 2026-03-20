@@ -1,0 +1,16 @@
+{
+  "detected_at": "2023-11-29T00:17:50.000Z",
+  "botocore_commit": "40ef94a",
+  "botocore_commit_url": "https://github.com/boto/botocore/commit/40ef94a",
+  "summary": "1 service expansion(s)",
+  "source": "mase-import",
+  "changes": [
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "qbusiness",
+      "id": "qbusiness",
+      "description": "qbusiness expanded to new region(s)"
+    }
+  ]
+}

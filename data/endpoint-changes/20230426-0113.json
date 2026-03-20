@@ -1,0 +1,29 @@
+{
+  "detected_at": "2023-04-26T01:13:58.000Z",
+  "botocore_commit": "ccdd6bf",
+  "botocore_commit_url": "https://github.com/boto/botocore/commit/ccdd6bf",
+  "summary": "2 service expansion(s)",
+  "source": "mase-import",
+  "changes": [
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "waf-regional",
+      "id": "waf-regional",
+      "new_regions": [
+        "il-central-1"
+      ],
+      "description": "waf-regional expanded to il-central-1"
+    },
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "wafv2",
+      "id": "wafv2",
+      "new_regions": [
+        "il-central-1"
+      ],
+      "description": "wafv2 expanded to il-central-1"
+    }
+  ]
+}

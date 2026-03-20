@@ -1,0 +1,18 @@
+{
+  "description": "The new Amazon GuardDuty coverage for Amazon Elastic Kubernetes Service (Amazon EKS) cluster activity is now live in all supported commercial and GovCloud (US) AWS Regions. GuardDuty EKS Protection monitors EKS control plane activity by analyzing Kubernetes audit logs from existing and new Amazon EKS clusters in your accounts.",
+  "detected_at": "2022-02-01T19:17:39Z",
+  "gist_url": "https://gist.github.com/z0ph/2e055f62d2d1b692348b05eac332f417",
+  "link": "",
+  "raw_sns_message": {
+    "featureDetails": [
+      {
+        "featureDescription": "The new Amazon GuardDuty coverage for Amazon Elastic Kubernetes Service (Amazon EKS) cluster activity is now live in all supported commercial and GovCloud (US) AWS Regions. GuardDuty EKS Protection monitors EKS control plane activity by analyzing Kubernetes audit logs from existing and new Amazon EKS clusters in your accounts.",
+        "link": "https://docs.aws.amazon.com/guardduty/latest/ug/kubernetes-protection.html"
+      }
+    ],
+    "type": "NEW_FEATURES",
+    "version": "1"
+  },
+  "short_description": "The new Amazon GuardDuty coverage for Amazon Elastic Kubernetes Service (Amazon EKS) cluster activity is now live in all supported commercial and GovC",
+  "type": "NEW_FEATURES"
+}

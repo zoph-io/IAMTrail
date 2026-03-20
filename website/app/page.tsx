@@ -291,6 +291,7 @@ export default async function Home() {
                       bg: "bg-zinc-50 dark:bg-zinc-800",
                       border: "border-zinc-200 dark:border-zinc-700",
                     };
+                    const regions = change.new_regions || change.removed_regions;
                     return (
                       <div
                         key={change.key}
@@ -301,9 +302,38 @@ export default async function Home() {
                         >
                           {badge.label}
                         </span>
-                        <span className="text-sm text-zinc-700 dark:text-zinc-300 truncate">
-                          {change.description}
-                        </span>
+                        {change.service ? (
+                          <span className="flex items-center gap-2 min-w-0">
+                            <code className="text-sm font-mono font-semibold text-zinc-800 dark:text-zinc-200 flex-shrink-0">
+                              {change.service}
+                            </code>
+                            {regions && regions.length > 0 && (
+                              <span className="flex flex-wrap gap-1 min-w-0">
+                                {regions.slice(0, 3).map((r: string) => (
+                                  <span
+                                    key={r}
+                                    className={`text-[10px] font-mono px-1 py-0.5 rounded ${
+                                      change.new_regions
+                                        ? "bg-emerald-50 dark:bg-emerald-950/30 text-emerald-700 dark:text-emerald-400"
+                                        : "bg-red-50 dark:bg-red-950/30 text-red-700 dark:text-red-400"
+                                    }`}
+                                  >
+                                    {r}
+                                  </span>
+                                ))}
+                                {regions.length > 3 && (
+                                  <span className="text-[10px] font-mono text-zinc-400">
+                                    +{regions.length - 3}
+                                  </span>
+                                )}
+                              </span>
+                            )}
+                          </span>
+                        ) : (
+                          <span className="text-sm text-zinc-700 dark:text-zinc-300 truncate">
+                            {change.description}
+                          </span>
+                        )}
                         <span className="text-xs text-zinc-400 dark:text-zinc-500 flex-shrink-0 ml-auto font-mono">
                           {change.partition}
                         </span>

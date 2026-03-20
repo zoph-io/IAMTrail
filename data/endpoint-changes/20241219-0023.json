@@ -1,0 +1,49 @@
+{
+  "detected_at": "2024-12-19T00:23:58.000Z",
+  "botocore_commit": "587df5a",
+  "botocore_commit_url": "https://github.com/boto/botocore/commit/587df5a",
+  "summary": "4 service expansion(s)",
+  "source": "mase-import",
+  "changes": [
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "datasync",
+      "id": "datasync",
+      "new_regions": [
+        "af-south-1"
+      ],
+      "description": "datasync expanded to af-south-1"
+    },
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "kafka",
+      "id": "kafka",
+      "new_regions": [
+        "ap-southeast-5"
+      ],
+      "description": "kafka expanded to ap-southeast-5"
+    },
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "datasync",
+      "id": "datasync",
+      "new_regions": [
+        "cn-north-1"
+      ],
+      "description": "datasync expanded to cn-north-1"
+    },
+    {
+      "type": "service_expansion",
+      "partition": "aws-cn",
+      "service": "datasync",
+      "id": "datasync",
+      "new_regions": [
+        "cn-north-1"
+      ],
+      "description": "datasync expanded to cn-north-1"
+    }
+  ]
+}

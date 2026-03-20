@@ -1,0 +1,87 @@
+{
+  "detected_at": "2022-06-07T01:38:19.000Z",
+  "botocore_commit": "c742bd",
+  "botocore_commit_url": "https://github.com/boto/botocore/commit/c742bd",
+  "summary": "6 service expansion(s)",
+  "source": "mase-import",
+  "changes": [
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "iotevents",
+      "id": "iotevents",
+      "new_regions": [
+        "ca-central-1"
+      ],
+      "description": "iotevents expanded to ca-central-1"
+    },
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "ioteventsdata",
+      "id": "ioteventsdata",
+      "new_regions": [
+        "ca-central-1"
+      ],
+      "description": "ioteventsdata expanded to ca-central-1"
+    },
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "iotsitewise",
+      "id": "iotsitewise",
+      "new_regions": [
+        "ca-central-1",
+        "us-east-2"
+      ],
+      "description": "iotsitewise expanded to ca-central-1, us-east-2"
+    },
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "memory-db",
+      "id": "memory-db",
+      "new_regions": [
+        "ap-east-1",
+        "ap-northeast-1",
+        "ap-northeast-2",
+        "ap-south-1",
+        "ap-southeast-1",
+        "ap-southeast-2",
+        "ca-central-1",
+        "eu-central-1",
+        "eu-north-1",
+        "eu-west-1",
+        "eu-west-2",
+        "us-west-1",
+        "sa-east-1",
+        "us-east-1",
+        "us-east-2",
+        "us-west-2"
+      ],
+      "description": "memory-db expanded to ap-east-1, ap-northeast-1, ap-northeast-2, ap-south-1, ap-southeast-1, ap-southeast-2, ca-central-1, eu-central-1, eu-north-1, eu-west-1, eu-west-2, us-west-1, sa-east-1, us-east-1, us-east-2, us-west-2"
+    },
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "memory-db",
+      "id": "memory-db",
+      "new_regions": [
+        "cn-north-1",
+        "cn-northwest-1"
+      ],
+      "description": "memory-db expanded to cn-north-1, cn-northwest-1"
+    },
+    {
+      "type": "service_expansion",
+      "partition": "aws-cn",
+      "service": "memory-db",
+      "id": "memory-db",
+      "new_regions": [
+        "cn-north-1",
+        "cn-northwest-1"
+      ],
+      "description": "memory-db expanded to cn-north-1, cn-northwest-1"
+    }
+  ]
+}

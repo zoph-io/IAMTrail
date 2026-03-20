@@ -1,0 +1,18 @@
+{
+  "description": "Amazon GuardDuty is now available in Asia Pacific (Taipei) Region",
+  "detected_at": "2025-08-01T21:46:03Z",
+  "gist_url": "https://gist.github.com/z0ph/2304cfdd2ab465d1a599662d786815f8",
+  "link": "https://aws.amazon.com/guardduty/",
+  "raw_sns_message": {
+    "featureDetails": [
+      {
+        "featureDescription": "Amazon GuardDuty is now available in Asia Pacific (Taipei) Region",
+        "featureLink": "https://aws.amazon.com/guardduty/"
+      }
+    ],
+    "type": "NEW_FEATURES",
+    "version": "1"
+  },
+  "short_description": "Amazon GuardDuty is now available in Asia Pacific (Taipei) Region",
+  "type": "NEW_FEATURES"
+}

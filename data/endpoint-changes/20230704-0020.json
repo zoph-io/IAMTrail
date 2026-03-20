@@ -1,0 +1,98 @@
+{
+  "detected_at": "2023-07-04T00:20:42.000Z",
+  "botocore_commit": "099e84c",
+  "botocore_commit_url": "https://github.com/boto/botocore/commit/099e84c",
+  "summary": "5 service expansion(s)",
+  "source": "mase-import",
+  "changes": [
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "athena",
+      "id": "athena",
+      "new_regions": [
+        "me-central-1"
+      ],
+      "description": "athena expanded to me-central-1"
+    },
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "backupstorage",
+      "id": "backupstorage",
+      "new_regions": [
+        "af-south-1",
+        "ap-east-1",
+        "ap-northeast-1",
+        "ap-northeast-2",
+        "ap-northeast-3",
+        "ap-south-1",
+        "ap-south-2",
+        "ap-southeast-1",
+        "ap-southeast-2",
+        "ap-southeast-3",
+        "ap-southeast-4",
+        "ca-central-1",
+        "eu-central-1",
+        "eu-central-2",
+        "eu-north-1",
+        "eu-south-1",
+        "eu-south-2",
+        "eu-west-2",
+        "eu-west-3",
+        "me-central-1",
+        "me-south-1",
+        "sa-east-1",
+        "us-west-1"
+      ],
+      "description": "backupstorage expanded to af-south-1, ap-east-1, ap-northeast-1, ap-northeast-2, ap-northeast-3, ap-south-1, ap-south-2, ap-southeast-1, ap-southeast-2, ap-southeast-3, ap-southeast-4, ca-central-1, eu-central-1, eu-central-2, eu-north-1, eu-south-1, eu-south-2, eu-west-2, eu-west-3, me-central-1, me-south-1, sa-east-1, us-west-1"
+    },
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "ssm-contacts",
+      "id": "ssm-contacts",
+      "new_regions": [
+        "ap-northeast-1",
+        "ap-northeast-2",
+        "ap-south-1",
+        "ap-southeast-1",
+        "ap-southeast-2",
+        "ca-central-1",
+        "eu-central-1",
+        "eu-north-1",
+        "eu-west-1",
+        "eu-west-2",
+        "eu-west-3",
+        "us-east-1",
+        "us-east-2",
+        "us-west-1",
+        "us-west-2",
+        "sa-east-1"
+      ],
+      "description": "ssm-contacts expanded to ap-northeast-1, ap-northeast-2, ap-south-1, ap-southeast-1, ap-southeast-2, ca-central-1, eu-central-1, eu-north-1, eu-west-1, eu-west-2, eu-west-3, us-east-1, us-east-2, us-west-1, us-west-2, sa-east-1"
+    },
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "backupstorage",
+      "id": "backupstorage",
+      "new_regions": [
+        "cn-north-1",
+        "cn-northwest-1"
+      ],
+      "description": "backupstorage expanded to cn-north-1, cn-northwest-1"
+    },
+    {
+      "type": "service_expansion",
+      "partition": "aws-cn",
+      "service": "backupstorage",
+      "id": "backupstorage",
+      "new_regions": [
+        "cn-north-1",
+        "cn-northwest-1"
+      ],
+      "description": "backupstorage expanded to cn-north-1, cn-northwest-1"
+    }
+  ]
+}

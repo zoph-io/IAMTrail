@@ -1,0 +1,31 @@
+{
+  "detected_at": "2023-12-20T00:14:45.000Z",
+  "botocore_commit": "bdf0ae7",
+  "botocore_commit_url": "https://github.com/boto/botocore/commit/bdf0ae7",
+  "summary": "2 service expansion(s)",
+  "source": "mase-import",
+  "changes": [
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "identitystore",
+      "id": "identitystore",
+      "new_regions": [
+        "ap-southeast-4"
+      ],
+      "description": "identitystore expanded to ap-southeast-4"
+    },
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "mediaconnect",
+      "id": "mediaconnect",
+      "new_regions": [
+        "ap-south-2",
+        "ap-southeast-4",
+        "me-central-1"
+      ],
+      "description": "mediaconnect expanded to ap-south-2, ap-southeast-4, me-central-1"
+    }
+  ]
+}

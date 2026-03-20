@@ -1,0 +1,42 @@
+{
+  "detected_at": "2022-11-30T01:27:15.000Z",
+  "botocore_commit": "1169a63",
+  "botocore_commit_url": "https://github.com/boto/botocore/commit/1169a63",
+  "summary": "2 service expansion(s)",
+  "source": "mase-import",
+  "changes": [
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "securitylake",
+      "id": "securitylake",
+      "new_regions": [
+        "ap-northeast-1",
+        "ap-southeast-2",
+        "eu-central-1",
+        "eu-west-1",
+        "us-east-1",
+        "us-east-2",
+        "us-west-2"
+      ],
+      "description": "securitylake expanded to ap-northeast-1, ap-southeast-2, eu-central-1, eu-west-1, us-east-1, us-east-2, us-west-2"
+    },
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "simspaceweaver",
+      "id": "simspaceweaver",
+      "new_regions": [
+        "ap-southeast-1",
+        "ap-southeast-2",
+        "eu-central-1",
+        "eu-north-1",
+        "eu-west-1",
+        "us-east-1",
+        "us-east-2",
+        "us-west-2"
+      ],
+      "description": "simspaceweaver expanded to ap-southeast-1, ap-southeast-2, eu-central-1, eu-north-1, eu-west-1, us-east-1, us-east-2, us-west-2"
+    }
+  ]
+}

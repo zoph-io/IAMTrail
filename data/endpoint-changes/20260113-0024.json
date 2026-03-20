@@ -1,0 +1,49 @@
+{
+  "detected_at": "2026-01-13T00:24:58.000Z",
+  "botocore_commit": "2c68f5c",
+  "botocore_commit_url": "https://github.com/boto/botocore/commit/2c68f5c",
+  "summary": "4 service expansion(s)",
+  "source": "mase-import",
+  "changes": [
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "athena",
+      "id": "athena",
+      "new_regions": [
+        "ap-southeast-6"
+      ],
+      "description": "athena expanded to ap-southeast-6"
+    },
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "glue",
+      "id": "glue",
+      "new_regions": [
+        "ap-southeast-6"
+      ],
+      "description": "glue expanded to ap-southeast-6"
+    },
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "lakeformation",
+      "id": "lakeformation",
+      "new_regions": [
+        "ap-southeast-6"
+      ],
+      "description": "lakeformation expanded to ap-southeast-6"
+    },
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "redshift-serverless",
+      "id": "redshift-serverless",
+      "new_regions": [
+        "ap-southeast-6"
+      ],
+      "description": "redshift-serverless expanded to ap-southeast-6"
+    }
+  ]
+}

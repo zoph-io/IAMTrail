@@ -1,0 +1,22 @@
+{
+  "detected_at": "2025-03-07T00:23:52.000Z",
+  "botocore_commit": "0d96abd",
+  "botocore_commit_url": "https://github.com/boto/botocore/commit/0d96abd",
+  "summary": "1 service expansion(s)",
+  "source": "mase-import",
+  "changes": [
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "gameliftstreams",
+      "id": "gameliftstreams",
+      "new_regions": [
+        "ap-northeast-1",
+        "eu-central-1",
+        "us-east-2",
+        "us-west-2"
+      ],
+      "description": "gameliftstreams expanded to ap-northeast-1, eu-central-1, us-east-2, us-west-2"
+    }
+  ]
+}

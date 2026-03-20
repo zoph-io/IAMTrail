@@ -1,0 +1,19 @@
+{
+  "detected_at": "2024-10-08T00:22:07.000Z",
+  "botocore_commit": "80a0d3e",
+  "botocore_commit_url": "https://github.com/boto/botocore/commit/80a0d3e",
+  "summary": "1 service expansion(s)",
+  "source": "mase-import",
+  "changes": [
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "outposts",
+      "id": "outposts",
+      "new_regions": [
+        "eu-south-2"
+      ],
+      "description": "outposts expanded to eu-south-2"
+    }
+  ]
+}

@@ -1,0 +1,18 @@
+{
+  "description": "GuardDuty Runtime Monitoring for ECS workloads deployed on Fargate now also supports batch tasks.",
+  "detected_at": "2024-05-28T22:22:15Z",
+  "gist_url": "https://gist.github.com/z0ph/efda50aa9fe74861e1deae5f9ba5e94b",
+  "link": "https://docs.aws.amazon.com/guardduty/latest/ug/how-runtime-monitoring-works-ecs-fargate.html",
+  "raw_sns_message": {
+    "featureDetails": [
+      {
+        "featureDescription": "GuardDuty Runtime Monitoring for ECS workloads deployed on Fargate now also supports batch tasks.",
+        "featureLink": "https://docs.aws.amazon.com/guardduty/latest/ug/how-runtime-monitoring-works-ecs-fargate.html"
+      }
+    ],
+    "type": "NEW_FEATURES",
+    "version": "1"
+  },
+  "short_description": "GuardDuty Runtime Monitoring for ECS workloads deployed on Fargate now also supports batch tasks.",
+  "type": "NEW_FEATURES"
+}

@@ -1,0 +1,19 @@
+{
+  "detected_at": "2023-01-18T01:22:39.000Z",
+  "botocore_commit": "eb9426d",
+  "botocore_commit_url": "https://github.com/boto/botocore/commit/eb9426d",
+  "summary": "1 service expansion(s)",
+  "source": "mase-import",
+  "changes": [
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "backup",
+      "id": "backup",
+      "new_regions": [
+        "me-central-1"
+      ],
+      "description": "backup expanded to me-central-1"
+    }
+  ]
+}

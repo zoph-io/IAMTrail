@@ -1,0 +1,53 @@
+{
+  "detected_at": "2022-11-19T01:42:13.000Z",
+  "botocore_commit": "83364ac",
+  "botocore_commit_url": "https://github.com/boto/botocore/commit/83364ac",
+  "summary": "3 service expansion(s)",
+  "source": "mase-import",
+  "changes": [
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "proton",
+      "id": "proton",
+      "new_regions": [
+        "ap-northeast-2",
+        "ap-southeast-1",
+        "ap-southeast-2",
+        "ca-central-1",
+        "eu-central-1",
+        "eu-west-2"
+      ],
+      "description": "proton expanded to ap-northeast-2, ap-southeast-1, ap-southeast-2, ca-central-1, eu-central-1, eu-west-2"
+    },
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "iotroborunner",
+      "id": "iotroborunner",
+      "new_regions": [
+        "eu-central-1",
+        "us-east-1"
+      ],
+      "description": "iotroborunner expanded to eu-central-1, us-east-1"
+    },
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "voice-chime",
+      "id": "voice-chime",
+      "new_regions": [
+        "ap-northeast-1",
+        "ap-northeast-2",
+        "ap-southeast-1",
+        "ca-central-1",
+        "eu-central-1",
+        "eu-west-1",
+        "eu-west-2",
+        "us-east-1",
+        "us-west-2"
+      ],
+      "description": "voice-chime expanded to ap-northeast-1, ap-northeast-2, ap-southeast-1, ca-central-1, eu-central-1, eu-west-1, eu-west-2, us-east-1, us-west-2"
+    }
+  ]
+}

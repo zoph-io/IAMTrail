@@ -1,0 +1,39 @@
+{
+  "description": "This finding informs you that a known malicious executable has been executed on Amazon EC2 instance or a container within your AWS environment. This is a strong indicator that the instance or container has been potentially compromised and that malware has been executed.",
+  "detected_at": "2024-04-05T20:30:27Z",
+  "gist_url": "https://gist.github.com/z0ph/7013e4d2185742ac7d2dd4208fc7bb11",
+  "link": "https://docs.aws.amazon.com/guardduty/latest/ug/findings-runtime-monitoring.html#execution-runtime-malicious-file-executed",
+  "raw_sns_message": {
+    "findingDetails": [
+      {
+        "findingDescription": "This finding informs you that a known malicious executable has been executed on Amazon EC2 instance or a container within your AWS environment. This is a strong indicator that the instance or container has been potentially compromised and that malware has been executed.",
+        "findingType": "Execution:Runtime/MaliciousFileExecuted",
+        "link": "https://docs.aws.amazon.com/guardduty/latest/ug/findings-runtime-monitoring.html#execution-runtime-malicious-file-executed"
+      },
+      {
+        "findingDescription": "This finding informs you that a suspicious tool has been executed on an EC2 instance or container within your AWS environment. This includes tools used in pentesting engagements, also known as backdoor tools, network scanners, and network sniffers. All these tools can be used in benign contexts but are also frequently used by threat actors with malicious intent. Observing offensive security tools could indicate that the associated EC2 instance or container has been compromised.",
+        "findingType": "Execution:Runtime/SuspiciousTool",
+        "link": "https://docs.aws.amazon.com/guardduty/latest/ug/findings-runtime-monitoring.html#execution-runtime-suspicioustool"
+      },
+      {
+        "findingDescription": "This finding shows that a process running on an Amazon EC2 instance or a container within your AWS environment has used the ptrace system call with the PTRACE_TRACEME option. This activity would cause an attached debugger to detach from the running process. If no debugger is attached, it has no effect. However, the activity in itself raises suspicion. This might indicate that malware is running on the system. Malware frequently uses anti-debugging techniques to evade analysis, and these techniques can be detected at runtime.",
+        "findingType": "DefenseEvasion:Runtime/PtraceAntiDebugging",
+        "link": "https://docs.aws.amazon.com/guardduty/latest/ug/findings-runtime-monitoring.html#defenseevasion-runtime-ptrace-anti-debug"
+      },
+      {
+        "findingDescription": "This finding informs you that a suspicious command has been executed and it indicates that an Amazon EC2 instance or a container in your AWS environment has been compromised. This might mean that either a file was downloaded from a suspicious source and then executed, or a running process displays a known malicious pattern in its command line. This further indicates that malware is running on the system.",
+        "findingType": "Execution:Runtime/SuspiciousCommand",
+        "link": "https://docs.aws.amazon.com/guardduty/latest/ug/findings-runtime-monitoring.html#execution-runtime-suspiciouscommand"
+      },
+      {
+        "findingDescription": "This finding informs you that a command that attempts to hide an attack from the local system's security services, has been executed. This includes actions such as disabling the Unix firewall, modifying local IP tables, removing crontab entries, disabling a local service, or taking over the LDPreload function. Any modification is highly suspicious and a potential indicator of compromise. Therefore, these mechanisms detect or prevent further compromise of the system.",
+        "findingType": "DefenseEvasion:Runtime/SuspiciousCommand",
+        "link": "https://docs.aws.amazon.com/guardduty/latest/ug/findings-runtime-monitoring.html#defenseevasion-runtime-suspicious-command"
+      }
+    ],
+    "type": "NEW_FINDINGS",
+    "version": "1"
+  },
+  "short_description": "Execution:Runtime/MaliciousFileExecuted",
+  "type": "NEW_FINDINGS"
+}

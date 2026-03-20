@@ -1,0 +1,19 @@
+{
+  "detected_at": "2023-12-13T00:17:38.000Z",
+  "botocore_commit": "caa7834",
+  "botocore_commit_url": "https://github.com/boto/botocore/commit/caa7834",
+  "summary": "1 service expansion(s)",
+  "source": "mase-import",
+  "changes": [
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "cloud9",
+      "id": "cloud9",
+      "new_regions": [
+        "il-central-1"
+      ],
+      "description": "cloud9 expanded to il-central-1"
+    }
+  ]
+}

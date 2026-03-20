@@ -1,0 +1,41 @@
+{
+  "detected_at": "2024-01-30T00:16:43.000Z",
+  "botocore_commit": "b10c25d",
+  "botocore_commit_url": "https://github.com/boto/botocore/commit/b10c25d",
+  "summary": "3 service expansion(s)",
+  "source": "mase-import",
+  "changes": [
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "wisdom",
+      "id": "wisdom",
+      "new_regions": [
+        "ap-northeast-2",
+        "ap-southeast-1",
+        "ca-central-1"
+      ],
+      "description": "wisdom expanded to ap-northeast-2, ap-southeast-1, ca-central-1"
+    },
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "quicksight",
+      "id": "quicksight",
+      "new_regions": [
+        "cn-north-1"
+      ],
+      "description": "quicksight expanded to cn-north-1"
+    },
+    {
+      "type": "service_expansion",
+      "partition": "aws-cn",
+      "service": "quicksight",
+      "id": "quicksight",
+      "new_regions": [
+        "cn-north-1"
+      ],
+      "description": "quicksight expanded to cn-north-1"
+    }
+  ]
+}

@@ -1,0 +1,25 @@
+{
+  "detected_at": "2023-03-25T01:13:24.000Z",
+  "botocore_commit": "797b9ad",
+  "botocore_commit_url": "https://github.com/boto/botocore/commit/797b9ad",
+  "summary": "1 service expansion(s)",
+  "source": "mase-import",
+  "changes": [
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "ivsrealtime",
+      "id": "ivsrealtime",
+      "new_regions": [
+        "ap-northeast-1",
+        "ap-northeast-2",
+        "ap-south-1",
+        "eu-central-1",
+        "eu-west-1",
+        "us-east-1",
+        "us-west-2"
+      ],
+      "description": "ivsrealtime expanded to ap-northeast-1, ap-northeast-2, ap-south-1, eu-central-1, eu-west-1, us-east-1, us-west-2"
+    }
+  ]
+}

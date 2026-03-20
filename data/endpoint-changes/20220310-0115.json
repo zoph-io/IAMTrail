@@ -1,0 +1,22 @@
+{
+  "detected_at": "2022-03-10T01:15:00.000Z",
+  "botocore_commit": "3d7880",
+  "botocore_commit_url": "https://github.com/boto/botocore/commit/3d7880",
+  "summary": "1 service expansion(s)",
+  "source": "mase-import",
+  "changes": [
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "ivs",
+      "id": "ivs",
+      "new_regions": [
+        "ap-northeast-1",
+        "ap-northeast-2",
+        "ap-south-1",
+        "eu-central-1"
+      ],
+      "description": "ivs expanded to ap-northeast-1, ap-northeast-2, ap-south-1, eu-central-1"
+    }
+  ]
+}

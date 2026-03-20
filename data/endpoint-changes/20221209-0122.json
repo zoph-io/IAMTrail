@@ -1,0 +1,59 @@
+{
+  "detected_at": "2022-12-09T01:22:51.000Z",
+  "botocore_commit": "c4ed492",
+  "botocore_commit_url": "https://github.com/boto/botocore/commit/c4ed492",
+  "summary": "5 service expansion(s)",
+  "source": "mase-import",
+  "changes": [
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "acm-pca",
+      "id": "acm-pca",
+      "new_regions": [
+        "me-central-1"
+      ],
+      "description": "acm-pca expanded to me-central-1"
+    },
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "dlm",
+      "id": "dlm",
+      "new_regions": [
+        "me-central-1"
+      ],
+      "description": "dlm expanded to me-central-1"
+    },
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "network-firewall",
+      "id": "network-firewall",
+      "new_regions": [
+        "ap-southeast-3"
+      ],
+      "description": "network-firewall expanded to ap-southeast-3"
+    },
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "athena",
+      "id": "athena",
+      "new_regions": [
+        "cn-north-1"
+      ],
+      "description": "athena expanded to cn-north-1"
+    },
+    {
+      "type": "service_expansion",
+      "partition": "aws-cn",
+      "service": "athena",
+      "id": "athena",
+      "new_regions": [
+        "cn-north-1"
+      ],
+      "description": "athena expanded to cn-north-1"
+    }
+  ]
+}

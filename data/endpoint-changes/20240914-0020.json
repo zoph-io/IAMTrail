@@ -1,0 +1,20 @@
+{
+  "detected_at": "2024-09-14T00:20:48.000Z",
+  "botocore_commit": "99f9ad4",
+  "botocore_commit_url": "https://github.com/boto/botocore/commit/99f9ad4",
+  "summary": "1 service expansion(s)",
+  "source": "mase-import",
+  "changes": [
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "redshift-serverless",
+      "id": "redshift-serverless",
+      "new_regions": [
+        "ap-east-1",
+        "il-central-1"
+      ],
+      "description": "redshift-serverless expanded to ap-east-1, il-central-1"
+    }
+  ]
+}

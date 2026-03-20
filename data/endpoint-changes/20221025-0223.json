@@ -1,0 +1,19 @@
+{
+  "detected_at": "2022-10-25T02:23:08.000Z",
+  "botocore_commit": "ca5af29",
+  "botocore_commit_url": "https://github.com/boto/botocore/commit/ca5af29",
+  "summary": "1 service expansion(s)",
+  "source": "mase-import",
+  "changes": [
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "kms",
+      "id": "kms",
+      "new_regions": [
+        "ap-south-2"
+      ],
+      "description": "kms expanded to ap-south-2"
+    }
+  ]
+}

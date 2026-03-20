@@ -1,0 +1,49 @@
+{
+  "detected_at": "2025-05-09T01:44:40.000Z",
+  "botocore_commit": "60e3352",
+  "botocore_commit_url": "https://github.com/boto/botocore/commit/60e3352",
+  "summary": "4 service expansion(s)",
+  "source": "mase-import",
+  "changes": [
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "appstream2",
+      "id": "appstream2",
+      "new_regions": [
+        "eu-west-3"
+      ],
+      "description": "appstream2 expanded to eu-west-3"
+    },
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "guardduty",
+      "id": "guardduty",
+      "new_regions": [
+        "mx-central-1"
+      ],
+      "description": "guardduty expanded to mx-central-1"
+    },
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "sms-voice",
+      "id": "sms-voice",
+      "new_regions": [
+        "mx-central-1"
+      ],
+      "description": "sms-voice expanded to mx-central-1"
+    },
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "workspaces",
+      "id": "workspaces",
+      "new_regions": [
+        "eu-west-3"
+      ],
+      "description": "workspaces expanded to eu-west-3"
+    }
+  ]
+}

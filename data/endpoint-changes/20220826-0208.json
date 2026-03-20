@@ -1,0 +1,75 @@
+{
+  "detected_at": "2022-08-26T02:08:26.000Z",
+  "botocore_commit": "2e4ff51",
+  "botocore_commit_url": "https://github.com/boto/botocore/commit/2e4ff51",
+  "summary": "5 service expansion(s)",
+  "source": "mase-import",
+  "changes": [
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "glue",
+      "id": "glue",
+      "new_regions": [
+        "ap-southeast-3"
+      ],
+      "description": "glue expanded to ap-southeast-3"
+    },
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "iotevents",
+      "id": "iotevents",
+      "new_regions": [
+        "ca-central-1"
+      ],
+      "description": "iotevents expanded to ca-central-1"
+    },
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "ioteventsdata",
+      "id": "ioteventsdata",
+      "new_regions": [
+        "ca-central-1",
+        "us-east-1",
+        "us-east-2",
+        "us-west-2"
+      ],
+      "description": "ioteventsdata expanded to ca-central-1, us-east-1, us-east-2, us-west-2"
+    },
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "mgn",
+      "id": "mgn",
+      "new_regions": [
+        "ap-southeast-3"
+      ],
+      "description": "mgn expanded to ap-southeast-3"
+    },
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "rds-data",
+      "id": "rds-data",
+      "new_regions": [
+        "ap-northeast-1",
+        "ap-northeast-2",
+        "ap-south-1",
+        "ap-southeast-1",
+        "ap-southeast-2",
+        "ca-central-1",
+        "eu-central-1",
+        "eu-west-1",
+        "eu-west-2",
+        "eu-west-3",
+        "us-east-1",
+        "us-east-2",
+        "us-west-1",
+        "us-west-2"
+      ],
+      "description": "rds-data expanded to ap-northeast-1, ap-northeast-2, ap-south-1, ap-southeast-1, ap-southeast-2, ca-central-1, eu-central-1, eu-west-1, eu-west-2, eu-west-3, us-east-1, us-east-2, us-west-1, us-west-2"
+    }
+  ]
+}

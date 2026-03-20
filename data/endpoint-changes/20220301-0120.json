@@ -1,0 +1,19 @@
+{
+  "detected_at": "2022-03-01T01:20:51.000Z",
+  "botocore_commit": "5fd708",
+  "botocore_commit_url": "https://github.com/boto/botocore/commit/5fd708",
+  "summary": "1 service expansion(s)",
+  "source": "mase-import",
+  "changes": [
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "braket",
+      "id": "braket",
+      "new_regions": [
+        "eu-west-2"
+      ],
+      "description": "braket expanded to eu-west-2"
+    }
+  ]
+}

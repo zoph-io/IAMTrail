@@ -1,0 +1,35 @@
+{
+  "detected_at": "2025-11-19T00:27:19.000Z",
+  "botocore_commit": "7a0ead4",
+  "botocore_commit_url": "https://github.com/boto/botocore/commit/7a0ead4",
+  "summary": "2 service expansion(s)",
+  "source": "mase-import",
+  "changes": [
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "appstream2",
+      "id": "appstream2",
+      "new_regions": [
+        "ap-southeast-5",
+        "eu-south-1",
+        "eu-south-2",
+        "il-central-1"
+      ],
+      "description": "appstream2 expanded to ap-southeast-5, eu-south-1, eu-south-2, il-central-1"
+    },
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "bedrock",
+      "id": "bedrock",
+      "new_regions": [
+        "af-south-1",
+        "ca-west-1",
+        "me-south-1",
+        "mx-central-1"
+      ],
+      "description": "bedrock expanded to af-south-1, ca-west-1, me-south-1, mx-central-1"
+    }
+  ]
+}

@@ -1,0 +1,19 @@
+{
+  "detected_at": "2025-11-21T00:26:36.000Z",
+  "botocore_commit": "444f22c",
+  "botocore_commit_url": "https://github.com/boto/botocore/commit/444f22c",
+  "summary": "1 service expansion(s)",
+  "source": "mase-import",
+  "changes": [
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "identitystore",
+      "id": "identitystore",
+      "new_regions": [
+        "ap-southeast-6"
+      ],
+      "description": "identitystore expanded to ap-southeast-6"
+    }
+  ]
+}

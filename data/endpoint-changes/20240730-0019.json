@@ -1,0 +1,19 @@
+{
+  "detected_at": "2024-07-30T00:19:52.000Z",
+  "botocore_commit": "6a9a6d3",
+  "botocore_commit_url": "https://github.com/boto/botocore/commit/6a9a6d3",
+  "summary": "1 service expansion(s)",
+  "source": "mase-import",
+  "changes": [
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "sso",
+      "id": "sso",
+      "new_regions": [
+        "ca-west-1"
+      ],
+      "description": "sso expanded to ca-west-1"
+    }
+  ]
+}

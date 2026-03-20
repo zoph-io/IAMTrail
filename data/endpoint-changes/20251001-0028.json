@@ -1,0 +1,30 @@
+{
+  "detected_at": "2025-10-01T00:28:51.000Z",
+  "botocore_commit": "e06e85f",
+  "botocore_commit_url": "https://github.com/boto/botocore/commit/e06e85f",
+  "summary": "2 service expansion(s)",
+  "source": "mase-import",
+  "changes": [
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "backup",
+      "id": "backup",
+      "new_regions": [
+        "ap-southeast-6"
+      ],
+      "description": "backup expanded to ap-southeast-6"
+    },
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "sso",
+      "id": "sso",
+      "new_regions": [
+        "ap-southeast-7",
+        "mx-central-1"
+      ],
+      "description": "sso expanded to ap-southeast-7, mx-central-1"
+    }
+  ]
+}

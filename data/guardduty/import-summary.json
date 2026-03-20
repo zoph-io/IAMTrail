@@ -1,0 +1,15 @@
+{
+  "imported_at": "2026-03-20T17:29:25.657409Z",
+  "total_announcements": 70,
+  "type_counts": {
+    "GENERAL": 2,
+    "NEW_FEATURES": 54,
+    "NEW_FINDINGS": 10,
+    "NEW_REGION": 3,
+    "UPDATED_FINDINGS": 1
+  },
+  "date_range": {
+    "earliest": "2022-02-01T19:17:39Z",
+    "latest": "2026-03-10T22:45:12Z"
+  }
+}

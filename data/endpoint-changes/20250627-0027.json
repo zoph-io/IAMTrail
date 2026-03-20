@@ -1,0 +1,20 @@
+{
+  "detected_at": "2025-06-27T00:27:21.000Z",
+  "botocore_commit": "60f9a6c",
+  "botocore_commit_url": "https://github.com/boto/botocore/commit/60f9a6c",
+  "summary": "1 service expansion(s)",
+  "source": "mase-import",
+  "changes": [
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "gamelift",
+      "id": "gamelift",
+      "new_regions": [
+        "ap-southeast-5",
+        "ap-southeast-7"
+      ],
+      "description": "gamelift expanded to ap-southeast-5, ap-southeast-7"
+    }
+  ]
+}

@@ -1,0 +1,23 @@
+{
+  "detected_at": "2025-12-10T00:29:05.000Z",
+  "botocore_commit": "b2731b2",
+  "botocore_commit_url": "https://github.com/boto/botocore/commit/b2731b2",
+  "summary": "1 service expansion(s)",
+  "source": "mase-import",
+  "changes": [
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "elasticbeanstalk",
+      "id": "elasticbeanstalk",
+      "new_regions": [
+        "ap-south-2",
+        "ap-southeast-4",
+        "ap-southeast-6",
+        "ca-west-1",
+        "eu-central-2"
+      ],
+      "description": "elasticbeanstalk expanded to ap-south-2, ap-southeast-4, ap-southeast-6, ca-west-1, eu-central-2"
+    }
+  ]
+}

@@ -1,0 +1,61 @@
+{
+  "detected_at": "2024-03-09T00:16:27.000Z",
+  "botocore_commit": "404941c",
+  "botocore_commit_url": "https://github.com/boto/botocore/commit/404941c",
+  "summary": "5 service expansion(s)",
+  "source": "mase-import",
+  "changes": [
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "guardduty",
+      "id": "guardduty",
+      "new_regions": [
+        "ca-west-1"
+      ],
+      "description": "guardduty expanded to ca-west-1"
+    },
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "lakeformation",
+      "id": "lakeformation",
+      "new_regions": [
+        "ca-west-1"
+      ],
+      "description": "lakeformation expanded to ca-west-1"
+    },
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "rolesanywhere",
+      "id": "rolesanywhere",
+      "new_regions": [
+        "ca-west-1"
+      ],
+      "description": "rolesanywhere expanded to ca-west-1"
+    },
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "network-firewall",
+      "id": "network-firewall",
+      "new_regions": [
+        "cn-north-1",
+        "cn-northwest-1"
+      ],
+      "description": "network-firewall expanded to cn-north-1, cn-northwest-1"
+    },
+    {
+      "type": "service_expansion",
+      "partition": "aws-cn",
+      "service": "network-firewall",
+      "id": "network-firewall",
+      "new_regions": [
+        "cn-north-1",
+        "cn-northwest-1"
+      ],
+      "description": "network-firewall expanded to cn-north-1, cn-northwest-1"
+    }
+  ]
+}

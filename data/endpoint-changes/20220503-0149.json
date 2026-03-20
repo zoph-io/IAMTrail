@@ -1,0 +1,54 @@
+{
+  "detected_at": "2022-05-03T01:49:59.000Z",
+  "botocore_commit": "619347",
+  "botocore_commit_url": "https://github.com/boto/botocore/commit/619347",
+  "summary": "4 service expansion(s)",
+  "source": "mase-import",
+  "changes": [
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "nimble",
+      "id": "nimble",
+      "new_regions": [
+        "ap-northeast-1"
+      ],
+      "description": "nimble expanded to ap-northeast-1"
+    },
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "route53resolver",
+      "id": "route53resolver",
+      "new_regions": [
+        "ap-southeast-3"
+      ],
+      "description": "route53resolver expanded to ap-southeast-3"
+    },
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "ivschat",
+      "id": "ivschat",
+      "new_regions": [
+        "eu-west-1",
+        "us-east-1",
+        "us-west-2"
+      ],
+      "description": "ivschat expanded to eu-west-1, us-east-1, us-west-2"
+    },
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "media-pipelines-chime",
+      "id": "media-pipelines-chime",
+      "new_regions": [
+        "ap-southeast-1",
+        "eu-central-1",
+        "us-east-1",
+        "us-west-2"
+      ],
+      "description": "media-pipelines-chime expanded to ap-southeast-1, eu-central-1, us-east-1, us-west-2"
+    }
+  ]
+}

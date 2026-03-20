@@ -1,0 +1,21 @@
+{
+  "detected_at": "2023-03-01T01:38:53.000Z",
+  "botocore_commit": "8ffd4bc",
+  "botocore_commit_url": "https://github.com/boto/botocore/commit/8ffd4bc",
+  "summary": "1 service expansion(s)",
+  "source": "mase-import",
+  "changes": [
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "apprunner",
+      "id": "apprunner",
+      "new_regions": [
+        "ap-southeast-1",
+        "ap-southeast-2",
+        "eu-central-1"
+      ],
+      "description": "apprunner expanded to ap-southeast-1, ap-southeast-2, eu-central-1"
+    }
+  ]
+}

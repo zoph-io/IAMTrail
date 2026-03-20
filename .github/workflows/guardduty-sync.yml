@@ -1,0 +1,141 @@
+name: "[Prod] IAMTrail - GuardDuty Announcements Sync"
+
+on:
+  schedule:
+    - cron: "30 */6 * * *"
+  workflow_dispatch:
+
+env:
+  project: "mamip"
+  aws_region: "eu-west-1"
+  dynamodb_table: "iamtrail-guardduty-announcements"
+
+permissions:
+  id-token: write
+  contents: write
+
+jobs:
+  sync-guardduty:
+    name: "Sync GuardDuty Announcements"
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          aws-region: ${{ env.aws_region }}
+          role-to-assume: ${{ secrets.ROLE_TO_ASSUME }}
+          role-duration-seconds: 900
+          role-session-name: GH-Actions-GuardDutySync
+
+      - name: Query DynamoDB for new announcements
+        id: query
+        run: |
+          mkdir -p data/guardduty
+
+          # Scan all items from DynamoDB
+          ITEMS=$(aws dynamodb scan \
+            --table-name "${{ env.dynamodb_table }}" \
+            --region "${{ env.aws_region }}" \
+            --output json 2>/dev/null || echo '{"Items":[]}')
+
+          ITEM_COUNT=$(echo "$ITEMS" | jq '.Items | length')
+          echo "Found $ITEM_COUNT items in DynamoDB"
+
+          if [ "$ITEM_COUNT" -eq 0 ]; then
+            echo "CHANGES_DETECTED=false" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+
+          NEW_FILES=0
+
+          echo "$ITEMS" | jq -c '.Items[]' | while read -r item; do
+            ANNOUNCEMENT_ID=$(echo "$item" | jq -r '.announcement_id.S')
+            ANNOUNCEMENT_DATE=$(echo "$item" | jq -r '.announcement_date.S')
+            TYPE=$(echo "$item" | jq -r '.type.S')
+            DESCRIPTION=$(echo "$item" | jq -r '.description.S // ""')
+            SHORT_DESC=$(echo "$item" | jq -r '.short_description.S // ""')
+            LINK=$(echo "$item" | jq -r '.link.S // ""')
+            RAW_MESSAGE=$(echo "$item" | jq -r '.raw_message.S // "{}"')
+            DETECTED_AT=$(echo "$item" | jq -r '.detected_at.S // ""')
+            GIST_URL=$(echo "$item" | jq -r '.gist_url.S // ""')
+
+            FILENAME="data/guardduty/${ANNOUNCEMENT_ID}.json"
+
+            if [ ! -f "$FILENAME" ]; then
+              jq -n \
+                --arg type "$TYPE" \
+                --arg detected_at "$DETECTED_AT" \
+                --arg description "$DESCRIPTION" \
+                --arg short_description "$SHORT_DESC" \
+                --arg link "$LINK" \
+                --arg gist_url "$GIST_URL" \
+                --argjson raw_sns_message "$RAW_MESSAGE" \
+                '{
+                  type: $type,
+                  detected_at: $detected_at,
+                  description: $description,
+                  short_description: $short_description,
+                  link: $link,
+                  gist_url: $gist_url,
+                  raw_sns_message: $raw_sns_message
+                }' > "$FILENAME"
+
+              echo "  New: $FILENAME"
+              NEW_FILES=$((NEW_FILES + 1))
+            fi
+          done
+
+          if [ -n "$(git status --porcelain data/guardduty/)" ]; then
+            echo "CHANGES_DETECTED=true" >> "$GITHUB_OUTPUT"
+            CHANGE_COUNT=$(git status --porcelain data/guardduty/ | wc -l | tr -d ' ')
+            echo "CHANGE_COUNT=$CHANGE_COUNT" >> "$GITHUB_OUTPUT"
+            echo "$CHANGE_COUNT new announcement files"
+          else
+            echo "CHANGES_DETECTED=false" >> "$GITHUB_OUTPUT"
+            echo "No new announcements"
+          fi
+
+      - name: Send Discord notification
+        if: steps.query.outputs.CHANGES_DETECTED == 'true'
+        run: |
+          WEBHOOK_URL="${{ secrets.DISCORD_WEBHOOK_URL }}"
+          if [ -z "$WEBHOOK_URL" ]; then
+            echo "No Discord webhook URL configured, skipping notification"
+            exit 0
+          fi
+
+          TIMESTAMP=$(date -u +"%Y-%m-%dT%H:%M:%SZ")
+          PAYLOAD=$(jq -n \
+            --arg title "GuardDuty Announcements Synced" \
+            --arg desc "${{ steps.query.outputs.CHANGE_COUNT }} new announcement(s) committed to git" \
+            --arg count "${{ steps.query.outputs.CHANGE_COUNT }}" \
+            --arg ts "$TIMESTAMP" \
+            '{
+              "embeds": [{
+                "title": $title,
+                "description": $desc,
+                "color": 3066993,
+                "fields": [
+                  {"name": "New Files", "value": $count, "inline": true}
+                ],
+                "footer": {"text": "IAMTrail - GuardDuty Sync"},
+                "timestamp": $ts
+              }]
+            }')
+
+          curl -s -o /dev/null -H "Content-Type: application/json" \
+            -d "$PAYLOAD" "$WEBHOOK_URL" || echo "Warning: Discord notification failed"
+
+      - name: Commit and push changes
+        if: steps.query.outputs.CHANGES_DETECTED == 'true'
+        run: |
+          git config --local user.email "iamtrail-bot@noreply.github.com"
+          git config --local user.name "IAMTrail GuardDuty Monitor"
+          git add data/guardduty/
+          git commit -m "guardduty: ${{ steps.query.outputs.CHANGE_COUNT }} new announcement(s)"
+          git push origin master

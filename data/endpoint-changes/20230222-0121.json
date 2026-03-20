@@ -1,0 +1,19 @@
+{
+  "detected_at": "2023-02-22T01:21:41.000Z",
+  "botocore_commit": "a7ce3df",
+  "botocore_commit_url": "https://github.com/boto/botocore/commit/a7ce3df",
+  "summary": "1 service expansion(s)",
+  "source": "mase-import",
+  "changes": [
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "kinesisanalytics",
+      "id": "kinesisanalytics",
+      "new_regions": [
+        "me-central-1"
+      ],
+      "description": "kinesisanalytics expanded to me-central-1"
+    }
+  ]
+}

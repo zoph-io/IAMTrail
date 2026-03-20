@@ -1,0 +1,41 @@
+{
+  "detected_at": "2023-03-22T01:15:37.000Z",
+  "botocore_commit": "9084d21",
+  "botocore_commit_url": "https://github.com/boto/botocore/commit/9084d21",
+  "summary": "3 service expansion(s)",
+  "source": "mase-import",
+  "changes": [
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "ssm-sap",
+      "id": "ssm-sap",
+      "new_regions": [
+        "ca-central-1"
+      ],
+      "description": "ssm-sap expanded to ca-central-1"
+    },
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "oam",
+      "id": "oam",
+      "new_regions": [
+        "cn-north-1",
+        "cn-northwest-1"
+      ],
+      "description": "oam expanded to cn-north-1, cn-northwest-1"
+    },
+    {
+      "type": "service_expansion",
+      "partition": "aws-cn",
+      "service": "oam",
+      "id": "oam",
+      "new_regions": [
+        "cn-north-1",
+        "cn-northwest-1"
+      ],
+      "description": "oam expanded to cn-north-1, cn-northwest-1"
+    }
+  ]
+}

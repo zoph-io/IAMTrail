@@ -1,0 +1,39 @@
+{
+  "detected_at": "2024-12-12T00:24:45.000Z",
+  "botocore_commit": "345e680",
+  "botocore_commit_url": "https://github.com/boto/botocore/commit/345e680",
+  "summary": "3 service expansion(s)",
+  "source": "mase-import",
+  "changes": [
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "dlm",
+      "id": "dlm",
+      "new_regions": [
+        "ca-central-1"
+      ],
+      "description": "dlm expanded to ca-central-1"
+    },
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "streams.dynamodb",
+      "id": "streams.dynamodb",
+      "new_regions": [
+        "ca-central-1"
+      ],
+      "description": "streams.dynamodb expanded to ca-central-1"
+    },
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "vpc-lattice",
+      "id": "vpc-lattice",
+      "new_regions": [
+        "ap-southeast-4"
+      ],
+      "description": "vpc-lattice expanded to ap-southeast-4"
+    }
+  ]
+}

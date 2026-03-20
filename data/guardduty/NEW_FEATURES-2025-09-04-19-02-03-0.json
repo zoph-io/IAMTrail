@@ -1,0 +1,18 @@
+{
+  "description": "Amazon GuardDuty Malware Protection for S3 enhances archive processing to support up to 10,000 files per archive (up from 1,000 files).",
+  "detected_at": "2025-09-04T19:02:03Z",
+  "gist_url": "https://gist.github.com/z0ph/74e06b2686793b4d497e04f21312d68f",
+  "link": "https://docs.aws.amazon.com/guardduty/latest/ug/malware-protection-s3-quotas-guardduty.html ",
+  "raw_sns_message": {
+    "featureDetails": [
+      {
+        "featureDescription": "Amazon GuardDuty Malware Protection for S3 enhances archive processing to support up to 10,000 files per archive (up from 1,000 files).",
+        "featureLink": "https://docs.aws.amazon.com/guardduty/latest/ug/malware-protection-s3-quotas-guardduty.html "
+      }
+    ],
+    "type": "NEW_FEATURES",
+    "version": "1"
+  },
+  "short_description": "Amazon GuardDuty Malware Protection for S3 enhances archive processing to support up to 10,000 files per archive (up from 1,000 files).",
+  "type": "NEW_FEATURES"
+}

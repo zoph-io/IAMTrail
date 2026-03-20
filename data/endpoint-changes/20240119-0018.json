@@ -1,0 +1,19 @@
+{
+  "detected_at": "2024-01-19T00:18:24.000Z",
+  "botocore_commit": "2007f19",
+  "botocore_commit_url": "https://github.com/boto/botocore/commit/2007f19",
+  "summary": "1 service expansion(s)",
+  "source": "mase-import",
+  "changes": [
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "portal.sso",
+      "id": "portal.sso",
+      "new_regions": [
+        "me-central-1"
+      ],
+      "description": "portal.sso expanded to me-central-1"
+    }
+  ]
+}

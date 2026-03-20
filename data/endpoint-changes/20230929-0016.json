@@ -1,0 +1,46 @@
+{
+  "detected_at": "2023-09-29T00:16:33.000Z",
+  "botocore_commit": "efff87a",
+  "botocore_commit_url": "https://github.com/boto/botocore/commit/efff87a",
+  "summary": "3 service expansion(s)",
+  "source": "mase-import",
+  "changes": [
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "inspector2",
+      "id": "inspector2",
+      "new_regions": [
+        "af-south-1",
+        "ap-northeast-3",
+        "ap-southeast-3",
+        "eu-central-2"
+      ],
+      "description": "inspector2 expanded to af-south-1, ap-northeast-3, ap-southeast-3, eu-central-2"
+    },
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "network-firewall",
+      "id": "network-firewall",
+      "new_regions": [
+        "il-central-1"
+      ],
+      "description": "network-firewall expanded to il-central-1"
+    },
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "tnb",
+      "id": "tnb",
+      "new_regions": [
+        "ap-northeast-2",
+        "ca-central-1",
+        "eu-north-1",
+        "eu-south-2",
+        "sa-east-1"
+      ],
+      "description": "tnb expanded to ap-northeast-2, ca-central-1, eu-north-1, eu-south-2, sa-east-1"
+    }
+  ]
+}

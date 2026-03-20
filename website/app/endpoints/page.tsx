@@ -1,7 +1,17 @@
 import StatsCard from "@/components/StatsCard";
 import EndpointChangeFeed from "@/components/EndpointChangeFeed";
+import EndpointInsights from "@/components/EndpointInsights";
 import PartitionExplorer from "@/components/PartitionExplorer";
-import { Globe, Server, Network, Clock } from "lucide-react";
+import {
+  Globe,
+  Server,
+  Network,
+  Clock,
+  Activity,
+  MapPin,
+  Layers,
+  CalendarDays,
+} from "lucide-react";
 
 async function getEndpointsData() {
   try {
@@ -37,6 +47,20 @@ function formatRelativeDate(iso: string) {
   return `${Math.floor(diffDays / 365)}y ago`;
 }
 
+function trackingDuration(since: string | null) {
+  if (!since) return null;
+  const start = new Date(since);
+  const now = new Date();
+  const months =
+    (now.getFullYear() - start.getFullYear()) * 12 +
+    now.getMonth() -
+    start.getMonth();
+  if (months < 12) return `${months} months`;
+  const years = Math.floor(months / 12);
+  const rem = months % 12;
+  return rem > 0 ? `${years}y ${rem}mo` : `${years} years`;
+}
+
 export default async function EndpointsPage() {
   const data = await getEndpointsData();
 
@@ -57,7 +81,7 @@ export default async function EndpointsPage() {
     );
   }
 
-  const { currentState, recentChanges } = data;
+  const { currentState, recentChanges, changeStats } = data;
   const latestChange =
     recentChanges.length > 0 ? recentChanges[0].detected_at : null;
 
@@ -101,9 +125,7 @@ export default async function EndpointsPage() {
           title="Services"
           value={awsPartition?.serviceCount || currentState.totalServices}
           description={
-            awsPartition
-              ? "In aws partition"
-              : "Across all partitions"
+            awsPartition ? "In aws partition" : "Across all partitions"
           }
           icon={<Server className="w-8 h-8" />}
         />
@@ -125,11 +147,61 @@ export default async function EndpointsPage() {
         />
       </div>
 
-      {/* Two-column layout: changes + explorer */}
+      {changeStats && (
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+          <StatsCard
+            title="Changes Tracked"
+            value={changeStats.totalChangeItems.toLocaleString()}
+            description={`${changeStats.totalRecords} detection events`}
+            icon={<Activity className="w-8 h-8" />}
+          />
+          <StatsCard
+            title="Services Expanded"
+            value={changeStats.uniqueServices}
+            description="Unique services observed"
+            icon={<Layers className="w-8 h-8" />}
+          />
+          <StatsCard
+            title="Regions Covered"
+            value={changeStats.uniqueRegions}
+            description="Regions with expansions"
+            icon={<MapPin className="w-8 h-8" />}
+          />
+          <StatsCard
+            title="Tracking Since"
+            value={
+              changeStats.trackingSince
+                ? trackingDuration(changeStats.trackingSince) || "N/A"
+                : "N/A"
+            }
+            description={
+              changeStats.trackingSince
+                ? new Date(changeStats.trackingSince).toLocaleDateString(
+                    "en-US",
+                    { month: "short", year: "numeric" }
+                  )
+                : "Monitoring active"
+            }
+            icon={<CalendarDays className="w-8 h-8" />}
+          />
+        </div>
+      )}
+
+      {/* Insights */}
+      {changeStats && (
+        <div>
+          <h2 className="text-sm font-semibold font-mono uppercase tracking-wider text-zinc-900 dark:text-white mb-4">
+            Insights
+          </h2>
+          <EndpointInsights stats={changeStats} />
+        </div>
+      )}
+
+      {/* Change feed + Partition explorer */}
       <div className="grid grid-cols-1 lg:grid-cols-5 gap-6">
         <div className="lg:col-span-3 space-y-4">
           <h2 className="text-sm font-semibold font-mono uppercase tracking-wider text-zinc-900 dark:text-white">
-            Recent Changes
+            Change History
           </h2>
           <EndpointChangeFeed changes={recentChanges} />
         </div>

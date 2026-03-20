@@ -1,0 +1,19 @@
+{
+  "detected_at": "2026-01-16T00:29:53.000Z",
+  "botocore_commit": "ae5ada9",
+  "botocore_commit_url": "https://github.com/boto/botocore/commit/ae5ada9",
+  "summary": "1 service expansion(s)",
+  "source": "mase-import",
+  "changes": [
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "api.mediatailor",
+      "id": "api.mediatailor",
+      "new_regions": [
+        "ap-southeast-5"
+      ],
+      "description": "api.mediatailor expanded to ap-southeast-5"
+    }
+  ]
+}

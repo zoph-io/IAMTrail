@@ -1,0 +1,34 @@
+{
+  "detected_at": "2023-08-03T00:18:37.000Z",
+  "botocore_commit": "215cca7",
+  "botocore_commit_url": "https://github.com/boto/botocore/commit/215cca7",
+  "summary": "2 service expansion(s)",
+  "source": "mase-import",
+  "changes": [
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "lakeformation",
+      "id": "lakeformation",
+      "new_regions": [
+        "ap-south-2",
+        "ap-southeast-4",
+        "il-central-1"
+      ],
+      "description": "lakeformation expanded to ap-south-2, ap-southeast-4, il-central-1"
+    },
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "servicecatalog-appregistry",
+      "id": "servicecatalog-appregistry",
+      "new_regions": [
+        "ap-south-2",
+        "ap-southeast-4",
+        "eu-central-2",
+        "eu-south-2"
+      ],
+      "description": "servicecatalog-appregistry expanded to ap-south-2, ap-southeast-4, eu-central-2, eu-south-2"
+    }
+  ]
+}

@@ -1,0 +1,20 @@
+{
+  "detected_at": "2023-04-20T01:12:35.000Z",
+  "botocore_commit": "00fc04c",
+  "botocore_commit_url": "https://github.com/boto/botocore/commit/00fc04c",
+  "summary": "1 service expansion(s)",
+  "source": "mase-import",
+  "changes": [
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "arc-zonal-shift",
+      "id": "arc-zonal-shift",
+      "new_regions": [
+        "ap-southeast-4",
+        "eu-central-2"
+      ],
+      "description": "arc-zonal-shift expanded to ap-southeast-4, eu-central-2"
+    }
+  ]
+}

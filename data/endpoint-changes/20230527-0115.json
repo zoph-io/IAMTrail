@@ -1,0 +1,39 @@
+{
+  "detected_at": "2023-05-27T01:15:52.000Z",
+  "botocore_commit": "025c405",
+  "botocore_commit_url": "https://github.com/boto/botocore/commit/025c405",
+  "summary": "3 service expansion(s)",
+  "source": "mase-import",
+  "changes": [
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "api.sagemaker",
+      "id": "api.sagemaker",
+      "new_regions": [
+        "ap-southeast-4"
+      ],
+      "description": "api.sagemaker expanded to ap-southeast-4"
+    },
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "kafka",
+      "id": "kafka",
+      "new_regions": [
+        "ap-southeast-4"
+      ],
+      "description": "kafka expanded to ap-southeast-4"
+    },
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "securityhub",
+      "id": "securityhub",
+      "new_regions": [
+        "ap-southeast-4"
+      ],
+      "description": "securityhub expanded to ap-southeast-4"
+    }
+  ]
+}

@@ -1,0 +1,18 @@
+{
+  "description": "GuardDuty Malware Protection for S3 launches zero-click role creation when enabling protection on a bucket. GuardDuty now allows you to use a pre-existing role or can automatically create a new role with permissions scoped down to perform actions on that specific bucket.",
+  "detected_at": "2024-10-23T23:52:10Z",
+  "gist_url": "https://gist.github.com/z0ph/5622f5c1155cd54d8e848ead7900e53a",
+  "link": "https://docs.aws.amazon.com/guardduty/latest/ug/enable-malware-protection-s3-bucket.html ",
+  "raw_sns_message": {
+    "featureDetails": [
+      {
+        "featureDescription": "GuardDuty Malware Protection for S3 launches zero-click role creation when enabling protection on a bucket. GuardDuty now allows you to use a pre-existing role or can automatically create a new role with permissions scoped down to perform actions on that specific bucket.",
+        "featureLink": "https://docs.aws.amazon.com/guardduty/latest/ug/enable-malware-protection-s3-bucket.html "
+      }
+    ],
+    "type": "NEW_FEATURES",
+    "version": "1"
+  },
+  "short_description": "GuardDuty Malware Protection for S3 launches zero-click role creation when enabling protection on a bucket. GuardDuty now allows you to use a pre-exis",
+  "type": "NEW_FEATURES"
+}

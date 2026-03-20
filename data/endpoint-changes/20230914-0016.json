@@ -1,0 +1,29 @@
+{
+  "detected_at": "2023-09-14T00:16:02.000Z",
+  "botocore_commit": "6dd4549",
+  "botocore_commit_url": "https://github.com/boto/botocore/commit/6dd4549",
+  "summary": "2 service expansion(s)",
+  "source": "mase-import",
+  "changes": [
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "drs",
+      "id": "drs",
+      "new_regions": [
+        "il-central-1"
+      ],
+      "description": "drs expanded to il-central-1"
+    },
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "managedblockchain-query",
+      "id": "managedblockchain-query",
+      "new_regions": [
+        "us-east-1"
+      ],
+      "description": "managedblockchain-query expanded to us-east-1"
+    }
+  ]
+}

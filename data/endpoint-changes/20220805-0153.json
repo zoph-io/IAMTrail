@@ -1,0 +1,23 @@
+{
+  "detected_at": "2022-08-05T01:53:58.000Z",
+  "botocore_commit": "2915712",
+  "botocore_commit_url": "https://github.com/boto/botocore/commit/2915712",
+  "summary": "1 service expansion(s)",
+  "source": "mase-import",
+  "changes": [
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "compute-optimizer",
+      "id": "compute-optimizer",
+      "new_regions": [
+        "af-south-1",
+        "ap-east-1",
+        "ap-northeast-3",
+        "eu-south-1",
+        "me-south-1"
+      ],
+      "description": "compute-optimizer expanded to af-south-1, ap-east-1, ap-northeast-3, eu-south-1, me-south-1"
+    }
+  ]
+}

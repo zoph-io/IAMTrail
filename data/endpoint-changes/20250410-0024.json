@@ -1,0 +1,49 @@
+{
+  "detected_at": "2025-04-10T00:24:40.000Z",
+  "botocore_commit": "336abda",
+  "botocore_commit_url": "https://github.com/boto/botocore/commit/336abda",
+  "summary": "4 service expansion(s)",
+  "source": "mase-import",
+  "changes": [
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "emr-serverless",
+      "id": "emr-serverless",
+      "new_regions": [
+        "ca-west-1"
+      ],
+      "description": "emr-serverless expanded to ca-west-1"
+    },
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "osis",
+      "id": "osis",
+      "new_regions": [
+        "eu-south-2"
+      ],
+      "description": "osis expanded to eu-south-2"
+    },
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "entitlement.marketplace",
+      "id": "entitlement.marketplace",
+      "new_regions": [
+        "cn-northwest-1"
+      ],
+      "description": "entitlement.marketplace expanded to cn-northwest-1"
+    },
+    {
+      "type": "service_expansion",
+      "partition": "aws-cn",
+      "service": "entitlement.marketplace",
+      "id": "entitlement.marketplace",
+      "new_regions": [
+        "cn-northwest-1"
+      ],
+      "description": "entitlement.marketplace expanded to cn-northwest-1"
+    }
+  ]
+}

@@ -1,0 +1,44 @@
+{
+  "detected_at": "2025-08-27T00:25:42.000Z",
+  "botocore_commit": "c260c5f",
+  "botocore_commit_url": "https://github.com/boto/botocore/commit/c260c5f",
+  "summary": "3 service expansion(s)",
+  "source": "mase-import",
+  "changes": [
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "elasticbeanstalk",
+      "id": "elasticbeanstalk",
+      "new_regions": [
+        "ap-southeast-5",
+        "ap-southeast-7",
+        "eu-south-2"
+      ],
+      "description": "elasticbeanstalk expanded to ap-southeast-5, ap-southeast-7, eu-south-2"
+    },
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "resource-explorer-2",
+      "id": "resource-explorer-2",
+      "new_regions": [
+        "ap-east-2"
+      ],
+      "description": "resource-explorer-2 expanded to ap-east-2"
+    },
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "verifiedpermissions",
+      "id": "verifiedpermissions",
+      "new_regions": [
+        "ap-east-2",
+        "ap-southeast-5",
+        "ap-southeast-7",
+        "mx-central-1"
+      ],
+      "description": "verifiedpermissions expanded to ap-east-2, ap-southeast-5, ap-southeast-7, mx-central-1"
+    }
+  ]
+}

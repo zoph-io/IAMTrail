@@ -1,0 +1,20 @@
+{
+  "detected_at": "2024-09-27T00:22:19.000Z",
+  "botocore_commit": "845c85c",
+  "botocore_commit_url": "https://github.com/boto/botocore/commit/845c85c",
+  "summary": "1 service expansion(s)",
+  "source": "mase-import",
+  "changes": [
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "healthlake",
+      "id": "healthlake",
+      "new_regions": [
+        "ap-southeast-2",
+        "eu-west-2"
+      ],
+      "description": "healthlake expanded to ap-southeast-2, eu-west-2"
+    }
+  ]
+}

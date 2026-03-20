@@ -1,0 +1,18 @@
+{
+  "description": "Amazon GuardDuty Now Available in AWS Europe (Spain) Region",
+  "detected_at": "2023-02-08T23:15:22Z",
+  "gist_url": "https://gist.github.com/z0ph/d28faf84805f06a2d0ac83c13586143b",
+  "link": "https://aws.amazon.com/about-aws/whats-new/2023/02/amazon-guardduty-aws-europe-spain-region/",
+  "raw_sns_message": {
+    "regionDetails": [
+      {
+        "description": "Amazon GuardDuty Now Available in AWS Europe (Spain) Region",
+        "link": "https://aws.amazon.com/about-aws/whats-new/2023/02/amazon-guardduty-aws-europe-spain-region/"
+      }
+    ],
+    "type": "NEW_REGION",
+    "version": "1"
+  },
+  "short_description": "Amazon GuardDuty Now Available in AWS Europe (Spain) Region",
+  "type": "NEW_REGION"
+}

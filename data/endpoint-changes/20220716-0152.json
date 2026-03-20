@@ -1,0 +1,16 @@
+{
+  "detected_at": "2022-07-16T01:52:35.000Z",
+  "botocore_commit": "8b3fe4b",
+  "botocore_commit_url": "https://github.com/boto/botocore/commit/8b3fe4b",
+  "summary": "1 service expansion(s)",
+  "source": "mase-import",
+  "changes": [
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "devops-guru",
+      "id": "devops-guru",
+      "description": "devops-guru expanded to new region(s)"
+    }
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "detected_at": "2022-05-20T01:41:44.000Z",
+  "botocore_commit": "e98e5e",
+  "botocore_commit_url": "https://github.com/boto/botocore/commit/e98e5e",
+  "summary": "1 service expansion(s)",
+  "source": "mase-import",
+  "changes": [
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "health",
+      "id": "health",
+      "description": "health expanded to new region(s)"
+    }
+  ]
+}

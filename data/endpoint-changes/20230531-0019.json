@@ -1,0 +1,21 @@
+{
+  "detected_at": "2023-05-31T00:19:13.000Z",
+  "botocore_commit": "181ded2",
+  "botocore_commit_url": "https://github.com/boto/botocore/commit/181ded2",
+  "summary": "1 service expansion(s)",
+  "source": "mase-import",
+  "changes": [
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "transfer",
+      "id": "transfer",
+      "new_regions": [
+        "ap-south-2",
+        "eu-central-2",
+        "eu-south-2"
+      ],
+      "description": "transfer expanded to ap-south-2, eu-central-2, eu-south-2"
+    }
+  ]
+}

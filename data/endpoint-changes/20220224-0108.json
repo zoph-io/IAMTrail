@@ -1,0 +1,31 @@
+{
+  "detected_at": "2022-02-24T01:08:09.000Z",
+  "botocore_commit": "4990c9",
+  "botocore_commit_url": "https://github.com/boto/botocore/commit/4990c9",
+  "summary": "2 service expansion(s)",
+  "source": "mase-import",
+  "changes": [
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "api.tunneling.iot",
+      "id": "api.tunneling.iot",
+      "new_regions": [
+        "cn-north-1",
+        "cn-northwest-1"
+      ],
+      "description": "api.tunneling.iot expanded to cn-north-1, cn-northwest-1"
+    },
+    {
+      "type": "service_expansion",
+      "partition": "aws-cn",
+      "service": "api.tunneling.iot",
+      "id": "api.tunneling.iot",
+      "new_regions": [
+        "cn-north-1",
+        "cn-northwest-1"
+      ],
+      "description": "api.tunneling.iot expanded to cn-north-1, cn-northwest-1"
+    }
+  ]
+}

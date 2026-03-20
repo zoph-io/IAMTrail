@@ -1,0 +1,19 @@
+{
+  "detected_at": "2023-03-04T01:22:07.000Z",
+  "botocore_commit": "f244ad9",
+  "botocore_commit_url": "https://github.com/boto/botocore/commit/f244ad9",
+  "summary": "1 service expansion(s)",
+  "source": "mase-import",
+  "changes": [
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "network-firewall",
+      "id": "network-firewall",
+      "new_regions": [
+        "me-central-1"
+      ],
+      "description": "network-firewall expanded to me-central-1"
+    }
+  ]
+}

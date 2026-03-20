@@ -1,0 +1,15 @@
+{
+  "detected_at": "2022-11-11T01:50:17.000Z",
+  "botocore_commit": "fc22160",
+  "botocore_commit_url": "https://github.com/boto/botocore/commit/fc22160",
+  "summary": "1 new region(s)",
+  "source": "mase-import",
+  "changes": [
+    {
+      "type": "new_region",
+      "partition": "aws",
+      "id": "eu-central-2",
+      "description": "eu-central-2"
+    }
+  ]
+}

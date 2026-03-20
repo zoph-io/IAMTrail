@@ -1,0 +1,30 @@
+{
+  "detected_at": "2022-11-18T01:47:09.000Z",
+  "botocore_commit": "c6b84c2",
+  "botocore_commit_url": "https://github.com/boto/botocore/commit/c6b84c2",
+  "summary": "2 service expansion(s)",
+  "source": "mase-import",
+  "changes": [
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "ds",
+      "id": "ds",
+      "new_regions": [
+        "me-central-1"
+      ],
+      "description": "ds expanded to me-central-1"
+    },
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "voiceid",
+      "id": "voiceid",
+      "new_regions": [
+        "us-east-1",
+        "us-west-2"
+      ],
+      "description": "voiceid expanded to us-east-1, us-west-2"
+    }
+  ]
+}

@@ -1,0 +1,29 @@
+{
+  "detected_at": "2025-04-03T00:24:11.000Z",
+  "botocore_commit": "8dd9dae",
+  "botocore_commit_url": "https://github.com/boto/botocore/commit/8dd9dae",
+  "summary": "2 service expansion(s)",
+  "source": "mase-import",
+  "changes": [
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "comprehend",
+      "id": "comprehend",
+      "new_regions": [
+        "ap-south-1"
+      ],
+      "description": "comprehend expanded to ap-south-1"
+    },
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "guardduty",
+      "id": "guardduty",
+      "new_regions": [
+        "ap-southeast-7"
+      ],
+      "description": "guardduty expanded to ap-southeast-7"
+    }
+  ]
+}

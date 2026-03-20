@@ -1,0 +1,19 @@
+{
+  "detected_at": "2023-12-23T00:16:53.000Z",
+  "botocore_commit": "79f058a",
+  "botocore_commit_url": "https://github.com/boto/botocore/commit/79f058a",
+  "summary": "1 service expansion(s)",
+  "source": "mase-import",
+  "changes": [
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "arc-zonal-shift",
+      "id": "arc-zonal-shift",
+      "new_regions": [
+        "ca-west-1"
+      ],
+      "description": "arc-zonal-shift expanded to ca-west-1"
+    }
+  ]
+}

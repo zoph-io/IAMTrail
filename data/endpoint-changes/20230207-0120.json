@@ -1,0 +1,21 @@
+{
+  "detected_at": "2023-02-07T01:20:30.000Z",
+  "botocore_commit": "670a900",
+  "botocore_commit_url": "https://github.com/boto/botocore/commit/670a900",
+  "summary": "1 service expansion(s)",
+  "source": "mase-import",
+  "changes": [
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "firehose",
+      "id": "firehose",
+      "new_regions": [
+        "ap-south-2",
+        "eu-central-2",
+        "eu-south-2"
+      ],
+      "description": "firehose expanded to ap-south-2, eu-central-2, eu-south-2"
+    }
+  ]
+}

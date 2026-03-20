@@ -1,0 +1,15 @@
+{
+  "detected_at": "2023-12-21T00:17:38.000Z",
+  "botocore_commit": "3bb8808",
+  "botocore_commit_url": "https://github.com/boto/botocore/commit/3bb8808",
+  "summary": "1 new region(s)",
+  "source": "mase-import",
+  "changes": [
+    {
+      "type": "new_region",
+      "partition": "aws",
+      "id": "ca-west-1",
+      "description": "ca-west-1"
+    }
+  ]
+}

@@ -1,0 +1,19 @@
+{
+  "detected_at": "2025-01-28T00:22:35.000Z",
+  "botocore_commit": "d1f00f4",
+  "botocore_commit_url": "https://github.com/boto/botocore/commit/d1f00f4",
+  "summary": "1 service expansion(s)",
+  "source": "mase-import",
+  "changes": [
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "synthetics",
+      "id": "synthetics",
+      "new_regions": [
+        "ca-central-1"
+      ],
+      "description": "synthetics expanded to ca-central-1"
+    }
+  ]
+}

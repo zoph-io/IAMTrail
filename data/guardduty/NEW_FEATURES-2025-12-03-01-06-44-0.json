@@ -1,0 +1,18 @@
+{
+  "description": "Amazon GuardDuty now supports wildcard characters (* and ?) in finding suppression rules. Wildcards are supported through new Matches and NotMatches operators, giving you more flexibility in managing security findings. The findings that match this criteria are automatically archived. Suppressed findings are also excluded from Extended Threat Detection sequencing, further helping you customize your security alerts.",
+  "detected_at": "2025-12-03T01:06:44Z",
+  "gist_url": "https://gist.github.com/z0ph/e893fcb2fd444a643ccc56a470a63a74",
+  "link": "https://docs.aws.amazon.com/guardduty/latest/ug/create-suppression-rules-guardduty.html",
+  "raw_sns_message": {
+    "featureDetails": [
+      {
+        "featureDescription": "Amazon GuardDuty now supports wildcard characters (* and ?) in finding suppression rules. Wildcards are supported through new Matches and NotMatches operators, giving you more flexibility in managing security findings. The findings that match this criteria are automatically archived. Suppressed findings are also excluded from Extended Threat Detection sequencing, further helping you customize your security alerts.",
+        "featureLink": "https://docs.aws.amazon.com/guardduty/latest/ug/create-suppression-rules-guardduty.html"
+      }
+    ],
+    "type": "NEW_FEATURES",
+    "version": "1"
+  },
+  "short_description": "Amazon GuardDuty now supports wildcard characters (* and ?) in finding suppression rules. Wildcards are supported through new Matches and NotMatches o",
+  "type": "NEW_FEATURES"
+}

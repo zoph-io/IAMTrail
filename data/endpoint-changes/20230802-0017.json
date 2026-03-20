@@ -1,0 +1,15 @@
+{
+  "detected_at": "2023-08-02T00:17:44.000Z",
+  "botocore_commit": "3b5cb5b",
+  "botocore_commit_url": "https://github.com/boto/botocore/commit/3b5cb5b",
+  "summary": "1 new region(s)",
+  "source": "mase-import",
+  "changes": [
+    {
+      "type": "new_region",
+      "partition": "aws",
+      "id": "il-central-1",
+      "description": "il-central-1"
+    }
+  ]
+}

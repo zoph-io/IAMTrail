@@ -1,0 +1,40 @@
+{
+  "detected_at": "2024-07-06T00:18:26.000Z",
+  "botocore_commit": "9259aa2",
+  "botocore_commit_url": "https://github.com/boto/botocore/commit/9259aa2",
+  "summary": "3 service expansion(s)",
+  "source": "mase-import",
+  "changes": [
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "cognito-identity",
+      "id": "cognito-identity",
+      "new_regions": [
+        "ca-west-1"
+      ],
+      "description": "cognito-identity expanded to ca-west-1"
+    },
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "cognito-idp",
+      "id": "cognito-idp",
+      "new_regions": [
+        "ap-east-1",
+        "ca-west-1"
+      ],
+      "description": "cognito-idp expanded to ap-east-1, ca-west-1"
+    },
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "sms-voice",
+      "id": "sms-voice",
+      "new_regions": [
+        "ca-west-1"
+      ],
+      "description": "sms-voice expanded to ca-west-1"
+    }
+  ]
+}

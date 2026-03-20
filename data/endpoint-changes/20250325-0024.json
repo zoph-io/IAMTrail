@@ -1,0 +1,29 @@
+{
+  "detected_at": "2025-03-25T00:24:33.000Z",
+  "botocore_commit": "0490132",
+  "botocore_commit_url": "https://github.com/boto/botocore/commit/0490132",
+  "summary": "2 service expansion(s)",
+  "source": "mase-import",
+  "changes": [
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "metering.marketplace",
+      "id": "metering.marketplace",
+      "new_regions": [
+        "af-south-1"
+      ],
+      "description": "metering.marketplace expanded to af-south-1"
+    },
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "oidc",
+      "id": "oidc",
+      "new_regions": [
+        "ap-southeast-5"
+      ],
+      "description": "oidc expanded to ap-southeast-5"
+    }
+  ]
+}

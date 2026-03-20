@@ -1,0 +1,69 @@
+{
+  "detected_at": "2025-03-12T00:23:48.000Z",
+  "botocore_commit": "cf0656f",
+  "botocore_commit_url": "https://github.com/boto/botocore/commit/cf0656f",
+  "summary": "6 service expansion(s)",
+  "source": "mase-import",
+  "changes": [
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "access-analyzer",
+      "id": "access-analyzer",
+      "new_regions": [
+        "af-south-1"
+      ],
+      "description": "access-analyzer expanded to af-south-1"
+    },
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "api.detective",
+      "id": "api.detective",
+      "new_regions": [
+        "af-south-1"
+      ],
+      "description": "api.detective expanded to af-south-1"
+    },
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "api.sagemaker",
+      "id": "api.sagemaker",
+      "new_regions": [
+        "ca-central-1"
+      ],
+      "description": "api.sagemaker expanded to ca-central-1"
+    },
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "license-manager-user-subscriptions",
+      "id": "license-manager-user-subscriptions",
+      "new_regions": [
+        "ap-southeast-5"
+      ],
+      "description": "license-manager-user-subscriptions expanded to ap-southeast-5"
+    },
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "access-analyzer",
+      "id": "access-analyzer",
+      "new_regions": [
+        "cn-north-1"
+      ],
+      "description": "access-analyzer expanded to cn-north-1"
+    },
+    {
+      "type": "service_expansion",
+      "partition": "aws-cn",
+      "service": "access-analyzer",
+      "id": "access-analyzer",
+      "new_regions": [
+        "cn-north-1"
+      ],
+      "description": "access-analyzer expanded to cn-north-1"
+    }
+  ]
+}

@@ -1,0 +1,19 @@
+{
+  "detected_at": "2023-03-15T01:19:56.000Z",
+  "botocore_commit": "22b8c64",
+  "botocore_commit_url": "https://github.com/boto/botocore/commit/22b8c64",
+  "summary": "1 service expansion(s)",
+  "source": "mase-import",
+  "changes": [
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "eks",
+      "id": "eks",
+      "new_regions": [
+        "ap-southeast-4"
+      ],
+      "description": "eks expanded to ap-southeast-4"
+    }
+  ]
+}

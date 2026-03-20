@@ -1,0 +1,19 @@
+{
+  "detected_at": "2024-02-01T00:17:46.000Z",
+  "botocore_commit": "3e5ea2e",
+  "botocore_commit_url": "https://github.com/boto/botocore/commit/3e5ea2e",
+  "summary": "1 service expansion(s)",
+  "source": "mase-import",
+  "changes": [
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "sms-voice",
+      "id": "sms-voice",
+      "new_regions": [
+        "il-central-1"
+      ],
+      "description": "sms-voice expanded to il-central-1"
+    }
+  ]
+}

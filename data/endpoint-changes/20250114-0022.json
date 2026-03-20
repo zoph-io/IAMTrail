@@ -1,0 +1,29 @@
+{
+  "detected_at": "2025-01-14T00:22:53.000Z",
+  "botocore_commit": "3b2ac97",
+  "botocore_commit_url": "https://github.com/boto/botocore/commit/3b2ac97",
+  "summary": "2 service expansion(s)",
+  "source": "mase-import",
+  "changes": [
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "identitystore",
+      "id": "identitystore",
+      "new_regions": [
+        "ap-southeast-5"
+      ],
+      "description": "identitystore expanded to ap-southeast-5"
+    },
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "snowball",
+      "id": "snowball",
+      "new_regions": [
+        "af-south-1"
+      ],
+      "description": "snowball expanded to af-south-1"
+    }
+  ]
+}

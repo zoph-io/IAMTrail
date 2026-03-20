@@ -1,0 +1,29 @@
+{
+  "detected_at": "2022-10-08T01:51:12.000Z",
+  "botocore_commit": "7b82791",
+  "botocore_commit_url": "https://github.com/boto/botocore/commit/7b82791",
+  "summary": "2 service expansion(s)",
+  "source": "mase-import",
+  "changes": [
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "guardduty",
+      "id": "guardduty",
+      "new_regions": [
+        "me-central-1"
+      ],
+      "description": "guardduty expanded to me-central-1"
+    },
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "wisdom",
+      "id": "wisdom",
+      "new_regions": [
+        "us-east-1"
+      ],
+      "description": "wisdom expanded to us-east-1"
+    }
+  ]
+}

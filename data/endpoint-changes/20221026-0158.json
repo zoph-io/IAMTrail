@@ -1,0 +1,39 @@
+{
+  "detected_at": "2022-10-26T01:58:40.000Z",
+  "botocore_commit": "e2540db",
+  "botocore_commit_url": "https://github.com/boto/botocore/commit/e2540db",
+  "summary": "3 service expansion(s)",
+  "source": "mase-import",
+  "changes": [
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "data-ats.iot",
+      "id": "data-ats.iot",
+      "new_regions": [
+        "me-central-1"
+      ],
+      "description": "data-ats.iot expanded to me-central-1"
+    },
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "iot",
+      "id": "iot",
+      "new_regions": [
+        "me-central-1"
+      ],
+      "description": "iot expanded to me-central-1"
+    },
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "ram",
+      "id": "ram",
+      "new_regions": [
+        "me-central-1"
+      ],
+      "description": "ram expanded to me-central-1"
+    }
+  ]
+}

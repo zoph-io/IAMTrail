@@ -1,0 +1,22 @@
+{
+  "description": "",
+  "detected_at": "2025-02-25T17:33:20Z",
+  "gist_url": "https://gist.github.com/z0ph/7c1b4fd4efdcc004e5219977e51c7db8",
+  "link": "",
+  "raw_sns_message": {
+    "featureDetails": [
+      {
+        "featureDescription": "GuardDuty Extended Threat Detection automatically detects multi-stage attacks that span multiple data sources, AWS resource types, and time. It generates attack sequence findings, which have critical severity with value 9.0. We strongly advise all customers to ensure their EventBridge rules and downstream tooling is receiving and not filtering out these new finding types. We also recommend to review such findings promptly, if received. For example, a critical severity AttackSequence:S3/CompromisedData finding can uncover a sequence of suspicious actions indicative of a potential ransomware attempt where a threat actor attempts to use their own encryption keys (SSE-C) to encrypt the contents of an S3 bucket. Detection of data compromises requires you to have GuardDuty S3 protection enabled.",
+        "featureLink": [
+          "https://docs.aws.amazon.com/guardduty/latest/ug/guardduty_findings_cloudwatch.html#guardduty_cloudwatch_severity_notification",
+          "https://docs.aws.amazon.com/guardduty/latest/ug/guardduty-attack-sequence-finding-types.html#attack-sequence-s3-compromised-data",
+          "https://docs.aws.amazon.com/guardduty/latest/ug/guardduty-extended-threat-detection.html"
+        ]
+      }
+    ],
+    "type": "GENERAL",
+    "version": "1"
+  },
+  "short_description": "",
+  "type": "GENERAL"
+}

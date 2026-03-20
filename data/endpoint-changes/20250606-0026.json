@@ -1,0 +1,67 @@
+{
+  "detected_at": "2025-06-06T00:26:32.000Z",
+  "botocore_commit": "c472203",
+  "botocore_commit_url": "https://github.com/boto/botocore/commit/c472203",
+  "summary": "5 service expansion(s)",
+  "source": "mase-import",
+  "changes": [
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "airflow",
+      "id": "airflow",
+      "new_regions": [
+        "ap-southeast-5"
+      ],
+      "description": "airflow expanded to ap-southeast-5"
+    },
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "aps",
+      "id": "aps",
+      "new_regions": [
+        "af-south-1",
+        "ap-east-1",
+        "ap-southeast-5",
+        "ap-southeast-7",
+        "eu-central-2",
+        "eu-south-1",
+        "me-central-1"
+      ],
+      "description": "aps expanded to af-south-1, ap-east-1, ap-southeast-5, ap-southeast-7, eu-central-2, eu-south-1, me-central-1"
+    },
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "healthlake",
+      "id": "healthlake",
+      "new_regions": [
+        "eu-west-1"
+      ],
+      "description": "healthlake expanded to eu-west-1"
+    },
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "scheduler",
+      "id": "scheduler",
+      "new_regions": [
+        "cn-north-1",
+        "cn-northwest-1"
+      ],
+      "description": "scheduler expanded to cn-north-1, cn-northwest-1"
+    },
+    {
+      "type": "service_expansion",
+      "partition": "aws-cn",
+      "service": "scheduler",
+      "id": "scheduler",
+      "new_regions": [
+        "cn-north-1",
+        "cn-northwest-1"
+      ],
+      "description": "scheduler expanded to cn-north-1, cn-northwest-1"
+    }
+  ]
+}

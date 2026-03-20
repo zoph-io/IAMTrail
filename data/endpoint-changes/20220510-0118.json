@@ -1,0 +1,19 @@
+{
+  "detected_at": "2022-05-10T01:18:47.000Z",
+  "botocore_commit": "0c010e",
+  "botocore_commit_url": "https://github.com/boto/botocore/commit/0c010e",
+  "summary": "1 service expansion(s)",
+  "source": "mase-import",
+  "changes": [
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "firehose",
+      "id": "firehose",
+      "new_regions": [
+        "ap-southeast-3"
+      ],
+      "description": "firehose expanded to ap-southeast-3"
+    }
+  ]
+}

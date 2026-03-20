@@ -1,0 +1,49 @@
+{
+  "detected_at": "2023-12-08T00:18:15.000Z",
+  "botocore_commit": "d4acc2d",
+  "botocore_commit_url": "https://github.com/boto/botocore/commit/d4acc2d",
+  "summary": "4 service expansion(s)",
+  "source": "mase-import",
+  "changes": [
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "s3-outposts",
+      "id": "s3-outposts",
+      "new_regions": [
+        "af-south-1"
+      ],
+      "description": "s3-outposts expanded to af-south-1"
+    },
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "secretsmanager",
+      "id": "secretsmanager",
+      "new_regions": [
+        "af-south-1"
+      ],
+      "description": "secretsmanager expanded to af-south-1"
+    },
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "secretsmanager",
+      "id": "secretsmanager",
+      "new_regions": [
+        "cn-north-1"
+      ],
+      "description": "secretsmanager expanded to cn-north-1"
+    },
+    {
+      "type": "service_expansion",
+      "partition": "aws-cn",
+      "service": "secretsmanager",
+      "id": "secretsmanager",
+      "new_regions": [
+        "cn-north-1"
+      ],
+      "description": "secretsmanager expanded to cn-north-1"
+    }
+  ]
+}

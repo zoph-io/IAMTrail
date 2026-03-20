@@ -1,0 +1,31 @@
+{
+  "detected_at": "2023-05-25T01:15:40.000Z",
+  "botocore_commit": "e0218ee",
+  "botocore_commit_url": "https://github.com/boto/botocore/commit/e0218ee",
+  "summary": "2 service expansion(s)",
+  "source": "mase-import",
+  "changes": [
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "cognito-identity",
+      "id": "cognito-identity",
+      "new_regions": [
+        "us-west-1"
+      ],
+      "description": "cognito-identity expanded to us-west-1"
+    },
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "transcribestreaming",
+      "id": "transcribestreaming",
+      "new_regions": [
+        "af-south-1",
+        "ap-south-1",
+        "ap-southeast-1"
+      ],
+      "description": "transcribestreaming expanded to af-south-1, ap-south-1, ap-southeast-1"
+    }
+  ]
+}

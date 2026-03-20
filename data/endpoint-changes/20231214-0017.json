@@ -1,0 +1,41 @@
+{
+  "detected_at": "2023-12-14T00:17:31.000Z",
+  "botocore_commit": "dfae8cc",
+  "botocore_commit_url": "https://github.com/boto/botocore/commit/dfae8cc",
+  "summary": "3 service expansion(s)",
+  "source": "mase-import",
+  "changes": [
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "emr-serverless",
+      "id": "emr-serverless",
+      "new_regions": [
+        "me-central-1"
+      ],
+      "description": "emr-serverless expanded to me-central-1"
+    },
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "pipes",
+      "id": "pipes",
+      "new_regions": [
+        "cn-north-1",
+        "cn-northwest-1"
+      ],
+      "description": "pipes expanded to cn-north-1, cn-northwest-1"
+    },
+    {
+      "type": "service_expansion",
+      "partition": "aws-cn",
+      "service": "pipes",
+      "id": "pipes",
+      "new_regions": [
+        "cn-north-1",
+        "cn-northwest-1"
+      ],
+      "description": "pipes expanded to cn-north-1, cn-northwest-1"
+    }
+  ]
+}

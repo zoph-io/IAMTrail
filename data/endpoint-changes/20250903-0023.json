@@ -1,0 +1,30 @@
+{
+  "detected_at": "2025-09-03T00:23:51.000Z",
+  "botocore_commit": "27ee896",
+  "botocore_commit_url": "https://github.com/boto/botocore/commit/27ee896",
+  "summary": "2 service expansion(s)",
+  "source": "mase-import",
+  "changes": [
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "quicksight",
+      "id": "quicksight",
+      "new_regions": [
+        "il-central-1",
+        "me-central-1"
+      ],
+      "description": "quicksight expanded to il-central-1, me-central-1"
+    },
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "resource-groups",
+      "id": "resource-groups",
+      "new_regions": [
+        "ap-southeast-6"
+      ],
+      "description": "resource-groups expanded to ap-southeast-6"
+    }
+  ]
+}

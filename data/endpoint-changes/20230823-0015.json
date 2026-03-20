@@ -1,0 +1,39 @@
+{
+  "detected_at": "2023-08-23T00:15:29.000Z",
+  "botocore_commit": "fd719e7",
+  "botocore_commit_url": "https://github.com/boto/botocore/commit/fd719e7",
+  "summary": "3 service expansion(s)",
+  "source": "mase-import",
+  "changes": [
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "mgn",
+      "id": "mgn",
+      "new_regions": [
+        "il-central-1"
+      ],
+      "description": "mgn expanded to il-central-1"
+    },
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "rekognition",
+      "id": "rekognition",
+      "new_regions": [
+        "il-central-1"
+      ],
+      "description": "rekognition expanded to il-central-1"
+    },
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "storagegateway",
+      "id": "storagegateway",
+      "new_regions": [
+        "il-central-1"
+      ],
+      "description": "storagegateway expanded to il-central-1"
+    }
+  ]
+}

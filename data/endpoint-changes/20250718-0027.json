@@ -1,0 +1,20 @@
+{
+  "detected_at": "2025-07-18T00:27:53.000Z",
+  "botocore_commit": "75d2d57",
+  "botocore_commit_url": "https://github.com/boto/botocore/commit/75d2d57",
+  "summary": "1 service expansion(s)",
+  "source": "mase-import",
+  "changes": [
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "rum",
+      "id": "rum",
+      "new_regions": [
+        "ap-southeast-5",
+        "ca-west-1"
+      ],
+      "description": "rum expanded to ap-southeast-5, ca-west-1"
+    }
+  ]
+}

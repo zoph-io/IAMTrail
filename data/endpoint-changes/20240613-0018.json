@@ -1,0 +1,19 @@
+{
+  "detected_at": "2024-06-13T00:18:46.000Z",
+  "botocore_commit": "1bac99a",
+  "botocore_commit_url": "https://github.com/boto/botocore/commit/1bac99a",
+  "summary": "1 service expansion(s)",
+  "source": "mase-import",
+  "changes": [
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "mq",
+      "id": "mq",
+      "new_regions": [
+        "ca-west-1"
+      ],
+      "description": "mq expanded to ca-west-1"
+    }
+  ]
+}

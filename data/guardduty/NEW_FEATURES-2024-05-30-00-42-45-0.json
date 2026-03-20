@@ -1,0 +1,18 @@
+{
+  "description": "GuardDuty Malware Protection has increased the EBS volume size limit for malware scanning from 1 TB to 2TB. This applies to both GuardDuty-initiated and on-demand malware scans.",
+  "detected_at": "2024-05-30T00:42:45Z",
+  "gist_url": "https://gist.github.com/z0ph/5eb00819a6d98fed52daddaf52d3328c",
+  "link": "https://docs.aws.amazon.com/guardduty/latest/ug/malware-protection.html",
+  "raw_sns_message": {
+    "featureDetails": [
+      {
+        "featureDescription": "GuardDuty Malware Protection has increased the EBS volume size limit for malware scanning from 1 TB to 2TB. This applies to both GuardDuty-initiated and on-demand malware scans.",
+        "featureLink": "https://docs.aws.amazon.com/guardduty/latest/ug/malware-protection.html"
+      }
+    ],
+    "type": "NEW_FEATURES",
+    "version": "1"
+  },
+  "short_description": "GuardDuty Malware Protection has increased the EBS volume size limit for malware scanning from 1 TB to 2TB. This applies to both GuardDuty-initiated a",
+  "type": "NEW_FEATURES"
+}

@@ -1,0 +1,43 @@
+{
+  "detected_at": "2023-09-21T00:16:20.000Z",
+  "botocore_commit": "8d2e588",
+  "botocore_commit_url": "https://github.com/boto/botocore/commit/8d2e588",
+  "summary": "3 service expansion(s)",
+  "source": "mase-import",
+  "changes": [
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "pipes",
+      "id": "pipes",
+      "new_regions": [
+        "ap-south-2",
+        "eu-central-2",
+        "eu-south-2"
+      ],
+      "description": "pipes expanded to ap-south-2, eu-central-2, eu-south-2"
+    },
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "sso",
+      "id": "sso",
+      "new_regions": [
+        "cn-north-1",
+        "cn-northwest-1"
+      ],
+      "description": "sso expanded to cn-north-1, cn-northwest-1"
+    },
+    {
+      "type": "service_expansion",
+      "partition": "aws-cn",
+      "service": "sso",
+      "id": "sso",
+      "new_regions": [
+        "cn-north-1",
+        "cn-northwest-1"
+      ],
+      "description": "sso expanded to cn-north-1, cn-northwest-1"
+    }
+  ]
+}

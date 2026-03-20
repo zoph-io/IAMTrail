@@ -1,0 +1,18 @@
+{
+  "description": "GuardDuty introduces two new critical-severity findings: AttackSequence:EC2/CompromisedInstanceGroup and AttackSequence:ECS/CompromisedCluster. These findings provide attack sequence information, allowing you to spend less time on initial analysis and more time responding to critical threats, minimizing business impact. For example, GuardDuty can identify suspicious processes followed by persistence attempts, crypto-mining activities, and reverse shell creation, representing these related events as a single, critical-severity finding. To improve attack sequence coverage and threat analysis of Amazon EC2 instances, enable Runtime Monitoring for EC2. To enable detection of compromised ECS clusters, enable Runtime Monitoring for Fargate or EC2 depending on your infrastructure.",
+  "detected_at": "2025-12-03T00:01:00Z",
+  "gist_url": "https://gist.github.com/z0ph/79c8c6b3d018b8f0417a36bbf5eaa3c0",
+  "link": "https://docs.aws.amazon.com/guardduty/latest/ug/guardduty-extended-threat-detection.html",
+  "raw_sns_message": {
+    "featureDetails": [
+      {
+        "featureDescription": "GuardDuty introduces two new critical-severity findings: AttackSequence:EC2/CompromisedInstanceGroup and AttackSequence:ECS/CompromisedCluster. These findings provide attack sequence information, allowing you to spend less time on initial analysis and more time responding to critical threats, minimizing business impact. For example, GuardDuty can identify suspicious processes followed by persistence attempts, crypto-mining activities, and reverse shell creation, representing these related events as a single, critical-severity finding. To improve attack sequence coverage and threat analysis of Amazon EC2 instances, enable Runtime Monitoring for EC2. To enable detection of compromised ECS clusters, enable Runtime Monitoring for Fargate or EC2 depending on your infrastructure.",
+        "featureLink": "https://docs.aws.amazon.com/guardduty/latest/ug/guardduty-extended-threat-detection.html"
+      }
+    ],
+    "type": "NEW_FEATURES",
+    "version": "1"
+  },
+  "short_description": "GuardDuty introduces two new critical-severity findings: AttackSequence:EC2/CompromisedInstanceGroup and AttackSequence:ECS/CompromisedCluster. These ",
+  "type": "NEW_FEATURES"
+}

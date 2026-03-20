@@ -1,0 +1,50 @@
+{
+  "detected_at": "2023-08-24T00:15:42.000Z",
+  "botocore_commit": "6f613ee",
+  "botocore_commit_url": "https://github.com/boto/botocore/commit/6f613ee",
+  "summary": "4 service expansion(s)",
+  "source": "mase-import",
+  "changes": [
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "backup",
+      "id": "backup",
+      "new_regions": [
+        "il-central-1"
+      ],
+      "description": "backup expanded to il-central-1"
+    },
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "batch",
+      "id": "batch",
+      "new_regions": [
+        "il-central-1"
+      ],
+      "description": "batch expanded to il-central-1"
+    },
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "license-manager",
+      "id": "license-manager",
+      "new_regions": [
+        "il-central-1"
+      ],
+      "description": "license-manager expanded to il-central-1"
+    },
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "outposts",
+      "id": "outposts",
+      "new_regions": [
+        "il-central-1",
+        "me-central-1"
+      ],
+      "description": "outposts expanded to il-central-1, me-central-1"
+    }
+  ]
+}

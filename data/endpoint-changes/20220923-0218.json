@@ -1,0 +1,19 @@
+{
+  "detected_at": "2022-09-23T02:18:58.000Z",
+  "botocore_commit": "9b8d5f8",
+  "botocore_commit_url": "https://github.com/boto/botocore/commit/9b8d5f8",
+  "summary": "1 service expansion(s)",
+  "source": "mase-import",
+  "changes": [
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "connect-campaigns",
+      "id": "connect-campaigns",
+      "new_regions": [
+        "us-east-1"
+      ],
+      "description": "connect-campaigns expanded to us-east-1"
+    }
+  ]
+}

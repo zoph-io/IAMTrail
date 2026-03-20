@@ -1,0 +1,20 @@
+{
+  "detected_at": "2024-09-10T00:21:33.000Z",
+  "botocore_commit": "44516bc",
+  "botocore_commit_url": "https://github.com/boto/botocore/commit/44516bc",
+  "summary": "1 service expansion(s)",
+  "source": "mase-import",
+  "changes": [
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "appmesh",
+      "id": "appmesh",
+      "new_regions": [
+        "eu-central-2",
+        "eu-south-2"
+      ],
+      "description": "appmesh expanded to eu-central-2, eu-south-2"
+    }
+  ]
+}

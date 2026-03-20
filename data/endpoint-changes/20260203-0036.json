@@ -1,0 +1,19 @@
+{
+  "detected_at": "2026-02-03T00:36:13.000Z",
+  "botocore_commit": "84898c5",
+  "botocore_commit_url": "https://github.com/boto/botocore/commit/84898c5",
+  "summary": "1 service expansion(s)",
+  "source": "mase-import",
+  "changes": [
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "emr-serverless",
+      "id": "emr-serverless",
+      "new_regions": [
+        "ap-southeast-5"
+      ],
+      "description": "emr-serverless expanded to ap-southeast-5"
+    }
+  ]
+}

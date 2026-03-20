@@ -1,0 +1,40 @@
+{
+  "detected_at": "2025-03-15T00:23:44.000Z",
+  "botocore_commit": "eca8155",
+  "botocore_commit_url": "https://github.com/boto/botocore/commit/eca8155",
+  "summary": "3 service expansion(s)",
+  "source": "mase-import",
+  "changes": [
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "bedrock",
+      "id": "bedrock",
+      "new_regions": [
+        "eu-south-1",
+        "eu-south-2"
+      ],
+      "description": "bedrock expanded to eu-south-1, eu-south-2"
+    },
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "codepipeline",
+      "id": "codepipeline",
+      "new_regions": [
+        "ap-southeast-5"
+      ],
+      "description": "codepipeline expanded to ap-southeast-5"
+    },
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "license-manager-linux-subscriptions",
+      "id": "license-manager-linux-subscriptions",
+      "new_regions": [
+        "ap-southeast-7"
+      ],
+      "description": "license-manager-linux-subscriptions expanded to ap-southeast-7"
+    }
+  ]
+}

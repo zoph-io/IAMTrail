@@ -1,0 +1,20 @@
+{
+  "detected_at": "2022-03-15T01:13:52.000Z",
+  "botocore_commit": "848021",
+  "botocore_commit_url": "https://github.com/boto/botocore/commit/848021",
+  "summary": "1 service expansion(s)",
+  "source": "mase-import",
+  "changes": [
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "cloudtrail",
+      "id": "cloudtrail",
+      "new_regions": [
+        "ap-northeast-3",
+        "ap-southeast-3"
+      ],
+      "description": "cloudtrail expanded to ap-northeast-3, ap-southeast-3"
+    }
+  ]
+}

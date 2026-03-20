@@ -1,0 +1,20 @@
+{
+  "detected_at": "2026-02-10T00:41:31.000Z",
+  "botocore_commit": "0541ced",
+  "botocore_commit_url": "https://github.com/boto/botocore/commit/0541ced",
+  "summary": "1 service expansion(s)",
+  "source": "mase-import",
+  "changes": [
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "datazone",
+      "id": "datazone",
+      "new_regions": [
+        "af-south-1",
+        "eu-south-2"
+      ],
+      "description": "datazone expanded to af-south-1, eu-south-2"
+    }
+  ]
+}

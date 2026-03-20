@@ -1,0 +1,18 @@
+{
+  "description": "The new Amazon GuardDuty coverage for Amazon Elastic Kubernetes Service(Amazon EKS) cluster activity is now live in AWS Asia Pacific(Jakarta) Region. GuardDuty EKS Protection monitors EKS control plane activity by analyzing Kubernetes audit logs from existing and new Amazon EKS clusters in your accounts.",
+  "detected_at": "2022-06-07T21:21:14Z",
+  "gist_url": "https://gist.github.com/z0ph/2699718a7c8724141e3d1d1ff2c9ab11",
+  "link": "",
+  "raw_sns_message": {
+    "featureDetails": [
+      {
+        "featureDescription": "The new Amazon GuardDuty coverage for Amazon Elastic Kubernetes Service(Amazon EKS) cluster activity is now live in AWS Asia Pacific(Jakarta) Region. GuardDuty EKS Protection monitors EKS control plane activity by analyzing Kubernetes audit logs from existing and new Amazon EKS clusters in your accounts.",
+        "link": "https://docs.aws.amazon.com/guardduty/latest/ug/guardduty_finding-types-kubernetes.html"
+      }
+    ],
+    "type": "NEW_FEATURES",
+    "version": "1"
+  },
+  "short_description": "The new Amazon GuardDuty coverage for Amazon Elastic Kubernetes Service(Amazon EKS) cluster activity is now live in AWS Asia Pacific(Jakarta) Region. ",
+  "type": "NEW_FEATURES"
+}

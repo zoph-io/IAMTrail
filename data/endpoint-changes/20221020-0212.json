@@ -1,0 +1,39 @@
+{
+  "detected_at": "2022-10-20T02:12:07.000Z",
+  "botocore_commit": "af200ef",
+  "botocore_commit_url": "https://github.com/boto/botocore/commit/af200ef",
+  "summary": "2 service expansion(s)",
+  "source": "mase-import",
+  "changes": [
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "elasticfilesystem",
+      "id": "elasticfilesystem",
+      "new_regions": [
+        "me-central-1"
+      ],
+      "description": "elasticfilesystem expanded to me-central-1"
+    },
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "fsx",
+      "id": "fsx",
+      "new_regions": [
+        "af-south-1",
+        "ap-east-1",
+        "ap-northeast-2",
+        "ap-northeast-3",
+        "ap-south-1",
+        "eu-north-1",
+        "eu-south-1",
+        "eu-west-3",
+        "us-west-1",
+        "me-south-1",
+        "sa-east-1"
+      ],
+      "description": "fsx expanded to af-south-1, ap-east-1, ap-northeast-2, ap-northeast-3, ap-south-1, eu-north-1, eu-south-1, eu-west-3, us-west-1, me-south-1, sa-east-1"
+    }
+  ]
+}

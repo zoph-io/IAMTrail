@@ -1,0 +1,19 @@
+{
+  "detected_at": "2026-01-28T00:29:48.000Z",
+  "botocore_commit": "3ff6458",
+  "botocore_commit_url": "https://github.com/boto/botocore/commit/3ff6458",
+  "summary": "1 service expansion(s)",
+  "source": "mase-import",
+  "changes": [
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "bedrock",
+      "id": "bedrock",
+      "new_regions": [
+        "ap-southeast-6"
+      ],
+      "description": "bedrock expanded to ap-southeast-6"
+    }
+  ]
+}

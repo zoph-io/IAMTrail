@@ -1,0 +1,32 @@
+{
+  "detected_at": "2023-02-02T01:22:19.000Z",
+  "botocore_commit": "2568ada",
+  "botocore_commit_url": "https://github.com/boto/botocore/commit/2568ada",
+  "summary": "2 service expansion(s)",
+  "source": "mase-import",
+  "changes": [
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "fms",
+      "id": "fms",
+      "new_regions": [
+        "ap-southeast-3",
+        "me-central-1"
+      ],
+      "description": "fms expanded to ap-southeast-3, me-central-1"
+    },
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "kendra-ranking",
+      "id": "kendra-ranking",
+      "new_regions": [
+        "ap-southeast-4",
+        "eu-central-1",
+        "eu-west-2"
+      ],
+      "description": "kendra-ranking expanded to ap-southeast-4, eu-central-1, eu-west-2"
+    }
+  ]
+}

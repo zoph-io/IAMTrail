@@ -1,0 +1,30 @@
+{
+  "detected_at": "2023-03-16T01:20:59.000Z",
+  "botocore_commit": "92b5302",
+  "botocore_commit_url": "https://github.com/boto/botocore/commit/92b5302",
+  "summary": "2 service expansion(s)",
+  "source": "mase-import",
+  "changes": [
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "firehose",
+      "id": "firehose",
+      "new_regions": [
+        "ap-southeast-4"
+      ],
+      "description": "firehose expanded to ap-southeast-4"
+    },
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "storagegateway",
+      "id": "storagegateway",
+      "new_regions": [
+        "ap-south-2",
+        "ap-southeast-4"
+      ],
+      "description": "storagegateway expanded to ap-south-2, ap-southeast-4"
+    }
+  ]
+}

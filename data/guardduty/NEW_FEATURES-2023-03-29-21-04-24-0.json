@@ -1,0 +1,18 @@
+{
+  "description": "New improvements have been added to Amazon GuardDuty multi-account management. With a single click, an AWS Organization\u2019s Delegated Administrator can now specify that \u2019all\u2019 member accounts should have GuardDuty activated. Previously this capability was restricted to new members joining the AWS Organization. To get started, go to Settings > Accounts in the GuardDuty console.",
+  "detected_at": "2023-03-29T21:04:24Z",
+  "gist_url": "https://gist.github.com/z0ph/9f91fb592a86b350d6faeaefd0104301",
+  "link": "",
+  "raw_sns_message": {
+    "featureDetails": [
+      {
+        "featureDescription": "New improvements have been added to Amazon GuardDuty multi-account management. With a single click, an AWS Organization\u2019s Delegated Administrator can now specify that \u2019all\u2019 member accounts should have GuardDuty activated. Previously this capability was restricted to new members joining the AWS Organization. To get started, go to Settings > Accounts in the GuardDuty console.",
+        "link": "https://aws.amazon.com/about-aws/whats-new/2023/03/amazon-guardduty-enforcement-threat-detection-organization"
+      }
+    ],
+    "type": "NEW_FEATURES",
+    "version": "1"
+  },
+  "short_description": "New improvements have been added to Amazon GuardDuty multi-account management. With a single click, an AWS Organization\u2019s Delegated Administrator can ",
+  "type": "NEW_FEATURES"
+}

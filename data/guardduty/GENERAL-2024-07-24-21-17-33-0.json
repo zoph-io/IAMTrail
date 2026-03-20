@@ -1,0 +1,23 @@
+{
+  "description": "Amazon GuardDuty observed a trend where threat actors are setting up malicious domains to compromise organizations working on software patching related to CrowdStrike's recent sensor issue. Currently, GuardDuty is observing an uptick in Command and Control (C&C) Activity findings that correspond with domains identified in CrowdStrike CSA-240832. As a proactive measure, we strongly advise all customers to increase vigilance regarding DNS-related findings. Recommended steps include:\n1. Monitor DNS-related findings: Pay close attention to alerts such as Backdoor:EC2/ C&CActivity.B!DNS findings and Backdoor:Runtime/C&CActivity.B!DNS (if using GuardDuty's runtime protection for EKS, ECS Fargate, and EC2). They indicate potential communication with suspicious and malicious command and control (C&C) activities, which could be part of or evolve into a broader attacks targeting your workloads.\n2. Validate and evaluate findings: Get started with the GuardDuty console, API, or other preferred method to review findings promptly. Start with a finding's severity label, which would be marked as \u201cHigh\u201d for more important ones. GuardDuty continually updates its threat intelligence from CrowdStrike and other AWS internal and external sources, which helps ensure a current list of suspicious and malicious domains.\n3 Take action on suspicious activity: If the flagged activity is unexpected, your instance may be compromised. Consider quickly taking action on affected resources, conducting a thorough investigation, and remediating any identified threats. For more information, see remediating a potentially compromised Amazon EC2 instance.\nMaintaining heightened awareness and promptly responding to GuardDuty findings can help you reduce the risk of malicious actors compromising your environments. For further assistance, refer to the AWS GuardDuty documentation or contact AWS Support.",
+  "detected_at": "2024-07-24T21:17:33Z",
+  "gist_url": "https://gist.github.com/z0ph/71d698b03aa97257fc5f147325697995",
+  "link": "https://www.crowdstrike.com/blog/falcon-sensor-issue-use-to-target-crowdstrike-customers/",
+  "raw_sns_message": {
+    "message": [
+      {
+        "body": "Amazon GuardDuty observed a trend where threat actors are setting up malicious domains to compromise organizations working on software patching related to CrowdStrike's recent sensor issue. Currently, GuardDuty is observing an uptick in Command and Control (C&C) Activity findings that correspond with domains identified in CrowdStrike CSA-240832. As a proactive measure, we strongly advise all customers to increase vigilance regarding DNS-related findings. Recommended steps include:\n1. Monitor DNS-related findings: Pay close attention to alerts such as Backdoor:EC2/ C&CActivity.B!DNS findings and Backdoor:Runtime/C&CActivity.B!DNS (if using GuardDuty's runtime protection for EKS, ECS Fargate, and EC2). They indicate potential communication with suspicious and malicious command and control (C&C) activities, which could be part of or evolve into a broader attacks targeting your workloads.\n2. Validate and evaluate findings: Get started with the GuardDuty console, API, or other preferred method to review findings promptly. Start with a finding's severity label, which would be marked as \u201cHigh\u201d for more important ones. GuardDuty continually updates its threat intelligence from CrowdStrike and other AWS internal and external sources, which helps ensure a current list of suspicious and malicious domains.\n3 Take action on suspicious activity: If the flagged activity is unexpected, your instance may be compromised. Consider quickly taking action on affected resources, conducting a thorough investigation, and remediating any identified threats. For more information, see remediating a potentially compromised Amazon EC2 instance.\nMaintaining heightened awareness and promptly responding to GuardDuty findings can help you reduce the risk of malicious actors compromising your environments. For further assistance, refer to the AWS GuardDuty documentation or contact AWS Support.",
+        "links": [
+          "https://www.crowdstrike.com/blog/falcon-sensor-issue-use-to-target-crowdstrike-customers/",
+          "https://docs.aws.amazon.com/guardduty/latest/ug/compromised-ec2.html",
+          "https://docs.aws.amazon.com/guardduty/latest/ug/what-is-guardduty.html"
+        ],
+        "title": "Pay increased threat awareness regarding DNS-related findings"
+      }
+    ],
+    "type": "GENERAL",
+    "version": "1"
+  },
+  "short_description": "Pay increased threat awareness regarding DNS-related findings",
+  "type": "GENERAL"
+}

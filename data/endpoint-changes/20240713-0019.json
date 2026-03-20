@@ -1,0 +1,27 @@
+{
+  "detected_at": "2024-07-13T00:19:55.000Z",
+  "botocore_commit": "c33a6d2",
+  "botocore_commit_url": "https://github.com/boto/botocore/commit/c33a6d2",
+  "summary": "1 service expansion(s)",
+  "source": "mase-import",
+  "changes": [
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "airflow",
+      "id": "airflow",
+      "new_regions": [
+        "ap-northeast-3",
+        "ap-south-2",
+        "ap-southeast-3",
+        "ap-southeast-4",
+        "ca-west-1",
+        "eu-central-2",
+        "eu-south-2",
+        "il-central-1",
+        "me-central-1"
+      ],
+      "description": "airflow expanded to ap-northeast-3, ap-south-2, ap-southeast-3, ap-southeast-4, ca-west-1, eu-central-2, eu-south-2, il-central-1, me-central-1"
+    }
+  ]
+}

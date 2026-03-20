@@ -1,0 +1,20 @@
+{
+  "detected_at": "2022-11-16T01:45:05.000Z",
+  "botocore_commit": "ff4767d",
+  "botocore_commit_url": "https://github.com/boto/botocore/commit/ff4767d",
+  "summary": "1 service expansion(s)",
+  "source": "mase-import",
+  "changes": [
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "memory-db",
+      "id": "memory-db",
+      "new_regions": [
+        "eu-south-1",
+        "eu-west-3"
+      ],
+      "description": "memory-db expanded to eu-south-1, eu-west-3"
+    }
+  ]
+}

@@ -1,0 +1,22 @@
+{
+  "detected_at": "2022-08-12T01:49:26.000Z",
+  "botocore_commit": "cf847db",
+  "botocore_commit_url": "https://github.com/boto/botocore/commit/cf847db",
+  "summary": "1 service expansion(s)",
+  "source": "mase-import",
+  "changes": [
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "backupstorage",
+      "id": "backupstorage",
+      "new_regions": [
+        "eu-west-1",
+        "us-east-1",
+        "us-east-2",
+        "us-west-2"
+      ],
+      "description": "backupstorage expanded to eu-west-1, us-east-1, us-east-2, us-west-2"
+    }
+  ]
+}

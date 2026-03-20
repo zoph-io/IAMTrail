@@ -1,0 +1,21 @@
+{
+  "detected_at": "2023-02-03T01:24:11.000Z",
+  "botocore_commit": "c7793ec",
+  "botocore_commit_url": "https://github.com/boto/botocore/commit/c7793ec",
+  "summary": "1 service expansion(s)",
+  "source": "mase-import",
+  "changes": [
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "ds",
+      "id": "ds",
+      "new_regions": [
+        "ap-south-2",
+        "eu-central-2",
+        "eu-south-2"
+      ],
+      "description": "ds expanded to ap-south-2, eu-central-2, eu-south-2"
+    }
+  ]
+}

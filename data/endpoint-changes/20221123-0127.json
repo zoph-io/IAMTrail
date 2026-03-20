@@ -1,0 +1,15 @@
+{
+  "detected_at": "2022-11-23T01:27:05.000Z",
+  "botocore_commit": "4e5ec20",
+  "botocore_commit_url": "https://github.com/boto/botocore/commit/4e5ec20",
+  "summary": "1 new region(s)",
+  "source": "mase-import",
+  "changes": [
+    {
+      "type": "new_region",
+      "partition": "aws",
+      "id": "ap-south-2",
+      "description": "ap-south-2"
+    }
+  ]
+}

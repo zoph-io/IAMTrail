@@ -1,0 +1,42 @@
+{
+  "detected_at": "2024-09-07T00:20:26.000Z",
+  "botocore_commit": "c9f999a",
+  "botocore_commit_url": "https://github.com/boto/botocore/commit/c9f999a",
+  "summary": "3 service expansion(s)",
+  "source": "mase-import",
+  "changes": [
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "elasticbeanstalk",
+      "id": "elasticbeanstalk",
+      "new_regions": [
+        "af-south-1"
+      ],
+      "description": "elasticbeanstalk expanded to af-south-1"
+    },
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "route53resolver",
+      "id": "route53resolver",
+      "new_regions": [
+        "ca-central-1"
+      ],
+      "description": "route53resolver expanded to ca-central-1"
+    },
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "apptest",
+      "id": "apptest",
+      "new_regions": [
+        "ap-southeast-2",
+        "eu-central-1",
+        "sa-east-1",
+        "us-east-1"
+      ],
+      "description": "apptest expanded to ap-southeast-2, eu-central-1, sa-east-1, us-east-1"
+    }
+  ]
+}

@@ -1,0 +1,19 @@
+{
+  "detected_at": "2023-08-05T00:18:06.000Z",
+  "botocore_commit": "9a850b0",
+  "botocore_commit_url": "https://github.com/boto/botocore/commit/9a850b0",
+  "summary": "1 service expansion(s)",
+  "source": "mase-import",
+  "changes": [
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "route53resolver",
+      "id": "route53resolver",
+      "new_regions": [
+        "il-central-1"
+      ],
+      "description": "route53resolver expanded to il-central-1"
+    }
+  ]
+}

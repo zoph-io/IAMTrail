@@ -1,0 +1,18 @@
+{
+  "description": "Amazon GuardDuty is now available in AWS Asia Pacific (Jakarta) Region",
+  "detected_at": "2022-02-17T08:49:10Z",
+  "gist_url": "https://gist.github.com/z0ph/cc0249799d82d53caab1c320fcc7e26f",
+  "link": "https://aws.amazon.com/about-aws/global-infrastructure/regional-product-services/",
+  "raw_sns_message": {
+    "featureDetails": [
+      {
+        "featureDescription": "Amazon GuardDuty is now available in AWS Asia Pacific (Jakarta) Region",
+        "featureLink": "https://aws.amazon.com/about-aws/global-infrastructure/regional-product-services/"
+      }
+    ],
+    "type": "NEW_FEATURES",
+    "version": "1"
+  },
+  "short_description": "Amazon GuardDuty is now available in AWS Asia Pacific (Jakarta) Region",
+  "type": "NEW_FEATURES"
+}

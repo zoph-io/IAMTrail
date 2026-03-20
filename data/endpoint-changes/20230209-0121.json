@@ -1,0 +1,53 @@
+{
+  "detected_at": "2023-02-09T01:21:46.000Z",
+  "botocore_commit": "cb3f8a0",
+  "botocore_commit_url": "https://github.com/boto/botocore/commit/cb3f8a0",
+  "summary": "4 service expansion(s)",
+  "source": "mase-import",
+  "changes": [
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "arc-zonal-shift",
+      "id": "arc-zonal-shift",
+      "new_regions": [
+        "ap-southeast-1"
+      ],
+      "description": "arc-zonal-shift expanded to ap-southeast-1"
+    },
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "datasync",
+      "id": "datasync",
+      "new_regions": [
+        "ap-south-2",
+        "eu-central-2",
+        "eu-south-2"
+      ],
+      "description": "datasync expanded to ap-south-2, eu-central-2, eu-south-2"
+    },
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "eks",
+      "id": "eks",
+      "new_regions": [
+        "ap-south-2",
+        "eu-central-2",
+        "eu-south-2"
+      ],
+      "description": "eks expanded to ap-south-2, eu-central-2, eu-south-2"
+    },
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "kendra",
+      "id": "kendra",
+      "new_regions": [
+        "ap-northeast-1"
+      ],
+      "description": "kendra expanded to ap-northeast-1"
+    }
+  ]
+}

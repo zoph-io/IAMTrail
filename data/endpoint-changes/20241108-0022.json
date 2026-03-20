@@ -1,0 +1,29 @@
+{
+  "detected_at": "2024-11-08T00:22:18.000Z",
+  "botocore_commit": "bc6384d",
+  "botocore_commit_url": "https://github.com/boto/botocore/commit/bc6384d",
+  "summary": "2 service expansion(s)",
+  "source": "mase-import",
+  "changes": [
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "bedrock",
+      "id": "bedrock",
+      "new_regions": [
+        "eu-central-2"
+      ],
+      "description": "bedrock expanded to eu-central-2"
+    },
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "fms",
+      "id": "fms",
+      "new_regions": [
+        "ap-southeast-5"
+      ],
+      "description": "fms expanded to ap-southeast-5"
+    }
+  ]
+}

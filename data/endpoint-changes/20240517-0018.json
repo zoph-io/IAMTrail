@@ -1,0 +1,20 @@
+{
+  "detected_at": "2024-05-17T00:18:32.000Z",
+  "botocore_commit": "2740671",
+  "botocore_commit_url": "https://github.com/boto/botocore/commit/2740671",
+  "summary": "1 service expansion(s)",
+  "source": "mase-import",
+  "changes": [
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "vpc-lattice",
+      "id": "vpc-lattice",
+      "new_regions": [
+        "ap-northeast-2",
+        "ap-south-1"
+      ],
+      "description": "vpc-lattice expanded to ap-northeast-2, ap-south-1"
+    }
+  ]
+}

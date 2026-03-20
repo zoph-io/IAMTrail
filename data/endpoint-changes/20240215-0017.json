@@ -1,0 +1,33 @@
+{
+  "detected_at": "2024-02-15T00:17:08.000Z",
+  "botocore_commit": "25964ef",
+  "botocore_commit_url": "https://github.com/boto/botocore/commit/25964ef",
+  "summary": "2 service expansion(s)",
+  "source": "mase-import",
+  "changes": [
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "medialive",
+      "id": "medialive",
+      "new_regions": [
+        "ap-northeast-3",
+        "ap-southeast-4",
+        "ca-central-1"
+      ],
+      "description": "medialive expanded to ap-northeast-3, ap-southeast-4, ca-central-1"
+    },
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "private-networks",
+      "id": "private-networks",
+      "new_regions": [
+        "us-east-1",
+        "us-east-2",
+        "us-west-2"
+      ],
+      "description": "private-networks expanded to us-east-1, us-east-2, us-west-2"
+    }
+  ]
+}

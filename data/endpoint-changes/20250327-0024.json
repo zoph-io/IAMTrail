@@ -1,0 +1,30 @@
+{
+  "detected_at": "2025-03-27T00:24:14.000Z",
+  "botocore_commit": "f603680",
+  "botocore_commit_url": "https://github.com/boto/botocore/commit/f603680",
+  "summary": "2 service expansion(s)",
+  "source": "mase-import",
+  "changes": [
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "lakeformation",
+      "id": "lakeformation",
+      "new_regions": [
+        "ap-southeast-7",
+        "mx-central-1"
+      ],
+      "description": "lakeformation expanded to ap-southeast-7, mx-central-1"
+    },
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "sms-voice",
+      "id": "sms-voice",
+      "new_regions": [
+        "af-south-1"
+      ],
+      "description": "sms-voice expanded to af-south-1"
+    }
+  ]
+}

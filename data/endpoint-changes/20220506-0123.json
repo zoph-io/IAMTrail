@@ -1,0 +1,49 @@
+{
+  "detected_at": "2022-05-06T01:23:42.000Z",
+  "botocore_commit": "a28f67",
+  "botocore_commit_url": "https://github.com/boto/botocore/commit/a28f67",
+  "summary": "4 service expansion(s)",
+  "source": "mase-import",
+  "changes": [
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "acm-pca",
+      "id": "acm-pca",
+      "new_regions": [
+        "ap-southeast-3"
+      ],
+      "description": "acm-pca expanded to ap-southeast-3"
+    },
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "aps",
+      "id": "aps",
+      "new_regions": [
+        "eu-west-2"
+      ],
+      "description": "aps expanded to eu-west-2"
+    },
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "cloudhsm",
+      "id": "cloudhsm",
+      "new_regions": [
+        "eu-west-1"
+      ],
+      "description": "cloudhsm expanded to eu-west-1"
+    },
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "waf-regional",
+      "id": "waf-regional",
+      "new_regions": [
+        "ap-southeast-3"
+      ],
+      "description": "waf-regional expanded to ap-southeast-3"
+    }
+  ]
+}

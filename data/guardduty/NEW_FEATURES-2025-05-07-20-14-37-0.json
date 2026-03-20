@@ -1,0 +1,18 @@
+{
+  "description": "Amazon GuardDuty is now available in AWS Mexico (Central) Region",
+  "detected_at": "2025-05-07T20:14:37Z",
+  "gist_url": "https://gist.github.com/z0ph/87d3fc1602267232268a0836a3c5f971",
+  "link": "https://aws.amazon.com/guardduty/",
+  "raw_sns_message": {
+    "featureDetails": [
+      {
+        "featureDescription": "Amazon GuardDuty is now available in AWS Mexico (Central) Region",
+        "featureLink": "https://aws.amazon.com/guardduty/"
+      }
+    ],
+    "type": "NEW_FEATURES",
+    "version": "1"
+  },
+  "short_description": "Amazon GuardDuty is now available in AWS Mexico (Central) Region",
+  "type": "NEW_FEATURES"
+}

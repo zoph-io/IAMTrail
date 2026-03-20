@@ -1,0 +1,19 @@
+{
+  "detected_at": "2022-02-11T01:06:06.000Z",
+  "botocore_commit": "8c9432",
+  "botocore_commit_url": "https://github.com/boto/botocore/commit/8c9432",
+  "summary": "1 service expansion(s)",
+  "source": "mase-import",
+  "changes": [
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "transfer",
+      "id": "transfer",
+      "new_regions": [
+        "ap-northeast-3"
+      ],
+      "description": "transfer expanded to ap-northeast-3"
+    }
+  ]
+}

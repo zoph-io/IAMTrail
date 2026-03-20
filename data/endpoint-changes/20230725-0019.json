@@ -1,0 +1,22 @@
+{
+  "detected_at": "2023-07-25T00:19:21.000Z",
+  "botocore_commit": "658398f",
+  "botocore_commit_url": "https://github.com/boto/botocore/commit/658398f",
+  "summary": "1 service expansion(s)",
+  "source": "mase-import",
+  "changes": [
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "applicationinsights",
+      "id": "applicationinsights",
+      "new_regions": [
+        "ap-south-2",
+        "eu-central-2",
+        "eu-south-2",
+        "me-central-1"
+      ],
+      "description": "applicationinsights expanded to ap-south-2, eu-central-2, eu-south-2, me-central-1"
+    }
+  ]
+}

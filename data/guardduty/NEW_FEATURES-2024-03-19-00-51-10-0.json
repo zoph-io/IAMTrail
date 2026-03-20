@@ -1,0 +1,18 @@
+{
+  "description": "Starting with the GuardDuty Runtime Monitoring EKS addon v1.5.0, you can set custom values for the following configurable parameters: CPU and memory settings, PriorityClass and dnsPolicy during creation or update of the addon. The custom values of the configurable parameters will be honored during addon update to future releases. With this update, you can ensure the agent performance impact, as well as its scheduling priority and DNS policy, conforms with your organizational guidance. For more information, refer to the documentation.",
+  "detected_at": "2024-03-19T00:51:10Z",
+  "gist_url": "https://gist.github.com/z0ph/8bb3a143e8b5367a0c04474ed7f5862c",
+  "link": "",
+  "raw_sns_message": {
+    "featureDetails": [
+      {
+        "featureDescription": "Starting with the GuardDuty Runtime Monitoring EKS addon v1.5.0, you can set custom values for the following configurable parameters: CPU and memory settings, PriorityClass and dnsPolicy during creation or update of the addon. The custom values of the configurable parameters will be honored during addon update to future releases. With this update, you can ensure the agent performance impact, as well as its scheduling priority and DNS policy, conforms with your organizational guidance. For more information, refer to the documentation.",
+        "link": "https://docs.aws.amazon.com/guardduty/latest/ug/managing-gdu-agent-eks-manually.html#guardduty-configure-security-agent-eks-addon"
+      }
+    ],
+    "type": "NEW_FEATURES",
+    "version": "1"
+  },
+  "short_description": "Starting with the GuardDuty Runtime Monitoring EKS addon v1.5.0, you can set custom values for the following configurable parameters: CPU and memory s",
+  "type": "NEW_FEATURES"
+}

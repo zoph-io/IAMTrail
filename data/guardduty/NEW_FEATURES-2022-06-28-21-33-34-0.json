@@ -1,0 +1,18 @@
+{
+  "description": "Starting July 5, 2022, five new finding types will be added to Amazon GuardDuty, and one existing finding type will be deprecated. The new finding types will provide broader, and more accurate security coverage for highly suspicious access to data stored in Amazon S3 buckets. The new finding types will also include new fields that provide enriched contextual information to help triage and investigate the anomalous activity. The changes will be applied in all GuardDuty supported AWS regions except the AWS Asia Pacific (Osaka), AWS Asia Pacific (Jakarta), AWS GovCloud (US-East), AWS GovCloud (US-West), AWS China (Beijing), and AWS China (Ningxia) Regions. Following are the new finding types: 1. Discovery:S3/AnomalousBehavior 2. Exfiltration:S3/AnomalousBehavior 3. Impact:S3/AnomalousBehavior.Write 4. Impact:S3/AnomalousBehavior.Delete 5. Impact:S3/AnomalousBehavior.Permission. Following is the deprecated finding type: Exfiltration:S3/ObjectRead.Unusual. The changes will be completed by July 7th, 2022.",
+  "detected_at": "2022-06-28T21:33:34Z",
+  "gist_url": "https://gist.github.com/z0ph/258d1efe870c65952f507c18b3600a5d",
+  "link": "Once these changes are completed on July 7th, 2022, additional details will be provided in our documentation page https://docs.aws.amazon.com/guardduty/latest/ug/guardduty_finding-types-s3.html.",
+  "raw_sns_message": {
+    "featureDetails": [
+      {
+        "featureDescription": "Starting July 5, 2022, five new finding types will be added to Amazon GuardDuty, and one existing finding type will be deprecated. The new finding types will provide broader, and more accurate security coverage for highly suspicious access to data stored in Amazon S3 buckets. The new finding types will also include new fields that provide enriched contextual information to help triage and investigate the anomalous activity. The changes will be applied in all GuardDuty supported AWS regions except the AWS Asia Pacific (Osaka), AWS Asia Pacific (Jakarta), AWS GovCloud (US-East), AWS GovCloud (US-West), AWS China (Beijing), and AWS China (Ningxia) Regions. Following are the new finding types: 1. Discovery:S3/AnomalousBehavior 2. Exfiltration:S3/AnomalousBehavior 3. Impact:S3/AnomalousBehavior.Write 4. Impact:S3/AnomalousBehavior.Delete 5. Impact:S3/AnomalousBehavior.Permission. Following is the deprecated finding type: Exfiltration:S3/ObjectRead.Unusual. The changes will be completed by July 7th, 2022.",
+        "featureLink": "Once these changes are completed on July 7th, 2022, additional details will be provided in our documentation page https://docs.aws.amazon.com/guardduty/latest/ug/guardduty_finding-types-s3.html."
+      }
+    ],
+    "type": "NEW_FEATURES",
+    "version": "1"
+  },
+  "short_description": "Starting July 5, 2022, five new finding types will be added to Amazon GuardDuty, and one existing finding type will be deprecated. The new finding typ",
+  "type": "NEW_FEATURES"
+}

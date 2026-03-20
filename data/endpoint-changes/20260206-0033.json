@@ -1,0 +1,42 @@
+{
+  "detected_at": "2026-02-06T00:33:14.000Z",
+  "botocore_commit": "bc2fb1c",
+  "botocore_commit_url": "https://github.com/boto/botocore/commit/bc2fb1c",
+  "summary": "3 service expansion(s)",
+  "source": "mase-import",
+  "changes": [
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "route53profiles",
+      "id": "route53profiles",
+      "new_regions": [
+        "ap-east-2",
+        "ap-southeast-6"
+      ],
+      "description": "route53profiles expanded to ap-east-2, ap-southeast-6"
+    },
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "sms-voice",
+      "id": "sms-voice",
+      "new_regions": [
+        "ap-east-2",
+        "ap-southeast-6"
+      ],
+      "description": "sms-voice expanded to ap-east-2, ap-southeast-6"
+    },
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "transcribestreaming",
+      "id": "transcribestreaming",
+      "new_regions": [
+        "ap-southeast-5",
+        "ap-southeast-7"
+      ],
+      "description": "transcribestreaming expanded to ap-southeast-5, ap-southeast-7"
+    }
+  ]
+}

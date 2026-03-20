@@ -19,6 +19,14 @@ API_URL = os.environ["API_URL"]
 table = dynamodb.Table(TABLE_NAME)
 
 EMAIL_RE = re.compile(r"^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$")
+VALID_TOPICS = {"iam_policies", "endpoints", "guardduty"}
+
+
+def validate_topics(topics):
+    if not isinstance(topics, list) or not topics:
+        return None
+    cleaned = [t for t in topics if t in VALID_TOPICS]
+    return cleaned if cleaned else None
 
 
 def respond(status_code, body):
@@ -52,6 +60,7 @@ def handle_subscribe(body):
     email = body.get("email", "").strip().lower()
     policies = body.get("policies", ["*"])
     frequency = body.get("frequency", "daily")
+    topics = validate_topics(body.get("topics")) or ["iam_policies"]
 
     if not email or not EMAIL_RE.match(email):
         return respond(400, {"error": "Invalid email address"})
@@ -75,9 +84,10 @@ def handle_subscribe(body):
             "confirmed": False,
             "policies": policies,
             "frequency": frequency,
+            "topics": topics,
             "created_at": now,
             "updated_at": now,
-            "ttl": int(time.time()) + 86400,  # 24h expiry for unconfirmed
+            "ttl": int(time.time()) + 86400,
         }
     )
 
@@ -87,6 +97,7 @@ def handle_subscribe(body):
         discord.COLOR_INFO,
         fields=[
             ("Frequency", frequency, True),
+            ("Topics", ", ".join(topics), True),
             ("Policies", ", ".join(policies[:5]) if policies != ["*"] else "All", True),
         ],
     )
@@ -98,7 +109,7 @@ def handle_subscribe(body):
         f"""
         <div style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; max-width: 600px; margin: 0 auto;">
             <h2 style="color: #1e293b;">Confirm your IAMTrail subscription</h2>
-            <p style="color: #475569;">Click the button below to confirm your subscription to AWS Managed Policy change notifications.</p>
+            <p style="color: #475569;">Click the button below to confirm your subscription to IAMTrail notifications.</p>
             <p style="margin: 24px 0;">
                 <a href="{confirm_url}" style="background-color: #2563eb; color: white; padding: 12px 24px; text-decoration: none; border-radius: 8px; font-weight: 600;">
                     Confirm Subscription
@@ -173,6 +184,7 @@ def handle_get_manage(token):
         "email": item["email"],
         "policies": item.get("policies", ["*"]),
         "frequency": item.get("frequency", "daily"),
+        "topics": list(item.get("topics", ["iam_policies"])),
         "created_at": item.get("created_at"),
         "updated_at": item.get("updated_at"),
     })
@@ -194,16 +206,18 @@ def handle_put_manage(token, body):
 
     policies = body.get("policies", item.get("policies", ["*"]))
     frequency = body.get("frequency", item.get("frequency", "daily"))
+    topics = validate_topics(body.get("topics")) or list(item.get("topics", ["iam_policies"]))
 
     if frequency not in ("daily", "weekly", "instant"):
         return respond(400, {"error": "Frequency must be 'daily', 'weekly', or 'instant'"})
 
     table.update_item(
         Key={"email": item["email"]},
-        UpdateExpression="SET policies = :p, frequency = :f, updated_at = :u",
+        UpdateExpression="SET policies = :p, frequency = :f, topics = :t, updated_at = :u",
         ExpressionAttributeValues={
             ":p": policies,
             ":f": frequency,
+            ":t": topics,
             ":u": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()),
         },
     )
@@ -249,7 +263,7 @@ def handle_resend_manage_link(body):
             f"""
             <div style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; max-width: 600px; margin: 0 auto;">
                 <h2 style="color: #1e293b;">Manage your IAMTrail subscription</h2>
-                <p style="color: #475569;">Click the button below to manage your policy change notification preferences.</p>
+                <p style="color: #475569;">Click the button below to manage your IAMTrail notification preferences.</p>
                 <p style="margin: 24px 0;">
                     <a href="{manage_url}" style="background-color: #2563eb; color: white; padding: 12px 24px; text-decoration: none; border-radius: 8px; font-weight: 600;">
                         Manage Subscription

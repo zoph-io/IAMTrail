@@ -1,0 +1,71 @@
+{
+  "detected_at": "2025-03-21T00:24:11.000Z",
+  "botocore_commit": "3549174",
+  "botocore_commit_url": "https://github.com/boto/botocore/commit/3549174",
+  "summary": "6 service expansion(s)",
+  "source": "mase-import",
+  "changes": [
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "datazone",
+      "id": "datazone",
+      "new_regions": [
+        "ap-south-1",
+        "mx-central-1"
+      ],
+      "description": "datazone expanded to ap-south-1, mx-central-1"
+    },
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "logs",
+      "id": "logs",
+      "new_regions": [
+        "ap-southeast-5"
+      ],
+      "description": "logs expanded to ap-southeast-5"
+    },
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "redshift-serverless",
+      "id": "redshift-serverless",
+      "new_regions": [
+        "ap-southeast-7",
+        "mx-central-1"
+      ],
+      "description": "redshift-serverless expanded to ap-southeast-7, mx-central-1"
+    },
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "sms-voice",
+      "id": "sms-voice",
+      "new_regions": [
+        "ca-west-1"
+      ],
+      "description": "sms-voice expanded to ca-west-1"
+    },
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "logs",
+      "id": "logs",
+      "new_regions": [
+        "cn-north-1"
+      ],
+      "description": "logs expanded to cn-north-1"
+    },
+    {
+      "type": "service_expansion",
+      "partition": "aws-cn",
+      "service": "logs",
+      "id": "logs",
+      "new_regions": [
+        "cn-north-1"
+      ],
+      "description": "logs expanded to cn-north-1"
+    }
+  ]
+}

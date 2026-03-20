@@ -1,0 +1,58 @@
+{
+  "detected_at": "2025-04-17T00:24:57.000Z",
+  "botocore_commit": "189d8ca",
+  "botocore_commit_url": "https://github.com/boto/botocore/commit/189d8ca",
+  "summary": "4 service expansion(s)",
+  "source": "mase-import",
+  "changes": [
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "athena",
+      "id": "athena",
+      "new_regions": [
+        "ap-southeast-7",
+        "mx-central-1"
+      ],
+      "description": "athena expanded to ap-southeast-7, mx-central-1"
+    },
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "rum",
+      "id": "rum",
+      "new_regions": [
+        "ap-east-1",
+        "il-central-1"
+      ],
+      "description": "rum expanded to ap-east-1, il-central-1"
+    },
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "transfer",
+      "id": "transfer",
+      "new_regions": [
+        "mx-central-1"
+      ],
+      "description": "transfer expanded to mx-central-1"
+    },
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "query.timestream",
+      "id": "query.timestream",
+      "new_regions": [
+        "ap-northeast-1",
+        "ap-south-1",
+        "ap-southeast-2",
+        "eu-central-1",
+        "eu-west-1",
+        "us-east-1",
+        "us-east-2",
+        "us-west-2"
+      ],
+      "description": "query.timestream expanded to ap-northeast-1, ap-south-1, ap-southeast-2, eu-central-1, eu-west-1, us-east-1, us-east-2, us-west-2"
+    }
+  ]
+}

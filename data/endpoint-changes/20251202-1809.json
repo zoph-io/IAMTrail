@@ -1,0 +1,29 @@
+{
+  "detected_at": "2025-12-02T18:09:31.000Z",
+  "botocore_commit": "6ad5ba1",
+  "botocore_commit_url": "https://github.com/boto/botocore/commit/6ad5ba1",
+  "summary": "2 service expansion(s)",
+  "source": "mase-import",
+  "changes": [
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "resource-explorer-2",
+      "id": "resource-explorer-2",
+      "new_regions": [
+        "ap-southeast-6"
+      ],
+      "description": "resource-explorer-2 expanded to ap-southeast-6"
+    },
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "nova-act",
+      "id": "nova-act",
+      "new_regions": [
+        "us-east-1"
+      ],
+      "description": "nova-act expanded to us-east-1"
+    }
+  ]
+}

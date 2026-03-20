@@ -1,0 +1,44 @@
+{
+  "detected_at": "2021-12-21T12:52:41.000Z",
+  "botocore_commit": "171047",
+  "botocore_commit_url": "https://github.com/boto/botocore/commit/171047",
+  "summary": "5 service expansion(s)",
+  "source": "mase-import",
+  "changes": [
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "cloudcontrolapi",
+      "id": "cloudcontrolapi",
+      "description": "cloudcontrolapi expanded to new region(s)"
+    },
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "groundstation",
+      "id": "groundstation",
+      "description": "groundstation expanded to new region(s)"
+    },
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "s3",
+      "id": "s3",
+      "description": "s3 expanded to new region(s)"
+    },
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "lookoutmetrics",
+      "id": "lookoutmetrics",
+      "description": "lookoutmetrics expanded to new region(s)"
+    },
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "meetings-chime",
+      "id": "meetings-chime",
+      "description": "meetings-chime expanded to new region(s)"
+    }
+  ]
+}

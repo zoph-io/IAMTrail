@@ -1,0 +1,39 @@
+{
+  "detected_at": "2023-10-25T00:16:33.000Z",
+  "botocore_commit": "5149e60",
+  "botocore_commit_url": "https://github.com/boto/botocore/commit/5149e60",
+  "summary": "3 service expansion(s)",
+  "source": "mase-import",
+  "changes": [
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "license-manager-user-subscriptions",
+      "id": "license-manager-user-subscriptions",
+      "new_regions": [
+        "me-central-1"
+      ],
+      "description": "license-manager-user-subscriptions expanded to me-central-1"
+    },
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "states",
+      "id": "states",
+      "new_regions": [
+        "cn-north-1"
+      ],
+      "description": "states expanded to cn-north-1"
+    },
+    {
+      "type": "service_expansion",
+      "partition": "aws-cn",
+      "service": "states",
+      "id": "states",
+      "new_regions": [
+        "cn-north-1"
+      ],
+      "description": "states expanded to cn-north-1"
+    }
+  ]
+}

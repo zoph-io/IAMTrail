@@ -1,0 +1,92 @@
+{
+  "detected_at": "2022-12-13T01:25:25.000Z",
+  "botocore_commit": "2f01495",
+  "botocore_commit_url": "https://github.com/boto/botocore/commit/2f01495",
+  "summary": "6 service expansion(s)",
+  "source": "mase-import",
+  "changes": [
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "appstream2",
+      "id": "appstream2",
+      "new_regions": [
+        "sa-east-1"
+      ],
+      "description": "appstream2 expanded to sa-east-1"
+    },
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "m2",
+      "id": "m2",
+      "new_regions": [
+        "ca-central-1"
+      ],
+      "description": "m2 expanded to ca-central-1"
+    },
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "mq",
+      "id": "mq",
+      "new_regions": [
+        "me-central-1"
+      ],
+      "description": "mq expanded to me-central-1"
+    },
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "metrics.sagemaker",
+      "id": "metrics.sagemaker",
+      "new_regions": [
+        "af-south-1",
+        "ap-east-1",
+        "ap-northeast-1",
+        "ap-northeast-2",
+        "ap-northeast-3",
+        "ap-south-1",
+        "ap-southeast-1",
+        "ap-southeast-2",
+        "ap-southeast-3",
+        "ca-central-1",
+        "eu-central-1",
+        "eu-north-1",
+        "eu-south-1",
+        "eu-west-1",
+        "eu-west-2",
+        "me-central-1",
+        "me-south-1",
+        "sa-east-1",
+        "us-east-1",
+        "us-east-2",
+        "us-west-1",
+        "us-west-2"
+      ],
+      "description": "metrics.sagemaker expanded to af-south-1, ap-east-1, ap-northeast-1, ap-northeast-2, ap-northeast-3, ap-south-1, ap-southeast-1, ap-southeast-2, ap-southeast-3, ca-central-1, eu-central-1, eu-north-1, eu-south-1, eu-west-1, eu-west-2, me-central-1, me-south-1, sa-east-1, us-east-1, us-east-2, us-west-1, us-west-2"
+    },
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "metrics.sagemaker",
+      "id": "metrics.sagemaker",
+      "new_regions": [
+        "cn-north-1",
+        "cn-northwest-1"
+      ],
+      "description": "metrics.sagemaker expanded to cn-north-1, cn-northwest-1"
+    },
+    {
+      "type": "service_expansion",
+      "partition": "aws-cn",
+      "service": "metrics.sagemaker",
+      "id": "metrics.sagemaker",
+      "new_regions": [
+        "cn-north-1",
+        "cn-northwest-1"
+      ],
+      "description": "metrics.sagemaker expanded to cn-north-1, cn-northwest-1"
+    }
+  ]
+}

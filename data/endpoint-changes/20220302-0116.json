@@ -1,0 +1,19 @@
+{
+  "detected_at": "2022-03-02T01:16:02.000Z",
+  "botocore_commit": "669cb2",
+  "botocore_commit_url": "https://github.com/boto/botocore/commit/669cb2",
+  "summary": "1 service expansion(s)",
+  "source": "mase-import",
+  "changes": [
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "mq",
+      "id": "mq",
+      "new_regions": [
+        "ap-southeast-3"
+      ],
+      "description": "mq expanded to ap-southeast-3"
+    }
+  ]
+}

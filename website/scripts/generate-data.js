@@ -445,6 +445,7 @@ async function generatePolicyData() {
     { loc: "/largest-policies/", priority: "0.7", changefreq: "weekly" },
     { loc: "/service-growth/", priority: "0.7", changefreq: "weekly" },
     { loc: "/endpoints/", priority: "0.8", changefreq: "daily" },
+    { loc: "/guardduty/", priority: "0.8", changefreq: "daily" },
     { loc: "/about/", priority: "0.5", changefreq: "monthly" },
   ];
   policies.forEach((p) => {
@@ -474,6 +475,76 @@ ${sitemapEntries
   console.log(`   📁 Policies processed: ${policies.length}`);
   console.log(`   ⚠️  Errors: ${errors.length}`);
   console.log(`   📊 Output directory: ${OUTPUT_DIR}`);
+}
+
+const GUARDDUTY_DIR = path.join(REPO_ROOT, "data/guardduty");
+
+async function generateGuardDutyData() {
+  console.log("\n🛡️  Generating GuardDuty announcements data...");
+
+  if (!fs.existsSync(GUARDDUTY_DIR)) {
+    console.log("   ⚠️  No data/guardduty/ found, skipping GuardDuty data generation");
+    return;
+  }
+
+  const files = fs
+    .readdirSync(GUARDDUTY_DIR)
+    .filter((f) => f.endsWith(".json") && f !== "import-summary.json")
+    .sort()
+    .reverse();
+
+  if (files.length === 0) {
+    console.log("   ⚠️  No GuardDuty announcement files found");
+    return;
+  }
+
+  const announcements = [];
+  const typeCounts = {};
+
+  for (const file of files) {
+    try {
+      const data = JSON.parse(
+        fs.readFileSync(path.join(GUARDDUTY_DIR, file), "utf8")
+      );
+      const type = data.type || "UNKNOWN";
+      typeCounts[type] = (typeCounts[type] || 0) + 1;
+
+      announcements.push({
+        type,
+        detected_at: data.detected_at || "",
+        description: data.description || "",
+        short_description: data.short_description || "",
+        link: data.link || "",
+        gist_url: data.gist_url || "",
+      });
+    } catch (e) {
+      console.warn(`   ⚠️  Could not parse ${file}: ${e.message}`);
+    }
+  }
+
+  announcements.sort(
+    (a, b) => new Date(b.detected_at) - new Date(a.detected_at)
+  );
+
+  const summary = {
+    lastUpdated: new Date().toISOString(),
+    stats: {
+      total: announcements.length,
+      typeCounts,
+    },
+    announcements,
+  };
+
+  fs.writeFileSync(
+    path.join(OUTPUT_DIR, "guardduty-summary.json"),
+    JSON.stringify(summary, null, 2)
+  );
+
+  console.log(
+    `   🛡️  GuardDuty: ${announcements.length} announcements (${Object.entries(typeCounts)
+      .map(([t, c]) => `${t}: ${c}`)
+      .join(", ")})`
+  );
 }
 
 const ENDPOINTS_PATH = path.join(REPO_ROOT, "data/endpoints.json");
@@ -533,26 +604,77 @@ async function generateEndpointsData() {
     });
   }
 
-  let recentChanges = [];
+  let allChangeRecords = [];
   if (fs.existsSync(ENDPOINT_CHANGES_DIR)) {
     const changeFiles = fs
       .readdirSync(ENDPOINT_CHANGES_DIR)
       .filter((f) => f.endsWith(".json"))
       .sort()
-      .reverse()
-      .slice(0, 200);
+      .reverse();
 
     for (const file of changeFiles) {
       try {
         const data = JSON.parse(
           fs.readFileSync(path.join(ENDPOINT_CHANGES_DIR, file), "utf8")
         );
-        recentChanges.push(data);
+        allChangeRecords.push(data);
       } catch (e) {
         console.warn(`   ⚠️  Could not parse ${file}: ${e.message}`);
       }
     }
   }
+
+  const changeTypeCounts = {};
+  const partitionCounts = {};
+  const monthlyActivity = {};
+  const serviceCounts = {};
+  const regionCounts = {};
+  const newRegionTimeline = [];
+
+  for (const record of allChangeRecords) {
+    const month = record.detected_at.slice(0, 7);
+    monthlyActivity[month] = (monthlyActivity[month] || 0) + 1;
+
+    for (const c of record.changes) {
+      changeTypeCounts[c.type] = (changeTypeCounts[c.type] || 0) + 1;
+      partitionCounts[c.partition] = (partitionCounts[c.partition] || 0) + 1;
+
+      if (c.service) {
+        serviceCounts[c.service] = (serviceCounts[c.service] || 0) + 1;
+      }
+      if (c.new_regions) {
+        for (const r of c.new_regions) {
+          regionCounts[r] = (regionCounts[r] || 0) + 1;
+        }
+      }
+      if (c.type === "new_region") {
+        newRegionTimeline.push({
+          region: c.id,
+          partition: c.partition,
+          detected_at: record.detected_at,
+          description: c.description,
+        });
+      }
+    }
+  }
+
+  const topServices = Object.entries(serviceCounts)
+    .sort((a, b) => b[1] - a[1])
+    .slice(0, 20)
+    .map(([name, count]) => ({ name, count }));
+
+  const topRegions = Object.entries(regionCounts)
+    .sort((a, b) => b[1] - a[1])
+    .slice(0, 20)
+    .map(([name, count]) => ({ name, count }));
+
+  const sortedMonths = Object.entries(monthlyActivity)
+    .sort((a, b) => a[0].localeCompare(b[0]))
+    .map(([month, count]) => ({ month, count }));
+
+  newRegionTimeline.sort(
+    (a, b) => new Date(a.detected_at).getTime() - new Date(b.detected_at).getTime()
+  );
 
   const endpointsSummary = {
     lastUpdated: new Date().toISOString(),
@@ -562,7 +684,25 @@ async function generateEndpointsData() {
       totalPartitions: partitions.length,
       partitions: partitionSummaries,
     },
-    recentChanges,
+    changeStats: {
+      totalRecords: allChangeRecords.length,
+      totalChangeItems: allChangeRecords.reduce(
+        (s, r) => s + r.changes.length,
+        0
+      ),
+      uniqueServices: Object.keys(serviceCounts).length,
+      uniqueRegions: Object.keys(regionCounts).length,
+      changeTypeCounts,
+      partitionCounts,
+      monthlyActivity: sortedMonths,
+      topServices,
+      topRegions,
+      newRegionTimeline,
+      trackingSince: allChangeRecords.length > 0
+        ? allChangeRecords[allChangeRecords.length - 1].detected_at
+        : null,
+    },
+    recentChanges: allChangeRecords,
   };
 
   fs.writeFileSync(
@@ -583,6 +723,7 @@ if (!fs.existsSync(OUTPUT_DIR)) {
 async function main() {
   await generatePolicyData();
   await generateEndpointsData();
+  await generateGuardDutyData();
 }
 
 main().catch((error) => {

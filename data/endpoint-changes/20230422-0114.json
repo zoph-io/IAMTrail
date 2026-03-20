@@ -1,0 +1,55 @@
+{
+  "detected_at": "2023-04-22T01:14:46.000Z",
+  "botocore_commit": "e1f92d0",
+  "botocore_commit_url": "https://github.com/boto/botocore/commit/e1f92d0",
+  "summary": "4 service expansion(s)",
+  "source": "mase-import",
+  "changes": [
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "api.tunneling.iot",
+      "id": "api.tunneling.iot",
+      "new_regions": [
+        "me-central-1"
+      ],
+      "description": "api.tunneling.iot expanded to me-central-1"
+    },
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "autoscaling",
+      "id": "autoscaling",
+      "new_regions": [
+        "ca-central-1"
+      ],
+      "description": "autoscaling expanded to ca-central-1"
+    },
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "backup",
+      "id": "backup",
+      "new_regions": [
+        "ap-southeast-4"
+      ],
+      "description": "backup expanded to ap-southeast-4"
+    },
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "controltower",
+      "id": "controltower",
+      "new_regions": [
+        "af-south-1",
+        "ap-east-1",
+        "ap-northeast-3",
+        "ap-southeast-3",
+        "eu-south-1",
+        "me-south-1",
+        "us-west-1"
+      ],
+      "description": "controltower expanded to af-south-1, ap-east-1, ap-northeast-3, ap-southeast-3, eu-south-1, me-south-1, us-west-1"
+    }
+  ]
+}

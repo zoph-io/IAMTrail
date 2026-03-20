@@ -1,0 +1,30 @@
+{
+  "detected_at": "2024-06-05T00:18:23.000Z",
+  "botocore_commit": "c150077",
+  "botocore_commit_url": "https://github.com/boto/botocore/commit/c150077",
+  "summary": "2 service expansion(s)",
+  "source": "mase-import",
+  "changes": [
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "identitystore",
+      "id": "identitystore",
+      "new_regions": [
+        "ca-west-1"
+      ],
+      "description": "identitystore expanded to ca-west-1"
+    },
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "vpc-lattice",
+      "id": "vpc-lattice",
+      "new_regions": [
+        "eu-west-3",
+        "us-west-1"
+      ],
+      "description": "vpc-lattice expanded to eu-west-3, us-west-1"
+    }
+  ]
+}

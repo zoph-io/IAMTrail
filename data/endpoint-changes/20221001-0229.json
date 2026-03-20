@@ -1,0 +1,46 @@
+{
+  "detected_at": "2022-10-01T02:29:00.000Z",
+  "botocore_commit": "036e159",
+  "botocore_commit_url": "https://github.com/boto/botocore/commit/036e159",
+  "summary": "2 service expansion(s)",
+  "source": "mase-import",
+  "changes": [
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "kafka",
+      "id": "kafka",
+      "new_regions": [
+        "ap-southeast-3"
+      ],
+      "description": "kafka expanded to ap-southeast-3"
+    },
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "codestar-notifications",
+      "id": "codestar-notifications",
+      "new_regions": [
+        "ap-east-1",
+        "ap-northeast-1",
+        "ap-northeast-2",
+        "ap-south-1",
+        "ap-southeast-1",
+        "ap-southeast-2",
+        "ca-central-1",
+        "eu-central-1",
+        "eu-north-1",
+        "eu-west-1",
+        "eu-west-2",
+        "eu-west-3",
+        "me-south-1",
+        "sa-east-1",
+        "us-east-1",
+        "us-east-2",
+        "us-west-1",
+        "us-west-2"
+      ],
+      "description": "codestar-notifications expanded to ap-east-1, ap-northeast-1, ap-northeast-2, ap-south-1, ap-southeast-1, ap-southeast-2, ca-central-1, eu-central-1, eu-north-1, eu-west-1, eu-west-2, eu-west-3, me-south-1, sa-east-1, us-east-1, us-east-2, us-west-1, us-west-2"
+    }
+  ]
+}

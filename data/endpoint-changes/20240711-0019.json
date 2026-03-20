@@ -1,0 +1,59 @@
+{
+  "detected_at": "2024-07-11T00:19:50.000Z",
+  "botocore_commit": "7ef6f72",
+  "botocore_commit_url": "https://github.com/boto/botocore/commit/7ef6f72",
+  "summary": "5 service expansion(s)",
+  "source": "mase-import",
+  "changes": [
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "cloud9",
+      "id": "cloud9",
+      "new_regions": [
+        "ca-central-1"
+      ],
+      "description": "cloud9 expanded to ca-central-1"
+    },
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "cloudcontrolapi",
+      "id": "cloudcontrolapi",
+      "new_regions": [
+        "af-south-1"
+      ],
+      "description": "cloudcontrolapi expanded to af-south-1"
+    },
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "textract",
+      "id": "textract",
+      "new_regions": [
+        "ap-northeast-2"
+      ],
+      "description": "textract expanded to ap-northeast-2"
+    },
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "cloudcontrolapi",
+      "id": "cloudcontrolapi",
+      "new_regions": [
+        "cn-north-1"
+      ],
+      "description": "cloudcontrolapi expanded to cn-north-1"
+    },
+    {
+      "type": "service_expansion",
+      "partition": "aws-cn",
+      "service": "cloudcontrolapi",
+      "id": "cloudcontrolapi",
+      "new_regions": [
+        "cn-north-1"
+      ],
+      "description": "cloudcontrolapi expanded to cn-north-1"
+    }
+  ]
+}

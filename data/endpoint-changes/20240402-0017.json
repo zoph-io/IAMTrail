@@ -1,0 +1,19 @@
+{
+  "detected_at": "2024-04-02T00:17:28.000Z",
+  "botocore_commit": "a5cddca",
+  "botocore_commit_url": "https://github.com/boto/botocore/commit/a5cddca",
+  "summary": "1 service expansion(s)",
+  "source": "mase-import",
+  "changes": [
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "amplifybackend",
+      "id": "amplifybackend",
+      "new_regions": [
+        "ap-northeast-3"
+      ],
+      "description": "amplifybackend expanded to ap-northeast-3"
+    }
+  ]
+}

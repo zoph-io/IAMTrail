@@ -1,0 +1,19 @@
+{
+  "detected_at": "2023-11-27T12:07:04.000Z",
+  "botocore_commit": "3676fce",
+  "botocore_commit_url": "https://github.com/boto/botocore/commit/3676fce",
+  "summary": "1 service expansion(s)",
+  "source": "mase-import",
+  "changes": [
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "cost-optimization-hub",
+      "id": "cost-optimization-hub",
+      "new_regions": [
+        "us-east-1"
+      ],
+      "description": "cost-optimization-hub expanded to us-east-1"
+    }
+  ]
+}

@@ -1,0 +1,19 @@
+{
+  "detected_at": "2025-10-16T00:26:09.000Z",
+  "botocore_commit": "6f72c2c",
+  "botocore_commit_url": "https://github.com/boto/botocore/commit/6f72c2c",
+  "summary": "1 service expansion(s)",
+  "source": "mase-import",
+  "changes": [
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "polly",
+      "id": "polly",
+      "new_regions": [
+        "eu-central-2"
+      ],
+      "description": "polly expanded to eu-central-2"
+    }
+  ]
+}

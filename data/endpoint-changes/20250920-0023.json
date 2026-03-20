@@ -1,0 +1,40 @@
+{
+  "detected_at": "2025-09-20T00:23:36.000Z",
+  "botocore_commit": "387a2a4",
+  "botocore_commit_url": "https://github.com/boto/botocore/commit/387a2a4",
+  "summary": "3 service expansion(s)",
+  "source": "mase-import",
+  "changes": [
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "datazone",
+      "id": "datazone",
+      "new_regions": [
+        "ap-east-1",
+        "eu-central-2"
+      ],
+      "description": "datazone expanded to ap-east-1, eu-central-2"
+    },
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "redshift-serverless",
+      "id": "redshift-serverless",
+      "new_regions": [
+        "ap-east-2"
+      ],
+      "description": "redshift-serverless expanded to ap-east-2"
+    },
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "securityhub",
+      "id": "securityhub",
+      "new_regions": [
+        "ap-southeast-6"
+      ],
+      "description": "securityhub expanded to ap-southeast-6"
+    }
+  ]
+}

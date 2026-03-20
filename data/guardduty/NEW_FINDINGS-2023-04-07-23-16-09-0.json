@@ -1,0 +1,29 @@
+{
+  "description": "This findings informs you that the listed EC2 instance in your AWS environment is behaving in a way that deviates from the established baseline. This EC2 instance has no recent history of communications with this public DNS resolver. The unusual field in the finding details can provide information on which DNS resolver was queried.",
+  "detected_at": "2023-04-07T23:16:09Z",
+  "gist_url": "https://gist.github.com/z0ph/dcfd732ff6e2eb8ec9c1b98a3e4f53df",
+  "link": "https://docs.aws.amazon.com/guardduty/latest/ug/guardduty_finding-types-ec2.html#defenseevasion-ec2-unusualdnsresolver",
+  "raw_sns_message": {
+    "findingDetails": [
+      {
+        "description": "This findings informs you that the listed EC2 instance in your AWS environment is behaving in a way that deviates from the established baseline. This EC2 instance has no recent history of communications with this public DNS resolver. The unusual field in the finding details can provide information on which DNS resolver was queried.",
+        "findingType": "DefenseEvasion:EC2/UnusualDNSResolver",
+        "link": "https://docs.aws.amazon.com/guardduty/latest/ug/guardduty_finding-types-ec2.html#defenseevasion-ec2-unusualdnsresolver"
+      },
+      {
+        "description": "This findings informs you that the listed EC2 instance in your AWS environment is behaving in a way that deviates from the established baseline. This EC2 instance has no recent history of DNS over HTTPS (DoH) communications with this public DoH server. The unusual field in the finding details can provide information on which DoH server was queried.",
+        "findingType": "DefenseEvasion:EC2/UnusualDoHActivity",
+        "link": "https://docs.aws.amazon.com/guardduty/latest/ug/guardduty_finding-types-ec2.html#defenseevasion-ec2-unsualdohactivity"
+      },
+      {
+        "description": "This findings informs you that the listed EC2 instance in your AWS environment is behaving in a way that deviates from the established baseline. This EC2 instance has no recent history of DNS over TLS (DoT) communications with this public DoT server. The unusual field in the finding details can provide information on which DoT server was queried.",
+        "findingType": "DefenseEvasion:EC2/UnusualDoTActivity",
+        "link": "https://docs.aws.amazon.com/guardduty/latest/ug/guardduty_finding-types-ec2.html#defenseevasion-ec2-unsualdotactivity"
+      }
+    ],
+    "type": "NEW_FINDINGS",
+    "version": "1"
+  },
+  "short_description": "DefenseEvasion:EC2/UnusualDNSResolver",
+  "type": "NEW_FINDINGS"
+}

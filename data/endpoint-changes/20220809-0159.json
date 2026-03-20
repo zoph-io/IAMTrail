@@ -1,0 +1,38 @@
+{
+  "detected_at": "2022-08-09T01:59:51.000Z",
+  "botocore_commit": "9525a91",
+  "botocore_commit_url": "https://github.com/boto/botocore/commit/9525a91",
+  "summary": "2 service expansion(s)",
+  "source": "mase-import",
+  "changes": [
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "appmesh",
+      "id": "appmesh",
+      "new_regions": [
+        "ap-northeast-3",
+        "ap-southeast-3"
+      ],
+      "description": "appmesh expanded to ap-northeast-3, ap-southeast-3"
+    },
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "geo",
+      "id": "geo",
+      "new_regions": [
+        "ap-northeast-1",
+        "ap-southeast-1",
+        "ap-southeast-2",
+        "eu-central-1",
+        "eu-north-1",
+        "eu-west-1",
+        "us-east-1",
+        "us-east-2",
+        "us-west-2"
+      ],
+      "description": "geo expanded to ap-northeast-1, ap-southeast-1, ap-southeast-2, eu-central-1, eu-north-1, eu-west-1, us-east-1, us-east-2, us-west-2"
+    }
+  ]
+}

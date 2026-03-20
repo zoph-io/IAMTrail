@@ -1,0 +1,37 @@
+{
+  "detected_at": "2025-07-02T00:26:59.000Z",
+  "botocore_commit": "e0beb7d",
+  "botocore_commit_url": "https://github.com/boto/botocore/commit/e0beb7d",
+  "summary": "2 service expansion(s)",
+  "source": "mase-import",
+  "changes": [
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "cloudhsmv2",
+      "id": "cloudhsmv2",
+      "new_regions": [
+        "eu-south-2"
+      ],
+      "description": "cloudhsmv2 expanded to eu-south-2"
+    },
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "inspector2",
+      "id": "inspector2",
+      "new_regions": [
+        "ap-south-2",
+        "ap-southeast-4",
+        "ap-southeast-5",
+        "ap-southeast-7",
+        "ca-west-1",
+        "eu-south-2",
+        "il-central-1",
+        "me-central-1",
+        "mx-central-1"
+      ],
+      "description": "inspector2 expanded to ap-south-2, ap-southeast-4, ap-southeast-5, ap-southeast-7, ca-west-1, eu-south-2, il-central-1, me-central-1, mx-central-1"
+    }
+  ]
+}

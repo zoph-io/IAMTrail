@@ -1,0 +1,29 @@
+{
+  "detected_at": "2024-04-19T00:17:40.000Z",
+  "botocore_commit": "6f008ad",
+  "botocore_commit_url": "https://github.com/boto/botocore/commit/6f008ad",
+  "summary": "1 service expansion(s)",
+  "source": "mase-import",
+  "changes": [
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "s3-control",
+      "id": "s3-control",
+      "new_regions": [
+        "af-south-1",
+        "ap-east-1",
+        "ap-south-2",
+        "ap-southeast-3",
+        "ap-southeast-4",
+        "eu-central-2",
+        "eu-south-1",
+        "eu-south-2",
+        "il-central-1",
+        "me-central-1",
+        "me-south-1"
+      ],
+      "description": "s3-control expanded to af-south-1, ap-east-1, ap-south-2, ap-southeast-3, ap-southeast-4, eu-central-2, eu-south-1, eu-south-2, il-central-1, me-central-1, me-south-1"
+    }
+  ]
+}

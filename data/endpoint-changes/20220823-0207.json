@@ -1,0 +1,41 @@
+{
+  "detected_at": "2022-08-23T02:07:13.000Z",
+  "botocore_commit": "abecbd2",
+  "botocore_commit_url": "https://github.com/boto/botocore/commit/abecbd2",
+  "summary": "3 service expansion(s)",
+  "source": "mase-import",
+  "changes": [
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "api.sagemaker",
+      "id": "api.sagemaker",
+      "new_regions": [
+        "ap-southeast-3"
+      ],
+      "description": "api.sagemaker expanded to ap-southeast-3"
+    },
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "kms",
+      "id": "kms",
+      "new_regions": [
+        "me-central-1"
+      ],
+      "description": "kms expanded to me-central-1"
+    },
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "supportapp",
+      "id": "supportapp",
+      "new_regions": [
+        "eu-west-1",
+        "us-east-1",
+        "us-west-2"
+      ],
+      "description": "supportapp expanded to eu-west-1, us-east-1, us-west-2"
+    }
+  ]
+}

@@ -1,0 +1,69 @@
+{
+  "detected_at": "2024-11-22T06:07:38.000Z",
+  "botocore_commit": "e341547",
+  "botocore_commit_url": "https://github.com/boto/botocore/commit/e341547",
+  "summary": "6 service expansion(s)",
+  "source": "mase-import",
+  "changes": [
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "braket",
+      "id": "braket",
+      "new_regions": [
+        "eu-north-1"
+      ],
+      "description": "braket expanded to eu-north-1"
+    },
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "dlm",
+      "id": "dlm",
+      "new_regions": [
+        "af-south-1"
+      ],
+      "description": "dlm expanded to af-south-1"
+    },
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "polly",
+      "id": "polly",
+      "new_regions": [
+        "af-south-1"
+      ],
+      "description": "polly expanded to af-south-1"
+    },
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "notifications-contacts",
+      "id": "notifications-contacts",
+      "new_regions": [
+        "us-east-1"
+      ],
+      "description": "notifications-contacts expanded to us-east-1"
+    },
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "polly",
+      "id": "polly",
+      "new_regions": [
+        "cn-northwest-1"
+      ],
+      "description": "polly expanded to cn-northwest-1"
+    },
+    {
+      "type": "service_expansion",
+      "partition": "aws-cn",
+      "service": "polly",
+      "id": "polly",
+      "new_regions": [
+        "cn-northwest-1"
+      ],
+      "description": "polly expanded to cn-northwest-1"
+    }
+  ]
+}

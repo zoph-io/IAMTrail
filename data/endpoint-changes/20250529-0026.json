@@ -1,0 +1,19 @@
+{
+  "detected_at": "2025-05-29T00:26:23.000Z",
+  "botocore_commit": "7639ac5",
+  "botocore_commit_url": "https://github.com/boto/botocore/commit/7639ac5",
+  "summary": "1 service expansion(s)",
+  "source": "mase-import",
+  "changes": [
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "scheduler",
+      "id": "scheduler",
+      "new_regions": [
+        "ca-west-1"
+      ],
+      "description": "scheduler expanded to ca-west-1"
+    }
+  ]
+}

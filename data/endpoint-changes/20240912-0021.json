@@ -1,0 +1,19 @@
+{
+  "detected_at": "2024-09-12T00:21:26.000Z",
+  "botocore_commit": "38b4faa",
+  "botocore_commit_url": "https://github.com/boto/botocore/commit/38b4faa",
+  "summary": "1 service expansion(s)",
+  "source": "mase-import",
+  "changes": [
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "securityhub",
+      "id": "securityhub",
+      "new_regions": [
+        "ap-southeast-5"
+      ],
+      "description": "securityhub expanded to ap-southeast-5"
+    }
+  ]
+}

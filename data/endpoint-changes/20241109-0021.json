@@ -1,0 +1,19 @@
+{
+  "detected_at": "2024-11-09T00:21:51.000Z",
+  "botocore_commit": "d81a864",
+  "botocore_commit_url": "https://github.com/boto/botocore/commit/d81a864",
+  "summary": "1 service expansion(s)",
+  "source": "mase-import",
+  "changes": [
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "ds",
+      "id": "ds",
+      "new_regions": [
+        "ap-southeast-5"
+      ],
+      "description": "ds expanded to ap-southeast-5"
+    }
+  ]
+}

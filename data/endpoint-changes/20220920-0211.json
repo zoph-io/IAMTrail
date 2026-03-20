@@ -1,0 +1,29 @@
+{
+  "detected_at": "2022-09-20T02:11:46.000Z",
+  "botocore_commit": "c9a2284",
+  "botocore_commit_url": "https://github.com/boto/botocore/commit/c9a2284",
+  "summary": "1 service expansion(s)",
+  "source": "mase-import",
+  "changes": [
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "fsx",
+      "id": "fsx",
+      "new_regions": [
+        "af-south-1",
+        "ap-east-1",
+        "ap-northeast-2",
+        "ap-northeast-3",
+        "ap-south-1",
+        "eu-north-1",
+        "eu-south-1",
+        "eu-west-3",
+        "me-south-1",
+        "sa-east-1",
+        "us-west-1"
+      ],
+      "description": "fsx expanded to af-south-1, ap-east-1, ap-northeast-2, ap-northeast-3, ap-south-1, eu-north-1, eu-south-1, eu-west-3, me-south-1, sa-east-1, us-west-1"
+    }
+  ]
+}

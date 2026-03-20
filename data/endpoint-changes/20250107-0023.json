@@ -1,0 +1,19 @@
+{
+  "detected_at": "2025-01-07T00:23:24.000Z",
+  "botocore_commit": "81f350b",
+  "botocore_commit_url": "https://github.com/boto/botocore/commit/81f350b",
+  "summary": "1 service expansion(s)",
+  "source": "mase-import",
+  "changes": [
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "iotfleetwise",
+      "id": "iotfleetwise",
+      "new_regions": [
+        "ap-south-1"
+      ],
+      "description": "iotfleetwise expanded to ap-south-1"
+    }
+  ]
+}

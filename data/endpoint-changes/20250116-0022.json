@@ -1,0 +1,31 @@
+{
+  "detected_at": "2025-01-16T00:22:28.000Z",
+  "botocore_commit": "a628ab8",
+  "botocore_commit_url": "https://github.com/boto/botocore/commit/a628ab8",
+  "summary": "2 service expansion(s)",
+  "source": "mase-import",
+  "changes": [
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "backup",
+      "id": "backup",
+      "new_regions": [
+        "ap-southeast-7"
+      ],
+      "description": "backup expanded to ap-southeast-7"
+    },
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "rolesanywhere",
+      "id": "rolesanywhere",
+      "new_regions": [
+        "ap-southeast-5",
+        "ap-southeast-7",
+        "mx-central-1"
+      ],
+      "description": "rolesanywhere expanded to ap-southeast-5, ap-southeast-7, mx-central-1"
+    }
+  ]
+}

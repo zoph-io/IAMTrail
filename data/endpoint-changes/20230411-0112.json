@@ -1,0 +1,90 @@
+{
+  "detected_at": "2023-04-11T01:12:46.000Z",
+  "botocore_commit": "c80f26c",
+  "botocore_commit_url": "https://github.com/boto/botocore/commit/c80f26c",
+  "summary": "7 service expansion(s)",
+  "source": "mase-import",
+  "changes": [
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "amplifybackend",
+      "id": "amplifybackend",
+      "new_regions": [
+        "eu-south-1"
+      ],
+      "description": "amplifybackend expanded to eu-south-1"
+    },
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "amplifyuibuilder",
+      "id": "amplifyuibuilder",
+      "new_regions": [
+        "eu-south-1"
+      ],
+      "description": "amplifyuibuilder expanded to eu-south-1"
+    },
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "fms",
+      "id": "fms",
+      "new_regions": [
+        "ap-south-2",
+        "eu-central-2",
+        "eu-south-2"
+      ],
+      "description": "fms expanded to ap-south-2, eu-central-2, eu-south-2"
+    },
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "license-manager-linux-subscriptions",
+      "id": "license-manager-linux-subscriptions",
+      "new_regions": [
+        "af-south-1",
+        "ap-east-1",
+        "ap-south-2",
+        "ap-southeast-3",
+        "ap-southeast-4",
+        "eu-central-2",
+        "eu-south-1",
+        "eu-south-2",
+        "me-central-1",
+        "me-south-1"
+      ],
+      "description": "license-manager-linux-subscriptions expanded to af-south-1, ap-east-1, ap-south-2, ap-southeast-3, ap-southeast-4, eu-central-2, eu-south-1, eu-south-2, me-central-1, me-south-1"
+    },
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "route53resolver",
+      "id": "route53resolver",
+      "new_regions": [
+        "eu-south-2"
+      ],
+      "description": "route53resolver expanded to eu-south-2"
+    },
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "data-ats.iot",
+      "id": "data-ats.iot",
+      "new_regions": [
+        "cn-north-1"
+      ],
+      "description": "data-ats.iot expanded to cn-north-1"
+    },
+    {
+      "type": "service_expansion",
+      "partition": "aws-cn",
+      "service": "data-ats.iot",
+      "id": "data-ats.iot",
+      "new_regions": [
+        "cn-north-1"
+      ],
+      "description": "data-ats.iot expanded to cn-north-1"
+    }
+  ]
+}

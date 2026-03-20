@@ -1,0 +1,18 @@
+{
+  "description": "Amazon GuardDuty Runtime Monitoring is now generally available for Amazon Elastic Containers Service (Amazon ECS), including AWS Fargate, and in preview for other Amazon Elastic Compute Cloud (Amazon EC2) instances. Runtime Monitoring uses an agent that is deployed as a sidecar container on Fargate and a service on the EC2 instance. Runtime Monitoring supports only automated deployment on ECS Fargate and manual deployment on EC2 instance. You can also deploy the agent on EC2 instance automatically by using RPM via AWS Systems Manager (SSM). The agent collects security telemetry from your workloads on ECS Fargate and EC2 to identify suspicious activity. GuardDuty customers can enable Runtime Monitoring on the Amazon GuardDuty console Runtime Monitoring page, which includes the optional automated agent configuration for all the Fargate tasks in an account, across an AWS organization, or only for tagged ECS clusters. A 30-day free trial starts for an account when an agent sends the telemetry to GuardDuty for the first time. EKS Runtime Monitoring is now a part of Runtime Monitoring. You can now migrate from using EKS Runtime Monitoring to Runtime Monitoring and your agent configuration will remain the same. Runtime Monitoring includes the same runtime finding types previously released for EKS Runtime Monitoring.",
+  "detected_at": "2023-12-07T00:27:21Z",
+  "gist_url": "https://gist.github.com/z0ph/1df51ee87cb272459b3db76b188d3f74",
+  "link": "",
+  "raw_sns_message": {
+    "featureDetails": [
+      {
+        "featureDescription": "Amazon GuardDuty Runtime Monitoring is now generally available for Amazon Elastic Containers Service (Amazon ECS), including AWS Fargate, and in preview for other Amazon Elastic Compute Cloud (Amazon EC2) instances. Runtime Monitoring uses an agent that is deployed as a sidecar container on Fargate and a service on the EC2 instance. Runtime Monitoring supports only automated deployment on ECS Fargate and manual deployment on EC2 instance. You can also deploy the agent on EC2 instance automatically by using RPM via AWS Systems Manager (SSM). The agent collects security telemetry from your workloads on ECS Fargate and EC2 to identify suspicious activity. GuardDuty customers can enable Runtime Monitoring on the Amazon GuardDuty console Runtime Monitoring page, which includes the optional automated agent configuration for all the Fargate tasks in an account, across an AWS organization, or only for tagged ECS clusters. A 30-day free trial starts for an account when an agent sends the telemetry to GuardDuty for the first time. EKS Runtime Monitoring is now a part of Runtime Monitoring. You can now migrate from using EKS Runtime Monitoring to Runtime Monitoring and your agent configuration will remain the same. Runtime Monitoring includes the same runtime finding types previously released for EKS Runtime Monitoring.",
+        "featurelink": "https://docs.aws.amazon.com/guardduty/latest/ug/runtime-monitoring.html"
+      }
+    ],
+    "type": "NEW_FEATURES",
+    "version": "1"
+  },
+  "short_description": "Amazon GuardDuty Runtime Monitoring is now generally available for Amazon Elastic Containers Service (Amazon ECS), including AWS Fargate, and in previ",
+  "type": "NEW_FEATURES"
+}

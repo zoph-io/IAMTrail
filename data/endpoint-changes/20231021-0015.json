@@ -1,0 +1,49 @@
+{
+  "detected_at": "2023-10-21T00:15:56.000Z",
+  "botocore_commit": "81bc3f0",
+  "botocore_commit_url": "https://github.com/boto/botocore/commit/81bc3f0",
+  "summary": "4 service expansion(s)",
+  "source": "mase-import",
+  "changes": [
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "elasticmapreduce",
+      "id": "elasticmapreduce",
+      "new_regions": [
+        "us-east-2"
+      ],
+      "description": "elasticmapreduce expanded to us-east-2"
+    },
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "emr-containers",
+      "id": "emr-containers",
+      "new_regions": [
+        "ap-northeast-3"
+      ],
+      "description": "emr-containers expanded to ap-northeast-3"
+    },
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "elasticmapreduce",
+      "id": "elasticmapreduce",
+      "new_regions": [
+        "cn-north-1"
+      ],
+      "description": "elasticmapreduce expanded to cn-north-1"
+    },
+    {
+      "type": "service_expansion",
+      "partition": "aws-cn",
+      "service": "elasticmapreduce",
+      "id": "elasticmapreduce",
+      "new_regions": [
+        "cn-north-1"
+      ],
+      "description": "elasticmapreduce expanded to cn-north-1"
+    }
+  ]
+}

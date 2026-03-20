@@ -1,0 +1,19 @@
+{
+  "detected_at": "2023-11-22T00:18:10.000Z",
+  "botocore_commit": "5cb0172",
+  "botocore_commit_url": "https://github.com/boto/botocore/commit/5cb0172",
+  "summary": "1 service expansion(s)",
+  "source": "mase-import",
+  "changes": [
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "workspaces",
+      "id": "workspaces",
+      "new_regions": [
+        "il-central-1"
+      ],
+      "description": "workspaces expanded to il-central-1"
+    }
+  ]
+}

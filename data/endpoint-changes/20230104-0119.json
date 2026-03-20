@@ -1,0 +1,19 @@
+{
+  "detected_at": "2023-01-04T01:19:21.000Z",
+  "botocore_commit": "28d4c37",
+  "botocore_commit_url": "https://github.com/boto/botocore/commit/28d4c37",
+  "summary": "1 service expansion(s)",
+  "source": "mase-import",
+  "changes": [
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "mgn",
+      "id": "mgn",
+      "new_regions": [
+        "us-east-1"
+      ],
+      "description": "mgn expanded to us-east-1"
+    }
+  ]
+}

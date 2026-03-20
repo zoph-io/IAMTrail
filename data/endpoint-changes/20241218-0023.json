@@ -1,0 +1,81 @@
+{
+  "detected_at": "2024-12-18T00:23:38.000Z",
+  "botocore_commit": "c34e3c3",
+  "botocore_commit_url": "https://github.com/boto/botocore/commit/c34e3c3",
+  "summary": "6 service expansion(s)",
+  "source": "mase-import",
+  "changes": [
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "athena",
+      "id": "athena",
+      "new_regions": [
+        "ap-southeast-5"
+      ],
+      "description": "athena expanded to ap-southeast-5"
+    },
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "internetmonitor",
+      "id": "internetmonitor",
+      "new_regions": [
+        "af-south-1",
+        "ap-east-1",
+        "ap-northeast-1",
+        "ap-northeast-2",
+        "ap-northeast-3",
+        "ap-south-1",
+        "ap-south-2",
+        "ap-southeast-1",
+        "ap-southeast-2",
+        "ap-southeast-3",
+        "ap-southeast-4",
+        "ca-central-1"
+      ],
+      "description": "internetmonitor expanded to af-south-1, ap-east-1, ap-northeast-1, ap-northeast-2, ap-northeast-3, ap-south-1, ap-south-2, ap-southeast-1, ap-southeast-2, ap-southeast-3, ap-southeast-4, ca-central-1"
+    },
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "lakeformation",
+      "id": "lakeformation",
+      "new_regions": [
+        "af-south-1"
+      ],
+      "description": "lakeformation expanded to af-south-1"
+    },
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "vpc-lattice",
+      "id": "vpc-lattice",
+      "new_regions": [
+        "ca-west-1",
+        "eu-south-2"
+      ],
+      "description": "vpc-lattice expanded to ca-west-1, eu-south-2"
+    },
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "lakeformation",
+      "id": "lakeformation",
+      "new_regions": [
+        "cn-north-1"
+      ],
+      "description": "lakeformation expanded to cn-north-1"
+    },
+    {
+      "type": "service_expansion",
+      "partition": "aws-cn",
+      "service": "lakeformation",
+      "id": "lakeformation",
+      "new_regions": [
+        "cn-north-1"
+      ],
+      "description": "lakeformation expanded to cn-north-1"
+    }
+  ]
+}

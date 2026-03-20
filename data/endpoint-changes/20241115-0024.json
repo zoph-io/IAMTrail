@@ -1,0 +1,19 @@
+{
+  "detected_at": "2024-11-15T00:24:04.000Z",
+  "botocore_commit": "efbab1e",
+  "botocore_commit_url": "https://github.com/boto/botocore/commit/efbab1e",
+  "summary": "1 service expansion(s)",
+  "source": "mase-import",
+  "changes": [
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "mq",
+      "id": "mq",
+      "new_regions": [
+        "ap-southeast-5"
+      ],
+      "description": "mq expanded to ap-southeast-5"
+    }
+  ]
+}

@@ -1,0 +1,73 @@
+{
+  "detected_at": "2023-09-23T00:15:44.000Z",
+  "botocore_commit": "fcdb070",
+  "botocore_commit_url": "https://github.com/boto/botocore/commit/fcdb070",
+  "summary": "6 service expansion(s)",
+  "source": "mase-import",
+  "changes": [
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "oidc",
+      "id": "oidc",
+      "new_regions": [
+        "eu-central-2"
+      ],
+      "description": "oidc expanded to eu-central-2"
+    },
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "portal.sso",
+      "id": "portal.sso",
+      "new_regions": [
+        "eu-central-2"
+      ],
+      "description": "portal.sso expanded to eu-central-2"
+    },
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "oidc",
+      "id": "oidc",
+      "new_regions": [
+        "cn-north-1",
+        "cn-northwest-1"
+      ],
+      "description": "oidc expanded to cn-north-1, cn-northwest-1"
+    },
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "portal.sso",
+      "id": "portal.sso",
+      "new_regions": [
+        "cn-north-1",
+        "cn-northwest-1"
+      ],
+      "description": "portal.sso expanded to cn-north-1, cn-northwest-1"
+    },
+    {
+      "type": "service_expansion",
+      "partition": "aws-cn",
+      "service": "oidc",
+      "id": "oidc",
+      "new_regions": [
+        "cn-north-1",
+        "cn-northwest-1"
+      ],
+      "description": "oidc expanded to cn-north-1, cn-northwest-1"
+    },
+    {
+      "type": "service_expansion",
+      "partition": "aws-cn",
+      "service": "portal.sso",
+      "id": "portal.sso",
+      "new_regions": [
+        "cn-north-1",
+        "cn-northwest-1"
+      ],
+      "description": "portal.sso expanded to cn-north-1, cn-northwest-1"
+    }
+  ]
+}

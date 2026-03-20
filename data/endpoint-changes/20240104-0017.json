@@ -1,0 +1,22 @@
+{
+  "detected_at": "2024-01-04T00:17:41.000Z",
+  "botocore_commit": "bc3299e",
+  "botocore_commit_url": "https://github.com/boto/botocore/commit/bc3299e",
+  "summary": "1 service expansion(s)",
+  "source": "mase-import",
+  "changes": [
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "m2",
+      "id": "m2",
+      "new_regions": [
+        "af-south-1",
+        "ap-northeast-3",
+        "eu-north-1",
+        "eu-south-1"
+      ],
+      "description": "m2 expanded to af-south-1, ap-northeast-3, eu-north-1, eu-south-1"
+    }
+  ]
+}

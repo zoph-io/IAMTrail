@@ -1,0 +1,29 @@
+{
+  "detected_at": "2023-01-21T01:19:51.000Z",
+  "botocore_commit": "cf0960f",
+  "botocore_commit_url": "https://github.com/boto/botocore/commit/cf0960f",
+  "summary": "2 service expansion(s)",
+  "source": "mase-import",
+  "changes": [
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "codebuild",
+      "id": "codebuild",
+      "new_regions": [
+        "me-central-1"
+      ],
+      "description": "codebuild expanded to me-central-1"
+    },
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "elasticfilesystem",
+      "id": "elasticfilesystem",
+      "new_regions": [
+        "eu-south-2"
+      ],
+      "description": "elasticfilesystem expanded to eu-south-2"
+    }
+  ]
+}

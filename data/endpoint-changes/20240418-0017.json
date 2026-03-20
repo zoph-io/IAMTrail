@@ -1,0 +1,19 @@
+{
+  "detected_at": "2024-04-18T00:17:39.000Z",
+  "botocore_commit": "0907f1c",
+  "botocore_commit_url": "https://github.com/boto/botocore/commit/0907f1c",
+  "summary": "1 service expansion(s)",
+  "source": "mase-import",
+  "changes": [
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "kafka",
+      "id": "kafka",
+      "new_regions": [
+        "ca-west-1"
+      ],
+      "description": "kafka expanded to ca-west-1"
+    }
+  ]
+}

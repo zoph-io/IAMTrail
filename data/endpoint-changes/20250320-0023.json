@@ -1,0 +1,19 @@
+{
+  "detected_at": "2025-03-20T00:23:47.000Z",
+  "botocore_commit": "a3b152f",
+  "botocore_commit_url": "https://github.com/boto/botocore/commit/a3b152f",
+  "summary": "1 service expansion(s)",
+  "source": "mase-import",
+  "changes": [
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "cleanrooms",
+      "id": "cleanrooms",
+      "new_regions": [
+        "ap-northeast-1"
+      ],
+      "description": "cleanrooms expanded to ap-northeast-1"
+    }
+  ]
+}

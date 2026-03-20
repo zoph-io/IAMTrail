@@ -1,0 +1,41 @@
+{
+  "detected_at": "2025-04-12T00:24:14.000Z",
+  "botocore_commit": "62425ba",
+  "botocore_commit_url": "https://github.com/boto/botocore/commit/62425ba",
+  "summary": "3 service expansion(s)",
+  "source": "mase-import",
+  "changes": [
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "comprehend",
+      "id": "comprehend",
+      "new_regions": [
+        "ap-northeast-1"
+      ],
+      "description": "comprehend expanded to ap-northeast-1"
+    },
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "rekognition",
+      "id": "rekognition",
+      "new_regions": [
+        "ap-northeast-1"
+      ],
+      "description": "rekognition expanded to ap-northeast-1"
+    },
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "resource-explorer-2",
+      "id": "resource-explorer-2",
+      "new_regions": [
+        "ap-southeast-5",
+        "ap-southeast-7",
+        "mx-central-1"
+      ],
+      "description": "resource-explorer-2 expanded to ap-southeast-5, ap-southeast-7, mx-central-1"
+    }
+  ]
+}

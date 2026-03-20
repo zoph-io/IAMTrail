@@ -1,0 +1,29 @@
+{
+  "detected_at": "2025-03-18T00:23:55.000Z",
+  "botocore_commit": "f64e186",
+  "botocore_commit_url": "https://github.com/boto/botocore/commit/f64e186",
+  "summary": "2 service expansion(s)",
+  "source": "mase-import",
+  "changes": [
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "license-manager-linux-subscriptions",
+      "id": "license-manager-linux-subscriptions",
+      "new_regions": [
+        "mx-central-1"
+      ],
+      "description": "license-manager-linux-subscriptions expanded to mx-central-1"
+    },
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "storagegateway",
+      "id": "storagegateway",
+      "new_regions": [
+        "ap-southeast-7"
+      ],
+      "description": "storagegateway expanded to ap-southeast-7"
+    }
+  ]
+}

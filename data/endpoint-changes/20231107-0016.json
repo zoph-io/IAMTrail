@@ -1,0 +1,22 @@
+{
+  "detected_at": "2023-11-07T00:16:50.000Z",
+  "botocore_commit": "0eb78be",
+  "botocore_commit_url": "https://github.com/boto/botocore/commit/0eb78be",
+  "summary": "1 service expansion(s)",
+  "source": "mase-import",
+  "changes": [
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "resource-explorer-2",
+      "id": "resource-explorer-2",
+      "new_regions": [
+        "af-south-1",
+        "ap-east-1",
+        "eu-south-1",
+        "me-central-1"
+      ],
+      "description": "resource-explorer-2 expanded to af-south-1, ap-east-1, eu-south-1, me-central-1"
+    }
+  ]
+}

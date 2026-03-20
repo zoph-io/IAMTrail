@@ -1,0 +1,50 @@
+{
+  "detected_at": "2024-03-30T00:16:22.000Z",
+  "botocore_commit": "ba35e4d",
+  "botocore_commit_url": "https://github.com/boto/botocore/commit/ba35e4d",
+  "summary": "4 service expansion(s)",
+  "source": "mase-import",
+  "changes": [
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "amplify",
+      "id": "amplify",
+      "new_regions": [
+        "ap-northeast-3"
+      ],
+      "description": "amplify expanded to ap-northeast-3"
+    },
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "amplifyuibuilder",
+      "id": "amplifyuibuilder",
+      "new_regions": [
+        "ap-northeast-3"
+      ],
+      "description": "amplifyuibuilder expanded to ap-northeast-3"
+    },
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "cognito-idp",
+      "id": "cognito-idp",
+      "new_regions": [
+        "ap-southeast-4"
+      ],
+      "description": "cognito-idp expanded to ap-southeast-4"
+    },
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "oidc",
+      "id": "oidc",
+      "new_regions": [
+        "ap-south-2",
+        "eu-south-2"
+      ],
+      "description": "oidc expanded to ap-south-2, eu-south-2"
+    }
+  ]
+}

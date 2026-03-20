@@ -1,0 +1,39 @@
+{
+  "detected_at": "2023-09-02T00:15:16.000Z",
+  "botocore_commit": "3c42acf",
+  "botocore_commit_url": "https://github.com/boto/botocore/commit/3c42acf",
+  "summary": "3 service expansion(s)",
+  "source": "mase-import",
+  "changes": [
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "codecommit",
+      "id": "codecommit",
+      "new_regions": [
+        "il-central-1"
+      ],
+      "description": "codecommit expanded to il-central-1"
+    },
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "meetings-chime",
+      "id": "meetings-chime",
+      "new_regions": [
+        "il-central-1"
+      ],
+      "description": "meetings-chime expanded to il-central-1"
+    },
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "sso",
+      "id": "sso",
+      "new_regions": [
+        "il-central-1"
+      ],
+      "description": "sso expanded to il-central-1"
+    }
+  ]
+}

@@ -1,0 +1,29 @@
+{
+  "detected_at": "2025-05-02T01:43:13.000Z",
+  "botocore_commit": "953f588",
+  "botocore_commit_url": "https://github.com/boto/botocore/commit/953f588",
+  "summary": "2 service expansion(s)",
+  "source": "mase-import",
+  "changes": [
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "aps",
+      "id": "aps",
+      "new_regions": [
+        "ca-central-1"
+      ],
+      "description": "aps expanded to ca-central-1"
+    },
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "runtime.sagemaker",
+      "id": "runtime.sagemaker",
+      "new_regions": [
+        "ap-southeast-5"
+      ],
+      "description": "runtime.sagemaker expanded to ap-southeast-5"
+    }
+  ]
+}

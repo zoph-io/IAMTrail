@@ -1,0 +1,59 @@
+{
+  "detected_at": "2023-08-26T00:15:18.000Z",
+  "botocore_commit": "c592736",
+  "botocore_commit_url": "https://github.com/boto/botocore/commit/c592736",
+  "summary": "5 service expansion(s)",
+  "source": "mase-import",
+  "changes": [
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "email",
+      "id": "email",
+      "new_regions": [
+        "il-central-1"
+      ],
+      "description": "email expanded to il-central-1"
+    },
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "fsx",
+      "id": "fsx",
+      "new_regions": [
+        "il-central-1"
+      ],
+      "description": "fsx expanded to il-central-1"
+    },
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "guardduty",
+      "id": "guardduty",
+      "new_regions": [
+        "il-central-1"
+      ],
+      "description": "guardduty expanded to il-central-1"
+    },
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "s3-outposts",
+      "id": "s3-outposts",
+      "new_regions": [
+        "il-central-1"
+      ],
+      "description": "s3-outposts expanded to il-central-1"
+    },
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "servicequotas",
+      "id": "servicequotas",
+      "new_regions": [
+        "il-central-1"
+      ],
+      "description": "servicequotas expanded to il-central-1"
+    }
+  ]
+}

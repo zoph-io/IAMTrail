@@ -1,0 +1,41 @@
+{
+  "detected_at": "2022-02-05T00:51:29.000Z",
+  "botocore_commit": "5dce1c",
+  "botocore_commit_url": "https://github.com/boto/botocore/commit/5dce1c",
+  "summary": "3 service expansion(s)",
+  "source": "mase-import",
+  "changes": [
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "connect",
+      "id": "connect",
+      "new_regions": [
+        "af-south-1"
+      ],
+      "description": "connect expanded to af-south-1"
+    },
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "codepipeline",
+      "id": "codepipeline",
+      "new_regions": [
+        "cn-north-1",
+        "cn-northwest-1"
+      ],
+      "description": "codepipeline expanded to cn-north-1, cn-northwest-1"
+    },
+    {
+      "type": "service_expansion",
+      "partition": "aws-cn",
+      "service": "codepipeline",
+      "id": "codepipeline",
+      "new_regions": [
+        "cn-north-1",
+        "cn-northwest-1"
+      ],
+      "description": "codepipeline expanded to cn-north-1, cn-northwest-1"
+    }
+  ]
+}

@@ -1,0 +1,22 @@
+{
+  "detected_at": "2022-06-18T01:46:36.000Z",
+  "botocore_commit": "afa8cc",
+  "botocore_commit_url": "https://github.com/boto/botocore/commit/afa8cc",
+  "summary": "1 service expansion(s)",
+  "source": "mase-import",
+  "changes": [
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "connect-campaigns",
+      "id": "connect-campaigns",
+      "new_regions": [
+        "ap-southeast-2",
+        "eu-west-2",
+        "us-east-1",
+        "us-west-2"
+      ],
+      "description": "connect-campaigns expanded to ap-southeast-2, eu-west-2, us-east-1, us-west-2"
+    }
+  ]
+}

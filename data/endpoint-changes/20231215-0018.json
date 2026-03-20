@@ -1,0 +1,16 @@
+{
+  "detected_at": "2023-12-15T00:18:22.000Z",
+  "botocore_commit": "5ae8d68",
+  "botocore_commit_url": "https://github.com/boto/botocore/commit/5ae8d68",
+  "summary": "1 service expansion(s)",
+  "source": "mase-import",
+  "changes": [
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "eks-auth",
+      "id": "eks-auth",
+      "description": "eks-auth expanded to new region(s)"
+    }
+  ]
+}

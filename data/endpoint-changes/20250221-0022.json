@@ -1,0 +1,31 @@
+{
+  "detected_at": "2025-02-21T00:22:57.000Z",
+  "botocore_commit": "98430f4",
+  "botocore_commit_url": "https://github.com/boto/botocore/commit/98430f4",
+  "summary": "2 service expansion(s)",
+  "source": "mase-import",
+  "changes": [
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "bedrock",
+      "id": "bedrock",
+      "new_regions": [
+        "ap-northeast-3",
+        "ap-south-2"
+      ],
+      "description": "bedrock expanded to ap-northeast-3, ap-south-2"
+    },
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "cloudcontrolapi",
+      "id": "cloudcontrolapi",
+      "new_regions": [
+        "ap-southeast-7",
+        "mx-central-1"
+      ],
+      "description": "cloudcontrolapi expanded to ap-southeast-7, mx-central-1"
+    }
+  ]
+}

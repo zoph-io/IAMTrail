@@ -1,0 +1,52 @@
+{
+  "detected_at": "2024-06-08T00:19:20.000Z",
+  "botocore_commit": "2c71812",
+  "botocore_commit_url": "https://github.com/boto/botocore/commit/2c71812",
+  "summary": "4 service expansion(s)",
+  "source": "mase-import",
+  "changes": [
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "bedrock",
+      "id": "bedrock",
+      "new_regions": [
+        "ca-central-1",
+        "eu-west-2",
+        "sa-east-1"
+      ],
+      "description": "bedrock expanded to ca-central-1, eu-west-2, sa-east-1"
+    },
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "cases",
+      "id": "cases",
+      "new_regions": [
+        "ap-northeast-1",
+        "ap-northeast-2"
+      ],
+      "description": "cases expanded to ap-northeast-1, ap-northeast-2"
+    },
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "kendra",
+      "id": "kendra",
+      "new_regions": [
+        "ca-central-1"
+      ],
+      "description": "kendra expanded to ca-central-1"
+    },
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "storagegateway",
+      "id": "storagegateway",
+      "new_regions": [
+        "ca-west-1"
+      ],
+      "description": "storagegateway expanded to ca-west-1"
+    }
+  ]
+}

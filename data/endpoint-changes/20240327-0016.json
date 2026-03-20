@@ -1,0 +1,24 @@
+{
+  "detected_at": "2024-03-27T00:16:40.000Z",
+  "botocore_commit": "a173a26",
+  "botocore_commit_url": "https://github.com/boto/botocore/commit/a173a26",
+  "summary": "1 service expansion(s)",
+  "source": "mase-import",
+  "changes": [
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "media-pipelines-chime",
+      "id": "media-pipelines-chime",
+      "new_regions": [
+        "ap-northeast-1",
+        "ap-northeast-2",
+        "ap-south-1",
+        "ap-southeast-2",
+        "ca-central-1",
+        "eu-west-2"
+      ],
+      "description": "media-pipelines-chime expanded to ap-northeast-1, ap-northeast-2, ap-south-1, ap-southeast-2, ca-central-1, eu-west-2"
+    }
+  ]
+}

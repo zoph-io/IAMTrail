@@ -1,0 +1,39 @@
+{
+  "detected_at": "2023-08-09T00:18:52.000Z",
+  "botocore_commit": "5bc1e4c",
+  "botocore_commit_url": "https://github.com/boto/botocore/commit/5bc1e4c",
+  "summary": "3 service expansion(s)",
+  "source": "mase-import",
+  "changes": [
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "elasticfilesystem",
+      "id": "elasticfilesystem",
+      "new_regions": [
+        "il-central-1"
+      ],
+      "description": "elasticfilesystem expanded to il-central-1"
+    },
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "license-manager-linux-subscriptions",
+      "id": "license-manager-linux-subscriptions",
+      "new_regions": [
+        "il-central-1"
+      ],
+      "description": "license-manager-linux-subscriptions expanded to il-central-1"
+    },
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "servicecatalog",
+      "id": "servicecatalog",
+      "new_regions": [
+        "il-central-1"
+      ],
+      "description": "servicecatalog expanded to il-central-1"
+    }
+  ]
+}

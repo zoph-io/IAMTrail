@@ -1,0 +1,31 @@
+{
+  "detected_at": "2025-02-28T00:23:26.000Z",
+  "botocore_commit": "82b425d",
+  "botocore_commit_url": "https://github.com/boto/botocore/commit/82b425d",
+  "summary": "2 service expansion(s)",
+  "source": "mase-import",
+  "changes": [
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "aoss",
+      "id": "aoss",
+      "new_regions": [
+        "eu-south-1",
+        "eu-south-2",
+        "us-west-1"
+      ],
+      "description": "aoss expanded to eu-south-1, eu-south-2, us-west-1"
+    },
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "bedrock",
+      "id": "bedrock",
+      "new_regions": [
+        "eu-north-1"
+      ],
+      "description": "bedrock expanded to eu-north-1"
+    }
+  ]
+}

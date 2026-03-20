@@ -1,0 +1,29 @@
+{
+  "detected_at": "2024-05-10T06:05:54.000Z",
+  "botocore_commit": "0a97c72",
+  "botocore_commit_url": "https://github.com/boto/botocore/commit/0a97c72",
+  "summary": "2 service expansion(s)",
+  "source": "mase-import",
+  "changes": [
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "access-analyzer",
+      "id": "access-analyzer",
+      "new_regions": [
+        "ca-west-1"
+      ],
+      "description": "access-analyzer expanded to ca-west-1"
+    },
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "aoss",
+      "id": "aoss",
+      "new_regions": [
+        "eu-west-3"
+      ],
+      "description": "aoss expanded to eu-west-3"
+    }
+  ]
+}

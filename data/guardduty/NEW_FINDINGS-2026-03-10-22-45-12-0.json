@@ -1,0 +1,19 @@
+{
+  "description": "Amazon GuardDuty now delivers findings for compromised IAM credentials. When abnormal credential activity is detected, you will receive notification through GuardDuty's standard channels.",
+  "detected_at": "2026-03-10T22:45:12Z",
+  "gist_url": "https://gist.github.com/z0ph/bb70231965f086856333f279a2ee52d9",
+  "link": "https://docs.aws.amazon.com/guardduty/latest/ug/guardduty_finding-types-iam.html#credentialaccess-iam-compromisedcredentials",
+  "raw_sns_message": {
+    "findingDetails": [
+      {
+        "findingDescription": "Amazon GuardDuty now delivers findings for compromised IAM credentials. When abnormal credential activity is detected, you will receive notification through GuardDuty's standard channels.",
+        "findingType": "CredentialAccess:IAMUser/CompromisedCredentials",
+        "link": "https://docs.aws.amazon.com/guardduty/latest/ug/guardduty_finding-types-iam.html#credentialaccess-iam-compromisedcredentials"
+      }
+    ],
+    "type": "NEW_FINDINGS",
+    "version": "1"
+  },
+  "short_description": "CredentialAccess:IAMUser/CompromisedCredentials",
+  "type": "NEW_FINDINGS"
+}

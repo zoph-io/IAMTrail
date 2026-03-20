@@ -1,0 +1,19 @@
+{
+  "detected_at": "2025-07-24T00:28:44.000Z",
+  "botocore_commit": "7d11e1d",
+  "botocore_commit_url": "https://github.com/boto/botocore/commit/7d11e1d",
+  "summary": "1 service expansion(s)",
+  "source": "mase-import",
+  "changes": [
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "license-manager-linux-subscriptions",
+      "id": "license-manager-linux-subscriptions",
+      "new_regions": [
+        "ap-east-2"
+      ],
+      "description": "license-manager-linux-subscriptions expanded to ap-east-2"
+    }
+  ]
+}

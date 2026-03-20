@@ -1,0 +1,30 @@
+{
+  "detected_at": "2023-02-24T01:22:48.000Z",
+  "botocore_commit": "38cdf86",
+  "botocore_commit_url": "https://github.com/boto/botocore/commit/38cdf86",
+  "summary": "2 service expansion(s)",
+  "source": "mase-import",
+  "changes": [
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "dlm",
+      "id": "dlm",
+      "new_regions": [
+        "eu-central-2",
+        "eu-south-2"
+      ],
+      "description": "dlm expanded to eu-central-2, eu-south-2"
+    },
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "lakeformation",
+      "id": "lakeformation",
+      "new_regions": [
+        "ap-southeast-3"
+      ],
+      "description": "lakeformation expanded to ap-southeast-3"
+    }
+  ]
+}

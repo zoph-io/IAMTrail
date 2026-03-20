@@ -1,0 +1,48 @@
+{
+  "detected_at": "2023-03-23T01:15:40.000Z",
+  "botocore_commit": "ac3f777",
+  "botocore_commit_url": "https://github.com/boto/botocore/commit/ac3f777",
+  "summary": "3 service expansion(s)",
+  "source": "mase-import",
+  "changes": [
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "appconfigdata",
+      "id": "appconfigdata",
+      "new_regions": [
+        "ap-south-2",
+        "ap-southeast-3",
+        "ap-southeast-4",
+        "eu-central-2",
+        "eu-south-2",
+        "me-central-1"
+      ],
+      "description": "appconfigdata expanded to ap-south-2, ap-southeast-3, ap-southeast-4, eu-central-2, eu-south-2, me-central-1"
+    },
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "securityhub",
+      "id": "securityhub",
+      "new_regions": [
+        "ap-south-2",
+        "eu-central-2",
+        "eu-south-2"
+      ],
+      "description": "securityhub expanded to ap-south-2, eu-central-2, eu-south-2"
+    },
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "securitylake",
+      "id": "securitylake",
+      "new_regions": [
+        "ap-southeast-1",
+        "eu-west-2",
+        "sa-east-1"
+      ],
+      "description": "securitylake expanded to ap-southeast-1, eu-west-2, sa-east-1"
+    }
+  ]
+}

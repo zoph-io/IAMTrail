@@ -1,0 +1,19 @@
+{
+  "detected_at": "2024-11-15T06:08:13.000Z",
+  "botocore_commit": "07682e1",
+  "botocore_commit_url": "https://github.com/boto/botocore/commit/07682e1",
+  "summary": "1 service expansion(s)",
+  "source": "mase-import",
+  "changes": [
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "lakeformation",
+      "id": "lakeformation",
+      "new_regions": [
+        "ap-southeast-5"
+      ],
+      "description": "lakeformation expanded to ap-southeast-5"
+    }
+  ]
+}

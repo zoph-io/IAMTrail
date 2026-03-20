@@ -1,0 +1,61 @@
+{
+  "detected_at": "2024-04-06T00:16:37.000Z",
+  "botocore_commit": "f572fbf",
+  "botocore_commit_url": "https://github.com/boto/botocore/commit/f572fbf",
+  "summary": "4 service expansion(s)",
+  "source": "mase-import",
+  "changes": [
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "license-manager",
+      "id": "license-manager",
+      "new_regions": [
+        "ca-west-1"
+      ],
+      "description": "license-manager expanded to ca-west-1"
+    },
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "portal.sso",
+      "id": "portal.sso",
+      "new_regions": [
+        "ap-south-2",
+        "eu-south-2"
+      ],
+      "description": "portal.sso expanded to ap-south-2, eu-south-2"
+    },
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "rum",
+      "id": "rum",
+      "new_regions": [
+        "af-south-1",
+        "ap-northeast-2",
+        "ap-northeast-3",
+        "ap-south-1",
+        "ap-southeast-3",
+        "ca-central-1",
+        "eu-south-1",
+        "eu-west-3",
+        "me-south-1",
+        "sa-east-1",
+        "us-west-1"
+      ],
+      "description": "rum expanded to af-south-1, ap-northeast-2, ap-northeast-3, ap-south-1, ap-southeast-3, ca-central-1, eu-south-1, eu-west-3, me-south-1, sa-east-1, us-west-1"
+    },
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "sso",
+      "id": "sso",
+      "new_regions": [
+        "ap-south-2",
+        "eu-south-2"
+      ],
+      "description": "sso expanded to ap-south-2, eu-south-2"
+    }
+  ]
+}

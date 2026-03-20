@@ -1,0 +1,19 @@
+{
+  "detected_at": "2025-01-31T00:22:30.000Z",
+  "botocore_commit": "5227714",
+  "botocore_commit_url": "https://github.com/boto/botocore/commit/5227714",
+  "summary": "1 service expansion(s)",
+  "source": "mase-import",
+  "changes": [
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "sqs",
+      "id": "sqs",
+      "new_regions": [
+        "ca-central-1"
+      ],
+      "description": "sqs expanded to ca-central-1"
+    }
+  ]
+}

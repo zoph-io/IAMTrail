@@ -1,0 +1,19 @@
+{
+  "detected_at": "2024-10-23T00:22:27.000Z",
+  "botocore_commit": "cdfb210",
+  "botocore_commit_url": "https://github.com/boto/botocore/commit/cdfb210",
+  "summary": "1 service expansion(s)",
+  "source": "mase-import",
+  "changes": [
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "controltower",
+      "id": "controltower",
+      "new_regions": [
+        "ap-southeast-5"
+      ],
+      "description": "controltower expanded to ap-southeast-5"
+    }
+  ]
+}

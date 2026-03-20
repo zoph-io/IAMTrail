@@ -1,0 +1,19 @@
+{
+  "detected_at": "2025-05-20T01:46:43.000Z",
+  "botocore_commit": "82484f6",
+  "botocore_commit_url": "https://github.com/boto/botocore/commit/82484f6",
+  "summary": "1 service expansion(s)",
+  "source": "mase-import",
+  "changes": [
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "scheduler",
+      "id": "scheduler",
+      "new_regions": [
+        "il-central-1"
+      ],
+      "description": "scheduler expanded to il-central-1"
+    }
+  ]
+}

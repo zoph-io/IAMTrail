@@ -1,0 +1,19 @@
+{
+  "detected_at": "2022-05-26T01:48:28.000Z",
+  "botocore_commit": "aac758",
+  "botocore_commit_url": "https://github.com/boto/botocore/commit/aac758",
+  "summary": "1 service expansion(s)",
+  "source": "mase-import",
+  "changes": [
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "portal.sso",
+      "id": "portal.sso",
+      "new_regions": [
+        "ap-northeast-3"
+      ],
+      "description": "portal.sso expanded to ap-northeast-3"
+    }
+  ]
+}

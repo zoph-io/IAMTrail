@@ -1,0 +1,19 @@
+{
+  "detected_at": "2026-01-17T00:27:54.000Z",
+  "botocore_commit": "de3ddae",
+  "botocore_commit_url": "https://github.com/boto/botocore/commit/de3ddae",
+  "summary": "1 service expansion(s)",
+  "source": "mase-import",
+  "changes": [
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "license-manager",
+      "id": "license-manager",
+      "new_regions": [
+        "ap-southeast-6"
+      ],
+      "description": "license-manager expanded to ap-southeast-6"
+    }
+  ]
+}

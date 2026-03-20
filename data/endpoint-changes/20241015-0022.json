@@ -1,0 +1,29 @@
+{
+  "detected_at": "2024-10-15T00:22:34.000Z",
+  "botocore_commit": "d7b78f0",
+  "botocore_commit_url": "https://github.com/boto/botocore/commit/d7b78f0",
+  "summary": "2 service expansion(s)",
+  "source": "mase-import",
+  "changes": [
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "aps",
+      "id": "aps",
+      "new_regions": [
+        "ap-northeast-1"
+      ],
+      "description": "aps expanded to ap-northeast-1"
+    },
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "backup",
+      "id": "backup",
+      "new_regions": [
+        "ap-southeast-5"
+      ],
+      "description": "backup expanded to ap-southeast-5"
+    }
+  ]
+}

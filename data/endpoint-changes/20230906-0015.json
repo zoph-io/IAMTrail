@@ -1,0 +1,39 @@
+{
+  "detected_at": "2023-09-06T00:15:47.000Z",
+  "botocore_commit": "c950beb",
+  "botocore_commit_url": "https://github.com/boto/botocore/commit/c950beb",
+  "summary": "3 service expansion(s)",
+  "source": "mase-import",
+  "changes": [
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "internetmonitor",
+      "id": "internetmonitor",
+      "new_regions": [
+        "ca-central-1"
+      ],
+      "description": "internetmonitor expanded to ca-central-1"
+    },
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "oidc",
+      "id": "oidc",
+      "new_regions": [
+        "il-central-1"
+      ],
+      "description": "oidc expanded to il-central-1"
+    },
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "transfer",
+      "id": "transfer",
+      "new_regions": [
+        "il-central-1"
+      ],
+      "description": "transfer expanded to il-central-1"
+    }
+  ]
+}

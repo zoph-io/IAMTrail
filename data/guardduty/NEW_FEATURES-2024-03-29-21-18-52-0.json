@@ -1,0 +1,18 @@
+{
+  "description": "Now available: Detect potential runtime security threats to your EC2 workloads with Amazon GuardDuty. Get visibility into operating system-level, network, file activities and container-level context of the identified threats. Try it for 30 days at no cost.",
+  "detected_at": "2024-03-29T21:18:52Z",
+  "gist_url": "https://gist.github.com/z0ph/087622a4deaf84263b52bb7d73a58774",
+  "link": "https://aws.amazon.com/blogs/aws/amazon-guardduty-ec2-runtime-monitoring-is-now-generally-available/?trk=e11f71f3-4532-4e1f-a947-8be8b9afdd65",
+  "raw_sns_message": {
+    "featureDetails": [
+      {
+        "featureDescription": "Now available: Detect potential runtime security threats to your EC2 workloads with Amazon GuardDuty. Get visibility into operating system-level, network, file activities and container-level context of the identified threats. Try it for 30 days at no cost.",
+        "featureLink": "https://aws.amazon.com/blogs/aws/amazon-guardduty-ec2-runtime-monitoring-is-now-generally-available/?trk=e11f71f3-4532-4e1f-a947-8be8b9afdd65"
+      }
+    ],
+    "type": "NEW_FEATURES",
+    "version": "1"
+  },
+  "short_description": "Now available: Detect potential runtime security threats to your EC2 workloads with Amazon GuardDuty. Get visibility into operating system-level, netw",
+  "type": "NEW_FEATURES"
+}

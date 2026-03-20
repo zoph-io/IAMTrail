@@ -1,0 +1,19 @@
+{
+  "detected_at": "2026-02-24T00:33:51.000Z",
+  "botocore_commit": "a34dcf7",
+  "botocore_commit_url": "https://github.com/boto/botocore/commit/a34dcf7",
+  "summary": "1 service expansion(s)",
+  "source": "mase-import",
+  "changes": [
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "medialive",
+      "id": "medialive",
+      "new_regions": [
+        "ap-southeast-5"
+      ],
+      "description": "medialive expanded to ap-southeast-5"
+    }
+  ]
+}

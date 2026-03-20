@@ -1,0 +1,18 @@
+{
+  "description": "Amazon GuardDuty is now available in AWS Canada West (Calgary) Region",
+  "detected_at": "2024-03-06T22:21:14Z",
+  "gist_url": "https://gist.github.com/z0ph/ce21bcf2d297019f0165dd33f7a8072f",
+  "link": "",
+  "raw_sns_message": {
+    "featureDetails": [
+      {
+        "featureDescription": "Amazon GuardDuty is now available in AWS Canada West (Calgary) Region",
+        "link": "https://aws.amazon.com/about-aws/whats-new/2024/03/amazon-guardduty-available-aws-canada-west-calgary-region/"
+      }
+    ],
+    "type": "NEW_FEATURES",
+    "version": "1"
+  },
+  "short_description": "Amazon GuardDuty is now available in AWS Canada West (Calgary) Region",
+  "type": "NEW_FEATURES"
+}

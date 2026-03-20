@@ -1,0 +1,52 @@
+{
+  "detected_at": "2025-07-10T00:27:34.000Z",
+  "botocore_commit": "22bc030",
+  "botocore_commit_url": "https://github.com/boto/botocore/commit/22bc030",
+  "summary": "4 service expansion(s)",
+  "source": "mase-import",
+  "changes": [
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "api.sagemaker",
+      "id": "api.sagemaker",
+      "new_regions": [
+        "ap-east-2"
+      ],
+      "description": "api.sagemaker expanded to ap-east-2"
+    },
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "elasticbeanstalk",
+      "id": "elasticbeanstalk",
+      "new_regions": [
+        "me-central-1"
+      ],
+      "description": "elasticbeanstalk expanded to me-central-1"
+    },
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "kinesisanalytics",
+      "id": "kinesisanalytics",
+      "new_regions": [
+        "ap-east-2"
+      ],
+      "description": "kinesisanalytics expanded to ap-east-2"
+    },
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "scheduler",
+      "id": "scheduler",
+      "new_regions": [
+        "ap-east-2",
+        "ap-southeast-5",
+        "ap-southeast-7",
+        "mx-central-1"
+      ],
+      "description": "scheduler expanded to ap-east-2, ap-southeast-5, ap-southeast-7, mx-central-1"
+    }
+  ]
+}

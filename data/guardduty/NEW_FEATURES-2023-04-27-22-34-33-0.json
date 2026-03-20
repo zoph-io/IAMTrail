@@ -1,0 +1,18 @@
+{
+  "description": "Amazon GuardDuty introduces Malware Protection on-demand scanning for Amazon EC2 instances and container workloads. Scans can be initiated using the GuardDuty console, or programmatically via the API, without the need to deploy security software and with no impact to running workloads. When potential malware is identified, actionable security findings are generated with information such as the threat and file name, the EC2 instance ID, resource tags and, in the case of containers, the container ID and the container image used.",
+  "detected_at": "2023-04-27T22:34:33Z",
+  "gist_url": "https://gist.github.com/z0ph/3580faa5205a1524d22064b5002a131f",
+  "link": "",
+  "raw_sns_message": {
+    "featureDetails": [
+      {
+        "featureDescription": "Amazon GuardDuty introduces Malware Protection on-demand scanning for Amazon EC2 instances and container workloads. Scans can be initiated using the GuardDuty console, or programmatically via the API, without the need to deploy security software and with no impact to running workloads. When potential malware is identified, actionable security findings are generated with information such as the threat and file name, the EC2 instance ID, resource tags and, in the case of containers, the container ID and the container image used.",
+        "link": "https://docs.aws.amazon.com/guardduty/latest/ug/on-demand-malware-scan.html"
+      }
+    ],
+    "type": "NEW_FEATURES",
+    "version": "1"
+  },
+  "short_description": "Amazon GuardDuty introduces Malware Protection on-demand scanning for Amazon EC2 instances and container workloads. Scans can be initiated using the G",
+  "type": "NEW_FEATURES"
+}

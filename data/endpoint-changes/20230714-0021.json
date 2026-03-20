@@ -1,0 +1,75 @@
+{
+  "detected_at": "2023-07-14T00:21:50.000Z",
+  "botocore_commit": "3e51976",
+  "botocore_commit_url": "https://github.com/boto/botocore/commit/3e51976",
+  "summary": "6 service expansion(s)",
+  "source": "mase-import",
+  "changes": [
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "internetmonitor",
+      "id": "internetmonitor",
+      "new_regions": [
+        "ap-northeast-3",
+        "ap-south-2",
+        "ap-southeast-3",
+        "ap-southeast-4",
+        "eu-central-2",
+        "eu-south-2",
+        "me-central-1"
+      ],
+      "description": "internetmonitor expanded to ap-northeast-3, ap-south-2, ap-southeast-3, ap-southeast-4, eu-central-2, eu-south-2, me-central-1"
+    },
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "mediaconnect",
+      "id": "mediaconnect",
+      "new_regions": [
+        "ap-northeast-3"
+      ],
+      "description": "mediaconnect expanded to ap-northeast-3"
+    },
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "ssm-incidents",
+      "id": "ssm-incidents",
+      "new_regions": [
+        "ca-central-1"
+      ],
+      "description": "ssm-incidents expanded to ca-central-1"
+    },
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "transfer",
+      "id": "transfer",
+      "new_regions": [
+        "ap-southeast-4"
+      ],
+      "description": "transfer expanded to ap-southeast-4"
+    },
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "savingsplans",
+      "id": "savingsplans",
+      "new_regions": [
+        "cn-northwest-1"
+      ],
+      "description": "savingsplans expanded to cn-northwest-1"
+    },
+    {
+      "type": "service_expansion",
+      "partition": "aws-cn",
+      "service": "savingsplans",
+      "id": "savingsplans",
+      "new_regions": [
+        "cn-northwest-1"
+      ],
+      "description": "savingsplans expanded to cn-northwest-1"
+    }
+  ]
+}

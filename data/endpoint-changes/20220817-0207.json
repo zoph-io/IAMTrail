@@ -1,0 +1,31 @@
+{
+  "detected_at": "2022-08-17T02:07:41.000Z",
+  "botocore_commit": "b435f47",
+  "botocore_commit_url": "https://github.com/boto/botocore/commit/b435f47",
+  "summary": "2 service expansion(s)",
+  "source": "mase-import",
+  "changes": [
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "cloudhsmv2",
+      "id": "cloudhsmv2",
+      "new_regions": [
+        "ap-southeast-3"
+      ],
+      "description": "cloudhsmv2 expanded to ap-southeast-3"
+    },
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "workspaces-web",
+      "id": "workspaces-web",
+      "new_regions": [
+        "ca-central-1",
+        "eu-central-1",
+        "eu-west-2"
+      ],
+      "description": "workspaces-web expanded to ca-central-1, eu-central-1, eu-west-2"
+    }
+  ]
+}

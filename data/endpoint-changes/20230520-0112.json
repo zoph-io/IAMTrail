@@ -1,0 +1,19 @@
+{
+  "detected_at": "2023-05-20T01:12:53.000Z",
+  "botocore_commit": "d921cfd",
+  "botocore_commit_url": "https://github.com/boto/botocore/commit/d921cfd",
+  "summary": "1 service expansion(s)",
+  "source": "mase-import",
+  "changes": [
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "codestar-connections",
+      "id": "codestar-connections",
+      "new_regions": [
+        "eu-south-1"
+      ],
+      "description": "codestar-connections expanded to eu-south-1"
+    }
+  ]
+}

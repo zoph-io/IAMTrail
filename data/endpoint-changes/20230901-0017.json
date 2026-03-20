@@ -1,0 +1,52 @@
+{
+  "detected_at": "2023-09-01T00:17:25.000Z",
+  "botocore_commit": "676f71a",
+  "botocore_commit_url": "https://github.com/boto/botocore/commit/676f71a",
+  "summary": "4 service expansion(s)",
+  "source": "mase-import",
+  "changes": [
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "cognito-identity",
+      "id": "cognito-identity",
+      "new_regions": [
+        "ap-northeast-3",
+        "il-central-1"
+      ],
+      "description": "cognito-identity expanded to ap-northeast-3, il-central-1"
+    },
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "cognito-idp",
+      "id": "cognito-idp",
+      "new_regions": [
+        "ap-northeast-3",
+        "il-central-1"
+      ],
+      "description": "cognito-idp expanded to ap-northeast-3, il-central-1"
+    },
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "license-manager-user-subscriptions",
+      "id": "license-manager-user-subscriptions",
+      "new_regions": [
+        "ap-southeast-3",
+        "il-central-1"
+      ],
+      "description": "license-manager-user-subscriptions expanded to ap-southeast-3, il-central-1"
+    },
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "portal.sso",
+      "id": "portal.sso",
+      "new_regions": [
+        "il-central-1"
+      ],
+      "description": "portal.sso expanded to il-central-1"
+    }
+  ]
+}

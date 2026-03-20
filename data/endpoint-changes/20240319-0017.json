@@ -1,0 +1,49 @@
+{
+  "detected_at": "2024-03-19T00:17:20.000Z",
+  "botocore_commit": "33b95ff",
+  "botocore_commit_url": "https://github.com/boto/botocore/commit/33b95ff",
+  "summary": "4 service expansion(s)",
+  "source": "mase-import",
+  "changes": [
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "athena",
+      "id": "athena",
+      "new_regions": [
+        "ca-west-1"
+      ],
+      "description": "athena expanded to ca-west-1"
+    },
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "oidc",
+      "id": "oidc",
+      "new_regions": [
+        "ap-southeast-4"
+      ],
+      "description": "oidc expanded to ap-southeast-4"
+    },
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "portal.sso",
+      "id": "portal.sso",
+      "new_regions": [
+        "ap-southeast-4"
+      ],
+      "description": "portal.sso expanded to ap-southeast-4"
+    },
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "sso",
+      "id": "sso",
+      "new_regions": [
+        "ap-southeast-4"
+      ],
+      "description": "sso expanded to ap-southeast-4"
+    }
+  ]
+}

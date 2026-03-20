@@ -1,0 +1,19 @@
+{
+  "detected_at": "2024-11-02T00:22:19.000Z",
+  "botocore_commit": "a072fd2",
+  "botocore_commit_url": "https://github.com/boto/botocore/commit/a072fd2",
+  "summary": "1 service expansion(s)",
+  "source": "mase-import",
+  "changes": [
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "rekognition",
+      "id": "rekognition",
+      "new_regions": [
+        "eu-south-2"
+      ],
+      "description": "rekognition expanded to eu-south-2"
+    }
+  ]
+}

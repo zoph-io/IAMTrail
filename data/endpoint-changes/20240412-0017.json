@@ -1,0 +1,43 @@
+{
+  "detected_at": "2024-04-12T00:17:13.000Z",
+  "botocore_commit": "050c658",
+  "botocore_commit_url": "https://github.com/boto/botocore/commit/050c658",
+  "summary": "3 service expansion(s)",
+  "source": "mase-import",
+  "changes": [
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "cognito-idp",
+      "id": "cognito-idp",
+      "new_regions": [
+        "ap-south-2"
+      ],
+      "description": "cognito-idp expanded to ap-south-2"
+    },
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "serverlessrepo",
+      "id": "serverlessrepo",
+      "new_regions": [
+        "us-east-1",
+        "us-east-2",
+        "us-west-1",
+        "us-west-2"
+      ],
+      "description": "serverlessrepo expanded to us-east-1, us-east-2, us-west-1, us-west-2"
+    },
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "verifiedpermissions",
+      "id": "verifiedpermissions",
+      "new_regions": [
+        "ca-west-1",
+        "il-central-1"
+      ],
+      "description": "verifiedpermissions expanded to ca-west-1, il-central-1"
+    }
+  ]
+}

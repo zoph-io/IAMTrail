@@ -1,0 +1,31 @@
+{
+  "detected_at": "2025-06-21T00:26:42.000Z",
+  "botocore_commit": "c9c2de3",
+  "botocore_commit_url": "https://github.com/boto/botocore/commit/c9c2de3",
+  "summary": "2 service expansion(s)",
+  "source": "mase-import",
+  "changes": [
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "appsync",
+      "id": "appsync",
+      "new_regions": [
+        "ap-southeast-5",
+        "ap-southeast-7",
+        "ca-west-1"
+      ],
+      "description": "appsync expanded to ap-southeast-5, ap-southeast-7, ca-west-1"
+    },
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "lakeformation",
+      "id": "lakeformation",
+      "new_regions": [
+        "ap-east-2"
+      ],
+      "description": "lakeformation expanded to ap-east-2"
+    }
+  ]
+}

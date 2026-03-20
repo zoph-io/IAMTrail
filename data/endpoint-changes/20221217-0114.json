@@ -1,0 +1,62 @@
+{
+  "detected_at": "2022-12-17T01:14:57.000Z",
+  "botocore_commit": "4e64a0e",
+  "botocore_commit_url": "https://github.com/boto/botocore/commit/4e64a0e",
+  "summary": "5 service expansion(s)",
+  "source": "mase-import",
+  "changes": [
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "elasticfilesystem",
+      "id": "elasticfilesystem",
+      "new_regions": [
+        "eu-central-2"
+      ],
+      "description": "elasticfilesystem expanded to eu-central-2"
+    },
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "quicksight",
+      "id": "quicksight",
+      "new_regions": [
+        "eu-north-1",
+        "eu-west-3"
+      ],
+      "description": "quicksight expanded to eu-north-1, eu-west-3"
+    },
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "servicequotas",
+      "id": "servicequotas",
+      "new_regions": [
+        "me-central-1"
+      ],
+      "description": "servicequotas expanded to me-central-1"
+    },
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "datasync",
+      "id": "datasync",
+      "new_regions": [
+        "cn-north-1",
+        "cn-northwest-1"
+      ],
+      "description": "datasync expanded to cn-north-1, cn-northwest-1"
+    },
+    {
+      "type": "service_expansion",
+      "partition": "aws-cn",
+      "service": "datasync",
+      "id": "datasync",
+      "new_regions": [
+        "cn-north-1",
+        "cn-northwest-1"
+      ],
+      "description": "datasync expanded to cn-north-1, cn-northwest-1"
+    }
+  ]
+}

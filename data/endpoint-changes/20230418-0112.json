@@ -1,0 +1,32 @@
+{
+  "detected_at": "2023-04-18T01:12:41.000Z",
+  "botocore_commit": "0e5816e",
+  "botocore_commit_url": "https://github.com/boto/botocore/commit/0e5816e",
+  "summary": "2 service expansion(s)",
+  "source": "mase-import",
+  "changes": [
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "arc-zonal-shift",
+      "id": "arc-zonal-shift",
+      "new_regions": [
+        "ap-south-2",
+        "eu-south-1",
+        "eu-south-2",
+        "me-central-1"
+      ],
+      "description": "arc-zonal-shift expanded to ap-south-2, eu-south-1, eu-south-2, me-central-1"
+    },
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "snowball",
+      "id": "snowball",
+      "new_regions": [
+        "me-central-1"
+      ],
+      "description": "snowball expanded to me-central-1"
+    }
+  ]
+}

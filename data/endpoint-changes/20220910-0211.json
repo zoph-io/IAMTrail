@@ -1,0 +1,25 @@
+{
+  "detected_at": "2022-09-10T02:11:45.000Z",
+  "botocore_commit": "a574623",
+  "botocore_commit_url": "https://github.com/boto/botocore/commit/a574623",
+  "summary": "1 service expansion(s)",
+  "source": "mase-import",
+  "changes": [
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "devops-guru",
+      "id": "devops-guru",
+      "new_regions": [
+        "ap-northeast-2",
+        "ap-south-1",
+        "ca-central-1",
+        "eu-west-2",
+        "eu-west-3",
+        "sa-east-1",
+        "us-west-1"
+      ],
+      "description": "devops-guru expanded to ap-northeast-2, ap-south-1, ca-central-1, eu-west-2, eu-west-3, sa-east-1, us-west-1"
+    }
+  ]
+}

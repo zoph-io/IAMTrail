@@ -1,0 +1,30 @@
+{
+  "detected_at": "2022-12-01T01:44:18.000Z",
+  "botocore_commit": "8a1b3e5",
+  "botocore_commit_url": "https://github.com/boto/botocore/commit/8a1b3e5",
+  "summary": "2 service expansion(s)",
+  "source": "mase-import",
+  "changes": [
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "api.ecr-public",
+      "id": "api.ecr-public",
+      "new_regions": [
+        "us-east-1",
+        "us-west-2"
+      ],
+      "description": "api.ecr-public expanded to us-east-1, us-west-2"
+    },
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "sagemaker-geospatial",
+      "id": "sagemaker-geospatial",
+      "new_regions": [
+        "us-west-2"
+      ],
+      "description": "sagemaker-geospatial expanded to us-west-2"
+    }
+  ]
+}

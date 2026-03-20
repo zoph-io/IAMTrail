@@ -1,0 +1,19 @@
+{
+  "detected_at": "2025-01-18T00:21:28.000Z",
+  "botocore_commit": "dafe451",
+  "botocore_commit_url": "https://github.com/boto/botocore/commit/dafe451",
+  "summary": "1 service expansion(s)",
+  "source": "mase-import",
+  "changes": [
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "guardduty",
+      "id": "guardduty",
+      "new_regions": [
+        "ap-southeast-5"
+      ],
+      "description": "guardduty expanded to ap-southeast-5"
+    }
+  ]
+}

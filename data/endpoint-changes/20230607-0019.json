@@ -1,0 +1,32 @@
+{
+  "detected_at": "2023-06-07T00:19:37.000Z",
+  "botocore_commit": "a782503",
+  "botocore_commit_url": "https://github.com/boto/botocore/commit/a782503",
+  "summary": "2 service expansion(s)",
+  "source": "mase-import",
+  "changes": [
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "kendra",
+      "id": "kendra",
+      "new_regions": [
+        "eu-west-2"
+      ],
+      "description": "kendra expanded to eu-west-2"
+    },
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "kendra-ranking",
+      "id": "kendra-ranking",
+      "new_regions": [
+        "ca-central-1",
+        "us-east-1",
+        "us-east-2",
+        "us-west-2"
+      ],
+      "description": "kendra-ranking expanded to ca-central-1, us-east-1, us-east-2, us-west-2"
+    }
+  ]
+}

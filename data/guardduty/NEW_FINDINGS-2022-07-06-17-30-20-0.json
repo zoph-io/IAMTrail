@@ -1,0 +1,39 @@
+{
+  "description": "This finding informs you that an IAM entity has invoked an S3 API to discover S3 buckets in your environment, such as ListBuckets. This type of activity is associated with the discovery stage of an attack wherein an attacker gathers information to determine if your AWS environment is susceptible to a broader attack. This activity is suspicious because the IAM entity invoked the API in an unusual way. For example, an IAM entity with no previous history invokes an S3 API, or an IAM entity invokes an S3 API from an unusual location.",
+  "detected_at": "2022-07-06T17:30:20Z",
+  "gist_url": "https://gist.github.com/z0ph/4c451d332b353aa30bc12c36e4a2ab05",
+  "link": "https://docs.aws.amazon.com/guardduty/latest/ug/guardduty_finding-types-s3.html#discovery-s3-anomalousbehavior",
+  "raw_sns_message": {
+    "findingDetails": [
+      {
+        "description": "This finding informs you that an IAM entity has invoked an S3 API to discover S3 buckets in your environment, such as ListBuckets. This type of activity is associated with the discovery stage of an attack wherein an attacker gathers information to determine if your AWS environment is susceptible to a broader attack. This activity is suspicious because the IAM entity invoked the API in an unusual way. For example, an IAM entity with no previous history invokes an S3 API, or an IAM entity invokes an S3 API from an unusual location.",
+        "findingType": "Discovery:S3/AnomalousBehavior",
+        "link": "https://docs.aws.amazon.com/guardduty/latest/ug/guardduty_finding-types-s3.html#discovery-s3-anomalousbehavior"
+      },
+      {
+        "description": "This finding informs you that an IAM entity in your AWS environment is making API calls that involve an S3 bucket and this activity differs from that entity's established baseline. The API call used in this activity is associated with the exfiltration stage of an attack, wherein an attacker attempts to collect data. This activity is suspicious because the IAM entity invoked the API in an unusual way. For example, an IAM entity with no previous history invokes an S3 API, or an IAM entity invokes an S3 API from an unusual location.",
+        "findingType": "Exfiltration:S3/AnomalousBehavior",
+        "link": "https://docs.aws.amazon.com/guardduty/latest/ug/guardduty_finding-types-s3.html#exfiltration-s3-anomalousbehavior"
+      },
+      {
+        "description": "This finding informs you that an IAM entity in your AWS environment is making API calls that involve an S3 bucket, and this behavior differs from that entity's established baseline. The API call used in this activity is associated with an attack that attempts to write data. This activity is suspicious because the IAM entity invoked the API in an unusual way. For example, an IAM entity with no previous history invokes an S3 API, or an IAM entity invokes an S3 API from an unusual location.",
+        "findingType": "Impact:S3/AnomalousBehavior.Write",
+        "link": "https://docs.aws.amazon.com/guardduty/latest/ug/guardduty_finding-types-s3.html#impact-s3-anomalousbehavior-write"
+      },
+      {
+        "description": "This finding informs you that an IAM entity in your AWS environment is making API calls that involve an S3 bucket, and this behavior differs from that entity's established baseline. The API call used in this activity is associated with an attack that attempts to delete data. This activity is suspicious because the IAM entity invoked the API in an unusual way. For example, an IAM entity with no previous history invokes an S3 API, or an IAM entity invokes an S3 API from an unusual location.",
+        "findingType": "Impact:S3/AnomalousBehavior.Delete",
+        "link": "https://docs.aws.amazon.com/guardduty/latest/ug/guardduty_finding-types-s3.html#impact-s3-anomalousbehavior-delete"
+      },
+      {
+        "description": "This finding informs you that an IAM entity in your AWS environment has changed a bucket policy or ACL on the listed S3 buckets. This change may publicly expose your S3 buckets to all the authenticated AWS users.",
+        "findingType": "Impact:S3/AnomalousBehavior.Permission",
+        "link": "https://docs.aws.amazon.com/guardduty/latest/ug/guardduty_finding-types-s3.html#impact-s3-anomalousbehaviour-permission"
+      }
+    ],
+    "type": "NEW_FINDINGS",
+    "version": "1"
+  },
+  "short_description": "Discovery:S3/AnomalousBehavior",
+  "type": "NEW_FINDINGS"
+}

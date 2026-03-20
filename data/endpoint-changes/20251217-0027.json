@@ -1,0 +1,19 @@
+{
+  "detected_at": "2025-12-17T00:27:46.000Z",
+  "botocore_commit": "41ffe1a",
+  "botocore_commit_url": "https://github.com/boto/botocore/commit/41ffe1a",
+  "summary": "1 service expansion(s)",
+  "source": "mase-import",
+  "changes": [
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "portal.sso",
+      "id": "portal.sso",
+      "new_regions": [
+        "ap-east-2"
+      ],
+      "description": "portal.sso expanded to ap-east-2"
+    }
+  ]
+}

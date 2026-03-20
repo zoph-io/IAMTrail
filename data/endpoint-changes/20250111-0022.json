@@ -1,0 +1,29 @@
+{
+  "detected_at": "2025-01-11T00:22:42.000Z",
+  "botocore_commit": "e66f100",
+  "botocore_commit_url": "https://github.com/boto/botocore/commit/e66f100",
+  "summary": "2 service expansion(s)",
+  "source": "mase-import",
+  "changes": [
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "license-manager",
+      "id": "license-manager",
+      "new_regions": [
+        "ap-southeast-5"
+      ],
+      "description": "license-manager expanded to ap-southeast-5"
+    },
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "snowball",
+      "id": "snowball",
+      "new_regions": [
+        "af-south-1"
+      ],
+      "description": "snowball expanded to af-south-1"
+    }
+  ]
+}

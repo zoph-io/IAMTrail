@@ -1,0 +1,34 @@
+{
+  "detected_at": "2022-09-28T02:09:22.000Z",
+  "botocore_commit": "f6f0514",
+  "botocore_commit_url": "https://github.com/boto/botocore/commit/f6f0514",
+  "summary": "2 service expansion(s)",
+  "source": "mase-import",
+  "changes": [
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "appmesh",
+      "id": "appmesh",
+      "new_regions": [
+        "ca-central-1"
+      ],
+      "description": "appmesh expanded to ca-central-1"
+    },
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "emr-serverless",
+      "id": "emr-serverless",
+      "new_regions": [
+        "ap-southeast-2",
+        "ca-central-1",
+        "eu-north-1",
+        "eu-west-2",
+        "eu-west-3",
+        "us-west-1"
+      ],
+      "description": "emr-serverless expanded to ap-southeast-2, ca-central-1, eu-north-1, eu-west-2, eu-west-3, us-west-1"
+    }
+  ]
+}

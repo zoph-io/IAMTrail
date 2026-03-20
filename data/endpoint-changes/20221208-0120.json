@@ -1,0 +1,19 @@
+{
+  "detected_at": "2022-12-08T01:20:55.000Z",
+  "botocore_commit": "0a47ac1",
+  "botocore_commit_url": "https://github.com/boto/botocore/commit/0a47ac1",
+  "summary": "1 service expansion(s)",
+  "source": "mase-import",
+  "changes": [
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "cognito-idp",
+      "id": "cognito-idp",
+      "new_regions": [
+        "eu-south-1"
+      ],
+      "description": "cognito-idp expanded to eu-south-1"
+    }
+  ]
+}

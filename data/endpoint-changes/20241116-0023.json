@@ -1,0 +1,30 @@
+{
+  "detected_at": "2024-11-16T00:23:12.000Z",
+  "botocore_commit": "e2107a0",
+  "botocore_commit_url": "https://github.com/boto/botocore/commit/e2107a0",
+  "summary": "2 service expansion(s)",
+  "source": "mase-import",
+  "changes": [
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "emr-containers",
+      "id": "emr-containers",
+      "new_regions": [
+        "ap-south-2",
+        "il-central-1"
+      ],
+      "description": "emr-containers expanded to ap-south-2, il-central-1"
+    },
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "transfer",
+      "id": "transfer",
+      "new_regions": [
+        "ap-southeast-5"
+      ],
+      "description": "transfer expanded to ap-southeast-5"
+    }
+  ]
+}

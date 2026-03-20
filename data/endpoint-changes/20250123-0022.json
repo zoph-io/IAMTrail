@@ -1,0 +1,49 @@
+{
+  "detected_at": "2025-01-23T00:22:15.000Z",
+  "botocore_commit": "08ed562",
+  "botocore_commit_url": "https://github.com/boto/botocore/commit/08ed562",
+  "summary": "4 service expansion(s)",
+  "source": "mase-import",
+  "changes": [
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "backup",
+      "id": "backup",
+      "new_regions": [
+        "mx-central-1"
+      ],
+      "description": "backup expanded to mx-central-1"
+    },
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "synthetics",
+      "id": "synthetics",
+      "new_regions": [
+        "af-south-1"
+      ],
+      "description": "synthetics expanded to af-south-1"
+    },
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "synthetics",
+      "id": "synthetics",
+      "new_regions": [
+        "cn-north-1"
+      ],
+      "description": "synthetics expanded to cn-north-1"
+    },
+    {
+      "type": "service_expansion",
+      "partition": "aws-cn",
+      "service": "synthetics",
+      "id": "synthetics",
+      "new_regions": [
+        "cn-north-1"
+      ],
+      "description": "synthetics expanded to cn-north-1"
+    }
+  ]
+}

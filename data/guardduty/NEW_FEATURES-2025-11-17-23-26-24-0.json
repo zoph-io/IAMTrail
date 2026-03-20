@@ -1,0 +1,18 @@
+{
+  "description": "Amazon GuardDuty announces Scan on Demand for Malware Protection for S3. Using this feature you can use the new SendObjectMalwareScan API to trigger scans on any already existing objects stored in your S3 buckets.",
+  "detected_at": "2025-11-17T23:26:24Z",
+  "gist_url": "https://gist.github.com/z0ph/af0d0bef44d4cb72fe2d7d71bbeac162",
+  "link": "https://docs.aws.amazon.com/guardduty/latest/ug/malware-protection-s3-on-demand.html",
+  "raw_sns_message": {
+    "featureDetails": [
+      {
+        "featureDescription": "Amazon GuardDuty announces Scan on Demand for Malware Protection for S3. Using this feature you can use the new SendObjectMalwareScan API to trigger scans on any already existing objects stored in your S3 buckets.",
+        "featureLink": "https://docs.aws.amazon.com/guardduty/latest/ug/malware-protection-s3-on-demand.html"
+      }
+    ],
+    "type": "NEW_FEATURES",
+    "version": "1"
+  },
+  "short_description": "Amazon GuardDuty announces Scan on Demand for Malware Protection for S3. Using this feature you can use the new SendObjectMalwareScan API to trigger s",
+  "type": "NEW_FEATURES"
+}

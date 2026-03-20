@@ -1,0 +1,44 @@
+{
+  "detected_at": "2024-09-17T00:18:05.000Z",
+  "botocore_commit": "0465843",
+  "botocore_commit_url": "https://github.com/boto/botocore/commit/0465843",
+  "summary": "3 service expansion(s)",
+  "source": "mase-import",
+  "changes": [
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "elasticfilesystem",
+      "id": "elasticfilesystem",
+      "new_regions": [
+        "ap-southeast-5"
+      ],
+      "description": "elasticfilesystem expanded to ap-southeast-5"
+    },
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "ssm-sap",
+      "id": "ssm-sap",
+      "new_regions": [
+        "ap-south-2",
+        "ap-southeast-4",
+        "eu-central-2",
+        "eu-south-2",
+        "il-central-1",
+        "me-central-1"
+      ],
+      "description": "ssm-sap expanded to ap-south-2, ap-southeast-4, eu-central-2, eu-south-2, il-central-1, me-central-1"
+    },
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "transcribestreaming",
+      "id": "transcribestreaming",
+      "new_regions": [
+        "ca-central-1"
+      ],
+      "description": "transcribestreaming expanded to ca-central-1"
+    }
+  ]
+}

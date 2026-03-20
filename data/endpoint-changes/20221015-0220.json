@@ -1,0 +1,30 @@
+{
+  "detected_at": "2022-10-15T02:20:25.000Z",
+  "botocore_commit": "abdd7fe",
+  "botocore_commit_url": "https://github.com/boto/botocore/commit/abdd7fe",
+  "summary": "2 service expansion(s)",
+  "source": "mase-import",
+  "changes": [
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "appsync",
+      "id": "appsync",
+      "new_regions": [
+        "af-south-1",
+        "ap-southeast-3"
+      ],
+      "description": "appsync expanded to af-south-1, ap-southeast-3"
+    },
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "servicediscovery",
+      "id": "servicediscovery",
+      "new_regions": [
+        "me-central-1"
+      ],
+      "description": "servicediscovery expanded to me-central-1"
+    }
+  ]
+}

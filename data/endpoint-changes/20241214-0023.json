@@ -1,0 +1,21 @@
+{
+  "detected_at": "2024-12-14T00:23:53.000Z",
+  "botocore_commit": "c4dd25d",
+  "botocore_commit_url": "https://github.com/boto/botocore/commit/c4dd25d",
+  "summary": "1 service expansion(s)",
+  "source": "mase-import",
+  "changes": [
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "trustedadvisor",
+      "id": "trustedadvisor",
+      "new_regions": [
+        "us-east-1",
+        "us-east-2",
+        "us-west-2"
+      ],
+      "description": "trustedadvisor expanded to us-east-1, us-east-2, us-west-2"
+    }
+  ]
+}

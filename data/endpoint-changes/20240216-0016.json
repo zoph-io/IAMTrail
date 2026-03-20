@@ -1,0 +1,19 @@
+{
+  "detected_at": "2024-02-16T00:16:45.000Z",
+  "botocore_commit": "d22737c",
+  "botocore_commit_url": "https://github.com/boto/botocore/commit/d22737c",
+  "summary": "1 service expansion(s)",
+  "source": "mase-import",
+  "changes": [
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "acm-pca",
+      "id": "acm-pca",
+      "new_regions": [
+        "ca-west-1"
+      ],
+      "description": "acm-pca expanded to ca-west-1"
+    }
+  ]
+}

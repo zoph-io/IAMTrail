@@ -1,0 +1,108 @@
+{
+  "detected_at": "2023-03-31T01:17:16.000Z",
+  "botocore_commit": "d9969b0",
+  "botocore_commit_url": "https://github.com/boto/botocore/commit/d9969b0",
+  "summary": "7 service expansion(s)",
+  "source": "mase-import",
+  "changes": [
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "api.sagemaker",
+      "id": "api.sagemaker",
+      "new_regions": [
+        "eu-south-2"
+      ],
+      "description": "api.sagemaker expanded to eu-south-2"
+    },
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "lakeformation",
+      "id": "lakeformation",
+      "new_regions": [
+        "me-central-1"
+      ],
+      "description": "lakeformation expanded to me-central-1"
+    },
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "scheduler",
+      "id": "scheduler",
+      "new_regions": [
+        "af-south-1",
+        "ap-east-1",
+        "ap-northeast-2",
+        "ap-northeast-3",
+        "ap-south-1",
+        "ap-south-2",
+        "ap-southeast-3",
+        "ap-southeast-4",
+        "ca-central-1",
+        "eu-central-2",
+        "eu-south-1",
+        "eu-south-2",
+        "eu-west-2",
+        "eu-west-3",
+        "me-central-1",
+        "me-south-1",
+        "sa-east-1",
+        "us-west-1"
+      ],
+      "description": "scheduler expanded to af-south-1, ap-east-1, ap-northeast-2, ap-northeast-3, ap-south-1, ap-south-2, ap-southeast-3, ap-southeast-4, ca-central-1, eu-central-2, eu-south-1, eu-south-2, eu-west-2, eu-west-3, me-central-1, me-south-1, sa-east-1, us-west-1"
+    },
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "servicecatalog",
+      "id": "servicecatalog",
+      "new_regions": [
+        "ap-southeast-4"
+      ],
+      "description": "servicecatalog expanded to ap-southeast-4"
+    },
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "waf-regional",
+      "id": "waf-regional",
+      "new_regions": [
+        "ap-south-2",
+        "ap-southeast-4",
+        "eu-central-2",
+        "eu-south-2"
+      ],
+      "description": "waf-regional expanded to ap-south-2, ap-southeast-4, eu-central-2, eu-south-2"
+    },
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "wafv2",
+      "id": "wafv2",
+      "new_regions": [
+        "ap-south-2",
+        "ap-southeast-4",
+        "eu-central-2",
+        "eu-south-2"
+      ],
+      "description": "wafv2 expanded to ap-south-2, ap-southeast-4, eu-central-2, eu-south-2"
+    },
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "vpc-lattice",
+      "id": "vpc-lattice",
+      "new_regions": [
+        "ap-northeast-1",
+        "ap-southeast-1",
+        "ap-southeast-2",
+        "eu-west-1",
+        "us-east-1",
+        "us-east-2",
+        "us-west-2"
+      ],
+      "description": "vpc-lattice expanded to ap-northeast-1, ap-southeast-1, ap-southeast-2, eu-west-1, us-east-1, us-east-2, us-west-2"
+    }
+  ]
+}

@@ -1,0 +1,29 @@
+{
+  "detected_at": "2023-07-19T00:31:37.000Z",
+  "botocore_commit": "59c5acc",
+  "botocore_commit_url": "https://github.com/boto/botocore/commit/59c5acc",
+  "summary": "2 service expansion(s)",
+  "source": "mase-import",
+  "changes": [
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "mediapackage-vod",
+      "id": "mediapackage-vod",
+      "new_regions": [
+        "ca-central-1"
+      ],
+      "description": "mediapackage-vod expanded to ca-central-1"
+    },
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "mediapackagev2",
+      "id": "mediapackagev2",
+      "new_regions": [
+        "ca-central-1"
+      ],
+      "description": "mediapackagev2 expanded to ca-central-1"
+    }
+  ]
+}

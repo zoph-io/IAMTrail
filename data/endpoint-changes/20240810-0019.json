@@ -1,0 +1,19 @@
+{
+  "detected_at": "2024-08-10T00:19:54.000Z",
+  "botocore_commit": "1a3e2ee",
+  "botocore_commit_url": "https://github.com/boto/botocore/commit/1a3e2ee",
+  "summary": "1 service expansion(s)",
+  "source": "mase-import",
+  "changes": [
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "athena",
+      "id": "athena",
+      "new_regions": [
+        "ca-central-1"
+      ],
+      "description": "athena expanded to ca-central-1"
+    }
+  ]
+}

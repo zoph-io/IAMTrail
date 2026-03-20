@@ -1,0 +1,39 @@
+{
+  "detected_at": "2023-10-06T00:16:25.000Z",
+  "botocore_commit": "87fd260",
+  "botocore_commit_url": "https://github.com/boto/botocore/commit/87fd260",
+  "summary": "2 service expansion(s)",
+  "source": "mase-import",
+  "changes": [
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "bedrock",
+      "id": "bedrock",
+      "new_regions": [
+        "ap-northeast-1"
+      ],
+      "description": "bedrock expanded to ap-northeast-1"
+    },
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "datazone",
+      "id": "datazone",
+      "new_regions": [
+        "ap-northeast-1",
+        "ap-southeast-1",
+        "ap-southeast-2",
+        "ca-central-1",
+        "eu-central-1",
+        "eu-north-1",
+        "eu-west-1",
+        "sa-east-1",
+        "us-east-1",
+        "us-east-2",
+        "us-west-2"
+      ],
+      "description": "datazone expanded to ap-northeast-1, ap-southeast-1, ap-southeast-2, ca-central-1, eu-central-1, eu-north-1, eu-west-1, sa-east-1, us-east-1, us-east-2, us-west-2"
+    }
+  ]
+}

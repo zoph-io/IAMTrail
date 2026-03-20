@@ -1,0 +1,39 @@
+{
+  "detected_at": "2025-04-15T00:25:31.000Z",
+  "botocore_commit": "3b1abf3",
+  "botocore_commit_url": "https://github.com/boto/botocore/commit/3b1abf3",
+  "summary": "3 service expansion(s)",
+  "source": "mase-import",
+  "changes": [
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "route53resolver",
+      "id": "route53resolver",
+      "new_regions": [
+        "af-south-1"
+      ],
+      "description": "route53resolver expanded to af-south-1"
+    },
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "route53resolver",
+      "id": "route53resolver",
+      "new_regions": [
+        "cn-north-1"
+      ],
+      "description": "route53resolver expanded to cn-north-1"
+    },
+    {
+      "type": "service_expansion",
+      "partition": "aws-cn",
+      "service": "route53resolver",
+      "id": "route53resolver",
+      "new_regions": [
+        "cn-north-1"
+      ],
+      "description": "route53resolver expanded to cn-north-1"
+    }
+  ]
+}

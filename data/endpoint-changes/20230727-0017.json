@@ -1,0 +1,39 @@
+{
+  "detected_at": "2023-07-27T00:17:13.000Z",
+  "botocore_commit": "0249ce0",
+  "botocore_commit_url": "https://github.com/boto/botocore/commit/0249ce0",
+  "summary": "3 service expansion(s)",
+  "source": "mase-import",
+  "changes": [
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "servicediscovery",
+      "id": "servicediscovery",
+      "new_regions": [
+        "af-south-1"
+      ],
+      "description": "servicediscovery expanded to af-south-1"
+    },
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "servicediscovery",
+      "id": "servicediscovery",
+      "new_regions": [
+        "cn-north-1"
+      ],
+      "description": "servicediscovery expanded to cn-north-1"
+    },
+    {
+      "type": "service_expansion",
+      "partition": "aws-cn",
+      "service": "servicediscovery",
+      "id": "servicediscovery",
+      "new_regions": [
+        "cn-north-1"
+      ],
+      "description": "servicediscovery expanded to cn-north-1"
+    }
+  ]
+}

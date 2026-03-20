@@ -1,0 +1,32 @@
+{
+  "detected_at": "2023-11-17T00:17:25.000Z",
+  "botocore_commit": "936a333",
+  "botocore_commit_url": "https://github.com/boto/botocore/commit/936a333",
+  "summary": "2 service expansion(s)",
+  "source": "mase-import",
+  "changes": [
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "autoscaling",
+      "id": "autoscaling",
+      "new_regions": [
+        "ca-central-1"
+      ],
+      "description": "autoscaling expanded to ca-central-1"
+    },
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "emr-serverless",
+      "id": "emr-serverless",
+      "new_regions": [
+        "af-south-1",
+        "ap-northeast-3",
+        "ap-southeast-3",
+        "eu-south-1"
+      ],
+      "description": "emr-serverless expanded to af-south-1, ap-northeast-3, ap-southeast-3, eu-south-1"
+    }
+  ]
+}

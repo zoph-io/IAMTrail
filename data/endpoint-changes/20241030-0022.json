@@ -1,0 +1,19 @@
+{
+  "detected_at": "2024-10-30T00:22:47.000Z",
+  "botocore_commit": "77cb136",
+  "botocore_commit_url": "https://github.com/boto/botocore/commit/77cb136",
+  "summary": "1 service expansion(s)",
+  "source": "mase-import",
+  "changes": [
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "textract",
+      "id": "textract",
+      "new_regions": [
+        "eu-south-2"
+      ],
+      "description": "textract expanded to eu-south-2"
+    }
+  ]
+}

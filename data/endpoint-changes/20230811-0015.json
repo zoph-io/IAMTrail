@@ -1,0 +1,31 @@
+{
+  "detected_at": "2023-08-11T00:15:23.000Z",
+  "botocore_commit": "253d2e1",
+  "botocore_commit_url": "https://github.com/boto/botocore/commit/253d2e1",
+  "summary": "2 service expansion(s)",
+  "source": "mase-import",
+  "changes": [
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "identitystore",
+      "id": "identitystore",
+      "new_regions": [
+        "ap-east-1",
+        "me-south-1",
+        "us-west-1"
+      ],
+      "description": "identitystore expanded to ap-east-1, me-south-1, us-west-1"
+    },
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "securityhub",
+      "id": "securityhub",
+      "new_regions": [
+        "il-central-1"
+      ],
+      "description": "securityhub expanded to il-central-1"
+    }
+  ]
+}

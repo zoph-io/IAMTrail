@@ -1,0 +1,39 @@
+{
+  "detected_at": "2024-10-02T00:22:10.000Z",
+  "botocore_commit": "0c206bb",
+  "botocore_commit_url": "https://github.com/boto/botocore/commit/0c206bb",
+  "summary": "3 service expansion(s)",
+  "source": "mase-import",
+  "changes": [
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "aoss",
+      "id": "aoss",
+      "new_regions": [
+        "ap-northeast-2"
+      ],
+      "description": "aoss expanded to ap-northeast-2"
+    },
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "geo",
+      "id": "geo",
+      "new_regions": [
+        "eu-south-2"
+      ],
+      "description": "geo expanded to eu-south-2"
+    },
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "memory-db",
+      "id": "memory-db",
+      "new_regions": [
+        "eu-south-2"
+      ],
+      "description": "memory-db expanded to eu-south-2"
+    }
+  ]
+}

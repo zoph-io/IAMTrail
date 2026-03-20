@@ -1,0 +1,54 @@
+{
+  "detected_at": "2023-04-01T01:16:09.000Z",
+  "botocore_commit": "7416c0d",
+  "botocore_commit_url": "https://github.com/boto/botocore/commit/7416c0d",
+  "summary": "4 service expansion(s)",
+  "source": "mase-import",
+  "changes": [
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "acm-pca",
+      "id": "acm-pca",
+      "new_regions": [
+        "ap-south-2",
+        "eu-central-2",
+        "eu-south-2"
+      ],
+      "description": "acm-pca expanded to ap-south-2, eu-central-2, eu-south-2"
+    },
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "greengrass",
+      "id": "greengrass",
+      "new_regions": [
+        "ca-central-1"
+      ],
+      "description": "greengrass expanded to ca-central-1"
+    },
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "iottwinmaker",
+      "id": "iottwinmaker",
+      "new_regions": [
+        "us-east-1"
+      ],
+      "description": "iottwinmaker expanded to us-east-1"
+    },
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "servicequotas",
+      "id": "servicequotas",
+      "new_regions": [
+        "ap-south-2",
+        "ap-southeast-4",
+        "eu-central-2",
+        "eu-south-2"
+      ],
+      "description": "servicequotas expanded to ap-south-2, ap-southeast-4, eu-central-2, eu-south-2"
+    }
+  ]
+}

@@ -1,0 +1,19 @@
+{
+  "detected_at": "2025-10-23T00:25:57.000Z",
+  "botocore_commit": "d2433dd",
+  "botocore_commit_url": "https://github.com/boto/botocore/commit/d2433dd",
+  "summary": "1 service expansion(s)",
+  "source": "mase-import",
+  "changes": [
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "healthlake",
+      "id": "healthlake",
+      "new_regions": [
+        "ca-central-1"
+      ],
+      "description": "healthlake expanded to ca-central-1"
+    }
+  ]
+}

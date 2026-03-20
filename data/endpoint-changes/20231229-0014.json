@@ -1,0 +1,39 @@
+{
+  "detected_at": "2023-12-29T00:14:36.000Z",
+  "botocore_commit": "fff51ea",
+  "botocore_commit_url": "https://github.com/boto/botocore/commit/fff51ea",
+  "summary": "3 service expansion(s)",
+  "source": "mase-import",
+  "changes": [
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "mediapackage",
+      "id": "mediapackage",
+      "new_regions": [
+        "ap-southeast-4"
+      ],
+      "description": "mediapackage expanded to ap-southeast-4"
+    },
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "mediapackage-vod",
+      "id": "mediapackage-vod",
+      "new_regions": [
+        "ap-southeast-4"
+      ],
+      "description": "mediapackage-vod expanded to ap-southeast-4"
+    },
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "mediapackagev2",
+      "id": "mediapackagev2",
+      "new_regions": [
+        "ap-southeast-4"
+      ],
+      "description": "mediapackagev2 expanded to ap-southeast-4"
+    }
+  ]
+}

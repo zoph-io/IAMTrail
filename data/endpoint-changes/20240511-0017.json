@@ -1,0 +1,19 @@
+{
+  "detected_at": "2024-05-11T00:17:47.000Z",
+  "botocore_commit": "f67d474",
+  "botocore_commit_url": "https://github.com/boto/botocore/commit/f67d474",
+  "summary": "1 service expansion(s)",
+  "source": "mase-import",
+  "changes": [
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "license-manager-user-subscriptions",
+      "id": "license-manager-user-subscriptions",
+      "new_regions": [
+        "ca-west-1"
+      ],
+      "description": "license-manager-user-subscriptions expanded to ca-west-1"
+    }
+  ]
+}

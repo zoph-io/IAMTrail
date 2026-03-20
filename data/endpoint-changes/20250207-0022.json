@@ -1,0 +1,40 @@
+{
+  "detected_at": "2025-02-07T00:22:59.000Z",
+  "botocore_commit": "5d7eb6a",
+  "botocore_commit_url": "https://github.com/boto/botocore/commit/5d7eb6a",
+  "summary": "3 service expansion(s)",
+  "source": "mase-import",
+  "changes": [
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "acm-pca",
+      "id": "acm-pca",
+      "new_regions": [
+        "ap-southeast-7",
+        "mx-central-1"
+      ],
+      "description": "acm-pca expanded to ap-southeast-7, mx-central-1"
+    },
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "api.sagemaker",
+      "id": "api.sagemaker",
+      "new_regions": [
+        "ap-southeast-5"
+      ],
+      "description": "api.sagemaker expanded to ap-southeast-5"
+    },
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "comprehend",
+      "id": "comprehend",
+      "new_regions": [
+        "ca-central-1"
+      ],
+      "description": "comprehend expanded to ca-central-1"
+    }
+  ]
+}

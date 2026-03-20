@@ -1,0 +1,45 @@
+{
+  "detected_at": "2022-10-07T02:09:20.000Z",
+  "botocore_commit": "ea4ad3a",
+  "botocore_commit_url": "https://github.com/boto/botocore/commit/ea4ad3a",
+  "summary": "3 service expansion(s)",
+  "source": "mase-import",
+  "changes": [
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "cloudhsmv2",
+      "id": "cloudhsmv2",
+      "new_regions": [
+        "me-central-1"
+      ],
+      "description": "cloudhsmv2 expanded to me-central-1"
+    },
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "pinpoint",
+      "id": "pinpoint",
+      "new_regions": [
+        "us-east-2"
+      ],
+      "description": "pinpoint expanded to us-east-2"
+    },
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "ingest.timestream",
+      "id": "ingest.timestream",
+      "new_regions": [
+        "ap-northeast-1",
+        "ap-southeast-2",
+        "eu-central-1",
+        "eu-west-1",
+        "us-east-1",
+        "us-east-2",
+        "us-west-2"
+      ],
+      "description": "ingest.timestream expanded to ap-northeast-1, ap-southeast-2, eu-central-1, eu-west-1, us-east-1, us-east-2, us-west-2"
+    }
+  ]
+}

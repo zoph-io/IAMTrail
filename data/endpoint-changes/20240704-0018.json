@@ -1,0 +1,29 @@
+{
+  "detected_at": "2024-07-04T00:18:59.000Z",
+  "botocore_commit": "a0653b3",
+  "botocore_commit_url": "https://github.com/boto/botocore/commit/a0653b3",
+  "summary": "2 service expansion(s)",
+  "source": "mase-import",
+  "changes": [
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "oidc",
+      "id": "oidc",
+      "new_regions": [
+        "ca-west-1"
+      ],
+      "description": "oidc expanded to ca-west-1"
+    },
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "globalaccelerator",
+      "id": "globalaccelerator",
+      "new_regions": [
+        "us-west-2"
+      ],
+      "description": "globalaccelerator expanded to us-west-2"
+    }
+  ]
+}

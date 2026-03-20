@@ -1,0 +1,29 @@
+{
+  "detected_at": "2025-06-12T00:26:34.000Z",
+  "botocore_commit": "61c4a5a",
+  "botocore_commit_url": "https://github.com/boto/botocore/commit/61c4a5a",
+  "summary": "2 service expansion(s)",
+  "source": "mase-import",
+  "changes": [
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "glue",
+      "id": "glue",
+      "new_regions": [
+        "ap-east-2"
+      ],
+      "description": "glue expanded to ap-east-2"
+    },
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "identitystore",
+      "id": "identitystore",
+      "new_regions": [
+        "mx-central-1"
+      ],
+      "description": "identitystore expanded to mx-central-1"
+    }
+  ]
+}

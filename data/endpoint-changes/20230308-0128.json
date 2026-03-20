@@ -1,0 +1,41 @@
+{
+  "detected_at": "2023-03-08T01:28:11.000Z",
+  "botocore_commit": "8839201",
+  "botocore_commit_url": "https://github.com/boto/botocore/commit/8839201",
+  "summary": "3 service expansion(s)",
+  "source": "mase-import",
+  "changes": [
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "kafka",
+      "id": "kafka",
+      "new_regions": [
+        "me-central-1"
+      ],
+      "description": "kafka expanded to me-central-1"
+    },
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "rolesanywhere",
+      "id": "rolesanywhere",
+      "new_regions": [
+        "cn-north-1",
+        "cn-northwest-1"
+      ],
+      "description": "rolesanywhere expanded to cn-north-1, cn-northwest-1"
+    },
+    {
+      "type": "service_expansion",
+      "partition": "aws-cn",
+      "service": "rolesanywhere",
+      "id": "rolesanywhere",
+      "new_regions": [
+        "cn-north-1",
+        "cn-northwest-1"
+      ],
+      "description": "rolesanywhere expanded to cn-north-1, cn-northwest-1"
+    }
+  ]
+}

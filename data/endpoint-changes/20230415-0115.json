@@ -1,0 +1,78 @@
+{
+  "detected_at": "2023-04-15T01:15:21.000Z",
+  "botocore_commit": "2e3ef6f",
+  "botocore_commit_url": "https://github.com/boto/botocore/commit/2e3ef6f",
+  "summary": "6 service expansion(s)",
+  "source": "mase-import",
+  "changes": [
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "backup",
+      "id": "backup",
+      "new_regions": [
+        "ap-south-2",
+        "eu-central-2",
+        "eu-south-2"
+      ],
+      "description": "backup expanded to ap-south-2, eu-central-2, eu-south-2"
+    },
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "batch",
+      "id": "batch",
+      "new_regions": [
+        "ap-south-2",
+        "eu-central-2",
+        "eu-south-2"
+      ],
+      "description": "batch expanded to ap-south-2, eu-central-2, eu-south-2"
+    },
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "emr-containers",
+      "id": "emr-containers",
+      "new_regions": [
+        "ap-east-1",
+        "me-south-1"
+      ],
+      "description": "emr-containers expanded to ap-east-1, me-south-1"
+    },
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "fsx",
+      "id": "fsx",
+      "new_regions": [
+        "ap-south-2",
+        "eu-central-2",
+        "eu-south-2"
+      ],
+      "description": "fsx expanded to ap-south-2, eu-central-2, eu-south-2"
+    },
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "kafka",
+      "id": "kafka",
+      "new_regions": [
+        "ap-south-2",
+        "eu-central-2",
+        "eu-south-2"
+      ],
+      "description": "kafka expanded to ap-south-2, eu-central-2, eu-south-2"
+    },
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "route53resolver",
+      "id": "route53resolver",
+      "new_regions": [
+        "ap-south-2"
+      ],
+      "description": "route53resolver expanded to ap-south-2"
+    }
+  ]
+}

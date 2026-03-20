@@ -1,0 +1,19 @@
+{
+  "detected_at": "2022-07-29T02:02:12.000Z",
+  "botocore_commit": "1d5b2b5",
+  "botocore_commit_url": "https://github.com/boto/botocore/commit/1d5b2b5",
+  "summary": "1 service expansion(s)",
+  "source": "mase-import",
+  "changes": [
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "groundstation",
+      "id": "groundstation",
+      "new_regions": [
+        "ap-southeast-1"
+      ],
+      "description": "groundstation expanded to ap-southeast-1"
+    }
+  ]
+}

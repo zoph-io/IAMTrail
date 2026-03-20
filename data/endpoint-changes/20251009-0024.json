@@ -1,0 +1,19 @@
+{
+  "detected_at": "2025-10-09T00:24:53.000Z",
+  "botocore_commit": "5b36463",
+  "botocore_commit_url": "https://github.com/boto/botocore/commit/5b36463",
+  "summary": "1 service expansion(s)",
+  "source": "mase-import",
+  "changes": [
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "codedeploy",
+      "id": "codedeploy",
+      "new_regions": [
+        "ap-southeast-6"
+      ],
+      "description": "codedeploy expanded to ap-southeast-6"
+    }
+  ]
+}

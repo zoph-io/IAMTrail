@@ -1,0 +1,24 @@
+{
+  "detected_at": "2025-08-21T00:24:55.000Z",
+  "botocore_commit": "6fed230",
+  "botocore_commit_url": "https://github.com/boto/botocore/commit/6fed230",
+  "summary": "1 service expansion(s)",
+  "source": "mase-import",
+  "changes": [
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "trustedadvisor",
+      "id": "trustedadvisor",
+      "new_regions": [
+        "ap-northeast-2",
+        "ap-southeast-2",
+        "eu-west-1",
+        "us-east-1",
+        "us-east-2",
+        "us-west-2"
+      ],
+      "description": "trustedadvisor expanded to ap-northeast-2, ap-southeast-2, eu-west-1, us-east-1, us-east-2, us-west-2"
+    }
+  ]
+}

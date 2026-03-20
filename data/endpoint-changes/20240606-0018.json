@@ -1,0 +1,29 @@
+{
+  "detected_at": "2024-06-06T00:18:30.000Z",
+  "botocore_commit": "4b43ea6",
+  "botocore_commit_url": "https://github.com/boto/botocore/commit/4b43ea6",
+  "summary": "2 service expansion(s)",
+  "source": "mase-import",
+  "changes": [
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "cloud9",
+      "id": "cloud9",
+      "new_regions": [
+        "af-south-1"
+      ],
+      "description": "cloud9 expanded to af-south-1"
+    },
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "directconnect",
+      "id": "directconnect",
+      "new_regions": [
+        "ca-central-1"
+      ],
+      "description": "directconnect expanded to ca-central-1"
+    }
+  ]
+}

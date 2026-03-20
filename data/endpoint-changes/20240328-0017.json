@@ -1,0 +1,30 @@
+{
+  "detected_at": "2024-03-28T00:17:31.000Z",
+  "botocore_commit": "af6cf2e",
+  "botocore_commit_url": "https://github.com/boto/botocore/commit/af6cf2e",
+  "summary": "2 service expansion(s)",
+  "source": "mase-import",
+  "changes": [
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "mediaconvert",
+      "id": "mediaconvert",
+      "new_regions": [
+        "me-central-1"
+      ],
+      "description": "mediaconvert expanded to me-central-1"
+    },
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "medialive",
+      "id": "medialive",
+      "new_regions": [
+        "ap-south-2",
+        "me-central-1"
+      ],
+      "description": "medialive expanded to ap-south-2, me-central-1"
+    }
+  ]
+}

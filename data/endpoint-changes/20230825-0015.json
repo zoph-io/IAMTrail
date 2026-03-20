@@ -1,0 +1,29 @@
+{
+  "detected_at": "2023-08-25T00:15:47.000Z",
+  "botocore_commit": "5c51343",
+  "botocore_commit_url": "https://github.com/boto/botocore/commit/5c51343",
+  "summary": "2 service expansion(s)",
+  "source": "mase-import",
+  "changes": [
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "athena",
+      "id": "athena",
+      "new_regions": [
+        "il-central-1"
+      ],
+      "description": "athena expanded to il-central-1"
+    },
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "datasync",
+      "id": "datasync",
+      "new_regions": [
+        "il-central-1"
+      ],
+      "description": "datasync expanded to il-central-1"
+    }
+  ]
+}

@@ -1,0 +1,22 @@
+{
+  "detected_at": "2022-07-21T01:54:39.000Z",
+  "botocore_commit": "81f5ffb",
+  "botocore_commit_url": "https://github.com/boto/botocore/commit/81f5ffb",
+  "summary": "1 service expansion(s)",
+  "source": "mase-import",
+  "changes": [
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "workspaces-web",
+      "id": "workspaces-web",
+      "new_regions": [
+        "ap-northeast-1",
+        "ap-south-1",
+        "ap-southeast-1",
+        "ap-southeast-2"
+      ],
+      "description": "workspaces-web expanded to ap-northeast-1, ap-south-1, ap-southeast-1, ap-southeast-2"
+    }
+  ]
+}

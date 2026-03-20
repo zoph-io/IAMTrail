@@ -1,0 +1,29 @@
+{
+  "detected_at": "2024-08-29T00:20:40.000Z",
+  "botocore_commit": "bee10f4",
+  "botocore_commit_url": "https://github.com/boto/botocore/commit/bee10f4",
+  "summary": "2 service expansion(s)",
+  "source": "mase-import",
+  "changes": [
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "redshift-serverless",
+      "id": "redshift-serverless",
+      "new_regions": [
+        "ap-southeast-3"
+      ],
+      "description": "redshift-serverless expanded to ap-southeast-3"
+    },
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "synthetics",
+      "id": "synthetics",
+      "new_regions": [
+        "ca-central-1"
+      ],
+      "description": "synthetics expanded to ca-central-1"
+    }
+  ]
+}

@@ -1,0 +1,19 @@
+{
+  "detected_at": "2024-01-11T00:18:07.000Z",
+  "botocore_commit": "228e76c",
+  "botocore_commit_url": "https://github.com/boto/botocore/commit/228e76c",
+  "summary": "1 service expansion(s)",
+  "source": "mase-import",
+  "changes": [
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "securitylake",
+      "id": "securitylake",
+      "new_regions": [
+        "us-east-1"
+      ],
+      "description": "securitylake expanded to us-east-1"
+    }
+  ]
+}

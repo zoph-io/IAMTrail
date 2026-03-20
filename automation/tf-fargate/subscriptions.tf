@@ -558,13 +558,15 @@ resource "aws_lambda_function" "digest_sender" {
 
   environment {
     variables = {
-      SUBSCRIPTIONS_TABLE = aws_dynamodb_table.subscriptions.name
-      CHANGES_TABLE       = aws_dynamodb_table.policy_changes.name
-      SENDER_EMAIL        = local.sender
-      SES_REGION          = local.ses_region
-      SITE_URL            = "https://${local.domain_name}"
-      GITHUB_REPO         = "zoph-io/IAMTrail"
-      DISCORD_WEBHOOK_SSM = local.discord_webhook_ssm
+      SUBSCRIPTIONS_TABLE    = aws_dynamodb_table.subscriptions.name
+      CHANGES_TABLE          = aws_dynamodb_table.policy_changes.name
+      ENDPOINT_CHANGES_TABLE = aws_dynamodb_table.endpoint_changes.name
+      GUARDDUTY_TABLE        = aws_dynamodb_table.guardduty_announcements.name
+      SENDER_EMAIL           = local.sender
+      SES_REGION             = local.ses_region
+      SITE_URL               = "https://${local.domain_name}"
+      GITHUB_REPO            = "zoph-io/IAMTrail"
+      DISCORD_WEBHOOK_SSM    = local.discord_webhook_ssm
     }
   }
 }
@@ -647,10 +649,11 @@ resource "aws_lambda_permission" "daily_digest" {
 
 locals {
   lambda_alarms = {
-    subscription_api = aws_lambda_function.subscription_api.function_name
-    change_recorder  = aws_lambda_function.change_recorder.function_name
-    digest_sender    = aws_lambda_function.digest_sender.function_name
-    instant_notifier = aws_lambda_function.instant_notifier.function_name
+    subscription_api   = aws_lambda_function.subscription_api.function_name
+    change_recorder    = aws_lambda_function.change_recorder.function_name
+    digest_sender      = aws_lambda_function.digest_sender.function_name
+    instant_notifier   = aws_lambda_function.instant_notifier.function_name
+    guardduty_recorder = aws_lambda_function.guardduty_recorder.function_name
   }
 }
 
@@ -968,7 +971,9 @@ resource "aws_iam_role_policy" "digest_sender" {
         Action = ["dynamodb:Scan", "dynamodb:Query"]
         Resource = [
           aws_dynamodb_table.subscriptions.arn,
-          aws_dynamodb_table.policy_changes.arn
+          aws_dynamodb_table.policy_changes.arn,
+          aws_dynamodb_table.endpoint_changes.arn,
+          aws_dynamodb_table.guardduty_announcements.arn
         ]
       },
       {
@@ -1041,6 +1046,215 @@ resource "aws_iam_role_policy" "instant_notifier" {
       }
     ]
   })
+}
+
+# ════════════════════════════════════════
+# GuardDuty Announcements Monitor (MGDA)
+# ════════════════════════════════════════
+
+# ──────────────────────────────
+# DynamoDB - GuardDuty Announcements
+# ──────────────────────────────
+
+resource "aws_dynamodb_table" "guardduty_announcements" {
+  name         = "iamtrail-guardduty-announcements"
+  billing_mode = "PAY_PER_REQUEST"
+  hash_key     = "announcement_date"
+  range_key    = "announcement_id"
+
+  attribute {
+    name = "announcement_date"
+    type = "S"
+  }
+
+  attribute {
+    name = "announcement_id"
+    type = "S"
+  }
+
+  tags = var.tags
+}
+
+# ──────────────────────────────
+# SQS Queue for GuardDuty Announcements
+# ──────────────────────────────
+
+resource "aws_sqs_queue" "guardduty" {
+  name                       = "iamtrail-guardduty-queue"
+  visibility_timeout_seconds = 300
+  message_retention_seconds  = 86400
+
+  redrive_policy = jsonencode({
+    deadLetterTargetArn = aws_sqs_queue.guardduty_dlq.arn
+    maxReceiveCount     = 3
+  })
+}
+
+resource "aws_sqs_queue" "guardduty_dlq" {
+  name                      = "iamtrail-guardduty-dlq"
+  message_retention_seconds = 1209600
+}
+
+resource "aws_sqs_queue_policy" "guardduty_dlq" {
+  queue_url = aws_sqs_queue.guardduty_dlq.id
+  policy = jsonencode({
+    Version = "2012-10-17"
+    Statement = [{
+      Effect    = "Allow"
+      Principal = { Service = "sqs.amazonaws.com" }
+      Action    = "sqs:SendMessage"
+      Resource  = aws_sqs_queue.guardduty_dlq.arn
+      Condition = {
+        ArnEquals = {
+          "aws:SourceArn" = aws_sqs_queue.guardduty.arn
+        }
+      }
+    }]
+  })
+}
+
+resource "aws_sqs_queue_policy" "guardduty" {
+  queue_url = aws_sqs_queue.guardduty.id
+  policy = jsonencode({
+    Version = "2012-10-17"
+    Statement = [{
+      Effect    = "Allow"
+      Principal = { Service = "sns.amazonaws.com" }
+      Action    = "sqs:SendMessage"
+      Resource  = aws_sqs_queue.guardduty.arn
+      Condition = {
+        ArnEquals = {
+          "aws:SourceArn" = var.guardduty_sns_topic_arn
+        }
+      }
+    }]
+  })
+}
+
+# Cross-account SNS subscription (AWS-owned GuardDuty topic)
+resource "aws_sns_topic_subscription" "guardduty" {
+  topic_arn = var.guardduty_sns_topic_arn
+  protocol  = "sqs"
+  endpoint  = aws_sqs_queue.guardduty.arn
+}
+
+# ──────────────────────────────
+# Lambda: GuardDuty Recorder
+# ──────────────────────────────
+
+data "archive_file" "guardduty_recorder" {
+  type        = "zip"
+  output_path = "${path.module}/../lambdas/.dist/guardduty-recorder.zip"
+
+  source {
+    content  = file("${path.module}/../lambdas/guardduty-recorder/index.py")
+    filename = "index.py"
+  }
+  source {
+    content  = file("${path.module}/../lambdas/guardduty-recorder/x_poster.py")
+    filename = "x_poster.py"
+  }
+  source {
+    content  = file("${path.module}/../lambdas/shared/discord_notifier.py")
+    filename = "discord_notifier.py"
+  }
+}
+
+resource "aws_lambda_function" "guardduty_recorder" {
+  function_name    = "iamtrail-guardduty-recorder"
+  runtime          = "python3.12"
+  handler          = "index.handler"
+  filename         = data.archive_file.guardduty_recorder.output_path
+  source_code_hash = data.archive_file.guardduty_recorder.output_base64sha256
+  role             = aws_iam_role.guardduty_recorder.arn
+  timeout          = 120
+  memory_size      = 128
+
+  environment {
+    variables = {
+      GUARDDUTY_TABLE     = aws_dynamodb_table.guardduty_announcements.name
+      X_API_SECRET_ARN    = var.mgda_x_api_secret_arn
+      DISCORD_WEBHOOK_SSM = local.discord_webhook_ssm
+    }
+  }
+}
+
+resource "aws_lambda_event_source_mapping" "guardduty_recorder" {
+  event_source_arn                   = aws_sqs_queue.guardduty.arn
+  function_name                      = aws_lambda_function.guardduty_recorder.arn
+  batch_size                         = 1
+  maximum_batching_window_in_seconds = 5
+}
+
+# ──────────────────────────────
+# IAM Role: GuardDuty Recorder
+# ──────────────────────────────
+
+resource "aws_iam_role" "guardduty_recorder" {
+  name               = "iamtrail-guardduty-recorder-role"
+  assume_role_policy = data.aws_iam_policy_document.lambda_assume_role.json
+}
+
+resource "aws_iam_role_policy" "guardduty_recorder" {
+  name = "iamtrail-guardduty-recorder-policy"
+  role = aws_iam_role.guardduty_recorder.id
+
+  policy = jsonencode({
+    Version = "2012-10-17"
+    Statement = concat(
+      [
+        {
+          Effect   = "Allow"
+          Action   = ["dynamodb:PutItem", "dynamodb:BatchWriteItem"]
+          Resource = [aws_dynamodb_table.guardduty_announcements.arn]
+        },
+        {
+          Effect   = "Allow"
+          Action   = ["sqs:ReceiveMessage", "sqs:DeleteMessage", "sqs:GetQueueAttributes"]
+          Resource = [aws_sqs_queue.guardduty.arn]
+        },
+        {
+          Effect   = "Allow"
+          Action   = ["ssm:GetParameter"]
+          Resource = ["arn:aws:ssm:${var.aws_region}:${data.aws_caller_identity.current.account_id}:parameter${local.discord_webhook_ssm}"]
+        },
+        {
+          Effect   = "Allow"
+          Action   = ["logs:CreateLogGroup", "logs:CreateLogStream", "logs:PutLogEvents"]
+          Resource = ["arn:aws:logs:*:*:*"]
+        }
+      ],
+      var.mgda_x_api_secret_arn != "" ? [
+        {
+          Effect   = "Allow"
+          Action   = ["secretsmanager:GetSecretValue"]
+          Resource = [var.mgda_x_api_secret_arn]
+        }
+      ] : []
+    )
+  })
+}
+
+# ──────────────────────────────
+# CloudWatch Alarm: GuardDuty DLQ
+# ──────────────────────────────
+
+resource "aws_cloudwatch_metric_alarm" "guardduty_dlq_messages" {
+  alarm_name          = "iamtrail-guardduty-dlq-messages"
+  comparison_operator = "GreaterThanThreshold"
+  evaluation_periods  = 1
+  metric_name         = "ApproximateNumberOfMessagesVisible"
+  namespace           = "AWS/SQS"
+  period              = 300
+  statistic           = "Maximum"
+  threshold           = 0
+  alarm_description   = "Messages in the GuardDuty DLQ - processing failures"
+  alarm_actions       = [aws_sns_topic.ecs_task_failure.arn]
+  treat_missing_data  = "notBreaching"
+
+  dimensions = {
+    QueueName = aws_sqs_queue.guardduty_dlq.name
+  }
 }
 
 # ──────────────────────────────

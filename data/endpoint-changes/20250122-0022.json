@@ -1,0 +1,19 @@
+{
+  "detected_at": "2025-01-22T00:22:41.000Z",
+  "botocore_commit": "410c113",
+  "botocore_commit_url": "https://github.com/boto/botocore/commit/410c113",
+  "summary": "1 service expansion(s)",
+  "source": "mase-import",
+  "changes": [
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "elasticfilesystem",
+      "id": "elasticfilesystem",
+      "new_regions": [
+        "mx-central-1"
+      ],
+      "description": "elasticfilesystem expanded to mx-central-1"
+    }
+  ]
+}

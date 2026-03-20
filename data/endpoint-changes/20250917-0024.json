@@ -1,0 +1,39 @@
+{
+  "detected_at": "2025-09-17T00:24:58.000Z",
+  "botocore_commit": "303c64c",
+  "botocore_commit_url": "https://github.com/boto/botocore/commit/303c64c",
+  "summary": "2 service expansion(s)",
+  "source": "mase-import",
+  "changes": [
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "aps",
+      "id": "aps",
+      "new_regions": [
+        "ap-east-2",
+        "ap-northeast-3",
+        "ap-south-2",
+        "ap-southeast-3",
+        "ap-southeast-4",
+        "ca-west-1",
+        "eu-south-2",
+        "il-central-1",
+        "me-south-1",
+        "mx-central-1",
+        "us-west-1"
+      ],
+      "description": "aps expanded to ap-east-2, ap-northeast-3, ap-south-2, ap-southeast-3, ap-southeast-4, ca-west-1, eu-south-2, il-central-1, me-south-1, mx-central-1, us-west-1"
+    },
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "outposts",
+      "id": "outposts",
+      "new_regions": [
+        "mx-central-1"
+      ],
+      "description": "outposts expanded to mx-central-1"
+    }
+  ]
+}

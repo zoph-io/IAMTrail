@@ -1,0 +1,64 @@
+{
+  "detected_at": "2022-12-22T01:17:41.000Z",
+  "botocore_commit": "ab6a405",
+  "botocore_commit_url": "https://github.com/boto/botocore/commit/ab6a405",
+  "summary": "5 service expansion(s)",
+  "source": "mase-import",
+  "changes": [
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "api.sagemaker",
+      "id": "api.sagemaker",
+      "new_regions": [
+        "me-central-1"
+      ],
+      "description": "api.sagemaker expanded to me-central-1"
+    },
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "identitystore",
+      "id": "identitystore",
+      "new_regions": [
+        "af-south-1",
+        "ap-northeast-3",
+        "ap-southeast-3",
+        "eu-south-1",
+        "eu-west-3",
+        "sa-east-1"
+      ],
+      "description": "identitystore expanded to af-south-1, ap-northeast-3, ap-southeast-3, eu-south-1, eu-west-3, sa-east-1"
+    },
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "mediaconvert",
+      "id": "mediaconvert",
+      "new_regions": [
+        "af-south-1"
+      ],
+      "description": "mediaconvert expanded to af-south-1"
+    },
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "runtime.sagemaker",
+      "id": "runtime.sagemaker",
+      "new_regions": [
+        "me-central-1"
+      ],
+      "description": "runtime.sagemaker expanded to me-central-1"
+    },
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "ssm-sap",
+      "id": "ssm-sap",
+      "new_regions": [
+        "us-east-1"
+      ],
+      "description": "ssm-sap expanded to us-east-1"
+    }
+  ]
+}

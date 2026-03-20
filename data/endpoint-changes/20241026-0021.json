@@ -1,0 +1,20 @@
+{
+  "detected_at": "2024-10-26T00:21:59.000Z",
+  "botocore_commit": "5f52ac7",
+  "botocore_commit_url": "https://github.com/boto/botocore/commit/5f52ac7",
+  "summary": "1 service expansion(s)",
+  "source": "mase-import",
+  "changes": [
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "mediapackage-vod",
+      "id": "mediapackage-vod",
+      "new_regions": [
+        "ap-south-2",
+        "me-central-1"
+      ],
+      "description": "mediapackage-vod expanded to ap-south-2, me-central-1"
+    }
+  ]
+}

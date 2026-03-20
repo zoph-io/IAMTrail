@@ -1,0 +1,19 @@
+{
+  "detected_at": "2025-08-07T00:29:25.000Z",
+  "botocore_commit": "160a948",
+  "botocore_commit_url": "https://github.com/boto/botocore/commit/160a948",
+  "summary": "1 service expansion(s)",
+  "source": "mase-import",
+  "changes": [
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "runtime.sagemaker",
+      "id": "runtime.sagemaker",
+      "new_regions": [
+        "ap-east-2"
+      ],
+      "description": "runtime.sagemaker expanded to ap-east-2"
+    }
+  ]
+}

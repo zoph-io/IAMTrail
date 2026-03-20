@@ -1,0 +1,22 @@
+{
+  "detected_at": "2023-06-09T00:20:42.000Z",
+  "botocore_commit": "c55e57f",
+  "botocore_commit_url": "https://github.com/boto/botocore/commit/c55e57f",
+  "summary": "1 service expansion(s)",
+  "source": "mase-import",
+  "changes": [
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "mgn",
+      "id": "mgn",
+      "new_regions": [
+        "ap-south-2",
+        "ap-southeast-4",
+        "eu-central-2",
+        "eu-south-2"
+      ],
+      "description": "mgn expanded to ap-south-2, ap-southeast-4, eu-central-2, eu-south-2"
+    }
+  ]
+}

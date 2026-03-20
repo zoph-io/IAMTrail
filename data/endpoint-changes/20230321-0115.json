@@ -1,0 +1,19 @@
+{
+  "detected_at": "2023-03-21T01:15:34.000Z",
+  "botocore_commit": "2491ad4",
+  "botocore_commit_url": "https://github.com/boto/botocore/commit/2491ad4",
+  "summary": "1 service expansion(s)",
+  "source": "mase-import",
+  "changes": [
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "transfer",
+      "id": "transfer",
+      "new_regions": [
+        "me-central-1"
+      ],
+      "description": "transfer expanded to me-central-1"
+    }
+  ]
+}

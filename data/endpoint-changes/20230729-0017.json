@@ -1,0 +1,82 @@
+{
+  "detected_at": "2023-07-29T00:17:34.000Z",
+  "botocore_commit": "e34082e",
+  "botocore_commit_url": "https://github.com/boto/botocore/commit/e34082e",
+  "summary": "5 service expansion(s)",
+  "source": "mase-import",
+  "changes": [
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "drs",
+      "id": "drs",
+      "new_regions": [
+        "ap-south-2",
+        "ap-southeast-4",
+        "eu-central-2",
+        "eu-south-2",
+        "me-central-1"
+      ],
+      "description": "drs expanded to ap-south-2, ap-southeast-4, eu-central-2, eu-south-2, me-central-1"
+    },
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "glue",
+      "id": "glue",
+      "new_regions": [
+        "ap-south-2",
+        "ap-southeast-4"
+      ],
+      "description": "glue expanded to ap-south-2, ap-southeast-4"
+    },
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "sms",
+      "id": "sms",
+      "new_regions": [
+        "af-south-1",
+        "ap-east-1",
+        "ap-northeast-1",
+        "ap-northeast-2",
+        "ap-south-1",
+        "ap-southeast-1",
+        "ap-southeast-2",
+        "ca-central-1",
+        "eu-central-1",
+        "eu-north-1",
+        "eu-south-1",
+        "eu-west-1",
+        "eu-west-2",
+        "eu-west-3",
+        "me-south-1",
+        "sa-east-1",
+        "us-east-1",
+        "us-east-2",
+        "us-west-1"
+      ],
+      "description": "sms expanded to af-south-1, ap-east-1, ap-northeast-1, ap-northeast-2, ap-south-1, ap-southeast-1, ap-southeast-2, ca-central-1, eu-central-1, eu-north-1, eu-south-1, eu-west-1, eu-west-2, eu-west-3, me-south-1, sa-east-1, us-east-1, us-east-2, us-west-1"
+    },
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "sms",
+      "id": "sms",
+      "new_regions": [
+        "cn-northwest-1"
+      ],
+      "description": "sms expanded to cn-northwest-1"
+    },
+    {
+      "type": "service_expansion",
+      "partition": "aws-cn",
+      "service": "sms",
+      "id": "sms",
+      "new_regions": [
+        "cn-northwest-1"
+      ],
+      "description": "sms expanded to cn-northwest-1"
+    }
+  ]
+}

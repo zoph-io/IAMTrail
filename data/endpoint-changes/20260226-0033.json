@@ -1,0 +1,29 @@
+{
+  "detected_at": "2026-02-26T00:33:29.000Z",
+  "botocore_commit": "c590d3c",
+  "botocore_commit_url": "https://github.com/boto/botocore/commit/c590d3c",
+  "summary": "2 service expansion(s)",
+  "source": "mase-import",
+  "changes": [
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "mediaconvert",
+      "id": "mediaconvert",
+      "new_regions": [
+        "ap-southeast-5"
+      ],
+      "description": "mediaconvert expanded to ap-southeast-5"
+    },
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "runtime.sagemaker",
+      "id": "runtime.sagemaker",
+      "new_regions": [
+        "ap-southeast-6"
+      ],
+      "description": "runtime.sagemaker expanded to ap-southeast-6"
+    }
+  ]
+}

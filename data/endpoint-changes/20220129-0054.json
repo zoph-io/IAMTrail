@@ -1,0 +1,29 @@
+{
+  "detected_at": "2022-01-29T00:54:47.000Z",
+  "botocore_commit": "43bce4",
+  "botocore_commit_url": "https://github.com/boto/botocore/commit/43bce4",
+  "summary": "2 service expansion(s)",
+  "source": "mase-import",
+  "changes": [
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "elasticfilesystem",
+      "id": "elasticfilesystem",
+      "new_regions": [
+        "ap-southeast-3"
+      ],
+      "description": "elasticfilesystem expanded to ap-southeast-3"
+    },
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "secretsmanager",
+      "id": "secretsmanager",
+      "new_regions": [
+        "ca-central-1"
+      ],
+      "description": "secretsmanager expanded to ca-central-1"
+    }
+  ]
+}

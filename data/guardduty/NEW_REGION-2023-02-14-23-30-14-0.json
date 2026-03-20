@@ -1,0 +1,18 @@
+{
+  "description": "Amazon GuardDuty Now Available in AWS Asia Pacific (Hyderabad) Region",
+  "detected_at": "2023-02-14T23:30:14Z",
+  "gist_url": "https://gist.github.com/z0ph/876238718e9a83cbb518c262c02a9f4b",
+  "link": "https://aws.amazon.com/about-aws/whats-new/2023/02/amazon-guardduty-aws-asia-pacific-hyderabad-region/",
+  "raw_sns_message": {
+    "regionDetails": [
+      {
+        "description": "Amazon GuardDuty Now Available in AWS Asia Pacific (Hyderabad) Region",
+        "link": "https://aws.amazon.com/about-aws/whats-new/2023/02/amazon-guardduty-aws-asia-pacific-hyderabad-region/"
+      }
+    ],
+    "type": "NEW_REGION",
+    "version": "1"
+  },
+  "short_description": "Amazon GuardDuty Now Available in AWS Asia Pacific (Hyderabad) Region",
+  "type": "NEW_REGION"
+}

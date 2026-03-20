@@ -1,0 +1,18 @@
+{
+  "description": "AWS PrivateLink now available with GuardDuty. You can now establish a private connection between your VPC and Amazon GuardDuty.",
+  "detected_at": "2024-09-18T01:42:25Z",
+  "gist_url": "https://gist.github.com/z0ph/2f2d4fa96d4de01ad46ce3867b729b49",
+  "link": "https://docs.aws.amazon.com/guardduty/latest/ug/security-vpc-endpoints.html",
+  "raw_sns_message": {
+    "featureDetails": [
+      {
+        "featureDescription": "AWS PrivateLink now available with GuardDuty. You can now establish a private connection between your VPC and Amazon GuardDuty.",
+        "featureLink": "https://docs.aws.amazon.com/guardduty/latest/ug/security-vpc-endpoints.html"
+      }
+    ],
+    "type": "NEW_FEATURES",
+    "version": "1"
+  },
+  "short_description": "AWS PrivateLink now available with GuardDuty. You can now establish a private connection between your VPC and Amazon GuardDuty.",
+  "type": "NEW_FEATURES"
+}

@@ -1,0 +1,18 @@
+{
+  "description": "Amazon GuardDuty announces Malware Protection for AWS Backup. This fully managed feature simplifies malware scanning of your backups where it automatically scans new backups upon creation, lets you run on-demand scans of existing backups, and allows you to verify integrity of backups before restoration. Using this feature, you can now perform full and incremental malware scans on your EBS Snapshots, EC2 AMIs, and Backup Recovery Points by using the StartMalwareScan API. The feature publishes scan results to Amazon EventBridge. You can use this feature without enabling the foundational GuardDuty in your account.",
+  "detected_at": "2025-11-20T01:36:54Z",
+  "gist_url": "https://gist.github.com/z0ph/a4fd4bbb4dbefd416258fd6186dd54ab",
+  "link": "https://docs.aws.amazon.com/guardduty/latest/ug/malware-protection-backup.html",
+  "raw_sns_message": {
+    "featureDetails": [
+      {
+        "featureDescription": "Amazon GuardDuty announces Malware Protection for AWS Backup. This fully managed feature simplifies malware scanning of your backups where it automatically scans new backups upon creation, lets you run on-demand scans of existing backups, and allows you to verify integrity of backups before restoration. Using this feature, you can now perform full and incremental malware scans on your EBS Snapshots, EC2 AMIs, and Backup Recovery Points by using the StartMalwareScan API. The feature publishes scan results to Amazon EventBridge. You can use this feature without enabling the foundational GuardDuty in your account.",
+        "featureLink": "https://docs.aws.amazon.com/guardduty/latest/ug/malware-protection-backup.html"
+      }
+    ],
+    "type": "NEW_FEATURES",
+    "version": "1"
+  },
+  "short_description": "Amazon GuardDuty announces Malware Protection for AWS Backup. This fully managed feature simplifies malware scanning of your backups where it automati",
+  "type": "NEW_FEATURES"
+}

@@ -1,0 +1,49 @@
+{
+  "detected_at": "2024-12-03T12:09:27.000Z",
+  "botocore_commit": "c25a746",
+  "botocore_commit_url": "https://github.com/boto/botocore/commit/c25a746",
+  "summary": "4 service expansion(s)",
+  "source": "mase-import",
+  "changes": [
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "metrics.sagemaker",
+      "id": "metrics.sagemaker",
+      "new_regions": [
+        "ca-central-1"
+      ],
+      "description": "metrics.sagemaker expanded to ca-central-1"
+    },
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "streams.dynamodb",
+      "id": "streams.dynamodb",
+      "new_regions": [
+        "ca-central-1"
+      ],
+      "description": "streams.dynamodb expanded to ca-central-1"
+    },
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "elasticbeanstalk",
+      "id": "elasticbeanstalk",
+      "new_regions": [
+        "cn-north-1"
+      ],
+      "description": "elasticbeanstalk expanded to cn-north-1"
+    },
+    {
+      "type": "service_expansion",
+      "partition": "aws-cn",
+      "service": "elasticbeanstalk",
+      "id": "elasticbeanstalk",
+      "new_regions": [
+        "cn-north-1"
+      ],
+      "description": "elasticbeanstalk expanded to cn-north-1"
+    }
+  ]
+}

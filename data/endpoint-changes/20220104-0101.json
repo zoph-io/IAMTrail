@@ -1,0 +1,49 @@
+{
+  "detected_at": "2022-01-04T01:01:38.000Z",
+  "botocore_commit": "51e939",
+  "botocore_commit_url": "https://github.com/boto/botocore/commit/51e939",
+  "summary": "4 service expansion(s)",
+  "source": "mase-import",
+  "changes": [
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "lambda",
+      "id": "lambda",
+      "new_regions": [
+        "af-south-1"
+      ],
+      "description": "lambda expanded to af-south-1"
+    },
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "secretsmanager",
+      "id": "secretsmanager",
+      "new_regions": [
+        "ap-southeast-3"
+      ],
+      "description": "secretsmanager expanded to ap-southeast-3"
+    },
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "lambda",
+      "id": "lambda",
+      "new_regions": [
+        "cn-north-1"
+      ],
+      "description": "lambda expanded to cn-north-1"
+    },
+    {
+      "type": "service_expansion",
+      "partition": "aws-cn",
+      "service": "lambda",
+      "id": "lambda",
+      "new_regions": [
+        "cn-north-1"
+      ],
+      "description": "lambda expanded to cn-north-1"
+    }
+  ]
+}

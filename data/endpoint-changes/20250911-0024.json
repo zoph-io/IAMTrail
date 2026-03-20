@@ -1,0 +1,19 @@
+{
+  "detected_at": "2025-09-11T00:24:57.000Z",
+  "botocore_commit": "d0e9e82",
+  "botocore_commit_url": "https://github.com/boto/botocore/commit/d0e9e82",
+  "summary": "1 service expansion(s)",
+  "source": "mase-import",
+  "changes": [
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "verifiedpermissions",
+      "id": "verifiedpermissions",
+      "new_regions": [
+        "ap-southeast-6"
+      ],
+      "description": "verifiedpermissions expanded to ap-southeast-6"
+    }
+  ]
+}

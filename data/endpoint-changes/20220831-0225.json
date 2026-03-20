@@ -1,0 +1,15 @@
+{
+  "detected_at": "2022-08-31T02:25:59.000Z",
+  "botocore_commit": "c9ac45d",
+  "botocore_commit_url": "https://github.com/boto/botocore/commit/c9ac45d",
+  "summary": "1 new region(s)",
+  "source": "mase-import",
+  "changes": [
+    {
+      "type": "new_region",
+      "partition": "aws",
+      "id": "me-central-1",
+      "description": "me-central-1"
+    }
+  ]
+}

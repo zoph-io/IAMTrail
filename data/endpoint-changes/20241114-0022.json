@@ -1,0 +1,39 @@
+{
+  "detected_at": "2024-11-14T00:22:55.000Z",
+  "botocore_commit": "4a014db",
+  "botocore_commit_url": "https://github.com/boto/botocore/commit/4a014db",
+  "summary": "3 service expansion(s)",
+  "source": "mase-import",
+  "changes": [
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "glue",
+      "id": "glue",
+      "new_regions": [
+        "ap-southeast-5"
+      ],
+      "description": "glue expanded to ap-southeast-5"
+    },
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "iotfleetwise",
+      "id": "iotfleetwise",
+      "new_regions": [
+        "ap-south-1"
+      ],
+      "description": "iotfleetwise expanded to ap-south-1"
+    },
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "vpc-lattice",
+      "id": "vpc-lattice",
+      "new_regions": [
+        "ap-southeast-3"
+      ],
+      "description": "vpc-lattice expanded to ap-southeast-3"
+    }
+  ]
+}

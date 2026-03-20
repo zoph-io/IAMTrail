@@ -1,0 +1,54 @@
+{
+  "detected_at": "2024-05-30T00:18:51.000Z",
+  "botocore_commit": "8447952",
+  "botocore_commit_url": "https://github.com/boto/botocore/commit/8447952",
+  "summary": "4 service expansion(s)",
+  "source": "mase-import",
+  "changes": [
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "quicksight",
+      "id": "quicksight",
+      "new_regions": [
+        "af-south-1",
+        "ap-southeast-3",
+        "eu-central-2",
+        "eu-south-1"
+      ],
+      "description": "quicksight expanded to af-south-1, ap-southeast-3, eu-central-2, eu-south-1"
+    },
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "redshift-serverless",
+      "id": "redshift-serverless",
+      "new_regions": [
+        "eu-central-2",
+        "eu-south-2",
+        "sa-east-1"
+      ],
+      "description": "redshift-serverless expanded to eu-central-2, eu-south-2, sa-east-1"
+    },
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "redshift-serverless",
+      "id": "redshift-serverless",
+      "new_regions": [
+        "cn-northwest-1"
+      ],
+      "description": "redshift-serverless expanded to cn-northwest-1"
+    },
+    {
+      "type": "service_expansion",
+      "partition": "aws-cn",
+      "service": "redshift-serverless",
+      "id": "redshift-serverless",
+      "new_regions": [
+        "cn-northwest-1"
+      ],
+      "description": "redshift-serverless expanded to cn-northwest-1"
+    }
+  ]
+}

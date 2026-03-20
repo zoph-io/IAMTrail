@@ -1,0 +1,39 @@
+{
+  "detected_at": "2025-01-03T00:22:44.000Z",
+  "botocore_commit": "ed1020d",
+  "botocore_commit_url": "https://github.com/boto/botocore/commit/ed1020d",
+  "summary": "3 service expansion(s)",
+  "source": "mase-import",
+  "changes": [
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "connect",
+      "id": "connect",
+      "new_regions": [
+        "ca-central-1"
+      ],
+      "description": "connect expanded to ca-central-1"
+    },
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "geo",
+      "id": "geo",
+      "new_regions": [
+        "ap-southeast-5"
+      ],
+      "description": "geo expanded to ap-southeast-5"
+    },
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "ssm-sap",
+      "id": "ssm-sap",
+      "new_regions": [
+        "af-south-1"
+      ],
+      "description": "ssm-sap expanded to af-south-1"
+    }
+  ]
+}

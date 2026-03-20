@@ -1,0 +1,19 @@
+{
+  "detected_at": "2025-01-17T00:22:17.000Z",
+  "botocore_commit": "656719a",
+  "botocore_commit_url": "https://github.com/boto/botocore/commit/656719a",
+  "summary": "1 service expansion(s)",
+  "source": "mase-import",
+  "changes": [
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "resiliencehub",
+      "id": "resiliencehub",
+      "new_regions": [
+        "af-south-1"
+      ],
+      "description": "resiliencehub expanded to af-south-1"
+    }
+  ]
+}

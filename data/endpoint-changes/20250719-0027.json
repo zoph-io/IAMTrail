@@ -1,0 +1,19 @@
+{
+  "detected_at": "2025-07-19T00:27:34.000Z",
+  "botocore_commit": "40122e2",
+  "botocore_commit_url": "https://github.com/boto/botocore/commit/40122e2",
+  "summary": "1 service expansion(s)",
+  "source": "mase-import",
+  "changes": [
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "securityhub",
+      "id": "securityhub",
+      "new_regions": [
+        "ap-east-2"
+      ],
+      "description": "securityhub expanded to ap-east-2"
+    }
+  ]
+}

@@ -1,0 +1,21 @@
+{
+  "detected_at": "2022-12-20T01:18:12.000Z",
+  "botocore_commit": "e5d1f8e",
+  "botocore_commit_url": "https://github.com/boto/botocore/commit/e5d1f8e",
+  "summary": "1 service expansion(s)",
+  "source": "mase-import",
+  "changes": [
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "oidc",
+      "id": "oidc",
+      "new_regions": [
+        "af-south-1",
+        "ap-southeast-3",
+        "us-west-1"
+      ],
+      "description": "oidc expanded to af-south-1, ap-southeast-3, us-west-1"
+    }
+  ]
+}

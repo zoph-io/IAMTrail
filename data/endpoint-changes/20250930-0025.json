@@ -1,0 +1,20 @@
+{
+  "detected_at": "2025-09-30T00:25:00.000Z",
+  "botocore_commit": "280cbad",
+  "botocore_commit_url": "https://github.com/boto/botocore/commit/280cbad",
+  "summary": "1 service expansion(s)",
+  "source": "mase-import",
+  "changes": [
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "portal.sso",
+      "id": "portal.sso",
+      "new_regions": [
+        "ap-southeast-7",
+        "mx-central-1"
+      ],
+      "description": "portal.sso expanded to ap-southeast-7, mx-central-1"
+    }
+  ]
+}

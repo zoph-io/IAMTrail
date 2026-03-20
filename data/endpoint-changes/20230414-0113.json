@@ -1,0 +1,76 @@
+{
+  "detected_at": "2023-04-14T01:13:51.000Z",
+  "botocore_commit": "687ead0",
+  "botocore_commit_url": "https://github.com/boto/botocore/commit/687ead0",
+  "summary": "6 service expansion(s)",
+  "source": "mase-import",
+  "changes": [
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "acm-pca",
+      "id": "acm-pca",
+      "new_regions": [
+        "ap-southeast-4"
+      ],
+      "description": "acm-pca expanded to ap-southeast-4"
+    },
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "arc-zonal-shift",
+      "id": "arc-zonal-shift",
+      "new_regions": [
+        "ap-east-1",
+        "ap-northeast-3"
+      ],
+      "description": "arc-zonal-shift expanded to ap-east-1, ap-northeast-3"
+    },
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "ds",
+      "id": "ds",
+      "new_regions": [
+        "ap-southeast-4"
+      ],
+      "description": "ds expanded to ap-southeast-4"
+    },
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "elasticfilesystem",
+      "id": "elasticfilesystem",
+      "new_regions": [
+        "ap-southeast-4"
+      ],
+      "description": "elasticfilesystem expanded to ap-southeast-4"
+    },
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "lakeformation",
+      "id": "lakeformation",
+      "new_regions": [
+        "eu-central-2",
+        "eu-south-2"
+      ],
+      "description": "lakeformation expanded to eu-central-2, eu-south-2"
+    },
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "omics",
+      "id": "omics",
+      "new_regions": [
+        "ap-southeast-1",
+        "eu-central-1",
+        "eu-west-1",
+        "eu-west-2",
+        "us-east-1",
+        "us-west-2"
+      ],
+      "description": "omics expanded to ap-southeast-1, eu-central-1, eu-west-1, eu-west-2, us-east-1, us-west-2"
+    }
+  ]
+}

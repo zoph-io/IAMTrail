@@ -1,0 +1,20 @@
+{
+  "detected_at": "2023-07-07T00:21:13.000Z",
+  "botocore_commit": "4db001e",
+  "botocore_commit_url": "https://github.com/boto/botocore/commit/4db001e",
+  "summary": "1 service expansion(s)",
+  "source": "mase-import",
+  "changes": [
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "mediaconnect",
+      "id": "mediaconnect",
+      "new_regions": [
+        "af-south-1",
+        "ca-central-1"
+      ],
+      "description": "mediaconnect expanded to af-south-1, ca-central-1"
+    }
+  ]
+}

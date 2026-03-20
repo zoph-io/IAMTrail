@@ -1,0 +1,20 @@
+{
+  "detected_at": "2025-09-23T00:24:49.000Z",
+  "botocore_commit": "674f0d1",
+  "botocore_commit_url": "https://github.com/boto/botocore/commit/674f0d1",
+  "summary": "1 service expansion(s)",
+  "source": "mase-import",
+  "changes": [
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "oidc",
+      "id": "oidc",
+      "new_regions": [
+        "ap-southeast-7",
+        "mx-central-1"
+      ],
+      "description": "oidc expanded to ap-southeast-7, mx-central-1"
+    }
+  ]
+}

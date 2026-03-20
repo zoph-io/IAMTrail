@@ -1,0 +1,18 @@
+{
+  "description": "",
+  "detected_at": "2024-10-21T18:00:28Z",
+  "gist_url": "https://gist.github.com/z0ph/799b2be82945874f810fd1dd4360c8bb",
+  "link": "",
+  "raw_sns_message": {
+    "featureDetails": [
+      {
+        "featureDescription": "Amazon GuardDuty enhances the UnauthorizedAccess:IAMUser/InstanceCredentialExfiltration.InsideAWS finding to detect the use of instance credentials from VPC Endpoints (AWS PrivateLink) in accounts not associated with the EC2 instance role. This new GuardDuty capability detects potential EC2 instance credential misuse and provides context of the remote AWS account using the exfiltrating session credentials. For AWS Service Endpoints supported by this new detection, please see AWS CloudTrail - Logging network activity events: https://docs.aws.amazon.com/awscloudtrail/latest/userguide/logging-network-events-with-cloudtrail.html",
+        "featureLink": "https://docs.aws.amazon.com/guardduty/latest/ug/guardduty_finding-types-iam.html#unauthorizedaccess-iam-instancecredentialexfiltrationinsideaws"
+      }
+    ],
+    "type": "NEW_FINDINGS",
+    "version": "1"
+  },
+  "short_description": "",
+  "type": "NEW_FINDINGS"
+}

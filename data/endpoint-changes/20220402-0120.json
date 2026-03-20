@@ -1,0 +1,19 @@
+{
+  "detected_at": "2022-04-02T01:20:44.000Z",
+  "botocore_commit": "ec296c",
+  "botocore_commit_url": "https://github.com/boto/botocore/commit/ec296c",
+  "summary": "1 service expansion(s)",
+  "source": "mase-import",
+  "changes": [
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "appstream2",
+      "id": "appstream2",
+      "new_regions": [
+        "ca-central-1"
+      ],
+      "description": "appstream2 expanded to ca-central-1"
+    }
+  ]
+}

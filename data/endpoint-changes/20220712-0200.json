@@ -1,0 +1,65 @@
+{
+  "detected_at": "2022-07-12T02:00:04.000Z",
+  "botocore_commit": "9773ccb",
+  "botocore_commit_url": "https://github.com/boto/botocore/commit/9773ccb",
+  "summary": "5 service expansion(s)",
+  "source": "mase-import",
+  "changes": [
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "amplifybackend",
+      "id": "amplifybackend",
+      "new_regions": [
+        "eu-north-1",
+        "eu-west-3",
+        "me-south-1",
+        "sa-east-1",
+        "us-west-1"
+      ],
+      "description": "amplifybackend expanded to eu-north-1, eu-west-3, me-south-1, sa-east-1, us-west-1"
+    },
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "appstream2",
+      "id": "appstream2",
+      "new_regions": [
+        "us-east-2"
+      ],
+      "description": "appstream2 expanded to us-east-2"
+    },
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "kinesisvideo",
+      "id": "kinesisvideo",
+      "new_regions": [
+        "af-south-1"
+      ],
+      "description": "kinesisvideo expanded to af-south-1"
+    },
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "oidc",
+      "id": "oidc",
+      "new_regions": [
+        "ap-east-1",
+        "me-south-1"
+      ],
+      "description": "oidc expanded to ap-east-1, me-south-1"
+    },
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "portal.sso",
+      "id": "portal.sso",
+      "new_regions": [
+        "ap-east-1",
+        "me-south-1"
+      ],
+      "description": "portal.sso expanded to ap-east-1, me-south-1"
+    }
+  ]
+}

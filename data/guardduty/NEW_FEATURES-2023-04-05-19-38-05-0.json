@@ -1,0 +1,18 @@
+{
+  "description": "Starting April 5th, 2023, three new finding types will be added to Amazon GuardDuty. The new finding types will provide detections for the unusual usage of external DNS resolvers and encrypted DNS services (DNS-over-HTTPS and DNS-over-TLS). Detection for the use of unusual external DNS resolvers will be available in all GuardDuty supported AWS regions. Findings related to the use of encrypted DNS services will be available in all regions except the AWS Asia Pacific (Seoul), AWS Asia Pacific (Osaka), AWS Asia Pacific (Jakarta), AWS China (Beijing), and AWS China (Ningxia) Regions. Following are the new finding types: 1. DefenseEvasion:EC2/UnusualDNSResolver 2. DefenseEvasion:EC2/UnusualDoHActivity 3. DefenseEvasion:EC2/UnusualDoTActivity. The changes will be completed by April 7th, 2023.",
+  "detected_at": "2023-04-05T19:38:05Z",
+  "gist_url": "https://gist.github.com/z0ph/0bac2a1740cc44acc4d49d9bb90209ac",
+  "link": "Additional details will be provided in our documentation page https://docs.aws.amazon.com/guardduty/latest/ug/guardduty_finding-types-ec2.html.",
+  "raw_sns_message": {
+    "featureDetails": [
+      {
+        "featureDescription": "Starting April 5th, 2023, three new finding types will be added to Amazon GuardDuty. The new finding types will provide detections for the unusual usage of external DNS resolvers and encrypted DNS services (DNS-over-HTTPS and DNS-over-TLS). Detection for the use of unusual external DNS resolvers will be available in all GuardDuty supported AWS regions. Findings related to the use of encrypted DNS services will be available in all regions except the AWS Asia Pacific (Seoul), AWS Asia Pacific (Osaka), AWS Asia Pacific (Jakarta), AWS China (Beijing), and AWS China (Ningxia) Regions. Following are the new finding types: 1. DefenseEvasion:EC2/UnusualDNSResolver 2. DefenseEvasion:EC2/UnusualDoHActivity 3. DefenseEvasion:EC2/UnusualDoTActivity. The changes will be completed by April 7th, 2023.",
+        "featureLink": "Additional details will be provided in our documentation page https://docs.aws.amazon.com/guardduty/latest/ug/guardduty_finding-types-ec2.html."
+      }
+    ],
+    "type": "NEW_FEATURES",
+    "version": "1"
+  },
+  "short_description": "Starting April 5th, 2023, three new finding types will be added to Amazon GuardDuty. The new finding types will provide detections for the unusual usa",
+  "type": "NEW_FEATURES"
+}

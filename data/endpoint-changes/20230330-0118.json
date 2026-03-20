@@ -1,0 +1,42 @@
+{
+  "detected_at": "2023-03-30T01:18:17.000Z",
+  "botocore_commit": "019cded",
+  "botocore_commit_url": "https://github.com/boto/botocore/commit/019cded",
+  "summary": "3 service expansion(s)",
+  "source": "mase-import",
+  "changes": [
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "arc-zonal-shift",
+      "id": "arc-zonal-shift",
+      "new_regions": [
+        "ap-south-1",
+        "eu-west-2"
+      ],
+      "description": "arc-zonal-shift expanded to ap-south-1, eu-west-2"
+    },
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "runtime.sagemaker",
+      "id": "runtime.sagemaker",
+      "new_regions": [
+        "eu-south-2"
+      ],
+      "description": "runtime.sagemaker expanded to eu-south-2"
+    },
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "servicecatalog",
+      "id": "servicecatalog",
+      "new_regions": [
+        "ap-south-2",
+        "eu-central-2",
+        "eu-south-2"
+      ],
+      "description": "servicecatalog expanded to ap-south-2, eu-central-2, eu-south-2"
+    }
+  ]
+}

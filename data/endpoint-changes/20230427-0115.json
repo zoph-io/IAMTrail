@@ -1,0 +1,50 @@
+{
+  "detected_at": "2023-04-27T01:15:46.000Z",
+  "botocore_commit": "95b0eae",
+  "botocore_commit_url": "https://github.com/boto/botocore/commit/95b0eae",
+  "summary": "3 service expansion(s)",
+  "source": "mase-import",
+  "changes": [
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "osis",
+      "id": "osis",
+      "new_regions": [
+        "ap-northeast-1",
+        "ap-southeast-1",
+        "ap-southeast-2",
+        "eu-central-1",
+        "eu-west-1",
+        "eu-west-2",
+        "us-east-1",
+        "us-east-2",
+        "us-west-1",
+        "us-west-2"
+      ],
+      "description": "osis expanded to ap-northeast-1, ap-southeast-1, ap-southeast-2, eu-central-1, eu-west-1, eu-west-2, us-east-1, us-east-2, us-west-1, us-west-2"
+    },
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "license-manager-linux-subscriptions",
+      "id": "license-manager-linux-subscriptions",
+      "new_regions": [
+        "cn-north-1",
+        "cn-northwest-1"
+      ],
+      "description": "license-manager-linux-subscriptions expanded to cn-north-1, cn-northwest-1"
+    },
+    {
+      "type": "service_expansion",
+      "partition": "aws-cn",
+      "service": "license-manager-linux-subscriptions",
+      "id": "license-manager-linux-subscriptions",
+      "new_regions": [
+        "cn-north-1",
+        "cn-northwest-1"
+      ],
+      "description": "license-manager-linux-subscriptions expanded to cn-north-1, cn-northwest-1"
+    }
+  ]
+}

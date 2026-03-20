@@ -1,0 +1,19 @@
+{
+  "detected_at": "2026-03-12T00:30:06.000Z",
+  "botocore_commit": "8e7a97f",
+  "botocore_commit_url": "https://github.com/boto/botocore/commit/8e7a97f",
+  "summary": "1 service expansion(s)",
+  "source": "mase-import",
+  "changes": [
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "quicksight",
+      "id": "quicksight",
+      "new_regions": [
+        "ap-southeast-5"
+      ],
+      "description": "quicksight expanded to ap-southeast-5"
+    }
+  ]
+}

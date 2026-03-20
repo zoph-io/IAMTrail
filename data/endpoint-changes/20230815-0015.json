@@ -1,0 +1,80 @@
+{
+  "detected_at": "2023-08-15T00:15:48.000Z",
+  "botocore_commit": "bc21191",
+  "botocore_commit_url": "https://github.com/boto/botocore/commit/bc21191",
+  "summary": "6 service expansion(s)",
+  "source": "mase-import",
+  "changes": [
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "acm-pca",
+      "id": "acm-pca",
+      "new_regions": [
+        "il-central-1"
+      ],
+      "description": "acm-pca expanded to il-central-1"
+    },
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "networkmanager",
+      "id": "networkmanager",
+      "new_regions": [
+        "us-west-2"
+      ],
+      "description": "networkmanager expanded to us-west-2"
+    },
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "schemas",
+      "id": "schemas",
+      "new_regions": [
+        "af-south-1",
+        "ap-northeast-3",
+        "ap-southeast-3",
+        "eu-central-2",
+        "eu-south-1",
+        "eu-south-2",
+        "me-central-1",
+        "me-south-1"
+      ],
+      "description": "schemas expanded to af-south-1, ap-northeast-3, ap-southeast-3, eu-central-2, eu-south-1, eu-south-2, me-central-1, me-south-1"
+    },
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "vpc-lattice",
+      "id": "vpc-lattice",
+      "new_regions": [
+        "eu-central-1",
+        "eu-north-1",
+        "eu-west-2"
+      ],
+      "description": "vpc-lattice expanded to eu-central-1, eu-north-1, eu-west-2"
+    },
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "schemas",
+      "id": "schemas",
+      "new_regions": [
+        "cn-north-1",
+        "cn-northwest-1"
+      ],
+      "description": "schemas expanded to cn-north-1, cn-northwest-1"
+    },
+    {
+      "type": "service_expansion",
+      "partition": "aws-cn",
+      "service": "schemas",
+      "id": "schemas",
+      "new_regions": [
+        "cn-north-1",
+        "cn-northwest-1"
+      ],
+      "description": "schemas expanded to cn-north-1, cn-northwest-1"
+    }
+  ]
+}

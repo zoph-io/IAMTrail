@@ -1,0 +1,22 @@
+{
+  "detected_at": "2023-10-18T00:16:49.000Z",
+  "botocore_commit": "8c080e6",
+  "botocore_commit_url": "https://github.com/boto/botocore/commit/8c080e6",
+  "summary": "1 service expansion(s)",
+  "source": "mase-import",
+  "changes": [
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "finspace",
+      "id": "finspace",
+      "new_regions": [
+        "ap-southeast-1",
+        "ap-southeast-2",
+        "eu-central-1",
+        "eu-west-2"
+      ],
+      "description": "finspace expanded to ap-southeast-1, ap-southeast-2, eu-central-1, eu-west-2"
+    }
+  ]
+}

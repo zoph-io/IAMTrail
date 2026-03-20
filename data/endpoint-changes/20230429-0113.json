@@ -1,0 +1,40 @@
+{
+  "detected_at": "2023-04-29T01:13:48.000Z",
+  "botocore_commit": "c0a64d2",
+  "botocore_commit_url": "https://github.com/boto/botocore/commit/c0a64d2",
+  "summary": "3 service expansion(s)",
+  "source": "mase-import",
+  "changes": [
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "arc-zonal-shift",
+      "id": "arc-zonal-shift",
+      "new_regions": [
+        "us-west-1"
+      ],
+      "description": "arc-zonal-shift expanded to us-west-1"
+    },
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "autoscaling",
+      "id": "autoscaling",
+      "new_regions": [
+        "ca-central-1"
+      ],
+      "description": "autoscaling expanded to ca-central-1"
+    },
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "resource-explorer-2",
+      "id": "resource-explorer-2",
+      "new_regions": [
+        "af-south-1",
+        "ap-east-1"
+      ],
+      "description": "resource-explorer-2 expanded to af-south-1, ap-east-1"
+    }
+  ]
+}

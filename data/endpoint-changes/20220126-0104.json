@@ -1,0 +1,30 @@
+{
+  "detected_at": "2022-01-26T01:04:14.000Z",
+  "botocore_commit": "d1b525",
+  "botocore_commit_url": "https://github.com/boto/botocore/commit/d1b525",
+  "summary": "2 service expansion(s)",
+  "source": "mase-import",
+  "changes": [
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "greengrass",
+      "id": "greengrass",
+      "new_regions": [
+        "ca-central-1"
+      ],
+      "description": "greengrass expanded to ca-central-1"
+    },
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "kafka",
+      "id": "kafka",
+      "new_regions": [
+        "af-south-1",
+        "ap-northeast-3"
+      ],
+      "description": "kafka expanded to af-south-1, ap-northeast-3"
+    }
+  ]
+}

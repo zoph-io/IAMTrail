@@ -1,0 +1,19 @@
+{
+  "detected_at": "2025-09-10T00:24:25.000Z",
+  "botocore_commit": "07e9e1f",
+  "botocore_commit_url": "https://github.com/boto/botocore/commit/07e9e1f",
+  "summary": "1 service expansion(s)",
+  "source": "mase-import",
+  "changes": [
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "wafv2",
+      "id": "wafv2",
+      "new_regions": [
+        "ap-east-2"
+      ],
+      "description": "wafv2 expanded to ap-east-2"
+    }
+  ]
+}

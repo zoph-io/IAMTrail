@@ -1,0 +1,52 @@
+{
+  "detected_at": "2023-04-07T01:08:17.000Z",
+  "botocore_commit": "24e268a",
+  "botocore_commit_url": "https://github.com/boto/botocore/commit/24e268a",
+  "summary": "4 service expansion(s)",
+  "source": "mase-import",
+  "changes": [
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "api.sagemaker",
+      "id": "api.sagemaker",
+      "new_regions": [
+        "ap-south-2"
+      ],
+      "description": "api.sagemaker expanded to ap-south-2"
+    },
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "glue",
+      "id": "glue",
+      "new_regions": [
+        "eu-central-2",
+        "eu-south-2"
+      ],
+      "description": "glue expanded to eu-central-2, eu-south-2"
+    },
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "kinesisanalytics",
+      "id": "kinesisanalytics",
+      "new_regions": [
+        "ap-south-2",
+        "eu-central-2",
+        "eu-south-2"
+      ],
+      "description": "kinesisanalytics expanded to ap-south-2, eu-central-2, eu-south-2"
+    },
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "polly",
+      "id": "polly",
+      "new_regions": [
+        "ap-northeast-3"
+      ],
+      "description": "polly expanded to ap-northeast-3"
+    }
+  ]
+}

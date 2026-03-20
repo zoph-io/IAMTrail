@@ -1,0 +1,19 @@
+{
+  "detected_at": "2023-09-20T00:16:23.000Z",
+  "botocore_commit": "e80ea35",
+  "botocore_commit_url": "https://github.com/boto/botocore/commit/e80ea35",
+  "summary": "1 service expansion(s)",
+  "source": "mase-import",
+  "changes": [
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "sso",
+      "id": "sso",
+      "new_regions": [
+        "eu-central-2"
+      ],
+      "description": "sso expanded to eu-central-2"
+    }
+  ]
+}

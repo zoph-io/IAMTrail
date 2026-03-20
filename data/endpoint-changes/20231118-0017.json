@@ -1,0 +1,19 @@
+{
+  "detected_at": "2023-11-18T00:17:18.000Z",
+  "botocore_commit": "fb20fa8",
+  "botocore_commit_url": "https://github.com/boto/botocore/commit/fb20fa8",
+  "summary": "1 service expansion(s)",
+  "source": "mase-import",
+  "changes": [
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "servicecatalog-appregistry",
+      "id": "servicecatalog-appregistry",
+      "new_regions": [
+        "il-central-1"
+      ],
+      "description": "servicecatalog-appregistry expanded to il-central-1"
+    }
+  ]
+}

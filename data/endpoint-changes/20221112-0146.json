@@ -1,0 +1,57 @@
+{
+  "detected_at": "2022-11-12T01:46:43.000Z",
+  "botocore_commit": "ccb2a58",
+  "botocore_commit_url": "https://github.com/boto/botocore/commit/ccb2a58",
+  "summary": "4 service expansion(s)",
+  "source": "mase-import",
+  "changes": [
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "email",
+      "id": "email",
+      "new_regions": [
+        "ap-southeast-3"
+      ],
+      "description": "email expanded to ap-southeast-3"
+    },
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "gamesparks",
+      "id": "gamesparks",
+      "new_regions": [
+        "ap-northeast-1"
+      ],
+      "description": "gamesparks expanded to ap-northeast-1"
+    },
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "network-firewall",
+      "id": "network-firewall",
+      "new_regions": [
+        "ap-southeast-3"
+      ],
+      "description": "network-firewall expanded to ap-southeast-3"
+    },
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "scheduler",
+      "id": "scheduler",
+      "new_regions": [
+        "ap-northeast-1",
+        "ap-southeast-1",
+        "ap-southeast-2",
+        "eu-central-1",
+        "eu-north-1",
+        "eu-west-1",
+        "us-east-1",
+        "us-east-2",
+        "us-west-2"
+      ],
+      "description": "scheduler expanded to ap-northeast-1, ap-southeast-1, ap-southeast-2, eu-central-1, eu-north-1, eu-west-1, us-east-1, us-east-2, us-west-2"
+    }
+  ]
+}

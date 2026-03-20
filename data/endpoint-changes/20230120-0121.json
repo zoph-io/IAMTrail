@@ -1,0 +1,45 @@
+{
+  "detected_at": "2023-01-20T01:21:14.000Z",
+  "botocore_commit": "5ebc66f",
+  "botocore_commit_url": "https://github.com/boto/botocore/commit/5ebc66f",
+  "summary": "3 service expansion(s)",
+  "source": "mase-import",
+  "changes": [
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "api.mediatailor",
+      "id": "api.mediatailor",
+      "new_regions": [
+        "af-south-1",
+        "ap-south-1",
+        "us-east-2"
+      ],
+      "description": "api.mediatailor expanded to af-south-1, ap-south-1, us-east-2"
+    },
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "ebs",
+      "id": "ebs",
+      "new_regions": [
+        "ap-south-2",
+        "eu-central-2",
+        "eu-south-2"
+      ],
+      "description": "ebs expanded to ap-south-2, eu-central-2, eu-south-2"
+    },
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "m2",
+      "id": "m2",
+      "new_regions": [
+        "ap-northeast-2",
+        "us-east-2",
+        "us-west-1"
+      ],
+      "description": "m2 expanded to ap-northeast-2, us-east-2, us-west-1"
+    }
+  ]
+}

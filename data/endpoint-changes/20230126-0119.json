@@ -1,0 +1,21 @@
+{
+  "detected_at": "2023-01-26T01:19:45.000Z",
+  "botocore_commit": "05ac863",
+  "botocore_commit_url": "https://github.com/boto/botocore/commit/05ac863",
+  "summary": "1 service expansion(s)",
+  "source": "mase-import",
+  "changes": [
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "aoss",
+      "id": "aoss",
+      "new_regions": [
+        "ap-southeast-1",
+        "ap-southeast-2",
+        "eu-central-1"
+      ],
+      "description": "aoss expanded to ap-southeast-1, ap-southeast-2, eu-central-1"
+    }
+  ]
+}

@@ -1,0 +1,19 @@
+{
+  "detected_at": "2022-11-03T01:51:16.000Z",
+  "botocore_commit": "973779b",
+  "botocore_commit_url": "https://github.com/boto/botocore/commit/973779b",
+  "summary": "1 service expansion(s)",
+  "source": "mase-import",
+  "changes": [
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "lambda",
+      "id": "lambda",
+      "new_regions": [
+        "me-central-1"
+      ],
+      "description": "lambda expanded to me-central-1"
+    }
+  ]
+}

@@ -1,0 +1,30 @@
+{
+  "detected_at": "2025-11-22T00:25:24.000Z",
+  "botocore_commit": "bd2d29e",
+  "botocore_commit_url": "https://github.com/boto/botocore/commit/bd2d29e",
+  "summary": "2 service expansion(s)",
+  "source": "mase-import",
+  "changes": [
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "email",
+      "id": "email",
+      "new_regions": [
+        "ap-southeast-5",
+        "ca-west-1"
+      ],
+      "description": "email expanded to ap-southeast-5, ca-west-1"
+    },
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "oidc",
+      "id": "oidc",
+      "new_regions": [
+        "ap-east-2"
+      ],
+      "description": "oidc expanded to ap-east-2"
+    }
+  ]
+}

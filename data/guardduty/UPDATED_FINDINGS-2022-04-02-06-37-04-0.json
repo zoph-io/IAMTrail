@@ -1,0 +1,26 @@
+{
+  "description": "",
+  "detected_at": "2022-04-02T06:37:04Z",
+  "gist_url": "https://gist.github.com/z0ph/c1c5c4a3e110136e0294fabca9aacd36",
+  "link": "",
+  "raw_sns_message": {
+    "featureDetails": [
+      {
+        "featureDescription": "The following is an update on the response by Amazon GuardDuty to the Spring Cloud RCE (CVE-2022-22963) and Spring Core RCE (CVE-2022-22965). Amazon GuardDuty coverage update: On March 30, 2022 GuardDuty updated its VPC Flow Log and DNS query log based detections by adding IPs and domains associated with actors observed attempting to exploit these vulnerabilities. As of April 1, 2022 Threat Name labels have been added to the following finding types to help identify communication with actors targeting these CVEs: \u201cBackdoor:EC2/C&CActivity.B\u201d, \u201cBackdoor:EC2/C& ;CActivity.B!DNS\u201d.",
+        "featureLink": "https://docs.aws.amazon.com/guardduty/latest/ug/guardduty_finding-types-ec2.html"
+      },
+      {
+        "featureDescription": "Backdoor:EC2/C&CActivity.B: If the IP in the finding is related to the Spring Core or Spring Cloud vulnerabilities then fields of the associated finding will include the following values: service.additionalInfo.threatListName = Amazon and service.additionalInfo.threatName = SpringShell Related.",
+        "featureLink": "https://docs.aws.amazon.com/guardduty/latest/ug/guardduty_finding-types-ec2.html#backdoor-ec2-ccactivityb"
+      },
+      {
+        "featureDescription": "Backdoor:EC2/C&CActivity.B!DNS: If the domain name queried related to the Spring Core or Spring Cloud vulnerabilities then the fields of the associated finding will include the following values: service.additionalInfo.threatListName = Amazon and service.additionalInfo.threatName = SpringShell Related.",
+        "featureLink": "https://docs.aws.amazon.com/guardduty/latest/ug/guardduty_finding-types-ec2.html#backdoor-ec2-ccactivitybdns"
+      }
+    ],
+    "type": "UPDATED_FINDINGS",
+    "version": "1"
+  },
+  "short_description": "",
+  "type": "UPDATED_FINDINGS"
+}

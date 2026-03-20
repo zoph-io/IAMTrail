@@ -1,0 +1,29 @@
+{
+  "detected_at": "2022-05-28T01:40:04.000Z",
+  "botocore_commit": "605192",
+  "botocore_commit_url": "https://github.com/boto/botocore/commit/605192",
+  "summary": "2 service expansion(s)",
+  "source": "mase-import",
+  "changes": [
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "batch",
+      "id": "batch",
+      "new_regions": [
+        "ap-southeast-3"
+      ],
+      "description": "batch expanded to ap-southeast-3"
+    },
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "oidc",
+      "id": "oidc",
+      "new_regions": [
+        "ap-northeast-3"
+      ],
+      "description": "oidc expanded to ap-northeast-3"
+    }
+  ]
+}

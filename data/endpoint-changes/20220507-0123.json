@@ -1,0 +1,39 @@
+{
+  "detected_at": "2022-05-07T01:23:15.000Z",
+  "botocore_commit": "2a2014",
+  "botocore_commit_url": "https://github.com/boto/botocore/commit/2a2014",
+  "summary": "3 service expansion(s)",
+  "source": "mase-import",
+  "changes": [
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "ec2",
+      "id": "ec2",
+      "new_regions": [
+        "ap-south-1"
+      ],
+      "description": "ec2 expanded to ap-south-1"
+    },
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "identity-chime",
+      "id": "identity-chime",
+      "new_regions": [
+        "eu-central-1"
+      ],
+      "description": "identity-chime expanded to eu-central-1"
+    },
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "messaging-chime",
+      "id": "messaging-chime",
+      "new_regions": [
+        "eu-central-1"
+      ],
+      "description": "messaging-chime expanded to eu-central-1"
+    }
+  ]
+}

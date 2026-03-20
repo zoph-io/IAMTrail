@@ -1,0 +1,19 @@
+{
+  "detected_at": "2025-07-30T00:29:11.000Z",
+  "botocore_commit": "bb0709f",
+  "botocore_commit_url": "https://github.com/boto/botocore/commit/bb0709f",
+  "summary": "1 service expansion(s)",
+  "source": "mase-import",
+  "changes": [
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "kafkaconnect",
+      "id": "kafkaconnect",
+      "new_regions": [
+        "ap-south-2"
+      ],
+      "description": "kafkaconnect expanded to ap-south-2"
+    }
+  ]
+}

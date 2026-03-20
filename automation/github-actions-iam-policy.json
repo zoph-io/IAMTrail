@@ -1,0 +1,316 @@
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Effect": "Allow",
+            "Action": [
+                "s3:GetObject",
+                "s3:PutObject",
+                "s3:DeleteObject"
+            ],
+            "Resource": [
+                "arn:aws:s3:::zoph-lab-terraform-tfstate/mamip/*",
+                "arn:aws:s3:::mamip-artifacts/*",
+                "arn:aws:s3:::iamtrail.com/*"
+            ]
+        },
+        {
+            "Effect": "Allow",
+            "Action": "s3:ListBucket",
+            "Resource": [
+                "arn:aws:s3:::zoph-lab-terraform-tfstate",
+                "arn:aws:s3:::iamtrail.com"
+            ]
+        },
+        {
+            "Effect": "Allow",
+            "Action": [
+                "s3:CreateBucket",
+                "s3:GetBucket*",
+                "s3:PutBucket*",
+                "s3:DeleteBucketPolicy",
+                "s3:GetEncryptionConfiguration",
+                "s3:GetLifecycleConfiguration",
+                "s3:GetReplicationConfiguration",
+                "s3:GetAccelerateConfiguration"
+            ],
+            "Resource": "arn:aws:s3:::iamtrail.com"
+        },
+        {
+            "Effect": "Allow",
+            "Action": [
+                "iam:GetRole",
+                "iam:CreateRole",
+                "iam:DeleteRole",
+                "iam:UpdateAssumeRolePolicy",
+                "iam:PutRolePolicy",
+                "iam:GetRolePolicy",
+                "iam:DeleteRolePolicy",
+                "iam:ListRolePolicies",
+                "iam:ListAttachedRolePolicies",
+                "iam:ListInstanceProfilesForRole",
+                "iam:TagRole",
+                "iam:UntagRole"
+            ],
+            "Resource": [
+                "arn:aws:iam::567589703415:role/mamip_ecs_role_*",
+                "arn:aws:iam::567589703415:role/iamtrail-*"
+            ]
+        },
+        {
+            "Effect": "Allow",
+            "Action": "iam:PassRole",
+            "Resource": [
+                "arn:aws:iam::567589703415:role/mamip_ecs_role_*",
+                "arn:aws:iam::567589703415:role/iamtrail-*",
+                "arn:aws:iam::567589703415:role/ecsEventsRole",
+                "arn:aws:iam::567589703415:role/ecsTaskExecutionRole"
+            ]
+        },
+        {
+            "Effect": "Allow",
+            "Action": [
+                "iam:GetPolicyVersion",
+                "iam:ListPolicyVersions"
+            ],
+            "Resource": [
+                "arn:aws:iam::567589703415:policy/*",
+                "arn:aws:iam::aws:policy/*"
+            ]
+        },
+        {
+            "Effect": "Allow",
+            "Action": [
+                "iam:ListPolicies",
+                "access-analyzer:ValidatePolicy",
+                "sts:GetCallerIdentity",
+                "ec2:Describe*",
+                "ecr:GetAuthorizationToken"
+            ],
+            "Resource": "*"
+        },
+        {
+            "Effect": "Allow",
+            "Action": [
+                "ecs:DeregisterTaskDefinition",
+                "ecs:RegisterTaskDefinition",
+                "ecs:TagResource",
+                "ecs:Describe*",
+                "ecs:List*"
+            ],
+            "Resource": "*"
+        },
+        {
+            "Effect": "Allow",
+            "Action": "ecs:*",
+            "Resource": [
+                "arn:aws:ecs:*:567589703415:container-instance/*",
+                "arn:aws:ecs:*:567589703415:service/*",
+                "arn:aws:ecs:*:567589703415:task-set/*/*/*",
+                "arn:aws:ecs:*:567589703415:task/*",
+                "arn:aws:ecs:eu-west-1:567589703415:cluster/mamip_ecs_cluster_*",
+                "arn:aws:ecs:eu-west-1:567589703415:task-definition/*"
+            ]
+        },
+        {
+            "Effect": "Allow",
+            "Action": "ecr:*",
+            "Resource": "arn:aws:ecr:eu-west-1:567589703415:repository/mamip-ecr-*"
+        },
+        {
+            "Effect": "Allow",
+            "Action": [
+                "events:Describe*",
+                "events:EnableRule",
+                "events:DisableRule",
+                "events:List*",
+                "events:Put*",
+                "events:Delete*",
+                "events:RemoveTargets",
+                "events:TagResource"
+            ],
+            "Resource": "*"
+        },
+        {
+            "Effect": "Allow",
+            "Action": [
+                "logs:CreateLogGroup",
+                "logs:DeleteLogGroup",
+                "logs:Describe*",
+                "logs:List*",
+                "logs:PutRetentionPolicy",
+                "logs:TagResource",
+                "logs:TagLogGroup"
+            ],
+            "Resource": "*"
+        },
+        {
+            "Effect": "Allow",
+            "Action": [
+                "cloudwatch:PutMetricAlarm",
+                "cloudwatch:DescribeAlarms",
+                "cloudwatch:DeleteAlarms",
+                "cloudwatch:ListTagsForResource",
+                "cloudwatch:TagResource"
+            ],
+            "Resource": "*"
+        },
+        {
+            "Effect": "Allow",
+            "Action": [
+                "cloudfront:*Distribution*",
+                "cloudfront:*CloudFrontOriginAccessIdentity*",
+                "cloudfront:*Function*",
+                "cloudfront:*Invalidation*",
+                "cloudfront:TagResource",
+                "cloudfront:UntagResource",
+                "cloudfront:ListTagsForResource"
+            ],
+            "Resource": "*"
+        },
+        {
+            "Effect": "Allow",
+            "Action": [
+                "route53:CreateHostedZone",
+                "route53:GetHostedZone",
+                "route53:DeleteHostedZone",
+                "route53:ListHostedZones",
+                "route53:ChangeResourceRecordSets",
+                "route53:ListResourceRecordSets",
+                "route53:GetChange",
+                "route53:ChangeTagsForResource",
+                "route53:ListTagsForResource"
+            ],
+            "Resource": "*"
+        },
+        {
+            "Effect": "Allow",
+            "Action": [
+                "acm:RequestCertificate",
+                "acm:DescribeCertificate",
+                "acm:ListCertificates",
+                "acm:DeleteCertificate",
+                "acm:ListTagsForCertificate",
+                "acm:AddTagsToCertificate",
+                "acm:GetCertificate"
+            ],
+            "Resource": "*"
+        },
+        {
+            "Effect": "Allow",
+            "Action": [
+                "dynamodb:CreateTable",
+                "dynamodb:DescribeTable",
+                "dynamodb:UpdateTable",
+                "dynamodb:DeleteTable",
+                "dynamodb:DescribeTimeToLive",
+                "dynamodb:UpdateTimeToLive",
+                "dynamodb:TagResource",
+                "dynamodb:UntagResource",
+                "dynamodb:ListTagsOfResource",
+                "dynamodb:DescribeContinuousBackups"
+            ],
+            "Resource": "arn:aws:dynamodb:eu-west-1:567589703415:table/iamtrail-*"
+        },
+        {
+            "Effect": "Allow",
+            "Action": [
+                "dynamodb:PutItem",
+                "dynamodb:BatchWriteItem"
+            ],
+            "Resource": "arn:aws:dynamodb:eu-west-1:567589703415:table/iamtrail-endpoint-changes"
+        },
+        {
+            "Effect": "Allow",
+            "Action": [
+                "dynamodb:Scan",
+                "dynamodb:Query"
+            ],
+            "Resource": "arn:aws:dynamodb:eu-west-1:567589703415:table/iamtrail-guardduty-announcements"
+        },
+        {
+            "Effect": "Allow",
+            "Action": [
+                "sqs:CreateQueue",
+                "sqs:GetQueueAttributes",
+                "sqs:SetQueueAttributes",
+                "sqs:DeleteQueue",
+                "sqs:GetQueueUrl",
+                "sqs:TagQueue",
+                "sqs:ListQueueTags"
+            ],
+            "Resource": "arn:aws:sqs:eu-west-1:567589703415:iamtrail-*"
+        },
+        {
+            "Effect": "Allow",
+            "Action": [
+                "sns:CreateTopic",
+                "sns:GetTopicAttributes",
+                "sns:SetTopicAttributes",
+                "sns:DeleteTopic",
+                "sns:Subscribe",
+                "sns:Unsubscribe",
+                "sns:GetSubscriptionAttributes",
+                "sns:ListSubscriptionsByTopic",
+                "sns:TagResource",
+                "sns:ListTagsForResource"
+            ],
+            "Resource": [
+                "arn:aws:sns:eu-west-1:567589703415:mamip*",
+                "arn:aws:sns:eu-west-1:567589703415:mamip*:*",
+                "arn:aws:sns:eu-west-1:965013871422:GuardDutyAnnouncements"
+            ]
+        },
+        {
+            "Effect": "Allow",
+            "Action": [
+                "lambda:CreateFunction",
+                "lambda:GetFunction",
+                "lambda:GetFunctionConfiguration",
+                "lambda:GetFunctionCodeSigningConfig",
+                "lambda:UpdateFunctionCode",
+                "lambda:UpdateFunctionConfiguration",
+                "lambda:DeleteFunction",
+                "lambda:AddPermission",
+                "lambda:RemovePermission",
+                "lambda:GetPolicy",
+                "lambda:TagResource",
+                "lambda:ListTags",
+                "lambda:ListVersionsByFunction",
+                "lambda:PutFunctionConcurrency"
+            ],
+            "Resource": "arn:aws:lambda:eu-west-1:567589703415:function:iamtrail-*"
+        },
+        {
+            "Effect": "Allow",
+            "Action": [
+                "lambda:CreateEventSourceMapping",
+                "lambda:GetEventSourceMapping",
+                "lambda:UpdateEventSourceMapping",
+                "lambda:DeleteEventSourceMapping",
+                "lambda:ListEventSourceMappings",
+                "lambda:ListTags",
+                "lambda:TagResource",
+                "lambda:UntagResource"
+            ],
+            "Resource": "*"
+        },
+        {
+            "Effect": "Allow",
+            "Action": [
+                "apigateway:GET",
+                "apigateway:POST",
+                "apigateway:PUT",
+                "apigateway:PATCH",
+                "apigateway:DELETE"
+            ],
+            "Resource": [
+                "arn:aws:apigateway:eu-west-1::/apis",
+                "arn:aws:apigateway:eu-west-1::/apis/*",
+                "arn:aws:apigateway:eu-west-1::/domainnames",
+                "arn:aws:apigateway:eu-west-1::/domainnames/*",
+                "arn:aws:apigateway:eu-west-1::/tags/*"
+            ]
+        }
+    ]
+}

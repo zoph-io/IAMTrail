@@ -1,0 +1,19 @@
+{
+  "detected_at": "2022-02-18T01:08:28.000Z",
+  "botocore_commit": "10207c",
+  "botocore_commit_url": "https://github.com/boto/botocore/commit/10207c",
+  "summary": "1 service expansion(s)",
+  "source": "mase-import",
+  "changes": [
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "guardduty",
+      "id": "guardduty",
+      "new_regions": [
+        "ap-southeast-3"
+      ],
+      "description": "guardduty expanded to ap-southeast-3"
+    }
+  ]
+}

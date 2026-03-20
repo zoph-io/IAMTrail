@@ -134,12 +134,16 @@ def build_email_html(subscriber, policy_names, commit_url, commit_sha):
 
 
 def get_instant_subscribers():
-    """Scan for confirmed subscribers with instant frequency."""
+    """Scan for confirmed instant subscribers that track IAM policies."""
     result = subs_table.scan(
         FilterExpression="confirmed = :c AND frequency = :f",
         ExpressionAttributeValues={":c": True, ":f": "instant"},
     )
-    return result.get("Items", [])
+    items = result.get("Items", [])
+    return [
+        s for s in items
+        if "iam_policies" in s.get("topics", ["iam_policies"])
+    ]
 
 
 def handler(event, context):

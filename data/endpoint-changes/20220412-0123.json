@@ -1,0 +1,20 @@
+{
+  "detected_at": "2022-04-12T01:23:36.000Z",
+  "botocore_commit": "60f345",
+  "botocore_commit_url": "https://github.com/boto/botocore/commit/60f345",
+  "summary": "1 service expansion(s)",
+  "source": "mase-import",
+  "changes": [
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "servicecatalog-appregistry",
+      "id": "servicecatalog-appregistry",
+      "new_regions": [
+        "ap-northeast-3",
+        "ap-southeast-3"
+      ],
+      "description": "servicecatalog-appregistry expanded to ap-northeast-3, ap-southeast-3"
+    }
+  ]
+}

@@ -1,0 +1,20 @@
+{
+  "detected_at": "2025-09-12T00:24:40.000Z",
+  "botocore_commit": "4ddb43d",
+  "botocore_commit_url": "https://github.com/boto/botocore/commit/4ddb43d",
+  "summary": "1 service expansion(s)",
+  "source": "mase-import",
+  "changes": [
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "redshift-serverless",
+      "id": "redshift-serverless",
+      "new_regions": [
+        "af-south-1",
+        "eu-south-1"
+      ],
+      "description": "redshift-serverless expanded to af-south-1, eu-south-1"
+    }
+  ]
+}

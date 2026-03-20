@@ -1,0 +1,50 @@
+{
+  "detected_at": "2025-03-22T00:23:45.000Z",
+  "botocore_commit": "31d5f70",
+  "botocore_commit_url": "https://github.com/boto/botocore/commit/31d5f70",
+  "summary": "4 service expansion(s)",
+  "source": "mase-import",
+  "changes": [
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "cleanrooms",
+      "id": "cleanrooms",
+      "new_regions": [
+        "us-east-1"
+      ],
+      "description": "cleanrooms expanded to us-east-1"
+    },
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "ds",
+      "id": "ds",
+      "new_regions": [
+        "ap-southeast-7",
+        "mx-central-1"
+      ],
+      "description": "ds expanded to ap-southeast-7, mx-central-1"
+    },
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "entitlement.marketplace",
+      "id": "entitlement.marketplace",
+      "new_regions": [
+        "us-east-1"
+      ],
+      "description": "entitlement.marketplace expanded to us-east-1"
+    },
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "route53profiles",
+      "id": "route53profiles",
+      "new_regions": [
+        "ca-central-1"
+      ],
+      "description": "route53profiles expanded to ca-central-1"
+    }
+  ]
+}

@@ -1,0 +1,19 @@
+{
+  "detected_at": "2021-12-22T01:01:48.000Z",
+  "botocore_commit": "b0ac16",
+  "botocore_commit_url": "https://github.com/boto/botocore/commit/b0ac16",
+  "summary": "1 service expansion(s)",
+  "source": "mase-import",
+  "changes": [
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "resource-groups",
+      "id": "resource-groups",
+      "new_regions": [
+        "ap-southeast-3"
+      ],
+      "description": "resource-groups expanded to ap-southeast-3"
+    }
+  ]
+}

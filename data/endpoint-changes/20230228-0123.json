@@ -1,0 +1,16 @@
+{
+  "detected_at": "2023-02-28T01:23:38.000Z",
+  "botocore_commit": "32f6d5d",
+  "botocore_commit_url": "https://github.com/boto/botocore/commit/32f6d5d",
+  "summary": "1 service expansion(s)",
+  "source": "mase-import",
+  "changes": [
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "internetmonitor",
+      "id": "internetmonitor",
+      "description": "internetmonitor expanded to new region(s)"
+    }
+  ]
+}

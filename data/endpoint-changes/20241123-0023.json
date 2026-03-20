@@ -1,0 +1,40 @@
+{
+  "detected_at": "2024-11-23T00:23:53.000Z",
+  "botocore_commit": "9864729",
+  "botocore_commit_url": "https://github.com/boto/botocore/commit/9864729",
+  "summary": "3 service expansion(s)",
+  "source": "mase-import",
+  "changes": [
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "ingest.timestream",
+      "id": "ingest.timestream",
+      "new_regions": [
+        "ap-south-1"
+      ],
+      "description": "ingest.timestream expanded to ap-south-1"
+    },
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "license-manager-linux-subscriptions",
+      "id": "license-manager-linux-subscriptions",
+      "new_regions": [
+        "ap-southeast-5"
+      ],
+      "description": "license-manager-linux-subscriptions expanded to ap-southeast-5"
+    },
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "vpc-lattice",
+      "id": "vpc-lattice",
+      "new_regions": [
+        "eu-central-2",
+        "me-central-1"
+      ],
+      "description": "vpc-lattice expanded to eu-central-2, me-central-1"
+    }
+  ]
+}

@@ -1,0 +1,19 @@
+{
+  "detected_at": "2023-03-02T01:36:20.000Z",
+  "botocore_commit": "b123db8",
+  "botocore_commit_url": "https://github.com/boto/botocore/commit/b123db8",
+  "summary": "1 service expansion(s)",
+  "source": "mase-import",
+  "changes": [
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "codecommit",
+      "id": "codecommit",
+      "new_regions": [
+        "ap-southeast-3"
+      ],
+      "description": "codecommit expanded to ap-southeast-3"
+    }
+  ]
+}

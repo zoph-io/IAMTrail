@@ -1,0 +1,29 @@
+{
+  "detected_at": "2022-12-14T01:21:32.000Z",
+  "botocore_commit": "3602006",
+  "botocore_commit_url": "https://github.com/boto/botocore/commit/3602006",
+  "summary": "2 service expansion(s)",
+  "source": "mase-import",
+  "changes": [
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "guardduty",
+      "id": "guardduty",
+      "new_regions": [
+        "eu-central-2"
+      ],
+      "description": "guardduty expanded to eu-central-2"
+    },
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "rbin",
+      "id": "rbin",
+      "new_regions": [
+        "ap-south-2"
+      ],
+      "description": "rbin expanded to ap-south-2"
+    }
+  ]
+}

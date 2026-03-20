@@ -1,0 +1,18 @@
+{
+  "description": "Amazon GuardDuty now available in AWS Asia Pacific (Melbourne) Region",
+  "detected_at": "2023-04-19T23:03:13Z",
+  "gist_url": "https://gist.github.com/z0ph/be30e3ecea527d3d48dcc4cde55c91a1",
+  "link": "",
+  "raw_sns_message": {
+    "featureDetails": [
+      {
+        "featureDescription": "Amazon GuardDuty now available in AWS Asia Pacific (Melbourne) Region",
+        "link": "https://aws.amazon.com/about-aws/whats-new/2023/04/amazon-guardduty-aws-asia-pacific-melbourne-region"
+      }
+    ],
+    "type": "NEW_FEATURES",
+    "version": "1"
+  },
+  "short_description": "Amazon GuardDuty now available in AWS Asia Pacific (Melbourne) Region",
+  "type": "NEW_FEATURES"
+}

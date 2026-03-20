@@ -1,0 +1,30 @@
+{
+  "detected_at": "2025-02-18T00:22:48.000Z",
+  "botocore_commit": "fdd6c51",
+  "botocore_commit_url": "https://github.com/boto/botocore/commit/fdd6c51",
+  "summary": "2 service expansion(s)",
+  "source": "mase-import",
+  "changes": [
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "securityhub",
+      "id": "securityhub",
+      "new_regions": [
+        "ap-southeast-7",
+        "mx-central-1"
+      ],
+      "description": "securityhub expanded to ap-southeast-7, mx-central-1"
+    },
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "storagegateway",
+      "id": "storagegateway",
+      "new_regions": [
+        "mx-central-1"
+      ],
+      "description": "storagegateway expanded to mx-central-1"
+    }
+  ]
+}

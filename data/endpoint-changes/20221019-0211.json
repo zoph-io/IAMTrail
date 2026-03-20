@@ -1,0 +1,19 @@
+{
+  "detected_at": "2022-10-19T02:11:07.000Z",
+  "botocore_commit": "8a17f77",
+  "botocore_commit_url": "https://github.com/boto/botocore/commit/8a17f77",
+  "summary": "1 service expansion(s)",
+  "source": "mase-import",
+  "changes": [
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "network-firewall",
+      "id": "network-firewall",
+      "new_regions": [
+        "ap-southeast-3"
+      ],
+      "description": "network-firewall expanded to ap-southeast-3"
+    }
+  ]
+}

@@ -1,0 +1,29 @@
+{
+  "detected_at": "2023-08-31T00:15:56.000Z",
+  "botocore_commit": "83dd3aa",
+  "botocore_commit_url": "https://github.com/boto/botocore/commit/83dd3aa",
+  "summary": "2 service expansion(s)",
+  "source": "mase-import",
+  "changes": [
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "controltower",
+      "id": "controltower",
+      "new_regions": [
+        "il-central-1"
+      ],
+      "description": "controltower expanded to il-central-1"
+    },
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "macie2",
+      "id": "macie2",
+      "new_regions": [
+        "il-central-1"
+      ],
+      "description": "macie2 expanded to il-central-1"
+    }
+  ]
+}

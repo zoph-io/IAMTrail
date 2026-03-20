@@ -1,0 +1,38 @@
+{
+  "detected_at": "2025-10-11T00:23:34.000Z",
+  "botocore_commit": "9eae5df",
+  "botocore_commit_url": "https://github.com/boto/botocore/commit/9eae5df",
+  "summary": "2 service expansion(s)",
+  "source": "mase-import",
+  "changes": [
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "kafkaconnect",
+      "id": "kafkaconnect",
+      "new_regions": [
+        "af-south-1",
+        "ap-east-1",
+        "ap-northeast-3",
+        "ap-southeast-3",
+        "ap-southeast-4",
+        "eu-central-2",
+        "eu-south-1",
+        "il-central-1",
+        "me-central-1",
+        "me-south-1"
+      ],
+      "description": "kafkaconnect expanded to af-south-1, ap-east-1, ap-northeast-3, ap-southeast-3, ap-southeast-4, eu-central-2, eu-south-1, il-central-1, me-central-1, me-south-1"
+    },
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "storagegateway",
+      "id": "storagegateway",
+      "new_regions": [
+        "ap-southeast-6"
+      ],
+      "description": "storagegateway expanded to ap-southeast-6"
+    }
+  ]
+}

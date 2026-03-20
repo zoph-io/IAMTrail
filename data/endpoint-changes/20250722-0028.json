@@ -1,0 +1,29 @@
+{
+  "detected_at": "2025-07-22T00:28:50.000Z",
+  "botocore_commit": "a984a1f",
+  "botocore_commit_url": "https://github.com/boto/botocore/commit/a984a1f",
+  "summary": "2 service expansion(s)",
+  "source": "mase-import",
+  "changes": [
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "cognito-identity",
+      "id": "cognito-identity",
+      "new_regions": [
+        "mx-central-1"
+      ],
+      "description": "cognito-identity expanded to mx-central-1"
+    },
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "cognito-idp",
+      "id": "cognito-idp",
+      "new_regions": [
+        "mx-central-1"
+      ],
+      "description": "cognito-idp expanded to mx-central-1"
+    }
+  ]
+}

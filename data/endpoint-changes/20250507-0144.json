@@ -1,0 +1,42 @@
+{
+  "detected_at": "2025-05-07T01:44:50.000Z",
+  "botocore_commit": "a04e1e6",
+  "botocore_commit_url": "https://github.com/boto/botocore/commit/a04e1e6",
+  "summary": "3 service expansion(s)",
+  "source": "mase-import",
+  "changes": [
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "controltower",
+      "id": "controltower",
+      "new_regions": [
+        "ap-southeast-7",
+        "mx-central-1"
+      ],
+      "description": "controltower expanded to ap-southeast-7, mx-central-1"
+    },
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "kafkaconnect",
+      "id": "kafkaconnect",
+      "new_regions": [
+        "cn-north-1",
+        "cn-northwest-1"
+      ],
+      "description": "kafkaconnect expanded to cn-north-1, cn-northwest-1"
+    },
+    {
+      "type": "service_expansion",
+      "partition": "aws-cn",
+      "service": "kafkaconnect",
+      "id": "kafkaconnect",
+      "new_regions": [
+        "cn-north-1",
+        "cn-northwest-1"
+      ],
+      "description": "kafkaconnect expanded to cn-north-1, cn-northwest-1"
+    }
+  ]
+}

@@ -1,0 +1,18 @@
+{
+  "description": "Amazon GuardDuty now available in AWS Israel (Tel Aviv) Region",
+  "detected_at": "2023-08-25T17:19:29Z",
+  "gist_url": "https://gist.github.com/z0ph/cc244db817d1eca925f9ff670ff86512",
+  "link": "https://aws.amazon.com/about-aws/whats-new/2023/08/amazon-guardduty-available-israel-tel-aviv-region/",
+  "raw_sns_message": {
+    "featureDetails": [
+      {
+        "featureDescription": "Amazon GuardDuty now available in AWS Israel (Tel Aviv) Region",
+        "featureLink": "https://aws.amazon.com/about-aws/whats-new/2023/08/amazon-guardduty-available-israel-tel-aviv-region/"
+      }
+    ],
+    "type": "NEW_FEATURES",
+    "version": "1"
+  },
+  "short_description": "Amazon GuardDuty now available in AWS Israel (Tel Aviv) Region",
+  "type": "NEW_FEATURES"
+}

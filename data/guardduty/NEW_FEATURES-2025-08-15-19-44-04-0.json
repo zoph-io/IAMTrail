@@ -1,0 +1,18 @@
+{
+  "description": "Customers can now use their own trusted and threat domain lists to customize how GuardDuty generates and alerts on findings, along with several other improvements, extending the existing support for trusted and threat IP lists.",
+  "detected_at": "2025-08-15T19:44:04Z",
+  "gist_url": "https://gist.github.com/z0ph/c32c2ed4f1659eb0b3d672c84011cf53",
+  "link": "https://docs.aws.amazon.com/guardduty/latest/ug/guardduty_upload-lists.html",
+  "raw_sns_message": {
+    "featureDetails": [
+      {
+        "featureDescription": "Customers can now use their own trusted and threat domain lists to customize how GuardDuty generates and alerts on findings, along with several other improvements, extending the existing support for trusted and threat IP lists.",
+        "featureLink": "https://docs.aws.amazon.com/guardduty/latest/ug/guardduty_upload-lists.html"
+      }
+    ],
+    "type": "NEW_FEATURES",
+    "version": "1"
+  },
+  "short_description": "Customers can now use their own trusted and threat domain lists to customize how GuardDuty generates and alerts on findings, along with several other ",
+  "type": "NEW_FEATURES"
+}

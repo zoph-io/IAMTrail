@@ -1,0 +1,75 @@
+{
+  "detected_at": "2025-08-02T00:27:46.000Z",
+  "botocore_commit": "43408fd",
+  "botocore_commit_url": "https://github.com/boto/botocore/commit/43408fd",
+  "summary": "6 service expansion(s)",
+  "source": "mase-import",
+  "changes": [
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "api.tunneling.iot",
+      "id": "api.tunneling.iot",
+      "new_regions": [
+        "ap-southeast-5",
+        "eu-south-2"
+      ],
+      "description": "api.tunneling.iot expanded to ap-southeast-5, eu-south-2"
+    },
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "data-ats.iot",
+      "id": "data-ats.iot",
+      "new_regions": [
+        "ap-southeast-5",
+        "eu-south-2"
+      ],
+      "description": "data-ats.iot expanded to ap-southeast-5, eu-south-2"
+    },
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "greengrass",
+      "id": "greengrass",
+      "new_regions": [
+        "ap-southeast-5",
+        "eu-south-2"
+      ],
+      "description": "greengrass expanded to ap-southeast-5, eu-south-2"
+    },
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "guardduty",
+      "id": "guardduty",
+      "new_regions": [
+        "ap-east-2"
+      ],
+      "description": "guardduty expanded to ap-east-2"
+    },
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "iot",
+      "id": "iot",
+      "new_regions": [
+        "ap-southeast-5",
+        "eu-south-2"
+      ],
+      "description": "iot expanded to ap-southeast-5, eu-south-2"
+    },
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "kinesisvideo",
+      "id": "kinesisvideo",
+      "new_regions": [
+        "ap-southeast-5",
+        "eu-south-2",
+        "me-south-1"
+      ],
+      "description": "kinesisvideo expanded to ap-southeast-5, eu-south-2, me-south-1"
+    }
+  ]
+}

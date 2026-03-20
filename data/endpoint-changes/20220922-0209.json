@@ -1,0 +1,41 @@
+{
+  "detected_at": "2022-09-22T02:09:21.000Z",
+  "botocore_commit": "e5df5d1",
+  "botocore_commit_url": "https://github.com/boto/botocore/commit/e5df5d1",
+  "summary": "3 service expansion(s)",
+  "source": "mase-import",
+  "changes": [
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "drs",
+      "id": "drs",
+      "new_regions": [
+        "ap-southeast-3"
+      ],
+      "description": "drs expanded to ap-southeast-3"
+    },
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "emr-serverless",
+      "id": "emr-serverless",
+      "new_regions": [
+        "ap-southeast-1",
+        "eu-central-1",
+        "us-east-2"
+      ],
+      "description": "emr-serverless expanded to ap-southeast-1, eu-central-1, us-east-2"
+    },
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "rbin",
+      "id": "rbin",
+      "new_regions": [
+        "ap-southeast-3"
+      ],
+      "description": "rbin expanded to ap-southeast-3"
+    }
+  ]
+}
