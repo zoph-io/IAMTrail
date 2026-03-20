@@ -711,7 +711,7 @@ async function generateEndpointsData() {
   );
 
   console.log(
-    `   🌐 Endpoints: ${totalRegions} regions, ${totalServices} services across ${partitions.length} partitions, ${recentChanges.length} change record(s)`
+    `   🌐 Endpoints: ${totalRegions} regions, ${totalServices} services across ${partitions.length} partitions, ${allChangeRecords.length} change record(s)`
   );
 }
 
