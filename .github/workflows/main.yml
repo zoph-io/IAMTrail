@@ -1,4 +1,4 @@
-name: "[Prod] MAMIP - Infrastructure GitHub Actions"
+name: "[Prod] IAMTrail - Infrastructure GitHub Actions"
 
 on:
   workflow_dispatch:

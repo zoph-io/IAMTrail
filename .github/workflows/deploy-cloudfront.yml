@@ -7,6 +7,7 @@ on:
     paths:
       - "policies/**"
       - "website/**"
+      - "data/**"
       - ".github/workflows/deploy-cloudfront.yml"
   workflow_dispatch:
 

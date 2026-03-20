@@ -1,0 +1,122 @@
+name: "[Prod] IAMTrail - Endpoint Monitor"
+
+on:
+  schedule:
+    - cron: "0 */6 * * *"
+  workflow_dispatch:
+
+env:
+  project: "mamip"
+  aws_region: "eu-west-1"
+  dynamodb_table: "iamtrail-endpoint-changes"
+
+permissions:
+  id-token: write
+  contents: write
+
+jobs:
+  check-endpoints:
+    name: "Check Botocore Endpoints"
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Run endpoint diff check
+        id: check
+        run: node automation/scripts/check-endpoints.js
+
+      - name: Configure AWS credentials
+        if: steps.check.outputs.CHANGES_DETECTED == 'true'
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          aws-region: ${{ env.aws_region }}
+          role-to-assume: ${{ secrets.ROLE_TO_ASSUME }}
+          role-duration-seconds: 900
+          role-session-name: GH-Actions-EndpointMonitor
+
+      - name: Write changes to DynamoDB
+        if: steps.check.outputs.CHANGES_DETECTED == 'true'
+        run: |
+          echo "$ENDPOINT_DYNAMO_ITEMS" | jq -c '.[]' | while read -r item; do
+            detected_date=$(echo "$item" | jq -r '.detected_date')
+            change_id=$(echo "$item" | jq -r '.change_id')
+            change_type=$(echo "$item" | jq -r '.change_type')
+            partition=$(echo "$item" | jq -r '.partition')
+            identifier=$(echo "$item" | jq -r '.identifier')
+            description=$(echo "$item" | jq -r '.description')
+            commit_url=$(echo "$item" | jq -r '.botocore_commit_url')
+            detected_at=$(echo "$item" | jq -r '.detected_at')
+
+            aws dynamodb put-item \
+              --table-name "${{ env.dynamodb_table }}" \
+              --item "{
+                \"detected_date\": {\"S\": \"$detected_date\"},
+                \"change_id\": {\"S\": \"$change_id\"},
+                \"change_type\": {\"S\": \"$change_type\"},
+                \"partition\": {\"S\": \"$partition\"},
+                \"identifier\": {\"S\": \"$identifier\"},
+                \"description\": {\"S\": \"$description\"},
+                \"botocore_commit_url\": {\"S\": \"$commit_url\"},
+                \"detected_at\": {\"S\": \"$detected_at\"}
+              }" \
+              --region "${{ env.aws_region }}" || echo "Warning: Failed to write $change_id to DynamoDB"
+          done
+
+      - name: Send Discord notification
+        if: steps.check.outputs.CHANGES_DETECTED == 'true'
+        run: |
+          WEBHOOK_URL="${{ secrets.DISCORD_WEBHOOK_URL }}"
+          if [ -z "$WEBHOOK_URL" ]; then
+            echo "No Discord webhook URL configured, skipping notification"
+            exit 0
+          fi
+
+          TIMESTAMP=$(date -u +"%Y-%m-%dT%H:%M:%SZ")
+          PAYLOAD=$(jq -n \
+            --arg title "Endpoint Changes Detected" \
+            --arg desc "$ENDPOINT_SUMMARY" \
+            --arg count "$ENDPOINT_CHANGE_COUNT" \
+            --arg ts "$TIMESTAMP" \
+            '{
+              "embeds": [{
+                "title": $title,
+                "description": $desc,
+                "color": 3447003,
+                "fields": [
+                  {"name": "Changes", "value": $count, "inline": true}
+                ],
+                "footer": {"text": "IAMTrail - Endpoint Monitor"},
+                "timestamp": $ts
+              }]
+            }')
+
+          curl -s -o /dev/null -H "Content-Type: application/json" \
+            -d "$PAYLOAD" "$WEBHOOK_URL" || echo "Warning: Discord notification failed"
+
+      # X/Twitter posting via @mase_aws - disabled until secrets are configured
+      - name: Post to X/Twitter (@mase_aws)
+        if: false
+        uses: nearform-actions/github-action-notify-twitter@master
+        with:
+          message: "${{ env.ENDPOINT_MESSAGE }}"
+          twitter-app-key: ${{ secrets.TWITTER_CONSUMER_API_KEY }}
+          twitter-app-secret: ${{ secrets.TWITTER_CONSUMER_API_SECRET }}
+          twitter-access-token: ${{ secrets.TWITTER_ACCESS_TOKEN }}
+          twitter-access-token-secret: ${{ secrets.TWITTER_ACCESS_TOKEN_SECRET }}
+
+      - name: Commit and push changes
+        if: steps.check.outputs.CHANGES_DETECTED == 'true'
+        run: |
+          git config --local user.email "iamtrail-bot@noreply.github.com"
+          git config --local user.name "IAMTrail Endpoint Monitor"
+          git add data/endpoints.json data/endpoint-changes/
+          git commit -m "endpoints: ${{ env.ENDPOINT_SUMMARY }}"
+          git push origin master
