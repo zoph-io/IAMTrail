@@ -262,6 +262,44 @@ function buildTweetMessage(changes, commitHash) {
   return body + suffix;
 }
 
+function buildDiscordDescription(changes, commitHash) {
+  const lines = [];
+
+  for (const c of changes) {
+    const label = {
+      new_region: "New Region",
+      removed_region: "Removed Region",
+      new_service: "New Service",
+      removed_service: "Removed Service",
+      service_expansion: "Service Expansion",
+      service_contraction: "Service Contraction",
+      new_partition: "New Partition",
+      region_updated: "Region Updated",
+    }[c.type] || c.type;
+
+    if (c.type === "service_expansion" && c.new_regions) {
+      lines.push(`**${label}** \`${c.partition}\`\n\`${c.service}\` → ${c.new_regions.map(r => `\`${r}\``).join(", ")}`);
+    } else if (c.type === "service_contraction" && c.removed_regions) {
+      lines.push(`**${label}** \`${c.partition}\`\n\`${c.service}\` removed from ${c.removed_regions.map(r => `\`${r}\``).join(", ")}`);
+    } else if (c.type === "new_region") {
+      lines.push(`**${label}** \`${c.partition}\`\n\`${c.id}\` - ${c.description}`);
+    } else if (c.type === "new_service") {
+      lines.push(`**${label}** \`${c.partition}\`\n\`${c.id}\` (${c.endpoint_count || 0} endpoints)`);
+    } else {
+      lines.push(`**${label}** \`${c.partition}\`\n${c.description}`);
+    }
+  }
+
+  const commitLine = commitHash
+    ? `\n[botocore commit](https://github.com/boto/botocore/commit/${commitHash.slice(0, 7)})`
+    : "";
+
+  const body = lines.join("\n\n");
+  const maxLen = 4000 - commitLine.length;
+  const truncated = body.length > maxLen ? body.slice(0, maxLen - 3) + "..." : body;
+  return truncated + commitLine;
+}
+
 function setOutput(key, value) {
   const ghOutput = process.env.GITHUB_OUTPUT;
   if (ghOutput) {
@@ -338,6 +376,8 @@ async function main() {
   setOutput("CHANGE_SUMMARY", changeRecord.summary);
   setOutput("CHANGE_FILE", path.basename(changeFile));
 
+  const discordDesc = buildDiscordDescription(changes, commitHash);
+
   const ghEnv = process.env.GITHUB_ENV;
   if (ghEnv) {
     fs.appendFileSync(ghEnv, `ENDPOINT_MESSAGE<<EOF\n${message}\nEOF\n`);
@@ -346,6 +386,10 @@ async function main() {
     fs.appendFileSync(
       ghEnv,
       `ENDPOINT_CHANGE_FILE=${path.basename(changeFile)}\n`
+    );
+    fs.appendFileSync(
+      ghEnv,
+      `ENDPOINT_DISCORD_DESC<<EOF\n${discordDesc}\nEOF\n`
     );
 
     const dynamoItems = changes.map((c) => ({

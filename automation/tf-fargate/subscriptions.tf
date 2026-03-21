@@ -3,12 +3,12 @@
 ################################
 
 locals {
-  domain_name            = "iamtrail.com"
-  api_domain             = "api.iamtrail.com"
-  sender                 = "IAMTrail <noreply@iamtrail.com>"
-  sender_email           = "noreply@iamtrail.com"
-  ses_region             = "eu-west-3"
-  discord_webhook_ssm    = "/iamtrail/discord-webhook-url"
+  domain_name         = "iamtrail.com"
+  api_domain          = "api.iamtrail.com"
+  sender              = "IAMTrail <noreply@iamtrail.com>"
+  sender_email        = "noreply@iamtrail.com"
+  ses_region          = "eu-west-3"
+  discord_webhook_ssm = "/iamtrail/discord-webhook-url"
 }
 
 # ──────────────────────────────
@@ -1173,7 +1173,7 @@ resource "aws_lambda_function" "guardduty_recorder" {
   environment {
     variables = {
       GUARDDUTY_TABLE     = aws_dynamodb_table.guardduty_announcements.name
-      X_API_SECRET_ARN    = var.mgda_x_api_secret_arn
+      X_API_SECRET_ARN    = aws_secretsmanager_secret.social_mgda.arn
       DISCORD_WEBHOOK_SSM = local.discord_webhook_ssm
     }
   }
@@ -1224,13 +1224,13 @@ resource "aws_iam_role_policy" "guardduty_recorder" {
           Resource = ["arn:aws:logs:*:*:*"]
         }
       ],
-      var.mgda_x_api_secret_arn != "" ? [
+      [
         {
           Effect   = "Allow"
           Action   = ["secretsmanager:GetSecretValue"]
-          Resource = [var.mgda_x_api_secret_arn]
+          Resource = [aws_secretsmanager_secret.social_mgda.arn]
         }
-      ] : []
+      ]
     )
   })
 }
@@ -1264,6 +1264,32 @@ resource "aws_cloudwatch_metric_alarm" "guardduty_dlq_messages" {
 output "iamtrail_nameservers" {
   description = "NS records to configure at your domain registrar for iamtrail.com"
   value       = aws_route53_zone.iamtrail.name_servers
+}
+
+# ──────────────────────────────────────────────
+# Secrets Manager: Social Media Credentials
+# ──────────────────────────────────────────────
+# Generic pattern per account. Fill values manually in the console.
+# JSON structure:
+#   x_api_key, x_api_secret, x_access_token, x_access_token_secret
+#   bluesky_handle, bluesky_app_password
+
+resource "aws_secretsmanager_secret" "social_iamtrail" {
+  name        = "iamtrail/social/iamtrail"
+  description = "Social credentials for @iamtrail_ (X) and @iamtrail.bsky.social (Bluesky)"
+  tags        = var.tags
+}
+
+resource "aws_secretsmanager_secret" "social_mase" {
+  name        = "iamtrail/social/mase"
+  description = "Social credentials for @mase_aws (X) - Endpoint monitor"
+  tags        = var.tags
+}
+
+resource "aws_secretsmanager_secret" "social_mgda" {
+  name        = "iamtrail/social/mgda"
+  description = "Social credentials for @mgda_aws (X) - GuardDuty announcements"
+  tags        = var.tags
 }
 
 output "iamtrail_cloudfront_distribution_id" {

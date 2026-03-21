@@ -216,3 +216,5 @@ terraform.rc
 
 .cursor
 .dist
+.next/trace
+.next/trace-build

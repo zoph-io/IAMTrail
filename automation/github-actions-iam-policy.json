@@ -230,6 +230,11 @@
         },
         {
             "Effect": "Allow",
+            "Action": "secretsmanager:GetSecretValue",
+            "Resource": "arn:aws:secretsmanager:eu-west-1:567589703415:secret:iamtrail/social/*"
+        },
+        {
+            "Effect": "Allow",
             "Action": [
                 "sqs:CreateQueue",
                 "sqs:GetQueueAttributes",

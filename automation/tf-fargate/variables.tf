@@ -102,7 +102,3 @@ variable "guardduty_sns_topic_arn" {
   description = "AWS-owned GuardDuty Announcements SNS topic ARN (eu-west-1)"
 }
 
-variable "mgda_x_api_secret_arn" {
-  default     = ""
-  description = "Secrets Manager ARN for @mgda_aws X/Twitter API credentials"
-}

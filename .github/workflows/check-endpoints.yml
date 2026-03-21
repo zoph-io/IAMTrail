@@ -81,18 +81,17 @@ jobs:
 
           TIMESTAMP=$(date -u +"%Y-%m-%dT%H:%M:%SZ")
           PAYLOAD=$(jq -n \
-            --arg title "Endpoint Changes Detected" \
-            --arg desc "$ENDPOINT_SUMMARY" \
+            --arg title "Endpoint Changes Detected - $ENDPOINT_SUMMARY" \
+            --arg desc "$ENDPOINT_DISCORD_DESC" \
             --arg count "$ENDPOINT_CHANGE_COUNT" \
+            --arg url "https://iamtrail.com/endpoints" \
             --arg ts "$TIMESTAMP" \
             '{
               "embeds": [{
                 "title": $title,
                 "description": $desc,
+                "url": $url,
                 "color": 3447003,
-                "fields": [
-                  {"name": "Changes", "value": $count, "inline": true}
-                ],
                 "footer": {"text": "IAMTrail - Endpoint Monitor"},
                 "timestamp": $ts
               }]
@@ -101,16 +100,38 @@ jobs:
           curl -s -o /dev/null -H "Content-Type: application/json" \
             -d "$PAYLOAD" "$WEBHOOK_URL" || echo "Warning: Discord notification failed"
 
-      # X/Twitter posting via @mase_aws - disabled until secrets are configured
+      - name: Fetch social credentials (@mase_aws)
+        if: steps.check.outputs.CHANGES_DETECTED == 'true'
+        id: social
+        run: |
+          SECRET=$(aws secretsmanager get-secret-value \
+            --secret-id "iamtrail/social/mase" \
+            --region "${{ env.aws_region }}" \
+            --query SecretString --output text 2>/dev/null || echo "")
+          if [ -z "$SECRET" ] || [ "$SECRET" = "{}" ]; then
+            echo "SOCIAL_READY=false" >> "$GITHUB_OUTPUT"
+            echo "Social credentials not configured, skipping X post"
+          else
+            echo "SOCIAL_READY=true" >> "$GITHUB_OUTPUT"
+            echo "::add-mask::$(echo "$SECRET" | jq -r '.x_api_key // empty')"
+            echo "::add-mask::$(echo "$SECRET" | jq -r '.x_api_secret // empty')"
+            echo "::add-mask::$(echo "$SECRET" | jq -r '.x_access_token // empty')"
+            echo "::add-mask::$(echo "$SECRET" | jq -r '.x_access_token_secret // empty')"
+            echo "X_API_KEY=$(echo "$SECRET" | jq -r '.x_api_key // empty')" >> "$GITHUB_OUTPUT"
+            echo "X_API_SECRET=$(echo "$SECRET" | jq -r '.x_api_secret // empty')" >> "$GITHUB_OUTPUT"
+            echo "X_ACCESS_TOKEN=$(echo "$SECRET" | jq -r '.x_access_token // empty')" >> "$GITHUB_OUTPUT"
+            echo "X_ACCESS_TOKEN_SECRET=$(echo "$SECRET" | jq -r '.x_access_token_secret // empty')" >> "$GITHUB_OUTPUT"
+          fi
+
       - name: Post to X/Twitter (@mase_aws)
-        if: false
+        if: steps.check.outputs.CHANGES_DETECTED == 'true' && steps.social.outputs.SOCIAL_READY == 'true'
         uses: nearform-actions/github-action-notify-twitter@master
         with:
           message: "${{ env.ENDPOINT_MESSAGE }}"
-          twitter-app-key: ${{ secrets.TWITTER_CONSUMER_API_KEY }}
-          twitter-app-secret: ${{ secrets.TWITTER_CONSUMER_API_SECRET }}
-          twitter-access-token: ${{ secrets.TWITTER_ACCESS_TOKEN }}
-          twitter-access-token-secret: ${{ secrets.TWITTER_ACCESS_TOKEN_SECRET }}
+          twitter-app-key: ${{ steps.social.outputs.X_API_KEY }}
+          twitter-app-secret: ${{ steps.social.outputs.X_API_SECRET }}
+          twitter-access-token: ${{ steps.social.outputs.X_ACCESS_TOKEN }}
+          twitter-access-token-secret: ${{ steps.social.outputs.X_ACCESS_TOKEN_SECRET }}
 
       - name: Commit and push changes
         if: steps.check.outputs.CHANGES_DETECTED == 'true'
