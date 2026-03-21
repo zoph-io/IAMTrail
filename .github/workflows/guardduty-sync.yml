@@ -172,3 +172,9 @@ jobs:
           git add data/guardduty/
           git commit -m "guardduty: ${{ steps.query.outputs.CHANGE_COUNT }} new announcement(s)"
           git push origin master
+
+      - name: Trigger website deployment
+        if: steps.query.outputs.CHANGES_DETECTED == 'true'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: gh workflow run deploy-cloudfront.yml --ref master
