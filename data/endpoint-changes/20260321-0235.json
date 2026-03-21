@@ -1,0 +1,18 @@
+{
+  "detected_at": "2026-03-21T02:35:24.306Z",
+  "botocore_commit": "cd4cb60a1cf2d16d742c61a6d06fb6d830bbff06",
+  "botocore_commit_url": "https://github.com/boto/botocore/commit/cd4cb60a1cf2d16d742c61a6d06fb6d830bbff06",
+  "summary": "1 service expansion(s)",
+  "changes": [
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "rekognition",
+      "id": "rekognition",
+      "new_regions": [
+        "sa-east-1"
+      ],
+      "description": "rekognition expanded to sa-east-1"
+    }
+  ]
+}
