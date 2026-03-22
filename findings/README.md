@@ -1,4 +1,4 @@
-# AWS Access Analyzer - Findings - 2026-03-21
+# AWS Access Analyzer - Findings - 2026-03-22
 
 - **Policies analyzed:** `1445`
 - **Errors:** `23`
