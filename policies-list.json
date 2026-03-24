@@ -5597,12 +5597,12 @@
             "PolicyId": "ANPAZKAPJZG4MW35THVLF",
             "Arn": "arn:aws:iam::aws:policy/service-role/AWSControlTowerServiceRolePolicy",
             "Path": "/service-role/",
-            "DefaultVersionId": "v19",
+            "DefaultVersionId": "v20",
             "AttachmentCount": 0,
             "PermissionsBoundaryUsageCount": 0,
             "IsAttachable": true,
             "CreateDate": "2019-05-03T18:19:11+00:00",
-            "UpdateDate": "2026-02-12T18:01:58+00:00"
+            "UpdateDate": "2026-03-23T18:42:11+00:00"
         },
         {
             "PolicyName": "AmazonRoute53ResolverFullAccess",
@@ -16265,12 +16265,12 @@
             "PolicyId": "ANPAZKAPJZG4ITL2W5IGN",
             "Arn": "arn:aws:iam::aws:policy/AmazonBedrockLimitedAccess",
             "Path": "/",
-            "DefaultVersionId": "v6",
+            "DefaultVersionId": "v7",
             "AttachmentCount": 0,
             "PermissionsBoundaryUsageCount": 0,
             "IsAttachable": true,
             "CreateDate": "2025-06-29T22:22:06+00:00",
-            "UpdateDate": "2026-02-12T17:58:28+00:00"
+            "UpdateDate": "2026-03-23T19:42:09+00:00"
         },
         {
             "PolicyName": "AmazonBedrockMarketplaceAccess",
@@ -16505,12 +16505,12 @@
             "PolicyId": "ANPAZKAPJZG4FJDPMMCIQ",
             "Arn": "arn:aws:iam::aws:policy/job-function/AWSManagementConsoleAdministratorAccess",
             "Path": "/job-function/",
-            "DefaultVersionId": "v6",
+            "DefaultVersionId": "v7",
             "AttachmentCount": 0,
             "PermissionsBoundaryUsageCount": 0,
             "IsAttachable": true,
             "CreateDate": "2025-08-14T21:19:07+00:00",
-            "UpdateDate": "2026-02-12T18:01:55+00:00"
+            "UpdateDate": "2026-03-23T16:42:15+00:00"
         },
         {
             "PolicyName": "SageMakerStudioUserIAMDefaultExecutionPolicy",
@@ -17471,6 +17471,42 @@
             "IsAttachable": true,
             "CreateDate": "2026-03-19T19:57:17+00:00",
             "UpdateDate": "2026-03-19T19:57:17+00:00"
+        },
+        {
+            "PolicyName": "AWSPartnerProServeToolsIndividualContributor",
+            "PolicyId": "ANPAZKAPJZG4DO565ESVH",
+            "Arn": "arn:aws:iam::aws:policy/AWSPartnerProServeToolsIndividualContributor",
+            "Path": "/",
+            "DefaultVersionId": "v1",
+            "AttachmentCount": 0,
+            "PermissionsBoundaryUsageCount": 0,
+            "IsAttachable": true,
+            "CreateDate": "2026-03-23T21:57:09+00:00",
+            "UpdateDate": "2026-03-23T21:57:09+00:00"
+        },
+        {
+            "PolicyName": "AWSPartnerProServeToolsFullAccess",
+            "PolicyId": "ANPAZKAPJZG4KD2IIBRSB",
+            "Arn": "arn:aws:iam::aws:policy/AWSPartnerProServeToolsFullAccess",
+            "Path": "/",
+            "DefaultVersionId": "v1",
+            "AttachmentCount": 0,
+            "PermissionsBoundaryUsageCount": 0,
+            "IsAttachable": true,
+            "CreateDate": "2026-03-23T21:57:10+00:00",
+            "UpdateDate": "2026-03-23T21:57:10+00:00"
+        },
+        {
+            "PolicyName": "AWSPartnerProServeToolsOrganizationReaderIndividualContributor",
+            "PolicyId": "ANPAZKAPJZG4NHTOS5IT6",
+            "Arn": "arn:aws:iam::aws:policy/AWSPartnerProServeToolsOrganizationReaderIndividualContributor",
+            "Path": "/",
+            "DefaultVersionId": "v1",
+            "AttachmentCount": 0,
+            "PermissionsBoundaryUsageCount": 0,
+            "IsAttachable": true,
+            "CreateDate": "2026-03-23T22:12:10+00:00",
+            "UpdateDate": "2026-03-23T22:12:10+00:00"
         },
         {
             "PolicyName": "AWSConfigRole",
