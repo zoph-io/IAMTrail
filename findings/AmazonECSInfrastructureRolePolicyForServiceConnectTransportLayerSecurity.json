@@ -1,0 +1,80 @@
+[
+  {
+    "findingDetails": "Use the operator type String, Numeric instead of operator ARN for the condition key aws:RequestTag/AmazonECSCreated.",
+    "findingType": "WARNING",
+    "issueCode": "TYPE_MISMATCH",
+    "learnMoreLink": "https://docs.aws.amazon.com/IAM/latest/UserGuide/access-analyzer-reference-policy-checks.html#access-analyzer-reference-policy-checks-general-warning-type-mismatch",
+    "locations": [
+      {
+        "path": [
+          {
+            "value": "Statement"
+          },
+          {
+            "index": 0
+          },
+          {
+            "value": "Condition"
+          },
+          {
+            "value": "ArnLike"
+          },
+          {
+            "key": "aws:RequestTag/AmazonECSCreated"
+          }
+        ],
+        "span": {
+          "start": {
+            "line": 1,
+            "column": 208,
+            "offset": 208
+          },
+          "end": {
+            "line": 1,
+            "column": 241,
+            "offset": 241
+          }
+        }
+      }
+    ]
+  },
+  {
+    "findingDetails": "Use the operator type String, Numeric instead of operator ARN for the condition key aws:RequestTag/AmazonECSCreated.",
+    "findingType": "WARNING",
+    "issueCode": "TYPE_MISMATCH",
+    "learnMoreLink": "https://docs.aws.amazon.com/IAM/latest/UserGuide/access-analyzer-reference-policy-checks.html#access-analyzer-reference-policy-checks-general-warning-type-mismatch",
+    "locations": [
+      {
+        "path": [
+          {
+            "value": "Statement"
+          },
+          {
+            "index": 1
+          },
+          {
+            "value": "Condition"
+          },
+          {
+            "value": "ArnLike"
+          },
+          {
+            "key": "aws:RequestTag/AmazonECSCreated"
+          }
+        ],
+        "span": {
+          "start": {
+            "line": 1,
+            "column": 594,
+            "offset": 594
+          },
+          "end": {
+            "line": 1,
+            "column": 627,
+            "offset": 627
+          }
+        }
+      }
+    ]
+  }
+]

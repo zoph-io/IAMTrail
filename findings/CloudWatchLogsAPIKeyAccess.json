@@ -1,0 +1,41 @@
+[
+  {
+    "findingDetails": "Use the operator type String instead of operator ARN for the condition key kms:EncryptionContext:aws:logs:arn.",
+    "findingType": "WARNING",
+    "issueCode": "TYPE_MISMATCH",
+    "learnMoreLink": "https://docs.aws.amazon.com/IAM/latest/UserGuide/access-analyzer-reference-policy-checks.html#access-analyzer-reference-policy-checks-general-warning-type-mismatch",
+    "locations": [
+      {
+        "path": [
+          {
+            "value": "Statement"
+          },
+          {
+            "index": 1
+          },
+          {
+            "value": "Condition"
+          },
+          {
+            "value": "ArnLike"
+          },
+          {
+            "key": "kms:EncryptionContext:aws:logs:arn"
+          }
+        ],
+        "span": {
+          "start": {
+            "line": 1,
+            "column": 330,
+            "offset": 330
+          },
+          "end": {
+            "line": 1,
+            "column": 366,
+            "offset": 366
+          }
+        }
+      }
+    ]
+  }
+]

@@ -1,44 +1,5 @@
 [
   {
-    "findingDetails": "We recommend replacing the key aws:ResourceTag/SCNInstanceId in the condition block of StringLike with {aws:ResourceTag/SCNInstanceId: false} to ensure better enforcement of the condition.",
-    "findingType": "SUGGESTION",
-    "issueCode": "EQUIVALENT_TO_NULL_FALSE",
-    "learnMoreLink": "https://docs.aws.amazon.com/IAM/latest/UserGuide/access-analyzer-reference-policy-checks.html#access-analyzer-reference-policy-checks-suggestion-equivalent-to-null-false",
-    "locations": [
-      {
-        "path": [
-          {
-            "value": "Statement"
-          },
-          {
-            "index": 1
-          },
-          {
-            "value": "Condition"
-          },
-          {
-            "value": "StringLike"
-          },
-          {
-            "value": "aws:ResourceTag/SCNInstanceId"
-          }
-        ],
-        "span": {
-          "start": {
-            "line": 1,
-            "column": 951,
-            "offset": 951
-          },
-          "end": {
-            "line": 1,
-            "column": 954,
-            "offset": 954
-          }
-        }
-      }
-    ]
-  },
-  {
     "findingDetails": "Use the operator type String instead of operator ARN for the condition key kms:EncryptionContext:aws:sso:instance-arn.",
     "findingType": "WARNING",
     "issueCode": "TYPE_MISMATCH",
@@ -50,7 +11,7 @@
             "value": "Statement"
           },
           {
-            "index": 15
+            "index": 3
           },
           {
             "value": "Condition"
@@ -65,13 +26,13 @@
         "span": {
           "start": {
             "line": 1,
-            "column": 4202,
-            "offset": 4202
+            "column": 685,
+            "offset": 685
           },
           "end": {
             "line": 1,
-            "column": 4246,
-            "offset": 4246
+            "column": 729,
+            "offset": 729
           }
         }
       }
@@ -89,7 +50,7 @@
             "value": "Statement"
           },
           {
-            "index": 16
+            "index": 4
           },
           {
             "value": "Condition"
@@ -104,13 +65,13 @@
         "span": {
           "start": {
             "line": 1,
-            "column": 4465,
-            "offset": 4465
+            "column": 948,
+            "offset": 948
           },
           "end": {
             "line": 1,
-            "column": 4524,
-            "offset": 4524
+            "column": 1007,
+            "offset": 1007
           }
         }
       }

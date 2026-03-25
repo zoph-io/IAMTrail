@@ -1,45 +1,6 @@
 [
   {
-    "findingDetails": "We recommend replacing the key aws:ResourceTag/SCNInstanceId in the condition block of StringLike with {aws:ResourceTag/SCNInstanceId: false} to ensure better enforcement of the condition.",
-    "findingType": "SUGGESTION",
-    "issueCode": "EQUIVALENT_TO_NULL_FALSE",
-    "learnMoreLink": "https://docs.aws.amazon.com/IAM/latest/UserGuide/access-analyzer-reference-policy-checks.html#access-analyzer-reference-policy-checks-suggestion-equivalent-to-null-false",
-    "locations": [
-      {
-        "path": [
-          {
-            "value": "Statement"
-          },
-          {
-            "index": 1
-          },
-          {
-            "value": "Condition"
-          },
-          {
-            "value": "StringLike"
-          },
-          {
-            "value": "aws:ResourceTag/SCNInstanceId"
-          }
-        ],
-        "span": {
-          "start": {
-            "line": 1,
-            "column": 951,
-            "offset": 951
-          },
-          "end": {
-            "line": 1,
-            "column": 954,
-            "offset": 954
-          }
-        }
-      }
-    ]
-  },
-  {
-    "findingDetails": "Use the operator type String instead of operator ARN for the condition key kms:EncryptionContext:aws:sso:instance-arn.",
+    "findingDetails": "Use the operator type String, Numeric instead of operator ARN for the condition key aws:RequestTag/AmazonECSCreated.",
     "findingType": "WARNING",
     "issueCode": "TYPE_MISMATCH",
     "learnMoreLink": "https://docs.aws.amazon.com/IAM/latest/UserGuide/access-analyzer-reference-policy-checks.html#access-analyzer-reference-policy-checks-general-warning-type-mismatch",
@@ -50,7 +11,7 @@
             "value": "Statement"
           },
           {
-            "index": 15
+            "index": 0
           },
           {
             "value": "Condition"
@@ -59,26 +20,26 @@
             "value": "ArnLike"
           },
           {
-            "key": "kms:EncryptionContext:aws:sso:instance-arn"
+            "key": "aws:RequestTag/AmazonECSCreated"
           }
         ],
         "span": {
           "start": {
             "line": 1,
-            "column": 4202,
-            "offset": 4202
+            "column": 189,
+            "offset": 189
           },
           "end": {
             "line": 1,
-            "column": 4246,
-            "offset": 4246
+            "column": 222,
+            "offset": 222
           }
         }
       }
     ]
   },
   {
-    "findingDetails": "Use the operator type String instead of operator ARN for the condition key kms:EncryptionContext:aws:identitystore:identitystore-arn.",
+    "findingDetails": "Use the operator type String, Numeric instead of operator ARN for the condition key aws:RequestTag/AmazonECSCreated.",
     "findingType": "WARNING",
     "issueCode": "TYPE_MISMATCH",
     "learnMoreLink": "https://docs.aws.amazon.com/IAM/latest/UserGuide/access-analyzer-reference-policy-checks.html#access-analyzer-reference-policy-checks-general-warning-type-mismatch",
@@ -89,7 +50,7 @@
             "value": "Statement"
           },
           {
-            "index": 16
+            "index": 2
           },
           {
             "value": "Condition"
@@ -98,19 +59,58 @@
             "value": "ArnLike"
           },
           {
-            "key": "kms:EncryptionContext:aws:identitystore:identitystore-arn"
+            "key": "aws:RequestTag/AmazonECSCreated"
           }
         ],
         "span": {
           "start": {
             "line": 1,
-            "column": 4465,
-            "offset": 4465
+            "column": 594,
+            "offset": 594
           },
           "end": {
             "line": 1,
-            "column": 4524,
-            "offset": 4524
+            "column": 627,
+            "offset": 627
+          }
+        }
+      }
+    ]
+  },
+  {
+    "findingDetails": "Use the operator type String instead of operator ARN for the condition key aws:ResourceTag/AmazonECSCreated.",
+    "findingType": "WARNING",
+    "issueCode": "TYPE_MISMATCH",
+    "learnMoreLink": "https://docs.aws.amazon.com/IAM/latest/UserGuide/access-analyzer-reference-policy-checks.html#access-analyzer-reference-policy-checks-general-warning-type-mismatch",
+    "locations": [
+      {
+        "path": [
+          {
+            "value": "Statement"
+          },
+          {
+            "index": 7
+          },
+          {
+            "value": "Condition"
+          },
+          {
+            "value": "ArnLike"
+          },
+          {
+            "key": "aws:ResourceTag/AmazonECSCreated"
+          }
+        ],
+        "span": {
+          "start": {
+            "line": 1,
+            "column": 1549,
+            "offset": 1549
+          },
+          "end": {
+            "line": 1,
+            "column": 1583,
+            "offset": 1583
           }
         }
       }
