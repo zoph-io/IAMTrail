@@ -1,7 +1,7 @@
-# AWS Access Analyzer - Findings - 2026-03-25
+# AWS Access Analyzer - Findings - 2026-03-26
 
 - **Policies analyzed:** `1445`
-- **Errors:** `23`
+- **Errors:** `33`
   - [`AWSAuditManagerAdministratorAccess`](./AWSAuditManagerAdministratorAccess.json)
   - [`AWSAuditManagerServiceRolePolicy`](./AWSAuditManagerServiceRolePolicy.json)
   - [`AWSCodeStarFullAccess`](./AWSCodeStarFullAccess.json)
@@ -17,6 +17,7 @@
   - [`MemoryDBServiceRolePolicy`](./MemoryDBServiceRolePolicy.json)
   - [`RDSCloudHsmAuthorizationRole`](./RDSCloudHsmAuthorizationRole.json)
   - [`ResourceGroupsTaggingAPITagUntagSupportedResources`](./ResourceGroupsTaggingAPITagUntagSupportedResources.json)
+  - [`SecurityAgentWebAppAPIPolicy`](./SecurityAgentWebAppAPIPolicy.json)
 - **Security Warnings:** `25`
   - [`AWSCodePipeline_FullAccess`](./AWSCodePipeline_FullAccess.json)
   - [`AWSCodePipeline_ReadOnlyAccess`](./AWSCodePipeline_ReadOnlyAccess.json)
