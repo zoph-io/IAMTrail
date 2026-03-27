@@ -1,0 +1,28 @@
+{
+  "detected_at": "2026-03-26T19:18:14.925Z",
+  "botocore_commit": "7f9c3cd08ae7e1780d56b9402aa9738e6af881e4",
+  "botocore_commit_url": "https://github.com/boto/botocore/commit/7f9c3cd08ae7e1780d56b9402aa9738e6af881e4",
+  "summary": "2 service expansion(s)",
+  "changes": [
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "api.mediatailor",
+      "id": "api.mediatailor",
+      "new_regions": [
+        "eu-west-2"
+      ],
+      "description": "api.mediatailor expanded to eu-west-2"
+    },
+    {
+      "type": "service_expansion",
+      "partition": "aws-iso-b",
+      "service": "route53resolver",
+      "id": "route53resolver",
+      "new_regions": [
+        "us-isob-west-1"
+      ],
+      "description": "route53resolver expanded to us-isob-west-1"
+    }
+  ]
+}

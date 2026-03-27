@@ -1,0 +1,41 @@
+[
+  {
+    "findingDetails": "Use the operator type String, Numeric instead of operator ARN for the condition key aws:RequestTag/awsApplication.",
+    "findingType": "WARNING",
+    "issueCode": "TYPE_MISMATCH",
+    "learnMoreLink": "https://docs.aws.amazon.com/IAM/latest/UserGuide/access-analyzer-reference-policy-checks.html#access-analyzer-reference-policy-checks-general-warning-type-mismatch",
+    "locations": [
+      {
+        "path": [
+          {
+            "value": "Statement"
+          },
+          {
+            "index": 27
+          },
+          {
+            "value": "Condition"
+          },
+          {
+            "value": "ArnLike"
+          },
+          {
+            "key": "aws:RequestTag/awsApplication"
+          }
+        ],
+        "span": {
+          "start": {
+            "line": 1,
+            "column": 6458,
+            "offset": 6458
+          },
+          "end": {
+            "line": 1,
+            "column": 6489,
+            "offset": 6489
+          }
+        }
+      }
+    ]
+  }
+]

@@ -1,0 +1,362 @@
+[
+  {
+    "findingDetails": "The action securityagent:ListAgentInstances does not exist.",
+    "findingType": "ERROR",
+    "issueCode": "INVALID_ACTION",
+    "learnMoreLink": "https://docs.aws.amazon.com/IAM/latest/UserGuide/access-analyzer-reference-policy-checks.html#access-analyzer-reference-policy-checks-error-invalid-action",
+    "locations": [
+      {
+        "path": [
+          {
+            "value": "Statement"
+          },
+          {
+            "index": 0
+          },
+          {
+            "value": "Action"
+          },
+          {
+            "index": 0
+          }
+        ],
+        "span": {
+          "start": {
+            "line": 1,
+            "column": 99,
+            "offset": 99
+          },
+          "end": {
+            "line": 1,
+            "column": 133,
+            "offset": 133
+          }
+        }
+      }
+    ]
+  },
+  {
+    "findingDetails": "The action securityagent:ListControls does not exist.",
+    "findingType": "ERROR",
+    "issueCode": "INVALID_ACTION",
+    "learnMoreLink": "https://docs.aws.amazon.com/IAM/latest/UserGuide/access-analyzer-reference-policy-checks.html#access-analyzer-reference-policy-checks-error-invalid-action",
+    "locations": [
+      {
+        "path": [
+          {
+            "value": "Statement"
+          },
+          {
+            "index": 0
+          },
+          {
+            "value": "Action"
+          },
+          {
+            "index": 1
+          }
+        ],
+        "span": {
+          "start": {
+            "line": 1,
+            "column": 135,
+            "offset": 135
+          },
+          "end": {
+            "line": 1,
+            "column": 163,
+            "offset": 163
+          }
+        }
+      }
+    ]
+  },
+  {
+    "findingDetails": "The action securityagent:BatchGetAgentInstances does not exist.",
+    "findingType": "ERROR",
+    "issueCode": "INVALID_ACTION",
+    "learnMoreLink": "https://docs.aws.amazon.com/IAM/latest/UserGuide/access-analyzer-reference-policy-checks.html#access-analyzer-reference-policy-checks-error-invalid-action",
+    "locations": [
+      {
+        "path": [
+          {
+            "value": "Statement"
+          },
+          {
+            "index": 1
+          },
+          {
+            "value": "Action"
+          },
+          {
+            "index": 2
+          }
+        ],
+        "span": {
+          "start": {
+            "line": 1,
+            "column": 394,
+            "offset": 394
+          },
+          "end": {
+            "line": 1,
+            "column": 432,
+            "offset": 432
+          }
+        }
+      }
+    ]
+  },
+  {
+    "findingDetails": "The action securityagent:CreateDocumentReview does not exist.",
+    "findingType": "ERROR",
+    "issueCode": "INVALID_ACTION",
+    "learnMoreLink": "https://docs.aws.amazon.com/IAM/latest/UserGuide/access-analyzer-reference-policy-checks.html#access-analyzer-reference-policy-checks-error-invalid-action",
+    "locations": [
+      {
+        "path": [
+          {
+            "value": "Statement"
+          },
+          {
+            "index": 1
+          },
+          {
+            "value": "Action"
+          },
+          {
+            "index": 9
+          }
+        ],
+        "span": {
+          "start": {
+            "line": 1,
+            "column": 665,
+            "offset": 665
+          },
+          "end": {
+            "line": 1,
+            "column": 701,
+            "offset": 701
+          }
+        }
+      }
+    ]
+  },
+  {
+    "findingDetails": "The action securityagent:DeleteDocumentReview does not exist.",
+    "findingType": "ERROR",
+    "issueCode": "INVALID_ACTION",
+    "learnMoreLink": "https://docs.aws.amazon.com/IAM/latest/UserGuide/access-analyzer-reference-policy-checks.html#access-analyzer-reference-policy-checks-error-invalid-action",
+    "locations": [
+      {
+        "path": [
+          {
+            "value": "Statement"
+          },
+          {
+            "index": 1
+          },
+          {
+            "value": "Action"
+          },
+          {
+            "index": 12
+          }
+        ],
+        "span": {
+          "start": {
+            "line": 1,
+            "column": 766,
+            "offset": 766
+          },
+          "end": {
+            "line": 1,
+            "column": 802,
+            "offset": 802
+          }
+        }
+      }
+    ]
+  },
+  {
+    "findingDetails": "The action securityagent:GetDocumentReview does not exist.",
+    "findingType": "ERROR",
+    "issueCode": "INVALID_ACTION",
+    "learnMoreLink": "https://docs.aws.amazon.com/IAM/latest/UserGuide/access-analyzer-reference-policy-checks.html#access-analyzer-reference-policy-checks-error-invalid-action",
+    "locations": [
+      {
+        "path": [
+          {
+            "value": "Statement"
+          },
+          {
+            "index": 1
+          },
+          {
+            "value": "Action"
+          },
+          {
+            "index": 16
+          }
+        ],
+        "span": {
+          "start": {
+            "line": 1,
+            "column": 902,
+            "offset": 902
+          },
+          "end": {
+            "line": 1,
+            "column": 935,
+            "offset": 935
+          }
+        }
+      }
+    ]
+  },
+  {
+    "findingDetails": "The action securityagent:GetDocumentReviewArtifact does not exist.",
+    "findingType": "ERROR",
+    "issueCode": "INVALID_ACTION",
+    "learnMoreLink": "https://docs.aws.amazon.com/IAM/latest/UserGuide/access-analyzer-reference-policy-checks.html#access-analyzer-reference-policy-checks-error-invalid-action",
+    "locations": [
+      {
+        "path": [
+          {
+            "value": "Statement"
+          },
+          {
+            "index": 1
+          },
+          {
+            "value": "Action"
+          },
+          {
+            "index": 17
+          }
+        ],
+        "span": {
+          "start": {
+            "line": 1,
+            "column": 937,
+            "offset": 937
+          },
+          "end": {
+            "line": 1,
+            "column": 978,
+            "offset": 978
+          }
+        }
+      }
+    ]
+  },
+  {
+    "findingDetails": "The action securityagent:ListControls does not exist.",
+    "findingType": "ERROR",
+    "issueCode": "INVALID_ACTION",
+    "learnMoreLink": "https://docs.aws.amazon.com/IAM/latest/UserGuide/access-analyzer-reference-policy-checks.html#access-analyzer-reference-policy-checks-error-invalid-action",
+    "locations": [
+      {
+        "path": [
+          {
+            "value": "Statement"
+          },
+          {
+            "index": 1
+          },
+          {
+            "value": "Action"
+          },
+          {
+            "index": 19
+          }
+        ],
+        "span": {
+          "start": {
+            "line": 1,
+            "column": 1011,
+            "offset": 1011
+          },
+          "end": {
+            "line": 1,
+            "column": 1039,
+            "offset": 1039
+          }
+        }
+      }
+    ]
+  },
+  {
+    "findingDetails": "The action securityagent:ListDocumentReviewComments does not exist.",
+    "findingType": "ERROR",
+    "issueCode": "INVALID_ACTION",
+    "learnMoreLink": "https://docs.aws.amazon.com/IAM/latest/UserGuide/access-analyzer-reference-policy-checks.html#access-analyzer-reference-policy-checks-error-invalid-action",
+    "locations": [
+      {
+        "path": [
+          {
+            "value": "Statement"
+          },
+          {
+            "index": 1
+          },
+          {
+            "value": "Action"
+          },
+          {
+            "index": 21
+          }
+        ],
+        "span": {
+          "start": {
+            "line": 1,
+            "column": 1082,
+            "offset": 1082
+          },
+          "end": {
+            "line": 1,
+            "column": 1124,
+            "offset": 1124
+          }
+        }
+      }
+    ]
+  },
+  {
+    "findingDetails": "The action securityagent:ListDocumentReviews does not exist.",
+    "findingType": "ERROR",
+    "issueCode": "INVALID_ACTION",
+    "learnMoreLink": "https://docs.aws.amazon.com/IAM/latest/UserGuide/access-analyzer-reference-policy-checks.html#access-analyzer-reference-policy-checks-error-invalid-action",
+    "locations": [
+      {
+        "path": [
+          {
+            "value": "Statement"
+          },
+          {
+            "index": 1
+          },
+          {
+            "value": "Action"
+          },
+          {
+            "index": 22
+          }
+        ],
+        "span": {
+          "start": {
+            "line": 1,
+            "column": 1126,
+            "offset": 1126
+          },
+          "end": {
+            "line": 1,
+            "column": 1161,
+            "offset": 1161
+          }
+        }
+      }
+    ]
+  }
+]
