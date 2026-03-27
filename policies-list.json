@@ -17357,12 +17357,12 @@
             "PolicyId": "ANPAZKAPJZG4NGASD5CCH",
             "Arn": "arn:aws:iam::aws:policy/aws-service-role/AWSServiceRoleForAIDevOpsPolicy",
             "Path": "/aws-service-role/",
-            "DefaultVersionId": "v1",
+            "DefaultVersionId": "v2",
             "AttachmentCount": 0,
             "PermissionsBoundaryUsageCount": 0,
             "IsAttachable": true,
             "CreateDate": "2026-02-16T14:27:07+00:00",
-            "UpdateDate": "2026-02-16T14:27:07+00:00"
+            "UpdateDate": "2026-03-27T00:42:09+00:00"
         },
         {
             "PolicyName": "CloudWatchLogsAPIKeyAccess",
