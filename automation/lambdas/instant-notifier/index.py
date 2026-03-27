@@ -135,11 +135,17 @@ def build_email_html(subscriber, policy_names, commit_url, commit_sha):
 
 def get_instant_subscribers():
     """Scan for confirmed instant subscribers that track IAM policies."""
-    result = subs_table.scan(
-        FilterExpression="confirmed = :c AND frequency = :f",
-        ExpressionAttributeValues={":c": True, ":f": "instant"},
-    )
-    items = result.get("Items", [])
+    items = []
+    scan_kwargs = {
+        "FilterExpression": "confirmed = :c AND frequency = :f",
+        "ExpressionAttributeValues": {":c": True, ":f": "instant"},
+    }
+    while True:
+        result = subs_table.scan(**scan_kwargs)
+        items.extend(result.get("Items", []))
+        if "LastEvaluatedKey" not in result:
+            break
+        scan_kwargs["ExclusiveStartKey"] = result["LastEvaluatedKey"]
     return [
         s for s in items
         if "iam_policies" in s.get("topics", ["iam_policies"])

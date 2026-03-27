@@ -13,6 +13,7 @@ env:
 permissions:
   id-token: write
   contents: write
+  actions: write
 
 jobs:
   check-endpoints:

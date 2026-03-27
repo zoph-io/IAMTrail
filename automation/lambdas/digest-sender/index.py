@@ -33,7 +33,7 @@ def get_recent_policy_changes(days):
     """Query policy changes from the last N days."""
     changes = []
     now = datetime.now(timezone.utc)
-    for i in range(days):
+    for i in range(days + 1):
         date_str = (now - timedelta(days=i)).strftime("%Y-%m-%d")
         result = changes_table.query(
             KeyConditionExpression=Key("date").eq(date_str),
@@ -48,7 +48,7 @@ def get_recent_endpoint_changes(days):
         return []
     changes = []
     now = datetime.now(timezone.utc)
-    for i in range(days):
+    for i in range(days + 1):
         date_str = (now - timedelta(days=i)).strftime("%Y-%m-%d")
         result = endpoint_table.query(
             KeyConditionExpression=Key("detected_date").eq(date_str),
@@ -63,7 +63,7 @@ def get_recent_guardduty_changes(days):
         return []
     changes = []
     now = datetime.now(timezone.utc)
-    for i in range(days):
+    for i in range(days + 1):
         date_str = (now - timedelta(days=i)).strftime("%Y-%m-%d")
         result = guardduty_table.query(
             KeyConditionExpression=Key("announcement_date").eq(date_str),
@@ -404,11 +404,17 @@ def handler(event, context):
             for sha in unique_shas:
                 fetch_diff(sha)
 
-        result = subs_table.scan(
-            FilterExpression="confirmed = :c",
-            ExpressionAttributeValues={":c": True},
-        )
-        subscribers = result.get("Items", [])
+        subscribers = []
+        scan_kwargs = {
+            "FilterExpression": "confirmed = :c",
+            "ExpressionAttributeValues": {":c": True},
+        }
+        while True:
+            result = subs_table.scan(**scan_kwargs)
+            subscribers.extend(result.get("Items", []))
+            if "LastEvaluatedKey" not in result:
+                break
+            scan_kwargs["ExclusiveStartKey"] = result["LastEvaluatedKey"]
 
         sent_count = 0
         fail_count = 0
