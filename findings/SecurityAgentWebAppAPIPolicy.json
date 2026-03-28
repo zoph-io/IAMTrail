@@ -108,6 +108,78 @@
     ]
   },
   {
+    "findingDetails": "The action securityagent:BatchGetSecurityTestContentMetadata does not exist.",
+    "findingType": "ERROR",
+    "issueCode": "INVALID_ACTION",
+    "learnMoreLink": "https://docs.aws.amazon.com/IAM/latest/UserGuide/access-analyzer-reference-policy-checks.html#access-analyzer-reference-policy-checks-error-invalid-action",
+    "locations": [
+      {
+        "path": [
+          {
+            "value": "Statement"
+          },
+          {
+            "index": 1
+          },
+          {
+            "value": "Action"
+          },
+          {
+            "index": 7
+          }
+        ],
+        "span": {
+          "start": {
+            "line": 1,
+            "column": 581,
+            "offset": 581
+          },
+          "end": {
+            "line": 1,
+            "column": 632,
+            "offset": 632
+          }
+        }
+      }
+    ]
+  },
+  {
+    "findingDetails": "The action securityagent:BatchGetTasks does not exist.",
+    "findingType": "ERROR",
+    "issueCode": "INVALID_ACTION",
+    "learnMoreLink": "https://docs.aws.amazon.com/IAM/latest/UserGuide/access-analyzer-reference-policy-checks.html#access-analyzer-reference-policy-checks-error-invalid-action",
+    "locations": [
+      {
+        "path": [
+          {
+            "value": "Statement"
+          },
+          {
+            "index": 1
+          },
+          {
+            "value": "Action"
+          },
+          {
+            "index": 8
+          }
+        ],
+        "span": {
+          "start": {
+            "line": 1,
+            "column": 634,
+            "offset": 634
+          },
+          "end": {
+            "line": 1,
+            "column": 663,
+            "offset": 663
+          }
+        }
+      }
+    ]
+  },
+  {
     "findingDetails": "The action securityagent:CreateDocumentReview does not exist.",
     "findingType": "ERROR",
     "issueCode": "INVALID_ACTION",
@@ -174,6 +246,78 @@
             "line": 1,
             "column": 802,
             "offset": 802
+          }
+        }
+      }
+    ]
+  },
+  {
+    "findingDetails": "The action securityagent:GetCodeReviewTask does not exist.",
+    "findingType": "ERROR",
+    "issueCode": "INVALID_ACTION",
+    "learnMoreLink": "https://docs.aws.amazon.com/IAM/latest/UserGuide/access-analyzer-reference-policy-checks.html#access-analyzer-reference-policy-checks-error-invalid-action",
+    "locations": [
+      {
+        "path": [
+          {
+            "value": "Statement"
+          },
+          {
+            "index": 1
+          },
+          {
+            "value": "Action"
+          },
+          {
+            "index": 14
+          }
+        ],
+        "span": {
+          "start": {
+            "line": 1,
+            "column": 833,
+            "offset": 833
+          },
+          "end": {
+            "line": 1,
+            "column": 866,
+            "offset": 866
+          }
+        }
+      }
+    ]
+  },
+  {
+    "findingDetails": "The action securityagent:GetDocReviewTask does not exist.",
+    "findingType": "ERROR",
+    "issueCode": "INVALID_ACTION",
+    "learnMoreLink": "https://docs.aws.amazon.com/IAM/latest/UserGuide/access-analyzer-reference-policy-checks.html#access-analyzer-reference-policy-checks-error-invalid-action",
+    "locations": [
+      {
+        "path": [
+          {
+            "value": "Statement"
+          },
+          {
+            "index": 1
+          },
+          {
+            "value": "Action"
+          },
+          {
+            "index": 15
+          }
+        ],
+        "span": {
+          "start": {
+            "line": 1,
+            "column": 868,
+            "offset": 868
+          },
+          "end": {
+            "line": 1,
+            "column": 900,
+            "offset": 900
           }
         }
       }
@@ -354,6 +498,114 @@
             "line": 1,
             "column": 1161,
             "offset": 1161
+          }
+        }
+      }
+    ]
+  },
+  {
+    "findingDetails": "The action securityagent:ListTasks does not exist.",
+    "findingType": "ERROR",
+    "issueCode": "INVALID_ACTION",
+    "learnMoreLink": "https://docs.aws.amazon.com/IAM/latest/UserGuide/access-analyzer-reference-policy-checks.html#access-analyzer-reference-policy-checks-error-invalid-action",
+    "locations": [
+      {
+        "path": [
+          {
+            "value": "Statement"
+          },
+          {
+            "index": 1
+          },
+          {
+            "value": "Action"
+          },
+          {
+            "index": 27
+          }
+        ],
+        "span": {
+          "start": {
+            "line": 1,
+            "column": 1307,
+            "offset": 1307
+          },
+          "end": {
+            "line": 1,
+            "column": 1332,
+            "offset": 1332
+          }
+        }
+      }
+    ]
+  },
+  {
+    "findingDetails": "The action securityagent:StartPentestExecution does not exist.",
+    "findingType": "ERROR",
+    "issueCode": "INVALID_ACTION",
+    "learnMoreLink": "https://docs.aws.amazon.com/IAM/latest/UserGuide/access-analyzer-reference-policy-checks.html#access-analyzer-reference-policy-checks-error-invalid-action",
+    "locations": [
+      {
+        "path": [
+          {
+            "value": "Statement"
+          },
+          {
+            "index": 1
+          },
+          {
+            "value": "Action"
+          },
+          {
+            "index": 29
+          }
+        ],
+        "span": {
+          "start": {
+            "line": 1,
+            "column": 1372,
+            "offset": 1372
+          },
+          "end": {
+            "line": 1,
+            "column": 1409,
+            "offset": 1409
+          }
+        }
+      }
+    ]
+  },
+  {
+    "findingDetails": "The action securityagent:StopPentestExecution does not exist.",
+    "findingType": "ERROR",
+    "issueCode": "INVALID_ACTION",
+    "learnMoreLink": "https://docs.aws.amazon.com/IAM/latest/UserGuide/access-analyzer-reference-policy-checks.html#access-analyzer-reference-policy-checks-error-invalid-action",
+    "locations": [
+      {
+        "path": [
+          {
+            "value": "Statement"
+          },
+          {
+            "index": 1
+          },
+          {
+            "value": "Action"
+          },
+          {
+            "index": 30
+          }
+        ],
+        "span": {
+          "start": {
+            "line": 1,
+            "column": 1411,
+            "offset": 1411
+          },
+          "end": {
+            "line": 1,
+            "column": 1447,
+            "offset": 1447
           }
         }
       }
