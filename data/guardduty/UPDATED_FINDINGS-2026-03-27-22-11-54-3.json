@@ -1,0 +1,34 @@
+{
+  "type": "UPDATED_FINDINGS",
+  "detected_at": "2026-03-27T22:11:54Z",
+  "description": "GuardDuty has expanded its threat intelligence sources to include an additional vendor, providing broader coverage of known malicious domains. You may observe an increase in findings for this finding type as a result of this expanded coverage.",
+  "short_description": "Impact:EC2/SuspiciousDomainRequest.Reputation",
+  "link": "https://docs.aws.amazon.com/guardduty/latest/ug/guardduty_finding-types-ec2.html#impact-ec2-suspiciousdomainrequestreputation",
+  "gist_url": "",
+  "raw_sns_message": {
+    "version": "1",
+    "type": "UPDATED_FINDINGS",
+    "findingDetails": [
+      {
+        "link": "https://docs.aws.amazon.com/guardduty/latest/ug/guardduty_finding-types-ec2.html#trojan-ec2-phishingdomainrequestdns",
+        "findingType": "Trojan:EC2/PhishingDomainRequest!DNS",
+        "description": "GuardDuty has expanded its threat intelligence sources to include an additional vendor, providing broader coverage of known malicious domains. You may observe an increase in findings for this finding type as a result of this expanded coverage."
+      },
+      {
+        "link": "https://docs.aws.amazon.com/guardduty/latest/ug/guardduty_finding-types-ec2.html#backdoor-ec2-ccactivitybdns",
+        "findingType": "Backdoor:EC2/C&CActivity.B!DNS",
+        "description": "GuardDuty has expanded its threat intelligence sources to include an additional vendor, providing broader coverage of known malicious domains. You may observe an increase in findings for this finding type as a result of this expanded coverage."
+      },
+      {
+        "link": "https://docs.aws.amazon.com/guardduty/latest/ug/guardduty_finding-types-ec2.html#trojan-ec2-drivebysourcetrafficdns",
+        "findingType": "Trojan:EC2/DriveBySourceTraffic!DNS",
+        "description": "GuardDuty has expanded its threat intelligence sources to include an additional vendor, providing broader coverage of known malicious domains. You may observe an increase in findings for this finding type as a result of this expanded coverage."
+      },
+      {
+        "link": "https://docs.aws.amazon.com/guardduty/latest/ug/guardduty_finding-types-ec2.html#impact-ec2-suspiciousdomainrequestreputation",
+        "findingType": "Impact:EC2/SuspiciousDomainRequest.Reputation",
+        "description": "GuardDuty has expanded its threat intelligence sources to include an additional vendor, providing broader coverage of known malicious domains. You may observe an increase in findings for this finding type as a result of this expanded coverage."
+      }
+    ]
+  }
+}
