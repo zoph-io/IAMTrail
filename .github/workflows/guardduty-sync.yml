@@ -157,6 +157,7 @@ jobs:
 
       - name: Post to X/Twitter (@mgda_aws)
         if: steps.query.outputs.CHANGES_DETECTED == 'true' && steps.social.outputs.SOCIAL_READY == 'true'
+        continue-on-error: true
         uses: nearform-actions/github-action-notify-twitter@master
         with:
           message: "${{ steps.query.outputs.CHANGE_COUNT }} new GuardDuty announcement(s) detected - https://iamtrail.com/guardduty"

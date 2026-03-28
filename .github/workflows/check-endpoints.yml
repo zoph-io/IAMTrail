@@ -126,6 +126,7 @@ jobs:
 
       - name: Post to X/Twitter (@mase_aws)
         if: steps.check.outputs.CHANGES_DETECTED == 'true' && steps.social.outputs.SOCIAL_READY == 'true'
+        continue-on-error: true
         uses: nearform-actions/github-action-notify-twitter@master
         with:
           message: "${{ env.ENDPOINT_MESSAGE }}"
