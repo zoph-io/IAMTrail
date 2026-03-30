@@ -33,7 +33,6 @@ data "aws_iam_policy_document" "ecs_service_policy" {
   statement {
     effect = "Allow"
     resources = [
-      "arn:aws:sqs:${var.aws_region}:${data.aws_caller_identity.current.account_id}:${var.qtweeter_sqs_name}.fifo",
       "arn:aws:sqs:${var.aws_region}:${data.aws_caller_identity.current.account_id}:${var.qbsky_sqs_name}.fifo",
       "arn:aws:sqs:${var.aws_region}:${data.aws_caller_identity.current.account_id}:${var.qmasto_sqs_name}.fifo"
     ]
@@ -49,8 +48,11 @@ data "aws_iam_policy_document" "ecs_service_policy" {
     ]
   }
   statement {
-    effect    = "Allow"
-    resources = ["arn:aws:secretsmanager:${var.aws_region}:${data.aws_caller_identity.current.account_id}:secret:mamip/prod/github-*"]
+    effect = "Allow"
+    resources = [
+      "arn:aws:secretsmanager:${var.aws_region}:${data.aws_caller_identity.current.account_id}:secret:mamip/prod/github-*",
+      "arn:aws:secretsmanager:${var.aws_region}:${data.aws_caller_identity.current.account_id}:secret:iamtrail/social/iamtrail-*"
+    ]
     actions = [
       "secretsmanager:GetSecretValue"
     ]

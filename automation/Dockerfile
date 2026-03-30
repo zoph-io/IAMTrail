@@ -5,6 +5,7 @@ RUN dnf install -y \
     jq \
     aws-cli \
     findutils \
+    python3 \
     && dnf clean all \
     && rm -rf /var/cache/dnf
 

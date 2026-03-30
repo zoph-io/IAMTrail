@@ -19,7 +19,6 @@ GIT_USER_EMAIL="mamip_bot@github.com"
 REGION="eu-west-1"
 GITHUB_SECRET_ARN="arn:aws:secretsmanager:eu-west-1:567589703415:secret:mamip/prod/github-MSzGtP"
 SNS_TOPIC_ARN="arn:aws:sns:eu-west-1:567589703415:mamip-sns-topic"
-SQS_TWITTER_URL="https://sqs.eu-west-1.amazonaws.com/567589703415/qtweet-mamip-sqs-queue.fifo"
 SQS_BLUESKY_URL="https://sqs.eu-west-1.amazonaws.com/567589703415/qbsky-mamip-prod-sqs-queue.fifo"
 DISCORD_WEBHOOK_SSM="/iamtrail/discord-webhook-url"
 
@@ -156,10 +155,10 @@ send_notifications() {
     local sns_message="$2"
 
     # X/Twitter
-    aws sqs send-message \
-        --queue-url "$SQS_TWITTER_URL" \
-        --message-body "$message_body" \
-        --message-group-id 1
+    python3 "$REPO_PATH/automation/scripts/x_poster.py" \
+        --secret "iamtrail/social/iamtrail" \
+        --region "$REGION" \
+        "$message_body" || true
 
     # Bluesky
     aws sqs send-message \

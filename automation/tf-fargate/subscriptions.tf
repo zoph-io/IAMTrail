@@ -1151,7 +1151,7 @@ data "archive_file" "guardduty_recorder" {
     filename = "index.py"
   }
   source {
-    content  = file("${path.module}/../lambdas/guardduty-recorder/x_poster.py")
+    content  = file("${path.module}/../scripts/x_poster.py")
     filename = "x_poster.py"
   }
   source {
