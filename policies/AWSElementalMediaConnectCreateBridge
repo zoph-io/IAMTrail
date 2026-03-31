@@ -1,0 +1,25 @@
+{
+    "PolicyVersion": {
+        "Document": {
+            "Version": "2012-10-17",
+            "Statement": [
+                {
+                    "Effect": "Allow",
+                    "Action": [
+                        "mediaconnect:CreateBridge",
+                        "mediaconnect:AddBridgeSources",
+                        "mediaconnect:AddBridgeOutputs"
+                    ],
+                    "Resource": [
+                        "arn:aws:mediaconnect:*:*:bridge:*:*",
+                        "arn:aws:mediaconnect:*:*:bridge:*:*/bridgeSource/*",
+                        "arn:aws:mediaconnect:*:*:bridge:*:*/bridgeOutput/*"
+                    ]
+                }
+            ]
+        },
+        "VersionId": "v1",
+        "IsDefaultVersion": true,
+        "CreateDate": "2026-03-19T16:57:15+00:00"
+    }
+}
