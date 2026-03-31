@@ -32,7 +32,9 @@
                         "cloudformation:DescribeStackEvents",
                         "cloudformation:DescribeStacks",
                         "cloudformation:UpdateStack",
-                        "cloudformation:DeleteStack"
+                        "cloudformation:DeleteStack",
+                        "cloudformation:TagResource",
+                        "cloudformation:UntagResource"
                     ],
                     "Resource": [
                         "*"
@@ -67,8 +69,8 @@
                 }
             ]
         },
-        "VersionId": "v8",
+        "VersionId": "v9",
         "IsDefaultVersion": true,
-        "CreateDate": "2026-02-12T17:59:30+00:00"
+        "CreateDate": "2026-03-20T17:42:14+00:00"
     }
 }
