@@ -162,11 +162,66 @@
                             ]
                         }
                     }
+                },
+                {
+                    "Sid": "AccessSecretStatement",
+                    "Effect": "Allow",
+                    "Action": [
+                        "secretsmanager:GetSecretValue"
+                    ],
+                    "Resource": [
+                        "arn:aws:secretsmanager:*:*:secret:*"
+                    ],
+                    "Condition": {
+                        "Null": {
+                            "aws:ResourceTag/EvsAccess": "false"
+                        }
+                    }
+                },
+                {
+                    "Sid": "DecryptSecretWithKmsKeyStatement",
+                    "Effect": "Allow",
+                    "Action": [
+                        "kms:Decrypt"
+                    ],
+                    "Resource": "arn:aws:kms:*:*:key/*",
+                    "Condition": {
+                        "StringLike": {
+                            "kms:ViaService": "secretsmanager.*.amazonaws.com",
+                            "kms:EncryptionContext:SecretARN": "arn:aws:secretsmanager:*:*:secret:*",
+                            "kms:EncryptionContext:SecretVersionId": "*"
+                        },
+                        "StringEquals": {
+                            "aws:ResourceAccount": "${aws:PrincipalAccount}"
+                        },
+                        "Null": {
+                            "aws:ResourceTag/EvsAccess": "false"
+                        }
+                    }
+                },
+                {
+                    "Sid": "DescribeKmsKeyStatement",
+                    "Effect": "Allow",
+                    "Action": [
+                        "kms:DescribeKey"
+                    ],
+                    "Resource": "arn:aws:kms:*:*:key/*",
+                    "Condition": {
+                        "StringLike": {
+                            "kms:ViaService": "secretsmanager.*.amazonaws.com"
+                        },
+                        "StringEquals": {
+                            "aws:ResourceAccount": "${aws:PrincipalAccount}"
+                        },
+                        "Null": {
+                            "aws:ResourceTag/EvsAccess": "false"
+                        }
+                    }
                 }
             ]
         },
-        "VersionId": "v9",
+        "VersionId": "v10",
         "IsDefaultVersion": true,
-        "CreateDate": "2026-02-12T17:58:28+00:00"
+        "CreateDate": "2026-03-22T18:12:13+00:00"
     }
 }
