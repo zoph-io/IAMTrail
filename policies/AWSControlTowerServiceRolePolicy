@@ -193,7 +193,8 @@
                     "Action": [
                         "cloudformation:SetTypeConfiguration",
                         "cloudformation:DeactivateType",
-                        "cloudformation:ActivateType"
+                        "cloudformation:ActivateType",
+                        "cloudformation:BatchDescribeTypeConfigurations"
                     ],
                     "Resource": "arn:aws:cloudformation:*:*:type/hook/AWS-ControlTower*"
                 },
@@ -208,8 +209,8 @@
                 }
             ]
         },
-        "VersionId": "v19",
+        "VersionId": "v20",
         "IsDefaultVersion": true,
-        "CreateDate": "2026-02-12T18:01:58+00:00"
+        "CreateDate": "2026-03-23T18:42:11+00:00"
     }
 }
