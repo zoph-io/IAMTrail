@@ -1,0 +1,25 @@
+{
+    "PolicyVersion": {
+        "Document": {
+            "Version": "2012-10-17",
+            "Statement": [
+                {
+                    "Effect": "Allow",
+                    "Action": [
+                        "mediaconnect:DeleteBridge",
+                        "mediaconnect:RemoveBridgeSource",
+                        "mediaconnect:RemoveBridgeOutput"
+                    ],
+                    "Resource": [
+                        "arn:aws:mediaconnect:*:*:bridge:*:*",
+                        "arn:aws:mediaconnect:*:*:bridge:*:*/bridgeSource/*",
+                        "arn:aws:mediaconnect:*:*:bridge:*:*/bridgeOutput/*"
+                    ]
+                }
+            ]
+        },
+        "VersionId": "v1",
+        "IsDefaultVersion": true,
+        "CreateDate": "2026-03-19T19:57:17+00:00"
+    }
+}
