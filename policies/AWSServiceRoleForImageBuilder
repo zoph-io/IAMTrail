@@ -446,11 +446,31 @@
                         "ssm:GetParameter"
                     ],
                     "Resource": "arn:aws:ssm:*::parameter/aws/service/*"
+                },
+                {
+                    "Effect": "Allow",
+                    "Action": "imagebuilder:StartImagePipelineExecution",
+                    "Resource": "arn:aws:imagebuilder:*:*:image-pipeline/*",
+                    "Condition": {
+                        "StringEquals": {
+                            "aws:ResourceAccount": "${aws:PrincipalAccount}"
+                        }
+                    }
+                },
+                {
+                    "Effect": "Allow",
+                    "Action": "imagebuilder:TagResource",
+                    "Resource": "arn:aws:imagebuilder:*:*:image-pipeline/*",
+                    "Condition": {
+                        "StringEquals": {
+                            "aws:ResourceAccount": "${aws:PrincipalAccount}"
+                        }
+                    }
                 }
             ]
         },
-        "VersionId": "v26",
+        "VersionId": "v27",
         "IsDefaultVersion": true,
-        "CreateDate": "2026-02-23T22:27:06+00:00"
+        "CreateDate": "2026-03-17T20:42:10+00:00"
     }
 }
