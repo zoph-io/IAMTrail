@@ -212,7 +212,9 @@
                         "sagemaker:StartMlflowTrackingServer",
                         "sagemaker:StopMlflowTrackingServer",
                         "sagemaker:CreatePresignedMlflowTrackingServerUrl",
-                        "sagemaker-mlflow:*"
+                        "sagemaker-mlflow:*",
+                        "sagemaker:*Feature*",
+                        "sagemaker:*Record"
                     ],
                     "Resource": "*"
                 },
@@ -260,7 +262,8 @@
                         "cloudformation:*"
                     ],
                     "Resource": [
-                        "arn:aws:cloudformation:*:*:stack/DataZone*"
+                        "arn:aws:cloudformation:*:*:stack/DataZone*",
+                        "arn:aws:cloudformation:*:*:transform/*"
                     ]
                 },
                 {
@@ -274,6 +277,7 @@
                     "Effect": "Allow",
                     "Action": [
                         "cloudwatch:PutMetricData",
+                        "cloudwatch:GetMetricData",
                         "logs:CreateLogGroup",
                         "logs:CreateLogStream",
                         "logs:Describe*",
@@ -301,7 +305,8 @@
                         "lakeformation:RevokePermissions",
                         "lakeformation:ListLakeFormationOptIns",
                         "lakeformation:CreateLakeFormationOptIn",
-                        "lakeformation:DeleteLakeFormationOptIn"
+                        "lakeformation:DeleteLakeFormationOptIn",
+                        "lakeformation:*DataCellsFilter"
                     ],
                     "Resource": "*"
                 },
@@ -911,11 +916,56 @@
                         "emr-serverless:AccessLivyEndpoints"
                     ],
                     "Resource": "*"
+                },
+                {
+                    "Sid": "SSOApplicationPermissions",
+                    "Effect": "Allow",
+                    "Action": [
+                        "sso:CreateApplication",
+                        "sso:PutApplicationGrant",
+                        "sso:PutApplicationAssignmentConfiguration",
+                        "sso:PutApplicationAuthenticationMethod",
+                        "sso:PutApplicationAccessScope",
+                        "sso:UpdateApplication",
+                        "sso:CreateApplicationAssignment",
+                        "sso:DeleteApplicationAssignment"
+                    ],
+                    "Resource": "*",
+                    "Condition": {
+                        "Bool": {
+                            "aws:ViaAWSService": "true"
+                        }
+                    }
+                },
+                {
+                    "Sid": "SSOReadOnlyPermissions",
+                    "Effect": "Allow",
+                    "Action": [
+                        "sso:ListInstances",
+                        "organizations:DescribeOrganization"
+                    ],
+                    "Resource": "*"
+                },
+                {
+                    "Sid": "SSOKMSPermissions",
+                    "Effect": "Allow",
+                    "Action": [
+                        "kms:Decrypt"
+                    ],
+                    "Resource": "*",
+                    "Condition": {
+                        "StringLike": {
+                            "kms:ViaService": "sso.*.amazonaws.com"
+                        },
+                        "Null": {
+                            "kms:EncryptionContext:aws:sso:instance-arn": "false"
+                        }
+                    }
                 }
             ]
         },
-        "VersionId": "v19",
+        "VersionId": "v20",
         "IsDefaultVersion": true,
-        "CreateDate": "2026-03-11T17:27:12+00:00"
+        "CreateDate": "2026-03-27T17:27:16+00:00"
     }
 }
