@@ -9,6 +9,9 @@
                         "uxc:GetAccountColor",
                         "uxc:PutAccountColor",
                         "uxc:DeleteAccountColor",
+                        "uxc:GetAccountCustomizations",
+                        "uxc:UpdateAccountCustomizations",
+                        "uxc:ListServices",
                         "ec2:DescribeRegions",
                         "notifications:GetFeatureOptInStatus",
                         "notifications:AssociateChannel",
@@ -92,8 +95,8 @@
                 }
             ]
         },
-        "VersionId": "v6",
+        "VersionId": "v7",
         "IsDefaultVersion": true,
-        "CreateDate": "2026-02-12T18:01:55+00:00"
+        "CreateDate": "2026-03-23T16:42:15+00:00"
     }
 }
