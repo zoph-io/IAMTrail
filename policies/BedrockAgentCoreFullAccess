@@ -383,11 +383,20 @@
                         "arn:aws:bedrock:*::foundation-model/*",
                         "arn:aws:bedrock:*:*:inference-profile/*"
                     ]
+                },
+                {
+                    "Sid": "AgentCoreEvaluationLambdaAccess",
+                    "Effect": "Allow",
+                    "Action": [
+                        "lambda:InvokeFunction",
+                        "lambda:GetFunction"
+                    ],
+                    "Resource": "arn:aws:lambda:*:*:function:*"
                 }
             ]
         },
-        "VersionId": "v15",
+        "VersionId": "v16",
         "IsDefaultVersion": true,
-        "CreateDate": "2026-02-12T17:58:03+00:00"
+        "CreateDate": "2026-03-27T21:12:10+00:00"
     }
 }
