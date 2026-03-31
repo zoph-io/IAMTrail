@@ -59,7 +59,9 @@
                         "datazone:StopNotebookCompute",
                         "datazone:StartConversation",
                         "datazone:GenerateCode",
-                        "datazone:SendMessage"
+                        "datazone:SendMessage",
+                        "datazone:StartNotebookImport",
+                        "datazone:StartNotebookExport"
                     ],
                     "Resource": "*"
                 },
@@ -245,7 +247,9 @@
                         "sagemaker:StartMlflowTrackingServer",
                         "sagemaker:StopMlflowTrackingServer",
                         "sagemaker:CreatePresignedMlflowTrackingServerUrl",
-                        "sagemaker-mlflow:*"
+                        "sagemaker-mlflow:*",
+                        "sagemaker:*Feature*",
+                        "sagemaker:*Record"
                     ],
                     "Resource": "*"
                 },
@@ -279,6 +283,7 @@
                     "Effect": "Allow",
                     "Action": [
                         "cloudwatch:PutMetricData",
+                        "cloudwatch:GetMetricData",
                         "logs:CreateLogGroup",
                         "logs:CreateLogStream",
                         "logs:Describe*",
@@ -940,8 +945,8 @@
                 }
             ]
         },
-        "VersionId": "v22",
+        "VersionId": "v23",
         "IsDefaultVersion": true,
-        "CreateDate": "2026-03-11T17:42:09+00:00"
+        "CreateDate": "2026-03-27T17:27:15+00:00"
     }
 }
