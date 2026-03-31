@@ -1,0 +1,22 @@
+{
+    "PolicyVersion": {
+        "Document": {
+            "Version": "2012-10-17",
+            "Statement": [
+                {
+                    "Sid": "AIDevOpsAgentReadOnlyAccess",
+                    "Effect": "Allow",
+                    "Action": [
+                        "aidevops:Get*",
+                        "aidevops:List*",
+                        "aidevops:SearchServiceAccessibleResource"
+                    ],
+                    "Resource": "*"
+                }
+            ]
+        },
+        "VersionId": "v1",
+        "IsDefaultVersion": true,
+        "CreateDate": "2026-03-26T03:42:07+00:00"
+    }
+}
