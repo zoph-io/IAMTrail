@@ -256,11 +256,24 @@
                     "Effect": "Allow",
                     "Action": "ssm:GetCommandInvocation",
                     "Resource": "*"
+                },
+                {
+                    "Sid": "CloudTrailCreateServiceLinkedChannelSid",
+                    "Effect": "Allow",
+                    "Action": [
+                        "cloudtrail:CreateServiceLinkedChannel"
+                    ],
+                    "Resource": "arn:aws:cloudtrail:*:*:channel/aws-service-channel/guardduty/*",
+                    "Condition": {
+                        "StringEquals": {
+                            "aws:ResourceAccount": "${aws:PrincipalAccount}"
+                        }
+                    }
                 }
             ]
         },
-        "VersionId": "v10",
+        "VersionId": "v11",
         "IsDefaultVersion": true,
-        "CreateDate": "2024-08-12T20:01:11+00:00"
+        "CreateDate": "2026-03-25T20:57:15+00:00"
     }
 }
