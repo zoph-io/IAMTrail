@@ -8,7 +8,9 @@
                     "Effect": "Allow",
                     "Action": [
                         "securityagent:ListAgentSpaces",
-                        "securityagent:ListSecurityRequirements"
+                        "securityagent:ListSecurityRequirements",
+                        "securityagent:ListTargetDomains",
+                        "securityagent:BatchGetTargetDomains"
                     ],
                     "Resource": "*",
                     "Condition": {
@@ -38,7 +40,6 @@
                         "securityagent:GetDesignReview",
                         "securityagent:GetDesignReviewArtifact",
                         "securityagent:ListArtifacts",
-                        "securityagent:ListSecurityRequirements",
                         "securityagent:ListDiscoveredEndpoints",
                         "securityagent:ListDesignReviewComments",
                         "securityagent:ListDesignReviews",
@@ -51,7 +52,9 @@
                         "securityagent:StartPentestJob",
                         "securityagent:StopPentestJob",
                         "securityagent:UpdateFinding",
-                        "securityagent:UpdatePentest"
+                        "securityagent:UpdatePentest",
+                        "securityagent:GetDesignReviewFeedback",
+                        "securityagent:PutDesignReviewFeedback"
                     ],
                     "Resource": "arn:aws:securityagent:*:*:agent-space*",
                     "Condition": {
@@ -62,8 +65,8 @@
                 }
             ]
         },
-        "VersionId": "v3",
+        "VersionId": "v4",
         "IsDefaultVersion": true,
-        "CreateDate": "2026-02-12T17:59:32+00:00"
+        "CreateDate": "2026-03-20T17:27:10+00:00"
     }
 }
