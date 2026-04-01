@@ -23,7 +23,9 @@
                         "datazone:GetGroupProfile",
                         "datazone:SearchGroupProfiles",
                         "datazone:SearchUserProfiles",
-                        "datazone:ListProjectMemberships"
+                        "datazone:ListProjectMemberships",
+                        "datazone:GetConnection",
+                        "datazone:ListConnections"
                     ],
                     "Resource": [
                         "*"
@@ -60,8 +62,8 @@
                 }
             ]
         },
-        "VersionId": "v9",
+        "VersionId": "v10",
         "IsDefaultVersion": true,
-        "CreateDate": "2026-02-12T18:00:10+00:00"
+        "CreateDate": "2026-03-31T21:12:16+00:00"
     }
 }
