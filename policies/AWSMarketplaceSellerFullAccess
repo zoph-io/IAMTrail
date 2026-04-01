@@ -184,11 +184,36 @@
                         "partnercentral:GetVerification"
                     ],
                     "Resource": "*"
+                },
+                {
+                    "Sid": "AWSMarketplaceAgreementsCancellationAndAdjustmentAccess",
+                    "Effect": "Allow",
+                    "Action": [
+                        "aws-marketplace:ListAgreementInvoiceLineItems",
+                        "aws-marketplace:ListBillingAdjustmentRequests",
+                        "aws-marketplace:GetBillingAdjustmentRequest",
+                        "aws-marketplace:BatchCreateBillingAdjustmentRequest",
+                        "aws-marketplace:ListAgreementCancellationRequests",
+                        "aws-marketplace:GetAgreementCancellationRequest",
+                        "aws-marketplace:SendAgreementCancellationRequest",
+                        "aws-marketplace:CancelAgreementCancellationRequest"
+                    ],
+                    "Resource": "*",
+                    "Condition": {
+                        "StringEquals": {
+                            "aws-marketplace:PartyType": "Proposer"
+                        },
+                        "ForAllValues:StringEquals": {
+                            "aws-marketplace:AgreementType": [
+                                "PurchaseAgreement"
+                            ]
+                        }
+                    }
                 }
             ]
         },
-        "VersionId": "v25",
+        "VersionId": "v26",
         "IsDefaultVersion": true,
-        "CreateDate": "2026-03-02T23:42:11+00:00"
+        "CreateDate": "2026-03-31T17:42:16+00:00"
     }
 }
