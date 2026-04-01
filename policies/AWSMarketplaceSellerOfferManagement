@@ -78,11 +78,33 @@
                             ]
                         }
                     }
+                },
+                {
+                    "Sid": "AWSMarketplaceAgreementsCancellationAndAdjustmentReadAccess",
+                    "Effect": "Allow",
+                    "Action": [
+                        "aws-marketplace:ListAgreementInvoiceLineItems",
+                        "aws-marketplace:ListBillingAdjustmentRequests",
+                        "aws-marketplace:GetBillingAdjustmentRequest",
+                        "aws-marketplace:ListAgreementCancellationRequests",
+                        "aws-marketplace:GetAgreementCancellationRequest"
+                    ],
+                    "Resource": "*",
+                    "Condition": {
+                        "ForAllValues:StringEquals": {
+                            "aws-marketplace:AgreementType": [
+                                "PurchaseAgreement"
+                            ]
+                        },
+                        "StringEquals": {
+                            "aws-marketplace:PartyType": "Proposer"
+                        }
+                    }
                 }
             ]
         },
-        "VersionId": "v1",
+        "VersionId": "v2",
         "IsDefaultVersion": true,
-        "CreateDate": "2024-11-19T00:41:38+00:00"
+        "CreateDate": "2026-03-31T16:57:09+00:00"
     }
 }
