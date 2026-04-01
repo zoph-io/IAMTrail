@@ -7,6 +7,7 @@
                 "Action": [
                     "acm:DescribeCertificate",
                     "acm:ListCertificates",
+                    "acm:SearchCertificates",
                     "acm:GetCertificate",
                     "acm:ListTagsForCertificate",
                     "acm:GetAccountConfiguration"
@@ -14,8 +15,8 @@
                 "Resource": "*"
             }
         },
-        "VersionId": "v4",
+        "VersionId": "v5",
         "IsDefaultVersion": true,
-        "CreateDate": "2021-03-15T16:25:21+00:00"
+        "CreateDate": "2026-03-31T18:57:22+00:00"
     }
 }
