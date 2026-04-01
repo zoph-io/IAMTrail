@@ -40,7 +40,11 @@ Subscribe to policy changes:
 - **Email Digest** (recommended): [Subscribe on iamtrail.com](https://iamtrail.com/subscribe) - daily or weekly emails with inline diffs, per-policy filtering, no account required
 - **Bluesky**: [@iamtrail.bsky.social](https://bsky.app/profile/iamtrail.bsky.social)
 - **X/Twitter**: [@iamtrail_](https://x.com/iamtrail_)
-- **RSS**: [Commit feed](https://github.com/zoph-io/IAMTrail/commits/master.atom)
+- **RSS Feeds** ([all feeds](https://iamtrail.com/feeds/)):
+  - [All Changes](https://iamtrail.com/feeds/all.xml) - everything in one feed
+  - [IAM Policy Changes](https://iamtrail.com/feeds/iam-policies.xml) - policy updates, new policies, deprecations
+  - [Endpoint Changes](https://iamtrail.com/feeds/endpoints.xml) - new regions, services, and expansions from botocore
+  - [GuardDuty Announcements](https://iamtrail.com/feeds/guardduty.xml) - new findings, features, and region launches
 
 
 ## Browse the Data
@@ -75,7 +79,7 @@ GNU General Public License v3.0 - see [LICENSE](LICENSE) for details.
 
 <div align="center">
 
-**[Website](https://iamtrail.com)** | **[Bluesky](https://bsky.app/profile/iamtrail.bsky.social)** | **[X/Twitter](https://x.com/iamtrail_)**
+**[Website](https://iamtrail.com)** | **[RSS Feeds](https://iamtrail.com/feeds/)** | **[Bluesky](https://bsky.app/profile/iamtrail.bsky.social)** | **[X/Twitter](https://x.com/iamtrail_)**
 
 Made by [zoph.io](https://zoph.io) - AWS Cloud Advisory Boutique
 
