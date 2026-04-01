@@ -1,0 +1,94 @@
+[
+  {
+    "findingDetails": "The 3 resource ARN(s) are redundant because they reference the same resource. Review the use of wildcards (*), or remove the resource arn:aws:mediaconnect:*:*:bridge:*:*/bridgeOutput/* to remove the redundancy.",
+    "findingType": "SUGGESTION",
+    "issueCode": "REDUNDANT_RESOURCE",
+    "learnMoreLink": "https://docs.aws.amazon.com/IAM/latest/UserGuide/access-analyzer-reference-policy-checks.html#access-analyzer-reference-policy-checks-suggestion-redundant-resource",
+    "locations": [
+      {
+        "path": [
+          {
+            "value": "Statement"
+          },
+          {
+            "index": 0
+          },
+          {
+            "value": "Resource"
+          },
+          {
+            "index": 0
+          }
+        ],
+        "span": {
+          "start": {
+            "line": 1,
+            "column": 184,
+            "offset": 184
+          },
+          "end": {
+            "line": 1,
+            "column": 221,
+            "offset": 221
+          }
+        }
+      },
+      {
+        "path": [
+          {
+            "value": "Statement"
+          },
+          {
+            "index": 0
+          },
+          {
+            "value": "Resource"
+          },
+          {
+            "index": 1
+          }
+        ],
+        "span": {
+          "start": {
+            "line": 1,
+            "column": 223,
+            "offset": 223
+          },
+          "end": {
+            "line": 1,
+            "column": 275,
+            "offset": 275
+          }
+        }
+      },
+      {
+        "path": [
+          {
+            "value": "Statement"
+          },
+          {
+            "index": 0
+          },
+          {
+            "value": "Resource"
+          },
+          {
+            "index": 2
+          }
+        ],
+        "span": {
+          "start": {
+            "line": 1,
+            "column": 277,
+            "offset": 277
+          },
+          "end": {
+            "line": 1,
+            "column": 329,
+            "offset": 329
+          }
+        }
+      }
+    ]
+  }
+]

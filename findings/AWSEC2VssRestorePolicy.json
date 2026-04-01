@@ -1,0 +1,119 @@
+[
+  {
+    "findingDetails": "We recommend replacing the key aws:RequestTag/AwsVssConfig in the condition block of StringLike with {aws:RequestTag/AwsVssConfig: false} to ensure better enforcement of the condition.",
+    "findingType": "SUGGESTION",
+    "issueCode": "EQUIVALENT_TO_NULL_FALSE",
+    "learnMoreLink": "https://docs.aws.amazon.com/IAM/latest/UserGuide/access-analyzer-reference-policy-checks.html#access-analyzer-reference-policy-checks-suggestion-equivalent-to-null-false",
+    "locations": [
+      {
+        "path": [
+          {
+            "value": "Statement"
+          },
+          {
+            "index": 0
+          },
+          {
+            "value": "Condition"
+          },
+          {
+            "value": "StringLike"
+          },
+          {
+            "value": "aws:RequestTag/AwsVssConfig"
+          }
+        ],
+        "span": {
+          "start": {
+            "line": 1,
+            "column": 225,
+            "offset": 225
+          },
+          "end": {
+            "line": 1,
+            "column": 228,
+            "offset": 228
+          }
+        }
+      }
+    ]
+  },
+  {
+    "findingDetails": "We recommend replacing the key ec2:ResourceTag/AwsVssConfig in the condition block of StringLike with {ec2:ResourceTag/AwsVssConfig: false} to ensure better enforcement of the condition.",
+    "findingType": "SUGGESTION",
+    "issueCode": "EQUIVALENT_TO_NULL_FALSE",
+    "learnMoreLink": "https://docs.aws.amazon.com/IAM/latest/UserGuide/access-analyzer-reference-policy-checks.html#access-analyzer-reference-policy-checks-suggestion-equivalent-to-null-false",
+    "locations": [
+      {
+        "path": [
+          {
+            "value": "Statement"
+          },
+          {
+            "index": 1
+          },
+          {
+            "value": "Condition"
+          },
+          {
+            "value": "StringLike"
+          },
+          {
+            "value": "ec2:ResourceTag/AwsVssConfig"
+          }
+        ],
+        "span": {
+          "start": {
+            "line": 1,
+            "column": 488,
+            "offset": 488
+          },
+          "end": {
+            "line": 1,
+            "column": 491,
+            "offset": 491
+          }
+        }
+      }
+    ]
+  },
+  {
+    "findingDetails": "We recommend replacing the key ec2:ResourceTag/AwsVssConfig in the condition block of StringLike with {ec2:ResourceTag/AwsVssConfig: false} to ensure better enforcement of the condition.",
+    "findingType": "SUGGESTION",
+    "issueCode": "EQUIVALENT_TO_NULL_FALSE",
+    "learnMoreLink": "https://docs.aws.amazon.com/IAM/latest/UserGuide/access-analyzer-reference-policy-checks.html#access-analyzer-reference-policy-checks-suggestion-equivalent-to-null-false",
+    "locations": [
+      {
+        "path": [
+          {
+            "value": "Statement"
+          },
+          {
+            "index": 3
+          },
+          {
+            "value": "Condition"
+          },
+          {
+            "value": "StringLike"
+          },
+          {
+            "value": "ec2:ResourceTag/AwsVssConfig"
+          }
+        ],
+        "span": {
+          "start": {
+            "line": 1,
+            "column": 851,
+            "offset": 851
+          },
+          "end": {
+            "line": 1,
+            "column": 854,
+            "offset": 854
+          }
+        }
+      }
+    ]
+  }
+]

@@ -1,6 +1,6 @@
-# AWS Access Analyzer - Findings - 2026-03-31
+# AWS Access Analyzer - Findings - 2026-04-01
 
-- **Policies analyzed:** `1445`
+- **Policies analyzed:** `1461`
 - **Errors:** `40`
   - [`AWSAuditManagerAdministratorAccess`](./AWSAuditManagerAdministratorAccess.json)
   - [`AWSAuditManagerServiceRolePolicy`](./AWSAuditManagerServiceRolePolicy.json)
@@ -35,7 +35,8 @@
   - [`IAMFullAccess`](./IAMFullAccess.json)
   - [`S3UnlockBucketPolicy`](./S3UnlockBucketPolicy.json)
   - [`SQSUnlockQueuePolicy`](./SQSUnlockQueuePolicy.json)
-- **Suggestions:** `157`
+- **Suggestions:** `168`
+  - [`AIDevOpsAgentAccessPolicy`](./AIDevOpsAgentAccessPolicy.json)
   - [`AIOpsAssistantPolicy`](./AIOpsAssistantPolicy.json)
   - [`AWSBackupGuardDutyRolePolicyForScans`](./AWSBackupGuardDutyRolePolicyForScans.json)
   - [`AWSBatchFullAccess`](./AWSBatchFullAccess.json)
@@ -47,12 +48,17 @@
   - [`AWSEC2FleetServiceRolePolicy`](./AWSEC2FleetServiceRolePolicy.json)
   - [`AWSEC2SpotFleetServiceRolePolicy`](./AWSEC2SpotFleetServiceRolePolicy.json)
   - [`AWSEC2SqlHaInstancePolicy`](./AWSEC2SqlHaInstancePolicy.json)
+  - [`AWSEC2VssRestorePolicy`](./AWSEC2VssRestorePolicy.json)
   - [`AWSEC2VssSnapshotPolicy`](./AWSEC2VssSnapshotPolicy.json)
   - [`AWSElasticBeanstalkCustomPlatformforEC2Role`](./AWSElasticBeanstalkCustomPlatformforEC2Role.json)
   - [`AWSElasticBeanstalkRoleCore`](./AWSElasticBeanstalkRoleCore.json)
   - [`AWSElasticBeanstalkService`](./AWSElasticBeanstalkService.json)
   - [`AWSElasticBeanstalkWebTier`](./AWSElasticBeanstalkWebTier.json)
   - [`AWSElasticBeanstalkWorkerTier`](./AWSElasticBeanstalkWorkerTier.json)
+  - [`AWSElementalMediaConnectCreateBridge`](./AWSElementalMediaConnectCreateBridge.json)
+  - [`AWSElementalMediaConnectCreateFlow`](./AWSElementalMediaConnectCreateFlow.json)
+  - [`AWSElementalMediaConnectDeleteBridge`](./AWSElementalMediaConnectDeleteBridge.json)
+  - [`AWSElementalMediaConnectDeleteFlow`](./AWSElementalMediaConnectDeleteFlow.json)
   - [`AWSGlueConsoleFullAccess`](./AWSGlueConsoleFullAccess.json)
   - [`AWSGlueDataBrewServiceRole`](./AWSGlueDataBrewServiceRole.json)
   - [`AWSMarketplaceFullAccess`](./AWSMarketplaceFullAccess.json)
@@ -93,6 +99,7 @@
   - [`AmazonEKSLocalOutpostServiceRolePolicy`](./AmazonEKSLocalOutpostServiceRolePolicy.json)
   - [`AmazonEKSNetworkingPolicy`](./AmazonEKSNetworkingPolicy.json)
   - [`AmazonEKSServiceRolePolicy`](./AmazonEKSServiceRolePolicy.json)
+  - [`AmazonEVSServiceRolePolicy`](./AmazonEVSServiceRolePolicy.json)
   - [`AmazonElasticMapReduceFullAccess`](./AmazonElasticMapReduceFullAccess.json)
   - [`AmazonGuardDutyMalwareProtectionServiceRolePolicy`](./AmazonGuardDutyMalwareProtectionServiceRolePolicy.json)
   - [`AmazonGuardDutyServiceRolePolicy`](./AmazonGuardDutyServiceRolePolicy.json)
@@ -109,6 +116,7 @@
   - [`AmazonSecurityLakeMetastoreManager`](./AmazonSecurityLakeMetastoreManager.json)
   - [`AmazonWorkspacesPCAAccess`](./AmazonWorkspacesPCAAccess.json)
   - [`AppRunnerNetworkingServiceRolePolicy`](./AppRunnerNetworkingServiceRolePolicy.json)
+  - [`DBModProvisioningAndMigration`](./DBModProvisioningAndMigration.json)
   - [`DataScientist`](./DataScientist.json)
   - [`EC2FastLaunchServiceRolePolicy`](./EC2FastLaunchServiceRolePolicy.json)
   - [`EC2FleetTimeShiftableServiceRolePolicy`](./EC2FleetTimeShiftableServiceRolePolicy.json)
@@ -120,7 +128,8 @@
   - [`SupportUser`](./SupportUser.json)
   - [`SystemAdministrator`](./SystemAdministrator.json)
   - [`ViewOnlyAccess`](./ViewOnlyAccess.json)
-- **Warnings:** `72`
+- **Warnings:** `73`
+  - [`AIDevOpsAgentAccessPolicy`](./AIDevOpsAgentAccessPolicy.json)
   - [`AIOpsAssistantPolicy`](./AIOpsAssistantPolicy.json)
   - [`AWS-SSM-DiagnosisAutomation-AdministrationRolePolicy`](./AWS-SSM-DiagnosisAutomation-AdministrationRolePolicy.json)
   - [`AWS-SSM-DiagnosisAutomation-ExecutionRolePolicy`](./AWS-SSM-DiagnosisAutomation-ExecutionRolePolicy.json)
