@@ -3,8 +3,6 @@ name: "[Prod] IAMTrail - Infrastructure GitHub Actions"
 on:
   workflow_dispatch:
   push:
-    tags-ignore:
-      - "*.*"
     branches:
       - master
 

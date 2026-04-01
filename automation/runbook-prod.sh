@@ -25,6 +25,14 @@ DISCORD_WEBHOOK_SSM="/iamtrail/discord-webhook-url"
 # File processing
 WORD_TO_REMOVE="policies/"
 
+# Result tracking (populated during execution)
+START_TIME=""
+POLICY_COUNT=0
+RESULT_STATUS="no_changes"
+RESULT_POLICY_NAMES=""
+RESULT_COMMIT_COUNT=0
+RESULT_COMMIT_URL=""
+
 ######################
 # Utility Functions  #
 ######################
@@ -146,7 +154,11 @@ clone_repo() {
 process_policies() {
     log "Processing IAM policies"
     cd "$REPO_PATH"
-    aws iam list-policies --output json |
+    local policies_json
+    policies_json=$(aws iam list-policies --output json)
+    POLICY_COUNT=$(echo "$policies_json" | jq '[.Policies[] | select(.Arn | contains("iam::aws"))] | length')
+    log "Found $POLICY_COUNT AWS managed policies"
+    echo "$policies_json" |
         jq -cr '.Policies[] | select(.Arn | contains("iam::aws")) | .Arn + " " + .DefaultVersionId + " " + .PolicyName' |
         xargs -P 16 -n3 sh -c 'mkdir -p policies && aws iam get-policy-version --policy-arn $1 --version-id $2 | jq --indent 4 . > "policies/$3"' sh
 }
@@ -245,14 +257,17 @@ process_changes() {
             git push origin master
             git push origin --tags
 
-            discord_notify 3066993 "Policy Changes Pushed" "${#ALL_COMMITS[@]} policies updated and pushed to master" "Policies:${POLICY_NAMES:0:200}" "Commit:[View](https://github.com/zoph-io/IAMTrail/commit/$LAST_COMMIT_ID)"
+            RESULT_STATUS="changes"
+            RESULT_POLICY_NAMES="$POLICY_NAMES"
+            RESULT_COMMIT_COUNT=${#ALL_COMMITS[@]}
+            RESULT_COMMIT_URL="https://github.com/zoph-io/IAMTrail/commit/$LAST_COMMIT_ID"
         else
             log "No policy files were changed"
-            discord_notify 3447003 "No Policy Changes" "Files changed but no policy updates detected"
+            RESULT_STATUS="no_policy_changes"
         fi
     else
         log "No changes detected"
-        discord_notify 3447003 "No Changes Detected" "All AWS managed policies are up to date"
+        RESULT_STATUS="no_changes"
     fi
 }
 
@@ -261,6 +276,7 @@ process_changes() {
 ####################
 
 main() {
+    START_TIME=$(date +%s)
     log "Starting IAMTrail update process"
     discord_notify 3447003 "Runbook Started" "IAMTrail update process initiated"
     setup_git_auth
@@ -268,7 +284,25 @@ main() {
     process_policies
     process_changes
     log "Job completed successfully"
-    discord_notify 3066993 "Runbook Complete" "IAMTrail update process finished successfully"
+
+    local elapsed=$(( $(date +%s) - START_TIME ))
+    local mins=$(( elapsed / 60 ))
+    local secs=$(( elapsed % 60 ))
+    local duration="${mins}m ${secs}s"
+
+    if [[ "$RESULT_STATUS" == "changes" ]]; then
+        discord_notify 3066993 "Runbook Complete" \
+            "${RESULT_COMMIT_COUNT} policies updated and pushed to master" \
+            "Duration:${duration}" \
+            "Policies Scanned:${POLICY_COUNT}" \
+            "Updated:${RESULT_POLICY_NAMES:0:200}" \
+            "Commit:[View](${RESULT_COMMIT_URL})"
+    else
+        discord_notify 3447003 "Runbook Complete - No Changes" \
+            "All AWS managed policies are up to date" \
+            "Duration:${duration}" \
+            "Policies Scanned:${POLICY_COUNT}"
+    fi
 }
 
 main

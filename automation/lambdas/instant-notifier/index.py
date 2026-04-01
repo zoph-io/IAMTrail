@@ -16,9 +16,15 @@ GITHUB_REPO = os.environ["GITHUB_REPO"]
 
 subs_table = dynamodb.Table(SUBSCRIPTIONS_TABLE)
 
+_diff_cache = {}
+_MAX_CACHED_LINES = 500
+_DISPLAY_LINES = 30
 
-def fetch_diff(commit_sha):
-    """Fetch truncated diff from GitHub API."""
+
+def _fetch_commit_diff(commit_sha):
+    """Fetch full commit diff from GitHub API with caching."""
+    if commit_sha in _diff_cache:
+        return _diff_cache[commit_sha]
     try:
         url = f"https://api.github.com/repos/{GITHUB_REPO}/commits/{commit_sha}"
         req = urllib.request.Request(url, headers={
@@ -28,13 +34,39 @@ def fetch_diff(commit_sha):
         with urllib.request.urlopen(req, timeout=10) as resp:
             diff_text = resp.read().decode("utf-8", errors="replace")
 
-        lines = diff_text.split("\n")
-        truncated = len(lines) > 30
-        lines = lines[:30]
-        return lines, truncated
+        lines = diff_text.split("\n")[:_MAX_CACHED_LINES]
+        _diff_cache[commit_sha] = lines
+        return lines
     except Exception as e:
         print(f"Failed to fetch diff for {commit_sha}: {e}")
+        _diff_cache[commit_sha] = []
+        return []
+
+
+def _extract_file_diff(all_lines, policy_name):
+    """Extract only the diff hunk for a specific policy file."""
+    target = f"policies/{policy_name}"
+    result = []
+    in_target = False
+
+    for line in all_lines:
+        if line.startswith("diff --git"):
+            in_target = target in line
+        if in_target:
+            result.append(line)
+
+    return result if result else all_lines
+
+
+def fetch_diff(commit_sha, policy_name=None):
+    """Return (lines, truncated) for a policy, filtered from the cached commit diff."""
+    all_lines = _fetch_commit_diff(commit_sha)
+    if not all_lines:
         return [], False
+
+    lines = _extract_file_diff(all_lines, policy_name) if policy_name else all_lines
+    truncated = len(lines) > _DISPLAY_LINES
+    return lines[:_DISPLAY_LINES], truncated
 
 
 def format_diff_html(lines, truncated, commit_url):
@@ -72,33 +104,42 @@ def format_diff_html(lines, truncated, commit_url):
     )
 
 
-def build_email_html(subscriber, policy_names, commit_url, commit_sha):
-    """Compose the instant notification email HTML."""
+def build_email_html(subscriber, policy_changes):
+    """Compose the instant notification email HTML.
+
+    policy_changes is a list of dicts with keys:
+      policy_name, commit_url, commit_sha
+    """
     manage_url = f"{SITE_URL}/manage?token={subscriber['manage_token']}"
     unsubscribe_url = f"{SITE_URL}/manage?token={subscriber['manage_token']}&action=unsubscribe"
 
-    diff_lines, truncated = [], False
-    if commit_sha:
-        diff_lines, truncated = fetch_diff(commit_sha)
-    diff_html = format_diff_html(diff_lines, truncated, commit_url)
-
     policy_sections = []
-    for policy_name in policy_names:
+    for change in policy_changes:
+        policy_name = change["policy_name"]
+        p_commit_url = change.get("commit_url", "")
+        p_commit_sha = change.get("commit_sha", "")
         policy_url = f"{SITE_URL}/policies/{policy_name}"
+
+        diff_html = ""
+        if p_commit_sha:
+            diff_lines, truncated = fetch_diff(p_commit_sha, policy_name=policy_name)
+            diff_html = format_diff_html(diff_lines, truncated, p_commit_url)
+
         section = f"""
-        <div style="margin-bottom:24px;border:1px solid #e2e8f0;border-radius:8px;overflow:hidden;">
+        <div style="margin-bottom:12px;border:1px solid #e2e8f0;border-radius:8px;overflow:hidden;">
             <div style="background:#f8fafc;padding:12px 16px;border-bottom:1px solid #e2e8f0;">
                 <a href="{policy_url}" style="color:#2563eb;font-weight:600;text-decoration:none;font-size:14px;">
                     {policy_name}
                 </a>
-                {f' &middot; <a href="{commit_url}" style="color:#64748b;font-size:12px;text-decoration:none;">view commit</a>' if commit_url else ''}
+                {f' &middot; <a href="{p_commit_url}" style="color:#64748b;font-size:12px;text-decoration:none;">view commit</a>' if p_commit_url else ''}
             </div>
+            {f'<div style="padding:12px 16px;">{diff_html}</div>' if diff_html else ''}
         </div>
         """
         policy_sections.append(section)
 
     policies_html = "".join(policy_sections)
-    change_count = len(policy_names)
+    change_count = len(policy_changes)
 
     return f"""
     <div style="font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;max-width:640px;margin:0 auto;color:#1e293b;">
@@ -113,7 +154,6 @@ def build_email_html(subscriber, policy_names, commit_url, commit_sha):
 
         <div style="padding:24px 0;">
             {policies_html}
-            {f'<div style="padding:0 0 24px;">{diff_html}</div>' if diff_html else ''}
         </div>
 
         <div style="border-top:1px solid #e2e8f0;padding:24px 0;text-align:center;">
@@ -157,6 +197,7 @@ def handler(event, context):
 
     for record in event.get("Records", []):
         try:
+            _diff_cache.clear()
             body = json.loads(record["body"])
             message_str = body.get("Message", body)
             if isinstance(message_str, str):
@@ -166,16 +207,33 @@ def handler(event, context):
 
             updated_policies = message.get("UpdatedPolicies", "")
             commit_url = message.get("CommitUrl", "")
+            commit_map = message.get("CommitMap", {})
 
             commit_sha = ""
-            sha_match = re.search(r"/commit/([a-f0-9]+)", commit_url)
+            repo_base_url = ""
+            sha_match = re.search(r"(https://github\.com/[^/]+/[^/]+)/commit/([a-f0-9]+)", commit_url)
             if sha_match:
-                commit_sha = sha_match.group(1)
+                repo_base_url = sha_match.group(1)
+                commit_sha = sha_match.group(2)
 
             policy_names = [p.strip() for p in updated_policies.split(",") if p.strip()]
             if not policy_names:
                 print("No policy names found in message, skipping")
                 continue
+
+            policy_changes = []
+            for name in policy_names:
+                p_sha = commit_map.get(name, commit_sha)
+                p_url = (
+                    f"{repo_base_url}/commit/{p_sha}"
+                    if p_sha and repo_base_url
+                    else commit_url
+                )
+                policy_changes.append({
+                    "policy_name": name,
+                    "commit_sha": p_sha,
+                    "commit_url": p_url,
+                })
 
             print(f"Processing instant notifications for {len(policy_names)} policies")
 
@@ -190,16 +248,16 @@ def handler(event, context):
                 subscribed_policies = set(subscriber.get("policies", ["*"]))
 
                 if "*" in subscribed_policies:
-                    matching_policies = policy_names
+                    matching = policy_changes
                 else:
-                    matching_policies = [p for p in policy_names if p in subscribed_policies]
+                    matching = [c for c in policy_changes if c["policy_name"] in subscribed_policies]
 
-                if not matching_policies:
+                if not matching:
                     continue
 
                 try:
-                    html = build_email_html(subscriber, matching_policies, commit_url, commit_sha)
-                    change_count = len(matching_policies)
+                    html = build_email_html(subscriber, matching)
+                    change_count = len(matching)
                     ses.send_email(
                         Source=SENDER_EMAIL,
                         Destination={"ToAddresses": [subscriber["email"]]},
