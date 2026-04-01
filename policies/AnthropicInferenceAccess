@@ -1,0 +1,35 @@
+{
+    "PolicyVersion": {
+        "Document": {
+            "Version": "2012-10-17",
+            "Statement": [
+                {
+                    "Sid": "AnthropicInferenceWorkspace",
+                    "Effect": "Allow",
+                    "Action": [
+                        "aws-external-anthropic:Get*",
+                        "aws-external-anthropic:List*",
+                        "aws-external-anthropic:CreateInference",
+                        "aws-external-anthropic:CreateBatchInference",
+                        "aws-external-anthropic:CancelBatchInference",
+                        "aws-external-anthropic:DeleteBatchInference",
+                        "aws-external-anthropic:CountTokens"
+                    ],
+                    "Resource": "arn:aws:aws-external-anthropic:*:*:workspace/*"
+                },
+                {
+                    "Sid": "AnthropicInferenceResourceless",
+                    "Effect": "Allow",
+                    "Action": [
+                        "aws-external-anthropic:GetAccountStatus",
+                        "aws-external-anthropic:CallWithBearerToken"
+                    ],
+                    "Resource": "*"
+                }
+            ]
+        },
+        "VersionId": "v1",
+        "IsDefaultVersion": true,
+        "CreateDate": "2026-04-01T04:57:14+00:00"
+    }
+}
