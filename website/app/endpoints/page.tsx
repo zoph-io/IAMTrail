@@ -11,6 +11,7 @@ import {
   MapPin,
   Layers,
   CalendarDays,
+  Rss,
 } from "lucide-react";
 
 async function getEndpointsData() {
@@ -94,9 +95,18 @@ export default async function EndpointsPage() {
       {/* Header */}
       <div className="py-8 border-b border-zinc-100 dark:border-zinc-800">
         <div className="max-w-3xl">
-          <h1 className="text-2xl font-bold font-mono text-zinc-900 dark:text-white mb-2">
-            AWS Endpoint Changes
-          </h1>
+          <div className="flex items-center gap-3 mb-2">
+            <h1 className="text-2xl font-bold font-mono text-zinc-900 dark:text-white">
+              AWS Endpoint Changes
+            </h1>
+            <a
+              href="/feeds/endpoints.xml"
+              title="Subscribe via RSS"
+              className="text-zinc-400 hover:text-orange-500 dark:text-zinc-500 dark:hover:text-orange-400 transition-colors"
+            >
+              <Rss className="w-5 h-5" />
+            </a>
+          </div>
           <p className="text-sm text-zinc-600 dark:text-zinc-400">
             Tracking changes in botocore&apos;s{" "}
             <a

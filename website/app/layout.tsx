@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { Rss } from "lucide-react";
 import "./globals.css";
 import NavBar from "@/components/NavBar";
 
@@ -55,6 +56,14 @@ export const metadata: Metadata = {
   },
   alternates: {
     canonical: "https://iamtrail.com",
+    types: {
+      "application/rss+xml": [
+        { url: "/feeds/all.xml", title: "IAMTrail - All Changes" },
+        { url: "/feeds/iam-policies.xml", title: "IAMTrail - IAM Policy Changes" },
+        { url: "/feeds/endpoints.xml", title: "IAMTrail - Endpoint Changes" },
+        { url: "/feeds/guardduty.xml", title: "IAMTrail - GuardDuty Announcements" },
+      ],
+    },
   },
   robots: {
     index: true,
@@ -176,6 +185,13 @@ export default function RootLayout({
                       clipRule="evenodd"
                     />
                   </svg>
+                </a>
+                <a
+                  href="/feeds/"
+                  className="text-zinc-400 hover:text-orange-500 dark:text-zinc-500 dark:hover:text-orange-400 transition-colors"
+                  title="RSS Feeds"
+                >
+                  <Rss className="w-5 h-5" />
                 </a>
               </div>
 

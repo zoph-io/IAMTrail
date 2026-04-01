@@ -1,0 +1,416 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>IAMTrail - GuardDuty Announcements</title>
+    <link>https://iamtrail.com/guardduty/</link>
+    <description>Track AWS GuardDuty SNS announcements - new findings, features, and region launches. An unofficial archive by zoph.io.</description>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 01 Apr 2026 14:21:13 GMT</lastBuildDate>
+    <ttl>360</ttl>
+    <atom:link href="https://iamtrail.com/feeds/guardduty.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>UPDATED_FINDINGS: Impact:EC2/SuspiciousDomainRequest.Reputation</title>
+      <link>https://docs.aws.amazon.com/guardduty/latest/ug/guardduty_finding-types-ec2.html#impact-ec2-suspiciousdomainrequestreputation</link>
+      <guid isPermaLink="true">guardduty-2026-03-27T22:11:54Z-UPDATED_FINDINGS</guid>
+      <pubDate>Fri, 27 Mar 2026 22:11:54 GMT</pubDate>
+      <category>GuardDuty</category>
+      <description><![CDATA[<p>GuardDuty has expanded its threat intelligence sources to include an additional vendor, providing broader coverage of known malicious domains. You may observe an increase in findings for this finding type as a result of this expanded coverage.</p><p><a href="https://docs.aws.amazon.com/guardduty/latest/ug/guardduty_finding-types-ec2.html#impact-ec2-suspiciousdomainrequestreputation">AWS Documentation</a></p><p><a href="https://iamtrail.com/guardduty/">View on IAMTrail</a></p>]]></description>
+    </item>
+    <item>
+      <title>UPDATED_FINDINGS: Trojan:EC2/DriveBySourceTraffic!DNS</title>
+      <link>https://docs.aws.amazon.com/guardduty/latest/ug/guardduty_finding-types-ec2.html#trojan-ec2-drivebysourcetrafficdns</link>
+      <guid isPermaLink="true">guardduty-2026-03-27T22:11:54Z-UPDATED_FINDINGS</guid>
+      <pubDate>Fri, 27 Mar 2026 22:11:54 GMT</pubDate>
+      <category>GuardDuty</category>
+      <description><![CDATA[<p>GuardDuty has expanded its threat intelligence sources to include an additional vendor, providing broader coverage of known malicious domains. You may observe an increase in findings for this finding type as a result of this expanded coverage.</p><p><a href="https://docs.aws.amazon.com/guardduty/latest/ug/guardduty_finding-types-ec2.html#trojan-ec2-drivebysourcetrafficdns">AWS Documentation</a></p><p><a href="https://iamtrail.com/guardduty/">View on IAMTrail</a></p>]]></description>
+    </item>
+    <item>
+      <title>UPDATED_FINDINGS: Backdoor:EC2/C&amp;CActivity.B!DNS</title>
+      <link>https://docs.aws.amazon.com/guardduty/latest/ug/guardduty_finding-types-ec2.html#backdoor-ec2-ccactivitybdns</link>
+      <guid isPermaLink="true">guardduty-2026-03-27T22:11:54Z-UPDATED_FINDINGS</guid>
+      <pubDate>Fri, 27 Mar 2026 22:11:54 GMT</pubDate>
+      <category>GuardDuty</category>
+      <description><![CDATA[<p>GuardDuty has expanded its threat intelligence sources to include an additional vendor, providing broader coverage of known malicious domains. You may observe an increase in findings for this finding type as a result of this expanded coverage.</p><p><a href="https://docs.aws.amazon.com/guardduty/latest/ug/guardduty_finding-types-ec2.html#backdoor-ec2-ccactivitybdns">AWS Documentation</a></p><p><a href="https://iamtrail.com/guardduty/">View on IAMTrail</a></p>]]></description>
+    </item>
+    <item>
+      <title>UPDATED_FINDINGS: Trojan:EC2/PhishingDomainRequest!DNS</title>
+      <link>https://docs.aws.amazon.com/guardduty/latest/ug/guardduty_finding-types-ec2.html#trojan-ec2-phishingdomainrequestdns</link>
+      <guid isPermaLink="true">guardduty-2026-03-27T22:11:54Z-UPDATED_FINDINGS</guid>
+      <pubDate>Fri, 27 Mar 2026 22:11:54 GMT</pubDate>
+      <category>GuardDuty</category>
+      <description><![CDATA[<p>GuardDuty has expanded its threat intelligence sources to include an additional vendor, providing broader coverage of known malicious domains. You may observe an increase in findings for this finding type as a result of this expanded coverage.</p><p><a href="https://docs.aws.amazon.com/guardduty/latest/ug/guardduty_finding-types-ec2.html#trojan-ec2-phishingdomainrequestdns">AWS Documentation</a></p><p><a href="https://iamtrail.com/guardduty/">View on IAMTrail</a></p>]]></description>
+    </item>
+    <item>
+      <title>NEW_FINDINGS: CredentialAccess:IAMUser/CompromisedCredentials</title>
+      <link>https://docs.aws.amazon.com/guardduty/latest/ug/guardduty_finding-types-iam.html#credentialaccess-iam-compromisedcredentials</link>
+      <guid isPermaLink="true">https://gist.github.com/z0ph/bb70231965f086856333f279a2ee52d9</guid>
+      <pubDate>Tue, 10 Mar 2026 22:45:12 GMT</pubDate>
+      <category>GuardDuty</category>
+      <description><![CDATA[<p>Amazon GuardDuty now delivers findings for compromised IAM credentials. When abnormal credential activity is detected, you will receive notification through GuardDuty&apos;s standard channels.</p><p><a href="https://docs.aws.amazon.com/guardduty/latest/ug/guardduty_finding-types-iam.html#credentialaccess-iam-compromisedcredentials">AWS Documentation</a></p><p><a href="https://gist.github.com/z0ph/bb70231965f086856333f279a2ee52d9">Raw SNS message</a></p><p><a href="https://iamtrail.com/guardduty/">View on IAMTrail</a></p>]]></description>
+    </item>
+    <item>
+      <title>NEW_FINDINGS: UnauthorizedAccess:IAMUser/ResourceCredentialExfiltration.OutsideAWS</title>
+      <link>https://docs.aws.amazon.com/guardduty/latest/ug/guardduty_finding-types-iam.html#unauthorizedaccess-iam-resourcecredentialexfiltrationoutsideaws</link>
+      <guid isPermaLink="true">https://gist.github.com/z0ph/f90de69af608dfda6375a8f4528baede</guid>
+      <pubDate>Wed, 17 Dec 2025 19:57:30 GMT</pubDate>
+      <category>GuardDuty</category>
+      <description><![CDATA[<p>This finding informs you that a host outside of AWS has attempted to run AWS API operations using temporary AWS credentials that were created on a Lambda resource in your AWS environment.</p><p><a href="https://docs.aws.amazon.com/guardduty/latest/ug/guardduty_finding-types-iam.html#unauthorizedaccess-iam-resourcecredentialexfiltrationoutsideaws">AWS Documentation</a></p><p><a href="https://gist.github.com/z0ph/f90de69af608dfda6375a8f4528baede">Raw SNS message</a></p><p><a href="https://iamtrail.com/guardduty/">View on IAMTrail</a></p>]]></description>
+    </item>
+    <item>
+      <title>NEW_FEATURES: Amazon GuardDuty now supports wildcard characters (* and ?) in finding suppression rules. Wildcards are supported through new Matches and NotMatches o</title>
+      <link>https://docs.aws.amazon.com/guardduty/latest/ug/create-suppression-rules-guardduty.html</link>
+      <guid isPermaLink="true">https://gist.github.com/z0ph/e893fcb2fd444a643ccc56a470a63a74</guid>
+      <pubDate>Wed, 03 Dec 2025 01:06:44 GMT</pubDate>
+      <category>GuardDuty</category>
+      <description><![CDATA[<p>Amazon GuardDuty now supports wildcard characters (* and ?) in finding suppression rules. Wildcards are supported through new Matches and NotMatches operators, giving you more flexibility in managing security findings. The findings that match this criteria are automatically archived. Suppressed findings are also excluded from Extended Threat Detection sequencing, further helping you customize your security alerts.</p><p><a href="https://docs.aws.amazon.com/guardduty/latest/ug/create-suppression-rules-guardduty.html">AWS Documentation</a></p><p><a href="https://gist.github.com/z0ph/e893fcb2fd444a643ccc56a470a63a74">Raw SNS message</a></p><p><a href="https://iamtrail.com/guardduty/">View on IAMTrail</a></p>]]></description>
+    </item>
+    <item>
+      <title>NEW_FEATURES: GuardDuty introduces two new critical-severity findings: AttackSequence:EC2/CompromisedInstanceGroup and AttackSequence:ECS/CompromisedCluster. These </title>
+      <link>https://docs.aws.amazon.com/guardduty/latest/ug/guardduty-extended-threat-detection.html</link>
+      <guid isPermaLink="true">https://gist.github.com/z0ph/79c8c6b3d018b8f0417a36bbf5eaa3c0</guid>
+      <pubDate>Wed, 03 Dec 2025 00:01:00 GMT</pubDate>
+      <category>GuardDuty</category>
+      <description><![CDATA[<p>GuardDuty introduces two new critical-severity findings: AttackSequence:EC2/CompromisedInstanceGroup and AttackSequence:ECS/CompromisedCluster. These findings provide attack sequence information, allowing you to spend less time on initial analysis and more time responding to critical threats, minimizing business impact. For example, GuardDuty can identify suspicious processes followed by persistence attempts, crypto-mining activities, and reverse shell creation, representing these related events as a single, critical-severity finding. To improve attack sequence coverage and threat analysis of Amazon EC2 instances, enable Runtime Monitoring for EC2. To enable detection of compromised ECS clusters, enable Runtime Monitoring for Fargate or EC2 depending on your infrastructure.</p><p><a href="https://docs.aws.amazon.com/guardduty/latest/ug/guardduty-extended-threat-detection.html">AWS Documentation</a></p><p><a href="https://gist.github.com/z0ph/79c8c6b3d018b8f0417a36bbf5eaa3c0">Raw SNS message</a></p><p><a href="https://iamtrail.com/guardduty/">View on IAMTrail</a></p>]]></description>
+    </item>
+    <item>
+      <title>NEW_FINDINGS: DefenseEvasion:IAMUser/BedrockLoggingDisabled</title>
+      <link>https://docs.aws.amazon.com/guardduty/latest/ug/guardduty_finding-types-iam.html#defenseevasion-iam-bedrockloggingdisabled</link>
+      <guid isPermaLink="true">https://gist.github.com/z0ph/37ee2438e7982ba87d5d120d60435791</guid>
+      <pubDate>Sat, 22 Nov 2025 00:18:52 GMT</pubDate>
+      <category>GuardDuty</category>
+      <description><![CDATA[<p>Amazon GuardDuty has added a new finding type that notifies you when logging for Amazon Bedrock model invocations is disabled. This finding helps detect attempts to evade detection by disabling audit logs that track AI workload activity.</p><p><a href="https://docs.aws.amazon.com/guardduty/latest/ug/guardduty_finding-types-iam.html#defenseevasion-iam-bedrockloggingdisabled">AWS Documentation</a></p><p><a href="https://gist.github.com/z0ph/37ee2438e7982ba87d5d120d60435791">Raw SNS message</a></p><p><a href="https://iamtrail.com/guardduty/">View on IAMTrail</a></p>]]></description>
+    </item>
+    <item>
+      <title>NEW_FEATURES: Amazon GuardDuty announces Malware Protection for AWS Backup. This fully managed feature simplifies malware scanning of your backups where it automati</title>
+      <link>https://docs.aws.amazon.com/guardduty/latest/ug/malware-protection-backup.html</link>
+      <guid isPermaLink="true">https://gist.github.com/z0ph/a4fd4bbb4dbefd416258fd6186dd54ab</guid>
+      <pubDate>Thu, 20 Nov 2025 01:36:54 GMT</pubDate>
+      <category>GuardDuty</category>
+      <description><![CDATA[<p>Amazon GuardDuty announces Malware Protection for AWS Backup. This fully managed feature simplifies malware scanning of your backups where it automatically scans new backups upon creation, lets you run on-demand scans of existing backups, and allows you to verify integrity of backups before restoration. Using this feature, you can now perform full and incremental malware scans on your EBS Snapshots, EC2 AMIs, and Backup Recovery Points by using the StartMalwareScan API. The feature publishes scan results to Amazon EventBridge. You can use this feature without enabling the foundational GuardDuty in your account.</p><p><a href="https://docs.aws.amazon.com/guardduty/latest/ug/malware-protection-backup.html">AWS Documentation</a></p><p><a href="https://gist.github.com/z0ph/a4fd4bbb4dbefd416258fd6186dd54ab">Raw SNS message</a></p><p><a href="https://iamtrail.com/guardduty/">View on IAMTrail</a></p>]]></description>
+    </item>
+    <item>
+      <title>NEW_FEATURES: Amazon GuardDuty announces Scan on Demand for Malware Protection for S3. Using this feature you can use the new SendObjectMalwareScan API to trigger s</title>
+      <link>https://docs.aws.amazon.com/guardduty/latest/ug/malware-protection-s3-on-demand.html</link>
+      <guid isPermaLink="true">https://gist.github.com/z0ph/af0d0bef44d4cb72fe2d7d71bbeac162</guid>
+      <pubDate>Mon, 17 Nov 2025 23:26:24 GMT</pubDate>
+      <category>GuardDuty</category>
+      <description><![CDATA[<p>Amazon GuardDuty announces Scan on Demand for Malware Protection for S3. Using this feature you can use the new SendObjectMalwareScan API to trigger scans on any already existing objects stored in your S3 buckets.</p><p><a href="https://docs.aws.amazon.com/guardduty/latest/ug/malware-protection-s3-on-demand.html">AWS Documentation</a></p><p><a href="https://gist.github.com/z0ph/af0d0bef44d4cb72fe2d7d71bbeac162">Raw SNS message</a></p><p><a href="https://iamtrail.com/guardduty/">View on IAMTrail</a></p>]]></description>
+    </item>
+    <item>
+      <title>GuardDuty new findings</title>
+      <link>https://gist.github.com/z0ph/163b6fa6001e8060b1cace51a36f3c5e</link>
+      <guid isPermaLink="true">https://gist.github.com/z0ph/163b6fa6001e8060b1cace51a36f3c5e</guid>
+      <pubDate>Wed, 15 Oct 2025 23:49:16 GMT</pubDate>
+      <category>GuardDuty</category>
+      <description><![CDATA[<p><a href="https://gist.github.com/z0ph/163b6fa6001e8060b1cace51a36f3c5e">Raw SNS message</a></p><p><a href="https://iamtrail.com/guardduty/">View on IAMTrail</a></p>]]></description>
+    </item>
+    <item>
+      <title>NEW_FEATURES: Amazon GuardDuty Malware Protection for S3 enhances archive processing to support up to 10,000 files per archive (up from 1,000 files).</title>
+      <link>https://docs.aws.amazon.com/guardduty/latest/ug/malware-protection-s3-quotas-guardduty.html </link>
+      <guid isPermaLink="true">https://gist.github.com/z0ph/74e06b2686793b4d497e04f21312d68f</guid>
+      <pubDate>Thu, 04 Sep 2025 19:02:03 GMT</pubDate>
+      <category>GuardDuty</category>
+      <description><![CDATA[<p>Amazon GuardDuty Malware Protection for S3 enhances archive processing to support up to 10,000 files per archive (up from 1,000 files).</p><p><a href="https://docs.aws.amazon.com/guardduty/latest/ug/malware-protection-s3-quotas-guardduty.html ">AWS Documentation</a></p><p><a href="https://gist.github.com/z0ph/74e06b2686793b4d497e04f21312d68f">Raw SNS message</a></p><p><a href="https://iamtrail.com/guardduty/">View on IAMTrail</a></p>]]></description>
+    </item>
+    <item>
+      <title>NEW_FEATURES: Customers can now use their own trusted and threat domain lists to customize how GuardDuty generates and alerts on findings, along with several other </title>
+      <link>https://docs.aws.amazon.com/guardduty/latest/ug/guardduty_upload-lists.html</link>
+      <guid isPermaLink="true">https://gist.github.com/z0ph/c32c2ed4f1659eb0b3d672c84011cf53</guid>
+      <pubDate>Fri, 15 Aug 2025 19:44:04 GMT</pubDate>
+      <category>GuardDuty</category>
+      <description><![CDATA[<p>Customers can now use their own trusted and threat domain lists to customize how GuardDuty generates and alerts on findings, along with several other improvements, extending the existing support for trusted and threat IP lists.</p><p><a href="https://docs.aws.amazon.com/guardduty/latest/ug/guardduty_upload-lists.html">AWS Documentation</a></p><p><a href="https://gist.github.com/z0ph/c32c2ed4f1659eb0b3d672c84011cf53">Raw SNS message</a></p><p><a href="https://iamtrail.com/guardduty/">View on IAMTrail</a></p>]]></description>
+    </item>
+    <item>
+      <title>NEW_FEATURES: Amazon GuardDuty is now available in Asia Pacific (Taipei) Region</title>
+      <link>https://aws.amazon.com/guardduty/</link>
+      <guid isPermaLink="true">https://gist.github.com/z0ph/2304cfdd2ab465d1a599662d786815f8</guid>
+      <pubDate>Fri, 01 Aug 2025 21:46:03 GMT</pubDate>
+      <category>GuardDuty</category>
+      <description><![CDATA[<p>Amazon GuardDuty is now available in Asia Pacific (Taipei) Region</p><p><a href="https://aws.amazon.com/guardduty/">AWS Documentation</a></p><p><a href="https://gist.github.com/z0ph/2304cfdd2ab465d1a599662d786815f8">Raw SNS message</a></p><p><a href="https://iamtrail.com/guardduty/">View on IAMTrail</a></p>]]></description>
+    </item>
+    <item>
+      <title>NEW_FEATURES: Amazon GuardDuty Malware Protection for S3 now supports scanning objects up to 100 GB, increased from 5 GB. This includes both individual objects and </title>
+      <link>https://docs.aws.amazon.com/guardduty/latest/ug/malware-protection-s3-quotas-guardduty.html </link>
+      <guid isPermaLink="true">https://gist.github.com/z0ph/4efad87b685e20a61b0f286eaa543660</guid>
+      <pubDate>Wed, 23 Jul 2025 22:55:42 GMT</pubDate>
+      <category>GuardDuty</category>
+      <description><![CDATA[<p>Amazon GuardDuty Malware Protection for S3 now supports scanning objects up to 100 GB, increased from 5 GB. This includes both individual objects and extracted archive files.</p><p><a href="https://docs.aws.amazon.com/guardduty/latest/ug/malware-protection-s3-quotas-guardduty.html ">AWS Documentation</a></p><p><a href="https://gist.github.com/z0ph/4efad87b685e20a61b0f286eaa543660">Raw SNS message</a></p><p><a href="https://iamtrail.com/guardduty/">View on IAMTrail</a></p>]]></description>
+    </item>
+    <item>
+      <title>NEW_FEATURES: GuardDuty Extended Threat Detection connects individual findings and signals into an attack sequence, a critical severity finding. This capability now</title>
+      <link>https://aws.amazon.com/blogs/aws/amazon-guardduty-expands-extended-threat-detection-coverage-to-amazon-eks-clusters</link>
+      <guid isPermaLink="true">https://gist.github.com/z0ph/8bb759f04b2cef6144ab0b5ed2158a3c</guid>
+      <pubDate>Tue, 17 Jun 2025 16:41:54 GMT</pubDate>
+      <category>GuardDuty</category>
+      <description><![CDATA[<p>GuardDuty Extended Threat Detection connects individual findings and signals into an attack sequence, a critical severity finding. This capability now includes coverage for multi-stage attacks targeting Amazon EKS clusters in your AWS environment. GuardDuty correlates multiple security signals across Amazon EKS audit logs, runtime behavior of processes, and AWS API activity to detect sophisticated attack patterns. Enable EKS Protection, Runtime Monitoring (EKS), or both to maximize your detection coverage. Feature availability varies in AWS GovCloud (US) and AWS China Regions.</p><p><a href="https://aws.amazon.com/blogs/aws/amazon-guardduty-expands-extended-threat-detection-coverage-to-amazon-eks-clusters">AWS Documentation</a></p><p><a href="https://gist.github.com/z0ph/8bb759f04b2cef6144ab0b5ed2158a3c">Raw SNS message</a></p><p><a href="https://iamtrail.com/guardduty/">View on IAMTrail</a></p>]]></description>
+    </item>
+    <item>
+      <title>NEW_FEATURES: Amazon GuardDuty Malware Protection has added limited support for scanning instances with marketplace product codes in AWS Commercial Regions. This ap</title>
+      <link>https://docs.aws.amazon.com/guardduty/latest/ug/malware-protection-auditing-scan-logs.html </link>
+      <guid isPermaLink="true">https://gist.github.com/z0ph/d4c79d5144f9d55d2542e81e0320eefa</guid>
+      <pubDate>Fri, 13 Jun 2025 22:47:00 GMT</pubDate>
+      <category>GuardDuty</category>
+      <description><![CDATA[<p>Amazon GuardDuty Malware Protection has added limited support for scanning instances with marketplace product codes in AWS Commercial Regions. This applies to both GuardDuty-initiated and on-demand malware scans.</p><p><a href="https://docs.aws.amazon.com/guardduty/latest/ug/malware-protection-auditing-scan-logs.html ">AWS Documentation</a></p><p><a href="https://gist.github.com/z0ph/d4c79d5144f9d55d2542e81e0320eefa">Raw SNS message</a></p><p><a href="https://iamtrail.com/guardduty/">View on IAMTrail</a></p>]]></description>
+    </item>
+    <item>
+      <title>NEW_FEATURES: Now available: (1) New GuardDuty agent versions featuring security updates for Amazon EKS, Amazon EC2, and Amazon ECS Fargate; (2) Enhanced visibility</title>
+      <link>https://docs.aws.amazon.com/guardduty/latest/ug/runtime-monitoring-agent-release-history.html</link>
+      <guid isPermaLink="true">https://gist.github.com/z0ph/beecc3c6d1585a4927684962ed82f7cb</guid>
+      <pubDate>Thu, 22 May 2025 22:45:58 GMT</pubDate>
+      <category>GuardDuty</category>
+      <description><![CDATA[<p>Now available: (1) New GuardDuty agent versions featuring security updates for Amazon EKS, Amazon EC2, and Amazon ECS Fargate; (2) Enhanced visibility into underlying runtime coverage issues. For assessing coverage across computes and troubleshooting steps, check https://docs.aws.amazon.com/guardduty/latest/ug/runtime-monitoring-assessing-coverage.html in the Amazon GuardDuty User Guide.</p><p><a href="https://docs.aws.amazon.com/guardduty/latest/ug/runtime-monitoring-agent-release-history.html">AWS Documentation</a></p><p><a href="https://gist.github.com/z0ph/beecc3c6d1585a4927684962ed82f7cb">Raw SNS message</a></p><p><a href="https://iamtrail.com/guardduty/">View on IAMTrail</a></p>]]></description>
+    </item>
+    <item>
+      <title>NEW_FEATURES: Amazon GuardDuty is now available in AWS Mexico (Central) Region</title>
+      <link>https://aws.amazon.com/guardduty/</link>
+      <guid isPermaLink="true">https://gist.github.com/z0ph/87d3fc1602267232268a0836a3c5f971</guid>
+      <pubDate>Wed, 07 May 2025 20:14:37 GMT</pubDate>
+      <category>GuardDuty</category>
+      <description><![CDATA[<p>Amazon GuardDuty is now available in AWS Mexico (Central) Region</p><p><a href="https://aws.amazon.com/guardduty/">AWS Documentation</a></p><p><a href="https://gist.github.com/z0ph/87d3fc1602267232268a0836a3c5f971">Raw SNS message</a></p><p><a href="https://iamtrail.com/guardduty/">View on IAMTrail</a></p>]]></description>
+    </item>
+    <item>
+      <title>NEW_FEATURES: Amazon GuardDuty is now available in AWS Asia Pacific (Thailand) Region</title>
+      <link>https://aws.amazon.com/guardduty/</link>
+      <guid isPermaLink="true">https://gist.github.com/z0ph/d8214fbb02f6fccf03640a22de95b302</guid>
+      <pubDate>Wed, 02 Apr 2025 02:10:39 GMT</pubDate>
+      <category>GuardDuty</category>
+      <description><![CDATA[<p>Amazon GuardDuty is now available in AWS Asia Pacific (Thailand) Region</p><p><a href="https://aws.amazon.com/guardduty/">AWS Documentation</a></p><p><a href="https://gist.github.com/z0ph/d8214fbb02f6fccf03640a22de95b302">Raw SNS message</a></p><p><a href="https://iamtrail.com/guardduty/">View on IAMTrail</a></p>]]></description>
+    </item>
+    <item>
+      <title>GuardDuty general</title>
+      <link>https://gist.github.com/z0ph/7c1b4fd4efdcc004e5219977e51c7db8</link>
+      <guid isPermaLink="true">https://gist.github.com/z0ph/7c1b4fd4efdcc004e5219977e51c7db8</guid>
+      <pubDate>Tue, 25 Feb 2025 17:33:20 GMT</pubDate>
+      <category>GuardDuty</category>
+      <description><![CDATA[<p><a href="https://gist.github.com/z0ph/7c1b4fd4efdcc004e5219977e51c7db8">Raw SNS message</a></p><p><a href="https://iamtrail.com/guardduty/">View on IAMTrail</a></p>]]></description>
+    </item>
+    <item>
+      <title>NEW_FEATURES: Amazon GuardDuty is now available in AWS Asia Pacific (Malaysia) Region</title>
+      <link>https://aws.amazon.com/about-aws/whats-new/2025/01/amazon-guardduty-asia-pacific-malaysia-region/</link>
+      <guid isPermaLink="true">https://gist.github.com/z0ph/bec498dacca46fefc21520d557647582</guid>
+      <pubDate>Thu, 16 Jan 2025 22:53:18 GMT</pubDate>
+      <category>GuardDuty</category>
+      <description><![CDATA[<p>Amazon GuardDuty is now available in AWS Asia Pacific (Malaysia) Region</p><p><a href="https://aws.amazon.com/about-aws/whats-new/2025/01/amazon-guardduty-asia-pacific-malaysia-region/">AWS Documentation</a></p><p><a href="https://gist.github.com/z0ph/bec498dacca46fefc21520d557647582">Raw SNS message</a></p><p><a href="https://iamtrail.com/guardduty/">View on IAMTrail</a></p>]]></description>
+    </item>
+    <item>
+      <title>NEW_FEATURES: Now available: Amazon GuardDuty Extended Threat Detection automatically detects multi-stage attacks sequences. An attack sequence is a critical severi</title>
+      <link>https://gist.github.com/z0ph/960e35f5ff959c60f2369e4f3297787c</link>
+      <guid isPermaLink="true">https://gist.github.com/z0ph/960e35f5ff959c60f2369e4f3297787c</guid>
+      <pubDate>Tue, 03 Dec 2024 23:22:55 GMT</pubDate>
+      <category>GuardDuty</category>
+      <description><![CDATA[<p>Now available: Amazon GuardDuty Extended Threat Detection automatically detects multi-stage attacks sequences. An attack sequence is a critical severity finding that identifies a sophisticated attack across time and AWS resources. Extended Threat Detection connects individual findings and signals into a cohesive attack narrative. An attack sequence involves multiple steps, such as gaining initial access, escalating privileges, moving laterally, and exfiltrating data. Additionally, enable GuardDuty S3 Protection to further enhance the security value of the attack sequences.</p><p><a href="https://gist.github.com/z0ph/960e35f5ff959c60f2369e4f3297787c">Raw SNS message</a></p><p><a href="https://iamtrail.com/guardduty/">View on IAMTrail</a></p>]]></description>
+    </item>
+    <item>
+      <title>NEW_FEATURES: Amazon GuardDuty Malware Protection for EC2 has added three Runtime Monitoring finding types that invoke automatic (GuardDuty-initiated) malware scans</title>
+      <link>https://docs.aws.amazon.com/guardduty/latest/ug/malware-protection.html </link>
+      <guid isPermaLink="true">https://gist.github.com/z0ph/6b560b426662b270ef3bd4f8f38114bd</guid>
+      <pubDate>Wed, 13 Nov 2024 01:11:20 GMT</pubDate>
+      <category>GuardDuty</category>
+      <description><![CDATA[<p>Amazon GuardDuty Malware Protection for EC2 has added three Runtime Monitoring finding types that invoke automatic (GuardDuty-initiated) malware scans - Execution:Runtime/MaliciousFileExecuted, Execution:Runtime/SuspiciousShellCreated, and PrivilegeEscalation:Runtime/ElevationToRoot. AWS accounts that have the Malware Protection for EC2 feature enabled may observe malware scans being initiated when these findings are generated.</p><p><a href="https://docs.aws.amazon.com/guardduty/latest/ug/malware-protection.html ">AWS Documentation</a></p><p><a href="https://gist.github.com/z0ph/6b560b426662b270ef3bd4f8f38114bd">Raw SNS message</a></p><p><a href="https://iamtrail.com/guardduty/">View on IAMTrail</a></p>]]></description>
+    </item>
+    <item>
+      <title>NEW_FEATURES: Amazon GuardDuty expands its generally available RDS Protection feature to now also support monitoring login activity from Amazon Aurora PostgreSQL Li</title>
+      <link>https://docs.aws.amazon.com/guardduty/latest/ug/rds-protection.html</link>
+      <guid isPermaLink="true">https://gist.github.com/z0ph/4484e8d8153b209596c9be1cd4c08910</guid>
+      <pubDate>Wed, 06 Nov 2024 20:20:13 GMT</pubDate>
+      <category>GuardDuty</category>
+      <description><![CDATA[<p>Amazon GuardDuty expands its generally available RDS Protection feature to now also support monitoring login activity from Amazon Aurora PostgreSQL Limitless Databases. As a part of this expansion, GuardDuty will automatically begin monitoring login data from Aurora PostgreSQL Limitless Databases for accounts that currently have RDS Protection enabled. For accounts that have not yet enabled RDS Protection, enable the feature with a single step in the GuardDuty console. This will begin continuous monitoring of existing and new databases in your account.</p><p><a href="https://docs.aws.amazon.com/guardduty/latest/ug/rds-protection.html">AWS Documentation</a></p><p><a href="https://gist.github.com/z0ph/4484e8d8153b209596c9be1cd4c08910">Raw SNS message</a></p><p><a href="https://iamtrail.com/guardduty/">View on IAMTrail</a></p>]]></description>
+    </item>
+    <item>
+      <title>NEW_FEATURES: GuardDuty Malware Protection for S3 launches zero-click role creation when enabling protection on a bucket. GuardDuty now allows you to use a pre-exis</title>
+      <link>https://docs.aws.amazon.com/guardduty/latest/ug/enable-malware-protection-s3-bucket.html </link>
+      <guid isPermaLink="true">https://gist.github.com/z0ph/5622f5c1155cd54d8e848ead7900e53a</guid>
+      <pubDate>Wed, 23 Oct 2024 23:52:10 GMT</pubDate>
+      <category>GuardDuty</category>
+      <description><![CDATA[<p>GuardDuty Malware Protection for S3 launches zero-click role creation when enabling protection on a bucket. GuardDuty now allows you to use a pre-existing role or can automatically create a new role with permissions scoped down to perform actions on that specific bucket.</p><p><a href="https://docs.aws.amazon.com/guardduty/latest/ug/enable-malware-protection-s3-bucket.html ">AWS Documentation</a></p><p><a href="https://gist.github.com/z0ph/5622f5c1155cd54d8e848ead7900e53a">Raw SNS message</a></p><p><a href="https://iamtrail.com/guardduty/">View on IAMTrail</a></p>]]></description>
+    </item>
+    <item>
+      <title>GuardDuty new findings</title>
+      <link>https://gist.github.com/z0ph/799b2be82945874f810fd1dd4360c8bb</link>
+      <guid isPermaLink="true">https://gist.github.com/z0ph/799b2be82945874f810fd1dd4360c8bb</guid>
+      <pubDate>Mon, 21 Oct 2024 18:00:28 GMT</pubDate>
+      <category>GuardDuty</category>
+      <description><![CDATA[<p><a href="https://gist.github.com/z0ph/799b2be82945874f810fd1dd4360c8bb">Raw SNS message</a></p><p><a href="https://iamtrail.com/guardduty/">View on IAMTrail</a></p>]]></description>
+    </item>
+    <item>
+      <title>GuardDuty new findings</title>
+      <link>https://gist.github.com/z0ph/8e7c49f92c6338048f3836ffa1388cf2</link>
+      <guid isPermaLink="true">https://gist.github.com/z0ph/8e7c49f92c6338048f3836ffa1388cf2</guid>
+      <pubDate>Fri, 11 Oct 2024 00:23:28 GMT</pubDate>
+      <category>GuardDuty</category>
+      <description><![CDATA[<p><a href="https://gist.github.com/z0ph/8e7c49f92c6338048f3836ffa1388cf2">Raw SNS message</a></p><p><a href="https://iamtrail.com/guardduty/">View on IAMTrail</a></p>]]></description>
+    </item>
+    <item>
+      <title>NEW_FEATURES: AWS PrivateLink now available with GuardDuty. You can now establish a private connection between your VPC and Amazon GuardDuty.</title>
+      <link>https://docs.aws.amazon.com/guardduty/latest/ug/security-vpc-endpoints.html</link>
+      <guid isPermaLink="true">https://gist.github.com/z0ph/2f2d4fa96d4de01ad46ce3867b729b49</guid>
+      <pubDate>Wed, 18 Sep 2024 01:42:25 GMT</pubDate>
+      <category>GuardDuty</category>
+      <description><![CDATA[<p>AWS PrivateLink now available with GuardDuty. You can now establish a private connection between your VPC and Amazon GuardDuty.</p><p><a href="https://docs.aws.amazon.com/guardduty/latest/ug/security-vpc-endpoints.html">AWS Documentation</a></p><p><a href="https://gist.github.com/z0ph/2f2d4fa96d4de01ad46ce3867b729b49">Raw SNS message</a></p><p><a href="https://iamtrail.com/guardduty/">View on IAMTrail</a></p>]]></description>
+    </item>
+    <item>
+      <title>NEW_FEATURES: Amazon GuardDuty adds new functionality to the GetFindingsStatistics API. Customers can now query aggregate finding counts broken down by: account, da</title>
+      <link>https://docs.aws.amazon.com/guardduty/latest/APIReference/API_GetFindingsStatistics.html</link>
+      <guid isPermaLink="true">https://gist.github.com/z0ph/6f2a6e688a1d19a43af5e9f7775ff858</guid>
+      <pubDate>Fri, 13 Sep 2024 00:04:34 GMT</pubDate>
+      <category>GuardDuty</category>
+      <description><![CDATA[<p>Amazon GuardDuty adds new functionality to the GetFindingsStatistics API. Customers can now query aggregate finding counts broken down by: account, daily counts, finding type, finding severity and affected resources. Link: https://docs.aws.amazon.com/guardduty/latest/APIReference/API_GetFindingsStatistics.html</p><p><a href="https://docs.aws.amazon.com/guardduty/latest/APIReference/API_GetFindingsStatistics.html">AWS Documentation</a></p><p><a href="https://gist.github.com/z0ph/6f2a6e688a1d19a43af5e9f7775ff858">Raw SNS message</a></p><p><a href="https://iamtrail.com/guardduty/">View on IAMTrail</a></p>]]></description>
+    </item>
+    <item>
+      <title>NEW_FEATURES: Amazon GuardDuty Malware Protection for S3 has increased the quota for the number of Amazon S3 buckets that you can protect, from 10 to 25 buckets per</title>
+      <link>https://docs.aws.amazon.com/guardduty/latest/ug/gdu-malware-protection-s3 </link>
+      <guid isPermaLink="true">https://gist.github.com/z0ph/56e78fe78d63565ebc64ef843073c431</guid>
+      <pubDate>Fri, 09 Aug 2024 19:55:04 GMT</pubDate>
+      <category>GuardDuty</category>
+      <description><![CDATA[<p>Amazon GuardDuty Malware Protection for S3 has increased the quota for the number of Amazon S3 buckets that you can protect, from 10 to 25 buckets per AWS account in each AWS Region.</p><p><a href="https://docs.aws.amazon.com/guardduty/latest/ug/gdu-malware-protection-s3 ">AWS Documentation</a></p><p><a href="https://gist.github.com/z0ph/56e78fe78d63565ebc64ef843073c431">Raw SNS message</a></p><p><a href="https://iamtrail.com/guardduty/">View on IAMTrail</a></p>]]></description>
+    </item>
+    <item>
+      <title>GuardDuty new findings</title>
+      <link>https://gist.github.com/z0ph/9fba56fcccdc3fd1dae6c6c2a85109e4</link>
+      <guid isPermaLink="true">https://gist.github.com/z0ph/9fba56fcccdc3fd1dae6c6c2a85109e4</guid>
+      <pubDate>Wed, 07 Aug 2024 02:39:16 GMT</pubDate>
+      <category>GuardDuty</category>
+      <description><![CDATA[<p><a href="https://gist.github.com/z0ph/9fba56fcccdc3fd1dae6c6c2a85109e4">Raw SNS message</a></p><p><a href="https://iamtrail.com/guardduty/">View on IAMTrail</a></p>]]></description>
+    </item>
+    <item>
+      <title>GENERAL: Pay increased threat awareness regarding DNS-related findings</title>
+      <link>https://www.crowdstrike.com/blog/falcon-sensor-issue-use-to-target-crowdstrike-customers/</link>
+      <guid isPermaLink="true">https://gist.github.com/z0ph/71d698b03aa97257fc5f147325697995</guid>
+      <pubDate>Wed, 24 Jul 2024 21:17:33 GMT</pubDate>
+      <category>GuardDuty</category>
+      <description><![CDATA[<p>Amazon GuardDuty observed a trend where threat actors are setting up malicious domains to compromise organizations working on software patching related to CrowdStrike&apos;s recent sensor issue. Currently, GuardDuty is observing an uptick in Command and Control (C&amp;C) Activity findings that correspond with domains identified in CrowdStrike CSA-240832. As a proactive measure, we strongly advise all customers to increase vigilance regarding DNS-related findings. Recommended steps include:
+1. Monitor DNS-related findings: Pay close attention to alerts such as Backdoor:EC2/ C&amp;CActivity.B!DNS findings and Backdoor:Runtime/C&amp;CActivity.B!DNS (if using GuardDuty&apos;s runtime protection for EKS, ECS Fargate, and EC2). They indicate potential communication with suspicious and malicious command and control (C&amp;C) activities, which could be part of or evolve into a broader attacks targeting your workloads.
+2. Validate and evaluate findings: Get started with the GuardDuty console, API, or other preferred method to review findings promptly. Start with a finding&apos;s severity label, which would be marked as “High” for more important ones. GuardDuty continually updates its threat intelligence from CrowdStrike and other AWS internal and external sources, which helps ensure a current list of suspicious and malicious domains.
+3 Take action on suspicious activity: If the flagged activity is unexpected, your instance may be compromised. Consider quickly taking action on affected resources, conducting a thorough investigation, and remediating any identified threats. For more information, see remediating a potentially compromised Amazon EC2 instance.
+Maintaining heightened awareness and promptly responding to GuardDuty findings can help you reduce the risk of malicious actors compromising your environments. For further assistance, refer to the AWS GuardDuty documentation or contact AWS Support.</p><p><a href="https://www.crowdstrike.com/blog/falcon-sensor-issue-use-to-target-crowdstrike-customers/">AWS Documentation</a></p><p><a href="https://gist.github.com/z0ph/71d698b03aa97257fc5f147325697995">Raw SNS message</a></p><p><a href="https://iamtrail.com/guardduty/">View on IAMTrail</a></p>]]></description>
+    </item>
+    <item>
+      <title>NEW_FEATURES: Now available: Extending operating systems support to Ubuntu and Debian OS for Amazon GuardDuty for EC2 runtime monitoring. Get visibility into operat</title>
+      <link>https://docs.aws.amazon.com/guardduty/latest/ug/prereq-runtime-monitoring-ec2-support.html#validating-architecture-req-ec2</link>
+      <guid isPermaLink="true">https://gist.github.com/z0ph/2fefd99a44f247746314b3a623c16829</guid>
+      <pubDate>Wed, 19 Jun 2024 23:31:42 GMT</pubDate>
+      <category>GuardDuty</category>
+      <description><![CDATA[<p>Now available: Extending operating systems support to Ubuntu and Debian OS for Amazon GuardDuty for EC2 runtime monitoring. Get visibility into operating system-level, network and file activities and container-level context of the identified threats.</p><p><a href="https://docs.aws.amazon.com/guardduty/latest/ug/prereq-runtime-monitoring-ec2-support.html#validating-architecture-req-ec2">AWS Documentation</a></p><p><a href="https://gist.github.com/z0ph/2fefd99a44f247746314b3a623c16829">Raw SNS message</a></p><p><a href="https://iamtrail.com/guardduty/">View on IAMTrail</a></p>]]></description>
+    </item>
+    <item>
+      <title>NEW_FEATURES: Amazon GuardDuty announces Malware Protection for S3 that automatically scans newly uploaded objects to your selected Amazon S3 buckets for potential </title>
+      <link>https://docs.aws.amazon.com/guardduty/latest/ug/gdu-malware-protection-s3 </link>
+      <guid isPermaLink="true">https://gist.github.com/z0ph/1123291e9d6a86b21a487d080fae621c</guid>
+      <pubDate>Thu, 13 Jun 2024 00:33:34 GMT</pubDate>
+      <category>GuardDuty</category>
+      <description><![CDATA[<p>Amazon GuardDuty announces Malware Protection for S3 that automatically scans newly uploaded objects to your selected Amazon S3 buckets for potential malware, viruses, and other suspicious uploads. The feature provides an option to add tags to your scanned objects and publishes the S3 object scan result to Amazon EventBridge. You can further build downstream workflows, such as isolation to a quarantine bucket, or define bucket policies using tags that prevent users or applications from accessing certain objects. You can use this feature without enabling the GuardDuty service in your account.</p><p><a href="https://docs.aws.amazon.com/guardduty/latest/ug/gdu-malware-protection-s3 ">AWS Documentation</a></p><p><a href="https://gist.github.com/z0ph/1123291e9d6a86b21a487d080fae621c">Raw SNS message</a></p><p><a href="https://iamtrail.com/guardduty/">View on IAMTrail</a></p>]]></description>
+    </item>
+    <item>
+      <title>NEW_FEATURES: Amazon GuardDuty expands its generally-available RDS Protection feature to now also support RDS for PostgreSQL login activity monitoring, in addition </title>
+      <link>https://docs.aws.amazon.com/guardduty/latest/ug/rds-protection.html#rds-pro-supported-db</link>
+      <guid isPermaLink="true">https://gist.github.com/z0ph/8977c915ba2957b6ab1788a7b96ab607</guid>
+      <pubDate>Thu, 06 Jun 2024 21:53:48 GMT</pubDate>
+      <category>GuardDuty</category>
+      <description><![CDATA[<p>Amazon GuardDuty expands its generally-available RDS Protection feature to now also support RDS for PostgreSQL login activity monitoring, in addition to already monitoring Amazon Aurora databases. As part of this expansion, GuardDuty will automatically begin monitoring login data from RDS for PostgreSQL databases for accounts that are currently enabled with GuardDuty RDS Protection monitors. For new accounts that are not enabled with GuardDuty RDS Protection yet, customers can enable the feature with a single step in the GuardDuty console that will begin continuous monitoring for existing and new Amazon Aurora and RDS for PostgreSQL database workloads.</p><p><a href="https://docs.aws.amazon.com/guardduty/latest/ug/rds-protection.html#rds-pro-supported-db">AWS Documentation</a></p><p><a href="https://gist.github.com/z0ph/8977c915ba2957b6ab1788a7b96ab607">Raw SNS message</a></p><p><a href="https://iamtrail.com/guardduty/">View on IAMTrail</a></p>]]></description>
+    </item>
+    <item>
+      <title>NEW_FEATURES: GuardDuty Malware Protection has increased the EBS volume size limit for malware scanning from 1 TB to 2TB. This applies to both GuardDuty-initiated a</title>
+      <link>https://docs.aws.amazon.com/guardduty/latest/ug/malware-protection.html</link>
+      <guid isPermaLink="true">https://gist.github.com/z0ph/5eb00819a6d98fed52daddaf52d3328c</guid>
+      <pubDate>Thu, 30 May 2024 00:42:45 GMT</pubDate>
+      <category>GuardDuty</category>
+      <description><![CDATA[<p>GuardDuty Malware Protection has increased the EBS volume size limit for malware scanning from 1 TB to 2TB. This applies to both GuardDuty-initiated and on-demand malware scans.</p><p><a href="https://docs.aws.amazon.com/guardduty/latest/ug/malware-protection.html">AWS Documentation</a></p><p><a href="https://gist.github.com/z0ph/5eb00819a6d98fed52daddaf52d3328c">Raw SNS message</a></p><p><a href="https://iamtrail.com/guardduty/">View on IAMTrail</a></p>]]></description>
+    </item>
+    <item>
+      <title>NEW_FEATURES: GuardDuty Runtime Monitoring for ECS workloads deployed on Fargate now also supports batch tasks.</title>
+      <link>https://docs.aws.amazon.com/guardduty/latest/ug/how-runtime-monitoring-works-ecs-fargate.html</link>
+      <guid isPermaLink="true">https://gist.github.com/z0ph/efda50aa9fe74861e1deae5f9ba5e94b</guid>
+      <pubDate>Tue, 28 May 2024 22:22:15 GMT</pubDate>
+      <category>GuardDuty</category>
+      <description><![CDATA[<p>GuardDuty Runtime Monitoring for ECS workloads deployed on Fargate now also supports batch tasks.</p><p><a href="https://docs.aws.amazon.com/guardduty/latest/ug/how-runtime-monitoring-works-ecs-fargate.html">AWS Documentation</a></p><p><a href="https://gist.github.com/z0ph/efda50aa9fe74861e1deae5f9ba5e94b">Raw SNS message</a></p><p><a href="https://iamtrail.com/guardduty/">View on IAMTrail</a></p>]]></description>
+    </item>
+    <item>
+      <title>NEW_FINDINGS: Execution:Runtime/MaliciousFileExecuted</title>
+      <link>https://docs.aws.amazon.com/guardduty/latest/ug/findings-runtime-monitoring.html#execution-runtime-malicious-file-executed</link>
+      <guid isPermaLink="true">https://gist.github.com/z0ph/7013e4d2185742ac7d2dd4208fc7bb11</guid>
+      <pubDate>Fri, 05 Apr 2024 20:30:27 GMT</pubDate>
+      <category>GuardDuty</category>
+      <description><![CDATA[<p>This finding informs you that a known malicious executable has been executed on Amazon EC2 instance or a container within your AWS environment. This is a strong indicator that the instance or container has been potentially compromised and that malware has been executed.</p><p><a href="https://docs.aws.amazon.com/guardduty/latest/ug/findings-runtime-monitoring.html#execution-runtime-malicious-file-executed">AWS Documentation</a></p><p><a href="https://gist.github.com/z0ph/7013e4d2185742ac7d2dd4208fc7bb11">Raw SNS message</a></p><p><a href="https://iamtrail.com/guardduty/">View on IAMTrail</a></p>]]></description>
+    </item>
+    <item>
+      <title>NEW_FEATURES: Now available: Detect potential runtime security threats to your EC2 workloads with Amazon GuardDuty. Get visibility into operating system-level, netw</title>
+      <link>https://aws.amazon.com/blogs/aws/amazon-guardduty-ec2-runtime-monitoring-is-now-generally-available/?trk=e11f71f3-4532-4e1f-a947-8be8b9afdd65</link>
+      <guid isPermaLink="true">https://gist.github.com/z0ph/087622a4deaf84263b52bb7d73a58774</guid>
+      <pubDate>Fri, 29 Mar 2024 21:18:52 GMT</pubDate>
+      <category>GuardDuty</category>
+      <description><![CDATA[<p>Now available: Detect potential runtime security threats to your EC2 workloads with Amazon GuardDuty. Get visibility into operating system-level, network, file activities and container-level context of the identified threats. Try it for 30 days at no cost.</p><p><a href="https://aws.amazon.com/blogs/aws/amazon-guardduty-ec2-runtime-monitoring-is-now-generally-available/?trk=e11f71f3-4532-4e1f-a947-8be8b9afdd65">AWS Documentation</a></p><p><a href="https://gist.github.com/z0ph/087622a4deaf84263b52bb7d73a58774">Raw SNS message</a></p><p><a href="https://iamtrail.com/guardduty/">View on IAMTrail</a></p>]]></description>
+    </item>
+    <item>
+      <title>NEW_FEATURES: Starting with the GuardDuty Runtime Monitoring EKS addon v1.5.0, you can set custom values for the following configurable parameters: CPU and memory s</title>
+      <link>https://gist.github.com/z0ph/8bb3a143e8b5367a0c04474ed7f5862c</link>
+      <guid isPermaLink="true">https://gist.github.com/z0ph/8bb3a143e8b5367a0c04474ed7f5862c</guid>
+      <pubDate>Tue, 19 Mar 2024 00:51:10 GMT</pubDate>
+      <category>GuardDuty</category>
+      <description><![CDATA[<p>Starting with the GuardDuty Runtime Monitoring EKS addon v1.5.0, you can set custom values for the following configurable parameters: CPU and memory settings, PriorityClass and dnsPolicy during creation or update of the addon. The custom values of the configurable parameters will be honored during addon update to future releases. With this update, you can ensure the agent performance impact, as well as its scheduling priority and DNS policy, conforms with your organizational guidance. For more information, refer to the documentation.</p><p><a href="https://gist.github.com/z0ph/8bb3a143e8b5367a0c04474ed7f5862c">Raw SNS message</a></p><p><a href="https://iamtrail.com/guardduty/">View on IAMTrail</a></p>]]></description>
+    </item>
+    <item>
+      <title>NEW_FEATURES: Amazon GuardDuty is now available in AWS Canada West (Calgary) Region</title>
+      <link>https://gist.github.com/z0ph/ce21bcf2d297019f0165dd33f7a8072f</link>
+      <guid isPermaLink="true">https://gist.github.com/z0ph/ce21bcf2d297019f0165dd33f7a8072f</guid>
+      <pubDate>Wed, 06 Mar 2024 22:21:14 GMT</pubDate>
+      <category>GuardDuty</category>
+      <description><![CDATA[<p>Amazon GuardDuty is now available in AWS Canada West (Calgary) Region</p><p><a href="https://gist.github.com/z0ph/ce21bcf2d297019f0165dd33f7a8072f">Raw SNS message</a></p><p><a href="https://iamtrail.com/guardduty/">View on IAMTrail</a></p>]]></description>
+    </item>
+    <item>
+      <title>NEW_FEATURES: Amazon GuardDuty Runtime Monitoring, which detects potential runtime-based threats, now protects workloads running in shared virtual private cloud (VP</title>
+      <link>https://docs.aws.amazon.com/guardduty/latest/ug/runtime-monitoring-shared-vpc.html</link>
+      <guid isPermaLink="true">https://gist.github.com/z0ph/ffb354050419f6b03aba7bfdd4175520</guid>
+      <pubDate>Thu, 15 Feb 2024 01:10:15 GMT</pubDate>
+      <category>GuardDuty</category>
+      <description><![CDATA[<p>Amazon GuardDuty Runtime Monitoring, which detects potential runtime-based threats, now protects workloads running in shared virtual private cloud (VPCs) across all supported compute services. With this launch, customers who are already opted into automated agent management in GuardDuty will benefit from a renewed 30-day trial of GuardDuty Runtime Monitoring where we will automatically start monitoring the resources (clusters) deployed in shared VPC setup. Customers also have the option to manually manage the agent and provision the VPC endpoint in their shared VPC environment.</p><p><a href="https://docs.aws.amazon.com/guardduty/latest/ug/runtime-monitoring-shared-vpc.html">AWS Documentation</a></p><p><a href="https://gist.github.com/z0ph/ffb354050419f6b03aba7bfdd4175520">Raw SNS message</a></p><p><a href="https://iamtrail.com/guardduty/">View on IAMTrail</a></p>]]></description>
+    </item>
+    <item>
+      <title>NEW_FEATURES: Amazon GuardDuty extends Malware Protection for EC2 instance and container workloads by now also supporting malware scan of EBS volumes encrypted with</title>
+      <link>https://gist.github.com/z0ph/6f6d898b5d8f92a88c6766de008536a5</link>
+      <guid isPermaLink="true">https://gist.github.com/z0ph/6f6d898b5d8f92a88c6766de008536a5</guid>
+      <pubDate>Tue, 06 Feb 2024 03:09:05 GMT</pubDate>
+      <category>GuardDuty</category>
+      <description><![CDATA[<p>Amazon GuardDuty extends Malware Protection for EC2 instance and container workloads by now also supporting malware scan of EBS volumes encrypted with an AWS managed key. Scans can be initiated by GuardDuty, or by the user through the GuardDuty console, or programmatically via the API, without the need to deploy security software and with no impact to running workloads.</p><p><a href="https://gist.github.com/z0ph/6f6d898b5d8f92a88c6766de008536a5">Raw SNS message</a></p><p><a href="https://iamtrail.com/guardduty/">View on IAMTrail</a></p>]]></description>
+    </item>
+    <item>
+      <title>NEW_FEATURES: Amazon GuardDuty Runtime Monitoring is now generally available for Amazon Elastic Containers Service (Amazon ECS), including AWS Fargate, and in previ</title>
+      <link>https://gist.github.com/z0ph/1df51ee87cb272459b3db76b188d3f74</link>
+      <guid isPermaLink="true">https://gist.github.com/z0ph/1df51ee87cb272459b3db76b188d3f74</guid>
+      <pubDate>Thu, 07 Dec 2023 00:27:21 GMT</pubDate>
+      <category>GuardDuty</category>
+      <description><![CDATA[<p>Amazon GuardDuty Runtime Monitoring is now generally available for Amazon Elastic Containers Service (Amazon ECS), including AWS Fargate, and in preview for other Amazon Elastic Compute Cloud (Amazon EC2) instances. Runtime Monitoring uses an agent that is deployed as a sidecar container on Fargate and a service on the EC2 instance. Runtime Monitoring supports only automated deployment on ECS Fargate and manual deployment on EC2 instance. You can also deploy the agent on EC2 instance automatically by using RPM via AWS Systems Manager (SSM). The agent collects security telemetry from your workloads on ECS Fargate and EC2 to identify suspicious activity. GuardDuty customers can enable Runtime Monitoring on the Amazon GuardDuty console Runtime Monitoring page, which includes the optional automated agent configuration for all the Fargate tasks in an account, across an AWS organization, or only for tagged ECS clusters. A 30-day free trial starts for an account when an agent sends the telemetry to GuardDuty for the first time. EKS Runtime Monitoring is now a part of Runtime Monitoring. You can now migrate from using EKS Runtime Monitoring to Runtime Monitoring and your agent configuration will remain the same. Runtime Monitoring includes the same runtime finding types previously released for EKS Runtime Monitoring.</p><p><a href="https://gist.github.com/z0ph/1df51ee87cb272459b3db76b188d3f74">Raw SNS message</a></p><p><a href="https://iamtrail.com/guardduty/">View on IAMTrail</a></p>]]></description>
+    </item>
+    <item>
+      <title>NEW_FEATURES: Amazon GuardDuty has incorporated new machine learning techniques to more accurately detect anomalous activities indicative of threats to your Amazon </title>
+      <link>https://docs.aws.amazon.com/guardduty/latest/ug/guardduty_finding-types-kubernetes.html#credaccess-kubernetes-anomalousbehavior-secretsaccessed</link>
+      <guid isPermaLink="true">https://gist.github.com/z0ph/e4462b9d6bddfe5c3ab4f94713a4d352</guid>
+      <pubDate>Thu, 09 Nov 2023 11:07:50 GMT</pubDate>
+      <category>GuardDuty</category>
+      <description><![CDATA[<p>Amazon GuardDuty has incorporated new machine learning techniques to more accurately detect anomalous activities indicative of threats to your Amazon Elastic Kubernetes Service (Amazon EKS) clusters.</p><p><a href="https://docs.aws.amazon.com/guardduty/latest/ug/guardduty_finding-types-kubernetes.html#credaccess-kubernetes-anomalousbehavior-secretsaccessed">AWS Documentation</a></p><p><a href="https://gist.github.com/z0ph/e4462b9d6bddfe5c3ab4f94713a4d352">Raw SNS message</a></p><p><a href="https://iamtrail.com/guardduty/">View on IAMTrail</a></p>]]></description>
+    </item>
+    <item>
+      <title>NEW_FEATURES: For all DNS_REQUEST findings a new finding field containing the finding&apos;s &apos;domain&apos; truncated to the top level and second level domain is now available</title>
+      <link>https://docs.aws.amazon.com/guardduty/latest/ug/guardduty_filter-findings.html</link>
+      <guid isPermaLink="true">https://gist.github.com/z0ph/72f4d6fc42c06595a19a849b50625431</guid>
+      <pubDate>Wed, 18 Oct 2023 16:03:25 GMT</pubDate>
+      <category>GuardDuty</category>
+      <description><![CDATA[<p>For all DNS_REQUEST findings a new finding field containing the finding&apos;s &apos;domain&apos; truncated to the top level and second level domain is now available. This new field called &apos;domainWithSuffix&apos; is available for use in finding filters and suppression rules.</p><p><a href="https://docs.aws.amazon.com/guardduty/latest/ug/guardduty_filter-findings.html">AWS Documentation</a></p><p><a href="https://gist.github.com/z0ph/72f4d6fc42c06595a19a849b50625431">Raw SNS message</a></p><p><a href="https://iamtrail.com/guardduty/">View on IAMTrail</a></p>]]></description>
+    </item>
+    <item>
+      <title>NEW_FEATURES: Amazon GuardDuty announces a new capability in GuardDuty EKS Runtime Monitoring that allows you to selectively configure the EKS clusters that are to </title>
+      <link>https://aws.amazon.com/about-aws/whats-new/2023/09/amazon-guardduty-cluster-configurability-eks-monitoring/</link>
+      <guid isPermaLink="true">https://gist.github.com/z0ph/07746dcc0bbfc23f1e1bbb4ab7bda7f7</guid>
+      <pubDate>Thu, 14 Sep 2023 18:57:37 GMT</pubDate>
+      <category>GuardDuty</category>
+      <description><![CDATA[<p>Amazon GuardDuty announces a new capability in GuardDuty EKS Runtime Monitoring that allows you to selectively configure the EKS clusters that are to be monitored for threat detection.</p><p><a href="https://aws.amazon.com/about-aws/whats-new/2023/09/amazon-guardduty-cluster-configurability-eks-monitoring/">AWS Documentation</a></p><p><a href="https://gist.github.com/z0ph/07746dcc0bbfc23f1e1bbb4ab7bda7f7">Raw SNS message</a></p><p><a href="https://iamtrail.com/guardduty/">View on IAMTrail</a></p>]]></description>
+    </item>
+    <item>
+      <title>NEW_FEATURES: Amazon GuardDuty now available in AWS Israel (Tel Aviv) Region</title>
+      <link>https://aws.amazon.com/about-aws/whats-new/2023/08/amazon-guardduty-available-israel-tel-aviv-region/</link>
+      <guid isPermaLink="true">https://gist.github.com/z0ph/cc244db817d1eca925f9ff670ff86512</guid>
+      <pubDate>Fri, 25 Aug 2023 17:19:29 GMT</pubDate>
+      <category>GuardDuty</category>
+      <description><![CDATA[<p>Amazon GuardDuty now available in AWS Israel (Tel Aviv) Region</p><p><a href="https://aws.amazon.com/about-aws/whats-new/2023/08/amazon-guardduty-available-israel-tel-aviv-region/">AWS Documentation</a></p><p><a href="https://gist.github.com/z0ph/cc244db817d1eca925f9ff670ff86512">Raw SNS message</a></p><p><a href="https://iamtrail.com/guardduty/">View on IAMTrail</a></p>]]></description>
+    </item>
+  </channel>
+</rss>

@@ -9,7 +9,9 @@ const POLICIES_DIR = path.join(REPO_ROOT, "policies");
 const FINDINGS_DIR = path.join(REPO_ROOT, "findings");
 const OUTPUT_DIR = path.join(__dirname, "../public/data");
 const PUBLIC_DIR = path.join(__dirname, "../public");
+const FEEDS_DIR = path.join(PUBLIC_DIR, "feeds");
 const SITE_URL = "https://iamtrail.com";
+const GITHUB_REPO = "https://github.com/zoph-io/IAMTrail";
 const git = simpleGit(REPO_ROOT);
 
 function fetchUrl(url) {
@@ -61,7 +63,12 @@ async function generatePolicyData() {
       const logs = await git.log({ file: relativePath, maxCount: 100 });
 
       for (const entry of logs.all) {
-        allCommitEntries.push({ date: entry.date, message: entry.message });
+        allCommitEntries.push({
+          date: entry.date,
+          message: entry.message,
+          hash: entry.hash,
+          policyName,
+        });
       }
 
       // Get file stats
@@ -446,6 +453,7 @@ async function generatePolicyData() {
     { loc: "/service-growth/", priority: "0.7", changefreq: "weekly" },
     { loc: "/endpoints/", priority: "0.8", changefreq: "daily" },
     { loc: "/guardduty/", priority: "0.8", changefreq: "daily" },
+    { loc: "/feeds/", priority: "0.5", changefreq: "weekly" },
     { loc: "/about/", priority: "0.5", changefreq: "monthly" },
   ];
   policies.forEach((p) => {
@@ -475,6 +483,8 @@ ${sitemapEntries
   console.log(`   📁 Policies processed: ${policies.length}`);
   console.log(`   ⚠️  Errors: ${errors.length}`);
   console.log(`   📊 Output directory: ${OUTPUT_DIR}`);
+
+  return { policies, allCommitEntries };
 }
 
 const GUARDDUTY_DIR = path.join(REPO_ROOT, "data/guardduty");
@@ -484,7 +494,7 @@ async function generateGuardDutyData() {
 
   if (!fs.existsSync(GUARDDUTY_DIR)) {
     console.log("   ⚠️  No data/guardduty/ found, skipping GuardDuty data generation");
-    return;
+    return { announcements: [] };
   }
 
   const files = fs
@@ -495,7 +505,7 @@ async function generateGuardDutyData() {
 
   if (files.length === 0) {
     console.log("   ⚠️  No GuardDuty announcement files found");
-    return;
+    return { announcements: [] };
   }
 
   const announcements = [];
@@ -545,6 +555,8 @@ async function generateGuardDutyData() {
       .map(([t, c]) => `${t}: ${c}`)
       .join(", ")})`
   );
+
+  return { announcements };
 }
 
 const ENDPOINTS_PATH = path.join(REPO_ROOT, "data/endpoints.json");
@@ -555,7 +567,7 @@ async function generateEndpointsData() {
 
   if (!fs.existsSync(ENDPOINTS_PATH)) {
     console.log("   ⚠️  No data/endpoints.json found, skipping endpoints data generation");
-    return;
+    return { allChangeRecords: [] };
   }
 
   const endpointsRaw = JSON.parse(fs.readFileSync(ENDPOINTS_PATH, "utf8"));
@@ -713,17 +725,187 @@ async function generateEndpointsData() {
   console.log(
     `   🌐 Endpoints: ${totalRegions} regions, ${totalServices} services across ${partitions.length} partitions, ${allChangeRecords.length} change record(s)`
   );
+
+  return { allChangeRecords };
 }
 
-// Ensure output directory exists
+// Ensure output directories exist
 if (!fs.existsSync(OUTPUT_DIR)) {
   fs.mkdirSync(OUTPUT_DIR, { recursive: true });
 }
+if (!fs.existsSync(FEEDS_DIR)) {
+  fs.mkdirSync(FEEDS_DIR, { recursive: true });
+}
+
+function toRFC2822(dateStr) {
+  return new Date(dateStr).toUTCString();
+}
+
+function escapeXml(str) {
+  return str
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&apos;");
+}
+
+function buildRSSFeed(channel, items) {
+  const itemsXml = items
+    .map(
+      (item) => `    <item>
+      <title>${escapeXml(item.title)}</title>
+      <link>${escapeXml(item.link)}</link>
+      <guid isPermaLink="${item.permalink ? "true" : "false"}">${escapeXml(item.guid)}</guid>
+      <pubDate>${toRFC2822(item.date)}</pubDate>${item.category ? `\n      <category>${escapeXml(item.category)}</category>` : ""}
+      <description><![CDATA[${item.description}]]></description>
+    </item>`
+    )
+    .join("\n");
+
+  return `<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>${escapeXml(channel.title)}</title>
+    <link>${escapeXml(channel.link)}</link>
+    <description>${escapeXml(channel.description)}</description>
+    <language>en-us</language>
+    <lastBuildDate>${toRFC2822(new Date().toISOString())}</lastBuildDate>
+    <ttl>360</ttl>
+    <atom:link href="${escapeXml(channel.feedUrl)}" rel="self" type="application/rss+xml" />
+${itemsXml}
+  </channel>
+</rss>`;
+}
+
+function generateRSSFeeds(policyData, endpointsData, guarddutyData) {
+  console.log("\n📡 Generating RSS feeds...");
+
+  const MAX_ITEMS = 50;
+
+  // --- IAM Policies feed ---
+  const seenHashes = new Set();
+  const policyItems = (policyData.allCommitEntries || [])
+    .filter((e) => {
+      if (seenHashes.has(e.hash)) return false;
+      seenHashes.add(e.hash);
+      return true;
+    })
+    .sort((a, b) => new Date(b.date) - new Date(a.date))
+    .slice(0, MAX_ITEMS)
+    .map((e) => ({
+      title: `${e.policyName} updated`,
+      link: `${GITHUB_REPO}/commit/${e.hash}`,
+      guid: `${GITHUB_REPO}/commit/${e.hash}`,
+      permalink: true,
+      date: e.date,
+      category: "IAM Policy",
+      description: `<p>Policy <strong>${escapeXml(e.policyName)}</strong> was updated.</p><p>${escapeXml(e.message)}</p><p><a href="${SITE_URL}/policies/${encodeURIComponent(e.policyName)}/">View on IAMTrail</a></p>`,
+    }));
+
+  const policyFeed = buildRSSFeed(
+    {
+      title: "IAMTrail - IAM Policy Changes",
+      link: `${SITE_URL}/policies/`,
+      description: "Track changes to AWS Managed IAM Policies. An unofficial archive by zoph.io.",
+      feedUrl: `${SITE_URL}/feeds/iam-policies.xml`,
+    },
+    policyItems
+  );
+  fs.writeFileSync(path.join(FEEDS_DIR, "iam-policies.xml"), policyFeed);
+  console.log(`   📡 IAM Policies feed: ${policyItems.length} items`);
+
+  // --- Endpoints feed ---
+  const endpointItems = (endpointsData.allChangeRecords || [])
+    .sort((a, b) => new Date(b.detected_at) - new Date(a.detected_at))
+    .slice(0, MAX_ITEMS)
+    .map((r) => {
+      const changeList = r.changes
+        .map((c) => `<li>${escapeXml(c.description)}</li>`)
+        .join("");
+      return {
+        title: `Endpoint changes: ${r.summary}`,
+        link: r.botocore_commit_url || `${SITE_URL}/endpoints/`,
+        guid: r.botocore_commit_url || `endpoint-${r.detected_at}`,
+        permalink: !!r.botocore_commit_url,
+        date: r.detected_at,
+        category: "Endpoints",
+        description: `<p>${escapeXml(r.summary)}</p><ul>${changeList}</ul><p><a href="${SITE_URL}/endpoints/">View on IAMTrail</a></p>`,
+      };
+    });
+
+  const endpointsFeed = buildRSSFeed(
+    {
+      title: "IAMTrail - Endpoint Changes",
+      link: `${SITE_URL}/endpoints/`,
+      description: "Track changes to AWS service endpoints from botocore. An unofficial archive by zoph.io.",
+      feedUrl: `${SITE_URL}/feeds/endpoints.xml`,
+    },
+    endpointItems
+  );
+  fs.writeFileSync(path.join(FEEDS_DIR, "endpoints.xml"), endpointsFeed);
+  console.log(`   📡 Endpoints feed: ${endpointItems.length} items`);
+
+  // --- GuardDuty feed ---
+  const guarddutyItems = (guarddutyData.announcements || [])
+    .sort((a, b) => new Date(b.detected_at) - new Date(a.detected_at))
+    .slice(0, MAX_ITEMS)
+    .map((a) => {
+      const typeLabel = a.type.replace(/_/g, " ").toLowerCase();
+      const title = a.short_description
+        ? `${a.type}: ${a.short_description}`
+        : `GuardDuty ${typeLabel}`;
+      const descParts = [];
+      if (a.description) descParts.push(`<p>${escapeXml(a.description)}</p>`);
+      if (a.link) descParts.push(`<p><a href="${escapeXml(a.link)}">AWS Documentation</a></p>`);
+      if (a.gist_url) descParts.push(`<p><a href="${escapeXml(a.gist_url)}">Raw SNS message</a></p>`);
+      descParts.push(`<p><a href="${SITE_URL}/guardduty/">View on IAMTrail</a></p>`);
+      return {
+        title,
+        link: a.link || a.gist_url || `${SITE_URL}/guardduty/`,
+        guid: a.gist_url || `guardduty-${a.detected_at}-${a.type}`,
+        permalink: !!(a.link || a.gist_url),
+        date: a.detected_at,
+        category: "GuardDuty",
+        description: descParts.join(""),
+      };
+    });
+
+  const guarddutyFeed = buildRSSFeed(
+    {
+      title: "IAMTrail - GuardDuty Announcements",
+      link: `${SITE_URL}/guardduty/`,
+      description: "Track AWS GuardDuty SNS announcements - new findings, features, and region launches. An unofficial archive by zoph.io.",
+      feedUrl: `${SITE_URL}/feeds/guardduty.xml`,
+    },
+    guarddutyItems
+  );
+  fs.writeFileSync(path.join(FEEDS_DIR, "guardduty.xml"), guarddutyFeed);
+  console.log(`   📡 GuardDuty feed: ${guarddutyItems.length} items`);
+
+  // --- All-in-One feed ---
+  const allItems = [...policyItems, ...endpointItems, ...guarddutyItems]
+    .sort((a, b) => new Date(b.date) - new Date(a.date))
+    .slice(0, MAX_ITEMS);
+
+  const allFeed = buildRSSFeed(
+    {
+      title: "IAMTrail - All Changes",
+      link: SITE_URL,
+      description: "All IAMTrail changes in one feed - IAM policies, endpoints, and GuardDuty announcements. An unofficial archive by zoph.io.",
+      feedUrl: `${SITE_URL}/feeds/all.xml`,
+    },
+    allItems
+  );
+  fs.writeFileSync(path.join(FEEDS_DIR, "all.xml"), allFeed);
+  console.log(`   📡 All-in-One feed: ${allItems.length} items`);
+}
 
 async function main() {
-  await generatePolicyData();
-  await generateEndpointsData();
-  await generateGuardDutyData();
+  const policyData = await generatePolicyData();
+  const endpointsData = await generateEndpointsData();
+  const guarddutyData = await generateGuardDutyData();
+  generateRSSFeeds(policyData, endpointsData, guarddutyData);
 }
 
 main().catch((error) => {

@@ -1,0 +1,412 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>IAMTrail - Endpoint Changes</title>
+    <link>https://iamtrail.com/endpoints/</link>
+    <description>Track changes to AWS service endpoints from botocore. An unofficial archive by zoph.io.</description>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 01 Apr 2026 14:21:13 GMT</lastBuildDate>
+    <ttl>360</ttl>
+    <atom:link href="https://iamtrail.com/feeds/endpoints.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Endpoint changes: 2 service expansion(s)</title>
+      <link>https://github.com/boto/botocore/commit/7f9c3cd08ae7e1780d56b9402aa9738e6af881e4</link>
+      <guid isPermaLink="true">https://github.com/boto/botocore/commit/7f9c3cd08ae7e1780d56b9402aa9738e6af881e4</guid>
+      <pubDate>Thu, 26 Mar 2026 19:18:14 GMT</pubDate>
+      <category>Endpoints</category>
+      <description><![CDATA[<p>2 service expansion(s)</p><ul><li>api.mediatailor expanded to eu-west-2</li><li>route53resolver expanded to us-isob-west-1</li></ul><p><a href="https://iamtrail.com/endpoints/">View on IAMTrail</a></p>]]></description>
+    </item>
+    <item>
+      <title>Endpoint changes: 1 service expansion(s)</title>
+      <link>https://github.com/boto/botocore/commit/cd4cb60a1cf2d16d742c61a6d06fb6d830bbff06</link>
+      <guid isPermaLink="true">https://github.com/boto/botocore/commit/cd4cb60a1cf2d16d742c61a6d06fb6d830bbff06</guid>
+      <pubDate>Sat, 21 Mar 2026 02:35:24 GMT</pubDate>
+      <category>Endpoints</category>
+      <description><![CDATA[<p>1 service expansion(s)</p><ul><li>rekognition expanded to sa-east-1</li></ul><p><a href="https://iamtrail.com/endpoints/">View on IAMTrail</a></p>]]></description>
+    </item>
+    <item>
+      <title>Endpoint changes: 1 service expansion(s)</title>
+      <link>https://github.com/boto/botocore/commit/09c9273</link>
+      <guid isPermaLink="true">https://github.com/boto/botocore/commit/09c9273</guid>
+      <pubDate>Fri, 20 Mar 2026 00:36:10 GMT</pubDate>
+      <category>Endpoints</category>
+      <description><![CDATA[<p>1 service expansion(s)</p><ul><li>mediaconnect expanded to ap-southeast-5</li></ul><p><a href="https://iamtrail.com/endpoints/">View on IAMTrail</a></p>]]></description>
+    </item>
+    <item>
+      <title>Endpoint changes: 1 service expansion(s)</title>
+      <link>https://github.com/boto/botocore/commit/8db5e18</link>
+      <guid isPermaLink="true">https://github.com/boto/botocore/commit/8db5e18</guid>
+      <pubDate>Sat, 14 Mar 2026 00:33:17 GMT</pubDate>
+      <category>Endpoints</category>
+      <description><![CDATA[<p>1 service expansion(s)</p><ul><li>transcribe expanded to eu-central-2</li></ul><p><a href="https://iamtrail.com/endpoints/">View on IAMTrail</a></p>]]></description>
+    </item>
+    <item>
+      <title>Endpoint changes: 1 service expansion(s)</title>
+      <link>https://github.com/boto/botocore/commit/8e7a97f</link>
+      <guid isPermaLink="true">https://github.com/boto/botocore/commit/8e7a97f</guid>
+      <pubDate>Thu, 12 Mar 2026 00:30:06 GMT</pubDate>
+      <category>Endpoints</category>
+      <description><![CDATA[<p>1 service expansion(s)</p><ul><li>quicksight expanded to ap-southeast-5</li></ul><p><a href="https://iamtrail.com/endpoints/">View on IAMTrail</a></p>]]></description>
+    </item>
+    <item>
+      <title>Endpoint changes: 1 service expansion(s)</title>
+      <link>https://github.com/boto/botocore/commit/5ba4982</link>
+      <guid isPermaLink="true">https://github.com/boto/botocore/commit/5ba4982</guid>
+      <pubDate>Sat, 07 Mar 2026 00:34:01 GMT</pubDate>
+      <category>Endpoints</category>
+      <description><![CDATA[<p>1 service expansion(s)</p><ul><li>transcribestreaming expanded to eu-central-2, mx-central-1</li></ul><p><a href="https://iamtrail.com/endpoints/">View on IAMTrail</a></p>]]></description>
+    </item>
+    <item>
+      <title>Endpoint changes: 1 service expansion(s)</title>
+      <link>https://github.com/boto/botocore/commit/fe37883</link>
+      <guid isPermaLink="true">https://github.com/boto/botocore/commit/fe37883</guid>
+      <pubDate>Fri, 06 Mar 2026 00:39:05 GMT</pubDate>
+      <category>Endpoints</category>
+      <description><![CDATA[<p>1 service expansion(s)</p><ul><li>fms expanded to ap-southeast-6</li></ul><p><a href="https://iamtrail.com/endpoints/">View on IAMTrail</a></p>]]></description>
+    </item>
+    <item>
+      <title>Endpoint changes: 2 service expansion(s)</title>
+      <link>https://github.com/boto/botocore/commit/493820a</link>
+      <guid isPermaLink="true">https://github.com/boto/botocore/commit/493820a</guid>
+      <pubDate>Wed, 04 Mar 2026 00:34:32 GMT</pubDate>
+      <category>Endpoints</category>
+      <description><![CDATA[<p>2 service expansion(s)</p><ul><li>cognito-identity expanded to ap-east-2, ap-southeast-6</li><li>cognito-idp expanded to ap-east-2, ap-southeast-6</li></ul><p><a href="https://iamtrail.com/endpoints/">View on IAMTrail</a></p>]]></description>
+    </item>
+    <item>
+      <title>Endpoint changes: 2 service expansion(s)</title>
+      <link>https://github.com/boto/botocore/commit/c590d3c</link>
+      <guid isPermaLink="true">https://github.com/boto/botocore/commit/c590d3c</guid>
+      <pubDate>Thu, 26 Feb 2026 00:33:29 GMT</pubDate>
+      <category>Endpoints</category>
+      <description><![CDATA[<p>2 service expansion(s)</p><ul><li>mediaconvert expanded to ap-southeast-5</li><li>runtime.sagemaker expanded to ap-southeast-6</li></ul><p><a href="https://iamtrail.com/endpoints/">View on IAMTrail</a></p>]]></description>
+    </item>
+    <item>
+      <title>Endpoint changes: 1 service expansion(s)</title>
+      <link>https://github.com/boto/botocore/commit/a34dcf7</link>
+      <guid isPermaLink="true">https://github.com/boto/botocore/commit/a34dcf7</guid>
+      <pubDate>Tue, 24 Feb 2026 00:33:51 GMT</pubDate>
+      <category>Endpoints</category>
+      <description><![CDATA[<p>1 service expansion(s)</p><ul><li>medialive expanded to ap-southeast-5</li></ul><p><a href="https://iamtrail.com/endpoints/">View on IAMTrail</a></p>]]></description>
+    </item>
+    <item>
+      <title>Endpoint changes: 1 service expansion(s)</title>
+      <link>https://github.com/boto/botocore/commit/42e39fd</link>
+      <guid isPermaLink="true">https://github.com/boto/botocore/commit/42e39fd</guid>
+      <pubDate>Sat, 21 Feb 2026 00:34:08 GMT</pubDate>
+      <category>Endpoints</category>
+      <description><![CDATA[<p>1 service expansion(s)</p><ul><li>sso expanded to ap-southeast-6</li></ul><p><a href="https://iamtrail.com/endpoints/">View on IAMTrail</a></p>]]></description>
+    </item>
+    <item>
+      <title>Endpoint changes: 1 service expansion(s)</title>
+      <link>https://github.com/boto/botocore/commit/26e48b2</link>
+      <guid isPermaLink="true">https://github.com/boto/botocore/commit/26e48b2</guid>
+      <pubDate>Thu, 19 Feb 2026 00:39:07 GMT</pubDate>
+      <category>Endpoints</category>
+      <description><![CDATA[<p>1 service expansion(s)</p><ul><li>portal.sso expanded to ap-southeast-6</li></ul><p><a href="https://iamtrail.com/endpoints/">View on IAMTrail</a></p>]]></description>
+    </item>
+    <item>
+      <title>Endpoint changes: 1 service expansion(s)</title>
+      <link>https://github.com/boto/botocore/commit/02482ab</link>
+      <guid isPermaLink="true">https://github.com/boto/botocore/commit/02482ab</guid>
+      <pubDate>Wed, 18 Feb 2026 00:36:16 GMT</pubDate>
+      <category>Endpoints</category>
+      <description><![CDATA[<p>1 service expansion(s)</p><ul><li>oidc expanded to ap-southeast-6</li></ul><p><a href="https://iamtrail.com/endpoints/">View on IAMTrail</a></p>]]></description>
+    </item>
+    <item>
+      <title>Endpoint changes: 1 service expansion(s)</title>
+      <link>https://github.com/boto/botocore/commit/0541ced</link>
+      <guid isPermaLink="true">https://github.com/boto/botocore/commit/0541ced</guid>
+      <pubDate>Tue, 10 Feb 2026 00:41:31 GMT</pubDate>
+      <category>Endpoints</category>
+      <description><![CDATA[<p>1 service expansion(s)</p><ul><li>datazone expanded to af-south-1, eu-south-2</li></ul><p><a href="https://iamtrail.com/endpoints/">View on IAMTrail</a></p>]]></description>
+    </item>
+    <item>
+      <title>Endpoint changes: 3 service expansion(s)</title>
+      <link>https://github.com/boto/botocore/commit/bc2fb1c</link>
+      <guid isPermaLink="true">https://github.com/boto/botocore/commit/bc2fb1c</guid>
+      <pubDate>Fri, 06 Feb 2026 00:33:14 GMT</pubDate>
+      <category>Endpoints</category>
+      <description><![CDATA[<p>3 service expansion(s)</p><ul><li>route53profiles expanded to ap-east-2, ap-southeast-6</li><li>sms-voice expanded to ap-east-2, ap-southeast-6</li><li>transcribestreaming expanded to ap-southeast-5, ap-southeast-7</li></ul><p><a href="https://iamtrail.com/endpoints/">View on IAMTrail</a></p>]]></description>
+    </item>
+    <item>
+      <title>Endpoint changes: 1 service expansion(s)</title>
+      <link>https://github.com/boto/botocore/commit/84898c5</link>
+      <guid isPermaLink="true">https://github.com/boto/botocore/commit/84898c5</guid>
+      <pubDate>Tue, 03 Feb 2026 00:36:13 GMT</pubDate>
+      <category>Endpoints</category>
+      <description><![CDATA[<p>1 service expansion(s)</p><ul><li>emr-serverless expanded to ap-southeast-5</li></ul><p><a href="https://iamtrail.com/endpoints/">View on IAMTrail</a></p>]]></description>
+    </item>
+    <item>
+      <title>Endpoint changes: 1 service expansion(s)</title>
+      <link>https://github.com/boto/botocore/commit/d48f527</link>
+      <guid isPermaLink="true">https://github.com/boto/botocore/commit/d48f527</guid>
+      <pubDate>Sat, 31 Jan 2026 00:32:28 GMT</pubDate>
+      <category>Endpoints</category>
+      <description><![CDATA[<p>1 service expansion(s)</p><ul><li>globalaccelerator expanded to af-south-1, ap-east-1, ap-east-2, ap-northeast-1, ap-northeast-2, ap-northeast-3, ap-south-1, ap-south-2, ap-southeast-1, ap-southeast-2, ap-southeast-3, ap-southeast-4, ap-southeast-5, ap-southeast-7, ca-central-1, ca-west-1, eu-central-1, eu-central-2, eu-north-1, eu-south-1, eu-south-2, eu-west-1, eu-west-2, eu-west-3, il-central-1, me-central-1, me-south-1, mx-central-1, sa-east-1, us-east-1, us-east-2, us-west-1, us-west-2</li></ul><p><a href="https://iamtrail.com/endpoints/">View on IAMTrail</a></p>]]></description>
+    </item>
+    <item>
+      <title>Endpoint changes: 1 service expansion(s)</title>
+      <link>https://github.com/boto/botocore/commit/3ff6458</link>
+      <guid isPermaLink="true">https://github.com/boto/botocore/commit/3ff6458</guid>
+      <pubDate>Wed, 28 Jan 2026 00:29:48 GMT</pubDate>
+      <category>Endpoints</category>
+      <description><![CDATA[<p>1 service expansion(s)</p><ul><li>bedrock expanded to ap-southeast-6</li></ul><p><a href="https://iamtrail.com/endpoints/">View on IAMTrail</a></p>]]></description>
+    </item>
+    <item>
+      <title>Endpoint changes: 1 service expansion(s)</title>
+      <link>https://github.com/boto/botocore/commit/05b651e</link>
+      <guid isPermaLink="true">https://github.com/boto/botocore/commit/05b651e</guid>
+      <pubDate>Fri, 23 Jan 2026 00:29:59 GMT</pubDate>
+      <category>Endpoints</category>
+      <description><![CDATA[<p>1 service expansion(s)</p><ul><li>mediapackagev2 expanded to ap-southeast-5</li></ul><p><a href="https://iamtrail.com/endpoints/">View on IAMTrail</a></p>]]></description>
+    </item>
+    <item>
+      <title>Endpoint changes: 1 service expansion(s)</title>
+      <link>https://github.com/boto/botocore/commit/fc22ba1</link>
+      <guid isPermaLink="true">https://github.com/boto/botocore/commit/fc22ba1</guid>
+      <pubDate>Thu, 22 Jan 2026 00:30:59 GMT</pubDate>
+      <category>Endpoints</category>
+      <description><![CDATA[<p>1 service expansion(s)</p><ul><li>guardduty expanded to ap-southeast-6</li></ul><p><a href="https://iamtrail.com/endpoints/">View on IAMTrail</a></p>]]></description>
+    </item>
+    <item>
+      <title>Endpoint changes: 1 service expansion(s)</title>
+      <link>https://github.com/boto/botocore/commit/d3cd6f0</link>
+      <guid isPermaLink="true">https://github.com/boto/botocore/commit/d3cd6f0</guid>
+      <pubDate>Wed, 21 Jan 2026 00:30:22 GMT</pubDate>
+      <category>Endpoints</category>
+      <description><![CDATA[<p>1 service expansion(s)</p><ul><li>license-manager-linux-subscriptions expanded to ap-southeast-6</li></ul><p><a href="https://iamtrail.com/endpoints/">View on IAMTrail</a></p>]]></description>
+    </item>
+    <item>
+      <title>Endpoint changes: 1 service expansion(s)</title>
+      <link>https://github.com/boto/botocore/commit/de3ddae</link>
+      <guid isPermaLink="true">https://github.com/boto/botocore/commit/de3ddae</guid>
+      <pubDate>Sat, 17 Jan 2026 00:27:54 GMT</pubDate>
+      <category>Endpoints</category>
+      <description><![CDATA[<p>1 service expansion(s)</p><ul><li>license-manager expanded to ap-southeast-6</li></ul><p><a href="https://iamtrail.com/endpoints/">View on IAMTrail</a></p>]]></description>
+    </item>
+    <item>
+      <title>Endpoint changes: 1 service expansion(s)</title>
+      <link>https://github.com/boto/botocore/commit/ae5ada9</link>
+      <guid isPermaLink="true">https://github.com/boto/botocore/commit/ae5ada9</guid>
+      <pubDate>Fri, 16 Jan 2026 00:29:53 GMT</pubDate>
+      <category>Endpoints</category>
+      <description><![CDATA[<p>1 service expansion(s)</p><ul><li>api.mediatailor expanded to ap-southeast-5</li></ul><p><a href="https://iamtrail.com/endpoints/">View on IAMTrail</a></p>]]></description>
+    </item>
+    <item>
+      <title>Endpoint changes: 1 service expansion(s)</title>
+      <link>https://github.com/boto/botocore/commit/562489c</link>
+      <guid isPermaLink="true">https://github.com/boto/botocore/commit/562489c</guid>
+      <pubDate>Thu, 15 Jan 2026 00:27:10 GMT</pubDate>
+      <category>Endpoints</category>
+      <description><![CDATA[<p>1 service expansion(s)</p><ul><li>airflow expanded to ap-southeast-7</li></ul><p><a href="https://iamtrail.com/endpoints/">View on IAMTrail</a></p>]]></description>
+    </item>
+    <item>
+      <title>Endpoint changes: 4 service expansion(s)</title>
+      <link>https://github.com/boto/botocore/commit/2c68f5c</link>
+      <guid isPermaLink="true">https://github.com/boto/botocore/commit/2c68f5c</guid>
+      <pubDate>Tue, 13 Jan 2026 00:24:58 GMT</pubDate>
+      <category>Endpoints</category>
+      <description><![CDATA[<p>4 service expansion(s)</p><ul><li>athena expanded to ap-southeast-6</li><li>glue expanded to ap-southeast-6</li><li>lakeformation expanded to ap-southeast-6</li><li>redshift-serverless expanded to ap-southeast-6</li></ul><p><a href="https://iamtrail.com/endpoints/">View on IAMTrail</a></p>]]></description>
+    </item>
+    <item>
+      <title>Endpoint changes: 1 service expansion(s)</title>
+      <link>https://github.com/boto/botocore/commit/b4541b5</link>
+      <guid isPermaLink="true">https://github.com/boto/botocore/commit/b4541b5</guid>
+      <pubDate>Sat, 10 Jan 2026 00:28:36 GMT</pubDate>
+      <category>Endpoints</category>
+      <description><![CDATA[<p>1 service expansion(s)</p><ul><li>kafkaconnect expanded to ap-southeast-6</li></ul><p><a href="https://iamtrail.com/endpoints/">View on IAMTrail</a></p>]]></description>
+    </item>
+    <item>
+      <title>Endpoint changes: 1 service expansion(s)</title>
+      <link>https://github.com/boto/botocore/commit/5abbfa0</link>
+      <guid isPermaLink="true">https://github.com/boto/botocore/commit/5abbfa0</guid>
+      <pubDate>Wed, 31 Dec 2025 00:29:01 GMT</pubDate>
+      <category>Endpoints</category>
+      <description><![CDATA[<p>1 service expansion(s)</p><ul><li>wafv2 expanded to ap-southeast-6</li></ul><p><a href="https://iamtrail.com/endpoints/">View on IAMTrail</a></p>]]></description>
+    </item>
+    <item>
+      <title>Endpoint changes: 1 service expansion(s)</title>
+      <link>https://github.com/boto/botocore/commit/fea939e</link>
+      <guid isPermaLink="true">https://github.com/boto/botocore/commit/fea939e</guid>
+      <pubDate>Sat, 27 Dec 2025 00:27:46 GMT</pubDate>
+      <category>Endpoints</category>
+      <description><![CDATA[<p>1 service expansion(s)</p><ul><li>transfer expanded to ap-southeast-6</li></ul><p><a href="https://iamtrail.com/endpoints/">View on IAMTrail</a></p>]]></description>
+    </item>
+    <item>
+      <title>Endpoint changes: 1 service expansion(s)</title>
+      <link>https://github.com/boto/botocore/commit/1a3ebe3</link>
+      <guid isPermaLink="true">https://github.com/boto/botocore/commit/1a3ebe3</guid>
+      <pubDate>Wed, 24 Dec 2025 00:28:29 GMT</pubDate>
+      <category>Endpoints</category>
+      <description><![CDATA[<p>1 service expansion(s)</p><ul><li>kafka expanded to ap-southeast-6</li></ul><p><a href="https://iamtrail.com/endpoints/">View on IAMTrail</a></p>]]></description>
+    </item>
+    <item>
+      <title>Endpoint changes: 1 service expansion(s)</title>
+      <link>https://github.com/boto/botocore/commit/36a009b</link>
+      <guid isPermaLink="true">https://github.com/boto/botocore/commit/36a009b</guid>
+      <pubDate>Sat, 20 Dec 2025 00:26:45 GMT</pubDate>
+      <category>Endpoints</category>
+      <description><![CDATA[<p>1 service expansion(s)</p><ul><li>cases expanded to af-south-1</li></ul><p><a href="https://iamtrail.com/endpoints/">View on IAMTrail</a></p>]]></description>
+    </item>
+    <item>
+      <title>Endpoint changes: 1 service expansion(s)</title>
+      <link>https://github.com/boto/botocore/commit/f562b30</link>
+      <guid isPermaLink="true">https://github.com/boto/botocore/commit/f562b30</guid>
+      <pubDate>Fri, 19 Dec 2025 00:28:32 GMT</pubDate>
+      <category>Endpoints</category>
+      <description><![CDATA[<p>1 service expansion(s)</p><ul><li>sso expanded to ap-east-2</li></ul><p><a href="https://iamtrail.com/endpoints/">View on IAMTrail</a></p>]]></description>
+    </item>
+    <item>
+      <title>Endpoint changes: 2 service expansion(s)</title>
+      <link>https://github.com/boto/botocore/commit/80b9f74</link>
+      <guid isPermaLink="true">https://github.com/boto/botocore/commit/80b9f74</guid>
+      <pubDate>Thu, 18 Dec 2025 00:25:06 GMT</pubDate>
+      <category>Endpoints</category>
+      <description><![CDATA[<p>2 service expansion(s)</p><ul><li>api.sagemaker expanded to ap-southeast-6</li><li>cloudhsmv2 expanded to ap-southeast-5, ca-west-1, mx-central-1</li></ul><p><a href="https://iamtrail.com/endpoints/">View on IAMTrail</a></p>]]></description>
+    </item>
+    <item>
+      <title>Endpoint changes: 1 service expansion(s)</title>
+      <link>https://github.com/boto/botocore/commit/41ffe1a</link>
+      <guid isPermaLink="true">https://github.com/boto/botocore/commit/41ffe1a</guid>
+      <pubDate>Wed, 17 Dec 2025 00:27:46 GMT</pubDate>
+      <category>Endpoints</category>
+      <description><![CDATA[<p>1 service expansion(s)</p><ul><li>portal.sso expanded to ap-east-2</li></ul><p><a href="https://iamtrail.com/endpoints/">View on IAMTrail</a></p>]]></description>
+    </item>
+    <item>
+      <title>Endpoint changes: 1 service expansion(s)</title>
+      <link>https://github.com/boto/botocore/commit/fd38774</link>
+      <guid isPermaLink="true">https://github.com/boto/botocore/commit/fd38774</guid>
+      <pubDate>Sat, 13 Dec 2025 00:26:45 GMT</pubDate>
+      <category>Endpoints</category>
+      <description><![CDATA[<p>1 service expansion(s)</p><ul><li>kinesisanalytics expanded to ap-southeast-6</li></ul><p><a href="https://iamtrail.com/endpoints/">View on IAMTrail</a></p>]]></description>
+    </item>
+    <item>
+      <title>Endpoint changes: 1 service expansion(s)</title>
+      <link>https://github.com/boto/botocore/commit/b2731b2</link>
+      <guid isPermaLink="true">https://github.com/boto/botocore/commit/b2731b2</guid>
+      <pubDate>Wed, 10 Dec 2025 00:29:05 GMT</pubDate>
+      <category>Endpoints</category>
+      <description><![CDATA[<p>1 service expansion(s)</p><ul><li>elasticbeanstalk expanded to ap-south-2, ap-southeast-4, ap-southeast-6, ca-west-1, eu-central-2</li></ul><p><a href="https://iamtrail.com/endpoints/">View on IAMTrail</a></p>]]></description>
+    </item>
+    <item>
+      <title>Endpoint changes: 1 service expansion(s)</title>
+      <link>https://github.com/boto/botocore/commit/686cc44</link>
+      <guid isPermaLink="true">https://github.com/boto/botocore/commit/686cc44</guid>
+      <pubDate>Tue, 09 Dec 2025 00:28:12 GMT</pubDate>
+      <category>Endpoints</category>
+      <description><![CDATA[<p>1 service expansion(s)</p><ul><li>partnercentral-channel expanded to us-east-1</li></ul><p><a href="https://iamtrail.com/endpoints/">View on IAMTrail</a></p>]]></description>
+    </item>
+    <item>
+      <title>Endpoint changes: 2 service expansion(s)</title>
+      <link>https://github.com/boto/botocore/commit/6ad5ba1</link>
+      <guid isPermaLink="true">https://github.com/boto/botocore/commit/6ad5ba1</guid>
+      <pubDate>Tue, 02 Dec 2025 18:09:31 GMT</pubDate>
+      <category>Endpoints</category>
+      <description><![CDATA[<p>2 service expansion(s)</p><ul><li>resource-explorer-2 expanded to ap-southeast-6</li><li>nova-act expanded to us-east-1</li></ul><p><a href="https://iamtrail.com/endpoints/">View on IAMTrail</a></p>]]></description>
+    </item>
+    <item>
+      <title>Endpoint changes: 2 service expansion(s)</title>
+      <link>https://github.com/boto/botocore/commit/bd2d29e</link>
+      <guid isPermaLink="true">https://github.com/boto/botocore/commit/bd2d29e</guid>
+      <pubDate>Sat, 22 Nov 2025 00:25:24 GMT</pubDate>
+      <category>Endpoints</category>
+      <description><![CDATA[<p>2 service expansion(s)</p><ul><li>email expanded to ap-southeast-5, ca-west-1</li><li>oidc expanded to ap-east-2</li></ul><p><a href="https://iamtrail.com/endpoints/">View on IAMTrail</a></p>]]></description>
+    </item>
+    <item>
+      <title>Endpoint changes: 1 service expansion(s)</title>
+      <link>https://github.com/boto/botocore/commit/444f22c</link>
+      <guid isPermaLink="true">https://github.com/boto/botocore/commit/444f22c</guid>
+      <pubDate>Fri, 21 Nov 2025 00:26:36 GMT</pubDate>
+      <category>Endpoints</category>
+      <description><![CDATA[<p>1 service expansion(s)</p><ul><li>identitystore expanded to ap-southeast-6</li></ul><p><a href="https://iamtrail.com/endpoints/">View on IAMTrail</a></p>]]></description>
+    </item>
+    <item>
+      <title>Endpoint changes: 2 service expansion(s)</title>
+      <link>https://github.com/boto/botocore/commit/7a0ead4</link>
+      <guid isPermaLink="true">https://github.com/boto/botocore/commit/7a0ead4</guid>
+      <pubDate>Wed, 19 Nov 2025 00:27:19 GMT</pubDate>
+      <category>Endpoints</category>
+      <description><![CDATA[<p>2 service expansion(s)</p><ul><li>appstream2 expanded to ap-southeast-5, eu-south-1, eu-south-2, il-central-1</li><li>bedrock expanded to af-south-1, ca-west-1, me-south-1, mx-central-1</li></ul><p><a href="https://iamtrail.com/endpoints/">View on IAMTrail</a></p>]]></description>
+    </item>
+    <item>
+      <title>Endpoint changes: 1 service expansion(s)</title>
+      <link>https://github.com/boto/botocore/commit/54e982f</link>
+      <guid isPermaLink="true">https://github.com/boto/botocore/commit/54e982f</guid>
+      <pubDate>Sat, 15 Nov 2025 00:26:01 GMT</pubDate>
+      <category>Endpoints</category>
+      <description><![CDATA[<p>1 service expansion(s)</p><ul><li>network-firewall expanded to ap-southeast-6</li></ul><p><a href="https://iamtrail.com/endpoints/">View on IAMTrail</a></p>]]></description>
+    </item>
+    <item>
+      <title>Endpoint changes: 1 service expansion(s)</title>
+      <link>https://github.com/boto/botocore/commit/a010827</link>
+      <guid isPermaLink="true">https://github.com/boto/botocore/commit/a010827</guid>
+      <pubDate>Wed, 05 Nov 2025 00:26:54 GMT</pubDate>
+      <category>Endpoints</category>
+      <description><![CDATA[<p>1 service expansion(s)</p><ul><li>cassandra expanded to me-central-1</li></ul><p><a href="https://iamtrail.com/endpoints/">View on IAMTrail</a></p>]]></description>
+    </item>
+    <item>
+      <title>Endpoint changes: 1 service expansion(s)</title>
+      <link>https://github.com/boto/botocore/commit/ac114bc</link>
+      <guid isPermaLink="true">https://github.com/boto/botocore/commit/ac114bc</guid>
+      <pubDate>Fri, 31 Oct 2025 00:26:04 GMT</pubDate>
+      <category>Endpoints</category>
+      <description><![CDATA[<p>1 service expansion(s)</p><ul><li>controltower expanded to ap-southeast-6</li></ul><p><a href="https://iamtrail.com/endpoints/">View on IAMTrail</a></p>]]></description>
+    </item>
+    <item>
+      <title>Endpoint changes: 1 service expansion(s)</title>
+      <link>https://github.com/boto/botocore/commit/17a124a</link>
+      <guid isPermaLink="true">https://github.com/boto/botocore/commit/17a124a</guid>
+      <pubDate>Fri, 24 Oct 2025 00:23:49 GMT</pubDate>
+      <category>Endpoints</category>
+      <description><![CDATA[<p>1 service expansion(s)</p><ul><li>mq expanded to ap-southeast-6</li></ul><p><a href="https://iamtrail.com/endpoints/">View on IAMTrail</a></p>]]></description>
+    </item>
+    <item>
+      <title>Endpoint changes: 1 service expansion(s)</title>
+      <link>https://github.com/boto/botocore/commit/d2433dd</link>
+      <guid isPermaLink="true">https://github.com/boto/botocore/commit/d2433dd</guid>
+      <pubDate>Thu, 23 Oct 2025 00:25:57 GMT</pubDate>
+      <category>Endpoints</category>
+      <description><![CDATA[<p>1 service expansion(s)</p><ul><li>healthlake expanded to ca-central-1</li></ul><p><a href="https://iamtrail.com/endpoints/">View on IAMTrail</a></p>]]></description>
+    </item>
+    <item>
+      <title>Endpoint changes: 1 service expansion(s)</title>
+      <link>https://github.com/boto/botocore/commit/b636f85</link>
+      <guid isPermaLink="true">https://github.com/boto/botocore/commit/b636f85</guid>
+      <pubDate>Sat, 18 Oct 2025 00:23:44 GMT</pubDate>
+      <category>Endpoints</category>
+      <description><![CDATA[<p>1 service expansion(s)</p><ul><li>redshift-serverless expanded to ap-northeast-3, ap-southeast-5</li></ul><p><a href="https://iamtrail.com/endpoints/">View on IAMTrail</a></p>]]></description>
+    </item>
+    <item>
+      <title>Endpoint changes: 1 service expansion(s)</title>
+      <link>https://github.com/boto/botocore/commit/6f72c2c</link>
+      <guid isPermaLink="true">https://github.com/boto/botocore/commit/6f72c2c</guid>
+      <pubDate>Thu, 16 Oct 2025 00:26:09 GMT</pubDate>
+      <category>Endpoints</category>
+      <description><![CDATA[<p>1 service expansion(s)</p><ul><li>polly expanded to eu-central-2</li></ul><p><a href="https://iamtrail.com/endpoints/">View on IAMTrail</a></p>]]></description>
+    </item>
+    <item>
+      <title>Endpoint changes: 2 service expansion(s)</title>
+      <link>https://github.com/boto/botocore/commit/9eae5df</link>
+      <guid isPermaLink="true">https://github.com/boto/botocore/commit/9eae5df</guid>
+      <pubDate>Sat, 11 Oct 2025 00:23:34 GMT</pubDate>
+      <category>Endpoints</category>
+      <description><![CDATA[<p>2 service expansion(s)</p><ul><li>kafkaconnect expanded to af-south-1, ap-east-1, ap-northeast-3, ap-southeast-3, ap-southeast-4, eu-central-2, eu-south-1, il-central-1, me-central-1, me-south-1</li><li>storagegateway expanded to ap-southeast-6</li></ul><p><a href="https://iamtrail.com/endpoints/">View on IAMTrail</a></p>]]></description>
+    </item>
+    <item>
+      <title>Endpoint changes: 1 service expansion(s)</title>
+      <link>https://github.com/boto/botocore/commit/fbc40ba</link>
+      <guid isPermaLink="true">https://github.com/boto/botocore/commit/fbc40ba</guid>
+      <pubDate>Fri, 10 Oct 2025 00:25:16 GMT</pubDate>
+      <category>Endpoints</category>
+      <description><![CDATA[<p>1 service expansion(s)</p><ul><li>identitystore expanded to ap-east-2</li></ul><p><a href="https://iamtrail.com/endpoints/">View on IAMTrail</a></p>]]></description>
+    </item>
+    <item>
+      <title>Endpoint changes: 1 service expansion(s)</title>
+      <link>https://github.com/boto/botocore/commit/5b36463</link>
+      <guid isPermaLink="true">https://github.com/boto/botocore/commit/5b36463</guid>
+      <pubDate>Thu, 09 Oct 2025 00:24:53 GMT</pubDate>
+      <category>Endpoints</category>
+      <description><![CDATA[<p>1 service expansion(s)</p><ul><li>codedeploy expanded to ap-southeast-6</li></ul><p><a href="https://iamtrail.com/endpoints/">View on IAMTrail</a></p>]]></description>
+    </item>
+  </channel>
+</rss>
