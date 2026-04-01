@@ -1,0 +1,42 @@
+{
+    "PolicyVersion": {
+        "Document": {
+            "Version": "2012-10-17",
+            "Statement": [
+                {
+                    "Sid": "AnthropicLimitedWorkspace",
+                    "Effect": "Allow",
+                    "Action": [
+                        "aws-external-anthropic:Get*",
+                        "aws-external-anthropic:List*",
+                        "aws-external-anthropic:CancelBatchInference",
+                        "aws-external-anthropic:CountTokens",
+                        "aws-external-anthropic:CreateBatchInference",
+                        "aws-external-anthropic:CreateFile",
+                        "aws-external-anthropic:CreateInference",
+                        "aws-external-anthropic:CreateSkill",
+                        "aws-external-anthropic:CreateUserProfile",
+                        "aws-external-anthropic:DeleteBatchInference",
+                        "aws-external-anthropic:DeleteFile",
+                        "aws-external-anthropic:DeleteSkill",
+                        "aws-external-anthropic:UpdateSkill",
+                        "aws-external-anthropic:UpdateUserProfile"
+                    ],
+                    "Resource": "arn:aws:aws-external-anthropic:*:*:workspace/*"
+                },
+                {
+                    "Sid": "AnthropicInferenceResourceless",
+                    "Effect": "Allow",
+                    "Action": [
+                        "aws-external-anthropic:GetAccountStatus",
+                        "aws-external-anthropic:CallWithBearerToken"
+                    ],
+                    "Resource": "*"
+                }
+            ]
+        },
+        "VersionId": "v1",
+        "IsDefaultVersion": true,
+        "CreateDate": "2026-04-01T04:57:18+00:00"
+    }
+}

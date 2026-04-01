@@ -45,11 +45,19 @@
                         "aws-marketplace:ListPrivateListings"
                     ],
                     "Resource": "*"
+                },
+                {
+                    "Effect": "Allow",
+                    "Action": [
+                        "aws-marketplace:ListAgreementCancellationRequests",
+                        "aws-marketplace:GetAgreementCancellationRequest"
+                    ],
+                    "Resource": "*"
                 }
             ]
         },
-        "VersionId": "v11",
+        "VersionId": "v12",
         "IsDefaultVersion": true,
-        "CreateDate": "2026-02-12T18:01:12+00:00"
+        "CreateDate": "2026-03-31T16:42:07+00:00"
     }
 }

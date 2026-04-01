@@ -1,0 +1,44 @@
+{
+    "PolicyVersion": {
+        "Document": {
+            "Version": "2012-10-17",
+            "Statement": [
+                {
+                    "Sid": "AnthropicFullAccess",
+                    "Effect": "Allow",
+                    "Action": [
+                        "aws-external-anthropic:*"
+                    ],
+                    "Resource": "*"
+                },
+                {
+                    "Sid": "AnthropicSubscriptionManagement",
+                    "Effect": "Allow",
+                    "Action": [
+                        "aws-marketplace:Subscribe",
+                        "aws-marketplace:Unsubscribe"
+                    ],
+                    "Resource": "*",
+                    "Condition": {
+                        "ForAnyValue:StringEquals": {
+                            "aws-marketplace:ProductId": [
+                                "prod-3qbeiztufnva6"
+                            ]
+                        }
+                    }
+                },
+                {
+                    "Sid": "AnthropicSubscriptionView",
+                    "Effect": "Allow",
+                    "Action": [
+                        "aws-marketplace:ViewSubscriptions"
+                    ],
+                    "Resource": "*"
+                }
+            ]
+        },
+        "VersionId": "v1",
+        "IsDefaultVersion": true,
+        "CreateDate": "2026-04-01T04:57:18+00:00"
+    }
+}
