@@ -72,8 +72,12 @@ def get_recent_guardduty_changes(days):
     return changes
 
 
-def fetch_diff(commit_sha, _max_retries=3):
-    """Fetch truncated diff from GitHub API with caching and retry."""
+_MAX_CACHED_LINES = 500
+_DISPLAY_LINES = 30
+
+
+def _fetch_commit_diff(commit_sha, _max_retries=3):
+    """Fetch full commit diff from GitHub API with caching and retry."""
     if commit_sha in _diff_cache:
         return _diff_cache[commit_sha]
 
@@ -92,11 +96,9 @@ def fetch_diff(commit_sha, _max_retries=3):
             with urllib.request.urlopen(req, timeout=10) as resp:
                 diff_text = resp.read().decode("utf-8", errors="replace")
 
-            lines = diff_text.split("\n")
-            truncated = len(lines) > 30
-            result = (lines[:30], truncated)
-            _diff_cache[commit_sha] = result
-            return result
+            lines = diff_text.split("\n")[:_MAX_CACHED_LINES]
+            _diff_cache[commit_sha] = lines
+            return lines
         except urllib.error.HTTPError as e:
             if e.code in (403, 429) and attempt < _max_retries - 1:
                 wait = 2 ** (attempt + 1)
@@ -109,8 +111,34 @@ def fetch_diff(commit_sha, _max_retries=3):
             print(f"Failed to fetch diff for {commit_sha[:8]}: {e}")
             break
 
-    _diff_cache[commit_sha] = ([], False)
-    return [], False
+    _diff_cache[commit_sha] = []
+    return []
+
+
+def _extract_file_diff(all_lines, policy_name):
+    """Extract only the diff hunk for a specific policy file."""
+    target = f"policies/{policy_name}"
+    result = []
+    in_target = False
+
+    for line in all_lines:
+        if line.startswith("diff --git"):
+            in_target = target in line
+        if in_target:
+            result.append(line)
+
+    return result if result else all_lines
+
+
+def fetch_diff(commit_sha, policy_name=None):
+    """Return (lines, truncated) for a policy, filtered from the cached commit diff."""
+    all_lines = _fetch_commit_diff(commit_sha)
+    if not all_lines:
+        return [], False
+
+    lines = _extract_file_diff(all_lines, policy_name) if policy_name else all_lines
+    truncated = len(lines) > _DISPLAY_LINES
+    return lines[:_DISPLAY_LINES], truncated
 
 
 def format_diff_html(lines, truncated, commit_url):
@@ -159,7 +187,7 @@ def _build_policy_section(changes):
 
         diff_html = ""
         if commit_sha:
-            lines, truncated = fetch_diff(commit_sha)
+            lines, truncated = fetch_diff(commit_sha, policy_name=policy_name)
             diff_html = format_diff_html(lines, truncated, commit_url)
 
         section = f"""
@@ -402,7 +430,7 @@ def handler(event, context):
         if unique_shas:
             print(f"Pre-fetching diffs for {len(unique_shas)} unique commits")
             for sha in unique_shas:
-                fetch_diff(sha)
+                _fetch_commit_diff(sha)
 
         subscribers = []
         scan_kwargs = {

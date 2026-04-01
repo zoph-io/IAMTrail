@@ -31,11 +31,11 @@ chmod 600 /root/.git-credentials
 echo "==> git clone"
 cd /app/
 git clone https://github.com/zoph-io/IAMTrail.git -q
-if [ -d /app/MAMIP ]; then
-    cd /app/MAMIP
+if [ -d /app/IAMTrail ]; then
+    cd /app/IAMTrail
     echo "==> Run the magic"
-    aws iam list-policies --scope AWS >/app/MAMIP/list-policies.json
-    cat /app/MAMIP/list-policies.json | jq -cr '.Policies[] | select(.Arn | contains("iam::aws"))|.Arn +" "+ .DefaultVersionId+" "+.PolicyName' | xargs -n3 sh -c 'aws iam get-policy-version --policy-arn $1 --version-id $2 > "policies/$3"' sh
+    aws iam list-policies --scope AWS >/app/IAMTrail/list-policies.json
+    cat /app/IAMTrail/list-policies.json | jq -cr '.Policies[] | select(.Arn | contains("iam::aws"))|.Arn +" "+ .DefaultVersionId+" "+.PolicyName' | xargs -n3 sh -c 'aws iam get-policy-version --policy-arn $1 --version-id $2 > "policies/$3"' sh
     # push the changes if any
     if [[ -n $(git status -s) ]]; then
         # Prepare the Tweet

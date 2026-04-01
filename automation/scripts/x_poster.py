@@ -18,6 +18,7 @@ import hmac
 import base64
 import sys
 import time
+import urllib.error
 import urllib.parse
 import urllib.request
 import uuid
@@ -150,6 +151,16 @@ def post(text, secret_id, region=None):
             resp_body = resp.read().decode("utf-8")
             print(f"[x_poster] Tweet posted successfully: {resp_body[:200]}")
             return True
+    except urllib.error.HTTPError as e:
+        body = ""
+        try:
+            body = e.read().decode("utf-8", errors="replace")
+        except Exception:
+            pass
+        print(f"[x_poster] Failed to post tweet: {e.code} {e.reason}")
+        if body:
+            print(f"[x_poster] Response body: {body[:500]}")
+        return False
     except Exception as e:
         print(f"[x_poster] Failed to post tweet: {e}")
         return False

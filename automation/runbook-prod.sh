@@ -11,7 +11,7 @@ DATE=$(date +%Y-%m-%d-%H-%M)
 
 # Repository settings
 REPO_URL="https://github.com/zoph-io/IAMTrail.git"
-REPO_PATH="/tmp/MAMIP"
+REPO_PATH="/tmp/IAMTrail"
 GIT_USER_NAME="MAMIP Bot"
 GIT_USER_EMAIL="mamip_bot@github.com"
 
@@ -112,6 +112,7 @@ setup_git_auth() {
     
     if [ -z "$GITHUB_TOKEN" ] || [ "$GITHUB_TOKEN" = "null" ]; then
         log "Failed to retrieve GitHub token from Secrets Manager"
+        discord_notify 15158332 "Git Auth Failed" "Could not retrieve GitHub token from Secrets Manager"
         exit 1
     fi
 
@@ -131,6 +132,7 @@ clone_repo() {
     git clone "$REPO_URL" -q
     if [ ! -d "$REPO_PATH" ]; then
         log "Failed to clone repository"
+        discord_notify 15158332 "Clone Failed" "Repository clone succeeded but expected path $REPO_PATH not found. Check REPO_URL vs REPO_PATH."
         exit 1
     fi
     log "Repository cloned successfully"
@@ -146,7 +148,7 @@ process_policies() {
     cd "$REPO_PATH"
     aws iam list-policies --output json |
         jq -cr '.Policies[] | select(.Arn | contains("iam::aws")) | .Arn + " " + .DefaultVersionId + " " + .PolicyName' |
-        xargs -P 4 -n3 sh -c 'mkdir -p policies && aws iam get-policy-version --policy-arn $1 --version-id $2 | jq -S --indent 4 . > "policies/$3"' sh
+        xargs -P 16 -n3 sh -c 'mkdir -p policies && aws iam get-policy-version --policy-arn $1 --version-id $2 | jq --indent 4 . > "policies/$3"' sh
 }
 
 # Send notifications to various platforms
@@ -190,6 +192,7 @@ process_changes() {
         # Get all changed files
         CHANGED_FILES="$(git diff --name-only) $(git ls-files --others --exclude-standard)"
         ALL_COMMITS=()
+        declare -A POLICY_COMMIT_MAP
         
         # Process each changed file individually
         for file in $CHANGED_FILES; do
@@ -203,6 +206,7 @@ process_changes() {
                 git commit -m "$COMMIT_MESSAGE"
                 COMMIT_ID=$(git log --format="%h" -n 1)
                 ALL_COMMITS+=("$COMMIT_ID")
+                POLICY_COMMIT_MAP["$POLICY_NAME"]="$COMMIT_ID"
             fi
         done
 
@@ -213,8 +217,21 @@ process_changes() {
             TWEET_DIFF="${POLICY_NAMES:0:200}..."
             LAST_COMMIT_ID="${ALL_COMMITS[-1]}"
             
+            # Build per-policy commit map JSON
+            COMMIT_MAP_JSON="{"
+            FIRST_ENTRY=true
+            for key in "${!POLICY_COMMIT_MAP[@]}"; do
+                if [ "$FIRST_ENTRY" = true ]; then
+                    FIRST_ENTRY=false
+                else
+                    COMMIT_MAP_JSON+=","
+                fi
+                COMMIT_MAP_JSON+="\"$key\":\"${POLICY_COMMIT_MAP[$key]}\""
+            done
+            COMMIT_MAP_JSON+="}"
+
             # Format messages
-            MESSAGE="{\"UpdatedPolicies\": \"$POLICY_NAMES\", \"CommitUrl\": \"https://github.com/zoph-io/IAMTrail/commit/$LAST_COMMIT_ID\", \"Date\": \"$DATE\", \"CommitCount\": \"${#ALL_COMMITS[@]}\"}"
+            MESSAGE="{\"UpdatedPolicies\": \"$POLICY_NAMES\", \"CommitUrl\": \"https://github.com/zoph-io/IAMTrail/commit/$LAST_COMMIT_ID\", \"CommitMap\": $COMMIT_MAP_JSON, \"Date\": \"$DATE\", \"CommitCount\": \"${#ALL_COMMITS[@]}\"}"
             MESSAGE_BODY="$TWEET_DIFF https://github.com/zoph-io/IAMTrail/commit/$LAST_COMMIT_ID"
 
             # Send notifications

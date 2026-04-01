@@ -79,12 +79,12 @@ variable "assign_public_ip" {
 }
 
 variable "ecs_cpu_units" {
-  default     = "256"
+  default     = "512"
   description = "Container: Number of CPU Units"
 }
 
 variable "ecs_memory" {
-  default     = "512"
+  default     = "1024"
   description = "Container: Memory Units"
 }
 

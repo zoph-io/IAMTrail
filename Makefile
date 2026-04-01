@@ -7,6 +7,7 @@ help:
 	@echo "Docker & Infrastructure:"
 	@echo "	build-docker - build and push docker image to ECR"
 	@echo "	run-task - manually trigger the ECS Fargate task"
+	@echo "	deploy-runbook - update runbook on S3 and trigger ECS task"
 	@echo "	init - init IaC using Terraform"
 	@echo "	validate - validate the IaC using Terraform"
 	@echo "	plan - plan (dryrun) IaC using Terraform"
@@ -193,6 +194,8 @@ destroy:
 update-runbook:
 	@echo "Copying runbook scripts in artifacts s3 bucket"
 	@aws s3 cp automation/runbook-$(ENV).sh 's3://${ARTIFACTS_BUCKET}/$(ENV)/runbook.sh'
+
+deploy-runbook: update-runbook run-task
 
 ################ CloudFront Function ###########
 CF_STACK_NAME ?= mamip-cloudfront-url-rewrite

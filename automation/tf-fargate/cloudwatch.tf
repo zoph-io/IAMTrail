@@ -49,7 +49,7 @@ resource "aws_cloudwatch_event_rule" "ecs_task_state_change" {
     detail = {
       clusterArn = [aws_ecs_cluster.ecs_cluster.arn]
       lastStatus = ["STOPPED"]
-      stopCode   = ["TaskFailedToStart", "EssentialContainerExited"]
+      stopCode   = ["TaskFailedToStart", "EssentialContainerExited", "SpotInterruption"]
     }
   })
 }
@@ -75,6 +75,83 @@ resource "aws_cloudwatch_event_target" "ecs_task_failure_target" {
 }
 EOF
   }
+}
+
+# ──────────────────────────────
+# Lambda: ECS Failure Discord Notifier
+# ──────────────────────────────
+
+data "archive_file" "ecs_failure_notifier" {
+  type        = "zip"
+  output_path = "${path.module}/../lambdas/.dist/ecs-failure-notifier.zip"
+
+  source {
+    content  = file("${path.module}/../lambdas/ecs-failure-notifier/index.py")
+    filename = "index.py"
+  }
+  source {
+    content  = file("${path.module}/../lambdas/shared/discord_notifier.py")
+    filename = "discord_notifier.py"
+  }
+}
+
+resource "aws_lambda_function" "ecs_failure_notifier" {
+  function_name    = "iamtrail-ecs-failure-notifier"
+  runtime          = "python3.12"
+  handler          = "index.handler"
+  filename         = data.archive_file.ecs_failure_notifier.output_path
+  source_code_hash = data.archive_file.ecs_failure_notifier.output_base64sha256
+  role             = aws_iam_role.ecs_failure_notifier.arn
+  timeout          = 15
+  memory_size      = 128
+
+  environment {
+    variables = {
+      DISCORD_WEBHOOK_SSM = local.discord_webhook_ssm
+    }
+  }
+
+  tags = var.tags
+}
+
+resource "aws_iam_role" "ecs_failure_notifier" {
+  name               = "iamtrail-ecs-failure-notifier-role"
+  assume_role_policy = data.aws_iam_policy_document.lambda_assume_role.json
+}
+
+resource "aws_iam_role_policy" "ecs_failure_notifier" {
+  name = "iamtrail-ecs-failure-notifier-policy"
+  role = aws_iam_role.ecs_failure_notifier.id
+
+  policy = jsonencode({
+    Version = "2012-10-17"
+    Statement = [
+      {
+        Effect   = "Allow"
+        Action   = ["ssm:GetParameter"]
+        Resource = ["arn:aws:ssm:${var.aws_region}:${data.aws_caller_identity.current.account_id}:parameter${local.discord_webhook_ssm}"]
+      },
+      {
+        Effect   = "Allow"
+        Action   = ["logs:CreateLogGroup", "logs:CreateLogStream", "logs:PutLogEvents"]
+        Resource = ["arn:aws:logs:*:*:*"]
+      }
+    ]
+  })
+}
+
+resource "aws_cloudwatch_event_target" "ecs_failure_discord" {
+  rule      = aws_cloudwatch_event_rule.ecs_task_state_change.name
+  target_id = "${var.project}_ecs_failure_discord_${var.env}"
+  arn       = aws_lambda_function.ecs_failure_notifier.arn
+}
+
+resource "aws_lambda_permission" "ecs_failure_eventbridge" {
+  statement_id  = "AllowEventBridgeInvoke"
+  action        = "lambda:InvokeFunction"
+  function_name = aws_lambda_function.ecs_failure_notifier.function_name
+  principal     = "events.amazonaws.com"
+  source_arn    = aws_cloudwatch_event_rule.ecs_task_state_change.arn
 }
 
 # CloudWatch Alarm for task failures

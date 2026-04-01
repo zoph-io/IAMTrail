@@ -27,11 +27,14 @@ def handler(event, context):
 
             updated_policies = message.get("UpdatedPolicies", "")
             commit_url = message.get("CommitUrl", "")
+            commit_map = message.get("CommitMap", {})
 
             commit_sha = ""
-            sha_match = re.search(r"/commit/([a-f0-9]+)", commit_url)
+            repo_base_url = ""
+            sha_match = re.search(r"(https://github\.com/[^/]+/[^/]+)/commit/([a-f0-9]+)", commit_url)
             if sha_match:
-                commit_sha = sha_match.group(1)
+                repo_base_url = sha_match.group(1)
+                commit_sha = sha_match.group(2)
 
             today = time.strftime("%Y-%m-%d", time.gmtime())
             now = time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime())
@@ -42,12 +45,18 @@ def handler(event, context):
 
             with table.batch_writer() as batch:
                 for i, policy_name in enumerate(policy_names):
+                    policy_sha = commit_map.get(policy_name, commit_sha)
+                    policy_commit_url = (
+                        f"{repo_base_url}/commit/{policy_sha}"
+                        if policy_sha and repo_base_url
+                        else commit_url
+                    )
                     batch.put_item(
                         Item={
                             "date": today,
                             "policy_name": policy_name,
-                            "commit_url": commit_url,
-                            "commit_sha": commit_sha,
+                            "commit_url": policy_commit_url,
+                            "commit_sha": policy_sha,
                             "detected_at": now,
                             "ttl": ttl,
                         }
