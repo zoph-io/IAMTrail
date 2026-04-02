@@ -34,11 +34,43 @@
                         "aws-marketplace:ViewSubscriptions"
                     ],
                     "Resource": "*"
+                },
+                {
+                    "Sid": "AnthropicFullEnableFederation",
+                    "Effect": "Allow",
+                    "Action": [
+                        "iam:GetOutboundWebIdentityFederationInfo",
+                        "iam:EnableOutboundWebIdentityFederation"
+                    ],
+                    "Resource": "*"
+                },
+                {
+                    "Sid": "AnthropicFullGetToken",
+                    "Effect": "Allow",
+                    "Action": "sts:GetWebIdentityToken",
+                    "Resource": "*",
+                    "Condition": {
+                        "ForAnyValue:StringEquals": {
+                            "sts:IdentityTokenAudience": [
+                                "https://api.anthropic.com",
+                                "https://platform.claude.com"
+                            ]
+                        },
+                        "StringEquals": {
+                            "aws:CalledViaLast": "aws-external-anthropic.amazonaws.com"
+                        }
+                    }
+                },
+                {
+                    "Sid": "AnthropicFullTagToken",
+                    "Effect": "Allow",
+                    "Action": "sts:TagGetWebIdentityToken",
+                    "Resource": "*"
                 }
             ]
         },
-        "VersionId": "v1",
+        "VersionId": "v2",
         "IsDefaultVersion": true,
-        "CreateDate": "2026-04-01T04:57:18+00:00"
+        "CreateDate": "2026-04-01T22:42:19+00:00"
     }
 }
