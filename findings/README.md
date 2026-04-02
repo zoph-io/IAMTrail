@@ -1,6 +1,6 @@
-# AWS Access Analyzer - Findings - 2026-04-01
+# AWS Access Analyzer - Findings - 2026-04-02
 
-- **Policies analyzed:** `1461`
+- **Policies analyzed:** `1465`
 - **Errors:** `40`
   - [`AWSAuditManagerAdministratorAccess`](./AWSAuditManagerAdministratorAccess.json)
   - [`AWSAuditManagerServiceRolePolicy`](./AWSAuditManagerServiceRolePolicy.json)
