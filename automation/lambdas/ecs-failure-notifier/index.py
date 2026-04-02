@@ -15,6 +15,13 @@ def handler(event, context):
         stopped_reason = detail.get("stoppedReason", "No reason provided")
 
         containers = detail.get("containers", [])
+
+        if stop_code == "EssentialContainerExited":
+            exit_codes = [c.get("exitCode") for c in containers]
+            if exit_codes and all(code == 0 for code in exit_codes):
+                print(f"Task {task_id} exited cleanly (all containers exit code 0), skipping alert")
+                return {"statusCode": 200}
+
         container_info = []
         for c in containers:
             name = c.get("name", "?")

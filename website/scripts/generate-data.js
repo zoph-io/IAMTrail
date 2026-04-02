@@ -59,10 +59,24 @@ async function generatePolicyData() {
         continue;
       }
 
-      // Get git history
-      const logs = await git.log({ file: relativePath, maxCount: 100 });
+      // Get git history (without --follow to avoid false rename/copy detection)
+      const rawLog = await git.raw([
+        "log",
+        "--max-count=100",
+        "--format=%H|%aI|%s|%an",
+        "--",
+        relativePath,
+      ]);
+      const logEntries = (rawLog || "")
+        .trim()
+        .split("\n")
+        .filter((line) => line.length > 0)
+        .map((line) => {
+          const [hash, date, message, author_name] = line.split("|");
+          return { hash, date, message, author_name };
+        });
 
-      for (const entry of logs.all) {
+      for (const entry of logEntries) {
         allCommitEntries.push({
           date: entry.date,
           message: entry.message,
@@ -101,27 +115,27 @@ async function generatePolicyData() {
       }
 
       const firstSeenDate =
-        logs.all.length > 0
-          ? logs.all[logs.all.length - 1].date
+        logEntries.length > 0
+          ? logEntries[logEntries.length - 1].date
           : stats.mtime.toISOString();
 
       const policy = {
         name: policyName,
         createDate: policyData.PolicyVersion?.CreateDate || null,
         versionId: policyData.PolicyVersion?.VersionId || null,
-        lastModified: logs.latest
-          ? logs.latest.date
+        lastModified: logEntries.length > 0
+          ? logEntries[0].date
           : stats.mtime.toISOString(),
-        versionsCount: logs.total,
+        versionsCount: logEntries.length,
         size: stats.size,
         actionCount,
         servicePrefixes: [...servicePrefixes],
         firstSeen: firstSeenDate,
-        history: logs.all.slice(0, 10).map((log) => ({
-          hash: log.hash,
-          date: log.date,
-          message: log.message,
-          author: log.author_name,
+        history: logEntries.slice(0, 10).map((entry) => ({
+          hash: entry.hash,
+          date: entry.date,
+          message: entry.message,
+          author: entry.author_name,
         })),
       };
 

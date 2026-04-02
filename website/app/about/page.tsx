@@ -1,28 +1,31 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import {
-  Info,
+  BookOpen,
   Clock,
   GitBranch,
   ShieldCheck,
-  Bell,
+  Shield,
+  Globe,
   Search,
-  ExternalLink,
+  FileText,
+  Rss,
+  Mail,
   ArrowRight,
   AlertTriangle,
 } from "lucide-react";
 
 export const metadata: Metadata = {
-  title: "About IAMTrail - How We Track AWS IAM Policy Changes",
+  title: "About IAMTrail - AWS IAM Policy, Endpoint & GuardDuty Change Archive",
   description:
-    "Learn how IAMTrail monitors and archives every change to AWS Managed IAM Policies using automated infrastructure, git version control, and policy validation.",
+    "IAMTrail is an unofficial archive tracking AWS Managed IAM Policy changes, endpoint updates, and GuardDuty announcements since 2019. Full version history, diffs, validation, and RSS feeds.",
   alternates: {
     canonical: "https://iamtrail.com/about",
   },
   openGraph: {
-    title: "About IAMTrail | AWS Managed Policy Changes Archive",
+    title: "About IAMTrail | AWS Change Archive Since 2019",
     description:
-      "Learn how IAMTrail monitors and archives every change to AWS Managed IAM Policies.",
+      "An unofficial archive tracking AWS IAM policy changes, endpoint updates, and GuardDuty announcements - with full version history, diffs, and RSS feeds.",
     url: "https://iamtrail.com/about",
   },
 };
@@ -36,34 +39,147 @@ export default function AboutPage() {
           About IAMTrail
         </h1>
         <p className="text-base text-zinc-600 dark:text-zinc-400 max-w-2xl">
-          An unofficial archive tracking every change to AWS Managed IAM
-          Policies since 2019 - with full version history, diffs, and policy
-          validation.
+          An unofficial archive tracking AWS Managed IAM Policy changes,
+          endpoint updates, and GuardDuty announcements since 2019 - with full
+          version history, diffs, and dedicated RSS feeds.
         </p>
       </div>
 
-      {/* What & Why */}
+      {/* Origin Story */}
       <section className="bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 rounded-lg p-6">
         <div className="flex items-start gap-4">
           <div className="p-2 bg-red-50 dark:bg-red-950/30 rounded flex-shrink-0">
-            <Info className="w-5 h-5 text-red-600 dark:text-red-400" />
+            <BookOpen className="w-5 h-5 text-red-600 dark:text-red-400" />
           </div>
           <div className="space-y-3">
             <h2 className="text-xl font-bold font-mono text-zinc-900 dark:text-white">
-              What is IAMTrail?
+              Why IAMTrail Exists
             </h2>
             <p className="text-sm text-zinc-600 dark:text-zinc-400 leading-relaxed">
               AWS updates its managed IAM policies constantly - often without
-              announcement. IAMTrail catches every change and stores full
-              version history in Git, so you can see exactly what was added,
-              removed, or modified.
+              any announcement. Security teams, compliance officers, and cloud
+              architects need visibility into these silent changes. ISVs and
+              SaaS founders building on AWS also heavily rely on managed
+              policies for their integrations and need to know immediately when
+              permissions shift under their products.
             </p>
             <p className="text-sm text-zinc-600 dark:text-zinc-400 leading-relaxed">
-              This is useful for staying on top of security changes, spotting
-              new AWS service launches early (via v1 policies), and keeping
-              compliance documentation current.
+              IAMTrail was started in{" "}
+              <strong className="text-zinc-900 dark:text-white">2019</strong>,
+              inspired by{" "}
+              <a
+                href="https://twitter.com/0xdabbad00"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-red-600 dark:text-red-400 hover:underline font-medium"
+              >
+                Scott Piper
+              </a>
+              &apos;s{" "}
+              <a
+                href="https://github.com/SummitRoute/aws_managed_policies"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-red-600 dark:text-red-400 hover:underline font-medium"
+              >
+                aws_managed_policies
+              </a>{" "}
+              project. What began as an automated fork has grown into a broader
+              observatory of AWS infrastructure changes - covering not just IAM
+              policies but also endpoint expansions, GuardDuty announcements,
+              and AWS account identification.
             </p>
           </div>
+        </div>
+      </section>
+
+      {/* What We Track */}
+      <section className="space-y-4">
+        <h2 className="text-xl font-bold font-mono text-zinc-900 dark:text-white">
+          What We Track
+        </h2>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <Link
+            href="/policies"
+            className="bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 rounded-lg p-5 group hover:border-red-300 dark:hover:border-red-800 transition-colors"
+          >
+            <div className="flex items-center gap-3 mb-3">
+              <div className="p-1.5 bg-red-50 dark:bg-red-950/30 rounded">
+                <FileText className="w-4 h-4 text-red-600 dark:text-red-400" />
+              </div>
+              <h3 className="font-semibold text-sm text-zinc-900 dark:text-white group-hover:text-red-600 dark:group-hover:text-red-400 transition-colors">
+                IAM Policy Changes
+              </h3>
+            </div>
+            <p className="text-sm text-zinc-600 dark:text-zinc-400 leading-relaxed">
+              The original archive. Every AWS managed IAM policy versioned in
+              Git with full diffs and Access Analyzer validation. Spot new
+              service launches early via v1 policies.
+            </p>
+          </Link>
+
+          <Link
+            href="/endpoints"
+            className="bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 rounded-lg p-5 group hover:border-red-300 dark:hover:border-red-800 transition-colors"
+          >
+            <div className="flex items-center gap-3 mb-3">
+              <div className="p-1.5 bg-red-50 dark:bg-red-950/30 rounded">
+                <Globe className="w-4 h-4 text-red-600 dark:text-red-400" />
+              </div>
+              <h3 className="font-semibold text-sm text-zinc-900 dark:text-white group-hover:text-red-600 dark:group-hover:text-red-400 transition-colors">
+                Endpoint Changes
+              </h3>
+            </div>
+            <p className="text-sm text-zinc-600 dark:text-zinc-400 leading-relaxed">
+              Tracks changes to botocore&apos;s{" "}
+              <code className="text-xs bg-zinc-100 dark:bg-zinc-800 px-1 py-0.5 rounded">
+                endpoints.json
+              </code>{" "}
+              - new regions, new services, and service expansions. Refreshed
+              every 6 hours.
+            </p>
+          </Link>
+
+          <Link
+            href="/guardduty"
+            className="bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 rounded-lg p-5 group hover:border-red-300 dark:hover:border-red-800 transition-colors"
+          >
+            <div className="flex items-center gap-3 mb-3">
+              <div className="p-1.5 bg-red-50 dark:bg-red-950/30 rounded">
+                <Shield className="w-4 h-4 text-red-600 dark:text-red-400" />
+              </div>
+              <h3 className="font-semibold text-sm text-zinc-900 dark:text-white group-hover:text-red-600 dark:group-hover:text-red-400 transition-colors">
+                GuardDuty Announcements
+              </h3>
+            </div>
+            <p className="text-sm text-zinc-600 dark:text-zinc-400 leading-relaxed">
+              Archives GuardDuty SNS announcements - new findings, feature
+              updates, and region expansions. The successor to the former
+              @mgda_aws feed.
+            </p>
+          </Link>
+
+          <Link
+            href="/accounts"
+            className="bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 rounded-lg p-5 group hover:border-red-300 dark:hover:border-red-800 transition-colors"
+          >
+            <div className="flex items-center gap-3 mb-3">
+              <div className="p-1.5 bg-red-50 dark:bg-red-950/30 rounded">
+                <Search className="w-4 h-4 text-red-600 dark:text-red-400" />
+              </div>
+              <h3 className="font-semibold text-sm text-zinc-900 dark:text-white group-hover:text-red-600 dark:group-hover:text-red-400 transition-colors">
+                AWS Account Lookup
+              </h3>
+            </div>
+            <p className="text-sm text-zinc-600 dark:text-zinc-400 leading-relaxed">
+              Identify AWS account owners from an account ID, powered by the{" "}
+              <span className="font-medium">
+                fwdcloudsec/known_aws_accounts
+              </span>{" "}
+              community dataset. Useful for CloudTrail and trust policy
+              investigations.
+            </p>
+          </Link>
         </div>
       </section>
 
@@ -72,7 +188,7 @@ export default function AboutPage() {
         <h2 className="text-xl font-bold font-mono text-zinc-900 dark:text-white">
           How It Works
         </h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
           <div className="bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 rounded-lg p-5">
             <div className="flex items-center gap-3 mb-3">
               <div className="p-1.5 bg-red-50 dark:bg-red-950/30 rounded">
@@ -83,8 +199,8 @@ export default function AboutPage() {
               </h3>
             </div>
             <p className="text-sm text-zinc-600 dark:text-zinc-400 leading-relaxed">
-              A scheduled task fetches all AWS managed policies via the AWS API
-              multiple times per day on weekdays.
+              Scheduled tasks fetch AWS managed policies, botocore endpoints,
+              and GuardDuty announcements multiple times per day.
             </p>
           </div>
 
@@ -98,9 +214,8 @@ export default function AboutPage() {
               </h3>
             </div>
             <p className="text-sm text-zinc-600 dark:text-zinc-400 leading-relaxed">
-              Each policy is stored as a JSON file. When changes are detected,
-              they are committed to Git with full diff history preserved
-              indefinitely.
+              Every change is committed to Git with full diff history preserved
+              indefinitely. Nothing is ever silently overwritten.
             </p>
           </div>
 
@@ -114,84 +229,97 @@ export default function AboutPage() {
               </h3>
             </div>
             <p className="text-sm text-zinc-600 dark:text-zinc-400 leading-relaxed">
-              Every policy is validated using AWS IAM Access Analyzer to flag
-              security warnings, best practice issues, and redundant
-              statements.
-            </p>
-          </div>
-
-          <div className="bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 rounded-lg p-5">
-            <div className="flex items-center gap-3 mb-3">
-              <div className="p-1.5 bg-zinc-100 dark:bg-zinc-800 rounded">
-                <Bell className="w-4 h-4 text-zinc-600 dark:text-zinc-400" />
-              </div>
-              <h3 className="font-semibold text-sm text-zinc-900 dark:text-white">
-                Notifications
-              </h3>
-            </div>
-            <p className="text-sm text-zinc-600 dark:text-zinc-400 leading-relaxed">
-              Policy changes are broadcast on{" "}
-              <a
-                href="https://bsky.app/profile/iamtrail.bsky.social"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-red-600 dark:text-red-400 hover:underline"
-              >
-                Bluesky
-              </a>
-              ,{" "}
-              <a
-                href="https://x.com/iamtrail_"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-red-600 dark:text-red-400 hover:underline"
-              >
-                X
-              </a>
-              , and via{" "}
-              <Link
-                href="/subscribe"
-                className="text-red-600 dark:text-red-400 hover:underline"
-              >
-                email digests
-              </Link>
-              .
+              IAM policies are validated using AWS Access Analyzer to flag
+              security warnings, best practice issues, and redundant statements.
             </p>
           </div>
         </div>
       </section>
 
-      {/* AWS Account Lookup */}
-      <section className="bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 rounded-lg p-6">
-        <div className="flex items-start gap-4">
-          <div className="p-2 bg-zinc-100 dark:bg-zinc-800 rounded flex-shrink-0">
-            <Search className="w-5 h-5 text-zinc-600 dark:text-zinc-400" />
+      {/* Stay Informed */}
+      <section className="bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 rounded-lg p-6 space-y-5">
+        <h2 className="text-xl font-bold font-mono text-zinc-900 dark:text-white">
+          Stay Informed
+        </h2>
+
+        <div className="space-y-4">
+          <div className="flex items-start gap-3">
+            <div className="p-1.5 bg-orange-50 dark:bg-orange-950/30 rounded flex-shrink-0 mt-0.5">
+              <Rss className="w-4 h-4 text-orange-600 dark:text-orange-400" />
+            </div>
+            <div>
+              <h3 className="font-semibold text-sm text-zinc-900 dark:text-white mb-1">
+                RSS Feeds
+              </h3>
+              <p className="text-sm text-zinc-600 dark:text-zinc-400 leading-relaxed mb-2">
+                Each data source has its own dedicated feed so you can subscribe
+                to exactly what you care about. See all available feeds on
+                the{" "}
+                <Link
+                  href="/feeds"
+                  className="text-red-600 dark:text-red-400 hover:underline font-medium"
+                >
+                  RSS Feeds page
+                </Link>
+                .
+              </p>
+              <div className="flex flex-wrap gap-2">
+                {[
+                  { label: "All Changes", href: "/feeds/all.xml" },
+                  { label: "IAM Policies", href: "/feeds/iam-policies.xml" },
+                  { label: "Endpoints", href: "/feeds/endpoints.xml" },
+                  { label: "GuardDuty", href: "/feeds/guardduty.xml" },
+                ].map((feed) => (
+                  <a
+                    key={feed.href}
+                    href={feed.href}
+                    className="inline-flex items-center gap-1 text-xs font-mono px-2.5 py-1 rounded-md bg-zinc-100 dark:bg-zinc-800 text-zinc-700 dark:text-zinc-300 hover:bg-orange-100 dark:hover:bg-orange-950/40 hover:text-orange-700 dark:hover:text-orange-300 transition-colors"
+                  >
+                    <Rss className="w-3 h-3" />
+                    {feed.label}
+                  </a>
+                ))}
+              </div>
+            </div>
           </div>
-          <div className="space-y-3">
-            <h2 className="text-xl font-bold font-mono text-zinc-900 dark:text-white">
-              AWS Account Lookup
-            </h2>
-            <p className="text-sm text-zinc-600 dark:text-zinc-400 leading-relaxed">
-              IAMTrail includes a{" "}
-              <Link
-                href="/accounts"
-                className="text-red-600 dark:text-red-400 hover:underline font-medium"
-              >
-                Known AWS Account Lookup
-              </Link>{" "}
-              tool powered by the{" "}
-              <a
-                href="https://github.com/fwdcloudsec/known_aws_accounts"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-red-600 dark:text-red-400 hover:underline font-medium"
-              >
-                fwdcloudsec/known_aws_accounts
-              </a>{" "}
-              community dataset. Paste an AWS account ID to identify its
-              owner - useful when investigating CloudTrail logs, S3 bucket
-              policies, or IAM trust relationships.
-            </p>
+
+          <div className="flex items-start gap-3">
+            <div className="p-1.5 bg-red-50 dark:bg-red-950/30 rounded flex-shrink-0 mt-0.5">
+              <Mail className="w-4 h-4 text-red-600 dark:text-red-400" />
+            </div>
+            <div>
+              <h3 className="font-semibold text-sm text-zinc-900 dark:text-white mb-1">
+                Email Digests & Social
+              </h3>
+              <p className="text-sm text-zinc-600 dark:text-zinc-400 leading-relaxed">
+                Get policy change summaries delivered to your inbox via{" "}
+                <Link
+                  href="/subscribe"
+                  className="text-red-600 dark:text-red-400 hover:underline font-medium"
+                >
+                  email digests
+                </Link>
+                , or follow along on{" "}
+                <a
+                  href="https://bsky.app/profile/iamtrail.bsky.social"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-red-600 dark:text-red-400 hover:underline font-medium"
+                >
+                  Bluesky
+                </a>{" "}
+                and{" "}
+                <a
+                  href="https://x.com/iamtrail_"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-red-600 dark:text-red-400 hover:underline font-medium"
+                >
+                  X
+                </a>
+                .
+              </p>
+            </div>
           </div>
         </div>
       </section>
@@ -263,10 +391,10 @@ export default function AboutPage() {
       {/* CTA */}
       <div className="text-center pb-4">
         <Link
-          href="/policies"
+          href="/"
           className="inline-flex items-center gap-2 px-5 py-2.5 bg-red-600 text-white rounded font-mono font-semibold text-sm hover:bg-red-700 transition-colors"
         >
-          Explore Policy Archive
+          Explore IAMTrail
           <ArrowRight className="w-4 h-4" />
         </Link>
       </div>
