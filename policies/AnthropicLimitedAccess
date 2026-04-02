@@ -25,24 +25,32 @@
                     "Resource": "arn:aws:aws-external-anthropic:*:*:workspace/*"
                 },
                 {
-                    "Sid": "AnthropicInferenceResourceless",
-                    "Effect": "Allow",
-                    "Action": [
-                        "aws-external-anthropic:GetAccountStatus",
-                        "aws-external-anthropic:CallWithBearerToken"
-                    ],
-                    "Resource": "*"
-                },
-                {
-                    "Sid": "AnthropicLimitedOutboundFederation",
+                    "Sid": "AnthropicLimitedGetToken",
                     "Effect": "Allow",
                     "Action": "sts:GetWebIdentityToken",
+                    "Resource": "*",
+                    "Condition": {
+                        "ForAnyValue:StringEquals": {
+                            "sts:IdentityTokenAudience": [
+                                "https://api.anthropic.com",
+                                "https://platform.claude.com"
+                            ]
+                        },
+                        "StringEquals": {
+                            "aws:CalledViaLast": "aws-external-anthropic.amazonaws.com"
+                        }
+                    }
+                },
+                {
+                    "Sid": "AnthropicLimitedTagToken",
+                    "Effect": "Allow",
+                    "Action": "sts:TagGetWebIdentityToken",
                     "Resource": "*"
                 }
             ]
         },
-        "VersionId": "v2",
+        "VersionId": "v3",
         "IsDefaultVersion": true,
-        "CreateDate": "2026-04-01T19:57:14+00:00"
+        "CreateDate": "2026-04-01T22:42:15+00:00"
     }
 }
