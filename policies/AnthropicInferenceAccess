@@ -25,11 +25,34 @@
                         "aws-external-anthropic:CallWithBearerToken"
                     ],
                     "Resource": "*"
+                },
+                {
+                    "Sid": "AnthropicInferenceGetToken",
+                    "Effect": "Allow",
+                    "Action": "sts:GetWebIdentityToken",
+                    "Resource": "*",
+                    "Condition": {
+                        "ForAnyValue:StringEquals": {
+                            "sts:IdentityTokenAudience": [
+                                "https://api.anthropic.com",
+                                "https://platform.claude.com"
+                            ]
+                        },
+                        "StringEquals": {
+                            "aws:CalledViaLast": "aws-external-anthropic.amazonaws.com"
+                        }
+                    }
+                },
+                {
+                    "Sid": "AnthropicInferenceTagToken",
+                    "Effect": "Allow",
+                    "Action": "sts:TagGetWebIdentityToken",
+                    "Resource": "*"
                 }
             ]
         },
-        "VersionId": "v1",
+        "VersionId": "v2",
         "IsDefaultVersion": true,
-        "CreateDate": "2026-04-01T04:57:14+00:00"
+        "CreateDate": "2026-04-01T22:42:14+00:00"
     }
 }
