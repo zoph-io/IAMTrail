@@ -11669,12 +11669,12 @@
             "PolicyId": "ANPAZKAPJZG4KNL3CVTKG",
             "Arn": "arn:aws:iam::aws:policy/AmazonEventBridgeSchedulerReadOnlyAccess",
             "Path": "/",
-            "DefaultVersionId": "v4",
+            "DefaultVersionId": "v5",
             "AttachmentCount": 0,
             "PermissionsBoundaryUsageCount": 0,
             "IsAttachable": true,
             "CreateDate": "2022-11-10T18:50:12+00:00",
-            "UpdateDate": "2026-02-12T17:58:16+00:00"
+            "UpdateDate": "2026-04-02T17:57:20+00:00"
         },
         {
             "PolicyName": "AWSBackupRestoreAccessForSAPHANA",
@@ -17645,12 +17645,12 @@
             "PolicyId": "ANPAZKAPJZG4PVRRB6AVZ",
             "Arn": "arn:aws:iam::aws:policy/AnthropicLimitedAccess",
             "Path": "/",
-            "DefaultVersionId": "v3",
+            "DefaultVersionId": "v4",
             "AttachmentCount": 0,
             "PermissionsBoundaryUsageCount": 0,
             "IsAttachable": true,
             "CreateDate": "2026-04-01T04:57:18+00:00",
-            "UpdateDate": "2026-04-01T22:42:15+00:00"
+            "UpdateDate": "2026-04-02T20:12:08+00:00"
         },
         {
             "PolicyName": "AnthropicFullAccess",
