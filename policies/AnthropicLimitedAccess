@@ -25,6 +25,15 @@
                     "Resource": "arn:aws:aws-external-anthropic:*:*:workspace/*"
                 },
                 {
+                    "Sid": "AnthropicLimitedResourceless",
+                    "Effect": "Allow",
+                    "Action": [
+                        "aws-external-anthropic:GetAccountStatus",
+                        "aws-external-anthropic:CallWithBearerToken"
+                    ],
+                    "Resource": "*"
+                },
+                {
                     "Sid": "AnthropicLimitedGetToken",
                     "Effect": "Allow",
                     "Action": "sts:GetWebIdentityToken",
@@ -49,8 +58,8 @@
                 }
             ]
         },
-        "VersionId": "v3",
-        "IsDefaultVersion": false,
-        "CreateDate": "2026-04-01T22:42:15+00:00"
+        "VersionId": "v4",
+        "IsDefaultVersion": true,
+        "CreateDate": "2026-04-02T20:12:08+00:00"
     }
 }
