@@ -6,8 +6,11 @@ RUN dnf install -y \
     aws-cli \
     findutils \
     python3 \
+    python3-pip \
     && dnf clean all \
     && rm -rf /var/cache/dnf
+
+RUN pip3 install --no-cache-dir boto3
 
 ENV AWS_REGION=eu-west-1
 

@@ -61,7 +61,7 @@ All policies are stored as JSON in this repository and updated automatically eve
 
 An automated workflow runs every 4 hours (Mon-Fri):
 
-1. Fetch all AWS Managed IAM Policies via AWS CLI
+1. Fetch all AWS Managed IAM Policies via the AWS API
 2. Detect new, updated, or deprecated policies
 3. Validate each policy with AWS Access Analyzer
 4. Commit changes to git (one commit per policy)

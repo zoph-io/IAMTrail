@@ -154,13 +154,9 @@ clone_repo() {
 process_policies() {
     log "Processing IAM policies"
     cd "$REPO_PATH"
-    local policies_json
-    policies_json=$(aws iam list-policies --output json)
-    POLICY_COUNT=$(echo "$policies_json" | jq '[.Policies[] | select(.Arn | contains("iam::aws"))] | length')
-    log "Found $POLICY_COUNT AWS managed policies"
-    echo "$policies_json" |
-        jq -cr '.Policies[] | select(.Arn | contains("iam::aws")) | .Arn + " " + .DefaultVersionId + " " + .PolicyName' |
-        xargs -P 16 -n3 sh -c 'mkdir -p policies && aws iam get-policy-version --policy-arn $1 --version-id $2 | jq --indent 4 . > "policies/$3"' sh
+    python3 "$REPO_PATH/automation/scripts/fetch_policies.py" "$REPO_PATH/policies"
+    POLICY_COUNT=$(ls -1 "$REPO_PATH/policies" | wc -l | tr -d ' ')
+    log "Fetched $POLICY_COUNT AWS managed policies"
 }
 
 # Send notifications to various platforms
