@@ -39,6 +39,7 @@
                         "acm:Describe*",
                         "acm:Get*",
                         "acm:List*",
+                        "acm:SearchCertificates",
                         "action-recommendations:ListRecommendedActions",
                         "aiops:GetEphemeralInvestigationResults",
                         "aiops:GetFact",
@@ -244,6 +245,7 @@
                         "artifact:ListAgreements",
                         "artifact:ListCustomerAgreements",
                         "artifact:ListReports",
+                        "artifact:ListReportVersions",
                         "athena:Batch*",
                         "athena:Get*",
                         "athena:List*",
@@ -2773,8 +2775,8 @@
                 }
             ]
         },
-        "VersionId": "v181",
+        "VersionId": "v182",
         "IsDefaultVersion": true,
-        "CreateDate": "2026-03-31T22:51:50+00:00"
+        "CreateDate": "2026-04-03T15:27:12+00:00"
     }
 }
