@@ -1,0 +1,46 @@
+{
+  "detected_at": "2026-04-03T02:55:46.025Z",
+  "botocore_commit": "38af07071ac1e4d786360af6e095fab777a5722b",
+  "botocore_commit_url": "https://github.com/boto/botocore/commit/38af07071ac1e4d786360af6e095fab777a5722b",
+  "summary": "4 new service(s), 1 service expansion(s)",
+  "changes": [
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "globalaccelerator",
+      "id": "globalaccelerator",
+      "new_regions": [
+        "ap-southeast-6"
+      ],
+      "description": "globalaccelerator expanded to ap-southeast-6"
+    },
+    {
+      "type": "new_service",
+      "partition": "aws-iso-b",
+      "id": "acm",
+      "description": "acm (2 endpoints)",
+      "endpoint_count": 2
+    },
+    {
+      "type": "new_service",
+      "partition": "aws-eusc",
+      "id": "oidc",
+      "description": "oidc (1 endpoint)",
+      "endpoint_count": 1
+    },
+    {
+      "type": "new_service",
+      "partition": "aws-eusc",
+      "id": "portal.sso",
+      "description": "portal.sso (1 endpoint)",
+      "endpoint_count": 1
+    },
+    {
+      "type": "new_service",
+      "partition": "aws-eusc",
+      "id": "sso",
+      "description": "sso (1 endpoint)",
+      "endpoint_count": 1
+    }
+  ]
+}
