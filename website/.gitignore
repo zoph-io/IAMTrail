@@ -34,3 +34,5 @@ next-env.d.ts
 
 # Generated data
 /public/data/*.json
+/public/sitemap.xml
+/public/feeds/*.xml

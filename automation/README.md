@@ -1,12 +1,12 @@
 # AWS Policy Validation Script
 
-This script validates AWS managed policies using AWS Access Analyzer and generates comprehensive reports of findings.
+This script validates AWS managed policies using AWS Access Analyzer and writes per-policy findings as JSON.
 
 ## Features
 
 - **Comprehensive Validation**: Validates AWS managed policies using AWS Access Analyzer
 - **Deprecated Policy Detection**: Automatically identifies deprecated policies by comparing with current AWS policies and tracks deprecation dates
-- **Detailed Reporting**: Generates detailed reports with categorized findings
+- **JSON findings**: One `{policy_name}.json` per policy with Access Analyzer results (see website data pipeline for aggregation)
 - **Robust Error Handling**: Proper error handling and logging throughout the process
 - **Configurable**: Command-line options for customization
 - **Logging**: Comprehensive logging to both console and file
@@ -65,8 +65,9 @@ The script generates several output files:
 
 ### Findings Directory (`./findings/`)
 
-- `README.md`: Summary report with statistics and links to detailed findings
 - `{policy_name}.json`: Individual policy findings in JSON format
+
+The [IAMTrail website](https://iamtrail.com/findings) aggregates these into browseable data (`website` build runs `generate-data`, which produces `public/data/findings.json`).
 
 ### Log Files
 
@@ -77,22 +78,6 @@ The script generates several output files:
 - `DEPRECATED.json`: List of deprecated policies with deprecation dates
 
 ## Output Structure
-
-### README.md Example
-
-```markdown
-# AWS Access Analyzer - Findings - 2024-01-15
-
-- **Policies analyzed:** `1500`
-- **Errors:** `5`
-  - [`AdministratorAccess`](./AdministratorAccess.json)
-- **Security Warnings:** `12`
-  - [`PowerUserAccess`](./PowerUserAccess.json)
-- **Suggestions:** `45`
-- **Warnings:** `23`
-- **Failed validations:** `2`
-- **Deprecated policies:** `15`
-```
 
 ### JSON Findings Format
 

@@ -14,6 +14,15 @@ const SITE_URL = "https://iamtrail.com";
 const GITHUB_REPO = "https://github.com/zoph-io/IAMTrail";
 const git = simpleGit(REPO_ROOT);
 
+/** Map legacy git author names to IAMTrail for UI and exports. */
+function displayAuthorName(name) {
+  if (!name || typeof name !== "string") return name;
+  const t = name.trim();
+  if (/^mamip\s*bot$/i.test(t)) return "IAMTrail";
+  if (/mamip-github-actions/i.test(t)) return "IAMTrail";
+  return name;
+}
+
 function iamActionToSlug(action) {
   return Buffer.from(action, "utf8")
     .toString("base64")
@@ -201,7 +210,7 @@ async function generatePolicyData() {
           hash: entry.hash,
           date: entry.date,
           message: entry.message,
-          author: entry.author_name,
+          author: displayAuthorName(entry.author_name),
         })),
       };
 
