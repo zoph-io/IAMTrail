@@ -19,7 +19,8 @@ dist/
 downloads/
 eggs/
 .eggs/
-lib/
+# Python "lib" at repo root only (plain "lib/" ignored website/lib/)
+/lib/
 lib64/
 parts/
 sdist/
