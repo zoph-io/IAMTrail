@@ -13,6 +13,7 @@ import {
   Mail,
   ArrowRight,
   AlertTriangle,
+  Library,
 } from "lucide-react";
 
 export const metadata: Metadata = {
@@ -114,7 +115,9 @@ export default function AboutPage() {
             <p className="text-sm text-zinc-600 dark:text-zinc-400 leading-relaxed">
               The original archive. Every AWS managed IAM policy versioned in
               Git with full diffs and Access Analyzer validation. Spot new
-              service launches early via v1 policies.
+              service launches early via v1 policies. Literal actions in the
+              policy JSON link to per-action pages that list which other managed
+              policies reference the same string.
             </p>
           </Link>
 
@@ -180,6 +183,53 @@ export default function AboutPage() {
               investigations.
             </p>
           </Link>
+        </div>
+      </section>
+
+      {/* Data sources */}
+      <section className="space-y-4">
+        <h2 className="text-xl font-bold font-mono text-zinc-900 dark:text-white">
+          Data sources
+        </h2>
+        <div className="bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 rounded-lg p-6">
+          <div className="flex items-start gap-4">
+            <div className="p-2 bg-red-50 dark:bg-red-950/30 rounded flex-shrink-0">
+              <Library className="w-5 h-5 text-red-600 dark:text-red-400" />
+            </div>
+            <div className="space-y-3">
+              <p className="text-sm text-zinc-600 dark:text-zinc-400 leading-relaxed">
+                Per-action reference text on IAMTrail (descriptions, access
+                level, resource types, and related actions where available) is
+                enriched from{" "}
+                <a
+                  href="https://github.com/iann0036/iam-dataset"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-red-600 dark:text-red-400 hover:underline font-medium"
+                >
+                  iam-dataset
+                </a>
+                , an MIT-licensed project by{" "}
+                <a
+                  href="https://github.com/iann0036"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-red-600 dark:text-red-400 hover:underline font-medium"
+                >
+                  Ian McKay
+                </a>
+                . That dataset structures information from the AWS Service
+                Authorization Reference and powers many tools in the ecosystem
+                (for example iamlive and aws.permissions.cloud). It can lag live
+                AWS documentation and is not an official AWS product.
+              </p>
+              <p className="text-sm text-zinc-600 dark:text-zinc-400 leading-relaxed">
+                IAMTrail&apos;s own policy archive (Git history, diffs, and
+                validation) is independent. The iam-dataset material is
+                supplementary context on action pages only.
+              </p>
+            </div>
+          </div>
         </div>
       </section>
 

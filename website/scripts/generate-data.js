@@ -478,6 +478,95 @@ async function generatePolicyData() {
     `   🔑 Action index: ${uniqueLiteralActions.size} literal actions, ${policiesWithWildcard.size} policies with wildcards`
   );
 
+  // SAR-style action definitions (iam-dataset by Ian McKay) intersected with our action keys
+  const IAM_DEFINITION_URL =
+    "https://raw.githubusercontent.com/iann0036/iam-dataset/main/aws/iam_definition.json";
+  const LIST_CAP = 30;
+  const attributionText =
+    "Action descriptions and access metadata from iam-dataset (Ian McKay, github.com/iann0036/iam-dataset), MIT license. Derived from the AWS Service Authorization Reference; not guaranteed current.";
+
+  function slimPrivilegeRecord(serviceName, priv) {
+    const resourceTypes = [];
+    const dependentActions = [];
+    const seenR = new Set();
+    const seenD = new Set();
+    for (const rt of priv.resource_types || []) {
+      if (resourceTypes.length < LIST_CAP) {
+        const t = (rt.resource_type && String(rt.resource_type).trim()) || "";
+        if (t && !seenR.has(t)) {
+          seenR.add(t);
+          resourceTypes.push(t);
+        }
+      }
+      const deps = rt.dependent_actions || [];
+      const depArr = Array.isArray(deps) ? deps : [deps];
+      for (const da of depArr) {
+        if (dependentActions.length >= LIST_CAP) break;
+        if (typeof da === "string" && da && !seenD.has(da)) {
+          seenD.add(da);
+          dependentActions.push(da);
+        }
+      }
+      if (resourceTypes.length >= LIST_CAP && dependentActions.length >= LIST_CAP)
+        break;
+    }
+    return {
+      description: priv.description || "",
+      accessLevel: priv.access_level || "",
+      serviceName: serviceName || "",
+      resourceTypes,
+      dependentActions,
+    };
+  }
+
+  console.log("🔎 Fetching iam-dataset (iam_definition.json)...");
+  let actionDefinitionsOut = {
+    schemaVersion: 1,
+    source: "iam-dataset",
+    sourceUrl: "https://github.com/iann0036/iam-dataset",
+    sourceLicense: "MIT",
+    attribution: attributionText,
+    generatedAt: new Date().toISOString(),
+    definitions: {},
+  };
+  try {
+    const iamDefRaw = await fetchUrl(IAM_DEFINITION_URL);
+    const iamDef = JSON.parse(iamDefRaw);
+    const lookupByActionLower = {};
+    if (Array.isArray(iamDef)) {
+      for (const svc of iamDef) {
+        const prefix = (svc.prefix && String(svc.prefix)) || "";
+        const serviceName = (svc.service_name && String(svc.service_name)) || "";
+        if (!prefix) continue;
+        for (const priv of svc.privileges || []) {
+          const p = priv.privilege && String(priv.privilege);
+          if (!p) continue;
+          const canonical = `${prefix}:${p}`;
+          lookupByActionLower[canonical.toLowerCase()] = slimPrivilegeRecord(
+            serviceName,
+            priv
+          );
+        }
+      }
+    }
+    const definitions = {};
+    for (const actionKey of Object.keys(actionsOut)) {
+      const row = lookupByActionLower[actionKey.toLowerCase()];
+      if (row) definitions[actionKey] = row;
+    }
+    actionDefinitionsOut.definitions = definitions;
+    const matched = Object.keys(definitions).length;
+    console.log(
+      `   📚 Action definitions: ${matched} of ${Object.keys(actionsOut).length} indexed actions matched iam-dataset`
+    );
+  } catch (err) {
+    console.warn("⚠️  Could not build action definitions:", err.message);
+  }
+  fs.writeFileSync(
+    path.join(OUTPUT_DIR, "action-definitions.json"),
+    JSON.stringify(actionDefinitionsOut)
+  );
+
   // Write summary data
   const summary = {
     stats,

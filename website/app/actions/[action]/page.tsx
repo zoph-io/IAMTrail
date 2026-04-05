@@ -1,8 +1,103 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import { BookMarked } from "lucide-react";
 import { getActionDetail, getActionIndex } from "@/lib/loadActionIndex";
+import {
+  getActionDefinition,
+  getActionDefinitionsMeta,
+} from "@/lib/loadActionDefinitions";
+import type { ActionDefinitionRow } from "@/lib/loadActionDefinitions";
 import { iamActionToSlug, iamSlugToAction } from "@/lib/actionSlug";
+
+const LIST_CAP = 30;
+
+function accessLevelBadgeClass(level: string): string {
+  const l = level.toLowerCase();
+  if (l.includes("write") || l.includes("permissions"))
+    return "bg-amber-50 text-amber-900 dark:bg-amber-950/40 dark:text-amber-200 border-amber-200 dark:border-amber-800";
+  if (l.includes("read") || l.includes("list") || l.includes("search"))
+    return "bg-blue-50 text-blue-900 dark:bg-blue-950/40 dark:text-blue-200 border-blue-200 dark:border-blue-800";
+  if (l.includes("tagging"))
+    return "bg-violet-50 text-violet-900 dark:bg-violet-950/40 dark:text-violet-200 border-violet-200 dark:border-violet-800";
+  return "bg-zinc-100 text-zinc-800 dark:bg-zinc-800 dark:text-zinc-200 border-zinc-200 dark:border-zinc-700";
+}
+
+function ActionReferenceCard({ def }: { def: ActionDefinitionRow }) {
+  return (
+    <div className="bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 rounded-lg overflow-hidden">
+      <div className="px-5 py-3 border-b border-zinc-200 dark:border-zinc-800 flex items-center gap-2">
+        <BookMarked className="w-4 h-4 text-red-600 dark:text-red-400 flex-shrink-0" />
+        <h2 className="text-sm font-semibold font-mono uppercase tracking-wider text-zinc-900 dark:text-white">
+          Action reference
+        </h2>
+        <span className="text-[10px] font-mono text-zinc-500 dark:text-zinc-400 ml-auto">
+          SAR-style (unofficial)
+        </span>
+      </div>
+      <div className="px-5 py-4 space-y-4">
+        {def.serviceName ? (
+          <p className="text-xs font-mono text-zinc-500 dark:text-zinc-400">
+            Service:{" "}
+            <span className="text-zinc-900 dark:text-white">{def.serviceName}</span>
+          </p>
+        ) : null}
+        {def.accessLevel ? (
+          <div>
+            <p className="text-[10px] font-mono uppercase tracking-wider text-zinc-500 dark:text-zinc-400 mb-1.5">
+              Access level
+            </p>
+            <span
+              className={`inline-flex items-center px-2 py-0.5 rounded text-xs font-mono font-medium border ${accessLevelBadgeClass(def.accessLevel)}`}
+            >
+              {def.accessLevel}
+            </span>
+          </div>
+        ) : null}
+        {def.description ? (
+          <div>
+            <p className="text-[10px] font-mono uppercase tracking-wider text-zinc-500 dark:text-zinc-400 mb-1.5">
+              Description
+            </p>
+            <p className="text-sm text-zinc-700 dark:text-zinc-300 leading-relaxed">
+              {def.description}
+            </p>
+          </div>
+        ) : null}
+        {def.resourceTypes.length > 0 ? (
+          <div>
+            <p className="text-[10px] font-mono uppercase tracking-wider text-zinc-500 dark:text-zinc-400 mb-1.5">
+              Resource types
+              {def.resourceTypes.length >= LIST_CAP
+                ? ` (first ${LIST_CAP})`
+                : null}
+            </p>
+            <ul className="text-xs font-mono text-zinc-600 dark:text-zinc-400 space-y-0.5 list-disc list-inside">
+              {def.resourceTypes.map((t) => (
+                <li key={t}>{t}</li>
+              ))}
+            </ul>
+          </div>
+        ) : null}
+        {def.dependentActions.length > 0 ? (
+          <div>
+            <p className="text-[10px] font-mono uppercase tracking-wider text-zinc-500 dark:text-zinc-400 mb-1.5">
+              Dependent actions
+              {def.dependentActions.length >= LIST_CAP
+                ? ` (first ${LIST_CAP})`
+                : null}
+            </p>
+            <ul className="text-xs font-mono text-zinc-600 dark:text-zinc-400 space-y-0.5 list-disc list-inside">
+              {def.dependentActions.map((a) => (
+                <li key={a}>{a}</li>
+              ))}
+            </ul>
+          </div>
+        ) : null}
+      </div>
+    </div>
+  );
+}
 
 export async function generateStaticParams() {
   const fs = require("fs");
@@ -29,15 +124,22 @@ export async function generateMetadata(props: {
     action = params.action;
   }
   const slug = params.action;
+  const def = getActionDefinition(action);
+  let description = `Managed IAM policies that reference the ${action} action as a literal string (wildcards excluded). Unofficial data from IAMTrail.`;
+  if (def?.description?.trim()) {
+    const s = def.description.trim();
+    const short = s.length > 118 ? `${s.slice(0, 115)}...` : s;
+    description = `${short} Appearances in managed policies on IAMTrail (unofficial).`;
+  }
   return {
     title: `${action} - IAM actions in AWS managed policies`,
-    description: `Managed IAM policies that reference the ${action} action as a literal string (wildcards excluded). Unofficial data from IAMTrail.`,
+    description,
     alternates: {
       canonical: `https://iamtrail.com/actions/${slug}`,
     },
     openGraph: {
       title: `${action} | IAMTrail`,
-      description: `Where ${action} appears across AWS managed IAM policies.`,
+      description,
       url: `https://iamtrail.com/actions/${slug}`,
     },
   };
@@ -79,6 +181,8 @@ export default async function ActionDetailPage(props: {
   }
 
   const idx = getActionIndex();
+  const sarDef = getActionDefinition(action);
+  const defsMeta = getActionDefinitionsMeta();
   const allowN = detail.actionAllowPolicies.length;
   const denyN = detail.actionDenyPolicies.length;
   const notN = detail.notActionPolicies.length;
@@ -161,6 +265,8 @@ export default async function ActionDetailPage(props: {
         </p>
       </div>
 
+      {sarDef ? <ActionReferenceCard def={sarDef} /> : null}
+
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
         <div className="bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 rounded-lg overflow-hidden">
           <div className="px-5 py-3 border-b border-zinc-200 dark:border-zinc-800">
@@ -193,6 +299,39 @@ export default async function ActionDetailPage(props: {
           </div>
         </div>
       </div>
+
+      {defsMeta ? (
+        <div className="rounded-lg border border-zinc-200 dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-900/50 px-5 py-4">
+          <p className="text-xs text-zinc-600 dark:text-zinc-400 leading-relaxed">
+            Thanks to{" "}
+            <a
+              href="https://github.com/iann0036"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-red-600 dark:text-red-400 font-medium hover:underline"
+            >
+              Ian McKay
+            </a>{" "}
+            for{" "}
+            <a
+              href={defsMeta.sourceUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-red-600 dark:text-red-400 font-medium hover:underline"
+            >
+              iam-dataset
+            </a>{" "}
+            ({defsMeta.sourceLicense}), structured data derived from the AWS
+            Service Authorization Reference. Not maintained by AWS and not
+            guaranteed current. IAMTrail&apos;s managed policy archive is
+            separate.
+          </p>
+          <p className="text-[10px] font-mono text-zinc-500 dark:text-zinc-500 mt-2">
+            Definitions bundle generated{" "}
+            {new Date(defsMeta.generatedAt).toLocaleString()}
+          </p>
+        </div>
+      ) : null}
     </div>
   );
 }
