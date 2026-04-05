@@ -274,51 +274,6 @@ class ReportGenerator:
                     file_path.unlink()
             self.logger.info("Cleaned findings folder")
 
-    def generate_readme(
-        self, stats: ValidationStats, deprecated_policies: Dict[str, str]
-    ):
-        """Generate README.md with validation results."""
-        findings_path = Path(self.config["findings_path"])
-        readme_path = findings_path / "README.md"
-
-        try:
-            with open(readme_path, "w") as f:
-                f.write(
-                    f"# AWS Access Analyzer - Findings - {datetime.now().strftime('%Y-%m-%d')}\n\n"
-                )
-
-                f.write(f"- **Policies analyzed:** `{stats.analyzed_count}`\n")
-                f.write(f"- **Errors:** `{stats.errors}`\n")
-                for policy in sorted(stats.error_policies):
-                    f.write(f"  - [`{policy}`](./{policy}.json)\n")
-
-                f.write(f"- **Security Warnings:** `{stats.security_warnings}`\n")
-                for policy in sorted(stats.security_warning_policies):
-                    f.write(f"  - [`{policy}`](./{policy}.json)\n")
-
-                f.write(f"- **Suggestions:** `{stats.suggestions}`\n")
-                for policy in sorted(stats.suggestion_policies):
-                    f.write(f"  - [`{policy}`](./{policy}.json)\n")
-
-                f.write(f"- **Warnings:** `{stats.warnings}`\n")
-                for policy in sorted(stats.warning_policies):
-                    f.write(f"  - [`{policy}`](./{policy}.json)\n")
-
-                f.write(f"- **Failed validations:** `{stats.fails}`\n")
-                for policy in sorted(stats.failed_policies):
-                    f.write(f"  - `{policy}`\n")
-
-                f.write(f"- **Deprecated policies:** `{len(deprecated_policies)}`\n")
-                for policy, date in sorted(deprecated_policies.items()):
-                    f.write(
-                        f"  - [`{policy}`](../policies/{policy}) (deprecated: {date})\n"
-                    )
-
-            self.logger.info("Generated README.md")
-
-        except Exception as e:
-            self.logger.error(f"Failed to generate README.md: {e}")
-
     def save_deprecated_list(self, deprecated_policies: Dict[str, str]):
         """Save deprecated policies list to JSON file."""
         try:
@@ -420,7 +375,6 @@ def main():
 
         # Generate reports
         logger.info("Generating reports...")
-        report_generator.generate_readme(stats, deprecated_policies)
         report_generator.save_deprecated_list(deprecated_policies)
         report_generator.print_stats(stats, deprecated_policies)
 
