@@ -5,9 +5,97 @@
     <link>https://iamtrail.com</link>
     <description>All IAMTrail changes in one feed - IAM policies, endpoints, and GuardDuty announcements. An unofficial archive by zoph.io.</description>
     <language>en-us</language>
-    <lastBuildDate>Wed, 01 Apr 2026 16:48:55 GMT</lastBuildDate>
+    <lastBuildDate>Sat, 04 Apr 2026 21:18:11 GMT</lastBuildDate>
     <ttl>360</ttl>
     <atom:link href="https://iamtrail.com/feeds/all.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>ReadOnlyAccess updated</title>
+      <link>https://github.com/zoph-io/IAMTrail/commit/dd9fddb6ce1871222562530b65fb3ee225c5fe97</link>
+      <guid isPermaLink="true">https://github.com/zoph-io/IAMTrail/commit/dd9fddb6ce1871222562530b65fb3ee225c5fe97</guid>
+      <pubDate>Fri, 03 Apr 2026 16:44:42 GMT</pubDate>
+      <category>IAM Policy</category>
+      <description><![CDATA[<p>Policy <strong>ReadOnlyAccess</strong> was updated.</p><p>ReadOnlyAccess - Policy Version v182</p><p><a href="https://iamtrail.com/policies/ReadOnlyAccess/">View on IAMTrail</a></p>]]></description>
+    </item>
+    <item>
+      <title>Endpoint changes: 4 new service(s), 1 service expansion(s)</title>
+      <link>https://github.com/boto/botocore/commit/38af07071ac1e4d786360af6e095fab777a5722b</link>
+      <guid isPermaLink="true">https://github.com/boto/botocore/commit/38af07071ac1e4d786360af6e095fab777a5722b</guid>
+      <pubDate>Fri, 03 Apr 2026 02:55:46 GMT</pubDate>
+      <category>Endpoints</category>
+      <description><![CDATA[<p>4 new service(s), 1 service expansion(s)</p><ul><li>globalaccelerator expanded to ap-southeast-6</li><li>acm (2 endpoints)</li><li>oidc (1 endpoint)</li><li>portal.sso (1 endpoint)</li><li>sso (1 endpoint)</li></ul><p><a href="https://iamtrail.com/endpoints/">View on IAMTrail</a></p>]]></description>
+    </item>
+    <item>
+      <title>AnthropicLimitedAccess updated</title>
+      <link>https://github.com/zoph-io/IAMTrail/commit/c878b769ca59df375767cf143dd033500ec683cf</link>
+      <guid isPermaLink="true">https://github.com/zoph-io/IAMTrail/commit/c878b769ca59df375767cf143dd033500ec683cf</guid>
+      <pubDate>Fri, 03 Apr 2026 00:45:39 GMT</pubDate>
+      <category>IAM Policy</category>
+      <description><![CDATA[<p>Policy <strong>AnthropicLimitedAccess</strong> was updated.</p><p>AnthropicLimitedAccess - Policy Version v4</p><p><a href="https://iamtrail.com/policies/AnthropicLimitedAccess/">View on IAMTrail</a></p>]]></description>
+    </item>
+    <item>
+      <title>AnthropicLimitedAccess updated</title>
+      <link>https://github.com/zoph-io/IAMTrail/commit/52a9000b58d52be720ccd824f1911ef87705445e</link>
+      <guid isPermaLink="true">https://github.com/zoph-io/IAMTrail/commit/52a9000b58d52be720ccd824f1911ef87705445e</guid>
+      <pubDate>Thu, 02 Apr 2026 20:45:27 GMT</pubDate>
+      <category>IAM Policy</category>
+      <description><![CDATA[<p>Policy <strong>AnthropicLimitedAccess</strong> was updated.</p><p>AnthropicLimitedAccess - Policy Version v3</p><p><a href="https://iamtrail.com/policies/AnthropicLimitedAccess/">View on IAMTrail</a></p>]]></description>
+    </item>
+    <item>
+      <title>AmazonEventBridgeSchedulerReadOnlyAccess updated</title>
+      <link>https://github.com/zoph-io/IAMTrail/commit/c8624446216f951e9e5a69b299606fe3565ac695</link>
+      <guid isPermaLink="true">https://github.com/zoph-io/IAMTrail/commit/c8624446216f951e9e5a69b299606fe3565ac695</guid>
+      <pubDate>Thu, 02 Apr 2026 20:45:26 GMT</pubDate>
+      <category>IAM Policy</category>
+      <description><![CDATA[<p>Policy <strong>AmazonEventBridgeSchedulerReadOnlyAccess</strong> was updated.</p><p>AmazonEventBridgeSchedulerReadOnlyAccess - Policy Version v5</p><p><a href="https://iamtrail.com/policies/AmazonEventBridgeSchedulerReadOnlyAccess/">View on IAMTrail</a></p>]]></description>
+    </item>
+    <item>
+      <title>AmazonEKSLoadBalancingPolicy updated</title>
+      <link>https://github.com/zoph-io/IAMTrail/commit/2445de9fdeb47cdfebdeef5faee705e02a774ff6</link>
+      <guid isPermaLink="true">https://github.com/zoph-io/IAMTrail/commit/2445de9fdeb47cdfebdeef5faee705e02a774ff6</guid>
+      <pubDate>Thu, 02 Apr 2026 00:46:09 GMT</pubDate>
+      <category>IAM Policy</category>
+      <description><![CDATA[<p>Policy <strong>AmazonEKSLoadBalancingPolicy</strong> was updated.</p><p>AmazonEKSLoadBalancingPolicy - Policy Version v5</p><p><a href="https://iamtrail.com/policies/AmazonEKSLoadBalancingPolicy/">View on IAMTrail</a></p>]]></description>
+    </item>
+    <item>
+      <title>AnthropicFullAccess updated</title>
+      <link>https://github.com/zoph-io/IAMTrail/commit/5dae7ceee8ac97a11f7734b1e5e991b2877450a7</link>
+      <guid isPermaLink="true">https://github.com/zoph-io/IAMTrail/commit/5dae7ceee8ac97a11f7734b1e5e991b2877450a7</guid>
+      <pubDate>Thu, 02 Apr 2026 00:46:09 GMT</pubDate>
+      <category>IAM Policy</category>
+      <description><![CDATA[<p>Policy <strong>AnthropicFullAccess</strong> was updated.</p><p>AnthropicFullAccess - Policy Version v2</p><p><a href="https://iamtrail.com/policies/AnthropicFullAccess/">View on IAMTrail</a></p>]]></description>
+    </item>
+    <item>
+      <title>AnthropicInferenceAccess updated</title>
+      <link>https://github.com/zoph-io/IAMTrail/commit/96852d1273b9de45ef04515852a749e5b75b0501</link>
+      <guid isPermaLink="true">https://github.com/zoph-io/IAMTrail/commit/96852d1273b9de45ef04515852a749e5b75b0501</guid>
+      <pubDate>Thu, 02 Apr 2026 00:46:09 GMT</pubDate>
+      <category>IAM Policy</category>
+      <description><![CDATA[<p>Policy <strong>AnthropicInferenceAccess</strong> was updated.</p><p>AnthropicInferenceAccess - Policy Version v2</p><p><a href="https://iamtrail.com/policies/AnthropicInferenceAccess/">View on IAMTrail</a></p>]]></description>
+    </item>
+    <item>
+      <title>AnthropicLimitedAccess updated</title>
+      <link>https://github.com/zoph-io/IAMTrail/commit/53c199af5babccf63c4f237672b48ed10495ef7f</link>
+      <guid isPermaLink="true">https://github.com/zoph-io/IAMTrail/commit/53c199af5babccf63c4f237672b48ed10495ef7f</guid>
+      <pubDate>Thu, 02 Apr 2026 00:46:09 GMT</pubDate>
+      <category>IAM Policy</category>
+      <description><![CDATA[<p>Policy <strong>AnthropicLimitedAccess</strong> was updated.</p><p>AnthropicLimitedAccess - Policy Version v3</p><p><a href="https://iamtrail.com/policies/AnthropicLimitedAccess/">View on IAMTrail</a></p>]]></description>
+    </item>
+    <item>
+      <title>AnthropicReadOnlyAccess updated</title>
+      <link>https://github.com/zoph-io/IAMTrail/commit/473c549a0c41dfc0431b74fabea6c84d1e837624</link>
+      <guid isPermaLink="true">https://github.com/zoph-io/IAMTrail/commit/473c549a0c41dfc0431b74fabea6c84d1e837624</guid>
+      <pubDate>Thu, 02 Apr 2026 00:46:09 GMT</pubDate>
+      <category>IAM Policy</category>
+      <description><![CDATA[<p>Policy <strong>AnthropicReadOnlyAccess</strong> was updated.</p><p>AnthropicReadOnlyAccess - Policy Version v2</p><p><a href="https://iamtrail.com/policies/AnthropicReadOnlyAccess/">View on IAMTrail</a></p>]]></description>
+    </item>
+    <item>
+      <title>AnthropicLimitedAccess updated</title>
+      <link>https://github.com/zoph-io/IAMTrail/commit/f07e9a7d7825f6be8d501972e54143155e2765bc</link>
+      <guid isPermaLink="true">https://github.com/zoph-io/IAMTrail/commit/f07e9a7d7825f6be8d501972e54143155e2765bc</guid>
+      <pubDate>Wed, 01 Apr 2026 20:46:19 GMT</pubDate>
+      <category>IAM Policy</category>
+      <description><![CDATA[<p>Policy <strong>AnthropicLimitedAccess</strong> was updated.</p><p>AnthropicLimitedAccess - Policy Version v2</p><p><a href="https://iamtrail.com/policies/AnthropicLimitedAccess/">View on IAMTrail</a></p>]]></description>
+    </item>
     <item>
       <title>AWSMarketplaceSellerFullAccess updated</title>
       <link>https://github.com/zoph-io/IAMTrail/commit/b2a6d34375f842e163bdb47163b2a0093453ea5e</link>
@@ -319,94 +407,6 @@
       <pubDate>Tue, 31 Mar 2026 08:44:51 GMT</pubDate>
       <category>IAM Policy</category>
       <description><![CDATA[<p>Policy <strong>AWSControlTowerServiceRolePolicy</strong> was updated.</p><p>AWSControlTowerServiceRolePolicy - Policy Version v20</p><p><a href="https://iamtrail.com/policies/AWSControlTowerServiceRolePolicy/">View on IAMTrail</a></p>]]></description>
-    </item>
-    <item>
-      <title>AWSManagementConsoleAdministratorAccess updated</title>
-      <link>https://github.com/zoph-io/IAMTrail/commit/8ae800837b446e447bdaf93b4cc521e21ddb9f38</link>
-      <guid isPermaLink="true">https://github.com/zoph-io/IAMTrail/commit/8ae800837b446e447bdaf93b4cc521e21ddb9f38</guid>
-      <pubDate>Tue, 31 Mar 2026 08:44:51 GMT</pubDate>
-      <category>IAM Policy</category>
-      <description><![CDATA[<p>Policy <strong>AWSManagementConsoleAdministratorAccess</strong> was updated.</p><p>AWSManagementConsoleAdministratorAccess - Policy Version v7</p><p><a href="https://iamtrail.com/policies/AWSManagementConsoleAdministratorAccess/">View on IAMTrail</a></p>]]></description>
-    </item>
-    <item>
-      <title>AWSManagementConsoleBasicUserAccess updated</title>
-      <link>https://github.com/zoph-io/IAMTrail/commit/69569aeec0e7c0eed8dc658ba35646643b110b2f</link>
-      <guid isPermaLink="true">https://github.com/zoph-io/IAMTrail/commit/69569aeec0e7c0eed8dc658ba35646643b110b2f</guid>
-      <pubDate>Tue, 31 Mar 2026 08:44:51 GMT</pubDate>
-      <category>IAM Policy</category>
-      <description><![CDATA[<p>Policy <strong>AWSManagementConsoleBasicUserAccess</strong> was updated.</p><p>AWSManagementConsoleBasicUserAccess - Policy Version v7</p><p><a href="https://iamtrail.com/policies/AWSManagementConsoleBasicUserAccess/">View on IAMTrail</a></p>]]></description>
-    </item>
-    <item>
-      <title>AWSSecurityAgentWebAppPolicy updated</title>
-      <link>https://github.com/zoph-io/IAMTrail/commit/ac08f608cf9eb652d26959ac6d97470b502523db</link>
-      <guid isPermaLink="true">https://github.com/zoph-io/IAMTrail/commit/ac08f608cf9eb652d26959ac6d97470b502523db</guid>
-      <pubDate>Tue, 31 Mar 2026 08:44:51 GMT</pubDate>
-      <category>IAM Policy</category>
-      <description><![CDATA[<p>Policy <strong>AWSSecurityAgentWebAppPolicy</strong> was updated.</p><p>AWSSecurityAgentWebAppPolicy - Policy Version v4</p><p><a href="https://iamtrail.com/policies/AWSSecurityAgentWebAppPolicy/">View on IAMTrail</a></p>]]></description>
-    </item>
-    <item>
-      <title>AWSServiceRoleForAIDevOpsPolicy updated</title>
-      <link>https://github.com/zoph-io/IAMTrail/commit/d23538791acd6459888fe34227ae71f84d126bc6</link>
-      <guid isPermaLink="true">https://github.com/zoph-io/IAMTrail/commit/d23538791acd6459888fe34227ae71f84d126bc6</guid>
-      <pubDate>Tue, 31 Mar 2026 08:44:51 GMT</pubDate>
-      <category>IAM Policy</category>
-      <description><![CDATA[<p>Policy <strong>AWSServiceRoleForAIDevOpsPolicy</strong> was updated.</p><p>AWSServiceRoleForAIDevOpsPolicy - Policy Version v2</p><p><a href="https://iamtrail.com/policies/AWSServiceRoleForAIDevOpsPolicy/">View on IAMTrail</a></p>]]></description>
-    </item>
-    <item>
-      <title>AWSServiceRoleForImageBuilder updated</title>
-      <link>https://github.com/zoph-io/IAMTrail/commit/3746dabe57113890db196df0427b7b7a0213d0db</link>
-      <guid isPermaLink="true">https://github.com/zoph-io/IAMTrail/commit/3746dabe57113890db196df0427b7b7a0213d0db</guid>
-      <pubDate>Tue, 31 Mar 2026 08:44:51 GMT</pubDate>
-      <category>IAM Policy</category>
-      <description><![CDATA[<p>Policy <strong>AWSServiceRoleForImageBuilder</strong> was updated.</p><p>AWSServiceRoleForImageBuilder - Policy Version v27</p><p><a href="https://iamtrail.com/policies/AWSServiceRoleForImageBuilder/">View on IAMTrail</a></p>]]></description>
-    </item>
-    <item>
-      <title>AWSServiceRolePolicyForBackupRestoreTesting updated</title>
-      <link>https://github.com/zoph-io/IAMTrail/commit/a7e3fd47f8d734886528096a28f3697886832930</link>
-      <guid isPermaLink="true">https://github.com/zoph-io/IAMTrail/commit/a7e3fd47f8d734886528096a28f3697886832930</guid>
-      <pubDate>Tue, 31 Mar 2026 08:44:51 GMT</pubDate>
-      <category>IAM Policy</category>
-      <description><![CDATA[<p>Policy <strong>AWSServiceRolePolicyForBackupRestoreTesting</strong> was updated.</p><p>AWSServiceRolePolicyForBackupRestoreTesting - Policy Version v3</p><p><a href="https://iamtrail.com/policies/AWSServiceRolePolicyForBackupRestoreTesting/">View on IAMTrail</a></p>]]></description>
-    </item>
-    <item>
-      <title>AmazonBedrockLimitedAccess updated</title>
-      <link>https://github.com/zoph-io/IAMTrail/commit/0f00341752c673b9402b2159ee8774533a1d0d9f</link>
-      <guid isPermaLink="true">https://github.com/zoph-io/IAMTrail/commit/0f00341752c673b9402b2159ee8774533a1d0d9f</guid>
-      <pubDate>Tue, 31 Mar 2026 08:44:51 GMT</pubDate>
-      <category>IAM Policy</category>
-      <description><![CDATA[<p>Policy <strong>AmazonBedrockLimitedAccess</strong> was updated.</p><p>AmazonBedrockLimitedAccess - Policy Version v7</p><p><a href="https://iamtrail.com/policies/AmazonBedrockLimitedAccess/">View on IAMTrail</a></p>]]></description>
-    </item>
-    <item>
-      <title>AmazonEVSServiceRolePolicy updated</title>
-      <link>https://github.com/zoph-io/IAMTrail/commit/18844b49a67fbc1757760b25bbf77c110a6c66be</link>
-      <guid isPermaLink="true">https://github.com/zoph-io/IAMTrail/commit/18844b49a67fbc1757760b25bbf77c110a6c66be</guid>
-      <pubDate>Tue, 31 Mar 2026 08:44:51 GMT</pubDate>
-      <category>IAM Policy</category>
-      <description><![CDATA[<p>Policy <strong>AmazonEVSServiceRolePolicy</strong> was updated.</p><p>AmazonEVSServiceRolePolicy - Policy Version v10</p><p><a href="https://iamtrail.com/policies/AmazonEVSServiceRolePolicy/">View on IAMTrail</a></p>]]></description>
-    </item>
-    <item>
-      <title>AmazonGuardDutyServiceRolePolicy updated</title>
-      <link>https://github.com/zoph-io/IAMTrail/commit/61e8031b48a3986480e395cab482556b45a8e447</link>
-      <guid isPermaLink="true">https://github.com/zoph-io/IAMTrail/commit/61e8031b48a3986480e395cab482556b45a8e447</guid>
-      <pubDate>Tue, 31 Mar 2026 08:44:51 GMT</pubDate>
-      <category>IAM Policy</category>
-      <description><![CDATA[<p>Policy <strong>AmazonGuardDutyServiceRolePolicy</strong> was updated.</p><p>AmazonGuardDutyServiceRolePolicy - Policy Version v11</p><p><a href="https://iamtrail.com/policies/AmazonGuardDutyServiceRolePolicy/">View on IAMTrail</a></p>]]></description>
-    </item>
-    <item>
-      <title>AmazonSSMAutomationRole updated</title>
-      <link>https://github.com/zoph-io/IAMTrail/commit/2435be57164160ceae3215db8eccb79c50c2b221</link>
-      <guid isPermaLink="true">https://github.com/zoph-io/IAMTrail/commit/2435be57164160ceae3215db8eccb79c50c2b221</guid>
-      <pubDate>Tue, 31 Mar 2026 08:44:51 GMT</pubDate>
-      <category>IAM Policy</category>
-      <description><![CDATA[<p>Policy <strong>AmazonSSMAutomationRole</strong> was updated.</p><p>AmazonSSMAutomationRole - Policy Version v9</p><p><a href="https://iamtrail.com/policies/AmazonSSMAutomationRole/">View on IAMTrail</a></p>]]></description>
-    </item>
-    <item>
-      <title>BedrockAgentCoreFullAccess updated</title>
-      <link>https://github.com/zoph-io/IAMTrail/commit/d57204cadc90323d25c2e8b46445fd66ed400e02</link>
-      <guid isPermaLink="true">https://github.com/zoph-io/IAMTrail/commit/d57204cadc90323d25c2e8b46445fd66ed400e02</guid>
-      <pubDate>Tue, 31 Mar 2026 08:44:51 GMT</pubDate>
-      <category>IAM Policy</category>
-      <description><![CDATA[<p>Policy <strong>BedrockAgentCoreFullAccess</strong> was updated.</p><p>BedrockAgentCoreFullAccess - Policy Version v16</p><p><a href="https://iamtrail.com/policies/BedrockAgentCoreFullAccess/">View on IAMTrail</a></p>]]></description>
     </item>
   </channel>
 </rss>

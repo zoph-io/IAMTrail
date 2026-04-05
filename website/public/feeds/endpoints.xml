@@ -5,9 +5,17 @@
     <link>https://iamtrail.com/endpoints/</link>
     <description>Track changes to AWS service endpoints from botocore. An unofficial archive by zoph.io.</description>
     <language>en-us</language>
-    <lastBuildDate>Wed, 01 Apr 2026 16:48:55 GMT</lastBuildDate>
+    <lastBuildDate>Sat, 04 Apr 2026 21:18:11 GMT</lastBuildDate>
     <ttl>360</ttl>
     <atom:link href="https://iamtrail.com/feeds/endpoints.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Endpoint changes: 4 new service(s), 1 service expansion(s)</title>
+      <link>https://github.com/boto/botocore/commit/38af07071ac1e4d786360af6e095fab777a5722b</link>
+      <guid isPermaLink="true">https://github.com/boto/botocore/commit/38af07071ac1e4d786360af6e095fab777a5722b</guid>
+      <pubDate>Fri, 03 Apr 2026 02:55:46 GMT</pubDate>
+      <category>Endpoints</category>
+      <description><![CDATA[<p>4 new service(s), 1 service expansion(s)</p><ul><li>globalaccelerator expanded to ap-southeast-6</li><li>acm (2 endpoints)</li><li>oidc (1 endpoint)</li><li>portal.sso (1 endpoint)</li><li>sso (1 endpoint)</li></ul><p><a href="https://iamtrail.com/endpoints/">View on IAMTrail</a></p>]]></description>
+    </item>
     <item>
       <title>Endpoint changes: 2 service expansion(s)</title>
       <link>https://github.com/boto/botocore/commit/7f9c3cd08ae7e1780d56b9402aa9738e6af881e4</link>
@@ -399,14 +407,6 @@
       <pubDate>Fri, 10 Oct 2025 00:25:16 GMT</pubDate>
       <category>Endpoints</category>
       <description><![CDATA[<p>1 service expansion(s)</p><ul><li>identitystore expanded to ap-east-2</li></ul><p><a href="https://iamtrail.com/endpoints/">View on IAMTrail</a></p>]]></description>
-    </item>
-    <item>
-      <title>Endpoint changes: 1 service expansion(s)</title>
-      <link>https://github.com/boto/botocore/commit/5b36463</link>
-      <guid isPermaLink="true">https://github.com/boto/botocore/commit/5b36463</guid>
-      <pubDate>Thu, 09 Oct 2025 00:24:53 GMT</pubDate>
-      <category>Endpoints</category>
-      <description><![CDATA[<p>1 service expansion(s)</p><ul><li>codedeploy expanded to ap-southeast-6</li></ul><p><a href="https://iamtrail.com/endpoints/">View on IAMTrail</a></p>]]></description>
     </item>
   </channel>
 </rss>

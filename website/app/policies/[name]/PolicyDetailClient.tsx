@@ -1,13 +1,99 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
+import type { CSSProperties } from "react";
 import Link from "next/link";
 import { Bell } from "lucide-react";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
+import createElement from "react-syntax-highlighter/dist/esm/create-element";
 import {
   vscDarkPlus,
   vs,
 } from "react-syntax-highlighter/dist/esm/styles/prism";
+import { isLiteralIamActionString } from "@/lib/iamActionPattern";
+import { iamActionToSlug } from "@/lib/actionSlug";
+
+function transformIAMActionTextNodes(node: unknown): unknown {
+  if (Array.isArray(node)) {
+    return node.map((n) => transformIAMActionTextNodes(n));
+  }
+  if (!node || typeof node !== "object") return node;
+  const n = node as {
+    type?: string;
+    value?: string;
+    children?: unknown[];
+    tagName?: string;
+    properties?: Record<string, unknown>;
+  };
+  if (n.type === "text") {
+    const v = n.value;
+    if (typeof v !== "string") return node;
+    // Prism JSON "string" tokens are one text node including quotes: "s3:GetObject"
+    let inner: string | undefined;
+    if (v.length >= 2 && v.startsWith('"') && v.endsWith('"')) {
+      try {
+        const parsed = JSON.parse(v) as unknown;
+        if (typeof parsed === "string") inner = parsed;
+      } catch {
+        /* not valid JSON string literal */
+      }
+    }
+    const action = inner !== undefined && isLiteralIamActionString(inner) ? inner : null;
+    if (action) {
+      return {
+        type: "element",
+        tagName: "span",
+        properties: {
+          // create-element expects className as an array; omitting it breaks join()
+          className: [],
+          style: { display: "contents" },
+        },
+        children: [
+          { type: "text", value: '"' },
+          {
+            type: "element",
+            tagName: "a",
+            properties: {
+              href: `/actions/${iamActionToSlug(action)}/`,
+              className: ["iamtrail-action-link"],
+              style: {
+                textDecoration: "underline",
+                textUnderlineOffset: "2px",
+                color: "inherit",
+              },
+            },
+            children: [{ type: "text", value: action }],
+          },
+          { type: "text", value: '"' },
+        ],
+      };
+    }
+    if (isLiteralIamActionString(v)) {
+      return {
+        type: "element",
+        tagName: "a",
+        properties: {
+          href: `/actions/${iamActionToSlug(v)}/`,
+          className: ["iamtrail-action-link"],
+          style: {
+            textDecoration: "underline",
+            textUnderlineOffset: "2px",
+            color: "inherit",
+          },
+        },
+        children: [{ type: "text", value: v }],
+      };
+    }
+    return node;
+  }
+  if (n.children?.length) {
+    return {
+      ...n,
+      children: transformIAMActionTextNodes(n.children) as typeof n.children,
+    };
+  }
+  return node;
+}
 
 interface PolicyVersion {
   hash: string;
@@ -77,6 +163,29 @@ export default function PolicyDetailClient({
       minute: "2-digit",
     });
   };
+
+  const iamActionRenderer = useCallback(
+    ({
+      rows,
+      stylesheet,
+      useInlineStyles,
+    }: {
+      rows: Parameters<typeof createElement>[0]["node"][];
+      stylesheet: Record<string, CSSProperties>;
+      useInlineStyles: boolean;
+    }) =>
+      rows.map((row, i) =>
+        createElement({
+          node: transformIAMActionTextNodes(row) as Parameters<
+            typeof createElement
+          >[0]["node"],
+          stylesheet,
+          useInlineStyles,
+          key: `code-segment-${i}`,
+        })
+      ),
+    []
+  );
 
   const getRelativeTime = (dateString: string) => {
     const date = new Date(dateString);
@@ -244,6 +353,7 @@ export default function PolicyDetailClient({
             style={isDark ? vscDarkPlus : vs}
             showLineNumbers={true}
             wrapLines={true}
+            renderer={iamActionRenderer}
             customStyle={{
               margin: 0,
               borderRadius: 0,

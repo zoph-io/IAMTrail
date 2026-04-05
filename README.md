@@ -49,7 +49,7 @@ Subscribe to policy changes:
 
 ## Browse the Data
 
-All policies are stored as JSON in this repository and updated automatically every 4 hours on weekdays.
+All policies are stored as JSON in this repository and updated automatically every hour on weekdays.
 
 | Path | Description |
 | --- | --- |
@@ -59,7 +59,7 @@ All policies are stored as JSON in this repository and updated automatically eve
 
 ## How It Works
 
-An automated workflow runs every 4 hours (Mon-Fri):
+An automated workflow runs every hour (Mon-Fri):
 
 1. Fetch all AWS Managed IAM Policies via the AWS API
 2. Detect new, updated, or deprecated policies

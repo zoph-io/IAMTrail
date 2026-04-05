@@ -304,7 +304,7 @@ function SubscribeContent() {
           {frequency === "instant" && (
             <p className="mt-3 text-xs text-amber-700 dark:text-amber-400 font-mono">
               Instant alerts are currently available for IAM Policy changes only
-              (checks run every 4 hours, Mon-Fri). Endpoint and GuardDuty
+              (checks run every hour, Mon-Fri). Endpoint and GuardDuty
               updates are included in daily/weekly digests.
             </p>
           )}

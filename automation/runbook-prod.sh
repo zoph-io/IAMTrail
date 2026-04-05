@@ -274,7 +274,6 @@ process_changes() {
 main() {
     START_TIME=$(date +%s)
     log "Starting IAMTrail update process"
-    discord_notify 3447003 "Runbook Started" "IAMTrail update process initiated"
     setup_git_auth
     clone_repo
     process_policies
@@ -287,17 +286,12 @@ main() {
     local duration="${mins}m ${secs}s"
 
     if [[ "$RESULT_STATUS" == "changes" ]]; then
-        discord_notify 3066993 "Runbook Complete" \
+        discord_notify 3066993 "Policy Changes Detected" \
             "${RESULT_COMMIT_COUNT} policies updated and pushed to master" \
             "Duration:${duration}" \
             "Policies Scanned:${POLICY_COUNT}" \
             "Updated:${RESULT_POLICY_NAMES:0:200}" \
             "Commit:[View](${RESULT_COMMIT_URL})"
-    else
-        discord_notify 3447003 "Runbook Complete - No Changes" \
-            "All AWS managed policies are up to date" \
-            "Duration:${duration}" \
-            "Policies Scanned:${POLICY_COUNT}"
     fi
 }
 

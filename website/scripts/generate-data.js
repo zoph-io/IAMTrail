@@ -14,6 +14,14 @@ const SITE_URL = "https://iamtrail.com";
 const GITHUB_REPO = "https://github.com/zoph-io/IAMTrail";
 const git = simpleGit(REPO_ROOT);
 
+function iamActionToSlug(action) {
+  return Buffer.from(action, "utf8")
+    .toString("base64")
+    .replace(/\+/g, "-")
+    .replace(/\//g, "_")
+    .replace(/=+$/g, "");
+}
+
 function fetchUrl(url) {
   return new Promise((resolve, reject) => {
     https
@@ -43,6 +51,34 @@ async function generatePolicyData() {
   const policies = [];
   const errors = [];
   const allCommitEntries = [];
+  const uniqueLiteralActions = new Set();
+  const actionBuckets = new Map();
+  const policiesWithWildcard = new Set();
+  const wildcardPoliciesByService = {};
+
+  function actionBucket(action) {
+    if (!actionBuckets.has(action)) {
+      actionBuckets.set(action, {
+        actionAllow: new Set(),
+        actionDeny: new Set(),
+        notAction: new Set(),
+      });
+    }
+    return actionBuckets.get(action);
+  }
+
+  function noteWildcardPolicy(policyName, actionStr) {
+    policiesWithWildcard.add(policyName);
+    const colon = actionStr.indexOf(":");
+    const prefix =
+      colon > 0 ? actionStr.slice(0, colon).toLowerCase() : "";
+    if (prefix && prefix !== "*") {
+      if (!wildcardPoliciesByService[prefix]) {
+        wildcardPoliciesByService[prefix] = new Set();
+      }
+      wildcardPoliciesByService[prefix].add(policyName);
+    }
+  }
 
   for (const policyName of policyFiles) {
     try {
@@ -98,15 +134,45 @@ async function generatePolicyData() {
           ? statements
           : [statements];
         for (const stmt of stmtArray) {
-          const actions = stmt.Action || stmt.NotAction || [];
-          const actionArray = Array.isArray(actions) ? actions : [actions];
-          actionCount += actionArray.length;
-          for (const action of actionArray) {
-            if (typeof action === "string") {
+          const effect = stmt.Effect === "Deny" ? "Deny" : "Allow";
+
+          if (stmt.Action) {
+            const raw = stmt.Action;
+            const actionArray = Array.isArray(raw) ? raw : [raw];
+            actionCount += actionArray.length;
+            for (const action of actionArray) {
+              if (typeof action !== "string") continue;
               const prefix = action.split(":")[0];
               if (prefix && prefix !== "*") {
                 servicePrefixes.add(prefix.toLowerCase());
               }
+              if (action.includes("*")) {
+                noteWildcardPolicy(policyName, action);
+                continue;
+              }
+              uniqueLiteralActions.add(action);
+              const b = actionBucket(action);
+              if (effect === "Deny") b.actionDeny.add(policyName);
+              else b.actionAllow.add(policyName);
+            }
+          }
+
+          if (stmt.NotAction) {
+            const raw = stmt.NotAction;
+            const actionArray = Array.isArray(raw) ? raw : [raw];
+            actionCount += actionArray.length;
+            for (const action of actionArray) {
+              if (typeof action !== "string") continue;
+              const prefix = action.split(":")[0];
+              if (prefix && prefix !== "*") {
+                servicePrefixes.add(prefix.toLowerCase());
+              }
+              if (action.includes("*")) {
+                noteWildcardPolicy(policyName, action);
+                continue;
+              }
+              uniqueLiteralActions.add(action);
+              actionBucket(action).notAction.add(policyName);
             }
           }
         }
@@ -170,8 +236,16 @@ async function generatePolicyData() {
     )
     .slice(0, 20);
 
+  const wildcardPoliciesByServiceCounts = {};
+  for (const [svc, set] of Object.entries(wildcardPoliciesByService)) {
+    wildcardPoliciesByServiceCounts[svc] = set.size;
+  }
+
   const stats = {
     totalPolicies: policies.length,
+    uniqueLiteralActionCount: uniqueLiteralActions.size,
+    policiesWithWildcardActions: policiesWithWildcard.size,
+    wildcardPoliciesByService: wildcardPoliciesByServiceCounts,
     lastUpdate: new Date().toISOString(),
     mostModified: [...policies]
       .sort((a, b) => b.versionsCount - a.versionsCount)
@@ -366,6 +440,35 @@ async function generatePolicyData() {
     deprecated = JSON.parse(fs.readFileSync(deprecatedPath, "utf8"));
   }
 
+  // IAM action inverse index (literal strings only; wildcards excluded from keys)
+  const actionsOut = {};
+  for (const action of [...uniqueLiteralActions].sort()) {
+    const b = actionBucket(action);
+    actionsOut[action] = {
+      actionAllowPolicies: [...b.actionAllow].sort(),
+      actionDenyPolicies: [...b.actionDeny].sort(),
+      notActionPolicies: [...b.notAction].sort(),
+    };
+  }
+  const actionIndexPayload = {
+    schemaVersion: 1,
+    generatedAt: new Date().toISOString(),
+    stats: {
+      uniqueLiteralActionCount: uniqueLiteralActions.size,
+      policiesWithWildcardActions: policiesWithWildcard.size,
+      wildcardPoliciesByService: wildcardPoliciesByServiceCounts,
+    },
+    effectiveGrantPreview: null,
+    actions: actionsOut,
+  };
+  fs.writeFileSync(
+    path.join(OUTPUT_DIR, "action-index.json"),
+    JSON.stringify(actionIndexPayload)
+  );
+  console.log(
+    `   🔑 Action index: ${uniqueLiteralActions.size} literal actions, ${policiesWithWildcard.size} policies with wildcards`
+  );
+
   // Write summary data
   const summary = {
     stats,
@@ -477,6 +580,13 @@ async function generatePolicyData() {
       changefreq: "weekly",
     });
   });
+  for (const action of Object.keys(actionsOut).sort()) {
+    sitemapEntries.push({
+      loc: `/actions/${iamActionToSlug(action)}/`,
+      priority: "0.5",
+      changefreq: "weekly",
+    });
+  }
   const sitemapXml = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 ${sitemapEntries

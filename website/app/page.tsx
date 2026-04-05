@@ -15,6 +15,7 @@ import {
   Layers,
   ChevronRight,
   Globe,
+  Key,
 } from "lucide-react";
 
 const ENDPOINT_CHANGE_BADGE: Record<
@@ -401,6 +402,16 @@ export default async function Home() {
               icon={<Layers className="w-8 h-8" />}
             />
           </Link>
+          <StatsCard
+            title="IAM Actions (literals)"
+            value={
+              typeof stats.uniqueLiteralActionCount === "number"
+                ? stats.uniqueLiteralActionCount.toLocaleString()
+                : "~14,055"
+            }
+            description="Distinct action strings in managed policies (no wildcards)"
+            icon={<Key className="w-8 h-8" />}
+          />
         </div>
       </div>
 
