@@ -28,6 +28,11 @@
                         "ssm:StartAutomationExecution"
                     ],
                     "Resource": [
+                        "arn:aws:ssm:*:*:document/AWS-StartEC2Instance",
+                        "arn:aws:ssm:*:*:document/AWS-StopEC2Instance",
+                        "arn:aws:ssm:*:*:document/AWS-StartRdsInstance",
+                        "arn:aws:ssm:*:*:document/AWS-StopRdsInstance",
+                        "arn:aws:ssm:*:*:automation-execution/*",
                         "arn:aws:ssm:*:*:automation-definition/AWS-StartEC2Instance:*",
                         "arn:aws:ssm:*:*:automation-definition/AWS-StopEC2Instance:*",
                         "arn:aws:ssm:*:*:automation-definition/AWS-StartRdsInstance:*",
@@ -36,8 +41,8 @@
                 }
             ]
         },
-        "VersionId": "v1",
+        "VersionId": "v2",
         "IsDefaultVersion": true,
-        "CreateDate": "2022-05-25T19:03:30+00:00"
+        "CreateDate": "2026-04-07T19:27:19+00:00"
     }
 }
