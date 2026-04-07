@@ -1,0 +1,67 @@
+{
+    "PolicyVersion": {
+        "Document": {
+            "Version": "2012-10-17",
+            "Statement": [
+                {
+                    "Sid": "AllowList",
+                    "Effect": "Allow",
+                    "Action": [
+                        "s3files:ListAccessPoints",
+                        "s3files:ListFileSystems"
+                    ],
+                    "Resource": "*"
+                },
+                {
+                    "Sid": "AllowCreateAccessPoint",
+                    "Effect": "Allow",
+                    "Action": [
+                        "s3files:CreateAccessPoint"
+                    ],
+                    "Resource": "*",
+                    "Condition": {
+                        "Null": {
+                            "aws:RequestTag/efs.csi.aws.com/cluster": "false"
+                        },
+                        "ForAllValues:StringEquals": {
+                            "aws:TagKeys": "efs.csi.aws.com/cluster"
+                        }
+                    }
+                },
+                {
+                    "Sid": "AllowTagNewAccessPoints",
+                    "Effect": "Allow",
+                    "Action": [
+                        "s3files:TagResource"
+                    ],
+                    "Resource": "*",
+                    "Condition": {
+                        "StringEquals": {
+                            "s3files:CreateAction": "CreateAccessPoint"
+                        },
+                        "Null": {
+                            "aws:RequestTag/efs.csi.aws.com/cluster": "false"
+                        },
+                        "ForAllValues:StringEquals": {
+                            "aws:TagKeys": "efs.csi.aws.com/cluster"
+                        }
+                    }
+                },
+                {
+                    "Sid": "AllowDeleteAccessPoint",
+                    "Effect": "Allow",
+                    "Action": "s3files:DeleteAccessPoint",
+                    "Resource": "*",
+                    "Condition": {
+                        "Null": {
+                            "aws:ResourceTag/efs.csi.aws.com/cluster": "false"
+                        }
+                    }
+                }
+            ]
+        },
+        "VersionId": "v1",
+        "IsDefaultVersion": true,
+        "CreateDate": "2026-04-07T13:12:12+00:00"
+    }
+}
