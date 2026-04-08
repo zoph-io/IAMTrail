@@ -130,11 +130,43 @@
                         "amplify:ListResourcesForWebACL"
                     ],
                     "Resource": "*"
+                },
+                {
+                    "Sid": "AllowGetActionsForAppSync",
+                    "Effect": "Allow",
+                    "Action": [
+                        "appsync:GetWebACLForResource"
+                    ],
+                    "Resource": "arn:aws:appsync:*:*:apis/*"
+                },
+                {
+                    "Sid": "AllowListActionsForAppSync",
+                    "Effect": "Allow",
+                    "Action": [
+                        "appsync:ListResourcesForWebACL"
+                    ],
+                    "Resource": "*"
+                },
+                {
+                    "Sid": "AllowGetActionsForELB",
+                    "Effect": "Allow",
+                    "Action": [
+                        "elasticloadbalancing:GetLoadBalancerWebACL"
+                    ],
+                    "Resource": "arn:aws:elasticloadbalancing:*:*:loadbalancer/app/*/*"
+                },
+                {
+                    "Sid": "AllowListActionsForELB",
+                    "Effect": "Allow",
+                    "Action": [
+                        "elasticloadbalancing:DescribeWebACLAssociation"
+                    ],
+                    "Resource": "*"
                 }
             ]
         },
-        "VersionId": "v11",
+        "VersionId": "v12",
         "IsDefaultVersion": true,
-        "CreateDate": "2026-02-12T18:01:13+00:00"
+        "CreateDate": "2026-04-08T22:27:09+00:00"
     }
 }
