@@ -1,0 +1,18 @@
+{
+  "detected_at": "2026-04-08T03:18:45.351Z",
+  "botocore_commit": "f01ceeda71ce0caef3dc7ee749e12cc11a33f218",
+  "botocore_commit_url": "https://github.com/boto/botocore/commit/f01ceeda71ce0caef3dc7ee749e12cc11a33f218",
+  "summary": "1 service expansion(s)",
+  "changes": [
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "cloudhsmv2",
+      "id": "cloudhsmv2",
+      "new_regions": [
+        "ap-southeast-7"
+      ],
+      "description": "cloudhsmv2 expanded to ap-southeast-7"
+    }
+  ]
+}
