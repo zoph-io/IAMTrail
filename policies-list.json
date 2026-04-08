@@ -4145,12 +4145,12 @@
             "PolicyId": "ANPAJUCWFHNZER665LLQQ",
             "Arn": "arn:aws:iam::aws:policy/aws-service-role/AWSConfigServiceRolePolicy",
             "Path": "/aws-service-role/",
-            "DefaultVersionId": "v90",
+            "DefaultVersionId": "v91",
             "AttachmentCount": 1,
             "PermissionsBoundaryUsageCount": 0,
             "IsAttachable": true,
             "CreateDate": "2018-05-30T23:31:46+00:00",
-            "UpdateDate": "2026-02-24T22:57:06+00:00"
+            "UpdateDate": "2026-04-07T21:12:11+00:00"
         },
         {
             "PolicyName": "AmazonRDSPreviewServiceRolePolicy",
@@ -8033,12 +8033,12 @@
             "PolicyId": "ANPAZKAPJZG4PP7QZ4FBG",
             "Arn": "arn:aws:iam::aws:policy/service-role/AWS_ConfigRole",
             "Path": "/service-role/",
-            "DefaultVersionId": "v67",
+            "DefaultVersionId": "v68",
             "AttachmentCount": 1,
             "PermissionsBoundaryUsageCount": 0,
             "IsAttachable": true,
             "CreateDate": "2020-09-15T20:30:30+00:00",
-            "UpdateDate": "2026-02-24T22:42:11+00:00"
+            "UpdateDate": "2026-04-07T21:42:20+00:00"
         },
         {
             "PolicyName": "MediaPackageServiceRolePolicy",
@@ -8081,12 +8081,12 @@
             "PolicyId": "ANPAZKAPJZG4KVOAQRKXW",
             "Arn": "arn:aws:iam::aws:policy/AmazonElasticFileSystemsUtils",
             "Path": "/",
-            "DefaultVersionId": "v1",
+            "DefaultVersionId": "v2",
             "AttachmentCount": 0,
             "PermissionsBoundaryUsageCount": 0,
             "IsAttachable": true,
             "CreateDate": "2020-09-29T15:16:47+00:00",
-            "UpdateDate": "2020-09-29T15:16:47+00:00"
+            "UpdateDate": "2026-04-07T13:12:14+00:00"
         },
         {
             "PolicyName": "Ec2ImageBuilderCrossAccountDistributionAccess",
@@ -11069,12 +11069,12 @@
             "PolicyId": "ANPAZKAPJZG4ADHFVJLNJ",
             "Arn": "arn:aws:iam::aws:policy/AWSBudgetsActions_RolePolicyForResourceAdministrationWithSSM",
             "Path": "/",
-            "DefaultVersionId": "v1",
+            "DefaultVersionId": "v2",
             "AttachmentCount": 0,
             "PermissionsBoundaryUsageCount": 0,
             "IsAttachable": true,
             "CreateDate": "2022-05-25T19:03:30+00:00",
-            "UpdateDate": "2022-05-25T19:03:30+00:00"
+            "UpdateDate": "2026-04-07T19:27:19+00:00"
         },
         {
             "PolicyName": "AWSElasticDisasterRecoveryStagingAccountPolicy",
@@ -15257,12 +15257,12 @@
             "PolicyId": "ANPAZKAPJZG4L52FJ276H",
             "Arn": "arn:aws:iam::aws:policy/SageMakerStudioProjectUserRolePolicy",
             "Path": "/",
-            "DefaultVersionId": "v64",
+            "DefaultVersionId": "v65",
             "AttachmentCount": 0,
             "PermissionsBoundaryUsageCount": 0,
             "IsAttachable": true,
             "CreateDate": "2024-11-20T21:59:23+00:00",
-            "UpdateDate": "2026-03-25T21:12:09+00:00"
+            "UpdateDate": "2026-04-07T21:12:19+00:00"
         },
         {
             "PolicyName": "AWSArtifactAgreementsFullAccess",
@@ -16157,12 +16157,12 @@
             "PolicyId": "ANPAZKAPJZG4GHC77ROUU",
             "Arn": "arn:aws:iam::aws:policy/aws-service-role/AWSServiceRolePolicyForWorkspacesInstances",
             "Path": "/aws-service-role/",
-            "DefaultVersionId": "v1",
+            "DefaultVersionId": "v2",
             "AttachmentCount": 0,
             "PermissionsBoundaryUsageCount": 0,
             "IsAttachable": true,
             "CreateDate": "2025-06-11T20:37:06+00:00",
-            "UpdateDate": "2025-06-11T20:37:06+00:00"
+            "UpdateDate": "2026-04-07T17:27:17+00:00"
         },
         {
             "PolicyName": "AmazonWorkSpacesThinClientMonitoringServiceRolePolicy",
@@ -17165,12 +17165,12 @@
             "PolicyId": "ANPAZKAPJZG4NMNUIWFPK",
             "Arn": "arn:aws:iam::aws:policy/AWSTransformCustomFullAccess",
             "Path": "/",
-            "DefaultVersionId": "v3",
+            "DefaultVersionId": "v4",
             "AttachmentCount": 0,
             "PermissionsBoundaryUsageCount": 0,
             "IsAttachable": true,
             "CreateDate": "2025-12-05T15:19:07+00:00",
-            "UpdateDate": "2026-02-12T18:01:59+00:00"
+            "UpdateDate": "2026-04-07T21:27:14+00:00"
         },
         {
             "PolicyName": "AWSTransformCustomExecuteTransformations",
@@ -17687,6 +17687,78 @@
             "IsAttachable": true,
             "CreateDate": "2026-04-03T20:42:13+00:00",
             "UpdateDate": "2026-04-03T20:42:13+00:00"
+        },
+        {
+            "PolicyName": "AmazonS3FilesFullAccess",
+            "PolicyId": "ANPAZKAPJZG4JV3XIUHB7",
+            "Arn": "arn:aws:iam::aws:policy/AmazonS3FilesFullAccess",
+            "Path": "/",
+            "DefaultVersionId": "v1",
+            "AttachmentCount": 0,
+            "PermissionsBoundaryUsageCount": 0,
+            "IsAttachable": true,
+            "CreateDate": "2026-04-07T12:42:08+00:00",
+            "UpdateDate": "2026-04-07T12:42:08+00:00"
+        },
+        {
+            "PolicyName": "AmazonS3FilesReadOnlyAccess",
+            "PolicyId": "ANPAZKAPJZG4JQLHUWJS2",
+            "Arn": "arn:aws:iam::aws:policy/AmazonS3FilesReadOnlyAccess",
+            "Path": "/",
+            "DefaultVersionId": "v1",
+            "AttachmentCount": 0,
+            "PermissionsBoundaryUsageCount": 0,
+            "IsAttachable": true,
+            "CreateDate": "2026-04-07T12:57:08+00:00",
+            "UpdateDate": "2026-04-07T12:57:08+00:00"
+        },
+        {
+            "PolicyName": "AmazonS3FilesClientReadWriteAccess",
+            "PolicyId": "ANPAZKAPJZG4FDNK5MFXR",
+            "Arn": "arn:aws:iam::aws:policy/AmazonS3FilesClientReadWriteAccess",
+            "Path": "/",
+            "DefaultVersionId": "v1",
+            "AttachmentCount": 0,
+            "PermissionsBoundaryUsageCount": 0,
+            "IsAttachable": true,
+            "CreateDate": "2026-04-07T12:57:09+00:00",
+            "UpdateDate": "2026-04-07T12:57:09+00:00"
+        },
+        {
+            "PolicyName": "AmazonS3FilesClientFullAccess",
+            "PolicyId": "ANPAZKAPJZG4C5JTSL5FX",
+            "Arn": "arn:aws:iam::aws:policy/AmazonS3FilesClientFullAccess",
+            "Path": "/",
+            "DefaultVersionId": "v1",
+            "AttachmentCount": 0,
+            "PermissionsBoundaryUsageCount": 0,
+            "IsAttachable": true,
+            "CreateDate": "2026-04-07T12:57:21+00:00",
+            "UpdateDate": "2026-04-07T12:57:21+00:00"
+        },
+        {
+            "PolicyName": "AmazonS3FilesClientReadOnlyAccess",
+            "PolicyId": "ANPAZKAPJZG4H25GXBDPD",
+            "Arn": "arn:aws:iam::aws:policy/AmazonS3FilesClientReadOnlyAccess",
+            "Path": "/",
+            "DefaultVersionId": "v1",
+            "AttachmentCount": 0,
+            "PermissionsBoundaryUsageCount": 0,
+            "IsAttachable": true,
+            "CreateDate": "2026-04-07T12:57:21+00:00",
+            "UpdateDate": "2026-04-07T12:57:21+00:00"
+        },
+        {
+            "PolicyName": "AmazonS3FilesCSIDriverPolicy",
+            "PolicyId": "ANPAZKAPJZG4IWTABJLAH",
+            "Arn": "arn:aws:iam::aws:policy/service-role/AmazonS3FilesCSIDriverPolicy",
+            "Path": "/service-role/",
+            "DefaultVersionId": "v1",
+            "AttachmentCount": 0,
+            "PermissionsBoundaryUsageCount": 0,
+            "IsAttachable": true,
+            "CreateDate": "2026-04-07T13:12:12+00:00",
+            "UpdateDate": "2026-04-07T13:12:12+00:00"
         },
         {
             "PolicyName": "AWSConfigRole",
