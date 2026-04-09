@@ -26,6 +26,7 @@
                         "ce:DescribeCostCategoryDefinition",
                         "ce:GetCostAndUsage",
                         "ce:ListCostCategoryDefinitions",
+                        "ce:ListCostCategoryResourceAssociations",
                         "ce:ListTagsForResource",
                         "ce:ListCostAllocationTags",
                         "ce:ListCostAllocationTagBackfillHistory",
@@ -86,8 +87,8 @@
                 }
             ]
         },
-        "VersionId": "v26",
+        "VersionId": "v27",
         "IsDefaultVersion": true,
-        "CreateDate": "2026-02-12T18:02:21+00:00"
+        "CreateDate": "2026-04-08T17:12:09+00:00"
     }
 }

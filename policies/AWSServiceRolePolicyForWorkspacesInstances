@@ -8,6 +8,7 @@
                     "Action": [
                         "ec2:DescribeInstances",
                         "ec2:DescribeInstanceStatus",
+                        "ec2:DescribeTags",
                         "ec2:DescribeVolumes"
                     ],
                     "Resource": "*"
@@ -15,6 +16,7 @@
                 {
                     "Effect": "Allow",
                     "Action": [
+                        "ec2:CreateTags",
                         "ec2:TerminateInstances",
                         "ec2:DeleteVolume",
                         "ec2:StopInstances",
@@ -29,8 +31,8 @@
                 }
             ]
         },
-        "VersionId": "v1",
+        "VersionId": "v2",
         "IsDefaultVersion": true,
-        "CreateDate": "2025-06-11T20:37:06+00:00"
+        "CreateDate": "2026-04-07T17:27:17+00:00"
     }
 }

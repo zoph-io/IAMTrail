@@ -12,7 +12,8 @@
                         "identitystore:ListGroupMembershipsForMember",
                         "deadline:GetApplicationVersion",
                         "ec2:DescribeInstanceTypes",
-                        "identitystore:ListUsers"
+                        "identitystore:ListUsers",
+                        "deadline:GetMonitorSettings"
                     ],
                     "Resource": [
                         "*"
@@ -263,8 +264,8 @@
                 }
             ]
         },
-        "VersionId": "v5",
+        "VersionId": "v6",
         "IsDefaultVersion": true,
-        "CreateDate": "2026-02-12T18:00:18+00:00"
+        "CreateDate": "2026-04-08T16:42:08+00:00"
     }
 }

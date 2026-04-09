@@ -1,0 +1,21 @@
+{
+    "PolicyVersion": {
+        "Document": {
+            "Version": "2012-10-17",
+            "Statement": [
+                {
+                    "Sid": "S3FilesPermissions",
+                    "Effect": "Allow",
+                    "Action": [
+                        "s3files:ClientMount",
+                        "s3files:ClientWrite"
+                    ],
+                    "Resource": "*"
+                }
+            ]
+        },
+        "VersionId": "v1",
+        "IsDefaultVersion": true,
+        "CreateDate": "2026-04-07T12:57:09+00:00"
+    }
+}

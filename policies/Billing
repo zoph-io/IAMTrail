@@ -53,6 +53,7 @@
                         "ce:GetCostAndUsage",
                         "ce:ListCostAllocationTags",
                         "ce:ListCostCategoryDefinitions",
+                        "ce:ListCostCategoryResourceAssociations",
                         "ce:ListTagsForResource",
                         "ce:TagResource",
                         "ce:UpdateCostAllocationTagsStatus",
@@ -160,8 +161,8 @@
                 }
             ]
         },
-        "VersionId": "v27",
+        "VersionId": "v28",
         "IsDefaultVersion": true,
-        "CreateDate": "2026-02-12T18:01:53+00:00"
+        "CreateDate": "2026-04-08T17:12:18+00:00"
     }
 }
