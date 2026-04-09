@@ -104,6 +104,51 @@
                     }
                 },
                 {
+                    "Sid": "OpenSearchServerless",
+                    "Effect": "Allow",
+                    "Action": [
+                        "aoss:APIAccessAll",
+                        "aoss:DashboardsAccessAll",
+                        "aoss:BatchGetCollection",
+                        "aoss:BatchGetCollectionGroup",
+                        "aoss:CreateIndex",
+                        "aoss:DeleteIndex",
+                        "aoss:GetAccessPolicy",
+                        "aoss:GetIndex",
+                        "aoss:GetSecurityPolicy",
+                        "aoss:ListAccessPolicies",
+                        "aoss:ListCollectionGroups",
+                        "aoss:ListCollections",
+                        "aoss:ListSecurityPolicies",
+                        "aoss:ListSecurityConfigs",
+                        "aoss:ListTagsForResource",
+                        "aoss:TagResource",
+                        "aoss:UntagResource",
+                        "aoss:AddCollectionToCollectionGroup",
+                        "aoss:UpdateAccessPolicy",
+                        "aoss:UpdateCollection",
+                        "aoss:UpdateCollectionGroup",
+                        "aoss:UpdateIndex",
+                        "aoss:UpdateSecurityPolicy"
+                    ],
+                    "Resource": [
+                        "*"
+                    ]
+                },
+                {
+                    "Sid": "OpenSearchApplications",
+                    "Effect": "Allow",
+                    "Action": [
+                        "es:GetApplication",
+                        "es:UpdateApplication",
+                        "es:ListApplications",
+                        "es:GetDefaultApplicationSetting"
+                    ],
+                    "Resource": [
+                        "*"
+                    ]
+                },
+                {
                     "Sid": "Observability",
                     "Effect": "Allow",
                     "Action": [
@@ -158,8 +203,8 @@
                 }
             ]
         },
-        "VersionId": "v3",
+        "VersionId": "v4",
         "IsDefaultVersion": true,
-        "CreateDate": "2026-02-12T18:00:58+00:00"
+        "CreateDate": "2026-04-09T18:57:11+00:00"
     }
 }
