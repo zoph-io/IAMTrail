@@ -3,7 +3,7 @@
 import { useState, useEffect, useCallback } from "react";
 import type { CSSProperties } from "react";
 import Link from "next/link";
-import { Bell } from "lucide-react";
+import { Bell, Shield } from "lucide-react";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import createElement from "react-syntax-highlighter/dist/esm/create-element";
 import {
@@ -102,6 +102,13 @@ interface PolicyVersion {
   author: string;
 }
 
+interface PathfindingOverlap {
+  pathId: string;
+  pathName: string;
+  category: string;
+  pathfindingUrl: string;
+}
+
 interface PolicyData {
   name: string;
   createDate: string | null;
@@ -112,6 +119,10 @@ interface PolicyData {
   actionCount?: number;
   history: PolicyVersion[];
   content: any;
+  securitySignals?: {
+    accessAnalyzerFindingCount: number;
+    pathfindingOverlaps: PathfindingOverlap[];
+  };
 }
 
 export default function PolicyDetailClient({
@@ -331,6 +342,82 @@ export default function PolicyDetailClient({
           </Link>
         </div>
       </div>
+
+      {policy.securitySignals &&
+        (policy.securitySignals.accessAnalyzerFindingCount > 0 ||
+          policy.securitySignals.pathfindingOverlaps.length > 0) && (
+          <div className="bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 rounded-lg p-5">
+            <div className="flex items-start gap-3">
+              <div className="p-2 bg-zinc-100 dark:bg-zinc-800 rounded flex-shrink-0">
+                <Shield className="w-5 h-5 text-zinc-700 dark:text-zinc-300" />
+              </div>
+              <div className="space-y-3 min-w-0 flex-1">
+                <h2 className="text-sm font-semibold font-mono uppercase tracking-wider text-zinc-900 dark:text-white">
+                  Security signals
+                </h2>
+                <p className="text-xs text-zinc-600 dark:text-zinc-400 leading-relaxed">
+                  Summary of static signals from the{" "}
+                  <Link
+                    href="/findings"
+                    className="text-red-600 dark:text-red-400 hover:underline font-medium"
+                  >
+                    security findings
+                  </Link>{" "}
+                  page. Path overlap is action-level coverage in this JSON only,
+                  not proof of escalation in your account.
+                </p>
+                {policy.securitySignals.accessAnalyzerFindingCount > 0 && (
+                  <div>
+                    <p className="text-xs font-mono text-zinc-500 dark:text-zinc-400 mb-1">
+                      AWS Access Analyzer
+                    </p>
+                    <p className="text-sm text-zinc-800 dark:text-zinc-200">
+                      {policy.securitySignals.accessAnalyzerFindingCount}{" "}
+                      finding
+                      {policy.securitySignals.accessAnalyzerFindingCount !== 1
+                        ? "s"
+                        : ""}{" "}
+                      on this policy.{" "}
+                      <Link
+                        href="/findings"
+                        className="text-red-600 dark:text-red-400 hover:underline font-mono text-xs"
+                      >
+                        View on Security findings
+                      </Link>
+                    </p>
+                  </div>
+                )}
+                {policy.securitySignals.pathfindingOverlaps.length > 0 && (
+                  <div>
+                    <p className="text-xs font-mono text-zinc-500 dark:text-zinc-400 mb-2">
+                      pathfinding.cloud (documented paths)
+                    </p>
+                    <ul className="space-y-1.5 max-h-48 overflow-y-auto">
+                      {policy.securitySignals.pathfindingOverlaps.map((o) => (
+                        <li key={o.pathId}>
+                          <a
+                            href={o.pathfindingUrl}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="text-sm font-mono text-violet-600 dark:text-violet-400 hover:underline"
+                          >
+                            {o.pathId}
+                          </a>
+                          <span className="text-zinc-500 dark:text-zinc-400 text-xs ml-2">
+                            {o.category}
+                          </span>
+                          <span className="text-zinc-600 dark:text-zinc-400 text-xs block truncate">
+                            {o.pathName}
+                          </span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
+              </div>
+            </div>
+          </div>
+        )}
 
       {/* Policy Content */}
       <div className="bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 rounded-lg overflow-hidden">

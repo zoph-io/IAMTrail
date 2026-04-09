@@ -114,10 +114,17 @@ export default function AboutPage() {
             </div>
             <p className="text-sm text-zinc-600 dark:text-zinc-400 leading-relaxed">
               The original archive. Every AWS managed IAM policy versioned in
-              Git with full diffs and Access Analyzer validation. Spot new
-              service launches early via v1 policies. Literal actions in the
-              policy JSON link to per-action pages that list which other managed
-              policies reference the same string.
+              Git with full diffs, Access Analyzer validation, and optional
+              overlap with documented privilege escalation paths (see{" "}
+              <Link
+                href="/findings"
+                className="text-red-600 dark:text-red-400 hover:underline font-medium"
+              >
+                Security findings
+              </Link>
+              ). Spot new service launches early via v1 policies. Literal
+              actions in the policy JSON link to per-action pages that list
+              which other managed policies reference the same string.
             </p>
           </Link>
 
@@ -197,6 +204,31 @@ export default function AboutPage() {
               <Library className="w-5 h-5 text-red-600 dark:text-red-400" />
             </div>
             <div className="space-y-3">
+              <p className="text-sm text-zinc-600 dark:text-zinc-400 leading-relaxed">
+                Privilege escalation path definitions used for action-level
+                overlap on{" "}
+                <Link
+                  href="/findings"
+                  className="text-red-600 dark:text-red-400 hover:underline font-medium"
+                >
+                  Security findings
+                </Link>{" "}
+                come from{" "}
+                <a
+                  href="https://github.com/DataDog/pathfinding.cloud"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-red-600 dark:text-red-400 hover:underline font-medium"
+                >
+                  pathfinding.cloud
+                </a>{" "}
+                (Apache License 2.0, open source by Datadog). IAMTrail vendors
+                a JSON snapshot under{" "}
+                <code className="text-xs bg-zinc-100 dark:bg-zinc-800 px-1 py-0.5 rounded">
+                  data/pathfinding/
+                </code>
+                .
+              </p>
               <p className="text-sm text-zinc-600 dark:text-zinc-400 leading-relaxed">
                 Per-action reference text on IAMTrail (descriptions, access
                 level, resource types, and related actions where available) is

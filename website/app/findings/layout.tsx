@@ -1,16 +1,16 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Policy Validation Findings - AWS Access Analyzer",
+  title: "Security Findings - Access Analyzer & pathfinding.cloud",
   description:
-    "AWS IAM Access Analyzer findings on AWS's own Managed IAM Policies. Discover errors, security warnings, and suggestions in policies that AWS ships.",
+    "AWS IAM Access Analyzer validation plus action-level overlap with documented privilege escalation paths from pathfinding.cloud on AWS managed policies in IAMTrail.",
   alternates: {
     canonical: "https://iamtrail.com/findings",
   },
   openGraph: {
-    title: "Policy Validation Findings | IAMTrail",
+    title: "Security Findings | IAMTrail",
     description:
-      "Using AWS's own IAM Access Analyzer to validate AWS Managed IAM Policies - reviewing the reviewer.",
+      "Access Analyzer results and pathfinding.cloud path overlaps on archived AWS managed IAM policies.",
     url: "https://iamtrail.com/findings",
   },
 };

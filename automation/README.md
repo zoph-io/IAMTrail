@@ -67,7 +67,7 @@ The script generates several output files:
 
 - `{policy_name}.json`: Individual policy findings in JSON format
 
-The [IAMTrail website](https://iamtrail.com/findings) aggregates these into browseable data (`website` build runs `generate-data`, which produces `public/data/findings.json`).
+The [IAMTrail website](https://iamtrail.com/findings) aggregates these into browseable data together with [pathfinding.cloud](https://pathfinding.cloud/paths/) path overlap (`website` build runs `generate-data`, which produces `public/data/findings.json`). The pathfinding snapshot lives under `data/pathfinding/` (see `data/pathfinding/README.md`).
 
 ### Log Files
 

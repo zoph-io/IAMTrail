@@ -1,0 +1,6 @@
+Third-party data
+
+IAMTrail includes a vendored JSON export of AWS IAM privilege escalation path
+definitions from pathfinding.cloud (https://github.com/DataDog/pathfinding.cloud),
+stored under data/pathfinding/. That project is licensed under the Apache
+License 2.0.

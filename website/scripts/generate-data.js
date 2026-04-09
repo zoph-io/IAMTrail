@@ -7,6 +7,10 @@ const yaml = require("js-yaml");
 const REPO_ROOT = path.join(__dirname, "../..");
 const POLICIES_DIR = path.join(REPO_ROOT, "policies");
 const FINDINGS_DIR = path.join(REPO_ROOT, "findings");
+const PATHFINDING_PATHS_JSON = path.join(
+  REPO_ROOT,
+  "data/pathfinding/paths.json"
+);
 const OUTPUT_DIR = path.join(__dirname, "../public/data");
 const PUBLIC_DIR = path.join(__dirname, "../public");
 const FEEDS_DIR = path.join(PUBLIC_DIR, "feeds");
@@ -47,6 +51,131 @@ function fetchUrl(url) {
   });
 }
 
+/** Collect Allow actions from policy JSON (Deny / NotAction-only statements ignored for this signal). */
+function extractAllowActionInfo(policyData) {
+  const literals = new Set();
+  const serviceWildcards = new Set();
+  let globalWildcard = false;
+
+  const statements = policyData.PolicyVersion?.Document?.Statement || [];
+  const stmtArray = Array.isArray(statements) ? statements : [statements];
+  for (const stmt of stmtArray) {
+    if (stmt.Effect === "Deny") continue;
+    if (!stmt.Action) continue;
+    const raw = stmt.Action;
+    const actionArray = Array.isArray(raw) ? raw : [raw];
+    for (const action of actionArray) {
+      if (typeof action !== "string") continue;
+      const trimmed = action.trim();
+      if (!trimmed) continue;
+      if (trimmed === "*" || trimmed === "*:*") {
+        globalWildcard = true;
+        continue;
+      }
+      if (trimmed.includes("*")) {
+        const m = /^([a-zA-Z0-9.-]+):\*$/.exec(trimmed);
+        if (m) {
+          serviceWildcards.add(m[1].toLowerCase());
+        }
+        continue;
+      }
+      literals.add(trimmed);
+    }
+  }
+  return { literals, serviceWildcards, globalWildcard };
+}
+
+function policyAllowsAction(info, permission) {
+  if (!permission || typeof permission !== "string") return false;
+  if (info.globalWildcard) return true;
+  if (info.literals.has(permission)) return true;
+  const colon = permission.indexOf(":");
+  if (colon <= 0) return false;
+  const svc = permission.slice(0, colon).toLowerCase();
+  return info.serviceWildcards.has(svc);
+}
+
+function pathRequiredPermissionsSatisfied(allowInfo, requiredEntries) {
+  if (!Array.isArray(requiredEntries) || requiredEntries.length === 0) {
+    return false;
+  }
+  for (const entry of requiredEntries) {
+    const perm =
+      typeof entry === "string" ? entry : entry && entry.permission;
+    if (!perm || !policyAllowsAction(allowInfo, perm)) {
+      return false;
+    }
+  }
+  return true;
+}
+
+function pathfindingPathUrl(pathId) {
+  return `https://pathfinding.cloud/paths/${encodeURIComponent(pathId)}`;
+}
+
+function buildPathfindingFindingsForPolicy(allowInfo, catalogPaths) {
+  const out = [];
+  for (const pathEntry of catalogPaths) {
+    const req = pathEntry.permissions?.required;
+    if (!pathRequiredPermissionsSatisfied(allowInfo, req)) continue;
+    const pathId = pathEntry.id;
+    if (!pathId) continue;
+    const pathName = pathEntry.name || pathId;
+    const category = pathEntry.category || "unknown";
+    const url = pathfindingPathUrl(pathId);
+    const details = `This managed policy allows every IAM action listed as required for the documented privilege escalation path "${pathName}" (${pathId}, category: ${category}). That is action coverage in this JSON only. It does not mean escalation succeeds in every AWS account: trust policies, resource scope, and other prerequisites still matter. Open the link for the interactive visualization, full technique, and mitigations on pathfinding.cloud.`;
+    out.push({
+      source: "pathfinding",
+      findingType: "DOCUMENTED_PATH",
+      issueCode: `PATHFINDING_${String(pathId).replace(/[^a-zA-Z0-9_-]/g, "_")}`,
+      findingDetails: details,
+      learnMoreLink: url,
+      pathId,
+      pathName,
+      pathCategory: category,
+    });
+  }
+  out.sort((a, b) => a.pathId.localeCompare(b.pathId));
+  return out;
+}
+
+function loadPathfindingCatalogPaths() {
+  let catalogPaths = [];
+  let catalogLastUpdated = null;
+  try {
+    if (!fs.existsSync(PATHFINDING_PATHS_JSON)) {
+      console.warn(
+        `⚠️  No pathfinding catalog at ${PATHFINDING_PATHS_JSON} (see data/pathfinding/README.md)`
+      );
+      return { catalogPaths, catalogLastUpdated };
+    }
+    const pfRaw = JSON.parse(fs.readFileSync(PATHFINDING_PATHS_JSON, "utf8"));
+    if (!Array.isArray(pfRaw)) {
+      console.warn("⚠️  pathfinding paths.json is not an array");
+      return { catalogPaths, catalogLastUpdated };
+    }
+    for (const p of pfRaw) {
+      const req = p.permissions?.required;
+      if (!Array.isArray(req) || req.length === 0) continue;
+      catalogPaths.push(p);
+      const lu = p.gitMetadata?.lastUpdated;
+      if (
+        lu &&
+        typeof lu === "string" &&
+        (!catalogLastUpdated || lu > catalogLastUpdated)
+      ) {
+        catalogLastUpdated = lu;
+      }
+    }
+    console.log(
+      `🧭 Pathfinding catalog: ${catalogPaths.length} paths with required permissions`
+    );
+  } catch (e) {
+    console.warn("⚠️  Could not load pathfinding catalog:", e.message);
+  }
+  return { catalogPaths, catalogLastUpdated };
+}
+
 async function generatePolicyData() {
   console.log("🔍 Scanning policies directory...");
 
@@ -64,6 +193,10 @@ async function generatePolicyData() {
   const actionBuckets = new Map();
   const policiesWithWildcard = new Set();
   const wildcardPoliciesByService = {};
+  const pathfindingPoliciesForJson = [];
+
+  const { catalogPaths: pathfindingCatalogPaths, catalogLastUpdated: pathfindingCatalogLastUpdated } =
+    loadPathfindingCatalogPaths();
 
   function actionBucket(action) {
     if (!actionBuckets.has(action)) {
@@ -216,10 +349,44 @@ async function generatePolicyData() {
 
       policies.push(policy);
 
+      const allowInfo = extractAllowActionInfo(policyData);
+      const pathfindingFindings = buildPathfindingFindingsForPolicy(
+        allowInfo,
+        pathfindingCatalogPaths
+      );
+      if (pathfindingFindings.length > 0) {
+        pathfindingPoliciesForJson.push({
+          name: policyName,
+          findings: pathfindingFindings,
+        });
+      }
+
+      let accessAnalyzerFindingCount = 0;
+      try {
+        const findingsPath = path.join(FINDINGS_DIR, `${policyName}.json`);
+        if (fs.existsSync(findingsPath)) {
+          const arr = JSON.parse(fs.readFileSync(findingsPath, "utf8"));
+          if (Array.isArray(arr)) {
+            accessAnalyzerFindingCount = arr.length;
+          }
+        }
+      } catch {
+        /* ignore */
+      }
+
       // Save individual policy with full content
       const policyDetail = {
         ...policy,
         content: policyData,
+        securitySignals: {
+          accessAnalyzerFindingCount,
+          pathfindingOverlaps: pathfindingFindings.map((f) => ({
+            pathId: f.pathId,
+            pathName: f.pathName,
+            category: f.pathCategory,
+            pathfindingUrl: f.learnMoreLink,
+          })),
+        },
       };
 
       fs.writeFileSync(
@@ -602,15 +769,15 @@ async function generatePolicyData() {
     console.warn("⚠️  Could not fetch known AWS accounts:", err.message);
   }
 
-  // Aggregate findings from Access Analyzer validation
-  console.log("🔎 Aggregating policy validation findings...");
+  // Aggregate findings from Access Analyzer validation + pathfinding overlaps
+  console.log("🔎 Aggregating security findings (Access Analyzer + pathfinding)...");
   try {
     const findingsFiles = fs
       .readdirSync(FINDINGS_DIR)
       .filter((f) => f.endsWith(".json"));
 
     const byType = { ERROR: 0, SECURITY_WARNING: 0, WARNING: 0, SUGGESTION: 0 };
-    const findingsPolicies = [];
+    const accessAnalyzerPolicies = [];
 
     for (const file of findingsFiles) {
       try {
@@ -619,6 +786,7 @@ async function generatePolicyData() {
         );
         const policyName = file.replace(/\.json$/, "");
         const stripped = raw.map((f) => ({
+          source: "access_analyzer",
           findingType: f.findingType,
           findingDetails: f.findingDetails,
           issueCode: f.issueCode,
@@ -627,20 +795,52 @@ async function generatePolicyData() {
         for (const f of stripped) {
           if (byType[f.findingType] !== undefined) byType[f.findingType]++;
         }
-        findingsPolicies.push({ name: policyName, findings: stripped });
+        accessAnalyzerPolicies.push({ name: policyName, findings: stripped });
       } catch (e) {
         // skip unparseable findings files
       }
     }
 
-    findingsPolicies.sort((a, b) => a.name.localeCompare(b.name));
+    accessAnalyzerPolicies.sort((a, b) => a.name.localeCompare(b.name));
+
+    const accessAnalyzerWithAny = accessAnalyzerPolicies.filter(
+      (p) => p.findings.length > 0
+    ).length;
+    const accessAnalyzerFindingTotal = Object.values(byType).reduce(
+      (a, b) => a + b,
+      0
+    );
+
+    pathfindingPoliciesForJson.sort((a, b) => a.name.localeCompare(b.name));
+    const pathfindingByCategory = {};
+    let pathfindingOverlapTotal = 0;
+    for (const pol of pathfindingPoliciesForJson) {
+      for (const f of pol.findings) {
+        const c = f.pathCategory || "unknown";
+        pathfindingByCategory[c] = (pathfindingByCategory[c] || 0) + 1;
+        pathfindingOverlapTotal++;
+      }
+    }
 
     const findingsData = {
       lastUpdated: new Date().toISOString().split("T")[0],
       totalPoliciesAnalyzed: policies.length,
-      policiesWithFindings: findingsPolicies.length,
-      byType,
-      policies: findingsPolicies,
+      accessAnalyzer: {
+        policiesWithFindings: accessAnalyzerWithAny,
+        totalFindingRows: accessAnalyzerFindingTotal,
+        byType,
+        policies: accessAnalyzerPolicies,
+      },
+      pathfinding: {
+        attribution:
+          "Path definitions from pathfinding.cloud (Apache-2.0, open source by Datadog). IAMTrail matches required IAM actions only.",
+        catalogLastUpdated: pathfindingCatalogLastUpdated,
+        pathsInCatalog: pathfindingCatalogPaths.length,
+        policiesWithOverlaps: pathfindingPoliciesForJson.length,
+        totalOverlaps: pathfindingOverlapTotal,
+        byCategory: pathfindingByCategory,
+        policies: pathfindingPoliciesForJson,
+      },
     };
 
     fs.writeFileSync(
@@ -648,7 +848,10 @@ async function generatePolicyData() {
       JSON.stringify(findingsData, null, 2)
     );
     console.log(
-      `   🛡️  Findings: ${findingsPolicies.length} policies, ${Object.values(byType).reduce((a, b) => a + b, 0)} total findings`
+      `   🛡️  Access Analyzer: ${accessAnalyzerWithAny} policies with ≥1 finding, ${accessAnalyzerFindingTotal} rows`
+    );
+    console.log(
+      `   🧭 Pathfinding overlaps: ${pathfindingPoliciesForJson.length} policies, ${pathfindingOverlapTotal} policy-path pairs`
     );
   } catch (err) {
     console.warn("⚠️  Could not aggregate findings:", err.message);
