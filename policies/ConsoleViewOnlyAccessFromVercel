@@ -42,6 +42,37 @@
                     ]
                 },
                 {
+                    "Sid": "OpenSearchServerless",
+                    "Effect": "Allow",
+                    "Action": [
+                        "aoss:BatchGetCollection",
+                        "aoss:BatchGetCollectionGroup",
+                        "aoss:GetAccessPolicy",
+                        "aoss:GetIndex",
+                        "aoss:GetSecurityPolicy",
+                        "aoss:ListAccessPolicies",
+                        "aoss:ListCollectionGroups",
+                        "aoss:ListCollections",
+                        "aoss:ListSecurityPolicies",
+                        "aoss:ListSecurityConfigs",
+                        "aoss:ListTagsForResource"
+                    ],
+                    "Resource": [
+                        "*"
+                    ]
+                },
+                {
+                    "Sid": "OpenSearchApplications",
+                    "Effect": "Allow",
+                    "Action": [
+                        "es:GetApplication",
+                        "es:ListApplications"
+                    ],
+                    "Resource": [
+                        "*"
+                    ]
+                },
+                {
                     "Sid": "Observability",
                     "Effect": "Allow",
                     "Action": [
@@ -78,8 +109,8 @@
                 }
             ]
         },
-        "VersionId": "v4",
+        "VersionId": "v5",
         "IsDefaultVersion": true,
-        "CreateDate": "2026-02-18T19:27:07+00:00"
+        "CreateDate": "2026-04-09T18:27:08+00:00"
     }
 }
