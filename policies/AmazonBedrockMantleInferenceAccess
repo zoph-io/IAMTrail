@@ -20,11 +20,25 @@
                         "bedrock-mantle:CallWithBearerToken"
                     ],
                     "Resource": "*"
+                },
+                {
+                    "Sid": "MarketplaceOperationsFromBedrockMantleFor3pModels",
+                    "Effect": "Allow",
+                    "Action": [
+                        "aws-marketplace:Subscribe",
+                        "aws-marketplace:ViewSubscriptions"
+                    ],
+                    "Resource": "*",
+                    "Condition": {
+                        "StringEquals": {
+                            "aws:CalledViaLast": "bedrock-mantle.amazonaws.com"
+                        }
+                    }
                 }
             ]
         },
-        "VersionId": "v3",
+        "VersionId": "v4",
         "IsDefaultVersion": true,
-        "CreateDate": "2026-02-12T17:57:27+00:00"
+        "CreateDate": "2026-04-09T04:42:14+00:00"
     }
 }
