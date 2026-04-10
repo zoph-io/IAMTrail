@@ -149,7 +149,8 @@
                         "ec2:DeleteVpcEndpoints"
                     ],
                     "Resource": [
-                        "arn:aws:ec2:*:*:vpc-endpoint/*"
+                        "arn:aws:ec2:*:*:vpc-endpoint/*",
+                        "arn:aws:ec2:*:*:security-group/*"
                     ],
                     "Condition": {
                         "StringEquals": {
@@ -158,7 +159,7 @@
                     }
                 },
                 {
-                    "Sid": "ModifyVPCEndpoingNoCondition",
+                    "Sid": "ModifyVPCEndpointNoCondition",
                     "Effect": "Allow",
                     "Action": [
                         "ec2:ModifyVpcEndpoint"
@@ -185,11 +186,24 @@
                             ]
                         }
                     }
+                },
+                {
+                    "Sid": "AddTagsToRedHatManagedSecurityGroups",
+                    "Effect": "Allow",
+                    "Action": [
+                        "ec2:CreateTags"
+                    ],
+                    "Resource": "arn:aws:ec2:*:*:security-group/*",
+                    "Condition": {
+                        "StringEquals": {
+                            "aws:ResourceTag/red-hat-managed": "true"
+                        }
+                    }
                 }
             ]
         },
-        "VersionId": "v5",
+        "VersionId": "v6",
         "IsDefaultVersion": true,
-        "CreateDate": "2026-02-12T17:59:10+00:00"
+        "CreateDate": "2026-04-10T16:12:18+00:00"
     }
 }
