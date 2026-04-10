@@ -39,9 +39,6 @@ export default async function DeprecatedPage() {
       return new Date(b.date).getTime() - new Date(a.date).getTime();
     });
 
-  const withDate = items.filter((i) => i.date !== "Unknown");
-  const withoutDate = items.filter((i) => i.date === "Unknown");
-
   return (
     <div className="max-w-4xl mx-auto space-y-8">
       <div className="py-8 border-b border-zinc-100 dark:border-zinc-800">
@@ -53,63 +50,31 @@ export default async function DeprecatedPage() {
         </p>
       </div>
 
-      {withDate.length > 0 && (
-        <div className="bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 rounded-lg overflow-hidden">
-          <div className="px-5 py-3 border-b border-zinc-200 dark:border-zinc-800">
-            <h2 className="text-sm font-semibold font-mono uppercase tracking-wider text-zinc-900 dark:text-white">
-              With known deprecation date ({withDate.length})
-            </h2>
-          </div>
-          <div className="divide-y divide-zinc-100 dark:divide-zinc-800">
-            {withDate.map((item) => (
-              <Link
-                key={item.name}
-                href={`/policies/${encodeURIComponent(item.name)}`}
-                className="flex items-center justify-between px-5 py-3 hover:bg-zinc-50 dark:hover:bg-zinc-800/50 transition-colors"
-              >
-                <div className="flex-1 min-w-0">
-                  <p className="text-sm font-medium text-zinc-900 dark:text-white truncate">
-                    {item.name}
-                  </p>
-                </div>
-                <span className="ml-4 flex-shrink-0 text-xs font-mono text-zinc-500 dark:text-zinc-400">
-                  {item.date}
-                </span>
-              </Link>
-            ))}
-          </div>
+      <div className="bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 rounded-lg overflow-hidden">
+        <div className="px-5 py-3 border-b border-zinc-200 dark:border-zinc-800">
+          <h2 className="text-sm font-semibold font-mono uppercase tracking-wider text-zinc-900 dark:text-white">
+            Sorted by deprecation date, newest first ({items.length})
+          </h2>
         </div>
-      )}
-
-      {withoutDate.length > 0 && (
-        <div className="bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 rounded-lg overflow-hidden">
-          <div className="px-5 py-3 border-b border-zinc-200 dark:border-zinc-800">
-            <h2 className="text-sm font-semibold font-mono uppercase tracking-wider text-zinc-900 dark:text-white">
-              Unknown deprecation date ({withoutDate.length})
-            </h2>
-          </div>
-          <div className="divide-y divide-zinc-100 dark:divide-zinc-800">
-            {withoutDate
-              .sort((a, b) => a.name.localeCompare(b.name))
-              .map((item) => (
-                <Link
-                  key={item.name}
-                  href={`/policies/${encodeURIComponent(item.name)}`}
-                  className="flex items-center justify-between px-5 py-3 hover:bg-zinc-50 dark:hover:bg-zinc-800/50 transition-colors"
-                >
-                  <div className="flex-1 min-w-0">
-                    <p className="text-sm font-medium text-zinc-900 dark:text-white truncate">
-                      {item.name}
-                    </p>
-                  </div>
-                  <span className="ml-4 flex-shrink-0 text-xs font-mono text-zinc-400 dark:text-zinc-500">
-                    Unknown
-                  </span>
-                </Link>
-              ))}
-          </div>
+        <div className="divide-y divide-zinc-100 dark:divide-zinc-800">
+          {items.map((item) => (
+            <Link
+              key={item.name}
+              href={`/policies/${encodeURIComponent(item.name)}`}
+              className="flex items-center justify-between px-5 py-3 hover:bg-zinc-50 dark:hover:bg-zinc-800/50 transition-colors"
+            >
+              <div className="flex-1 min-w-0">
+                <p className="text-sm font-medium text-zinc-900 dark:text-white truncate">
+                  {item.name}
+                </p>
+              </div>
+              <span className="ml-4 flex-shrink-0 text-xs font-mono text-zinc-500 dark:text-zinc-400">
+                {item.date !== "Unknown" ? item.date : "Unknown"}
+              </span>
+            </Link>
+          ))}
         </div>
-      )}
+      </div>
     </div>
   );
 }
