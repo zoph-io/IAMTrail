@@ -3,7 +3,7 @@
 import { useState, useEffect, useCallback } from "react";
 import type { CSSProperties } from "react";
 import Link from "next/link";
-import { Bell, Shield } from "lucide-react";
+import { AlertTriangle, Bell, Shield } from "lucide-react";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import createElement from "react-syntax-highlighter/dist/esm/create-element";
 import {
@@ -119,6 +119,10 @@ interface PolicyData {
   actionCount?: number;
   history: PolicyVersion[];
   content: any;
+  deprecation?: {
+    date: string;
+    lifespan: string | null;
+  } | null;
   securitySignals?: {
     accessAnalyzerFindingCount: number;
     pathfindingOverlaps: PathfindingOverlap[];
@@ -277,6 +281,25 @@ export default function PolicyDetailClient({
           {policy.name}
         </span>
       </nav>
+
+      {/* Deprecation banner */}
+      {policy.deprecation && (
+        <div className="bg-amber-50 dark:bg-amber-950/30 border border-amber-200 dark:border-amber-800 rounded-lg px-5 py-3 flex items-center gap-3">
+          <AlertTriangle className="w-5 h-5 text-amber-600 dark:text-amber-400 flex-shrink-0" />
+          <div>
+            <p className="text-sm font-semibold text-amber-800 dark:text-amber-200">
+              Deprecated
+            </p>
+            <p className="text-xs text-amber-700 dark:text-amber-300">
+              {policy.deprecation.date !== "Unknown"
+                ? `Removed from AWS on ${policy.deprecation.date}`
+                : "Removed from AWS (date unknown)"}
+              {policy.deprecation.lifespan &&
+                ` - Active for ${policy.deprecation.lifespan}`}
+            </p>
+          </div>
+        </div>
+      )}
 
       {/* Header */}
       <div className="bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 rounded-lg p-5">

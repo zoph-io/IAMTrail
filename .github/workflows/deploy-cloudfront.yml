@@ -8,6 +8,9 @@ on:
       - "policies/**"
       - "website/**"
       - "data/**"
+      - "findings/**"
+      - "DEPRECATED.json"
+      - "policies-list.json"
       - ".github/workflows/deploy-cloudfront.yml"
   workflow_dispatch:
 

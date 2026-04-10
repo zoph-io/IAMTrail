@@ -222,6 +222,27 @@ async function generatePolicyData() {
     }
   }
 
+  // Read deprecated policies early so per-policy detail can reference it
+  const deprecatedPath = path.join(REPO_ROOT, "DEPRECATED.json");
+  let deprecated = {};
+  if (fs.existsSync(deprecatedPath)) {
+    deprecated = JSON.parse(fs.readFileSync(deprecatedPath, "utf8"));
+  }
+
+  function computeLifespan(startISO, endDateStr) {
+    if (!startISO || !endDateStr || endDateStr === "Unknown") return null;
+    const start = new Date(startISO);
+    const end = new Date(endDateStr);
+    if (isNaN(start) || isNaN(end) || end <= start) return null;
+    let years = end.getFullYear() - start.getFullYear();
+    let months = end.getMonth() - start.getMonth();
+    if (months < 0) { years--; months += 12; }
+    const parts = [];
+    if (years > 0) parts.push(`${years} year${years !== 1 ? "s" : ""}`);
+    if (months > 0) parts.push(`${months} month${months !== 1 ? "s" : ""}`);
+    return parts.length > 0 ? parts.join(", ") : "< 1 month";
+  }
+
   for (const policyName of policyFiles) {
     try {
       const policyPath = path.join(POLICIES_DIR, policyName);
@@ -378,6 +399,15 @@ async function generatePolicyData() {
       const policyDetail = {
         ...policy,
         content: policyData,
+        deprecation: deprecated[policyName]
+          ? {
+              date: deprecated[policyName],
+              lifespan: computeLifespan(
+                policy.createDate || policy.firstSeen,
+                deprecated[policyName]
+              ),
+            }
+          : null,
         securitySignals: {
           accessAnalyzerFindingCount,
           pathfindingOverlaps: pathfindingFindings.map((f) => ({
@@ -609,12 +639,7 @@ async function generatePolicyData() {
       `${stats.volatileThisYear.length} volatile policies`
   );
 
-  // Read deprecated policies
-  const deprecatedPath = path.join(REPO_ROOT, "DEPRECATED.json");
-  let deprecated = {};
-  if (fs.existsSync(deprecatedPath)) {
-    deprecated = JSON.parse(fs.readFileSync(deprecatedPath, "utf8"));
-  }
+  // deprecated dict was loaded before the per-policy loop
 
   // IAM action inverse index (literal strings only; wildcards excluded from keys)
   const actionsOut = {};

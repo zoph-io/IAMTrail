@@ -116,14 +116,8 @@ class PolicyValidator:
         newly_deprecated = repo_policies - current_policies
         current_date = datetime.now().strftime("%Y-%m-%d")
 
-        # Update deprecated policies dict
-        deprecated_policies = {}
-
-        # Add existing deprecated policies with their original dates
-        for policy in existing_deprecated:
-            if policy in newly_deprecated:
-                deprecated_policies[policy] = existing_deprecated[policy]
-            # Keep policies that are no longer in repo but were previously deprecated
+        # Preserve all existing deprecated policies with their original dates
+        deprecated_policies = dict(existing_deprecated)
 
         # Add newly deprecated policies with current date
         for policy in newly_deprecated:
