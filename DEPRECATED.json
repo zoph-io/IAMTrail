@@ -67,6 +67,7 @@
   "CheesepuffsServiceRolePolicy": "Unknown",
   "GroundTruthSyntheticConsoleFullAccess": "Unknown",
   "GroundTruthSyntheticConsoleReadOnlyAccess": "Unknown",
+  "NAPSPropagatorIntegTestManagedPolicy07": "2026-04-10",
   "ServerMigration_ServiceRole": "Unknown",
   "ServerMigrationServiceRole": "Unknown",
   "ServiceCatalogAdminReadOnlyAccess": "Unknown",
