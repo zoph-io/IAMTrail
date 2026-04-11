@@ -12629,12 +12629,12 @@
             "PolicyId": "ANPAZKAPJZG4KA4P7YA2C",
             "Arn": "arn:aws:iam::aws:policy/service-role/ROSAControlPlaneOperatorPolicy",
             "Path": "/service-role/",
-            "DefaultVersionId": "v5",
+            "DefaultVersionId": "v6",
             "AttachmentCount": 0,
             "PermissionsBoundaryUsageCount": 0,
             "IsAttachable": true,
             "CreateDate": "2023-04-24T23:02:49+00:00",
-            "UpdateDate": "2026-02-12T17:59:10+00:00"
+            "UpdateDate": "2026-04-10T16:12:18+00:00"
         },
         {
             "PolicyName": "AmazonOpenSearchIngestionReadOnlyAccess",
@@ -12677,12 +12677,12 @@
             "PolicyId": "ANPAZKAPJZG4JWF64Q542",
             "Arn": "arn:aws:iam::aws:policy/service-role/ROSAKubeControllerPolicy",
             "Path": "/service-role/",
-            "DefaultVersionId": "v6",
+            "DefaultVersionId": "v7",
             "AttachmentCount": 0,
             "PermissionsBoundaryUsageCount": 0,
             "IsAttachable": true,
             "CreateDate": "2023-04-27T20:09:29+00:00",
-            "UpdateDate": "2026-02-12T18:00:33+00:00"
+            "UpdateDate": "2026-04-10T16:12:08+00:00"
         },
         {
             "PolicyName": "ROSAKMSProviderPolicy",
