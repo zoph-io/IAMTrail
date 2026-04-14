@@ -1,0 +1,41 @@
+{
+  "detected_at": "2026-04-14T03:26:40.678Z",
+  "botocore_commit": "d7f945ccf01c6f4d552299088d93522ab620665c",
+  "botocore_commit_url": "https://github.com/boto/botocore/commit/d7f945ccf01c6f4d552299088d93522ab620665c",
+  "summary": "3 service expansion(s)",
+  "changes": [
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "api.tunneling.iot",
+      "id": "api.tunneling.iot",
+      "new_regions": [
+        "eu-south-1",
+        "il-central-1"
+      ],
+      "description": "api.tunneling.iot expanded to eu-south-1, il-central-1"
+    },
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "data-ats.iot",
+      "id": "data-ats.iot",
+      "new_regions": [
+        "eu-south-1",
+        "il-central-1"
+      ],
+      "description": "data-ats.iot expanded to eu-south-1, il-central-1"
+    },
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "iot",
+      "id": "iot",
+      "new_regions": [
+        "eu-south-1",
+        "il-central-1"
+      ],
+      "description": "iot expanded to eu-south-1, il-central-1"
+    }
+  ]
+}
