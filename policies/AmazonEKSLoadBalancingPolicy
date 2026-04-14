@@ -150,35 +150,10 @@
                 {
                     "Effect": "Allow",
                     "Action": [
-                        "shield:CreateProtection"
-                    ],
-                    "Resource": "*",
-                    "Condition": {
-                        "StringEquals": {
-                            "aws:RequestTag/eks:eks-cluster-name": "${aws:PrincipalTag/eks:eks-cluster-name}"
-                        },
-                        "ForAllValues:StringEquals": {
-                            "aws:TagKeys": [
-                                "eks:eks-cluster-name",
-                                "ingress.eks.amazonaws.com/stack",
-                                "ingress.eks.amazonaws.com/resource",
-                                "service.eks.amazonaws.com/stack",
-                                "service.eks.amazonaws.com/resource"
-                            ]
-                        }
-                    }
-                },
-                {
-                    "Effect": "Allow",
-                    "Action": [
+                        "shield:CreateProtection",
                         "shield:DeleteProtection"
                     ],
-                    "Resource": "*",
-                    "Condition": {
-                        "StringEquals": {
-                            "aws:ResourceTag/eks:eks-cluster-name": "${aws:PrincipalTag/eks:eks-cluster-name}"
-                        }
-                    }
+                    "Resource": "*"
                 },
                 {
                     "Effect": "Allow",
@@ -249,8 +224,8 @@
                 }
             ]
         },
-        "VersionId": "v5",
+        "VersionId": "v6",
         "IsDefaultVersion": true,
-        "CreateDate": "2026-04-01T22:57:10+00:00"
+        "CreateDate": "2026-04-14T20:27:17+00:00"
     }
 }
