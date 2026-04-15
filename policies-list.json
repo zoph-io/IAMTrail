@@ -14789,12 +14789,12 @@
             "PolicyId": "ANPAZKAPJZG4BAR6P5E2F",
             "Arn": "arn:aws:iam::aws:policy/AmazonEKSLoadBalancingPolicy",
             "Path": "/",
-            "DefaultVersionId": "v5",
+            "DefaultVersionId": "v6",
             "AttachmentCount": 0,
             "PermissionsBoundaryUsageCount": 0,
             "IsAttachable": true,
             "CreateDate": "2024-10-30T20:18:06+00:00",
-            "UpdateDate": "2026-04-01T22:57:10+00:00"
+            "UpdateDate": "2026-04-14T20:27:17+00:00"
         },
         {
             "PolicyName": "AmazonEKSBlockStoragePolicy",
@@ -17771,6 +17771,18 @@
             "IsAttachable": true,
             "CreateDate": "2026-04-08T20:27:08+00:00",
             "UpdateDate": "2026-04-08T20:27:08+00:00"
+        },
+        {
+            "PolicyName": "AWSBedrockAgentCoreIdentityNetworkServiceRolePolicy",
+            "PolicyId": "ANPAZKAPJZG4M3BHUSYD5",
+            "Arn": "arn:aws:iam::aws:policy/aws-service-role/AWSBedrockAgentCoreIdentityNetworkServiceRolePolicy",
+            "Path": "/aws-service-role/",
+            "DefaultVersionId": "v1",
+            "AttachmentCount": 0,
+            "PermissionsBoundaryUsageCount": 0,
+            "IsAttachable": true,
+            "CreateDate": "2026-04-15T00:42:19+00:00",
+            "UpdateDate": "2026-04-15T00:42:19+00:00"
         },
         {
             "PolicyName": "AWSConfigRole",
