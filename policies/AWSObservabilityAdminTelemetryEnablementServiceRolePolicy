@@ -255,7 +255,8 @@
                     "Effect": "Allow",
                     "Action": [
                         "securityhub:AllowVendedLogDeliveryForResource",
-                        "securityhub:DescribeHub"
+                        "securityhub:DescribeHub",
+                        "securityhub:DescribeSecurityHubV2"
                     ],
                     "Resource": "*",
                     "Condition": {
@@ -454,8 +455,8 @@
                 }
             ]
         },
-        "VersionId": "v8",
+        "VersionId": "v9",
         "IsDefaultVersion": true,
-        "CreateDate": "2026-03-31T18:27:09+00:00"
+        "CreateDate": "2026-04-16T17:42:10+00:00"
     }
 }
