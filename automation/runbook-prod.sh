@@ -197,8 +197,8 @@ get_policy_version() {
 process_changes() {
     log "Processing changes"
     if [[ -n $(git status -s) ]]; then
-        # Get all changed files
-        CHANGED_FILES="$(git diff --name-only) $(git ls-files --others --exclude-standard)"
+        # Get all changed files (newline-separated to avoid leading-space issues)
+        CHANGED_FILES="$({ git diff --name-only; git ls-files --others --exclude-standard; } | sort -u)"
         ALL_COMMITS=()
         declare -A POLICY_COMMIT_MAP
         
