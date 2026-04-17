@@ -1,0 +1,15 @@
+{
+  "detected_at": "2026-04-17T03:28:29.838Z",
+  "botocore_commit": "a35866fa1ea1827e3bf035ee1228e8bf93d1b4eb",
+  "botocore_commit_url": "https://github.com/boto/botocore/commit/a35866fa1ea1827e3bf035ee1228e8bf93d1b4eb",
+  "summary": "1 new service(s)",
+  "changes": [
+    {
+      "type": "new_service",
+      "partition": "aws-eusc",
+      "id": "drs",
+      "description": "drs (1 endpoint)",
+      "endpoint_count": 1
+    }
+  ]
+}

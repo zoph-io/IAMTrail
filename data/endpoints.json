@@ -54235,6 +54235,11 @@
             "eusc-de-east-1": {}
           }
         },
+        "drs": {
+          "endpoints": {
+            "eusc-de-east-1": {}
+          }
+        },
         "ds": {
           "endpoints": {
             "eusc-de-east-1": {}
