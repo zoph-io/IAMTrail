@@ -6221,12 +6221,12 @@
             "PolicyId": "ANPAZKAPJZG4MYB7OEJED",
             "Arn": "arn:aws:iam::aws:policy/aws-service-role/AmazonSageMakerNotebooksServiceRolePolicy",
             "Path": "/aws-service-role/",
-            "DefaultVersionId": "v11",
+            "DefaultVersionId": "v12",
             "AttachmentCount": 0,
             "PermissionsBoundaryUsageCount": 0,
             "IsAttachable": true,
             "CreateDate": "2019-10-18T20:27:37+00:00",
-            "UpdateDate": "2025-12-10T18:34:11+00:00"
+            "UpdateDate": "2026-04-16T18:12:19+00:00"
         },
         {
             "PolicyName": "AWSApplicationAutoscalingLambdaConcurrencyPolicy",
@@ -16349,12 +16349,12 @@
             "PolicyId": "ANPAZKAPJZG4GDK3OLQP4",
             "Arn": "arn:aws:iam::aws:policy/aws-service-role/AWSBatchServiceRolePolicyForSageMaker",
             "Path": "/aws-service-role/",
-            "DefaultVersionId": "v1",
+            "DefaultVersionId": "v2",
             "AttachmentCount": 0,
             "PermissionsBoundaryUsageCount": 0,
             "IsAttachable": true,
             "CreateDate": "2025-07-15T21:37:06+00:00",
-            "UpdateDate": "2025-07-15T21:37:06+00:00"
+            "UpdateDate": "2026-04-16T17:27:13+00:00"
         },
         {
             "PolicyName": "AmazonBedrockAgentCoreMemoryBedrockModelInferenceExecutionRolePolicy",
@@ -16433,12 +16433,12 @@
             "PolicyId": "ANPAZKAPJZG4ABS5BMRXG",
             "Arn": "arn:aws:iam::aws:policy/aws-service-role/AWSObservabilityAdminTelemetryEnablementServiceRolePolicy",
             "Path": "/aws-service-role/",
-            "DefaultVersionId": "v8",
+            "DefaultVersionId": "v9",
             "AttachmentCount": 0,
             "PermissionsBoundaryUsageCount": 0,
             "IsAttachable": true,
             "CreateDate": "2025-08-01T18:04:06+00:00",
-            "UpdateDate": "2026-03-31T18:27:09+00:00"
+            "UpdateDate": "2026-04-16T17:42:10+00:00"
         },
         {
             "PolicyName": "AWSQuickSetupStartStopInstancesExecutionPolicy",
@@ -17783,6 +17783,30 @@
             "IsAttachable": true,
             "CreateDate": "2026-04-15T00:42:19+00:00",
             "UpdateDate": "2026-04-15T00:42:19+00:00"
+        },
+        {
+            "PolicyName": "AmazonEBSCSIDriverPolicyV2",
+            "PolicyId": "ANPAZKAPJZG4FFRTSYDTQ",
+            "Arn": "arn:aws:iam::aws:policy/AmazonEBSCSIDriverPolicyV2",
+            "Path": "/",
+            "DefaultVersionId": "v1",
+            "AttachmentCount": 0,
+            "PermissionsBoundaryUsageCount": 0,
+            "IsAttachable": true,
+            "CreateDate": "2026-04-16T17:27:15+00:00",
+            "UpdateDate": "2026-04-16T17:27:15+00:00"
+        },
+        {
+            "PolicyName": "AmazonEBSCSIDriverEKSClusterScopedPolicy",
+            "PolicyId": "ANPAZKAPJZG4KUWAGAMWF",
+            "Arn": "arn:aws:iam::aws:policy/AmazonEBSCSIDriverEKSClusterScopedPolicy",
+            "Path": "/",
+            "DefaultVersionId": "v1",
+            "AttachmentCount": 0,
+            "PermissionsBoundaryUsageCount": 0,
+            "IsAttachable": true,
+            "CreateDate": "2026-04-16T17:27:16+00:00",
+            "UpdateDate": "2026-04-16T17:27:16+00:00"
         },
         {
             "PolicyName": "AWSConfigRole",
