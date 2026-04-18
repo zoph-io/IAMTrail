@@ -4145,12 +4145,12 @@
             "PolicyId": "ANPAJUCWFHNZER665LLQQ",
             "Arn": "arn:aws:iam::aws:policy/aws-service-role/AWSConfigServiceRolePolicy",
             "Path": "/aws-service-role/",
-            "DefaultVersionId": "v91",
+            "DefaultVersionId": "v92",
             "AttachmentCount": 1,
             "PermissionsBoundaryUsageCount": 0,
             "IsAttachable": true,
             "CreateDate": "2018-05-30T23:31:46+00:00",
-            "UpdateDate": "2026-04-07T21:12:11+00:00"
+            "UpdateDate": "2026-04-17T16:57:20+00:00"
         },
         {
             "PolicyName": "AmazonRDSPreviewServiceRolePolicy",
@@ -8033,12 +8033,12 @@
             "PolicyId": "ANPAZKAPJZG4PP7QZ4FBG",
             "Arn": "arn:aws:iam::aws:policy/service-role/AWS_ConfigRole",
             "Path": "/service-role/",
-            "DefaultVersionId": "v68",
+            "DefaultVersionId": "v69",
             "AttachmentCount": 1,
             "PermissionsBoundaryUsageCount": 0,
             "IsAttachable": true,
             "CreateDate": "2020-09-15T20:30:30+00:00",
-            "UpdateDate": "2026-04-07T21:42:20+00:00"
+            "UpdateDate": "2026-04-17T16:27:13+00:00"
         },
         {
             "PolicyName": "MediaPackageServiceRolePolicy",
@@ -14813,12 +14813,12 @@
             "PolicyId": "ANPAZKAPJZG4HYRJHGSOQ",
             "Arn": "arn:aws:iam::aws:policy/AmazonEKSComputePolicy",
             "Path": "/",
-            "DefaultVersionId": "v5",
+            "DefaultVersionId": "v6",
             "AttachmentCount": 0,
             "PermissionsBoundaryUsageCount": 0,
             "IsAttachable": true,
             "CreateDate": "2024-11-01T21:46:52+00:00",
-            "UpdateDate": "2026-02-12T18:00:19+00:00"
+            "UpdateDate": "2026-04-17T21:27:07+00:00"
         },
         {
             "PolicyName": "GameLiftContainerFleetPolicy",
