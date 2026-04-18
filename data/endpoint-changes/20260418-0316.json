@@ -1,0 +1,26 @@
+{
+  "detected_at": "2026-04-18T03:16:32.027Z",
+  "botocore_commit": "2f368705602000ce31815f03040518622023d0e9",
+  "botocore_commit_url": "https://github.com/boto/botocore/commit/2f368705602000ce31815f03040518622023d0e9",
+  "summary": "1 new service(s), 1 service expansion(s)",
+  "changes": [
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "workspaces",
+      "id": "workspaces",
+      "new_regions": [
+        "ap-southeast-5",
+        "us-east-2"
+      ],
+      "description": "workspaces expanded to ap-southeast-5, us-east-2"
+    },
+    {
+      "type": "new_service",
+      "partition": "aws-us-gov",
+      "id": "resource-explorer-2",
+      "description": "resource-explorer-2 (2 endpoints)",
+      "endpoint_count": 2
+    }
+  ]
+}
