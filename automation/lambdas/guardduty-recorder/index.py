@@ -3,8 +3,9 @@ import os
 import time
 import traceback
 import boto3
+import bluesky_publisher
 import discord_notifier as discord
-import x_poster
+import x_poster  # noqa: F401  # TODO(X-API): re-enable x_poster.post(...) below
 
 TABLE_NAME = os.environ.get("GUARDDUTY_TABLE", "")
 X_SECRET_ARN = os.environ.get("X_API_SECRET_ARN", "")
@@ -137,8 +138,19 @@ def _process_typed(message, msg_type, table, today, timestamp_id, now):
             footer="GuardDuty Monitor",
         )
 
+        page_url = link if link else "https://iamtrail.com/guardduty"
+        discord.send_public(
+            config["discord_title"],
+            short_desc or full_desc[:200],
+            config["discord_color"],
+            fields=fields,
+            footer="GuardDuty",
+            url=page_url,
+        )
+
         tweet_text = _build_tweet(config["tweet_prefix"], short_desc, link)
-        x_poster.post(tweet_text, X_SECRET_ARN)
+        # TODO(X-API): x_poster.post(tweet_text, X_SECRET_ARN)
+        bluesky_publisher.post(f"[GuardDuty] {tweet_text}")
 
     print(f"Recorded {len(details)} {msg_type} announcements")
 
@@ -181,8 +193,19 @@ def _process_general(message, table, today, timestamp_id, now):
             footer="GuardDuty Monitor",
         )
 
+        page_url = link if link else "https://iamtrail.com/guardduty"
+        discord.send_public(
+            GENERAL_CONFIG["discord_title"],
+            f"**{title}**\n{body[:300]}",
+            GENERAL_CONFIG["discord_color"],
+            fields=fields,
+            footer="GuardDuty",
+            url=page_url,
+        )
+
         tweet_text = _build_tweet(GENERAL_CONFIG["tweet_prefix"], title, link)
-        x_poster.post(tweet_text, X_SECRET_ARN)
+        # TODO(X-API): x_poster.post(tweet_text, X_SECRET_ARN)
+        bluesky_publisher.post(f"[GuardDuty] {tweet_text}")
 
     print(f"Recorded {len(entries)} GENERAL announcements")
 

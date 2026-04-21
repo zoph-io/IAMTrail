@@ -3,12 +3,14 @@
 ################################
 
 locals {
-  domain_name         = "iamtrail.com"
-  api_domain          = "api.iamtrail.com"
-  sender              = "IAMTrail <noreply@iamtrail.com>"
-  sender_email        = "noreply@iamtrail.com"
-  ses_region          = "eu-west-3"
-  discord_webhook_ssm = "/iamtrail/discord-webhook-url"
+  domain_name                  = "iamtrail.com"
+  api_domain                   = "api.iamtrail.com"
+  sender                       = "IAMTrail <noreply@iamtrail.com>"
+  sender_email                 = "noreply@iamtrail.com"
+  ses_region                   = "eu-west-3"
+  discord_webhook_ssm          = "/iamtrail/discord-webhook-url"
+  discord_public_webhook_ssm   = "/iamtrail/discord-public-webhook-url"
+  bluesky_fifo_queue_url       = "https://sqs.${var.aws_region}.amazonaws.com/${data.aws_caller_identity.current.account_id}/${var.qbsky_sqs_name}.fifo"
 }
 
 # ──────────────────────────────
@@ -515,8 +517,9 @@ resource "aws_lambda_function" "change_recorder" {
 
   environment {
     variables = {
-      CHANGES_TABLE       = aws_dynamodb_table.policy_changes.name
-      DISCORD_WEBHOOK_SSM = local.discord_webhook_ssm
+      CHANGES_TABLE              = aws_dynamodb_table.policy_changes.name
+      DISCORD_WEBHOOK_SSM        = local.discord_webhook_ssm
+      DISCORD_PUBLIC_WEBHOOK_SSM = local.discord_public_webhook_ssm
     }
   }
 }
@@ -941,7 +944,10 @@ resource "aws_iam_role_policy" "change_recorder" {
       {
         Effect   = "Allow"
         Action   = ["ssm:GetParameter"]
-        Resource = ["arn:aws:ssm:${var.aws_region}:${data.aws_caller_identity.current.account_id}:parameter${local.discord_webhook_ssm}"]
+        Resource = [
+          "arn:aws:ssm:${var.aws_region}:${data.aws_caller_identity.current.account_id}:parameter${local.discord_webhook_ssm}",
+          "arn:aws:ssm:${var.aws_region}:${data.aws_caller_identity.current.account_id}:parameter${local.discord_public_webhook_ssm}",
+        ]
       },
       {
         Effect   = "Allow"
@@ -1158,6 +1164,10 @@ data "archive_file" "guardduty_recorder" {
     content  = file("${path.module}/../lambdas/shared/discord_notifier.py")
     filename = "discord_notifier.py"
   }
+  source {
+    content  = file("${path.module}/../lambdas/shared/bluesky_publisher.py")
+    filename = "bluesky_publisher.py"
+  }
 }
 
 resource "aws_lambda_function" "guardduty_recorder" {
@@ -1172,9 +1182,11 @@ resource "aws_lambda_function" "guardduty_recorder" {
 
   environment {
     variables = {
-      GUARDDUTY_TABLE     = aws_dynamodb_table.guardduty_announcements.name
-      X_API_SECRET_ARN    = aws_secretsmanager_secret.social_mgda.arn
-      DISCORD_WEBHOOK_SSM = local.discord_webhook_ssm
+      GUARDDUTY_TABLE              = aws_dynamodb_table.guardduty_announcements.name
+      X_API_SECRET_ARN            = aws_secretsmanager_secret.social_mgda.arn
+      DISCORD_WEBHOOK_SSM          = local.discord_webhook_ssm
+      DISCORD_PUBLIC_WEBHOOK_SSM   = local.discord_public_webhook_ssm
+      BLUESKY_QUEUE_URL            = local.bluesky_fifo_queue_url
     }
   }
 }
@@ -1216,7 +1228,15 @@ resource "aws_iam_role_policy" "guardduty_recorder" {
         {
           Effect   = "Allow"
           Action   = ["ssm:GetParameter"]
-          Resource = ["arn:aws:ssm:${var.aws_region}:${data.aws_caller_identity.current.account_id}:parameter${local.discord_webhook_ssm}"]
+          Resource = [
+            "arn:aws:ssm:${var.aws_region}:${data.aws_caller_identity.current.account_id}:parameter${local.discord_webhook_ssm}",
+            "arn:aws:ssm:${var.aws_region}:${data.aws_caller_identity.current.account_id}:parameter${local.discord_public_webhook_ssm}",
+          ]
+        },
+        {
+          Effect   = "Allow"
+          Action   = ["sqs:SendMessage"]
+          Resource = ["arn:aws:sqs:${var.aws_region}:${data.aws_caller_identity.current.account_id}:${var.qbsky_sqs_name}.fifo"]
         },
         {
           Effect   = "Allow"
@@ -1266,6 +1286,10 @@ output "iamtrail_nameservers" {
   value       = aws_route53_zone.iamtrail.name_servers
 }
 
+# ──────────────────────────────────────────────
+# SSM: Invite-only Discord webhook (not Terraform-managed)
+# Create SecureString /iamtrail/discord-public-webhook-url in the console
+# with the channel webhook URL. Not advertised on iamtrail.com (Bluesky + RSS only).
 # ──────────────────────────────────────────────
 # Secrets Manager: Social Media Credentials
 # ──────────────────────────────────────────────

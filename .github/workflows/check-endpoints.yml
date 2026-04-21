@@ -101,14 +101,51 @@ jobs:
           curl -s -o /dev/null -H "Content-Type: application/json" \
             -d "$PAYLOAD" "$WEBHOOK_URL" || echo "Warning: Discord notification failed"
 
-      - name: Post to X/Twitter (@mase_aws)
+      - name: Send public Discord notification
         if: steps.check.outputs.CHANGES_DETECTED == 'true'
-        continue-on-error: true
         run: |
-          python3 automation/scripts/x_poster.py \
-            --secret "iamtrail/social/mase" \
-            --region "${{ env.aws_region }}" \
-            "${{ env.ENDPOINT_MESSAGE }}"
+          PUBLIC_URL=$(aws ssm get-parameter --name "/iamtrail/discord-public-webhook-url" --with-decryption --region "${{ env.aws_region }}" --query 'Parameter.Value' --output text 2>/dev/null || true)
+          if [ -z "$PUBLIC_URL" ]; then
+            echo "No public Discord webhook in SSM, skipping"
+            exit 0
+          fi
+          TIMESTAMP=$(date -u +"%Y-%m-%dT%H:%M:%SZ")
+          PAYLOAD=$(jq -n \
+            --arg title "Endpoint changes - $ENDPOINT_SUMMARY" \
+            --arg desc "$ENDPOINT_DISCORD_DESC" \
+            --arg url "https://iamtrail.com/endpoints" \
+            --arg ts "$TIMESTAMP" \
+            '{
+              embeds: [{
+                title: $title,
+                description: $desc,
+                url: $url,
+                color: 3447003,
+                footer: {text: "iamtrail.com"},
+                timestamp: $ts
+              }]
+            }')
+          curl -s -o /dev/null -H "Content-Type: application/json" \
+            -d "$PAYLOAD" "$PUBLIC_URL" || echo "Warning: Public Discord notification failed"
+
+      - name: Post to Bluesky (@iamtrail.bsky.social)
+        if: steps.check.outputs.CHANGES_DETECTED == 'true'
+        run: |
+          aws sqs send-message \
+            --queue-url "https://sqs.eu-west-1.amazonaws.com/567589703415/qbsky-mamip-prod-sqs-queue.fifo" \
+            --message-body "[Endpoints] ${{ env.ENDPOINT_MESSAGE }}" \
+            --message-group-id 1 \
+            --region "${{ env.aws_region }}"
+
+      # TODO(X-API): Re-enable if X offers viable free tier or paid credits.
+      # - name: Post to X/Twitter (@mase_aws)
+      #   if: steps.check.outputs.CHANGES_DETECTED == 'true'
+      #   continue-on-error: true
+      #   run: |
+      #     python3 automation/scripts/x_poster.py \
+      #       --secret "iamtrail/social/mase" \
+      #       --region "${{ env.aws_region }}" \
+      #       "${{ env.ENDPOINT_MESSAGE }}"
 
       - name: Commit and push changes
         if: steps.check.outputs.CHANGES_DETECTED == 'true'

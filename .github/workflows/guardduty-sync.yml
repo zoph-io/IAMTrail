@@ -132,14 +132,54 @@ jobs:
           curl -s -o /dev/null -H "Content-Type: application/json" \
             -d "$PAYLOAD" "$WEBHOOK_URL" || echo "Warning: Discord notification failed"
 
-      - name: Post to X/Twitter (@mgda_aws)
+      - name: Send public Discord notification
         if: steps.query.outputs.CHANGES_DETECTED == 'true'
-        continue-on-error: true
         run: |
-          python3 automation/scripts/x_poster.py \
-            --secret "iamtrail/social/mgda" \
-            --region "${{ env.aws_region }}" \
-            "${{ steps.query.outputs.CHANGE_COUNT }} new GuardDuty announcement(s) detected - https://iamtrail.com/guardduty"
+          PUBLIC_URL=$(aws ssm get-parameter --name "/iamtrail/discord-public-webhook-url" --with-decryption --region "${{ env.aws_region }}" --query 'Parameter.Value' --output text 2>/dev/null || true)
+          if [ -z "$PUBLIC_URL" ]; then
+            echo "No public Discord webhook in SSM, skipping"
+            exit 0
+          fi
+          TIMESTAMP=$(date -u +"%Y-%m-%dT%H:%M:%SZ")
+          PAYLOAD=$(jq -n \
+            --arg title "GuardDuty announcements synced" \
+            --arg desc "${{ steps.query.outputs.CHANGE_COUNT }} new announcement(s) committed to git" \
+            --arg count "${{ steps.query.outputs.CHANGE_COUNT }}" \
+            --arg url "https://iamtrail.com/guardduty" \
+            --arg ts "$TIMESTAMP" \
+            '{
+              embeds: [{
+                title: $title,
+                description: $desc,
+                url: $url,
+                color: 3066993,
+                fields: [{name: "New files", value: $count, inline: true}],
+                footer: {text: "iamtrail.com"},
+                timestamp: $ts
+              }]
+            }')
+          curl -s -o /dev/null -H "Content-Type: application/json" \
+            -d "$PAYLOAD" "$PUBLIC_URL" || echo "Warning: Public Discord notification failed"
+
+      - name: Post to Bluesky (@iamtrail.bsky.social)
+        if: steps.query.outputs.CHANGES_DETECTED == 'true'
+        run: |
+          MSG="[GuardDuty] ${{ steps.query.outputs.CHANGE_COUNT }} new GuardDuty announcement(s) - https://iamtrail.com/guardduty"
+          aws sqs send-message \
+            --queue-url "https://sqs.eu-west-1.amazonaws.com/567589703415/qbsky-mamip-prod-sqs-queue.fifo" \
+            --message-body "$MSG" \
+            --message-group-id 1 \
+            --region "${{ env.aws_region }}"
+
+      # TODO(X-API): Re-enable if X offers viable free tier or paid credits.
+      # - name: Post to X/Twitter (@mgda_aws)
+      #   if: steps.query.outputs.CHANGES_DETECTED == 'true'
+      #   continue-on-error: true
+      #   run: |
+      #     python3 automation/scripts/x_poster.py \
+      #       --secret "iamtrail/social/mgda" \
+      #       --region "${{ env.aws_region }}" \
+      #       "${{ steps.query.outputs.CHANGE_COUNT }} new GuardDuty announcement(s) detected - https://iamtrail.com/guardduty"
 
       - name: Commit and push changes
         if: steps.query.outputs.CHANGES_DETECTED == 'true'

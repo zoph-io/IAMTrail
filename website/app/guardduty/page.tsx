@@ -88,14 +88,21 @@ export default async function GuardDutyPage() {
               GuardDuty SNS announcements
             </a>{" "}
             - new findings, feature updates, region launches, and service
-            changes detected automatically. Formerly{" "}
+            changes detected automatically. Public alerts also go to{" "}
             <a
-              href="https://x.com/mgda_aws"
+              href="https://bsky.app/profile/iamtrail.bsky.social"
               target="_blank"
               rel="noopener noreferrer"
-              className="font-mono text-red-600 dark:text-red-400 hover:underline"
+              className="text-red-600 dark:text-red-400 hover:underline font-medium"
             >
-              @mgda_aws
+              Bluesky
+            </a>{" "}
+            and the{" "}
+            <a
+              href="/feeds/guardduty.xml"
+              className="text-red-600 dark:text-red-400 hover:underline font-medium"
+            >
+              GuardDuty RSS feed
             </a>
             .
           </p>

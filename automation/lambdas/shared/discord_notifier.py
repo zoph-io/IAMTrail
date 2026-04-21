@@ -11,6 +11,7 @@ COLOR_ERROR = 0xE74C3C
 
 _ssm = boto3.client("ssm")
 _webhook_url = None
+_public_webhook_url = None
 
 
 def _get_webhook_url():
@@ -26,6 +27,22 @@ def _get_webhook_url():
         return _webhook_url
     except Exception as e:
         print(f"[discord_notifier] Failed to read SSM parameter: {e}")
+        return None
+
+
+def _get_public_webhook_url():
+    global _public_webhook_url
+    if _public_webhook_url:
+        return _public_webhook_url
+    param_name = os.environ.get("DISCORD_PUBLIC_WEBHOOK_SSM", "")
+    if not param_name:
+        return None
+    try:
+        resp = _ssm.get_parameter(Name=param_name, WithDecryption=True)
+        _public_webhook_url = resp["Parameter"]["Value"]
+        return _public_webhook_url
+    except Exception as e:
+        print(f"[discord_notifier] Failed to read public webhook SSM parameter: {e}")
         return None
 
 
@@ -85,3 +102,50 @@ def send(title, description="", color=COLOR_INFO, fields=None, footer=None):
             resp.read()
     except Exception as e:
         print(f"[discord_notifier] Failed to send Discord notification: {e}")
+
+
+def send_public(title, description="", color=COLOR_INFO, fields=None, footer=None, url=None):
+    """Post to the public Discord channel webhook. Never raises - logs errors instead."""
+    wh_url = _get_public_webhook_url()
+    if not wh_url:
+        return
+
+    embed = {
+        "title": title,
+        "color": color,
+        "timestamp": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()),
+    }
+
+    if description:
+        embed["description"] = description
+
+    if url:
+        embed["url"] = url
+
+    if fields:
+        embed["fields"] = [
+            {"name": str(f[0]), "value": str(f[1]), "inline": f[2] if len(f) > 2 else True}
+            for f in fields
+        ]
+
+    footer_text = "iamtrail.com"
+    if footer:
+        footer_text = f"{footer} | {footer_text}"
+    embed["footer"] = {"text": footer_text}
+
+    payload = json.dumps({"embeds": [embed]}).encode("utf-8")
+
+    try:
+        req = urllib.request.Request(
+            wh_url,
+            data=payload,
+            headers={
+                "Content-Type": "application/json",
+                "User-Agent": "IAMTrail-Public/1.0",
+            },
+            method="POST",
+        )
+        with urllib.request.urlopen(req, timeout=5) as resp:
+            resp.read()
+    except Exception as e:
+        print(f"[discord_notifier] Failed to send public Discord notification: {e}")

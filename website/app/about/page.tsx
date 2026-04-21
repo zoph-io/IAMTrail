@@ -164,8 +164,8 @@ export default function AboutPage() {
             </div>
             <p className="text-sm text-zinc-600 dark:text-zinc-400 leading-relaxed">
               Archives GuardDuty SNS announcements - new findings, feature
-              updates, and region expansions. The successor to the former
-              @mgda_aws feed.
+              updates, and region expansions. Public updates also go to the
+              unified Bluesky feed and RSS.
             </p>
           </Link>
 
@@ -381,7 +381,7 @@ export default function AboutPage() {
                 >
                   email digests
                 </Link>
-                , or follow along on{" "}
+                , follow{" "}
                 <a
                   href="https://bsky.app/profile/iamtrail.bsky.social"
                   target="_blank"
@@ -390,15 +390,14 @@ export default function AboutPage() {
                 >
                   Bluesky
                 </a>{" "}
-                and{" "}
-                <a
-                  href="https://x.com/iamtrail_"
-                  target="_blank"
-                  rel="noopener noreferrer"
+                for the unified feed (IAM policies, endpoints, GuardDuty), or
+                use the{" "}
+                <Link
+                  href="/feeds"
                   className="text-red-600 dark:text-red-400 hover:underline font-medium"
                 >
-                  X
-                </a>
+                  RSS feeds
+                </Link>
                 .
               </p>
             </div>

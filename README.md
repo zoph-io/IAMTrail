@@ -38,14 +38,14 @@ Explore AWS Managed IAM Policies through a searchable web interface at **[iamtra
 Subscribe to policy changes:
 
 - **Email Digest** (recommended): [Subscribe on iamtrail.com](https://iamtrail.com/subscribe) - daily or weekly emails with inline diffs, per-policy filtering, no account required
-- **Bluesky**: [@iamtrail.bsky.social](https://bsky.app/profile/iamtrail.bsky.social)
-- **X/Twitter**: [@iamtrail_](https://x.com/iamtrail_)
+- **Bluesky** (unified feed - IAM policies, endpoints, GuardDuty): [@iamtrail.bsky.social](https://bsky.app/profile/iamtrail.bsky.social)
 - **RSS Feeds** ([all feeds](https://iamtrail.com/feeds/)):
   - [All Changes](https://iamtrail.com/feeds/all.xml) - everything in one feed
   - [IAM Policy Changes](https://iamtrail.com/feeds/iam-policies.xml) - policy updates, new policies, deprecations
   - [Endpoint Changes](https://iamtrail.com/feeds/endpoints.xml) - new regions, services, and expansions from botocore
   - [GuardDuty Announcements](https://iamtrail.com/feeds/guardduty.xml) - new findings, features, and region launches
 
+See [docs/notifications-and-social.md](docs/notifications-and-social.md) for SSM parameters, Bluesky queue, GitHub Actions IAM, and why X posting is off.
 
 ## Browse the Data
 
@@ -65,7 +65,7 @@ An automated workflow runs every hour (Mon-Fri):
 2. Detect new, updated, or deprecated policies
 3. Validate each policy with AWS Access Analyzer
 4. Commit changes to git (one commit per policy)
-5. Notify via social channels and email digests
+5. Notify via Bluesky, RSS, email digests, and an invite-only Discord webhook (SSM only, not linked on the site; X/Twitter posting is disabled - see `automation/scripts/x_poster.py`)
 
 ## Credits
 
@@ -79,7 +79,7 @@ GNU General Public License v3.0 - see [LICENSE](LICENSE) for details.
 
 <div align="center">
 
-**[Website](https://iamtrail.com)** | **[RSS Feeds](https://iamtrail.com/feeds/)** | **[Bluesky](https://bsky.app/profile/iamtrail.bsky.social)** | **[X/Twitter](https://x.com/iamtrail_)**
+**[Website](https://iamtrail.com)** | **[RSS Feeds](https://iamtrail.com/feeds/)** | **[Bluesky](https://bsky.app/profile/iamtrail.bsky.social)**
 
 Made by [zoph.io](https://zoph.io) - AWS Cloud Advisory Boutique
 

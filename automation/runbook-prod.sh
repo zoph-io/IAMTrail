@@ -21,6 +21,7 @@ GITHUB_SECRET_ARN="arn:aws:secretsmanager:eu-west-1:567589703415:secret:mamip/pr
 SNS_TOPIC_ARN="arn:aws:sns:eu-west-1:567589703415:mamip-sns-topic"
 SQS_BLUESKY_URL="https://sqs.eu-west-1.amazonaws.com/567589703415/qbsky-mamip-prod-sqs-queue.fifo"
 DISCORD_WEBHOOK_SSM="/iamtrail/discord-webhook-url"
+DISCORD_PUBLIC_WEBHOOK_SSM="/iamtrail/discord-public-webhook-url"
 
 # File processing
 WORD_TO_REMOVE="policies/"
@@ -91,6 +92,50 @@ discord_notify() {
     fi
 
     curl -s -o /dev/null -H "Content-Type: application/json" -d "$payload" "$DISCORD_WEBHOOK_URL" || true
+}
+
+# Invite-only Discord (SSM: /iamtrail/discord-public-webhook-url) - not linked on iamtrail.com; same alerts as Bluesky
+DISCORD_PUBLIC_WEBHOOK_URL=""
+get_discord_public_webhook() {
+    if [ -n "$DISCORD_PUBLIC_WEBHOOK_URL" ]; then
+        return
+    fi
+    DISCORD_PUBLIC_WEBHOOK_URL=$(aws ssm get-parameter \
+        --name "$DISCORD_PUBLIC_WEBHOOK_SSM" \
+        --with-decryption \
+        --region "$REGION" \
+        --query 'Parameter.Value' \
+        --output text 2>/dev/null || true)
+}
+
+# Usage: discord_public_notify <title> <description> [page_url]
+discord_public_notify() {
+    get_discord_public_webhook
+    if [ -z "$DISCORD_PUBLIC_WEBHOOK_URL" ]; then
+        return
+    fi
+    local title="$1"
+    local description="$2"
+    local page_url="${3:-https://iamtrail.com/policies}"
+    local ts
+    ts=$(date -u +"%Y-%m-%dT%H:%M:%SZ")
+    local payload
+    payload=$(jq -n \
+        --arg title "$title" \
+        --arg desc "$description" \
+        --arg url "$page_url" \
+        --arg ts "$ts" \
+        '{
+          embeds: [{
+            title: $title,
+            description: $desc,
+            url: $url,
+            color: 3066993,
+            footer: {text: "iamtrail.com"},
+            timestamp: $ts
+          }]
+        }')
+    curl -s -o /dev/null -H "Content-Type: application/json" -d "$payload" "$DISCORD_PUBLIC_WEBHOOK_URL" || true
 }
 
 # Function to handle errors
@@ -164,16 +209,18 @@ send_notifications() {
     local message_body="$1"
     local sns_message="$2"
 
-    # X/Twitter
-    python3 "$REPO_PATH/automation/scripts/x_poster.py" \
-        --secret "iamtrail/social/iamtrail" \
-        --region "$REGION" \
-        "$message_body" || true
+    # TODO(X-API): Re-enable if X grants Public Utility access or paid credits.
+    # Disabled 2026-04: X API pay-per-use (Feb 2026) - 402 CreditsDepleted on @iamtrail_.
+    # python3 "$REPO_PATH/automation/scripts/x_poster.py" \
+    #     --secret "iamtrail/social/iamtrail" \
+    #     --region "$REGION" \
+    #     "$message_body" || true
 
-    # Bluesky
+    # Bluesky (@iamtrail.bsky.social) via qbsky-mamip-prod FIFO queue
+    local bsky_body="[Policies] ${message_body}"
     aws sqs send-message \
         --queue-url "$SQS_BLUESKY_URL" \
-        --message-body "$message_body" \
+        --message-body "$bsky_body" \
         --message-group-id 1
 
     # SNS
@@ -244,6 +291,11 @@ process_changes() {
 
             # Send notifications
             send_notifications "$MESSAGE_BODY" "$MESSAGE"
+
+            local pub_desc
+            pub_desc="${#ALL_COMMITS[@]} AWS managed IAM polic$( [ ${#ALL_COMMITS[@]} -eq 1 ] && echo y || echo ies ) updated."
+            pub_desc="${pub_desc} ${POLICY_NAMES:0:350}"
+            discord_public_notify "IAM policy updates" "$pub_desc" "https://iamtrail.com/policies"
 
             # Tag the run with a single summary tag
             git tag "${DATE}-update-${#ALL_COMMITS[@]}-policies"

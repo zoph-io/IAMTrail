@@ -1,4 +1,13 @@
 """
+DEPRECATED (2026-04-21): X/Twitter posting is disabled in IAMTrail automation.
+
+X moved the API to pay-per-use in Feb 2026; free-tier credits are exhausted
+(402 CreditsDepleted). Call sites are commented out but this module is kept so
+posting can be re-enabled if X grants Public Utility access or you add paid
+credits. See https://developer.x.com/en/docs/twitter-api
+
+---
+
 Post tweets to X/Twitter using OAuth 1.0a (HMAC-SHA1).
 Pure stdlib implementation - no tweepy or requests_oauthlib needed.
 Credentials are fetched from AWS Secrets Manager.

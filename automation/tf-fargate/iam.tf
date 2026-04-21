@@ -59,7 +59,10 @@ data "aws_iam_policy_document" "ecs_service_policy" {
   }
   statement {
     effect    = "Allow"
-    resources = ["arn:aws:ssm:${var.aws_region}:${data.aws_caller_identity.current.account_id}:parameter/iamtrail/discord-webhook-url"]
+    resources = [
+      "arn:aws:ssm:${var.aws_region}:${data.aws_caller_identity.current.account_id}:parameter/iamtrail/discord-webhook-url",
+      "arn:aws:ssm:${var.aws_region}:${data.aws_caller_identity.current.account_id}:parameter/iamtrail/discord-public-webhook-url"
+    ]
     actions = [
       "ssm:GetParameter"
     ]

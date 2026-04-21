@@ -112,6 +112,18 @@
             "Effect": "Allow",
             "Action": ["apigateway:GET", "apigateway:POST", "apigateway:PUT", "apigateway:PATCH", "apigateway:DELETE"],
             "Resource": ["arn:aws:apigateway:eu-west-1::/apis", "arn:aws:apigateway:eu-west-1::/apis/*", "arn:aws:apigateway:eu-west-1::/domainnames", "arn:aws:apigateway:eu-west-1::/domainnames/*", "arn:aws:apigateway:eu-west-1::/tags/*"]
+        },
+        {
+            "Sid": "BlueskyFifoPost",
+            "Effect": "Allow",
+            "Action": ["sqs:SendMessage"],
+            "Resource": "arn:aws:sqs:eu-west-1:567589703415:qbsky-mamip-prod-sqs-queue.fifo"
+        },
+        {
+            "Sid": "PublicDiscordWebhookSSM",
+            "Effect": "Allow",
+            "Action": ["ssm:GetParameter"],
+            "Resource": "arn:aws:ssm:eu-west-1:567589703415:parameter/iamtrail/discord-public-webhook-url"
         }
     ]
 }

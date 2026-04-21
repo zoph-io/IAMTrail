@@ -84,6 +84,15 @@ def handler(event, context):
                 fields=fields,
             )
 
+            plural = "policy" if len(policy_names) == 1 else "policies"
+            discord.send_public(
+                "IAM policy updates",
+                f"{len(policy_names)} AWS managed IAM {plural} updated.\n{preview}",
+                discord.COLOR_SUCCESS,
+                fields=fields,
+                url="https://iamtrail.com/policies",
+            )
+
         except Exception as e:
             print(f"Error processing record: {e}")
             discord.send(
