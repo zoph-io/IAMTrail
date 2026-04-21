@@ -9,7 +9,10 @@
                         "aws-marketplace:PutProcurementSystemConfiguration",
                         "aws-marketplace:DescribeProcurementSystemConfiguration",
                         "organizations:Describe*",
-                        "organizations:List*"
+                        "organizations:List*",
+                        "invoicing:CreateProcurementPortalPreference",
+                        "invoicing:GetProcurementPortalPreference",
+                        "invoicing:ListProcurementPortalPreferences"
                     ],
                     "Resource": [
                         "*"
@@ -17,8 +20,8 @@
                 }
             ]
         },
-        "VersionId": "v1",
+        "VersionId": "v2",
         "IsDefaultVersion": true,
-        "CreateDate": "2019-06-25T13:07:47+00:00"
+        "CreateDate": "2026-04-21T22:27:10+00:00"
     }
 }
