@@ -18,6 +18,6 @@ Posting is **disabled** in code (Feb 2026 X API pay-per-use). `automation/script
 The `GhA-MAMIP-Role` policy in [`automation/github-actions-iam-policy.json`](../automation/github-actions-iam-policy.json) includes:
 
 - `sqs:SendMessage` on `arn:aws:sqs:eu-west-1:567589703415:qbsky-mamip-prod-sqs-queue.fifo` (Bluesky queue).
-- `ssm:GetParameter` on `arn:aws:ssm:eu-west-1:567589703415:parameter/iamtrail/discord-public-webhook-url`.
+- `ssm:GetParameter` on `arn:aws:ssm:eu-west-1:567589703415:parameter/iamtrail/*` (shared GitHub Actions policy size limit - covers both Discord webhook parameters under `/iamtrail/`).
 
 After editing that JSON, apply the Terraform attachment (or attach the policy to the role manually) so workflows can post.
