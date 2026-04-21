@@ -1,0 +1,18 @@
+{
+  "type": "NEW_FEATURES",
+  "detected_at": "2026-04-21T00:21:46Z",
+  "description": "Amazon GuardDuty now supports creating suppression rules using any finding field, offering flexibility to filter findings based on all attributes of the finding JSON. This expanded capability allows creating more precise suppression rules tailored to security workflows, helping organizations focus on relevant findings by streamlining alert management.",
+  "short_description": "Amazon GuardDuty now supports creating suppression rules using any finding field, offering flexibility to filter findings based on all attributes of t",
+  "link": "https://docs.aws.amazon.com/guardduty/latest/ug/findings_suppression-rule.html",
+  "gist_url": "",
+  "raw_sns_message": {
+    "version": "1",
+    "type": "NEW_FEATURES",
+    "featureDetails": [
+      {
+        "featureDescription": "Amazon GuardDuty now supports creating suppression rules using any finding field, offering flexibility to filter findings based on all attributes of the finding JSON. This expanded capability allows creating more precise suppression rules tailored to security workflows, helping organizations focus on relevant findings by streamlining alert management.",
+        "featureLink": "https://docs.aws.amazon.com/guardduty/latest/ug/findings_suppression-rule.html"
+      }
+    ]
+  }
+}
