@@ -5813,12 +5813,12 @@
             "PolicyId": "ANPAZKAPJZG4FIYNR3TC4",
             "Arn": "arn:aws:iam::aws:policy/AWSMarketplaceProcurementSystemAdminFullAccess",
             "Path": "/",
-            "DefaultVersionId": "v1",
+            "DefaultVersionId": "v2",
             "AttachmentCount": 0,
             "PermissionsBoundaryUsageCount": 0,
             "IsAttachable": true,
             "CreateDate": "2019-06-25T13:07:47+00:00",
-            "UpdateDate": "2019-06-25T13:07:47+00:00"
+            "UpdateDate": "2026-04-21T22:27:10+00:00"
         },
         {
             "PolicyName": "EC2InstanceConnect",
@@ -5861,12 +5861,12 @@
             "PolicyId": "ANPAZKAPJZG4JF7OFUANW",
             "Arn": "arn:aws:iam::aws:policy/AWSMarketplaceSellerFullAccess",
             "Path": "/",
-            "DefaultVersionId": "v26",
+            "DefaultVersionId": "v27",
             "AttachmentCount": 0,
             "PermissionsBoundaryUsageCount": 0,
             "IsAttachable": true,
             "CreateDate": "2019-07-02T20:40:09+00:00",
-            "UpdateDate": "2026-03-31T17:42:16+00:00"
+            "UpdateDate": "2026-04-21T18:12:11+00:00"
         },
         {
             "PolicyName": "AWSMarketplaceSellerProductsFullAccess",
@@ -7121,12 +7121,12 @@
             "PolicyId": "ANPAZKAPJZG4KZBLSP26Y",
             "Arn": "arn:aws:iam::aws:policy/aws-service-role/AmazonEKSServiceRolePolicy",
             "Path": "/aws-service-role/",
-            "DefaultVersionId": "v24",
+            "DefaultVersionId": "v25",
             "AttachmentCount": 1,
             "PermissionsBoundaryUsageCount": 0,
             "IsAttachable": true,
             "CreateDate": "2020-02-21T20:10:47+00:00",
-            "UpdateDate": "2026-04-15T18:42:09+00:00"
+            "UpdateDate": "2026-04-21T22:57:08+00:00"
         },
         {
             "PolicyName": "ComputeOptimizerReadOnlyAccess",
@@ -16373,12 +16373,12 @@
             "PolicyId": "ANPAZKAPJZG4BB44GAY7X",
             "Arn": "arn:aws:iam::aws:policy/BedrockAgentCoreFullAccess",
             "Path": "/",
-            "DefaultVersionId": "v16",
+            "DefaultVersionId": "v17",
             "AttachmentCount": 0,
             "PermissionsBoundaryUsageCount": 0,
             "IsAttachable": true,
             "CreateDate": "2025-07-16T13:37:07+00:00",
-            "UpdateDate": "2026-03-27T21:12:10+00:00"
+            "UpdateDate": "2026-04-21T17:42:20+00:00"
         },
         {
             "PolicyName": "AWSRolesAnywhereFullAccess",
