@@ -4,29 +4,14 @@
             "Version": "2012-10-17",
             "Statement": [
                 {
-                    "Sid": "SecurityIRCaseReadAccess",
+                    "Sid": "SecurityIRCaseFullAccess",
                     "Effect": "Allow",
                     "Action": [
                         "security-ir:GetCase",
                         "security-ir:ListCases",
                         "security-ir:GetCaseAttachmentDownloadUrl",
                         "security-ir:ListComments",
-                        "security-ir:ListCaseEdits"
-                    ],
-                    "Resource": "*"
-                },
-                {
-                    "Sid": "SecurityIRCaseTagReadAccess",
-                    "Effect": "Allow",
-                    "Action": [
-                        "security-ir:ListTagsForResource"
-                    ],
-                    "Resource": "arn:aws:security-ir:*:*:case/*"
-                },
-                {
-                    "Sid": "SecurityIRCaseWriteAccess",
-                    "Effect": "Allow",
-                    "Action": [
+                        "security-ir:ListCaseEdits",
                         "security-ir:CreateCase",
                         "security-ir:UpdateCase",
                         "security-ir:CloseCase",
@@ -34,33 +19,26 @@
                         "security-ir:UpdateResolverType",
                         "security-ir:GetCaseAttachmentUploadUrl",
                         "security-ir:CreateCaseComment",
-                        "security-ir:UpdateCaseComment"
+                        "security-ir:UpdateCaseComment",
+                        "security-ir:SendFeedback",
+                        "security-ir:ListInvestigations"
                     ],
-                    "Resource": "*",
-                    "Condition": {
-                        "Bool": {
-                            "aws:MultiFactorAuthPresent": "true"
-                        }
-                    }
+                    "Resource": "*"
                 },
                 {
-                    "Sid": "SecurityIRCaseTagWriteAccess",
+                    "Sid": "SecurityIRCaseTagFullAccess",
                     "Effect": "Allow",
                     "Action": [
+                        "security-ir:ListTagsForResource",
                         "security-ir:TagResource",
                         "security-ir:UntagResource"
                     ],
-                    "Resource": "arn:aws:security-ir:*:*:case/*",
-                    "Condition": {
-                        "Bool": {
-                            "aws:MultiFactorAuthPresent": "true"
-                        }
-                    }
+                    "Resource": "arn:aws:security-ir:*:*:case/*"
                 }
             ]
         },
-        "VersionId": "v3",
+        "VersionId": "v4",
         "IsDefaultVersion": true,
-        "CreateDate": "2026-02-12T18:03:17+00:00"
+        "CreateDate": "2026-04-22T15:57:11+00:00"
     }
 }
