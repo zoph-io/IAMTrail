@@ -52,6 +52,7 @@ function SubscribeContent() {
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [honeypot, setHoneypot] = useState("");
 
   if (status === "already_confirmed") {
     return (
@@ -137,6 +138,7 @@ function SubscribeContent() {
           policies: selectedTopics.includes("iam_policies")
             ? (allPolicies ? ["*"] : selectedPolicies)
             : ["*"],
+          company: honeypot,
         }),
       });
 
@@ -203,6 +205,17 @@ function SubscribeContent() {
           >
             Email address
           </label>
+          <input
+            type="text"
+            name="company"
+            tabIndex={-1}
+            autoComplete="off"
+            value={honeypot}
+            onChange={(e) => setHoneypot(e.target.value)}
+            className="absolute w-px h-px p-0 -m-px overflow-hidden whitespace-nowrap border-0"
+            style={{ left: "-9999px" }}
+            aria-hidden="true"
+          />
           <input
             id="email"
             type="email"
@@ -457,6 +470,7 @@ function SubscribeContent() {
 
 function ResendManageLink() {
   const [email, setEmail] = useState("");
+  const [resendHoneypot, setResendHoneypot] = useState("");
   const [sent, setSent] = useState(false);
   const [loading, setLoading] = useState(false);
 
@@ -467,7 +481,7 @@ function ResendManageLink() {
       await fetch(`${API_URL}/resend-manage-link`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email }),
+        body: JSON.stringify({ email, company: resendHoneypot }),
       });
       setSent(true);
     } catch {
@@ -486,14 +500,25 @@ function ResendManageLink() {
   }
 
   return (
-    <form onSubmit={handleSubmit} className="flex gap-2 max-w-sm mx-auto">
+    <form onSubmit={handleSubmit} className="flex flex-wrap gap-2 max-w-sm mx-auto">
+      <input
+        type="text"
+        name="company"
+        tabIndex={-1}
+        autoComplete="off"
+        value={resendHoneypot}
+        onChange={(e) => setResendHoneypot(e.target.value)}
+        className="absolute w-px h-px p-0 -m-px overflow-hidden whitespace-nowrap border-0"
+        style={{ left: "-9999px" }}
+        aria-hidden="true"
+      />
       <input
         type="email"
         required
         value={email}
         onChange={(e) => setEmail(e.target.value)}
         placeholder="your@email.com"
-        className="flex-1 px-3 py-2 border border-zinc-200 dark:border-zinc-700 rounded bg-white dark:bg-zinc-900 text-zinc-900 dark:text-white placeholder-zinc-400 font-mono text-sm focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-transparent"
+        className="flex-1 min-w-0 px-3 py-2 border border-zinc-200 dark:border-zinc-700 rounded bg-white dark:bg-zinc-900 text-zinc-900 dark:text-white placeholder-zinc-400 font-mono text-sm focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-transparent"
       />
       <button
         type="submit"

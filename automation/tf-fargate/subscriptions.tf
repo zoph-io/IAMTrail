@@ -278,6 +278,22 @@ resource "aws_dynamodb_table" "subscriptions" {
   }
 }
 
+resource "aws_dynamodb_table" "rate_limits" {
+  name         = "iamtrail-rate-limits"
+  billing_mode = "PAY_PER_REQUEST"
+  hash_key     = "ip"
+
+  attribute {
+    name = "ip"
+    type = "S"
+  }
+
+  ttl {
+    attribute_name = "ttl"
+    enabled        = true
+  }
+}
+
 resource "aws_dynamodb_table" "policy_changes" {
   name         = "iamtrail-policy-changes"
   billing_mode = "PAY_PER_REQUEST"
@@ -478,6 +494,7 @@ resource "aws_lambda_function" "subscription_api" {
   environment {
     variables = {
       SUBSCRIPTIONS_TABLE = aws_dynamodb_table.subscriptions.name
+      RATE_LIMIT_TABLE    = aws_dynamodb_table.rate_limits.name
       SENDER_EMAIL        = local.sender
       SES_REGION          = local.ses_region
       SITE_URL            = "https://${local.domain_name}"
@@ -892,6 +909,11 @@ resource "aws_iam_role_policy" "subscription_api" {
           aws_dynamodb_table.subscriptions.arn,
           "${aws_dynamodb_table.subscriptions.arn}/index/*"
         ]
+      },
+      {
+        Effect   = "Allow"
+        Action   = ["dynamodb:UpdateItem"]
+        Resource = [aws_dynamodb_table.rate_limits.arn]
       },
       {
         Effect   = "Allow"

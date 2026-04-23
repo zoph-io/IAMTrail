@@ -15,11 +15,27 @@ TABLE_NAME = os.environ["SUBSCRIPTIONS_TABLE"]
 SENDER_EMAIL = os.environ["SENDER_EMAIL"]
 SITE_URL = os.environ["SITE_URL"]
 API_URL = os.environ["API_URL"]
+RATE_LIMIT_TABLE_NAME = os.environ.get("RATE_LIMIT_TABLE")
 
 table = dynamodb.Table(TABLE_NAME)
+rate_table = dynamodb.Table(RATE_LIMIT_TABLE_NAME) if RATE_LIMIT_TABLE_NAME else None
 
 EMAIL_RE = re.compile(r"^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$")
 VALID_TOPICS = {"iam_policies", "endpoints", "guardduty"}
+
+RATE_LIMIT_COUNT = 3
+RATE_LIMIT_WINDOW_S = 3600
+
+
+def canonicalize_email(raw: str) -> str:
+    email = raw.strip().lower()
+    if "@" not in email:
+        return email
+    local, _, domain = email.partition("@")
+    if domain in ("gmail.com", "googlemail.com"):
+        local = local.split("+", 1)[0].replace(".", "")
+        domain = "gmail.com"
+    return f"{local}@{domain}"
 
 
 def validate_topics(topics):
@@ -27,6 +43,34 @@ def validate_topics(topics):
         return None
     cleaned = [t for t in topics if t in VALID_TOPICS]
     return cleaned if cleaned else None
+
+
+def get_source_ip(event) -> str:
+    return (event.get("requestContext", {}).get("http", {}) or {}).get("sourceIp", "") or ""
+
+
+def check_rate_limit(source_ip: str) -> bool:
+    if not rate_table or not source_ip:
+        return True
+    res = rate_table.update_item(
+        Key={"ip": source_ip},
+        UpdateExpression="ADD #c :one SET #t = if_not_exists(#t, :ttl)",
+        ExpressionAttributeNames={"#c": "count", "#t": "ttl"},
+        ExpressionAttributeValues={
+            ":one": 1,
+            ":ttl": int(time.time()) + RATE_LIMIT_WINDOW_S,
+        },
+        ReturnValues="UPDATED_NEW",
+    )
+    count = int(res.get("Attributes", {}).get("count", 0))
+    return count <= RATE_LIMIT_COUNT
+
+
+def is_honeypot_tripped(body) -> bool:
+    val = body.get("company")
+    if val is None:
+        return False
+    return str(val).strip() != ""
 
 
 def respond(status_code, body):
@@ -56,14 +100,22 @@ def send_email(to, subject, html_body):
     )
 
 
-def handle_subscribe(body):
-    email = body.get("email", "").strip().lower()
+def handle_subscribe(body, source_ip: str):
+    if is_honeypot_tripped(body):
+        return respond(200, {"message": "Confirmation email sent. Please check your inbox."})
+
+    if not check_rate_limit(source_ip):
+        return respond(429, {"error": "Too many requests, try again later"})
+
+    email_raw = body.get("email", "").strip().lower()
+    if not email_raw or not EMAIL_RE.match(email_raw):
+        return respond(400, {"error": "Invalid email address"})
+
+    email = canonicalize_email(email_raw)
+
     policies = body.get("policies", ["*"])
     frequency = body.get("frequency", "daily")
     topics = validate_topics(body.get("topics")) or ["iam_policies"]
-
-    if not email or not EMAIL_RE.match(email):
-        return respond(400, {"error": "Invalid email address"})
 
     if frequency not in ("daily", "weekly", "instant"):
         return respond(400, {"error": "Frequency must be 'daily', 'weekly', or 'instant'"})
@@ -89,17 +141,6 @@ def handle_subscribe(body):
             "updated_at": now,
             "ttl": int(time.time()) + 86400,
         }
-    )
-
-    discord.send(
-        "New Subscriber",
-        f"{discord.mask_email(email)} signed up",
-        discord.COLOR_INFO,
-        fields=[
-            ("Frequency", frequency, True),
-            ("Topics", ", ".join(topics), True),
-            ("Policies", ", ".join(policies[:5]) if policies != ["*"] else "All", True),
-        ],
     )
 
     confirm_url = f"{API_URL}/confirm/{confirm_token}"
@@ -247,11 +288,18 @@ def handle_delete_manage(token):
     return respond(200, {"message": "Unsubscribed successfully"})
 
 
-def handle_resend_manage_link(body):
-    email = body.get("email", "").strip().lower()
+def handle_resend_manage_link(body, source_ip: str):
+    if is_honeypot_tripped(body):
+        return respond(200, {"message": "If this email is registered, a manage link has been sent."})
 
-    if not email or not EMAIL_RE.match(email):
+    if not check_rate_limit(source_ip):
+        return respond(429, {"error": "Too many requests, try again later"})
+
+    email_raw = body.get("email", "").strip().lower()
+    if not email_raw or not EMAIL_RE.match(email_raw):
         return respond(400, {"error": "Invalid email address"})
+
+    email = canonicalize_email(email_raw)
 
     # Always return success to prevent email enumeration
     item = table.get_item(Key={"email": email}).get("Item")
@@ -283,6 +331,7 @@ def handle_resend_manage_link(body):
 def handler(event, context):
     method = event.get("requestContext", {}).get("http", {}).get("method", "")
     path = event.get("rawPath", "")
+    source_ip = get_source_ip(event)
 
     try:
         body = json.loads(event.get("body", "{}") or "{}")
@@ -291,7 +340,7 @@ def handler(event, context):
 
     try:
         if method == "POST" and path == "/subscribe":
-            return handle_subscribe(body)
+            return handle_subscribe(body, source_ip)
 
         if method == "GET" and path.startswith("/confirm/"):
             token = path.split("/confirm/")[1]
@@ -310,7 +359,7 @@ def handler(event, context):
             return handle_delete_manage(token)
 
         if method == "POST" and path == "/resend-manage-link":
-            return handle_resend_manage_link(body)
+            return handle_resend_manage_link(body, source_ip)
 
         return respond(404, {"error": "Not found"})
 
