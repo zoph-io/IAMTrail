@@ -2129,12 +2129,12 @@
             "PolicyId": "ANPAID22R6XPJATWOFDK6",
             "Arn": "arn:aws:iam::aws:policy/job-function/ViewOnlyAccess",
             "Path": "/job-function/",
-            "DefaultVersionId": "v44",
+            "DefaultVersionId": "v45",
             "AttachmentCount": 1,
             "PermissionsBoundaryUsageCount": 0,
             "IsAttachable": true,
             "CreateDate": "2016-11-10T17:20:15+00:00",
-            "UpdateDate": "2026-03-31T19:27:11+00:00"
+            "UpdateDate": "2026-04-22T18:12:21+00:00"
         },
         {
             "PolicyName": "SupportUser",
@@ -3053,12 +3053,12 @@
             "PolicyId": "ANPAIVUWKCAI7URU4WUEI",
             "Arn": "arn:aws:iam::aws:policy/aws-service-role/AmazonECSServiceRolePolicy",
             "Path": "/aws-service-role/",
-            "DefaultVersionId": "v23",
+            "DefaultVersionId": "v24",
             "AttachmentCount": 1,
             "PermissionsBoundaryUsageCount": 0,
             "IsAttachable": true,
             "CreateDate": "2017-10-14T01:18:58+00:00",
-            "UpdateDate": "2026-02-12T17:58:05+00:00"
+            "UpdateDate": "2026-04-22T23:12:09+00:00"
         },
         {
             "PolicyName": "AWSApplicationAutoscalingRDSClusterPolicy",
@@ -8225,12 +8225,12 @@
             "PolicyId": "ANPAJ7W6266ELXF5MISDS",
             "Arn": "arn:aws:iam::aws:policy/aws-service-role/AWSSupportServiceRolePolicy",
             "Path": "/aws-service-role/",
-            "DefaultVersionId": "v56",
+            "DefaultVersionId": "v57",
             "AttachmentCount": 1,
             "PermissionsBoundaryUsageCount": 0,
             "IsAttachable": true,
             "CreateDate": "2018-04-19T18:04:44+00:00",
-            "UpdateDate": "2026-02-12T17:58:31+00:00"
+            "UpdateDate": "2026-04-22T18:27:07+00:00"
         },
         {
             "PolicyName": "AWSBudgetsReadOnlyAccess",
@@ -15425,36 +15425,36 @@
             "PolicyId": "ANPAZKAPJZG4BW45DRUEH",
             "Arn": "arn:aws:iam::aws:policy/AWSSecurityIncidentResponseReadOnlyAccess",
             "Path": "/",
-            "DefaultVersionId": "v3",
+            "DefaultVersionId": "v4",
             "AttachmentCount": 0,
             "PermissionsBoundaryUsageCount": 0,
             "IsAttachable": true,
             "CreateDate": "2024-12-01T23:06:06+00:00",
-            "UpdateDate": "2026-02-12T17:58:15+00:00"
+            "UpdateDate": "2026-04-22T16:12:20+00:00"
         },
         {
             "PolicyName": "AWSSecurityIncidentResponseCaseFullAccess",
             "PolicyId": "ANPAZKAPJZG4BQ4XIDCKW",
             "Arn": "arn:aws:iam::aws:policy/AWSSecurityIncidentResponseCaseFullAccess",
             "Path": "/",
-            "DefaultVersionId": "v3",
+            "DefaultVersionId": "v4",
             "AttachmentCount": 0,
             "PermissionsBoundaryUsageCount": 0,
             "IsAttachable": true,
             "CreateDate": "2024-12-01T23:21:05+00:00",
-            "UpdateDate": "2026-02-12T18:03:17+00:00"
+            "UpdateDate": "2026-04-22T15:57:11+00:00"
         },
         {
             "PolicyName": "AWSSecurityIncidentResponseFullAccess",
             "PolicyId": "ANPAZKAPJZG4CFW7Y32C3",
             "Arn": "arn:aws:iam::aws:policy/AWSSecurityIncidentResponseFullAccess",
             "Path": "/",
-            "DefaultVersionId": "v3",
+            "DefaultVersionId": "v4",
             "AttachmentCount": 0,
             "PermissionsBoundaryUsageCount": 0,
             "IsAttachable": true,
             "CreateDate": "2024-12-01T23:21:06+00:00",
-            "UpdateDate": "2026-02-12T18:02:16+00:00"
+            "UpdateDate": "2026-04-22T16:12:08+00:00"
         },
         {
             "PolicyName": "AIOpsAssistantPolicy",
