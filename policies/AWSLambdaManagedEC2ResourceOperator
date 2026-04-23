@@ -31,7 +31,8 @@
                         "ec2:DescribeInstanceTypeOfferings",
                         "ec2:DescribeInstanceTypes",
                         "ec2:DescribeSecurityGroups",
-                        "ec2:DescribeSubnets"
+                        "ec2:DescribeSubnets",
+                        "ec2:DescribeVpcEncryptionControls"
                     ],
                     "Resource": "*"
                 },
@@ -62,8 +63,8 @@
                 }
             ]
         },
-        "VersionId": "v3",
+        "VersionId": "v4",
         "IsDefaultVersion": true,
-        "CreateDate": "2026-02-12T18:01:08+00:00"
+        "CreateDate": "2026-04-23T20:42:16+00:00"
     }
 }
