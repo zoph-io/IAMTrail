@@ -8,10 +8,12 @@ export const metadata: Metadata = {
     canonical: "https://iamtrail.com/endpoints",
   },
   openGraph: {
+    siteName: "IAMTrail",
     title: "AWS Endpoint Changes | IAMTrail",
     description:
       "Monitor AWS infrastructure signals - new regions, services, and endpoint changes tracked from botocore.",
     url: "https://iamtrail.com/endpoints",
+    images: ["/social.png"],
   },
 };
 

@@ -8,10 +8,12 @@ export const metadata: Metadata = {
     canonical: "https://iamtrail.com/findings",
   },
   openGraph: {
+    siteName: "IAMTrail",
     title: "Security Findings | IAMTrail",
     description:
       "Access Analyzer results and pathfinding.cloud path overlaps on archived AWS managed IAM policies.",
     url: "https://iamtrail.com/findings",
+    images: ["/social.png"],
   },
 };
 

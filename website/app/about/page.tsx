@@ -24,10 +24,12 @@ export const metadata: Metadata = {
     canonical: "https://iamtrail.com/about",
   },
   openGraph: {
+    siteName: "IAMTrail",
     title: "About IAMTrail | AWS Change Archive Since 2019",
     description:
       "An unofficial archive tracking AWS IAM policy changes, endpoint updates, and GuardDuty announcements - with full version history, diffs, and RSS feeds.",
     url: "https://iamtrail.com/about",
+    images: ["/social.png"],
   },
 };
 

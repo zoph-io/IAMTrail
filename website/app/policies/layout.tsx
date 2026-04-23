@@ -8,10 +8,12 @@ export const metadata: Metadata = {
     canonical: "https://iamtrail.com/policies",
   },
   openGraph: {
+    siteName: "IAMTrail",
     title: "Browse All AWS Managed IAM Policies | IAMTrail",
     description:
       "Search, filter, and explore all AWS Managed IAM Policies with full version history.",
     url: "https://iamtrail.com/policies",
+    images: ["/social.png"],
   },
 };
 

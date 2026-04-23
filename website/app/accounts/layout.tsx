@@ -8,10 +8,12 @@ export const metadata: Metadata = {
     canonical: "https://iamtrail.com/accounts",
   },
   openGraph: {
+    siteName: "IAMTrail",
     title: "Known AWS Account Lookup | IAMTrail",
     description:
       "Search for AWS account IDs to identify their owners. Community-driven database of known vendor accounts.",
     url: "https://iamtrail.com/accounts",
+    images: ["/social.png"],
   },
 };
 

@@ -138,9 +138,11 @@ export async function generateMetadata(props: {
       canonical: `https://iamtrail.com/actions/${slug}`,
     },
     openGraph: {
+      siteName: "IAMTrail",
       title: `${action} | IAMTrail`,
       description,
       url: `https://iamtrail.com/actions/${slug}`,
+      images: ["/social.png"],
     },
   };
 }
