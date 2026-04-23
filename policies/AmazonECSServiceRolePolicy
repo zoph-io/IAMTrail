@@ -54,7 +54,8 @@
                         "autoscaling:PutLifecycleHook",
                         "autoscaling:DeleteLifecycleHook",
                         "autoscaling:CompleteLifecycleAction",
-                        "autoscaling:RecordLifecycleActionHeartbeat"
+                        "autoscaling:RecordLifecycleActionHeartbeat",
+                        "autoscaling:TerminateInstanceInAutoScalingGroup"
                     ],
                     "Resource": "*",
                     "Condition": {
@@ -241,8 +242,8 @@
                 }
             ]
         },
-        "VersionId": "v23",
+        "VersionId": "v24",
         "IsDefaultVersion": true,
-        "CreateDate": "2026-02-12T17:58:05+00:00"
+        "CreateDate": "2026-04-22T23:12:09+00:00"
     }
 }
