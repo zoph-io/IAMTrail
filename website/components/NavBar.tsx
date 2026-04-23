@@ -11,6 +11,7 @@ const navLinks = [
   { href: "/endpoints", label: "Endpoints" },
   { href: "/guardduty", label: "GuardDuty" },
   { href: "/subscribe", label: "Subscribe" },
+  { href: "/usage", label: "Usage" },
   { href: "/about", label: "About" },
 ];
 

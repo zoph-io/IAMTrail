@@ -3,6 +3,7 @@ const path = require("path");
 const https = require("https");
 const { simpleGit } = require("simple-git");
 const yaml = require("js-yaml");
+const { generateUsageStats } = require("./generate-usage-stats");
 
 const REPO_ROOT = path.join(__dirname, "../..");
 const POLICIES_DIR = path.join(REPO_ROOT, "policies");
@@ -1356,6 +1357,7 @@ async function main() {
   const endpointsData = await generateEndpointsData();
   const guarddutyData = await generateGuardDutyData();
   generateRSSFeeds(policyData, endpointsData, guarddutyData);
+  await generateUsageStats();
 }
 
 main().catch((error) => {
