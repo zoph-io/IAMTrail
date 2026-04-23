@@ -584,11 +584,9 @@
                         "pca-connector-scep:List*",
                         "personalize:Describe*",
                         "personalize:List*",
-                        "pi:DescribeDimensionKeys",
-                        "pi:GetResourceMetadata",
-                        "pi:GetResourceMetrics",
-                        "pi:ListAvailableResourceDimensions",
-                        "pi:ListAvailableResourceMetrics",
+                        "pi:Describe*",
+                        "pi:Get*",
+                        "pi:List*",
                         "pipes:Describe*",
                         "pipes:List*",
                         "proton:GetEnvironmentTemplate",
@@ -859,8 +857,8 @@
                 }
             ]
         },
-        "VersionId": "v1",
+        "VersionId": "v2",
         "IsDefaultVersion": true,
-        "CreateDate": "2026-03-26T03:42:09+00:00"
+        "CreateDate": "2026-04-23T15:42:07+00:00"
     }
 }
