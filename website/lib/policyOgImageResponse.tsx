@@ -1,3 +1,4 @@
+import { policyOgSize } from "@/lib/policyOgSize";
 import { ImageResponse } from "next/og";
 import fs from "node:fs";
 import path from "node:path";
@@ -26,36 +27,20 @@ function titleFontSize(name: string): number {
   return 48;
 }
 
-export const size = { width: 1200, height: 630 };
-export const contentType = "image/png";
-
-export async function generateStaticParams() {
-  try {
-    const { policies } = loadSummary();
-    return policies.map((p) => ({ name: p.name }));
-  } catch (e) {
-    console.error("opengraph-image generateStaticParams:", e);
-    return [];
-  }
-}
-
-export default async function Image({
-  params,
-}: {
-  params: Promise<{ name: string }>;
-}) {
-  const { name: rawName } = await params;
-  const decoded = decodeURIComponent(rawName);
-
+/**
+ * Per-policy Open Graph / social preview image (ImageResponse).
+ * `decodedPolicyName` must be the real policy name (not URL-encoded).
+ */
+export function buildPolicyOgImageResponse(decodedPolicyName: string) {
   let policy: PolicyRow | undefined;
   try {
     const { policies } = loadSummary();
-    policy = policies.find((p) => p.name === decoded);
+    policy = policies.find((p) => p.name === decodedPolicyName);
   } catch {
     policy = undefined;
   }
 
-  const displayName = policy?.name ?? decoded;
+  const displayName = policy?.name ?? decodedPolicyName;
   const versionLabel = policy?.versionId
     ? `Version ${policy.versionId}`
     : "Version —";
@@ -86,7 +71,13 @@ export default async function Image({
             width: "100%",
           }}
         >
-          <div style={{ display: "flex", flexDirection: "row", alignItems: "baseline" }}>
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "row",
+              alignItems: "baseline",
+            }}
+          >
             <span
               style={{
                 fontSize: 28,
@@ -199,7 +190,8 @@ export default async function Image({
       </div>
     ),
     {
-      ...size,
+      width: policyOgSize.width,
+      height: policyOgSize.height,
     },
   );
 }

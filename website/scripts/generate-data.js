@@ -1244,15 +1244,19 @@ function generateRSSFeeds(policyData, endpointsData, guarddutyData) {
     })
     .sort((a, b) => new Date(b.date) - new Date(a.date))
     .slice(0, MAX_ITEMS)
-    .map((e) => ({
-      title: `${e.policyName} updated`,
-      link: `${GITHUB_REPO}/commit/${e.hash}`,
-      guid: `${GITHUB_REPO}/commit/${e.hash}`,
-      permalink: true,
-      date: e.date,
-      category: "IAM Policy",
-      description: `<p>Policy <strong>${escapeXml(e.policyName)}</strong> was updated.</p><p>${escapeXml(e.message)}</p><p><a href="${SITE_URL}/policies/${encodeURIComponent(e.policyName)}/">View on IAMTrail</a></p>`,
-    }));
+    .map((e) => {
+      const policyUrl = `${SITE_URL}/policies/${encodeURIComponent(e.policyName)}/`;
+      const shortHash = (e.hash || "").slice(0, 7);
+      return {
+        title: `${e.policyName} updated`,
+        link: policyUrl,
+        guid: `${GITHUB_REPO}/commit/${e.hash}`,
+        permalink: false,
+        date: e.date,
+        category: "IAM Policy",
+        description: `<p>Policy <strong>${escapeXml(e.policyName)}</strong> was updated.</p><p>${escapeXml(e.message)}</p>${shortHash ? `<p>Commit: ${escapeXml(shortHash)}</p>` : ""}`,
+      };
+    });
 
   const policyFeed = buildRSSFeed(
     {
@@ -1274,14 +1278,15 @@ function generateRSSFeeds(policyData, endpointsData, guarddutyData) {
       const changeList = r.changes
         .map((c) => `<li>${escapeXml(c.description)}</li>`)
         .join("");
+      const guid = r.botocore_commit_url || `iamtrail:endpoints:${r.detected_at}`;
       return {
         title: `Endpoint changes: ${r.summary}`,
-        link: r.botocore_commit_url || `${SITE_URL}/endpoints/`,
-        guid: r.botocore_commit_url || `endpoint-${r.detected_at}`,
-        permalink: !!r.botocore_commit_url,
+        link: `${SITE_URL}/endpoints/`,
+        guid,
+        permalink: false,
         date: r.detected_at,
         category: "Endpoints",
-        description: `<p>${escapeXml(r.summary)}</p><ul>${changeList}</ul><p><a href="${SITE_URL}/endpoints/">View on IAMTrail</a></p>`,
+        description: `<p>${escapeXml(r.summary)}</p><ul>${changeList}</ul>`,
       };
     });
 

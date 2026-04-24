@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { policyOgSize } from "@/lib/policyOgSize";
 import PolicyDetailClient from "./PolicyDetailClient";
 
 export async function generateStaticParams() {
@@ -23,6 +24,8 @@ export async function generateMetadata(props: {
 }): Promise<Metadata> {
   const params = await props.params;
   const policyName = decodeURIComponent(params.name);
+  const policyPath = encodeURIComponent(policyName);
+  const ogPng = `https://iamtrail.com/policies/${policyPath}/opengraph.png`;
   return {
     title: `${policyName} - AWS Managed IAM Policy`,
     description: `View the full version history, JSON document, and change log for the ${policyName} AWS Managed IAM Policy.`,
@@ -30,9 +33,24 @@ export async function generateMetadata(props: {
       canonical: `https://iamtrail.com/policies/${encodeURIComponent(policyName)}`,
     },
     openGraph: {
+      siteName: "IAMTrail",
       title: `${policyName} | IAMTrail`,
       description: `Version history and details for the ${policyName} AWS Managed IAM Policy.`,
       url: `https://iamtrail.com/policies/${encodeURIComponent(policyName)}`,
+      images: [
+        {
+          url: ogPng,
+          width: policyOgSize.width,
+          height: policyOgSize.height,
+          alt: `IAMTrail - ${policyName} managed policy preview`,
+        },
+      ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: `${policyName} | IAMTrail`,
+      description: `Version history and details for the ${policyName} AWS Managed IAM Policy.`,
+      images: [ogPng],
     },
   };
 }
