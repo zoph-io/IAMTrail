@@ -92,7 +92,7 @@ resource "aws_iam_role_policy" "ecs_service_role_policy" {
 
 resource "aws_iam_policy" "github_actions" {
   name        = "iamtrail-github-actions-policy"
-  description = "IAM policy for IAMTrail GitHub Actions workflows (Terraform, website deploy, endpoint monitor)"
+  description = "IAM policy for IAMTrail GitHub Actions (Terraform, website deploy, etc.). Includes DDB + CloudWatch read for /usage page build (SES Send in eu-west-3)."
   policy      = file("${path.module}/../github-actions-iam-policy.json")
 
   tags = var.tags
