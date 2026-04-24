@@ -32,6 +32,14 @@ jobs:
         with:
           fetch-depth: 0 # Fetch all history for git operations
 
+      - name: Configure AWS credentials
+        # Must run before generate-data so usage-stats (DynamoDB + CloudWatch in eu-west-1 / eu-west-3) can refresh. If the role cannot read those APIs, the generator keeps the last committed public/data/usage-stats.json.
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: ${{ secrets.ROLE_TO_ASSUME }}
+          role-session-name: GH-Actions-IAMTrail-Website-Deploy
+          aws-region: ${{ env.AWS_REGION }}
+
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
@@ -52,13 +60,6 @@ jobs:
         run: npm run build
         env:
           NEXT_PUBLIC_USE_BASE_PATH: "false" # Custom domain, no basePath
-
-      - name: Configure AWS credentials
-        uses: aws-actions/configure-aws-credentials@v4
-        with:
-          role-to-assume: ${{ secrets.ROLE_TO_ASSUME }}
-          role-session-name: GH-Actions-IAMTrail-Website-Deploy
-          aws-region: ${{ env.AWS_REGION }}
 
       - name: Sync to S3
         working-directory: ./website

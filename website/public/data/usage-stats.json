@@ -1,0 +1,42 @@
+{
+  "available": true,
+  "generatedAt": "2026-04-24T09:05:47.036Z",
+  "launchDate": "2026-03-11T00:00:00.000Z",
+  "displaySubscriberCount": 35,
+  "confirmedCountExact": 33,
+  "daysActive": 45,
+  "totalSend": 570,
+  "last30DaysSend": 549,
+  "frequency": {
+    "daily": 13,
+    "weekly": 15,
+    "instant": 5
+  },
+  "topics": {
+    "iam_policies": 32,
+    "endpoints": 21,
+    "guardduty": 22
+  },
+  "allPoliciesSubscribers": 31,
+  "narrowSubscribers": 2,
+  "topNarrowPolicies": [
+    {
+      "name": "AWSCompromisedKeyQuarantineV3",
+      "count": 2
+    },
+    {
+      "name": "SecurityAudit",
+      "count": 2
+    }
+  ],
+  "signupsByMonth": [
+    {
+      "month": "2026-03",
+      "count": 21
+    },
+    {
+      "month": "2026-04",
+      "count": 12
+    }
+  ]
+}

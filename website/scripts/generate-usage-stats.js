@@ -199,15 +199,24 @@ async function generateUsageStats() {
       : "stub";
     console.log(`   📧 Usage stats: ${label}`);
   } catch (e) {
+    const msg = e instanceof Error ? e.message : String(e);
     const prev = loadExistingOrStub();
-    const merged = { ...STUB, ...prev, available: false, reason: String(e) };
+    if (prev && prev.available === true) {
+      console.warn(
+        "   📧 Usage stats: AWS error; keeping existing snapshot (",
+        msg,
+        ")"
+      );
+      return;
+    }
+    const merged = { ...STUB, ...prev, available: false, reason: msg };
     fs.mkdirSync(path.dirname(out), { recursive: true });
     fs.writeFileSync(
       out,
       JSON.stringify(merged, null, 2) + "\n",
       "utf8"
     );
-    console.warn("   📧 Usage stats: skipped (", e && e.message, "- kept/fallback file)");
+    console.warn("   📧 Usage stats: skipped (", msg, "- wrote fallback stub)");
   }
 }
 

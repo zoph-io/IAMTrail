@@ -34,5 +34,7 @@ next-env.d.ts
 
 # Generated data
 /public/data/*.json
+# Track last-known usage stats so CI and local builds without AWS still show a snapshot
+!/public/data/usage-stats.json
 /public/sitemap.xml
 /public/feeds/*.xml
