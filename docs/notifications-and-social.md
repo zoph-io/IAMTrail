@@ -15,9 +15,9 @@ Posting is **disabled** in code (Feb 2026 X API pay-per-use). `automation/script
 
 ## GitHub Actions IAM
 
-The `GhA-MAMIP-Role` policy in [`automation/github-actions-iam-policy.json`](../automation/github-actions-iam-policy.json) includes:
+`GhA-MAMIP-Role` uses **three** customer-managed policies (split to stay under the 6,144 character limit per policy). The JSON files live in `automation/`: [github-actions-01-s3-foundation.json](../automation/github-actions-01-s3-foundation.json) (S3, ECS, ECR, CloudWatch logs, CloudFront, R53, ACM, Events, misc read), [github-actions-02-iam.json](../automation/github-actions-02-iam.json) (IAM for Terraform and self-attach to this role), and [github-actions-03-services.json](../automation/github-actions-03-services.json) (DDB, Lambda, SQS, SNS, API Gateway, Secrets, SSM, `cloudwatch:GetMetricStatistics`, and other services).
 
-- `sqs:SendMessage` on `arn:aws:sqs:eu-west-1:567589703415:qbsky-mamip-prod-sqs-queue.fifo` (Bluesky queue).
-- `ssm:GetParameter` on `arn:aws:ssm:eu-west-1:567589703415:parameter/iamtrail/*` (shared GitHub Actions policy size limit - covers both Discord webhook parameters under `/iamtrail/`).
+- `sqs:SendMessage` on the Bluesky FIFO queue and related permissions are in `03-services`.
+- `ssm:GetParameter` on `arn:aws:ssm:eu-west-1:567589703415:parameter/iamtrail/*` (Discord webhooks under `/iamtrail/`) is in `03-services`.
 
-After editing that JSON, apply the Terraform attachment (or attach the policy to the role manually) so workflows can post.
+`aws_iam_policy` / `aws_iam_role_policy_attachment` in [`automation/tf-fargate/iam.tf`](../automation/tf-fargate/iam.tf) apply these. After changing any fragment, `terraform apply` the `automation/tf-fargate` stack.

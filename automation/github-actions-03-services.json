@@ -1,0 +1,142 @@
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Sid": "DynamoDB",
+      "Effect": "Allow",
+      "Action": [
+        "dynamodb:CreateTable",
+        "dynamodb:DescribeTable",
+        "dynamodb:UpdateTable",
+        "dynamodb:DeleteTable",
+        "dynamodb:DescribeTimeToLive",
+        "dynamodb:UpdateTimeToLive",
+        "dynamodb:TagResource",
+        "dynamodb:UntagResource",
+        "dynamodb:ListTagsOfResource",
+        "dynamodb:DescribeContinuousBackups",
+        "dynamodb:PutItem",
+        "dynamodb:BatchWriteItem",
+        "dynamodb:Scan",
+        "dynamodb:Query"
+      ],
+      "Resource": "arn:aws:dynamodb:eu-west-1:567589703415:table/iamtrail-*"
+    },
+    {
+      "Sid": "SecretsManager",
+      "Effect": "Allow",
+      "Action": [
+        "secretsmanager:CreateSecret",
+        "secretsmanager:DeleteSecret",
+        "secretsmanager:DescribeSecret",
+        "secretsmanager:GetSecretValue",
+        "secretsmanager:PutSecretValue",
+        "secretsmanager:TagResource",
+        "secretsmanager:UntagResource",
+        "secretsmanager:GetResourcePolicy"
+      ],
+      "Resource": "arn:aws:secretsmanager:eu-west-1:567589703415:secret:iamtrail/social/*"
+    },
+    {
+      "Sid": "SQS",
+      "Effect": "Allow",
+      "Action": [
+        "sqs:CreateQueue",
+        "sqs:GetQueueAttributes",
+        "sqs:SetQueueAttributes",
+        "sqs:DeleteQueue",
+        "sqs:GetQueueUrl",
+        "sqs:TagQueue",
+        "sqs:ListQueueTags",
+        "sqs:SendMessage"
+      ],
+      "Resource": [
+        "arn:aws:sqs:eu-west-1:567589703415:iamtrail-*",
+        "arn:aws:sqs:eu-west-1:567589703415:qbsky-mamip-prod-sqs-queue.fifo"
+      ]
+    },
+    {
+      "Sid": "SNS",
+      "Effect": "Allow",
+      "Action": [
+        "sns:CreateTopic",
+        "sns:GetTopicAttributes",
+        "sns:SetTopicAttributes",
+        "sns:DeleteTopic",
+        "sns:Subscribe",
+        "sns:Unsubscribe",
+        "sns:GetSubscriptionAttributes",
+        "sns:ListSubscriptionsByTopic",
+        "sns:TagResource",
+        "sns:ListTagsForResource"
+      ],
+      "Resource": [
+        "arn:aws:sns:eu-west-1:567589703415:mamip*",
+        "arn:aws:sns:eu-west-1:567589703415:mamip*:*",
+        "arn:aws:sns:eu-west-1:965013871422:GuardDutyAnnouncements"
+      ]
+    },
+    {
+      "Sid": "Lambda",
+      "Effect": "Allow",
+      "Action": [
+        "lambda:CreateFunction",
+        "lambda:GetFunction",
+        "lambda:GetFunctionConfiguration",
+        "lambda:GetFunctionCodeSigningConfig",
+        "lambda:UpdateFunctionCode",
+        "lambda:UpdateFunctionConfiguration",
+        "lambda:DeleteFunction",
+        "lambda:AddPermission",
+        "lambda:RemovePermission",
+        "lambda:GetPolicy",
+        "lambda:TagResource",
+        "lambda:ListTags",
+        "lambda:ListVersionsByFunction",
+        "lambda:PutFunctionConcurrency"
+      ],
+      "Resource": "arn:aws:lambda:eu-west-1:567589703415:function:iamtrail-*"
+    },
+    {
+      "Sid": "LambdaEventSourceMapping",
+      "Effect": "Allow",
+      "Action": [
+        "lambda:*EventSourceMapping*",
+        "lambda:ListTags",
+        "lambda:TagResource",
+        "lambda:UntagResource"
+      ],
+      "Resource": "*"
+    },
+    {
+      "Sid": "APIGateway",
+      "Effect": "Allow",
+      "Action": [
+        "apigateway:GET",
+        "apigateway:POST",
+        "apigateway:PUT",
+        "apigateway:PATCH",
+        "apigateway:DELETE"
+      ],
+      "Resource": [
+        "arn:aws:apigateway:eu-west-1::/apis",
+        "arn:aws:apigateway:eu-west-1::/apis/*",
+        "arn:aws:apigateway:eu-west-1::/domainnames",
+        "arn:aws:apigateway:eu-west-1::/domainnames/*",
+        "arn:aws:apigateway:eu-west-1::/tags/*"
+      ]
+    },
+    {
+      "Effect": "Allow",
+      "Action": "ssm:GetParameter",
+      "Resource": "arn:aws:ssm:eu-west-1:567589703415:parameter/iamtrail/*",
+      "Sid": "SsmGetParameter"
+    },
+    {
+      "Sid": "CloudWatchGetMetricStatisticsForWebsiteUsage",
+      "Effect": "Allow",
+      "Action": "cloudwatch:GetMetricStatistics",
+      "Resource": "*"
+    }
+  ]
+}

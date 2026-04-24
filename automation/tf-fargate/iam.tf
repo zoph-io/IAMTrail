@@ -58,7 +58,7 @@ data "aws_iam_policy_document" "ecs_service_policy" {
     ]
   }
   statement {
-    effect    = "Allow"
+    effect = "Allow"
     resources = [
       "arn:aws:ssm:${var.aws_region}:${data.aws_caller_identity.current.account_id}:parameter/iamtrail/discord-webhook-url",
       "arn:aws:ssm:${var.aws_region}:${data.aws_caller_identity.current.account_id}:parameter/iamtrail/discord-public-webhook-url"
@@ -87,20 +87,47 @@ resource "aws_iam_role_policy" "ecs_service_role_policy" {
 }
 
 # ──────────────────────────────────────────────
-# GitHub Actions IAM Policy (GhA-MAMIP-Role)
+# GitHub Actions IAM: three managed policies (6,144 character limit per policy).
+# Replaces the former `iamtrail-github-actions-policy` single document.
+# Apply once: state drops `github_actions` + attachment and creates these
+# (Terraform usually creates the new policies and attachments before destroying
+# the old managed policy, but if you see a denied workflow mid-apply, re-run apply).
 # ──────────────────────────────────────────────
 
-resource "aws_iam_policy" "github_actions" {
-  name        = "iamtrail-github-actions-policy"
-  description = "IAM policy for IAMTrail GitHub Actions (Terraform, website deploy, etc.). Includes DDB + CloudWatch read for /usage page build (SES Send in eu-west-3)."
-  policy      = file("${path.module}/../github-actions-iam-policy.json")
-
-  tags = var.tags
+resource "aws_iam_policy" "github_actions_s3_foundation" {
+  name        = "iamtrail-github-actions-01-s3-foundation"
+  description = "GitHub Actions: S3/website, ECS, ECR, CloudWatch logs, CloudFront, R53, ACM, Events."
+  policy      = file("${path.module}/../github-actions-01-s3-foundation.json")
+  tags        = var.tags
 }
 
-resource "aws_iam_role_policy_attachment" "github_actions" {
+resource "aws_iam_policy" "github_actions_iam" {
+  name        = "iamtrail-github-actions-02-iam"
+  description = "GitHub Actions: IAM role and customer-managed policy for Terraform and self-attach to GhA-MAMIP-Role."
+  policy      = file("${path.module}/../github-actions-02-iam.json")
+  tags        = var.tags
+}
+
+resource "aws_iam_policy" "github_actions_services" {
+  name        = "iamtrail-github-actions-03-services"
+  description = "GitHub Actions: DDB, Lambda, API Gateway, SQS, SNS, Secrets, SSM, GetMetricStatistics (e.g. SES / usage page)."
+  policy      = file("${path.module}/../github-actions-03-services.json")
+  tags        = var.tags
+}
+
+resource "aws_iam_role_policy_attachment" "github_actions_s3_foundation" {
   role       = "GhA-MAMIP-Role"
-  policy_arn = aws_iam_policy.github_actions.arn
+  policy_arn = aws_iam_policy.github_actions_s3_foundation.arn
+}
+
+resource "aws_iam_role_policy_attachment" "github_actions_iam" {
+  role       = "GhA-MAMIP-Role"
+  policy_arn = aws_iam_policy.github_actions_iam.arn
+}
+
+resource "aws_iam_role_policy_attachment" "github_actions_services" {
+  role       = "GhA-MAMIP-Role"
+  policy_arn = aws_iam_policy.github_actions_services.arn
 }
 
 # SNS Topic Policy to allow CloudWatch Events to publish

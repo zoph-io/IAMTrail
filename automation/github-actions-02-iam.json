@@ -1,0 +1,76 @@
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Sid": "IAMRoles",
+      "Effect": "Allow",
+      "Action": [
+        "iam:GetRole",
+        "iam:CreateRole",
+        "iam:DeleteRole",
+        "iam:UpdateAssumeRolePolicy",
+        "iam:PutRolePolicy",
+        "iam:GetRolePolicy",
+        "iam:DeleteRolePolicy",
+        "iam:ListRolePolicies",
+        "iam:ListAttachedRolePolicies",
+        "iam:ListInstanceProfilesForRole",
+        "iam:TagRole",
+        "iam:UntagRole"
+      ],
+      "Resource": [
+        "arn:aws:iam::567589703415:role/mamip_ecs_role_*",
+        "arn:aws:iam::567589703415:role/iamtrail-*"
+      ]
+    },
+    {
+      "Sid": "IAMPassRole",
+      "Effect": "Allow",
+      "Action": "iam:PassRole",
+      "Resource": [
+        "arn:aws:iam::567589703415:role/mamip_ecs_role_*",
+        "arn:aws:iam::567589703415:role/iamtrail-*",
+        "arn:aws:iam::567589703415:role/ecsEventsRole",
+        "arn:aws:iam::567589703415:role/ecsTaskExecutionRole"
+      ]
+    },
+    {
+      "Sid": "IAMPolicySelfManage",
+      "Effect": "Allow",
+      "Action": [
+        "iam:GetPolicy",
+        "iam:GetPolicyVersion",
+        "iam:ListPolicyVersions",
+        "iam:CreatePolicy",
+        "iam:CreatePolicyVersion",
+        "iam:DeletePolicy",
+        "iam:DeletePolicyVersion",
+        "iam:TagPolicy",
+        "iam:ListPolicyTags"
+      ],
+      "Resource": "arn:aws:iam::567589703415:policy/iamtrail-*"
+    },
+    {
+      "Sid": "IAMPolicyRead",
+      "Effect": "Allow",
+      "Action": [
+        "iam:GetPolicyVersion",
+        "iam:ListPolicyVersions"
+      ],
+      "Resource": [
+        "arn:aws:iam::567589703415:policy/*",
+        "arn:aws:iam::aws:policy/*"
+      ]
+    },
+    {
+      "Sid": "IAMPolicyAttach",
+      "Effect": "Allow",
+      "Action": [
+        "iam:AttachRolePolicy",
+        "iam:DetachRolePolicy",
+        "iam:ListAttachedRolePolicies"
+      ],
+      "Resource": "arn:aws:iam::567589703415:role/GhA-MAMIP-Role"
+    }
+  ]
+}
