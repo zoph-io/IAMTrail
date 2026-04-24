@@ -21,6 +21,7 @@
                         "s3:GetBucketTagging",
                         "s3:GetAccountPublicAccessBlock",
                         "s3:ListAllMyBuckets",
+                        "s3:ListBucket",
                         "s3:GetBucketAcl",
                         "s3:GetBucketPolicy",
                         "s3:GetBucketPolicyStatus",
@@ -32,7 +33,9 @@
                         "ec2:DescribeVpcs",
                         "ec2:DescribeSecurityGroups",
                         "ecs:ListClusters",
-                        "ecs:DescribeClusters"
+                        "ecs:DescribeClusters",
+                        "ecs:DescribeTasks",
+                        "ecs:DescribeTaskDefinition"
                     ],
                     "Resource": "*"
                 },
@@ -272,8 +275,8 @@
                 }
             ]
         },
-        "VersionId": "v11",
+        "VersionId": "v12",
         "IsDefaultVersion": true,
-        "CreateDate": "2026-03-25T20:57:15+00:00"
+        "CreateDate": "2026-04-24T20:12:17+00:00"
     }
 }
