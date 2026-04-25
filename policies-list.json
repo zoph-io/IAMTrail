@@ -3329,12 +3329,12 @@
             "PolicyId": "ANPAIHZREZOWNSSA6FWQO",
             "Arn": "arn:aws:iam::aws:policy/aws-service-role/AmazonGuardDutyServiceRolePolicy",
             "Path": "/aws-service-role/",
-            "DefaultVersionId": "v11",
+            "DefaultVersionId": "v12",
             "AttachmentCount": 1,
             "PermissionsBoundaryUsageCount": 0,
             "IsAttachable": true,
             "CreateDate": "2017-11-28T20:12:59+00:00",
-            "UpdateDate": "2026-03-25T20:57:15+00:00"
+            "UpdateDate": "2026-04-24T20:12:17+00:00"
         },
         {
             "PolicyName": "AmazonGuardDutyReadOnlyAccess",
