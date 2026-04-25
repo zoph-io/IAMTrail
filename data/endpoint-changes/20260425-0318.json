@@ -1,0 +1,31 @@
+{
+  "detected_at": "2026-04-25T03:18:10.266Z",
+  "botocore_commit": "243b48e8f21e9c814e63bbe93221590da6c48904",
+  "botocore_commit_url": "https://github.com/boto/botocore/commit/243b48e8f21e9c814e63bbe93221590da6c48904",
+  "summary": "2 service expansion(s)",
+  "changes": [
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "cloudhsmv2",
+      "id": "cloudhsmv2",
+      "new_regions": [
+        "ap-southeast-6"
+      ],
+      "description": "cloudhsmv2 expanded to ap-southeast-6"
+    },
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "mgn",
+      "id": "mgn",
+      "new_regions": [
+        "ap-east-2",
+        "ap-southeast-6",
+        "ca-west-1",
+        "mx-central-1"
+      ],
+      "description": "mgn expanded to ap-east-2, ap-southeast-6, ca-west-1, mx-central-1"
+    }
+  ]
+}
