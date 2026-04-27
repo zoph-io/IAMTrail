@@ -29,11 +29,26 @@
                     "Resource": [
                         "*"
                     ]
+                },
+                {
+                    "Sid": "AllowCreateServiceLinkedRole",
+                    "Effect": "Allow",
+                    "Action": [
+                        "iam:CreateServiceLinkedRole"
+                    ],
+                    "Resource": [
+                        "arn:aws:iam::*:role/aws-service-role/transform-custom.amazonaws.com/AWSServiceRoleForAWSTransformCustom"
+                    ],
+                    "Condition": {
+                        "StringEquals": {
+                            "iam:AWSServiceName": "transform-custom.amazonaws.com"
+                        }
+                    }
                 }
             ]
         },
-        "VersionId": "v3",
+        "VersionId": "v4",
         "IsDefaultVersion": true,
-        "CreateDate": "2026-02-12T17:57:08+00:00"
+        "CreateDate": "2026-04-27T19:27:10+00:00"
     }
 }
