@@ -14789,12 +14789,12 @@
             "PolicyId": "ANPAZKAPJZG4BAR6P5E2F",
             "Arn": "arn:aws:iam::aws:policy/AmazonEKSLoadBalancingPolicy",
             "Path": "/",
-            "DefaultVersionId": "v6",
+            "DefaultVersionId": "v7",
             "AttachmentCount": 0,
             "PermissionsBoundaryUsageCount": 0,
             "IsAttachable": true,
             "CreateDate": "2024-10-30T20:18:06+00:00",
-            "UpdateDate": "2026-04-14T20:27:17+00:00"
+            "UpdateDate": "2026-04-27T22:12:10+00:00"
         },
         {
             "PolicyName": "AmazonEKSBlockStoragePolicy",
@@ -17177,24 +17177,24 @@
             "PolicyId": "ANPAZKAPJZG4IIT37LRVJ",
             "Arn": "arn:aws:iam::aws:policy/AWSTransformCustomExecuteTransformations",
             "Path": "/",
-            "DefaultVersionId": "v3",
+            "DefaultVersionId": "v4",
             "AttachmentCount": 0,
             "PermissionsBoundaryUsageCount": 0,
             "IsAttachable": true,
             "CreateDate": "2025-12-05T15:34:10+00:00",
-            "UpdateDate": "2026-02-12T17:59:21+00:00"
+            "UpdateDate": "2026-04-27T19:42:16+00:00"
         },
         {
             "PolicyName": "AWSTransformCustomManageTransformations",
             "PolicyId": "ANPAZKAPJZG4MBD6F5EQV",
             "Arn": "arn:aws:iam::aws:policy/AWSTransformCustomManageTransformations",
             "Path": "/",
-            "DefaultVersionId": "v3",
+            "DefaultVersionId": "v4",
             "AttachmentCount": 0,
             "PermissionsBoundaryUsageCount": 0,
             "IsAttachable": true,
             "CreateDate": "2025-12-05T15:49:07+00:00",
-            "UpdateDate": "2026-02-12T17:57:08+00:00"
+            "UpdateDate": "2026-04-27T19:27:10+00:00"
         },
         {
             "PolicyName": "AccountManagementFromVercel",
@@ -17807,6 +17807,18 @@
             "IsAttachable": true,
             "CreateDate": "2026-04-16T17:27:16+00:00",
             "UpdateDate": "2026-04-16T17:27:16+00:00"
+        },
+        {
+            "PolicyName": "EC2ApplicationStatusChecksServiceRolePolicy",
+            "PolicyId": "ANPAZKAPJZG4GRZA2WAIB",
+            "Arn": "arn:aws:iam::aws:policy/aws-service-role/EC2ApplicationStatusChecksServiceRolePolicy",
+            "Path": "/aws-service-role/",
+            "DefaultVersionId": "v1",
+            "AttachmentCount": 0,
+            "PermissionsBoundaryUsageCount": 0,
+            "IsAttachable": true,
+            "CreateDate": "2026-04-27T23:42:19+00:00",
+            "UpdateDate": "2026-04-27T23:42:19+00:00"
         },
         {
             "PolicyName": "AWSConfigRole",
