@@ -40,13 +40,19 @@
                     "Sid": "AIEnvironmentAnalysisInvokeFoundationModel",
                     "Effect": "Allow",
                     "Action": "bedrock:InvokeModel",
-                    "Resource": "arn:aws:bedrock:*::foundation-model/anthropic.claude-*"
+                    "Resource": [
+                        "arn:aws:bedrock:*::foundation-model/anthropic.claude-*",
+                        "arn:aws:bedrock:*::foundation-model/amazon.nova-*"
+                    ]
                 },
                 {
                     "Sid": "AIEnvironmentAnalysisInvokeInferenceProfile",
                     "Effect": "Allow",
                     "Action": "bedrock:InvokeModel",
-                    "Resource": "arn:aws:bedrock:*:*:inference-profile/*anthropic.claude-*",
+                    "Resource": [
+                        "arn:aws:bedrock:*:*:inference-profile/*anthropic.claude-*",
+                        "arn:aws:bedrock:*:*:inference-profile/*amazon.nova-*"
+                    ],
                     "Condition": {
                         "StringEquals": {
                             "aws:ResourceAccount": "${aws:PrincipalAccount}"
@@ -62,11 +68,21 @@
                         "elasticbeanstalk:DescribeEnvironmentHealth"
                     ],
                     "Resource": "*"
+                },
+                {
+                    "Sid": "MarketplaceOperationsFromBedrock",
+                    "Effect": "Allow",
+                    "Action": [
+                        "aws-marketplace:Subscribe",
+                        "aws-marketplace:ViewSubscriptions",
+                        "aws-marketplace:Unsubscribe"
+                    ],
+                    "Resource": "*"
                 }
             ]
         },
-        "VersionId": "v4",
+        "VersionId": "v5",
         "IsDefaultVersion": true,
-        "CreateDate": "2026-03-12T14:12:13+00:00"
+        "CreateDate": "2026-04-29T19:27:11+00:00"
     }
 }
