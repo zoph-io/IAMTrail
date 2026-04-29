@@ -79,11 +79,37 @@
                             ]
                         }
                     }
+                },
+                {
+                    "Sid": "SecurityHubCSPMServiceRoleConfig",
+                    "Effect": "Allow",
+                    "Action": [
+                        "config:PutServiceLinkedConfigurationRecorder",
+                        "config:DeleteServiceLinkedConfigurationRecorder",
+                        "config:DescribeConfigurationRecorders",
+                        "config:DescribeConfigurationRecorderStatus"
+                    ],
+                    "Resource": [
+                        "arn:aws:config:*:*:configuration-recorder/*ConfigurationRecorderForSecurityHubCSPM*"
+                    ]
+                },
+                {
+                    "Sid": "SecurityHubCSPMServiceRoleIamPermissions",
+                    "Effect": "Allow",
+                    "Action": [
+                        "iam:CreateServiceLinkedRole"
+                    ],
+                    "Resource": "arn:aws:iam::*:role/aws-service-role/config.amazonaws.com/AWSServiceRoleForConfig",
+                    "Condition": {
+                        "StringEquals": {
+                            "iam:AWSServiceName": "config.amazonaws.com"
+                        }
+                    }
                 }
             ]
         },
-        "VersionId": "v14",
+        "VersionId": "v15",
         "IsDefaultVersion": true,
-        "CreateDate": "2023-11-27T03:46:47+00:00"
+        "CreateDate": "2026-04-29T14:27:11+00:00"
     }
 }
