@@ -114,7 +114,8 @@
                         "tax:PutSupplementalTaxRegistration",
                         "tax:DeleteSupplementalTaxRegistration",
                         "tax:GetTaxRegistration",
-                        "aws-marketplace:ListPayables"
+                        "aws-marketplace:ListPayables",
+                        "aws-marketplace:ListInvoiceSubmissionTasks"
                     ],
                     "Resource": "*"
                 },
@@ -123,10 +124,19 @@
                     "Effect": "Allow",
                     "Action": [
                         "aws-marketplace:StartInvoiceSubmissionTask",
-                        "aws-marketplace:GetInvoiceSubmissionTask",
-                        "aws-marketplace:ListInvoiceSubmissionTasks"
+                        "aws-marketplace:GetInvoiceSubmissionTask"
                     ],
                     "Resource": "arn:aws:aws-marketplace:*:*:catalog/AWSMarketplace*/invoice-submission-task/*"
+                },
+                {
+                    "Sid": "MarketplaceEphemeralWriteS3Access",
+                    "Effect": "Allow",
+                    "Action": [
+                        "s3:PutObject"
+                    ],
+                    "Resource": [
+                        "arn:aws:s3:::aws-partner-central-marketplace-ephemeral-writeonly-files/${aws:PrincipalAccount}/*"
+                    ]
                 },
                 {
                     "Sid": "Support",
@@ -229,8 +239,8 @@
                 }
             ]
         },
-        "VersionId": "v27",
+        "VersionId": "v28",
         "IsDefaultVersion": true,
-        "CreateDate": "2026-04-21T18:12:11+00:00"
+        "CreateDate": "2026-04-29T21:12:06+00:00"
     }
 }
