@@ -1,0 +1,19 @@
+{
+  "detected_at": "2026-04-30T03:48:59.426Z",
+  "botocore_commit": "44df5850e51fe566075fd5ecd3a8a512aedec47a",
+  "botocore_commit_url": "https://github.com/boto/botocore/commit/44df5850e51fe566075fd5ecd3a8a512aedec47a",
+  "summary": "1 service expansion(s)",
+  "changes": [
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "redshift-serverless",
+      "id": "redshift-serverless",
+      "new_regions": [
+        "ap-southeast-4",
+        "ca-west-1"
+      ],
+      "description": "redshift-serverless expanded to ap-southeast-4, ca-west-1"
+    }
+  ]
+}
