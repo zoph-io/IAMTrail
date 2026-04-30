@@ -82,13 +82,13 @@
         "span": {
           "start": {
             "line": 1,
-            "column": 1985,
-            "offset": 1985
+            "column": 2035,
+            "offset": 2035
           },
           "end": {
             "line": 1,
-            "column": 2033,
-            "offset": 2033
+            "column": 2083,
+            "offset": 2083
           }
         }
       }

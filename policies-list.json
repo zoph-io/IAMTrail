@@ -1901,36 +1901,36 @@
             "PolicyId": "ANPAIUF4325SJYOREKW3A",
             "Arn": "arn:aws:iam::aws:policy/AWSElasticBeanstalkWebTier",
             "Path": "/",
-            "DefaultVersionId": "v8",
+            "DefaultVersionId": "v9",
             "AttachmentCount": 0,
             "PermissionsBoundaryUsageCount": 0,
             "IsAttachable": true,
             "CreateDate": "2016-02-08T23:08:54+00:00",
-            "UpdateDate": "2026-03-12T14:27:13+00:00"
+            "UpdateDate": "2026-04-29T19:27:16+00:00"
         },
         {
             "PolicyName": "AWSElasticBeanstalkWorkerTier",
             "PolicyId": "ANPAJQDLBRSJVKVF4JMSK",
             "Arn": "arn:aws:iam::aws:policy/AWSElasticBeanstalkWorkerTier",
             "Path": "/",
-            "DefaultVersionId": "v7",
+            "DefaultVersionId": "v8",
             "AttachmentCount": 0,
             "PermissionsBoundaryUsageCount": 0,
             "IsAttachable": true,
             "CreateDate": "2016-02-08T23:12:02+00:00",
-            "UpdateDate": "2026-03-12T14:27:08+00:00"
+            "UpdateDate": "2026-04-29T19:27:06+00:00"
         },
         {
             "PolicyName": "AWSElasticBeanstalkMulticontainerDocker",
             "PolicyId": "ANPAJ45SBYG72SD6SHJEY",
             "Arn": "arn:aws:iam::aws:policy/AWSElasticBeanstalkMulticontainerDocker",
             "Path": "/",
-            "DefaultVersionId": "v4",
+            "DefaultVersionId": "v5",
             "AttachmentCount": 0,
             "PermissionsBoundaryUsageCount": 0,
             "IsAttachable": true,
             "CreateDate": "2016-02-08T23:15:29+00:00",
-            "UpdateDate": "2026-03-12T14:12:13+00:00"
+            "UpdateDate": "2026-04-29T19:27:11+00:00"
         },
         {
             "PolicyName": "AWSElasticBeanstalkEnhancedHealth",
@@ -4925,12 +4925,12 @@
             "PolicyId": "ANPAJQPCESDDYDLLSOGYO",
             "Arn": "arn:aws:iam::aws:policy/aws-service-role/AWSSecurityHubServiceRolePolicy",
             "Path": "/aws-service-role/",
-            "DefaultVersionId": "v14",
+            "DefaultVersionId": "v15",
             "AttachmentCount": 1,
             "PermissionsBoundaryUsageCount": 0,
             "IsAttachable": true,
             "CreateDate": "2018-11-27T23:47:51+00:00",
-            "UpdateDate": "2023-11-27T03:46:47+00:00"
+            "UpdateDate": "2026-04-29T14:27:11+00:00"
         },
         {
             "PolicyName": "AWSSecurityHubFullAccess",
@@ -5861,12 +5861,12 @@
             "PolicyId": "ANPAZKAPJZG4JF7OFUANW",
             "Arn": "arn:aws:iam::aws:policy/AWSMarketplaceSellerFullAccess",
             "Path": "/",
-            "DefaultVersionId": "v27",
+            "DefaultVersionId": "v28",
             "AttachmentCount": 0,
             "PermissionsBoundaryUsageCount": 0,
             "IsAttachable": true,
             "CreateDate": "2019-07-02T20:40:09+00:00",
-            "UpdateDate": "2026-04-21T18:12:11+00:00"
+            "UpdateDate": "2026-04-29T21:12:06+00:00"
         },
         {
             "PolicyName": "AWSMarketplaceSellerProductsFullAccess",
@@ -16433,12 +16433,12 @@
             "PolicyId": "ANPAZKAPJZG4ABS5BMRXG",
             "Arn": "arn:aws:iam::aws:policy/aws-service-role/AWSObservabilityAdminTelemetryEnablementServiceRolePolicy",
             "Path": "/aws-service-role/",
-            "DefaultVersionId": "v9",
+            "DefaultVersionId": "v10",
             "AttachmentCount": 0,
             "PermissionsBoundaryUsageCount": 0,
             "IsAttachable": true,
             "CreateDate": "2025-08-01T18:04:06+00:00",
-            "UpdateDate": "2026-04-16T17:42:10+00:00"
+            "UpdateDate": "2026-04-29T21:12:11+00:00"
         },
         {
             "PolicyName": "AWSQuickSetupStartStopInstancesExecutionPolicy",
