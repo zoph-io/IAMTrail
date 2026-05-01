@@ -831,6 +831,7 @@
                         "sso:ListRegions",
                         "sso:ListTagsForResource",
                         "sso:ListTrustedTokenIssuers",
+                        "sso-directory:ListExternalIdPConfigurationsForDirectory",
                         "states:DescribeStateMachine",
                         "states:ListStateMachines",
                         "storagegateway:DescribeBandwidthRateLimit",
@@ -965,8 +966,8 @@
                 }
             ]
         },
-        "VersionId": "v85",
+        "VersionId": "v86",
         "IsDefaultVersion": true,
-        "CreateDate": "2026-03-02T17:12:11+00:00"
+        "CreateDate": "2026-05-01T03:12:13+00:00"
     }
 }
