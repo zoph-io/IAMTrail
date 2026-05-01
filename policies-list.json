@@ -701,12 +701,12 @@
             "PolicyId": "ANPAIX2T3QCXHR2OGGCTO",
             "Arn": "arn:aws:iam::aws:policy/SecurityAudit",
             "Path": "/",
-            "DefaultVersionId": "v85",
+            "DefaultVersionId": "v86",
             "AttachmentCount": 3,
             "PermissionsBoundaryUsageCount": 0,
             "IsAttachable": true,
             "CreateDate": "2015-02-06T18:41:01+00:00",
-            "UpdateDate": "2026-03-02T17:12:11+00:00"
+            "UpdateDate": "2026-05-01T03:12:13+00:00"
         },
         {
             "PolicyName": "AmazonSESFullAccess",
