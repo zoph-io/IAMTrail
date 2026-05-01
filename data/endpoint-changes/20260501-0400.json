@@ -1,0 +1,25 @@
+{
+  "detected_at": "2026-05-01T04:00:00.630Z",
+  "botocore_commit": "eebf8158db41450f23ae0365dcbb3d8671311490",
+  "botocore_commit_url": "https://github.com/boto/botocore/commit/eebf8158db41450f23ae0365dcbb3d8671311490",
+  "summary": "1 new service(s), 1 service expansion(s)",
+  "changes": [
+    {
+      "type": "new_service",
+      "partition": "aws-iso",
+      "id": "mq",
+      "description": "mq (1 endpoint)",
+      "endpoint_count": 1
+    },
+    {
+      "type": "service_expansion",
+      "partition": "aws-iso-b",
+      "service": "firehose",
+      "id": "firehose",
+      "new_regions": [
+        "us-isob-west-1"
+      ],
+      "description": "firehose expanded to us-isob-west-1"
+    }
+  ]
+}
