@@ -4,7 +4,6 @@
             "Version": "2012-10-17",
             "Statement": [
                 {
-                    "Sid": "PublishCloudWatchMetrics",
                     "Effect": "Allow",
                     "Action": [
                         "cloudwatch:PutMetricData"
@@ -15,11 +14,29 @@
                             "cloudwatch:namespace": "AWS/TransformCustom"
                         }
                     }
+                },
+                {
+                    "Effect": "Allow",
+                    "Action": [
+                        "logs:CreateLogGroup",
+                        "logs:CreateLogStream",
+                        "logs:PutLogEvents",
+                        "logs:PutRetentionPolicy"
+                    ],
+                    "Resource": [
+                        "arn:aws:logs:*:*:log-group:/aws/TransformCustom",
+                        "arn:aws:logs:*:*:log-group:/aws/TransformCustom:log-stream:*"
+                    ],
+                    "Condition": {
+                        "StringEquals": {
+                            "aws:ResourceAccount": "${aws:PrincipalAccount}"
+                        }
+                    }
                 }
             ]
         },
-        "VersionId": "v1",
+        "VersionId": "v2",
         "IsDefaultVersion": true,
-        "CreateDate": "2026-03-25T02:57:08+00:00"
+        "CreateDate": "2026-05-05T19:42:14+00:00"
     }
 }
