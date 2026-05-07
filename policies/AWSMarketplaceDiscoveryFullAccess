@@ -1,0 +1,33 @@
+{
+    "PolicyVersion": {
+        "Document": {
+            "Version": "2012-10-17",
+            "Statement": [
+                {
+                    "Effect": "Allow",
+                    "Action": [
+                        "aws-marketplace:GetListing",
+                        "aws-marketplace:GetProduct",
+                        "aws-marketplace:GetOffer",
+                        "aws-marketplace:GetOfferTerms",
+                        "aws-marketplace:GetOfferSet",
+                        "aws-marketplace:ListPurchaseOptions",
+                        "aws-marketplace:ListFulfillmentOptions",
+                        "aws-marketplace:SearchListings",
+                        "aws-marketplace:SearchFacets"
+                    ],
+                    "Resource": [
+                        "arn:aws:aws-marketplace:::catalog/AWSMarketplace*/product/*",
+                        "arn:aws:aws-marketplace:::catalog/AWSMarketplace*/listing/*",
+                        "arn:aws:aws-marketplace:::catalog/AWSMarketplace*/offer/*",
+                        "arn:aws:aws-marketplace:::catalog/AWSMarketplace*/offerSet/*",
+                        "arn:aws:aws-marketplace:::catalog/AWSMarketplace*/purchaseOption/*"
+                    ]
+                }
+            ]
+        },
+        "VersionId": "v1",
+        "IsDefaultVersion": true,
+        "CreateDate": "2026-05-07T17:12:10+00:00"
+    }
+}
