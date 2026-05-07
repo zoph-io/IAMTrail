@@ -29,12 +29,12 @@
             "PolicyId": "ANPAILL3HVNFSB6DCOWYQ",
             "Arn": "arn:aws:iam::aws:policy/ReadOnlyAccess",
             "Path": "/",
-            "DefaultVersionId": "v182",
+            "DefaultVersionId": "v183",
             "AttachmentCount": 0,
             "PermissionsBoundaryUsageCount": 0,
             "IsAttachable": true,
             "CreateDate": "2015-02-06T18:39:48+00:00",
-            "UpdateDate": "2026-04-03T15:27:12+00:00"
+            "UpdateDate": "2026-05-05T20:12:11+00:00"
         },
         {
             "PolicyName": "AWSCloudFormationReadOnlyAccess",
@@ -4145,12 +4145,12 @@
             "PolicyId": "ANPAJUCWFHNZER665LLQQ",
             "Arn": "arn:aws:iam::aws:policy/aws-service-role/AWSConfigServiceRolePolicy",
             "Path": "/aws-service-role/",
-            "DefaultVersionId": "v92",
+            "DefaultVersionId": "v93",
             "AttachmentCount": 1,
             "PermissionsBoundaryUsageCount": 0,
             "IsAttachable": true,
             "CreateDate": "2018-05-30T23:31:46+00:00",
-            "UpdateDate": "2026-04-17T16:57:20+00:00"
+            "UpdateDate": "2026-05-05T22:42:19+00:00"
         },
         {
             "PolicyName": "AmazonRDSPreviewServiceRolePolicy",
@@ -8033,12 +8033,12 @@
             "PolicyId": "ANPAZKAPJZG4PP7QZ4FBG",
             "Arn": "arn:aws:iam::aws:policy/service-role/AWS_ConfigRole",
             "Path": "/service-role/",
-            "DefaultVersionId": "v69",
+            "DefaultVersionId": "v70",
             "AttachmentCount": 1,
             "PermissionsBoundaryUsageCount": 0,
             "IsAttachable": true,
             "CreateDate": "2020-09-15T20:30:30+00:00",
-            "UpdateDate": "2026-04-17T16:27:13+00:00"
+            "UpdateDate": "2026-05-05T22:42:19+00:00"
         },
         {
             "PolicyName": "MediaPackageServiceRolePolicy",
@@ -15245,12 +15245,12 @@
             "PolicyId": "ANPAZKAPJZG4NQZUIPVLH",
             "Arn": "arn:aws:iam::aws:policy/service-role/SageMakerStudioProjectProvisioningRolePolicy",
             "Path": "/service-role/",
-            "DefaultVersionId": "v79",
+            "DefaultVersionId": "v80",
             "AttachmentCount": 0,
             "PermissionsBoundaryUsageCount": 0,
             "IsAttachable": true,
             "CreateDate": "2024-11-20T21:58:39+00:00",
-            "UpdateDate": "2026-05-04T16:42:16+00:00"
+            "UpdateDate": "2026-05-07T00:27:11+00:00"
         },
         {
             "PolicyName": "SageMakerStudioProjectUserRolePolicy",
@@ -16121,12 +16121,12 @@
             "PolicyId": "ANPAZKAPJZG4AAHRX2W6F",
             "Arn": "arn:aws:iam::aws:policy/aws-service-role/AWSSecurityHubV2ServiceRolePolicy",
             "Path": "/aws-service-role/",
-            "DefaultVersionId": "v6",
+            "DefaultVersionId": "v7",
             "AttachmentCount": 0,
             "PermissionsBoundaryUsageCount": 0,
             "IsAttachable": true,
             "CreateDate": "2025-06-10T17:37:06+00:00",
-            "UpdateDate": "2026-02-12T17:57:50+00:00"
+            "UpdateDate": "2026-05-05T20:57:18+00:00"
         },
         {
             "PolicyName": "AWSNetworkFirewallReadOnlyAccess",
@@ -17513,12 +17513,12 @@
             "PolicyId": "ANPAZKAPJZG4ES3EBGHBU",
             "Arn": "arn:aws:iam::aws:policy/aws-service-role/AWSServiceRoleForAWSTransformCustom",
             "Path": "/aws-service-role/",
-            "DefaultVersionId": "v1",
+            "DefaultVersionId": "v2",
             "AttachmentCount": 0,
             "PermissionsBoundaryUsageCount": 0,
             "IsAttachable": true,
             "CreateDate": "2026-03-25T02:57:08+00:00",
-            "UpdateDate": "2026-03-25T02:57:08+00:00"
+            "UpdateDate": "2026-05-05T19:42:14+00:00"
         },
         {
             "PolicyName": "DBModDiscoveryAndAssessment",
@@ -17573,24 +17573,24 @@
             "PolicyId": "ANPAZKAPJZG4KEX6FTLTS",
             "Arn": "arn:aws:iam::aws:policy/AIDevOpsAgentAccessPolicy",
             "Path": "/",
-            "DefaultVersionId": "v2",
+            "DefaultVersionId": "v3",
             "AttachmentCount": 0,
             "PermissionsBoundaryUsageCount": 0,
             "IsAttachable": true,
             "CreateDate": "2026-03-26T03:42:09+00:00",
-            "UpdateDate": "2026-04-23T15:42:07+00:00"
+            "UpdateDate": "2026-05-07T00:42:18+00:00"
         },
         {
             "PolicyName": "AIDevOpsOperatorAppAccessPolicy",
             "PolicyId": "ANPAZKAPJZG4ELWEUAH5T",
             "Arn": "arn:aws:iam::aws:policy/AIDevOpsOperatorAppAccessPolicy",
             "Path": "/",
-            "DefaultVersionId": "v2",
+            "DefaultVersionId": "v3",
             "AttachmentCount": 0,
             "PermissionsBoundaryUsageCount": 0,
             "IsAttachable": true,
             "CreateDate": "2026-03-26T03:42:13+00:00",
-            "UpdateDate": "2026-03-29T03:57:08+00:00"
+            "UpdateDate": "2026-05-07T00:42:18+00:00"
         },
         {
             "PolicyName": "AIDevOpsAgentFullAccess",
