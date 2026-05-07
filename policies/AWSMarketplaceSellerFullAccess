@@ -115,7 +115,10 @@
                         "tax:DeleteSupplementalTaxRegistration",
                         "tax:GetTaxRegistration",
                         "aws-marketplace:ListPayables",
-                        "aws-marketplace:ListInvoiceSubmissionTasks"
+                        "aws-marketplace:ListInvoiceSubmissionTasks",
+                        "invoicing:ListInvoiceSummaries",
+                        "invoicing:GetInvoicePDF",
+                        "aws-marketplace:ListIssuedTaxInvoices"
                     ],
                     "Resource": "*"
                 },
@@ -213,6 +216,14 @@
                     "Resource": "*"
                 },
                 {
+                    "Sid": "SellerSettingsGetIssuedTaxInvoice",
+                    "Effect": "Allow",
+                    "Action": [
+                        "aws-marketplace:GetIssuedTaxInvoice"
+                    ],
+                    "Resource": "arn:aws:aws-marketplace:*:*:catalog/AWSMarketplace*/issued-tax-invoice/*"
+                },
+                {
                     "Sid": "AWSMarketplaceAgreementsCancellationAndAdjustmentAccess",
                     "Effect": "Allow",
                     "Action": [
@@ -239,8 +250,8 @@
                 }
             ]
         },
-        "VersionId": "v28",
+        "VersionId": "v29",
         "IsDefaultVersion": true,
-        "CreateDate": "2026-04-29T21:12:06+00:00"
+        "CreateDate": "2026-05-07T18:27:21+00:00"
     }
 }
