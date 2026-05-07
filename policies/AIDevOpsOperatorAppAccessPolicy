@@ -34,7 +34,8 @@
                         "aidevops:DescribeSupportLevel",
                         "aidevops:ListChats",
                         "aidevops:CreateChat",
-                        "aidevops:SendMessage"
+                        "aidevops:SendMessage",
+                        "aidevops:DescribeServices"
                     ],
                     "Resource": "arn:aws:aidevops:*:*:agentspace/${aws:PrincipalTag/AgentSpaceId}",
                     "Condition": {
@@ -61,6 +62,7 @@
                     "Effect": "Allow",
                     "Action": [
                         "support:DescribeCases",
+                        "support:DescribeServices",
                         "support:InitiateChatForCase",
                         "support:DescribeSupportLevel"
                     ],
@@ -73,8 +75,8 @@
                 }
             ]
         },
-        "VersionId": "v2",
+        "VersionId": "v3",
         "IsDefaultVersion": true,
-        "CreateDate": "2026-03-29T03:57:08+00:00"
+        "CreateDate": "2026-05-07T00:42:18+00:00"
     }
 }
