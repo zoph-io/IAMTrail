@@ -330,7 +330,8 @@
                     "Condition": {
                         "ArnEquals": {
                             "iam:PolicyARN": [
-                                "arn:aws:iam::aws:policy/SageMakerStudioAdminProjectUserRolePolicy"
+                                "arn:aws:iam::aws:policy/SageMakerStudioAdminProjectUserRolePolicy",
+                                "arn:aws:iam::aws:policy/SageMakerStudioAdminIAMDefaultExecutionPolicy"
                             ]
                         },
                         "Null": {
@@ -1057,7 +1058,7 @@
                         "cloudformation:DeleteChangeSet"
                     ],
                     "Resource": [
-                        "arn:aws:cloudformation:*:*:transform/Serverless*"
+                        "arn:aws:cloudformation:*:*:transform/*"
                     ]
                 },
                 {
@@ -2996,8 +2997,8 @@
                 }
             ]
         },
-        "VersionId": "v79",
+        "VersionId": "v80",
         "IsDefaultVersion": true,
-        "CreateDate": "2026-05-04T16:42:16+00:00"
+        "CreateDate": "2026-05-07T00:27:11+00:00"
     }
 }
