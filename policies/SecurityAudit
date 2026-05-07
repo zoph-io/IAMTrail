@@ -119,6 +119,32 @@
                         "bedrock:ListPrompts",
                         "bedrock:ListProvisionedModelThroughputs",
                         "bedrock:ListTagsForResource",
+                        "bedrock-agentcore:GetAgentRuntime",
+                        "bedrock-agentcore:GetAgentRuntimeEndpoint",
+                        "bedrock-agentcore:GetBrowser",
+                        "bedrock-agentcore:GetBrowserProfile",
+                        "bedrock-agentcore:GetCodeInterpreter",
+                        "bedrock-agentcore:GetGateway",
+                        "bedrock-agentcore:GetGatewayTarget",
+                        "bedrock-agentcore:GetHarness",
+                        "bedrock-agentcore:GetMemory",
+                        "bedrock-agentcore:GetPolicy",
+                        "bedrock-agentcore:GetPolicyEngine",
+                        "bedrock-agentcore:GetPolicyGeneration",
+                        "bedrock-agentcore:ListAgentRuntimeEndpoints",
+                        "bedrock-agentcore:ListAgentRuntimeVersions",
+                        "bedrock-agentcore:ListAgentRuntimes",
+                        "bedrock-agentcore:ListBrowserProfiles",
+                        "bedrock-agentcore:ListBrowsers",
+                        "bedrock-agentcore:ListCodeInterpreters",
+                        "bedrock-agentcore:ListGatewayTargets",
+                        "bedrock-agentcore:ListGateways",
+                        "bedrock-agentcore:ListHarnesses",
+                        "bedrock-agentcore:ListMemories",
+                        "bedrock-agentcore:ListPolicies",
+                        "bedrock-agentcore:ListPolicyEngines",
+                        "bedrock-agentcore:ListPolicyGenerationAssets",
+                        "bedrock-agentcore:ListPolicyGenerations",
                         "braket:SearchJobs",
                         "braket:SearchQuantumTasks",
                         "chime:List*",
@@ -966,8 +992,8 @@
                 }
             ]
         },
-        "VersionId": "v86",
+        "VersionId": "v87",
         "IsDefaultVersion": true,
-        "CreateDate": "2026-05-01T03:12:13+00:00"
+        "CreateDate": "2026-05-07T16:12:08+00:00"
     }
 }
