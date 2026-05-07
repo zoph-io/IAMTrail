@@ -31,6 +31,27 @@
                 {
                     "Effect": "Allow",
                     "Action": [
+                        "aws-marketplace:GetListing",
+                        "aws-marketplace:GetProduct",
+                        "aws-marketplace:GetOffer",
+                        "aws-marketplace:GetOfferTerms",
+                        "aws-marketplace:GetOfferSet",
+                        "aws-marketplace:ListPurchaseOptions",
+                        "aws-marketplace:ListFulfillmentOptions",
+                        "aws-marketplace:SearchFacets",
+                        "aws-marketplace:SearchListings"
+                    ],
+                    "Resource": [
+                        "arn:aws:aws-marketplace:::catalog/AWSMarketplace*/product/*",
+                        "arn:aws:aws-marketplace:::catalog/AWSMarketplace*/listing/*",
+                        "arn:aws:aws-marketplace:::catalog/AWSMarketplace*/offer/*",
+                        "arn:aws:aws-marketplace:::catalog/AWSMarketplace*/offerSet/*",
+                        "arn:aws:aws-marketplace:::catalog/AWSMarketplace*/purchaseOption/*"
+                    ]
+                },
+                {
+                    "Effect": "Allow",
+                    "Action": [
                         "aws-marketplace:UpdatePurchaseOrders",
                         "aws-marketplace:ListAgreementCharges",
                         "aws-marketplace:GetAgreementPaymentRequest",
@@ -112,8 +133,8 @@
                 }
             ]
         },
-        "VersionId": "v8",
+        "VersionId": "v9",
         "IsDefaultVersion": true,
-        "CreateDate": "2026-03-31T17:12:11+00:00"
+        "CreateDate": "2026-05-07T16:42:22+00:00"
     }
 }
