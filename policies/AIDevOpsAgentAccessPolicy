@@ -715,6 +715,7 @@
                         "servicecatalog:GetAttributeGroup",
                         "servicecatalog:List*",
                         "servicequotas:GetServiceQuota",
+                        "servicequotas:ListServiceQuotas",
                         "ses:Describe*",
                         "ses:GetAccount",
                         "ses:GetAddonInstance",
@@ -857,8 +858,8 @@
                 }
             ]
         },
-        "VersionId": "v2",
+        "VersionId": "v3",
         "IsDefaultVersion": true,
-        "CreateDate": "2026-04-23T15:42:07+00:00"
+        "CreateDate": "2026-05-07T00:42:18+00:00"
     }
 }
