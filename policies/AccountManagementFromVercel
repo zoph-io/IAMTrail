@@ -28,11 +28,46 @@
                             "aws:ResourceTag/VercelInstallId": "${aws:PrincipalTag/VercelInstallId}"
                         }
                     }
+                },
+                {
+                    "Sid": "ManageServiceRole",
+                    "Effect": "Allow",
+                    "Action": [
+                        "iam:GetRole",
+                        "iam:CreateRole",
+                        "iam:AttachRolePolicy",
+                        "iam:DetachRolePolicy",
+                        "iam:PutRolePolicy",
+                        "iam:DeleteRolePolicy",
+                        "iam:DeleteRole"
+                    ],
+                    "Resource": "arn:aws:iam::*:role/Vercel/Service_2026_04_16",
+                    "Condition": {
+                        "StringEquals": {
+                            "aws:ResourceTag/VercelInstallId": "${aws:PrincipalTag/VercelInstallId}",
+                            "iam:PermissionsBoundary": [
+                                "arn:aws:iam::partner:policy/permissions-boundary/vercel.com/VercelMarketplaceServiceRoleBoundary_2026_04_16"
+                            ]
+                        }
+                    }
+                },
+                {
+                    "Sid": "TagManageServiceRole",
+                    "Effect": "Allow",
+                    "Action": [
+                        "iam:TagRole"
+                    ],
+                    "Resource": "arn:aws:iam::*:role/Vercel/Service_2026_04_16",
+                    "Condition": {
+                        "StringEquals": {
+                            "aws:RequestTag/VercelInstallId": "${aws:PrincipalTag/VercelInstallId}"
+                        }
+                    }
                 }
             ]
         },
-        "VersionId": "v3",
+        "VersionId": "v4",
         "IsDefaultVersion": true,
-        "CreateDate": "2026-02-12T18:00:32+00:00"
+        "CreateDate": "2026-05-07T18:57:18+00:00"
     }
 }
