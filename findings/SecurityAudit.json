@@ -1,6 +1,6 @@
 [
   {
-    "findingDetails": "The 29660 characters in the identity policy, excluding whitespace, exceed the 10240 character maximum for inline and managed policies. We recommend that you use multiple granular policies.",
+    "findingDetails": "The 30625 characters in the identity policy, excluding whitespace, exceed the 10240 character maximum for inline and managed policies. We recommend that you use multiple granular policies.",
     "findingType": "WARNING",
     "issueCode": "POLICY_SIZE_EXCEEDS_IDENTITY_POLICY_QUOTA",
     "learnMoreLink": "https://docs.aws.amazon.com/IAM/latest/UserGuide/access-analyzer-reference-policy-checks.html#access-analyzer-reference-policy-checks-general-warning-policy-size-exceeds-identity-policy-quota",
@@ -15,8 +15,8 @@
           },
           "end": {
             "line": 1,
-            "column": 30620,
-            "offset": 30620
+            "column": 31611,
+            "offset": 31611
           }
         }
       }
@@ -40,19 +40,19 @@
             "value": "Action"
           },
           {
-            "index": 301
+            "index": 327
           }
         ],
         "span": {
           "start": {
             "line": 1,
-            "column": 9908,
-            "offset": 9908
+            "column": 10899,
+            "offset": 10899
           },
           "end": {
             "line": 1,
-            "column": 9951,
-            "offset": 9951
+            "column": 10942,
+            "offset": 10942
           }
         }
       },
@@ -68,19 +68,19 @@
             "value": "Action"
           },
           {
-            "index": 302
+            "index": 328
           }
         ],
         "span": {
           "start": {
             "line": 1,
-            "column": 9953,
-            "offset": 9953
+            "column": 10944,
+            "offset": 10944
           },
           "end": {
             "line": 1,
-            "column": 9996,
-            "offset": 9996
+            "column": 10987,
+            "offset": 10987
           }
         }
       }
@@ -104,19 +104,19 @@
             "value": "Action"
           },
           {
-            "index": 305
+            "index": 331
           }
         ],
         "span": {
           "start": {
             "line": 1,
-            "column": 10092,
-            "offset": 10092
+            "column": 11083,
+            "offset": 11083
           },
           "end": {
             "line": 1,
-            "column": 10124,
-            "offset": 10124
+            "column": 11115,
+            "offset": 11115
           }
         }
       },
@@ -132,19 +132,19 @@
             "value": "Action"
           },
           {
-            "index": 306
+            "index": 332
           }
         ],
         "span": {
           "start": {
             "line": 1,
-            "column": 10126,
-            "offset": 10126
+            "column": 11117,
+            "offset": 11117
           },
           "end": {
             "line": 1,
-            "column": 10158,
-            "offset": 10158
+            "column": 11149,
+            "offset": 11149
           }
         }
       }
