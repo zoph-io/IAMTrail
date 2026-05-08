@@ -5,21 +5,13 @@
 @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap');
 
 :root {
-  --background: #ffffff;
-  --foreground: #18181b;
-  --accent: #dc2626;
-  --accent-hover: #b91c1c;
+  color-scheme: dark;
+  --background: #09090b;
+  --foreground: #fafafa;
+  --accent: #ef4444;
+  --accent-hover: #dc2626;
   --font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, monospace;
   --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #09090b;
-    --foreground: #fafafa;
-    --accent: #ef4444;
-    --accent-hover: #dc2626;
-  }
 }
 
 body {
@@ -50,19 +42,10 @@ body {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #d4d4d8;
+  background: #3f3f46;
   border-radius: 3px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #a1a1aa;
-}
-
-@media (prefers-color-scheme: dark) {
-  ::-webkit-scrollbar-thumb {
-    background: #3f3f46;
-  }
-  ::-webkit-scrollbar-thumb:hover {
-    background: #52525b;
-  }
+  background: #52525b;
 }

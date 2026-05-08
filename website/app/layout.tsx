@@ -71,6 +71,7 @@ export const metadata: Metadata = {
       follow: true,
     },
   },
+  colorScheme: "dark",
 };
 
 export default function RootLayout({
@@ -79,7 +80,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang="en" className="dark" suppressHydrationWarning>
       <head>
         <script
           src="https://cdn.usefathom.com/script.js"
