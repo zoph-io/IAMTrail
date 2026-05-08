@@ -1,0 +1,19 @@
+{
+  "detected_at": "2026-05-08T03:39:13.598Z",
+  "botocore_commit": "9246f14cd8e0ef7a92cb9989bb4eb1f58db4f7dd",
+  "botocore_commit_url": "https://github.com/boto/botocore/commit/9246f14cd8e0ef7a92cb9989bb4eb1f58db4f7dd",
+  "summary": "1 service expansion(s)",
+  "changes": [
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "servicecatalog",
+      "id": "servicecatalog",
+      "new_regions": [
+        "ap-southeast-6",
+        "ca-west-1"
+      ],
+      "description": "servicecatalog expanded to ap-southeast-6, ca-west-1"
+    }
+  ]
+}
