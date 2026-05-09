@@ -23,6 +23,7 @@
   "AmazonWorkLinkFullAccess": "2022-07-14",
   "AmazonWorkLinkReadOnly": "2022-07-14",
   "AmazonWorkLinkServiceRolePolicy": "2022-07-15",
+  "AnthropicInferenceAccess": "2026-05-09",
   "AWS_Config_Role": "2021-04-02",
   "AWSB9InternalServicePolicy": "2021-04-02",
   "AWSBackupAdminPolicy": "2021-04-02",

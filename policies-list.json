@@ -17321,12 +17321,12 @@
             "PolicyId": "ANPAZKAPJZG4CTYAYXEAG",
             "Arn": "arn:aws:iam::aws:policy/service-role/AWSSecurityAgentWebAppPolicy",
             "Path": "/service-role/",
-            "DefaultVersionId": "v4",
+            "DefaultVersionId": "v5",
             "AttachmentCount": 0,
             "PermissionsBoundaryUsageCount": 0,
             "IsAttachable": true,
             "CreateDate": "2026-02-05T23:19:09+00:00",
-            "UpdateDate": "2026-03-20T17:27:10+00:00"
+            "UpdateDate": "2026-05-08T17:57:21+00:00"
         },
         {
             "PolicyName": "PartnerCentralIncentiveBenefitManagement",
@@ -17629,28 +17629,16 @@
             "UpdateDate": "2026-04-01T22:42:18+00:00"
         },
         {
-            "PolicyName": "AnthropicInferenceAccess",
-            "PolicyId": "ANPAZKAPJZG4IGTGRD5UA",
-            "Arn": "arn:aws:iam::aws:policy/AnthropicInferenceAccess",
-            "Path": "/",
-            "DefaultVersionId": "v2",
-            "AttachmentCount": 0,
-            "PermissionsBoundaryUsageCount": 0,
-            "IsAttachable": true,
-            "CreateDate": "2026-04-01T04:57:14+00:00",
-            "UpdateDate": "2026-04-01T22:42:14+00:00"
-        },
-        {
             "PolicyName": "AnthropicLimitedAccess",
             "PolicyId": "ANPAZKAPJZG4PVRRB6AVZ",
             "Arn": "arn:aws:iam::aws:policy/AnthropicLimitedAccess",
             "Path": "/",
-            "DefaultVersionId": "v4",
+            "DefaultVersionId": "v5",
             "AttachmentCount": 0,
             "PermissionsBoundaryUsageCount": 0,
             "IsAttachable": true,
             "CreateDate": "2026-04-01T04:57:18+00:00",
-            "UpdateDate": "2026-04-02T20:12:08+00:00"
+            "UpdateDate": "2026-05-08T22:27:10+00:00"
         },
         {
             "PolicyName": "AnthropicFullAccess",
@@ -17831,6 +17819,30 @@
             "IsAttachable": true,
             "CreateDate": "2026-05-07T17:12:10+00:00",
             "UpdateDate": "2026-05-07T17:12:10+00:00"
+        },
+        {
+            "PolicyName": "CloudWatchAPIKeyAccess",
+            "PolicyId": "ANPAZKAPJZG4EOV7OM4RW",
+            "Arn": "arn:aws:iam::aws:policy/CloudWatchAPIKeyAccess",
+            "Path": "/",
+            "DefaultVersionId": "v1",
+            "AttachmentCount": 0,
+            "PermissionsBoundaryUsageCount": 0,
+            "IsAttachable": true,
+            "CreateDate": "2026-05-08T08:57:08+00:00",
+            "UpdateDate": "2026-05-08T08:57:08+00:00"
+        },
+        {
+            "PolicyName": "AWSAppConfigServiceRolePolicy",
+            "PolicyId": "ANPAZKAPJZG4BJ3NJMTDI",
+            "Arn": "arn:aws:iam::aws:policy/aws-service-role/AWSAppConfigServiceRolePolicy",
+            "Path": "/aws-service-role/",
+            "DefaultVersionId": "v1",
+            "AttachmentCount": 0,
+            "PermissionsBoundaryUsageCount": 0,
+            "IsAttachable": true,
+            "CreateDate": "2026-05-08T18:42:12+00:00",
+            "UpdateDate": "2026-05-08T18:42:12+00:00"
         },
         {
             "PolicyName": "AWSConfigRole",
