@@ -97,8 +97,7 @@
                         "budgets:Describe*",
                         "budgets:List*",
                         "ce:Describe*",
-                        "ce:GetAnomalyMonitors",
-                        "ce:GetAnomalySubscriptions",
+                        "ce:Get*",
                         "ce:List*",
                         "chatbot:Describe*",
                         "chatbot:GetMicrosoftTeamsChannelConfiguration",
@@ -858,8 +857,8 @@
                 }
             ]
         },
-        "VersionId": "v3",
+        "VersionId": "v4",
         "IsDefaultVersion": true,
-        "CreateDate": "2026-05-07T00:42:18+00:00"
+        "CreateDate": "2026-05-11T21:12:21+00:00"
     }
 }
