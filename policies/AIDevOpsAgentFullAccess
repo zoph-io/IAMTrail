@@ -127,6 +127,7 @@
                     "Sid": "AIDevOpsSupportAccess",
                     "Effect": "Allow",
                     "Action": [
+                        "aidevops:DescribeServices",
                         "aidevops:DescribeSupportLevel",
                         "aidevops:EndChatForCase",
                         "aidevops:InitiateChatForCase"
@@ -161,8 +162,8 @@
                 }
             ]
         },
-        "VersionId": "v1",
+        "VersionId": "v2",
         "IsDefaultVersion": true,
-        "CreateDate": "2026-03-26T03:42:16+00:00"
+        "CreateDate": "2026-05-11T21:12:21+00:00"
     }
 }
