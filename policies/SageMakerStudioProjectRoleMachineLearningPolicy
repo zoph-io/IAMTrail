@@ -16,14 +16,14 @@
                         "arn:aws:ec2:*:*:security-group/*"
                     ],
                     "Condition": {
+                        "ArnLike": {
+                            "ec2:Vpc": "arn:aws:ec2:*:*:vpc/${aws:PrincipalTag/VpcId}"
+                        },
                         "StringEquals": {
                             "aws:CalledViaLast": [
                                 "sagemaker.amazonaws.com",
                                 "airflow.amazonaws.com"
                             ]
-                        },
-                        "ArnLike": {
-                            "ec2:Vpc": "arn:aws:ec2:*:*:vpc/${aws:PrincipalTag/VpcId}"
                         }
                     }
                 },
@@ -225,8 +225,8 @@
                     "Resource": "*",
                     "Condition": {
                         "StringEquals": {
-                            "aws:ResourceTag/AmazonDataZoneProject": "${aws:PrincipalTag/AmazonDataZoneProject}",
-                            "aws:PrincipalTag/EnableSageMakerMLWorkloadsPermissions": "true"
+                            "aws:PrincipalTag/EnableSageMakerMLWorkloadsPermissions": "true",
+                            "aws:ResourceTag/AmazonDataZoneProject": "${aws:PrincipalTag/AmazonDataZoneProject}"
                         }
                     }
                 },
@@ -264,8 +264,8 @@
                     "Resource": "*",
                     "Condition": {
                         "StringEquals": {
-                            "aws:ResourceTag/AmazonDataZoneProject": "${aws:PrincipalTag/AmazonDataZoneProject}",
-                            "aws:PrincipalTag/EnableSageMakerMLWorkloadsPermissions": "true"
+                            "aws:PrincipalTag/EnableSageMakerMLWorkloadsPermissions": "true",
+                            "aws:ResourceTag/AmazonDataZoneProject": "${aws:PrincipalTag/AmazonDataZoneProject}"
                         }
                     }
                 },
@@ -312,8 +312,8 @@
                     "Resource": "*",
                     "Condition": {
                         "StringEquals": {
-                            "aws:ResourceTag/AmazonDataZoneProject": "${aws:PrincipalTag/AmazonDataZoneProject}",
-                            "aws:PrincipalTag/EnableSageMakerMLWorkloadsPermissions": "true"
+                            "aws:PrincipalTag/EnableSageMakerMLWorkloadsPermissions": "true",
+                            "aws:ResourceTag/AmazonDataZoneProject": "${aws:PrincipalTag/AmazonDataZoneProject}"
                         }
                     }
                 },
@@ -333,8 +333,8 @@
                     "Resource": "*",
                     "Condition": {
                         "StringEquals": {
-                            "aws:ResourceTag/AmazonDataZoneProject": "${aws:PrincipalTag/AmazonDataZoneProject}",
-                            "aws:PrincipalTag/EnableSageMakerMLWorkloadsPermissions": "true"
+                            "aws:PrincipalTag/EnableSageMakerMLWorkloadsPermissions": "true",
+                            "aws:ResourceTag/AmazonDataZoneProject": "${aws:PrincipalTag/AmazonDataZoneProject}"
                         }
                     }
                 },
@@ -410,8 +410,8 @@
                     "Resource": "*",
                     "Condition": {
                         "StringEquals": {
-                            "aws:ResourceTag/AmazonDataZoneProject": "${aws:PrincipalTag/AmazonDataZoneProject}",
-                            "aws:PrincipalTag/EnableSageMakerMLWorkloadsPermissions": "true"
+                            "aws:PrincipalTag/EnableSageMakerMLWorkloadsPermissions": "true",
+                            "aws:ResourceTag/AmazonDataZoneProject": "${aws:PrincipalTag/AmazonDataZoneProject}"
                         }
                     }
                 },
@@ -447,8 +447,8 @@
                     "Resource": "arn:aws:resource-groups:*:*:group/*",
                     "Condition": {
                         "StringEquals": {
-                            "aws:ResourceAccount": "${aws:PrincipalAccount}",
-                            "aws:PrincipalTag/EnableSageMakerMLWorkloadsPermissions": "true"
+                            "aws:PrincipalTag/EnableSageMakerMLWorkloadsPermissions": "true",
+                            "aws:ResourceAccount": "${aws:PrincipalAccount}"
                         }
                     }
                 },
@@ -478,8 +478,8 @@
                             "aws:ResourceTag/sagemaker:collection": "false"
                         },
                         "StringEquals": {
-                            "aws:ResourceAccount": "${aws:PrincipalAccount}",
-                            "aws:PrincipalTag/EnableSageMakerMLWorkloadsPermissions": "true"
+                            "aws:PrincipalTag/EnableSageMakerMLWorkloadsPermissions": "true",
+                            "aws:ResourceAccount": "${aws:PrincipalAccount}"
                         }
                     }
                 },
@@ -495,8 +495,8 @@
                             "aws:ResourceTag/sagemaker:collection": "false"
                         },
                         "StringEquals": {
-                            "aws:ResourceAccount": "${aws:PrincipalAccount}",
-                            "aws:PrincipalTag/EnableSageMakerMLWorkloadsPermissions": "true"
+                            "aws:PrincipalTag/EnableSageMakerMLWorkloadsPermissions": "true",
+                            "aws:ResourceAccount": "${aws:PrincipalAccount}"
                         }
                     }
                 },
@@ -522,8 +522,8 @@
                     "Resource": "arn:aws:sagemaker:*:*:user-profile/*/${aws:PrincipalTag/datazone:userId}",
                     "Condition": {
                         "StringEquals": {
-                            "aws:ResourceTag/AmazonDataZoneProject": "${aws:PrincipalTag/AmazonDataZoneProject}",
-                            "aws:PrincipalTag/EnableSageMakerMLWorkloadsPermissions": "true"
+                            "aws:PrincipalTag/EnableSageMakerMLWorkloadsPermissions": "true",
+                            "aws:ResourceTag/AmazonDataZoneProject": "${aws:PrincipalTag/AmazonDataZoneProject}"
                         }
                     }
                 },
@@ -536,9 +536,9 @@
                     "Resource": "arn:aws:sagemaker:*:*:user-profile/*",
                     "Condition": {
                         "StringEquals": {
+                            "aws:PrincipalTag/EnableSageMakerMLWorkloadsPermissions": "true",
                             "aws:ResourceTag/AmazonDataZoneProject": "${aws:PrincipalTag/AmazonDataZoneProject}",
-                            "aws:ResourceTag/AmazonDataZoneUser": "${aws:PrincipalTag/datazone:userId}",
-                            "aws:PrincipalTag/EnableSageMakerMLWorkloadsPermissions": "true"
+                            "aws:ResourceTag/AmazonDataZoneUser": "${aws:PrincipalTag/datazone:userId}"
                         }
                     }
                 },
@@ -623,15 +623,6 @@
                     ],
                     "Resource": "*",
                     "Condition": {
-                        "StringEquals": {
-                            "aws:ResourceTag/AmazonDataZoneProject": "${aws:PrincipalTag/AmazonDataZoneProject}"
-                        },
-                        "ForAllValues:StringNotLike": {
-                            "aws:TagKeys": [
-                                "AmazonDataZone*",
-                                "sagemaker:shared-with:*"
-                            ]
-                        },
                         "ForAllValues:StringLike": {
                             "aws:TagKeys": [
                                 "ProjectUserTag*",
@@ -639,6 +630,15 @@
                                 "sm-jumpstart*",
                                 "endpoint-has-jumpstart-model"
                             ]
+                        },
+                        "ForAllValues:StringNotLike": {
+                            "aws:TagKeys": [
+                                "AmazonDataZone*",
+                                "sagemaker:shared-with:*"
+                            ]
+                        },
+                        "StringEquals": {
+                            "aws:ResourceTag/AmazonDataZoneProject": "${aws:PrincipalTag/AmazonDataZoneProject}"
                         }
                     }
                 },
@@ -681,14 +681,14 @@
                     ],
                     "Resource": "arn:aws:sagemaker:*:*:space/*",
                     "Condition": {
+                        "ArnLike": {
+                            "sagemaker:OwnerUserProfileArn": "arn:aws:sagemaker:*:*:user-profile/*/${aws:PrincipalTag/datazone:userId}"
+                        },
                         "StringEquals": {
                             "aws:ResourceTag/AmazonDataZoneProject": "${aws:PrincipalTag/AmazonDataZoneProject}",
                             "sagemaker:SpaceSharingType": [
                                 "Private"
                             ]
-                        },
-                        "ArnLike": {
-                            "sagemaker:OwnerUserProfileArn": "arn:aws:sagemaker:*:*:user-profile/*/${aws:PrincipalTag/datazone:userId}"
                         }
                     }
                 },
@@ -725,14 +725,14 @@
                         "arn:aws:sagemaker:*:*:app/*/*/JupyterLab/*"
                     ],
                     "Condition": {
+                        "ArnLike": {
+                            "sagemaker:OwnerUserProfileArn": "arn:aws:sagemaker:*:*:user-profile/*/${aws:PrincipalTag/datazone:userId}"
+                        },
                         "StringEquals": {
                             "aws:ResourceTag/AmazonDataZoneProject": "${aws:PrincipalTag/AmazonDataZoneProject}",
                             "sagemaker:SpaceSharingType": [
                                 "Private"
                             ]
-                        },
-                        "ArnLike": {
-                            "sagemaker:OwnerUserProfileArn": "arn:aws:sagemaker:*:*:user-profile/*/${aws:PrincipalTag/datazone:userId}"
                         }
                     }
                 },
@@ -809,8 +809,8 @@
                     "Resource": "arn:aws:cloudwatch:*:*:alarm:TargetTracking*",
                     "Condition": {
                         "StringEquals": {
-                            "aws:ResourceAccount": "${aws:PrincipalAccount}",
-                            "aws:CalledViaLast": "application-autoscaling.amazonaws.com"
+                            "aws:CalledViaLast": "application-autoscaling.amazonaws.com",
+                            "aws:ResourceAccount": "${aws:PrincipalAccount}"
                         }
                     }
                 },
@@ -883,8 +883,8 @@
                     "Resource": "arn:aws:application-autoscaling:*:*:scalable-target/*",
                     "Condition": {
                         "StringEquals": {
-                            "aws:ResourceAccount": "${aws:PrincipalAccount}",
-                            "application-autoscaling:service-namespace": "sagemaker"
+                            "application-autoscaling:service-namespace": "sagemaker",
+                            "aws:ResourceAccount": "${aws:PrincipalAccount}"
                         }
                     }
                 },
@@ -923,13 +923,13 @@
                     ],
                     "Resource": "arn:aws:kms:*:*:key/${aws:PrincipalTag/KmsKeyId}",
                     "Condition": {
+                        "StringEquals": {
+                            "aws:ResourceAccount": "${aws:PrincipalAccount}"
+                        },
                         "StringLike": {
                             "kms:ViaService": [
                                 "sagemaker.*.amazonaws.com"
                             ]
-                        },
-                        "StringEquals": {
-                            "aws:ResourceAccount": "${aws:PrincipalAccount}"
                         }
                     }
                 },
@@ -947,13 +947,13 @@
                         "*"
                     ],
                     "Condition": {
-                        "StringEquals": {
-                            "aws:ResourceAccount": "${aws:PrincipalAccount}"
-                        },
                         "ArnEquals": {
                             "s3:AccessGrantsInstanceArn": [
                                 "arn:aws:s3:*:*:access-grants/default"
                             ]
+                        },
+                        "StringEquals": {
+                            "aws:ResourceAccount": "${aws:PrincipalAccount}"
                         }
                     }
                 },
@@ -972,13 +972,13 @@
                         "*"
                     ],
                     "Condition": {
-                        "StringEquals": {
-                            "aws:ResourceAccount": "${aws:PrincipalAccount}"
-                        },
                         "ArnEquals": {
                             "s3:AccessGrantsInstanceArn": [
                                 "arn:aws:s3:*:*:access-grants/default"
                             ]
+                        },
+                        "StringEquals": {
+                            "aws:ResourceAccount": "${aws:PrincipalAccount}"
                         }
                     }
                 },
@@ -992,13 +992,13 @@
                         "arn:aws:s3:::*"
                     ],
                     "Condition": {
-                        "StringEquals": {
-                            "aws:ResourceAccount": "${aws:PrincipalAccount}"
-                        },
                         "ArnEquals": {
                             "s3:AccessGrantsInstanceArn": [
                                 "arn:aws:s3:*:*:access-grants/default"
                             ]
+                        },
+                        "StringEquals": {
+                            "aws:ResourceAccount": "${aws:PrincipalAccount}"
                         }
                     }
                 },
@@ -1013,11 +1013,11 @@
                         "*"
                     ],
                     "Condition": {
-                        "StringLike": {
-                            "kms:ViaService": "s3.*.amazonaws.com"
-                        },
                         "ForAnyValue:StringEquals": {
                             "kms:EncryptionContextKeys": "aws:s3:arn"
+                        },
+                        "StringLike": {
+                            "kms:ViaService": "s3.*.amazonaws.com"
                         }
                     }
                 },
@@ -1063,13 +1063,13 @@
                     ],
                     "Resource": "*",
                     "Condition": {
+                        "StringEquals": {
+                            "aws:ResourceAccount": "${aws:PrincipalAccount}"
+                        },
                         "StringEqualsIfExists": {
                             "ram:RequestedResourceType": [
                                 "s3:AccessGrants"
                             ]
-                        },
-                        "StringEquals": {
-                            "aws:ResourceAccount": "${aws:PrincipalAccount}"
                         }
                     }
                 },
@@ -1170,12 +1170,6 @@
                     ],
                     "Resource": "arn:aws:kms:*:*:key/${aws:PrincipalTag/KmsKeyId}",
                     "Condition": {
-                        "StringLike": {
-                            "kms:ViaService": "airflow-serverless.*.amazonaws.com"
-                        },
-                        "ForAnyValue:StringEquals": {
-                            "kms:EncryptionContextKeys": "aws:airflow-serverless:workflow-arn"
-                        },
                         "ForAllValues:StringEquals": {
                             "kms:GrantOperations": [
                                 "Decrypt",
@@ -1184,6 +1178,12 @@
                                 "GenerateDataKeyWithoutPlaintext",
                                 "RetireGrant"
                             ]
+                        },
+                        "ForAnyValue:StringEquals": {
+                            "kms:EncryptionContextKeys": "aws:airflow-serverless:workflow-arn"
+                        },
+                        "StringLike": {
+                            "kms:ViaService": "airflow-serverless.*.amazonaws.com"
                         }
                     }
                 },
@@ -1216,7 +1216,9 @@
                     "Effect": "Allow",
                     "Action": [
                         "datazone:GenerateCode",
-                        "datazone:SendMessage",
+                        "datazone:List*",
+                        "datazone:Search*",
+                        "datazone:*Message*",
                         "datazone:*Conversation*",
                         "datazone:*Cell*",
                         "datazone:*Notebook*"
@@ -1254,8 +1256,8 @@
                 }
             ]
         },
-        "VersionId": "v38",
+        "VersionId": "v39",
         "IsDefaultVersion": true,
-        "CreateDate": "2026-02-26T21:42:10+00:00"
+        "CreateDate": "2026-05-13T20:12:23+00:00"
     }
 }
