@@ -11,7 +11,9 @@
                         "dsql:GetCluster",
                         "dsql:GetVpcEndpointServiceName",
                         "dsql:ListClusters",
-                        "dsql:ListTagsForResource"
+                        "dsql:ListTagsForResource",
+                        "dsql:GetStream",
+                        "dsql:ListStreams"
                     ],
                     "Resource": "*"
                 },
@@ -25,8 +27,8 @@
                 }
             ]
         },
-        "VersionId": "v9",
+        "VersionId": "v10",
         "IsDefaultVersion": true,
-        "CreateDate": "2026-02-12T17:58:42+00:00"
+        "CreateDate": "2026-05-13T18:57:20+00:00"
     }
 }
