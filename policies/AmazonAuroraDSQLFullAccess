@@ -31,7 +31,12 @@
                         "dsql:StartRestoreJob",
                         "dsql:GetRestoreJob",
                         "dsql:StopRestoreJob",
-                        "dsql:InjectError"
+                        "dsql:InjectError",
+                        "dsql:CreateStream",
+                        "dsql:DeleteStream",
+                        "dsql:GetStream",
+                        "dsql:ListStreams",
+                        "dsql:UpdateStream"
                     ],
                     "Resource": "*"
                 },
@@ -70,6 +75,17 @@
                     }
                 },
                 {
+                    "Sid": "PassRoleForChangeStreams",
+                    "Effect": "Allow",
+                    "Action": "iam:PassRole",
+                    "Resource": "*",
+                    "Condition": {
+                        "StringEquals": {
+                            "iam:PassedToService": "dsql.amazonaws.com"
+                        }
+                    }
+                },
+                {
                     "Sid": "KMSCryptographicPermissions",
                     "Effect": "Allow",
                     "Action": [
@@ -93,8 +109,8 @@
                 }
             ]
         },
-        "VersionId": "v15",
+        "VersionId": "v16",
         "IsDefaultVersion": true,
-        "CreateDate": "2026-02-12T17:59:57+00:00"
+        "CreateDate": "2026-05-13T18:57:08+00:00"
     }
 }
