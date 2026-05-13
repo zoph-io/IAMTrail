@@ -10505,12 +10505,12 @@
             "PolicyId": "ANPAZKAPJZG4G6RNU4BVN",
             "Arn": "arn:aws:iam::aws:policy/aws-service-role/AWSECRPullThroughCache_ServiceRolePolicy",
             "Path": "/aws-service-role/",
-            "DefaultVersionId": "v3",
+            "DefaultVersionId": "v4",
             "AttachmentCount": 0,
             "PermissionsBoundaryUsageCount": 0,
             "IsAttachable": true,
             "CreateDate": "2021-11-26T21:51:09+00:00",
-            "UpdateDate": "2025-03-06T21:22:07+00:00"
+            "UpdateDate": "2026-05-12T18:12:08+00:00"
         },
         {
             "PolicyName": "AmazonGrafanaRedshiftAccess",
