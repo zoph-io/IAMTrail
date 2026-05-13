@@ -8,6 +8,7 @@
                     "Action": [
                         "ec2:DescribeAvailabilityZones",
                         "ec2:DescribeInstances",
+                        "ec2:DescribeInstanceTypes",
                         "ec2:DescribeSnapshots",
                         "ec2:DescribeTags",
                         "ec2:DescribeVolumes",
@@ -195,8 +196,8 @@
                 }
             ]
         },
-        "VersionId": "v14",
+        "VersionId": "v15",
         "IsDefaultVersion": true,
-        "CreateDate": "2026-02-12T18:02:41+00:00"
+        "CreateDate": "2026-05-13T17:42:22+00:00"
     }
 }
