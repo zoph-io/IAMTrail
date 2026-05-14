@@ -1,0 +1,18 @@
+{
+  "type": "NEW_FEATURES",
+  "detected_at": "2026-05-13T22:28:46Z",
+  "description": "Customers can now use their own threat lists to add SHA-256 file hash IOCs and GuardDuty will generate Execution:Runtime/MaliciousFileExecuted.Custom findings on them. See https://docs.aws.amazon.com/guardduty/latest/ug/guardduty_upload-lists.html for instructions on uploading threat lists.",
+  "short_description": "Customers can now use their own threat lists to add SHA-256 file hash IOCs and GuardDuty will generate Execution:Runtime/MaliciousFileExecuted.Custom ",
+  "link": "https://docs.aws.amazon.com/guardduty/latest/ug/findings-runtime-monitoring.html#execution-runtime-malicious-file-executed-custom",
+  "gist_url": "",
+  "raw_sns_message": {
+    "version": "1",
+    "type": "NEW_FEATURES",
+    "featureDetails": [
+      {
+        "featureDescription": "Customers can now use their own threat lists to add SHA-256 file hash IOCs and GuardDuty will generate Execution:Runtime/MaliciousFileExecuted.Custom findings on them. See https://docs.aws.amazon.com/guardduty/latest/ug/guardduty_upload-lists.html for instructions on uploading threat lists.",
+        "featureLink": "https://docs.aws.amazon.com/guardduty/latest/ug/findings-runtime-monitoring.html#execution-runtime-malicious-file-executed-custom"
+      }
+    ]
+  }
+}
