@@ -10877,12 +10877,12 @@
             "PolicyId": "ANPAZKAPJZG4IV6FHD2UE",
             "Arn": "arn:aws:iam::aws:policy/service-role/AmazonEBSCSIDriverPolicy",
             "Path": "/service-role/",
-            "DefaultVersionId": "v14",
+            "DefaultVersionId": "v15",
             "AttachmentCount": 0,
             "PermissionsBoundaryUsageCount": 0,
             "IsAttachable": true,
             "CreateDate": "2022-04-04T17:24:29+00:00",
-            "UpdateDate": "2026-02-12T18:02:41+00:00"
+            "UpdateDate": "2026-05-13T17:42:22+00:00"
         },
         {
             "PolicyName": "AmazonChimeSDKMediaPipelinesServiceLinkedRolePolicy",
@@ -15197,12 +15197,12 @@
             "PolicyId": "ANPAZKAPJZG4NSSEENOX7",
             "Arn": "arn:aws:iam::aws:policy/SageMakerStudioProjectRoleMachineLearningPolicy",
             "Path": "/",
-            "DefaultVersionId": "v38",
+            "DefaultVersionId": "v39",
             "AttachmentCount": 0,
             "PermissionsBoundaryUsageCount": 0,
             "IsAttachable": true,
             "CreateDate": "2024-11-20T21:55:27+00:00",
-            "UpdateDate": "2026-02-26T21:42:10+00:00"
+            "UpdateDate": "2026-05-13T20:12:23+00:00"
         },
         {
             "PolicyName": "SageMakerStudioDomainServiceRolePolicy",
@@ -15533,12 +15533,12 @@
             "PolicyId": "ANPAZKAPJZG4HJLOJCTKI",
             "Arn": "arn:aws:iam::aws:policy/AmazonAuroraDSQLReadOnlyAccess",
             "Path": "/",
-            "DefaultVersionId": "v9",
+            "DefaultVersionId": "v10",
             "AttachmentCount": 0,
             "PermissionsBoundaryUsageCount": 0,
             "IsAttachable": true,
             "CreateDate": "2024-12-03T15:21:07+00:00",
-            "UpdateDate": "2026-02-12T17:58:42+00:00"
+            "UpdateDate": "2026-05-13T18:57:20+00:00"
         },
         {
             "PolicyName": "AmazonS3TablesFullAccess",
@@ -15569,24 +15569,24 @@
             "PolicyId": "ANPAZKAPJZG4OWVY56ZJN",
             "Arn": "arn:aws:iam::aws:policy/AmazonAuroraDSQLConsoleFullAccess",
             "Path": "/",
-            "DefaultVersionId": "v15",
+            "DefaultVersionId": "v16",
             "AttachmentCount": 0,
             "PermissionsBoundaryUsageCount": 0,
             "IsAttachable": true,
             "CreateDate": "2024-12-03T15:36:07+00:00",
-            "UpdateDate": "2026-02-12T18:00:39+00:00"
+            "UpdateDate": "2026-05-13T18:57:14+00:00"
         },
         {
             "PolicyName": "AmazonAuroraDSQLFullAccess",
             "PolicyId": "ANPAZKAPJZG4OL6SKRIYE",
             "Arn": "arn:aws:iam::aws:policy/AmazonAuroraDSQLFullAccess",
             "Path": "/",
-            "DefaultVersionId": "v15",
+            "DefaultVersionId": "v16",
             "AttachmentCount": 0,
             "PermissionsBoundaryUsageCount": 0,
             "IsAttachable": true,
             "CreateDate": "2024-12-03T15:36:07+00:00",
-            "UpdateDate": "2026-02-12T17:59:57+00:00"
+            "UpdateDate": "2026-05-13T18:57:08+00:00"
         },
         {
             "PolicyName": "AmazonSageMakerTrainingPlanCreateAccess",
