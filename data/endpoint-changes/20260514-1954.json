@@ -1,0 +1,29 @@
+{
+  "detected_at": "2026-05-14T19:54:57.531Z",
+  "botocore_commit": "b9f0f7fc6f0dc0541b14d8aadec4d92c64dc585f",
+  "botocore_commit_url": "https://github.com/boto/botocore/commit/b9f0f7fc6f0dc0541b14d8aadec4d92c64dc585f",
+  "summary": "1 new service(s), 1 service expansion(s)",
+  "changes": [
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "emr-serverless",
+      "id": "emr-serverless",
+      "new_regions": [
+        "ap-east-2",
+        "ap-south-2",
+        "ap-southeast-6",
+        "ap-southeast-7",
+        "mx-central-1"
+      ],
+      "description": "emr-serverless expanded to ap-east-2, ap-south-2, ap-southeast-6, ap-southeast-7, mx-central-1"
+    },
+    {
+      "type": "new_service",
+      "partition": "aws-eusc",
+      "id": "polly",
+      "description": "polly (1 endpoint)",
+      "endpoint_count": 1
+    }
+  ]
+}
