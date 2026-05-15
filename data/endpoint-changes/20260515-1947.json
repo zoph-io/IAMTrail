@@ -1,0 +1,18 @@
+{
+  "detected_at": "2026-05-15T19:47:13.025Z",
+  "botocore_commit": "f1997acfbd1ad33f07801caa4a2a131abd149675",
+  "botocore_commit_url": "https://github.com/boto/botocore/commit/f1997acfbd1ad33f07801caa4a2a131abd149675",
+  "summary": "1 service expansion(s)",
+  "changes": [
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "inspector2",
+      "id": "inspector2",
+      "new_regions": [
+        "ap-east-2"
+      ],
+      "description": "inspector2 expanded to ap-east-2"
+    }
+  ]
+}
