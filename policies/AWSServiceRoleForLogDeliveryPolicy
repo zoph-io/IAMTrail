@@ -17,11 +17,25 @@
                             "aws:ResourceTag/LogDeliveryEnabled": "true"
                         }
                     }
+                },
+                {
+                    "Sid": "KMSForFirehoseSSECMK",
+                    "Effect": "Allow",
+                    "Action": [
+                        "kms:GenerateDataKey",
+                        "kms:Decrypt"
+                    ],
+                    "Resource": "*",
+                    "Condition": {
+                        "StringLike": {
+                            "kms:ViaService": "firehose.*.amazonaws.com"
+                        }
+                    }
                 }
             ]
         },
-        "VersionId": "v4",
+        "VersionId": "v5",
         "IsDefaultVersion": true,
-        "CreateDate": "2025-01-16T21:37:06+00:00"
+        "CreateDate": "2026-05-15T21:57:13+00:00"
     }
 }
