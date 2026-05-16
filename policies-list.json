@@ -6197,12 +6197,12 @@
             "PolicyId": "ANPAZKAPJZG4EMA7ANTDG",
             "Arn": "arn:aws:iam::aws:policy/aws-service-role/AWSServiceRoleForLogDeliveryPolicy",
             "Path": "/aws-service-role/",
-            "DefaultVersionId": "v4",
+            "DefaultVersionId": "v5",
             "AttachmentCount": 0,
             "PermissionsBoundaryUsageCount": 0,
             "IsAttachable": true,
             "CreateDate": "2019-10-04T17:31:19+00:00",
-            "UpdateDate": "2025-01-16T21:37:06+00:00"
+            "UpdateDate": "2026-05-15T21:57:13+00:00"
         },
         {
             "PolicyName": "AlexaForBusinessPolyDelegatedAccessPolicy",
