@@ -1,0 +1,74 @@
+{
+    "PolicyVersion": {
+        "Document": {
+            "Version": "2012-10-17",
+            "Statement": [
+                {
+                    "Sid": "FluentBitS3Plugin",
+                    "Effect": "Allow",
+                    "Action": [
+                        "s3:PutObject",
+                        "s3:ListBucket",
+                        "s3:CreateBucket"
+                    ],
+                    "Resource": [
+                        "arn:aws:s3:::elasticbeanstalk-logs-*",
+                        "arn:aws:s3:::elasticbeanstalk-logs-*/*"
+                    ],
+                    "Condition": {
+                        "StringEquals": {
+                            "aws:ResourceAccount": "${aws:PrincipalAccount}"
+                        }
+                    }
+                },
+                {
+                    "Sid": "APSCreateWorkspace",
+                    "Effect": "Allow",
+                    "Action": [
+                        "aps:CreateWorkspace",
+                        "aps:TagResource"
+                    ],
+                    "Resource": "*",
+                    "Condition": {
+                        "StringEquals": {
+                            "aws:RequestTag/CreatedBy": "ElasticBeanstalk",
+                            "aws:ResourceAccount": "${aws:PrincipalAccount}"
+                        }
+                    }
+                },
+                {
+                    "Sid": "APSManageWorkspace",
+                    "Effect": "Allow",
+                    "Action": [
+                        "aps:DeleteWorkspace",
+                        "aps:Describe*"
+                    ],
+                    "Resource": "arn:aws:aps:*:*:workspace/*",
+                    "Condition": {
+                        "StringEquals": {
+                            "aws:ResourceTag/CreatedBy": "ElasticBeanstalk",
+                            "aws:ResourceAccount": "${aws:PrincipalAccount}"
+                        }
+                    }
+                },
+                {
+                    "Sid": "APSRemoteWrite",
+                    "Effect": "Allow",
+                    "Action": [
+                        "aps:RemoteWrite"
+                    ],
+                    "Resource": "arn:aws:aps:*:*:workspace/*",
+                    "Condition": {
+                        "StringEquals": {
+                            "aws:ResourceTag/CreatedBy": "ElasticBeanstalk",
+                            "aws:ResourceAccount": "${aws:PrincipalAccount}"
+                        }
+                    }
+                }
+            ]
+        },
+        "VersionId": "v1",
+        "IsDefaultVersion": true,
+        "CreateDate": "2026-07-02T21:27:19+00:00"
+    }
+}
