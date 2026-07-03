@@ -13,7 +13,8 @@
                         "ec2:GetImageBlockPublicAccessState",
                         "ec2:GetSnapshotBlockPublicAccessState",
                         "ec2:GetAllowedImagesSettings",
-                        "ec2:DescribeVpcBlockPublicAccessOptions"
+                        "ec2:DescribeVpcBlockPublicAccessOptions",
+                        "ec2:DescribeAccountVpcEncryptionControl"
                     ],
                     "Resource": [
                         "*"
@@ -21,8 +22,8 @@
                 }
             ]
         },
-        "VersionId": "v1",
+        "VersionId": "v2",
         "IsDefaultVersion": true,
-        "CreateDate": "2024-11-30T13:21:06+00:00"
+        "CreateDate": "2026-07-03T10:57:26+00:00"
     }
 }
