@@ -17573,12 +17573,12 @@
             "PolicyId": "ANPAZKAPJZG4KEX6FTLTS",
             "Arn": "arn:aws:iam::aws:policy/AIDevOpsAgentAccessPolicy",
             "Path": "/",
-            "DefaultVersionId": "v8",
+            "DefaultVersionId": "v9",
             "AttachmentCount": 0,
             "PermissionsBoundaryUsageCount": 0,
             "IsAttachable": true,
             "CreateDate": "2026-03-26T03:42:09+00:00",
-            "UpdateDate": "2026-06-26T23:42:27+00:00"
+            "UpdateDate": "2026-07-02T23:42:24+00:00"
         },
         {
             "PolicyName": "AIDevOpsOperatorAppAccessPolicy",
@@ -18179,6 +18179,42 @@
             "IsAttachable": true,
             "CreateDate": "2026-06-30T21:27:39+00:00",
             "UpdateDate": "2026-06-30T21:27:39+00:00"
+        },
+        {
+            "PolicyName": "AWSElasticBeanstalkEKSObservability",
+            "PolicyId": "ANPAZKAPJZG4HALQONKPX",
+            "Arn": "arn:aws:iam::aws:policy/AWSElasticBeanstalkEKSObservability",
+            "Path": "/",
+            "DefaultVersionId": "v1",
+            "AttachmentCount": 0,
+            "PermissionsBoundaryUsageCount": 0,
+            "IsAttachable": true,
+            "CreateDate": "2026-07-02T21:27:19+00:00",
+            "UpdateDate": "2026-07-02T21:27:19+00:00"
+        },
+        {
+            "PolicyName": "AWSElasticBeanstalkEKSTagging",
+            "PolicyId": "ANPAZKAPJZG4PI2CMPPDZ",
+            "Arn": "arn:aws:iam::aws:policy/AWSElasticBeanstalkEKSTagging",
+            "Path": "/",
+            "DefaultVersionId": "v1",
+            "AttachmentCount": 0,
+            "PermissionsBoundaryUsageCount": 0,
+            "IsAttachable": true,
+            "CreateDate": "2026-07-02T21:27:19+00:00",
+            "UpdateDate": "2026-07-02T21:27:19+00:00"
+        },
+        {
+            "PolicyName": "AWSElasticBeanstalkEKSImageBuild",
+            "PolicyId": "ANPAZKAPJZG4IZOIN3V6O",
+            "Arn": "arn:aws:iam::aws:policy/AWSElasticBeanstalkEKSImageBuild",
+            "Path": "/",
+            "DefaultVersionId": "v1",
+            "AttachmentCount": 0,
+            "PermissionsBoundaryUsageCount": 0,
+            "IsAttachable": true,
+            "CreateDate": "2026-07-02T21:27:26+00:00",
+            "UpdateDate": "2026-07-02T21:27:26+00:00"
         },
         {
             "PolicyName": "AWSConfigRole",
