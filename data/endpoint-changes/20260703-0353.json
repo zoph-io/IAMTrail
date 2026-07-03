@@ -1,0 +1,18 @@
+{
+  "detected_at": "2026-07-03T03:53:26.954Z",
+  "botocore_commit": "420c5848eac57be3c4dcc5c9b1f36085de397695",
+  "botocore_commit_url": "https://github.com/boto/botocore/commit/420c5848eac57be3c4dcc5c9b1f36085de397695",
+  "summary": "1 service expansion(s)",
+  "changes": [
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "codepipeline",
+      "id": "codepipeline",
+      "new_regions": [
+        "ap-southeast-6"
+      ],
+      "description": "codepipeline expanded to ap-southeast-6"
+    }
+  ]
+}
