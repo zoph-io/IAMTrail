@@ -15329,12 +15329,12 @@
             "PolicyId": "ANPAZKAPJZG4DLY4GTUO5",
             "Arn": "arn:aws:iam::aws:policy/aws-service-role/DeclarativePoliciesEC2Report",
             "Path": "/aws-service-role/",
-            "DefaultVersionId": "v1",
+            "DefaultVersionId": "v2",
             "AttachmentCount": 0,
             "PermissionsBoundaryUsageCount": 0,
             "IsAttachable": true,
             "CreateDate": "2024-11-30T13:21:06+00:00",
-            "UpdateDate": "2024-11-30T13:21:06+00:00"
+            "UpdateDate": "2026-07-03T10:57:26+00:00"
         },
         {
             "PolicyName": "AWSSecurityIncidentResponseServiceRolePolicy",
