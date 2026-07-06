@@ -20,6 +20,23 @@
                 {
                     "Effect": "Allow",
                     "Action": [
+                        "s3:PutObject",
+                        "s3:GetObject",
+                        "s3:ListBucket"
+                    ],
+                    "Resource": "arn:aws:s3:::*",
+                    "Condition": {
+                        "StringEquals": {
+                            "aws:ResourceAccount": "${aws:PrincipalAccount}"
+                        },
+                        "StringEqualsIgnoreCase": {
+                            "aws:ResourceTag/AmazonBraket": "true"
+                        }
+                    }
+                },
+                {
+                    "Effect": "Allow",
+                    "Action": [
                         "logs:PutLogEvents",
                         "logs:CreateLogStream",
                         "logs:DescribeLogStreams",
@@ -35,8 +52,8 @@
                 }
             ]
         },
-        "VersionId": "v3",
+        "VersionId": "v4",
         "IsDefaultVersion": true,
-        "CreateDate": "2025-07-11T21:37:07+00:00"
+        "CreateDate": "2026-07-06T18:42:30+00:00"
     }
 }
