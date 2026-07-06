@@ -18,6 +18,23 @@
                 {
                     "Effect": "Allow",
                     "Action": [
+                        "s3:GetObject",
+                        "s3:PutObject",
+                        "s3:ListBucket",
+                        "s3:CreateBucket",
+                        "s3:PutBucketPublicAccessBlock",
+                        "s3:PutBucketPolicy"
+                    ],
+                    "Resource": "arn:aws:s3:::*",
+                    "Condition": {
+                        "StringEqualsIgnoreCase": {
+                            "aws:ResourceTag/AmazonBraket": "true"
+                        }
+                    }
+                },
+                {
+                    "Effect": "Allow",
+                    "Action": [
                         "ecr:GetDownloadUrlForLayer",
                         "ecr:BatchGetImage",
                         "ecr:BatchCheckLayerAvailability"
@@ -105,8 +122,8 @@
                 }
             ]
         },
-        "VersionId": "v2",
+        "VersionId": "v3",
         "IsDefaultVersion": true,
-        "CreateDate": "2021-11-28T05:34:55+00:00"
+        "CreateDate": "2026-07-06T19:12:15+00:00"
     }
 }
