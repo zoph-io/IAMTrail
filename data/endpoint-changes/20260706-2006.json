@@ -1,0 +1,22 @@
+{
+  "detected_at": "2026-07-06T20:06:44.976Z",
+  "botocore_commit": "7cf1bc425813bb6af501b9d80a23790ee8265e57",
+  "botocore_commit_url": "https://github.com/boto/botocore/commit/7cf1bc425813bb6af501b9d80a23790ee8265e57",
+  "summary": "2 new service(s)",
+  "changes": [
+    {
+      "type": "new_service",
+      "partition": "aws-iso-e",
+      "id": "health",
+      "description": "health (1 endpoint)",
+      "endpoint_count": 1
+    },
+    {
+      "type": "new_service",
+      "partition": "aws-iso-f",
+      "id": "health",
+      "description": "health (1 endpoint)",
+      "endpoint_count": 1
+    }
+  ]
+}
