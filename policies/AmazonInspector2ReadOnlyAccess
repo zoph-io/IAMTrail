@@ -52,11 +52,25 @@
                             ]
                         }
                     }
+                },
+                {
+                    "Sid": "AllowCrossServiceReadsForConnectorHealth",
+                    "Effect": "Allow",
+                    "Action": [
+                        "config:DescribeConfigurationRecorders",
+                        "config:DescribeConfigurationRecorderStatus",
+                        "config:ListConfigurationRecorders",
+                        "config:GetConnector",
+                        "config:ListConnectors",
+                        "ssm:GetCloudConnector",
+                        "ssm:ListCloudConnectors"
+                    ],
+                    "Resource": "*"
                 }
             ]
         },
-        "VersionId": "v8",
+        "VersionId": "v9",
         "IsDefaultVersion": true,
-        "CreateDate": "2026-02-12T17:58:22+00:00"
+        "CreateDate": "2026-07-07T18:57:19+00:00"
     }
 }
