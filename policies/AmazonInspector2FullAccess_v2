@@ -28,7 +28,7 @@
                             "iam:AWSServiceName": [
                                 "agentless.inspector2.amazonaws.com",
                                 "inspector2.amazonaws.com",
-                                "multicloud.inspector2.amazonaws.com"
+                                "thirdparty.inspector2.amazonaws.com"
                             ]
                         }
                     }
@@ -47,7 +47,7 @@
                             "organizations:ServicePrincipal": [
                                 "inspector2.amazonaws.com",
                                 "agentless.inspector2.amazonaws.com",
-                                "multicloud.inspector2.amazonaws.com"
+                                "thirdparty.inspector2.amazonaws.com"
                             ]
                         }
                     }
@@ -111,8 +111,8 @@
                 }
             ]
         },
-        "VersionId": "v7",
+        "VersionId": "v8",
         "IsDefaultVersion": true,
-        "CreateDate": "2026-07-07T19:12:21+00:00"
+        "CreateDate": "2026-07-07T20:12:29+00:00"
     }
 }
