@@ -7805,12 +7805,12 @@
             "PolicyId": "ANPAZKAPJZG4NIYU42I3S",
             "Arn": "arn:aws:iam::aws:policy/aws-service-role/AmazonBraketServiceRolePolicy",
             "Path": "/aws-service-role/",
-            "DefaultVersionId": "v3",
+            "DefaultVersionId": "v4",
             "AttachmentCount": 0,
             "PermissionsBoundaryUsageCount": 0,
             "IsAttachable": true,
             "CreateDate": "2020-08-04T17:12:23+00:00",
-            "UpdateDate": "2025-07-11T21:37:07+00:00"
+            "UpdateDate": "2026-07-06T18:42:30+00:00"
         },
         {
             "PolicyName": "AWSLakeFormationCrossAccountManager",
@@ -7829,12 +7829,12 @@
             "PolicyId": "ANPAZKAPJZG4HUAKO7NZO",
             "Arn": "arn:aws:iam::aws:policy/AmazonBraketFullAccess",
             "Path": "/",
-            "DefaultVersionId": "v12",
+            "DefaultVersionId": "v13",
             "AttachmentCount": 0,
             "PermissionsBoundaryUsageCount": 0,
             "IsAttachable": true,
             "CreateDate": "2020-08-06T20:12:37+00:00",
-            "UpdateDate": "2026-02-12T18:01:26+00:00"
+            "UpdateDate": "2026-07-06T19:57:33+00:00"
         },
         {
             "PolicyName": "AWSLambdaMSKExecutionRole",
@@ -10493,12 +10493,12 @@
             "PolicyId": "ANPAZKAPJZG4CBFQZHJ3B",
             "Arn": "arn:aws:iam::aws:policy/AmazonBraketJobsExecutionPolicy",
             "Path": "/",
-            "DefaultVersionId": "v2",
+            "DefaultVersionId": "v3",
             "AttachmentCount": 0,
             "PermissionsBoundaryUsageCount": 0,
             "IsAttachable": true,
             "CreateDate": "2021-11-26T19:34:41+00:00",
-            "UpdateDate": "2021-11-28T05:34:55+00:00"
+            "UpdateDate": "2026-07-06T19:12:15+00:00"
         },
         {
             "PolicyName": "AWSECRPullThroughCache_ServiceRolePolicy",
@@ -17885,12 +17885,12 @@
             "PolicyId": "ANPAZKAPJZG4IUOIIBLV4",
             "Arn": "arn:aws:iam::aws:policy/aws-service-role/AWSResilienceHubServiceRolePolicy",
             "Path": "/aws-service-role/",
-            "DefaultVersionId": "v1",
+            "DefaultVersionId": "v2",
             "AttachmentCount": 0,
             "PermissionsBoundaryUsageCount": 0,
             "IsAttachable": true,
             "CreateDate": "2026-05-28T17:42:17+00:00",
-            "UpdateDate": "2026-05-28T17:42:17+00:00"
+            "UpdateDate": "2026-07-06T18:12:14+00:00"
         },
         {
             "PolicyName": "AWSApplicationMigrationFSxProxyPolicy",
@@ -18215,6 +18215,18 @@
             "IsAttachable": true,
             "CreateDate": "2026-07-02T21:27:26+00:00",
             "UpdateDate": "2026-07-02T21:27:26+00:00"
+        },
+        {
+            "PolicyName": "DBModVirtualSource",
+            "PolicyId": "ANPAZKAPJZG4MOCHDDA55",
+            "Arn": "arn:aws:iam::aws:policy/DBModVirtualSource",
+            "Path": "/",
+            "DefaultVersionId": "v1",
+            "AttachmentCount": 0,
+            "PermissionsBoundaryUsageCount": 0,
+            "IsAttachable": true,
+            "CreateDate": "2026-07-06T23:12:26+00:00",
+            "UpdateDate": "2026-07-06T23:12:26+00:00"
         },
         {
             "PolicyName": "AWSConfigRole",
