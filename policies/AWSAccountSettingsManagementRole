@@ -96,11 +96,23 @@
                         "sso:DescribeInstance"
                     ],
                     "Resource": "*"
+                },
+                {
+                    "Effect": "Allow",
+                    "Action": [
+                        "support:CreateCase",
+                        "support:DescribeServices",
+                        "support:DescribeSeverityLevels",
+                        "support:DescribeCases",
+                        "support:AddCommunicationToCase",
+                        "support:ResolveCase"
+                    ],
+                    "Resource": "*"
                 }
             ]
         },
-        "VersionId": "v6",
+        "VersionId": "v7",
         "IsDefaultVersion": true,
-        "CreateDate": "2026-02-12T18:02:39+00:00"
+        "CreateDate": "2026-07-08T19:12:27+00:00"
     }
 }
