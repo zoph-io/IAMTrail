@@ -255,6 +255,21 @@
                     }
                 },
                 {
+                    "Sid": "AttachImageWatermarkPermissions",
+                    "Effect": "Allow",
+                    "Action": [
+                        "ec2:AttachImageWatermark"
+                    ],
+                    "Resource": [
+                        "arn:aws:ec2:*::image/*"
+                    ],
+                    "Condition": {
+                        "StringEquals": {
+                            "aws:ResourceTag/CreatedBy": "EC2 Image Builder"
+                        }
+                    }
+                },
+                {
                     "Sid": "UpdateCustomerLicensePermissions",
                     "Effect": "Allow",
                     "Action": [
@@ -651,8 +666,8 @@
                 }
             ]
         },
-        "VersionId": "v1",
+        "VersionId": "v2",
         "IsDefaultVersion": true,
-        "CreateDate": "2026-06-04T17:12:14+00:00"
+        "CreateDate": "2026-07-08T16:27:23+00:00"
     }
 }
