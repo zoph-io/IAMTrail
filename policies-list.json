@@ -10709,12 +10709,12 @@
             "PolicyId": "ANPAZKAPJZG4IASIMCEPM",
             "Arn": "arn:aws:iam::aws:policy/AmazonInspector2ReadOnlyAccess",
             "Path": "/",
-            "DefaultVersionId": "v8",
+            "DefaultVersionId": "v9",
             "AttachmentCount": 0,
             "PermissionsBoundaryUsageCount": 0,
             "IsAttachable": true,
             "CreateDate": "2022-01-21T14:45:14+00:00",
-            "UpdateDate": "2026-02-12T17:58:22+00:00"
+            "UpdateDate": "2026-07-07T18:57:19+00:00"
         },
         {
             "PolicyName": "AWSBackupServiceRolePolicyForS3Restore",
@@ -16301,12 +16301,12 @@
             "PolicyId": "ANPAZKAPJZG4LAYOUDP4B",
             "Arn": "arn:aws:iam::aws:policy/AmazonInspector2FullAccess_v2",
             "Path": "/",
-            "DefaultVersionId": "v6",
+            "DefaultVersionId": "v8",
             "AttachmentCount": 0,
             "PermissionsBoundaryUsageCount": 0,
             "IsAttachable": true,
             "CreateDate": "2025-07-03T16:07:07+00:00",
-            "UpdateDate": "2026-02-12T18:03:17+00:00"
+            "UpdateDate": "2026-07-07T20:12:29+00:00"
         },
         {
             "PolicyName": "SageMakerStudioAdminProjectUserRolePolicy",
@@ -18227,6 +18227,18 @@
             "IsAttachable": true,
             "CreateDate": "2026-07-06T23:12:26+00:00",
             "UpdateDate": "2026-07-06T23:12:26+00:00"
+        },
+        {
+            "PolicyName": "AWSTransformRevenueAttributionPolicy",
+            "PolicyId": "ANPAZKAPJZG4OIQSQSA4A",
+            "Arn": "arn:aws:iam::aws:policy/AWSTransformRevenueAttributionPolicy",
+            "Path": "/",
+            "DefaultVersionId": "v1",
+            "AttachmentCount": 0,
+            "PermissionsBoundaryUsageCount": 0,
+            "IsAttachable": true,
+            "CreateDate": "2026-07-07T16:42:19+00:00",
+            "UpdateDate": "2026-07-07T16:42:19+00:00"
         },
         {
             "PolicyName": "AWSConfigRole",
