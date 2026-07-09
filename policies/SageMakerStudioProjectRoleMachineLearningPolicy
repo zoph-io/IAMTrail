@@ -369,10 +369,13 @@
                         "sagemaker:ListModelMetadata",
                         "sagemaker:ListMlflowTrackingServers",
                         "sagemaker:ListArtifacts",
+                        "sagemaker:ListAssociations",
                         "sagemaker:ListHubs",
                         "sagemaker:ListPipelines",
                         "sagemaker:ListContexts",
-                        "sagemaker:ListMlflowApps"
+                        "sagemaker:ListMlflowApps",
+                        "sagemaker:ListFeatureGroups",
+                        "scheduler:ListSchedules"
                     ],
                     "Resource": "*",
                     "Condition": {
@@ -401,7 +404,6 @@
                     "Action": [
                         "sagemaker:ListCandidatesForAutoMLJob",
                         "sagemaker:ListTrainingJobsForHyperParameterTuningJob",
-                        "sagemaker:ListAssociations",
                         "sagemaker:ListHubContents",
                         "sagemaker:ListPipelineExecutionSteps",
                         "sagemaker:ListPipelineExecutions",
@@ -412,6 +414,24 @@
                         "StringEquals": {
                             "aws:PrincipalTag/EnableSageMakerMLWorkloadsPermissions": "true",
                             "aws:ResourceTag/AmazonDataZoneProject": "${aws:PrincipalTag/AmazonDataZoneProject}"
+                        }
+                    }
+                },
+                {
+                    "Sid": "SageMakerPublicHubReadPermissions",
+                    "Effect": "Allow",
+                    "Action": [
+                        "sagemaker:DescribeHub",
+                        "sagemaker:DescribeHubContent",
+                        "sagemaker:ListHubContents"
+                    ],
+                    "Resource": [
+                        "arn:aws:sagemaker:*:aws:hub/SageMakerPublicHub",
+                        "arn:aws:sagemaker:*:aws:hub-content/SageMakerPublicHub/*"
+                    ],
+                    "Condition": {
+                        "StringEquals": {
+                            "aws:PrincipalTag/EnableSageMakerMLWorkloadsPermissions": "true"
                         }
                     }
                 },
@@ -872,6 +892,20 @@
                     }
                 },
                 {
+                    "Sid": "SageMakerFeatureStorePermission",
+                    "Effect": "Allow",
+                    "Action": [
+                        "sagemaker:*Feature*",
+                        "sagemaker:*Record"
+                    ],
+                    "Resource": "*",
+                    "Condition": {
+                        "StringEquals": {
+                            "aws:ResourceTag/AmazonDataZoneProject": "${aws:PrincipalTag/AmazonDataZoneProject}"
+                        }
+                    }
+                },
+                {
                     "Sid": "SageMakerAutoScalingPermissionsWithserviceNamespace",
                     "Effect": "Allow",
                     "Action": [
@@ -1257,8 +1291,8 @@
                 }
             ]
         },
-        "VersionId": "v40",
+        "VersionId": "v41",
         "IsDefaultVersion": true,
-        "CreateDate": "2026-05-21T16:57:25+00:00"
+        "CreateDate": "2026-07-09T17:27:13+00:00"
     }
 }
