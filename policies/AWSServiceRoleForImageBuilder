@@ -378,6 +378,18 @@
                 {
                     "Effect": "Allow",
                     "Action": [
+                        "ec2:AttachImageWatermark"
+                    ],
+                    "Resource": "arn:aws:ec2:*::image/*",
+                    "Condition": {
+                        "StringEquals": {
+                            "ec2:ResourceTag/CreatedBy": "EC2 Image Builder"
+                        }
+                    }
+                },
+                {
+                    "Effect": "Allow",
+                    "Action": [
                         "inspector2:ListCoverage",
                         "inspector2:ListFindings"
                     ],
@@ -469,8 +481,8 @@
                 }
             ]
         },
-        "VersionId": "v27",
+        "VersionId": "v28",
         "IsDefaultVersion": true,
-        "CreateDate": "2026-03-17T20:42:10+00:00"
+        "CreateDate": "2026-07-09T15:27:28+00:00"
     }
 }
