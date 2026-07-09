@@ -157,6 +157,19 @@
                         "elasticbeanstalk:RequestEnvironmentInfo",
                         "elasticbeanstalk:RetrieveEnvironmentInfo",
                         "elasticloadbalancing:*",
+                        "interconnect:AcceptConnectionProposal",
+                        "interconnect:CreateConnection",
+                        "interconnect:DeleteConnection",
+                        "interconnect:DescribeConnectionProposal",
+                        "interconnect:GetConnection",
+                        "interconnect:GetEnvironment",
+                        "interconnect:ListAttachPoints",
+                        "interconnect:ListConnections",
+                        "interconnect:ListEnvironments",
+                        "interconnect:ListTagsForResource",
+                        "interconnect:TagResource",
+                        "interconnect:UntagResource",
+                        "interconnect:UpdateConnection",
                         "logs:DescribeLogGroups",
                         "logs:DescribeLogStreams",
                         "logs:GetLogEvents",
@@ -301,8 +314,8 @@
                 }
             ]
         },
-        "VersionId": "v15",
+        "VersionId": "v16",
         "IsDefaultVersion": true,
-        "CreateDate": "2026-02-12T17:59:36+00:00"
+        "CreateDate": "2026-07-09T14:42:15+00:00"
     }
 }
