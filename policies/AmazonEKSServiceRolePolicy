@@ -195,7 +195,8 @@
                                 "arn:aws:eks::aws:cluster-access-policy/AmazonEKSBlockStoragePolicy",
                                 "arn:aws:eks::aws:cluster-access-policy/AmazonEKSBlockStorageClusterPolicy",
                                 "arn:aws:eks::aws:cluster-access-policy/AmazonEKSHybridPolicy",
-                                "arn:aws:eks::aws:cluster-access-policy/AmazonEKSEventPolicy"
+                                "arn:aws:eks::aws:cluster-access-policy/AmazonEKSEventPolicy",
+                                "arn:aws:eks::aws:cluster-access-policy/AmazonEKSPodIdentityPolicy"
                             ]
                         }
                     }
@@ -333,8 +334,8 @@
                 }
             ]
         },
-        "VersionId": "v25",
+        "VersionId": "v26",
         "IsDefaultVersion": true,
-        "CreateDate": "2026-04-21T22:57:08+00:00"
+        "CreateDate": "2026-07-10T18:57:20+00:00"
     }
 }
