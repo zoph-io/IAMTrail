@@ -38,3 +38,7 @@ next-env.d.ts
 !/public/data/usage-stats.json
 /public/sitemap.xml
 /public/feeds/*.xml
+
+# Generated per-policy Open Graph images (scripts/generate-og-images.mjs)
+/public/policies/
+/.og-manifest.json

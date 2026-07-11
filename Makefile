@@ -246,6 +246,8 @@ website-generate-data:
 	@cd website && npm run generate-data
 
 website-build: website-generate-data
+	@echo "🖼️  Generating OG images (incremental)..."
+	@cd website && npm run generate-og
 	@echo "🏗️  Building static website..."
 	@cd website && npm run build
 
@@ -255,32 +257,19 @@ website-build-fast:
 		echo "⚠️  No data found in website/public/data/. Running generate-data first..."; \
 		cd website && npm run generate-data; \
 	fi
+	@cd website && npm run generate-og
 	@cd website && npm run build
 
 website-deploy: website-build
-	@echo "☁️  Deploying to S3 and CloudFront..."
-	@echo "📦 Syncing to s3://iamtrail.com..."
-	@aws s3 sync website/out/ s3://iamtrail.com/ \
-		--delete \
-		--cache-control "public, max-age=31536000, immutable" \
-		--exclude "*.html" --exclude "*.json" --exclude "*.txt" --exclude "*.xml"
-	@aws s3 sync website/out/ s3://iamtrail.com/ \
-		--cache-control "public, max-age=0, must-revalidate" \
-		--exclude "*" --include "*.html" --include "*.json" --include "*.txt" --include "*.xml"
+	@echo "☁️  Deploying to S3 and CloudFront (content-diff, changed files only)..."
+	@cd website && node scripts/deploy-s3.mjs --bucket iamtrail.com
 	@echo "🔄 Creating CloudFront invalidation..."
 	@aws cloudfront create-invalidation --distribution-id E2R2N8OZK7U78U --paths "/*"
 	@echo "✅ Deployed to https://iamtrail.com"
 
 website-deploy-fast: website-build-fast
 	@echo "☁️  Deploying to S3 and CloudFront (no data regeneration)..."
-	@echo "📦 Syncing to s3://iamtrail.com..."
-	@aws s3 sync website/out/ s3://iamtrail.com/ \
-		--delete \
-		--cache-control "public, max-age=31536000, immutable" \
-		--exclude "*.html" --exclude "*.json" --exclude "*.txt" --exclude "*.xml"
-	@aws s3 sync website/out/ s3://iamtrail.com/ \
-		--cache-control "public, max-age=0, must-revalidate" \
-		--exclude "*" --include "*.html" --include "*.json" --include "*.txt" --include "*.xml"
+	@cd website && node scripts/deploy-s3.mjs --bucket iamtrail.com
 	@echo "🔄 Creating CloudFront invalidation..."
 	@aws cloudfront create-invalidation --distribution-id E2R2N8OZK7U78U --paths "/*"
 	@echo "✅ Deployed to https://iamtrail.com"
@@ -291,14 +280,7 @@ website-sync:
 		echo "❌ Error: website/out directory not found. Run 'make website-build' first."; \
 		exit 1; \
 	fi
-	@echo "📦 Syncing to s3://iamtrail.com..."
-	@aws s3 sync website/out/ s3://iamtrail.com/ \
-		--delete \
-		--cache-control "public, max-age=31536000, immutable" \
-		--exclude "*.html" --exclude "*.json" --exclude "*.txt" --exclude "*.xml"
-	@aws s3 sync website/out/ s3://iamtrail.com/ \
-		--cache-control "public, max-age=0, must-revalidate" \
-		--exclude "*" --include "*.html" --include "*.json" --include "*.txt" --include "*.xml"
+	@cd website && node scripts/deploy-s3.mjs --bucket iamtrail.com
 	@echo "🔄 Creating CloudFront invalidation..."
 	@aws cloudfront create-invalidation --distribution-id E2R2N8OZK7U78U --paths "/*"
 	@echo "✅ Deployed to https://iamtrail.com"
@@ -309,6 +291,8 @@ website-clean:
 	@rm -fr website/out/
 	@rm -fr website/node_modules/
 	@rm -fr website/public/data/*.json
+	@rm -fr website/public/policies/
+	@rm -f website/.og-manifest.json
 	@find website -name '.DS_Store' -exec rm -fr {} +
 ################################################
 

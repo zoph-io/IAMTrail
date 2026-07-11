@@ -114,6 +114,55 @@ function pathfindingPathUrl(pathId) {
   return `https://pathfinding.cloud/paths/${encodeURIComponent(pathId)}`;
 }
 
+/**
+ * Build per-policy git history from a SINGLE `git log --name-only` pass over
+ * policies/ instead of spawning one `git log` subprocess per policy
+ * (~1,566 sequential spawns, the dominant cost of data generation).
+ *
+ * Entries are newest-first. Each policy is capped at its 100 most recent
+ * commits to match the previous per-path `--max-count=100` behavior
+ * (versionsCount / firstSeen semantics preserved).
+ */
+async function buildPolicyHistory() {
+  const MAX_ENTRIES_PER_POLICY = 100;
+  const COMMIT_PREFIX = "__C__";
+  // --no-renames matches the previous per-path behavior (no --follow, no
+  // false rename/copy detection).
+  const raw = await git.raw([
+    "log",
+    "--no-renames",
+    `--format=${COMMIT_PREFIX}%H|%aI|%s|%an`,
+    "--name-only",
+    "--",
+    "policies/",
+  ]);
+  const historyByPolicy = new Map();
+  let current = null;
+  for (const line of (raw || "").split("\n")) {
+    if (line.startsWith(COMMIT_PREFIX)) {
+      const [hash, date, message, author_name] = line
+        .slice(COMMIT_PREFIX.length)
+        .split("|");
+      current = { hash, date, message, author_name };
+      continue;
+    }
+    if (!current) continue;
+    const trimmed = line.trim();
+    if (!trimmed.startsWith("policies/")) continue;
+    const policyName = trimmed.slice("policies/".length);
+    if (!policyName || policyName.includes("/")) continue;
+    let entries = historyByPolicy.get(policyName);
+    if (!entries) {
+      entries = [];
+      historyByPolicy.set(policyName, entries);
+    }
+    if (entries.length < MAX_ENTRIES_PER_POLICY) {
+      entries.push(current);
+    }
+  }
+  return historyByPolicy;
+}
+
 function buildPathfindingFindingsForPolicy(allowInfo, catalogPaths) {
   const out = [];
   for (const pathEntry of catalogPaths) {
@@ -244,10 +293,12 @@ async function generatePolicyData() {
     return parts.length > 0 ? parts.join(", ") : "< 1 month";
   }
 
+  console.log("🕘 Building git history (single pass)...");
+  const historyByPolicy = await buildPolicyHistory();
+
   for (const policyName of policyFiles) {
     try {
       const policyPath = path.join(POLICIES_DIR, policyName);
-      const relativePath = `policies/${policyName}`;
 
       // Read policy content
       const content = fs.readFileSync(policyPath, "utf8");
@@ -259,22 +310,7 @@ async function generatePolicyData() {
         continue;
       }
 
-      // Get git history (without --follow to avoid false rename/copy detection)
-      const rawLog = await git.raw([
-        "log",
-        "--max-count=100",
-        "--format=%H|%aI|%s|%an",
-        "--",
-        relativePath,
-      ]);
-      const logEntries = (rawLog || "")
-        .trim()
-        .split("\n")
-        .filter((line) => line.length > 0)
-        .map((line) => {
-          const [hash, date, message, author_name] = line.split("|");
-          return { hash, date, message, author_name };
-        });
+      const logEntries = historyByPolicy.get(policyName) || [];
 
       for (const entry of logEntries) {
         allCommitEntries.push({

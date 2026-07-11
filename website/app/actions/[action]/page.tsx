@@ -261,9 +261,9 @@ export default async function ActionDetailPage(props: {
           </div>
         </div>
         <p className="mt-3 text-xs text-zinc-500 dark:text-zinc-400 font-mono">
-          Index generated {new Date(idx.generatedAt).toLocaleString()}.{" "}
           {idx.stats.policiesWithWildcardActions} policies include at least one
-          wildcard action string (any service).
+          wildcard action string (any service). Index regenerated on every
+          deploy.
         </p>
       </div>
 
@@ -329,8 +329,7 @@ export default async function ActionDetailPage(props: {
             separate.
           </p>
           <p className="text-[10px] font-mono text-zinc-500 dark:text-zinc-500 mt-2">
-            Definitions bundle generated{" "}
-            {new Date(defsMeta.generatedAt).toLocaleString()}
+            Definitions bundle regenerated on every deploy
           </p>
         </div>
       ) : null}

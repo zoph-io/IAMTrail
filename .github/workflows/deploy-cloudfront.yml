@@ -18,6 +18,12 @@ permissions:
   id-token: write
   contents: read
 
+# A newer bot commit supersedes an in-flight deploy; each deploy is a full,
+# idempotent rebuild so cancelling mid-run is safe (S3 upload is content-diffed).
+concurrency:
+  group: deploy-website
+  cancel-in-progress: true
+
 env:
   AWS_REGION: eu-west-1
   S3_BUCKET: iamtrail.com
@@ -51,9 +57,31 @@ jobs:
         working-directory: ./website
         run: npm ci
 
+      - name: Cache Next.js build cache
+        uses: actions/cache@v4
+        with:
+          path: website/.next/cache
+          key: nextjs-${{ hashFiles('website/package-lock.json') }}-${{ hashFiles('website/app/**', 'website/components/**', 'website/lib/**') }}
+          restore-keys: |
+            nextjs-${{ hashFiles('website/package-lock.json') }}-
+
       - name: Generate policy data
         working-directory: ./website
         run: npm run generate-data
+
+      - name: Cache per-policy OG images
+        uses: actions/cache@v4
+        with:
+          path: |
+            website/public/policies
+            website/.og-manifest.json
+          key: og-images-${{ github.sha }}
+          restore-keys: |
+            og-images-
+
+      - name: Generate OG images (incremental)
+        working-directory: ./website
+        run: npm run generate-og
 
       - name: Build Next.js site
         working-directory: ./website
@@ -61,25 +89,9 @@ jobs:
         env:
           NEXT_PUBLIC_USE_BASE_PATH: "false" # Custom domain, no basePath
 
-      - name: Sync to S3
+      - name: Deploy to S3 (content-diff, changed files only)
         working-directory: ./website
-        run: |
-          aws s3 sync out/ s3://${{ env.S3_BUCKET }}/ \
-            --delete \
-            --cache-control "public, max-age=31536000, immutable" \
-            --exclude "*.html" \
-            --exclude "*.json" \
-            --exclude "*.txt" \
-            --exclude "*.xml"
-          
-          # HTML and JSON files with shorter cache
-          aws s3 sync out/ s3://${{ env.S3_BUCKET }}/ \
-            --cache-control "public, max-age=0, must-revalidate" \
-            --exclude "*" \
-            --include "*.html" \
-            --include "*.json" \
-            --include "*.txt" \
-            --include "*.xml"
+        run: node scripts/deploy-s3.mjs --bucket ${{ env.S3_BUCKET }}
 
       - name: Create CloudFront invalidation
         run: |
