@@ -1,0 +1,18 @@
+{
+  "detected_at": "2026-07-13T19:38:10.205Z",
+  "botocore_commit": "e8a69b4d1a7500ed3d8b623939ad8f7fb7bd9b92",
+  "botocore_commit_url": "https://github.com/boto/botocore/commit/e8a69b4d1a7500ed3d8b623939ad8f7fb7bd9b92",
+  "summary": "1 service expansion(s)",
+  "changes": [
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "wisdom",
+      "id": "wisdom",
+      "new_regions": [
+        "af-south-1"
+      ],
+      "description": "wisdom expanded to af-south-1"
+    }
+  ]
+}
