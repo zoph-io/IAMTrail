@@ -275,7 +275,14 @@
                                 "ProjectUserTag*",
                                 "sagemaker*",
                                 "sm-jumpstart*",
-                                "endpoint-has-jumpstart-model"
+                                "endpoint-has-jumpstart-model",
+                                "aws-jumpstart*",
+                                "Source",
+                                "CanvasModelName",
+                                "Canvas",
+                                "SageMaker",
+                                "ProjectS3Path",
+                                "Owner"
                             ]
                         },
                         "ForAllValues:StringNotLike": {
@@ -339,6 +346,7 @@
                         "athena:TerminateSession",
                         "emr-serverless:*Session*",
                         "emr-serverless:*Dashboard*",
+                        "emr-containers:*ManagedEndpoint*",
                         "elasticmapreduce:*Session*",
                         "glue:CancelStatement",
                         "glue:CreateSession",
@@ -353,6 +361,7 @@
                     "Resource": [
                         "arn:aws:athena:*:*:workgroup/*/session/*",
                         "arn:aws:emr-serverless:*:*:/applications/*/sessions/*",
+                        "arn:aws:emr-containers:*:*:/virtualclusters/*/endpoints/*",
                         "arn:aws:elasticmapreduce:*:*:cluster/*/session/*",
                         "arn:aws:glue:*:*:session/*"
                     ],
@@ -370,6 +379,7 @@
                         "athena:TagResource",
                         "athena:UntagResource",
                         "emr-serverless:*Resource",
+                        "emr-containers:*Resource",
                         "elasticmapreduce:AddTags",
                         "elasticmapreduce:RemoveTags",
                         "glue:TagResource",
@@ -378,6 +388,7 @@
                     "Resource": [
                         "arn:aws:athena:*:*:workgroup/*/session/*",
                         "arn:aws:emr-serverless:*:*:/applications/*/sessions/*",
+                        "arn:aws:emr-containers:*:*:/virtualclusters/*/endpoints/*",
                         "arn:aws:elasticmapreduce:*:*:cluster/*/session/*",
                         "arn:aws:glue:*:*:session/*"
                     ],
@@ -491,7 +502,8 @@
                                 "elasticmapreduce.amazonaws.com",
                                 "redshift.amazonaws.com",
                                 "airflow-serverless.amazonaws.com",
-                                "events.amazonaws.com"
+                                "events.amazonaws.com",
+                                "pods.eks.amazonaws.com"
                             ]
                         }
                     }
@@ -963,6 +975,10 @@
                         "emr-serverless:Access*Endpoints",
                         "emr-serverless:Terminate*",
                         "emr-serverless:*Resource",
+                        "emr-containers:*ManagedEndpoint*",
+                        "emr-containers:*SecurityConfiguration*",
+                        "emr-containers:*VirtualCluster*",
+                        "emr-containers:*Resource",
                         "elasticmapreduce:*PersistentAppUI*",
                         "elasticmapreduce:Start*",
                         "elasticmapreduce:Get*",
@@ -1047,8 +1063,8 @@
                 }
             ]
         },
-        "VersionId": "v27",
+        "VersionId": "v28",
         "IsDefaultVersion": true,
-        "CreateDate": "2026-06-29T16:12:28+00:00"
+        "CreateDate": "2026-07-14T18:57:28+00:00"
     }
 }
