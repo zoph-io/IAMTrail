@@ -1356,7 +1356,8 @@
                                 "emr-serverless.amazonaws.com",
                                 "elasticmapreduce.amazonaws.com",
                                 "scheduler.amazonaws.com",
-                                "access-grants.s3.amazonaws.com"
+                                "access-grants.s3.amazonaws.com",
+                                "pods.eks.amazonaws.com"
                             ]
                         }
                     }
@@ -1517,10 +1518,10 @@
                     "Sid": "ComputeCredentials",
                     "Effect": "Allow",
                     "Action": [
-                        "emr-containers:DescribeManagedEndpoint",
+                        "emr-containers:*ManagedEndpoint*",
+                        "emr-containers:TagResource",
                         "emr-containers:DescribeSecurityConfiguration",
                         "emr-containers:DescribeVirtualCluster",
-                        "emr-containers:GetManagedEndpointSessionCredentials",
                         "redshift-serverless:GetCredentials",
                         "redshift:GetClusterCredentialsWithIAM"
                     ],
@@ -2813,8 +2814,8 @@
                 }
             ]
         },
-        "VersionId": "v71",
+        "VersionId": "v72",
         "IsDefaultVersion": true,
-        "CreateDate": "2026-06-29T20:27:23+00:00"
+        "CreateDate": "2026-07-14T19:12:29+00:00"
     }
 }
