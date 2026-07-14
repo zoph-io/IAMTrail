@@ -11,7 +11,8 @@
                         "organizations:ListChildren",
                         "organizations:ListParents",
                         "organizations:DescribeOrganization",
-                        "organizations:DescribeOrganizationalUnit"
+                        "organizations:DescribeOrganizationalUnit",
+                        "organizations:ListAWSServiceAccessForOrganization"
                     ],
                     "Resource": "*"
                 },
@@ -99,8 +100,8 @@
                 }
             ]
         },
-        "VersionId": "v1",
+        "VersionId": "v2",
         "IsDefaultVersion": true,
-        "CreateDate": "2024-11-27T19:36:07+00:00"
+        "CreateDate": "2026-07-14T22:42:17+00:00"
     }
 }
