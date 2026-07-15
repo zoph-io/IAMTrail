@@ -5,10 +5,8 @@ import traceback
 import boto3
 import bluesky_publisher
 import discord_notifier as discord
-import x_poster  # noqa: F401  # TODO(X-API): re-enable x_poster.post(...) below
 
 TABLE_NAME = os.environ.get("GUARDDUTY_TABLE", "")
-X_SECRET_ARN = os.environ.get("X_API_SECRET_ARN", "")
 
 TYPE_CONFIG = {
     "NEW_FINDINGS": {
@@ -18,7 +16,7 @@ TYPE_CONFIG = {
         "link_fn": lambda d: d.get("link", ""),
         "discord_color": 0xE74C3C,
         "discord_title": "New GuardDuty Finding",
-        "tweet_prefix": "New AWS GuardDuty Finding:",
+        "post_prefix": "New AWS GuardDuty Finding:",
     },
     "UPDATED_FINDINGS": {
         "detail_key": "findingDetails",
@@ -27,7 +25,7 @@ TYPE_CONFIG = {
         "link_fn": lambda d: d.get("link", ""),
         "discord_color": 0xF39C12,
         "discord_title": "Updated GuardDuty Finding",
-        "tweet_prefix": "Updated AWS GuardDuty Finding:",
+        "post_prefix": "Updated AWS GuardDuty Finding:",
     },
     "NEW_FEATURES": {
         "detail_key": "featureDetails",
@@ -36,7 +34,7 @@ TYPE_CONFIG = {
         "link_fn": lambda d: d.get("featureLink", ""),
         "discord_color": 0x2ECC71,
         "discord_title": "New GuardDuty Feature",
-        "tweet_prefix": "New Feature on AWS GuardDuty:",
+        "post_prefix": "New Feature on AWS GuardDuty:",
     },
     "NEW_REGION": {
         "detail_key": "regionDetails",
@@ -45,14 +43,14 @@ TYPE_CONFIG = {
         "link_fn": lambda d: d.get("link", ""),
         "discord_color": 0x3498DB,
         "discord_title": "New GuardDuty Region",
-        "tweet_prefix": "New AWS GuardDuty Region:",
+        "post_prefix": "New AWS GuardDuty Region:",
     },
 }
 
 GENERAL_CONFIG = {
     "discord_color": 0x95A5A6,
     "discord_title": "GuardDuty Announcement",
-    "tweet_prefix": "AWS GuardDuty Update:",
+    "post_prefix": "AWS GuardDuty Update:",
 }
 
 
@@ -148,9 +146,8 @@ def _process_typed(message, msg_type, table, today, timestamp_id, now):
             url=page_url,
         )
 
-        tweet_text = _build_tweet(config["tweet_prefix"], short_desc, link)
-        # TODO(X-API): x_poster.post(tweet_text, X_SECRET_ARN)
-        bluesky_publisher.post(f"[GuardDuty] {tweet_text}")
+        post_text = _build_post(config["post_prefix"], short_desc, link)
+        bluesky_publisher.post(f"[GuardDuty] {post_text}")
 
     print(f"Recorded {len(details)} {msg_type} announcements")
 
@@ -203,14 +200,13 @@ def _process_general(message, table, today, timestamp_id, now):
             url=page_url,
         )
 
-        tweet_text = _build_tweet(GENERAL_CONFIG["tweet_prefix"], title, link)
-        # TODO(X-API): x_poster.post(tweet_text, X_SECRET_ARN)
-        bluesky_publisher.post(f"[GuardDuty] {tweet_text}")
+        post_text = _build_post(GENERAL_CONFIG["post_prefix"], title, link)
+        bluesky_publisher.post(f"[GuardDuty] {post_text}")
 
     print(f"Recorded {len(entries)} GENERAL announcements")
 
 
-def _build_tweet(prefix, description, link):
+def _build_post(prefix, description, link):
     max_desc_len = 280 - len(prefix) - 2
     if link:
         max_desc_len -= 24

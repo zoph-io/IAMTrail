@@ -169,13 +169,6 @@ send_notifications() {
     local message_body="$1"
     local sns_message="$2"
 
-    # TODO(X-API): Re-enable if X grants Public Utility access or paid credits.
-    # Disabled 2026-04: X API pay-per-use (Feb 2026) - 402 CreditsDepleted on @iamtrail_.
-    # python3 "$REPO_PATH/automation/scripts/x_poster.py" \
-    #     --secret "iamtrail/social/iamtrail" \
-    #     --region "$REGION" \
-    #     "$message_body" || true
-
     # Bluesky (@iamtrail.bsky.social) via qbsky-mamip-prod FIFO queue
     local bsky_body="[Policies] ${message_body}"
     aws sqs send-message \

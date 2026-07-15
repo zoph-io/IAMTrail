@@ -1179,10 +1179,6 @@ data "archive_file" "guardduty_recorder" {
     filename = "index.py"
   }
   source {
-    content  = file("${path.module}/../scripts/x_poster.py")
-    filename = "x_poster.py"
-  }
-  source {
     content  = file("${path.module}/../lambdas/shared/discord_notifier.py")
     filename = "discord_notifier.py"
   }
@@ -1205,7 +1201,6 @@ resource "aws_lambda_function" "guardduty_recorder" {
   environment {
     variables = {
       GUARDDUTY_TABLE              = aws_dynamodb_table.guardduty_announcements.name
-      X_API_SECRET_ARN            = aws_secretsmanager_secret.social_mgda.arn
       DISCORD_WEBHOOK_SSM          = local.discord_webhook_ssm
       DISCORD_PUBLIC_WEBHOOK_SSM   = local.discord_public_webhook_ssm
       BLUESKY_QUEUE_URL            = local.bluesky_fifo_queue_url
@@ -1235,45 +1230,36 @@ resource "aws_iam_role_policy" "guardduty_recorder" {
 
   policy = jsonencode({
     Version = "2012-10-17"
-    Statement = concat(
-      [
-        {
-          Effect   = "Allow"
-          Action   = ["dynamodb:PutItem", "dynamodb:BatchWriteItem"]
-          Resource = [aws_dynamodb_table.guardduty_announcements.arn]
-        },
-        {
-          Effect   = "Allow"
-          Action   = ["sqs:ReceiveMessage", "sqs:DeleteMessage", "sqs:GetQueueAttributes"]
-          Resource = [aws_sqs_queue.guardduty.arn]
-        },
-        {
-          Effect   = "Allow"
-          Action   = ["ssm:GetParameter"]
-          Resource = [
-            "arn:aws:ssm:${var.aws_region}:${data.aws_caller_identity.current.account_id}:parameter${local.discord_webhook_ssm}",
-            "arn:aws:ssm:${var.aws_region}:${data.aws_caller_identity.current.account_id}:parameter${local.discord_public_webhook_ssm}",
-          ]
-        },
-        {
-          Effect   = "Allow"
-          Action   = ["sqs:SendMessage"]
-          Resource = ["arn:aws:sqs:${var.aws_region}:${data.aws_caller_identity.current.account_id}:${var.qbsky_sqs_name}.fifo"]
-        },
-        {
-          Effect   = "Allow"
-          Action   = ["logs:CreateLogGroup", "logs:CreateLogStream", "logs:PutLogEvents"]
-          Resource = ["arn:aws:logs:*:*:*"]
-        }
-      ],
-      [
-        {
-          Effect   = "Allow"
-          Action   = ["secretsmanager:GetSecretValue"]
-          Resource = [aws_secretsmanager_secret.social_mgda.arn]
-        }
-      ]
-    )
+    Statement = [
+      {
+        Effect   = "Allow"
+        Action   = ["dynamodb:PutItem", "dynamodb:BatchWriteItem"]
+        Resource = [aws_dynamodb_table.guardduty_announcements.arn]
+      },
+      {
+        Effect   = "Allow"
+        Action   = ["sqs:ReceiveMessage", "sqs:DeleteMessage", "sqs:GetQueueAttributes"]
+        Resource = [aws_sqs_queue.guardduty.arn]
+      },
+      {
+        Effect   = "Allow"
+        Action   = ["ssm:GetParameter"]
+        Resource = [
+          "arn:aws:ssm:${var.aws_region}:${data.aws_caller_identity.current.account_id}:parameter${local.discord_webhook_ssm}",
+          "arn:aws:ssm:${var.aws_region}:${data.aws_caller_identity.current.account_id}:parameter${local.discord_public_webhook_ssm}",
+        ]
+      },
+      {
+        Effect   = "Allow"
+        Action   = ["sqs:SendMessage"]
+        Resource = ["arn:aws:sqs:${var.aws_region}:${data.aws_caller_identity.current.account_id}:${var.qbsky_sqs_name}.fifo"]
+      },
+      {
+        Effect   = "Allow"
+        Action   = ["logs:CreateLogGroup", "logs:CreateLogStream", "logs:PutLogEvents"]
+        Resource = ["arn:aws:logs:*:*:*"]
+      }
+    ]
   })
 }
 
@@ -1313,30 +1299,9 @@ output "iamtrail_nameservers" {
 # Create SecureString /iamtrail/discord-public-webhook-url in the console
 # with the channel webhook URL. Not advertised on iamtrail.com (Bluesky + RSS only).
 # ──────────────────────────────────────────────
-# Secrets Manager: Social Media Credentials
+# Social: Bluesky only. Posts are enqueued to the qbsky FIFO queue; the external
+# qbsky-mamip-prod consumer holds Bluesky credentials (qbsky-mamip-secrets-prod).
 # ──────────────────────────────────────────────
-# Generic pattern per account. Fill values manually in the console.
-# JSON structure:
-#   x_api_key, x_api_secret, x_access_token, x_access_token_secret
-#   bluesky_handle, bluesky_app_password
-
-resource "aws_secretsmanager_secret" "social_iamtrail" {
-  name        = "iamtrail/social/iamtrail"
-  description = "Social credentials for @iamtrail_ (X) and @iamtrail.bsky.social (Bluesky)"
-  tags        = var.tags
-}
-
-resource "aws_secretsmanager_secret" "social_mase" {
-  name        = "iamtrail/social/mase"
-  description = "Social credentials for @mase_aws (X) - Endpoint monitor"
-  tags        = var.tags
-}
-
-resource "aws_secretsmanager_secret" "social_mgda" {
-  name        = "iamtrail/social/mgda"
-  description = "Social credentials for @mgda_aws (X) - GuardDuty announcements"
-  tags        = var.tags
-}
 
 output "iamtrail_cloudfront_distribution_id" {
   description = "CloudFront distribution ID for iamtrail.com (use in deploy workflow)"

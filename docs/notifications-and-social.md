@@ -11,7 +11,7 @@ IAM policies (ECS runbook), GuardDuty (Lambda + optional GitHub sync), and endpo
 
 ## X / Twitter
 
-Posting is **disabled** in code (Feb 2026 X API pay-per-use). `automation/scripts/x_poster.py` and `iamtrail/social/*` secrets are kept for a possible future re-enable.
+Removed. IAMTrail no longer posts to X (the X handles were deleted). The `x_poster.py` script and the `iamtrail/social/*` Secrets Manager secrets have been deleted. Bluesky is the only social channel.
 
 ## GitHub Actions IAM
 

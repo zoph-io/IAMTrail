@@ -137,16 +137,6 @@ jobs:
             --message-group-id 1 \
             --region "${{ env.aws_region }}"
 
-      # TODO(X-API): Re-enable if X offers viable free tier or paid credits.
-      # - name: Post to X/Twitter (@mase_aws)
-      #   if: steps.check.outputs.CHANGES_DETECTED == 'true'
-      #   continue-on-error: true
-      #   run: |
-      #     python3 automation/scripts/x_poster.py \
-      #       --secret "iamtrail/social/mase" \
-      #       --region "${{ env.aws_region }}" \
-      #       "${{ env.ENDPOINT_MESSAGE }}"
-
       - name: Commit and push changes
         if: steps.check.outputs.CHANGES_DETECTED == 'true'
         run: |

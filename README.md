@@ -45,7 +45,7 @@ Subscribe to policy changes:
   - [Endpoint Changes](https://iamtrail.com/feeds/endpoints.xml) - new regions, services, and expansions from botocore
   - [GuardDuty Announcements](https://iamtrail.com/feeds/guardduty.xml) - new findings, features, and region launches
 
-See [docs/notifications-and-social.md](docs/notifications-and-social.md) for SSM parameters, Bluesky queue, GitHub Actions IAM, and why X posting is off.
+See [docs/notifications-and-social.md](docs/notifications-and-social.md) for SSM parameters, Bluesky queue, and GitHub Actions IAM.
 
 ## Browse the Data
 
@@ -65,7 +65,7 @@ An automated workflow runs every hour (Mon-Fri):
 2. Detect new, updated, or deprecated policies
 3. Validate each policy with AWS Access Analyzer
 4. Commit changes to git (one commit per policy)
-5. Notify via Bluesky, RSS, email digests, and an invite-only Discord webhook (SSM only, not linked on the site; X/Twitter posting is disabled - see `automation/scripts/x_poster.py`)
+5. Notify via Bluesky, RSS, email digests, and an invite-only Discord webhook (SSM only, not linked on the site)
 
 ## Credits
 
