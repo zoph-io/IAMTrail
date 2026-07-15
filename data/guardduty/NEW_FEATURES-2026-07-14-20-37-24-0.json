@@ -1,0 +1,18 @@
+{
+  "type": "NEW_FEATURES",
+  "detected_at": "2026-07-14T20:37:24Z",
+  "description": "Amazon GuardDuty now offers AI Protection, expanding threat detection to AWS AI services including Amazon Bedrock and Amazon SageMaker. As organizations rapidly adopt AI, security teams may lack visibility into threats specifically targeting AI workloads, such as anomalous model invocations, cost harvesting attacks, and prompt injection attempts. GuardDuty AI Protection continuously monitors these workloads so security teams can detect and respond to AI-specific threats without manual configuration or custom tooling.\n\nGuardDuty AI Protection analyzes both CloudTrail management and data events from AWS AI services to identify suspicious activity, including unusual invocation patterns, cost harvesting attacks where threat actors force AI resources to consume excessive GPU time and tokens, and prompt injection attempts through integration with Amazon Bedrock Guardrails. AI Protection introduces three new finding types: Impact:IAMUser/AnomalousModelInvocation, Impact:IAMUser/CostHarvesting, and Impact:IAMUser/PromptInjection.Direct. GuardDuty AI Protection can be enabled with a few steps in the GuardDuty or Security Hub console, and using AWS Organizations, can be centrally enabled for all accounts in an organization.",
+  "short_description": "Amazon GuardDuty now offers AI Protection, expanding threat detection to AWS AI services including Amazon Bedrock and Amazon SageMaker. As organizatio",
+  "link": "https://docs.aws.amazon.com/guardduty/latest/ug/ai-protection.html",
+  "gist_url": "",
+  "raw_sns_message": {
+    "version": "1",
+    "type": "NEW_FEATURES",
+    "featureDetails": [
+      {
+        "featureLink": "https://docs.aws.amazon.com/guardduty/latest/ug/ai-protection.html",
+        "featureDescription": "Amazon GuardDuty now offers AI Protection, expanding threat detection to AWS AI services including Amazon Bedrock and Amazon SageMaker. As organizations rapidly adopt AI, security teams may lack visibility into threats specifically targeting AI workloads, such as anomalous model invocations, cost harvesting attacks, and prompt injection attempts. GuardDuty AI Protection continuously monitors these workloads so security teams can detect and respond to AI-specific threats without manual configuration or custom tooling.\n\nGuardDuty AI Protection analyzes both CloudTrail management and data events from AWS AI services to identify suspicious activity, including unusual invocation patterns, cost harvesting attacks where threat actors force AI resources to consume excessive GPU time and tokens, and prompt injection attempts through integration with Amazon Bedrock Guardrails. AI Protection introduces three new finding types: Impact:IAMUser/AnomalousModelInvocation, Impact:IAMUser/CostHarvesting, and Impact:IAMUser/PromptInjection.Direct. GuardDuty AI Protection can be enabled with a few steps in the GuardDuty or Security Hub console, and using AWS Organizations, can be centrally enabled for all accounts in an organization."
+      }
+    ]
+  }
+}
