@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Rss } from "lucide-react";
 import "./globals.css";
 import NavBar from "@/components/NavBar";
@@ -71,6 +71,9 @@ export const metadata: Metadata = {
       follow: true,
     },
   },
+};
+
+export const viewport: Viewport = {
   colorScheme: "dark",
 };
 
