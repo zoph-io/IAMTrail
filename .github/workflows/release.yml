@@ -18,18 +18,26 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Get changed files
-        id: getfile
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Build release notes
+        id: notes
         run: |
           PREVIOUS=$(git describe --abbrev=0 --tags $(git rev-list --tags --skip=1 --max-count=1))
-          DIFF=$(git diff --name-only ${{ github.ref_name }} "$PREVIOUS")
-          echo "files<<EOF" >> "$GITHUB_OUTPUT"
-          echo "$DIFF" >> "$GITHUB_OUTPUT"
-          echo "EOF" >> "$GITHUB_OUTPUT"
+          python3 automation/scripts/build_release_notes.py \
+            --previous "$PREVIOUS" \
+            --current "${{ github.ref_name }}" \
+            --repo "${{ github.repository }}" \
+            --site-url "https://iamtrail.com" \
+            --output release-notes.md \
+            --title-output release-title.txt
+          echo "title=$(cat release-title.txt)" >> "$GITHUB_OUTPUT"
 
       - name: Create Release
         uses: softprops/action-gh-release@v2
         with:
-          body: |
-            Files changed:
-            ${{ steps.getfile.outputs.files }}
+          name: ${{ steps.notes.outputs.title }}
+          body_path: release-notes.md
