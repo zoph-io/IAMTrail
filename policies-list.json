@@ -15257,12 +15257,12 @@
             "PolicyId": "ANPAZKAPJZG4L52FJ276H",
             "Arn": "arn:aws:iam::aws:policy/SageMakerStudioProjectUserRolePolicy",
             "Path": "/",
-            "DefaultVersionId": "v71",
+            "DefaultVersionId": "v72",
             "AttachmentCount": 0,
             "PermissionsBoundaryUsageCount": 0,
             "IsAttachable": true,
             "CreateDate": "2024-11-20T21:59:23+00:00",
-            "UpdateDate": "2026-06-29T20:27:23+00:00"
+            "UpdateDate": "2026-07-14T19:12:29+00:00"
         },
         {
             "PolicyName": "AWSArtifactAgreementsFullAccess",
@@ -15305,12 +15305,12 @@
             "PolicyId": "ANPAZKAPJZG4MSF2FZK2R",
             "Arn": "arn:aws:iam::aws:policy/aws-service-role/AWSObservabilityAdminServiceRolePolicy",
             "Path": "/aws-service-role/",
-            "DefaultVersionId": "v1",
+            "DefaultVersionId": "v2",
             "AttachmentCount": 0,
             "PermissionsBoundaryUsageCount": 0,
             "IsAttachable": true,
             "CreateDate": "2024-11-27T19:36:07+00:00",
-            "UpdateDate": "2024-11-27T19:36:07+00:00"
+            "UpdateDate": "2026-07-14T22:42:17+00:00"
         },
         {
             "PolicyName": "SageMakerStudioFullAccess",
@@ -16517,48 +16517,48 @@
             "PolicyId": "ANPAZKAPJZG4BV3PMY4IB",
             "Arn": "arn:aws:iam::aws:policy/SageMakerStudioUserIAMDefaultExecutionPolicy",
             "Path": "/",
-            "DefaultVersionId": "v27",
+            "DefaultVersionId": "v28",
             "AttachmentCount": 0,
             "PermissionsBoundaryUsageCount": 0,
             "IsAttachable": true,
             "CreateDate": "2025-08-18T17:19:07+00:00",
-            "UpdateDate": "2026-06-29T16:12:28+00:00"
+            "UpdateDate": "2026-07-14T18:57:28+00:00"
         },
         {
             "PolicyName": "SageMakerStudioAdminIAMPermissiveExecutionPolicy",
             "PolicyId": "ANPAZKAPJZG4DPB4UTXYO",
             "Arn": "arn:aws:iam::aws:policy/SageMakerStudioAdminIAMPermissiveExecutionPolicy",
             "Path": "/",
-            "DefaultVersionId": "v20",
+            "DefaultVersionId": "v21",
             "AttachmentCount": 0,
             "PermissionsBoundaryUsageCount": 0,
             "IsAttachable": true,
             "CreateDate": "2025-08-18T17:19:07+00:00",
-            "UpdateDate": "2026-06-29T16:12:11+00:00"
+            "UpdateDate": "2026-07-14T18:57:27+00:00"
         },
         {
             "PolicyName": "SageMakerStudioAdminIAMDefaultExecutionPolicy",
             "PolicyId": "ANPAZKAPJZG4NZY6YGCPE",
             "Arn": "arn:aws:iam::aws:policy/SageMakerStudioAdminIAMDefaultExecutionPolicy",
             "Path": "/",
-            "DefaultVersionId": "v23",
+            "DefaultVersionId": "v24",
             "AttachmentCount": 0,
             "PermissionsBoundaryUsageCount": 0,
             "IsAttachable": true,
             "CreateDate": "2025-08-18T17:19:07+00:00",
-            "UpdateDate": "2026-06-29T16:12:16+00:00"
+            "UpdateDate": "2026-07-14T18:57:22+00:00"
         },
         {
             "PolicyName": "SageMakerStudioUserIAMPermissiveExecutionPolicy",
             "PolicyId": "ANPAZKAPJZG4MQ2K3CR4F",
             "Arn": "arn:aws:iam::aws:policy/SageMakerStudioUserIAMPermissiveExecutionPolicy",
             "Path": "/",
-            "DefaultVersionId": "v22",
+            "DefaultVersionId": "v23",
             "AttachmentCount": 0,
             "PermissionsBoundaryUsageCount": 0,
             "IsAttachable": true,
             "CreateDate": "2025-08-18T17:19:08+00:00",
-            "UpdateDate": "2026-06-29T16:12:34+00:00"
+            "UpdateDate": "2026-07-14T18:57:14+00:00"
         },
         {
             "PolicyName": "SageMakerStudioUserIAMConsolePolicy",
