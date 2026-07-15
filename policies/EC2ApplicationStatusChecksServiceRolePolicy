@@ -28,11 +28,21 @@
                         "ec2:DescribeNetworkInterfaces"
                     ],
                     "Resource": "*"
+                },
+                {
+                    "Effect": "Allow",
+                    "Action": "cloudwatch:PutMetricData",
+                    "Resource": "*",
+                    "Condition": {
+                        "StringEquals": {
+                            "cloudwatch:namespace": "AWS/Usage"
+                        }
+                    }
                 }
             ]
         },
-        "VersionId": "v2",
+        "VersionId": "v3",
         "IsDefaultVersion": true,
-        "CreateDate": "2026-06-19T17:27:31+00:00"
+        "CreateDate": "2026-07-15T17:12:31+00:00"
     }
 }
