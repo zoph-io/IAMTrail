@@ -4,7 +4,7 @@ import type { Metadata } from "next";
 export const metadata: Metadata = {
   title: "Brand New (v1) AWS Managed IAM Policies",
   description:
-    "Complete list of brand new AWS Managed IAM Policies still at version 1. Spot upcoming AWS services and features early.",
+    "Recently created AWS Managed IAM Policies still at version 1. Spot upcoming AWS services and features early.",
   alternates: {
     canonical: "https://iamtrail.com/brand-new",
   },
@@ -30,6 +30,7 @@ export default async function BrandNewPage() {
   }
 
   const { stats } = summaryData;
+  const windowDays = stats.brandNewWindowDays || 90;
   const brandNew = (stats.brandNew || []).sort(
     (a: any, b: any) =>
       new Date(b.createDate || 0).getTime() -
@@ -43,8 +44,8 @@ export default async function BrandNewPage() {
           Brand New Policies (v1)
         </h1>
         <p className="text-sm text-zinc-600 dark:text-zinc-400">
-          {brandNew.length} AWS Managed IAM Policies still at version 1 - spot
-          upcoming services early
+          {brandNew.length} new v1 AWS Managed IAM Policies created in the last{" "}
+          {windowDays} days - spot upcoming services early
         </p>
       </div>
 
@@ -52,7 +53,7 @@ export default async function BrandNewPage() {
         <div className="bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 rounded-lg overflow-hidden">
           <div className="px-5 py-3 border-b border-zinc-200 dark:border-zinc-800">
             <h2 className="text-sm font-semibold font-mono uppercase tracking-wider text-zinc-900 dark:text-white">
-              All v1 policies ({brandNew.length})
+              Created in the last {windowDays} days ({brandNew.length})
             </h2>
           </div>
           <div className="divide-y divide-zinc-100 dark:divide-zinc-800">

@@ -119,12 +119,22 @@ function pathfindingPathUrl(pathId) {
  * policies/ instead of spawning one `git log` subprocess per policy
  * (~1,566 sequential spawns, the dominant cost of data generation).
  *
- * Entries are newest-first. Each policy is capped at its 100 most recent
- * commits to match the previous per-path `--max-count=100` behavior
- * (versionsCount / firstSeen semantics preserved).
+ * Stored history entries are newest-first and capped at the 100 most recent
+ * commits per policy (used for the changelog display). Modification counts and
+ * first-seen dates are computed UNCAPPED from the same pass so they stay
+ * accurate for policies with more than 100 commits, and bulk-reformat days are
+ * detected here so every consumer shares one definition.
+ *
+ * Returns:
+ * - historyByPolicy: Map<name, entries[]> (capped at 100, newest-first)
+ * - versionsCountByPolicy: Map<name, count> of real modifications (uncapped,
+ *   excluding bulk-reformat days)
+ * - firstSeenByPolicy: Map<name, ISO date> of the oldest commit (uncapped)
+ * - bulkDays: Set<YYYY-MM-DD> of false-positive bulk-reformat days
  */
 async function buildPolicyHistory() {
   const MAX_ENTRIES_PER_POLICY = 100;
+  const BULK_DAY_THRESHOLD = 50;
   const COMMIT_PREFIX = "__C__";
   // --no-renames matches the previous per-path behavior (no --follow, no
   // false rename/copy detection).
@@ -137,6 +147,9 @@ async function buildPolicyHistory() {
     "policies/",
   ]);
   const historyByPolicy = new Map();
+  const daysByPolicy = new Map();
+  const firstSeenByPolicy = new Map();
+  const commitsByDate = {};
   let current = null;
   for (const line of (raw || "").split("\n")) {
     if (line.startsWith(COMMIT_PREFIX)) {
@@ -151,6 +164,7 @@ async function buildPolicyHistory() {
     if (!trimmed.startsWith("policies/")) continue;
     const policyName = trimmed.slice("policies/".length);
     if (!policyName || policyName.includes("/")) continue;
+
     let entries = historyByPolicy.get(policyName);
     if (!entries) {
       entries = [];
@@ -159,8 +173,46 @@ async function buildPolicyHistory() {
     if (entries.length < MAX_ENTRIES_PER_POLICY) {
       entries.push(current);
     }
+
+    // Uncapped per-policy day tracking for accurate modification counts.
+    const day = new Date(current.date).toISOString().slice(0, 10);
+    let days = daysByPolicy.get(policyName);
+    if (!days) {
+      days = [];
+      daysByPolicy.set(policyName, days);
+    }
+    days.push(day);
+
+    // Log is newest-first, so the last commit seen per policy is its oldest.
+    firstSeenByPolicy.set(policyName, current.date);
+
+    // Global per-policy-file changes per day (2019 import excluded, matching
+    // the chart-data bulk-day logic).
+    if (!day.startsWith("2019-")) {
+      commitsByDate[day] = (commitsByDate[day] || 0) + 1;
+    }
   }
-  return historyByPolicy;
+
+  // Bulk-reformat days: any day where >= BULK_DAY_THRESHOLD policy files
+  // changed (e.g. jq -S key-sorting, invisible character normalization) is
+  // treated as false-positive churn rather than real modifications.
+  const bulkDays = new Set(
+    Object.entries(commitsByDate)
+      .filter(([, count]) => count >= BULK_DAY_THRESHOLD)
+      .map(([day]) => day)
+  );
+
+  // Real modification count per policy: uncapped, excluding bulk-reformat days.
+  const versionsCountByPolicy = new Map();
+  for (const [policyName, days] of daysByPolicy) {
+    let count = 0;
+    for (const day of days) {
+      if (!bulkDays.has(day)) count++;
+    }
+    versionsCountByPolicy.set(policyName, count);
+  }
+
+  return { historyByPolicy, versionsCountByPolicy, firstSeenByPolicy, bulkDays };
 }
 
 function buildPathfindingFindingsForPolicy(allowInfo, catalogPaths) {
@@ -294,7 +346,12 @@ async function generatePolicyData() {
   }
 
   console.log("🕘 Building git history (single pass)...");
-  const historyByPolicy = await buildPolicyHistory();
+  const {
+    historyByPolicy,
+    versionsCountByPolicy,
+    firstSeenByPolicy,
+    bulkDays,
+  } = await buildPolicyHistory();
 
   for (const policyName of policyFiles) {
     try {
@@ -381,9 +438,10 @@ async function generatePolicyData() {
       }
 
       const firstSeenDate =
-        logEntries.length > 0
+        firstSeenByPolicy.get(policyName) ||
+        (logEntries.length > 0
           ? logEntries[logEntries.length - 1].date
-          : stats.mtime.toISOString();
+          : stats.mtime.toISOString());
 
       const policy = {
         name: policyName,
@@ -392,7 +450,7 @@ async function generatePolicyData() {
         lastModified: logEntries.length > 0
           ? logEntries[0].date
           : stats.mtime.toISOString(),
-        versionsCount: logEntries.length,
+        versionsCount: versionsCountByPolicy.get(policyName) ?? logEntries.length,
         size: stats.size,
         actionCount,
         servicePrefixes: [...servicePrefixes],
@@ -469,15 +527,20 @@ async function generatePolicyData() {
   // Sort and calculate stats
   policies.sort((a, b) => new Date(b.lastModified) - new Date(a.lastModified));
 
-  // Find brand new policies (v1 version = new AWS service/feature)
+  // Brand new policies: v1 (never updated by AWS) created within a recent
+  // window, so this genuinely spotlights new services/features instead of every
+  // old-but-unchanged v1 policy. Tune the window with BRAND_NEW_WINDOW_DAYS.
+  const BRAND_NEW_WINDOW_DAYS = 90;
+  const brandNewCutoff = new Date();
+  brandNewCutoff.setDate(brandNewCutoff.getDate() - BRAND_NEW_WINDOW_DAYS);
   const brandNewPolicies = [...policies]
-    .filter((p) => p.versionId === "v1")
-    .sort(
-      (a, b) =>
-        new Date(b.createDate || b.lastModified) -
-        new Date(a.createDate || a.lastModified)
+    .filter(
+      (p) =>
+        p.versionId === "v1" &&
+        p.createDate &&
+        new Date(p.createDate) >= brandNewCutoff
     )
-    .slice(0, 20);
+    .sort((a, b) => new Date(b.createDate) - new Date(a.createDate));
 
   const wildcardPoliciesByServiceCounts = {};
   for (const [svc, set] of Object.entries(wildcardPoliciesByService)) {
@@ -502,6 +565,7 @@ async function generatePolicyData() {
       .sort((a, b) => new Date(a.lastModified) - new Date(b.lastModified))
       .slice(0, 10),
     brandNew: brandNewPolicies,
+    brandNewWindowDays: BRAND_NEW_WINDOW_DAYS,
   };
 
   // Policies by year (based on first-seen in git)
@@ -568,21 +632,10 @@ async function generatePolicyData() {
     (e) => new Date(e.date).getUTCFullYear() !== 2019
   );
 
-  // Exclude bulk-reformat days where detection logic changes (e.g. jq -S
-  // key-sorting, invisible character normalization) caused every policy to
-  // appear modified. Any day with >= BULK_DAY_THRESHOLD per-policy changes
-  // is treated as a false-positive bulk day.
-  const BULK_DAY_THRESHOLD = 50;
-  const commitsByDate = {};
-  for (const e of filteredEntries) {
-    const dateKey = new Date(e.date).toISOString().slice(0, 10);
-    commitsByDate[dateKey] = (commitsByDate[dateKey] || 0) + 1;
-  }
-  const bulkDays = new Set(
-    Object.entries(commitsByDate)
-      .filter(([, count]) => count >= BULK_DAY_THRESHOLD)
-      .map(([date]) => date)
-  );
+  // Bulk-reformat days (jq -S key-sorting, invisible character normalization,
+  // etc. that made every policy appear modified) are detected once, uncapped,
+  // in buildPolicyHistory() and reused here so chart data, modification counts,
+  // and volatility all share one definition.
   if (bulkDays.size > 0) {
     console.log(
       `   ⚠️  Excluding ${bulkDays.size} bulk-reformat day(s): ${[...bulkDays].join(", ")}`
@@ -654,19 +707,20 @@ async function generatePolicyData() {
     return { year: yr, total, newPolicies: np, updates: total - np };
   });
 
-  // Most volatile this year (trailing 12 months)
+  // Most volatile this year (trailing 12 months). Counted from cleanEntries
+  // (excludes 2019 + bulk-reformat days) so it reflects real changes and is not
+  // capped by the truncated per-policy history array.
   const oneYearAgo = new Date();
   oneYearAgo.setFullYear(oneYearAgo.getFullYear() - 1);
   const recentChanges = {};
-  for (const p of policies) {
-    let count = 0;
-    for (const h of p.history) {
-      if (new Date(h.date) >= oneYearAgo) count++;
+  for (const e of cleanEntries) {
+    if (new Date(e.date) >= oneYearAgo) {
+      recentChanges[e.policyName] = (recentChanges[e.policyName] || 0) + 1;
     }
-    if (count > 1) recentChanges[p.name] = count;
   }
   stats.volatileThisYear = Object.entries(recentChanges)
-    .sort((a, b) => b[1] - a[1])
+    .filter(([, count]) => count > 1)
+    .sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0]))
     .slice(0, 10)
     .map(([name, changesThisYear]) => ({ name, changesThisYear }));
 
