@@ -1134,7 +1134,7 @@
             "Arn": "arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole",
             "Path": "/service-role/",
             "DefaultVersionId": "v1",
-            "AttachmentCount": 9,
+            "AttachmentCount": 5,
             "PermissionsBoundaryUsageCount": 0,
             "IsAttachable": true,
             "CreateDate": "2015-04-09T15:03:43+00:00",
@@ -11909,12 +11909,12 @@
             "PolicyId": "ANPAZKAPJZG4CY4TAEDJQ",
             "Arn": "arn:aws:iam::aws:policy/aws-service-role/SecurityLakeServiceLinkedRole",
             "Path": "/aws-service-role/",
-            "DefaultVersionId": "v3",
+            "DefaultVersionId": "v4",
             "AttachmentCount": 0,
             "PermissionsBoundaryUsageCount": 0,
             "IsAttachable": true,
             "CreateDate": "2022-11-29T14:03:33+00:00",
-            "UpdateDate": "2024-04-19T16:00:05+00:00"
+            "UpdateDate": "2026-07-15T17:57:16+00:00"
         },
         {
             "PolicyName": "AmazonSecurityLakePermissionsBoundary",
@@ -17801,12 +17801,12 @@
             "PolicyId": "ANPAZKAPJZG4GRZA2WAIB",
             "Arn": "arn:aws:iam::aws:policy/aws-service-role/EC2ApplicationStatusChecksServiceRolePolicy",
             "Path": "/aws-service-role/",
-            "DefaultVersionId": "v2",
+            "DefaultVersionId": "v3",
             "AttachmentCount": 0,
             "PermissionsBoundaryUsageCount": 0,
             "IsAttachable": true,
             "CreateDate": "2026-04-27T23:42:19+00:00",
-            "UpdateDate": "2026-06-19T17:27:31+00:00"
+            "UpdateDate": "2026-07-15T17:12:31+00:00"
         },
         {
             "PolicyName": "AWSMarketplaceDiscoveryFullAccess",
@@ -18251,6 +18251,18 @@
             "IsAttachable": true,
             "CreateDate": "2026-07-09T06:57:15+00:00",
             "UpdateDate": "2026-07-09T06:57:15+00:00"
+        },
+        {
+            "PolicyName": "AWSIAMRoleManagerServiceRolePolicy",
+            "PolicyId": "ANPAZKAPJZG4BMZGSGCMD",
+            "Arn": "arn:aws:iam::aws:policy/aws-service-role/AWSIAMRoleManagerServiceRolePolicy",
+            "Path": "/aws-service-role/",
+            "DefaultVersionId": "v1",
+            "AttachmentCount": 0,
+            "PermissionsBoundaryUsageCount": 0,
+            "IsAttachable": true,
+            "CreateDate": "2026-07-15T23:57:12+00:00",
+            "UpdateDate": "2026-07-15T23:57:12+00:00"
         },
         {
             "PolicyName": "AWSConfigRole",
