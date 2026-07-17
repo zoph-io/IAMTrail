@@ -1,0 +1,24 @@
+{
+  "type": "NEW_FINDINGS",
+  "detected_at": "2026-07-17T14:49:35Z",
+  "description": "This finding informs you that a host within AWS has attempted to run AWS API operations using temporary AWS credentials that were created on an ECS resource in your AWS environment.",
+  "short_description": "UnauthorizedAccess:IAMUser/ResourceCredentialExfiltration.InsideAWS",
+  "link": "https://docs.aws.amazon.com/guardduty/latest/ug/guardduty_finding-types-iam.html#unauthorizedaccess-iam-resourcecredentialexfiltrationinsideaws",
+  "gist_url": "",
+  "raw_sns_message": {
+    "version": "1",
+    "type": "NEW_FINDINGS",
+    "findingDetails": [
+      {
+        "findingType": "UnauthorizedAccess:IAMUser/ResourceCredentialExfiltration.OutsideAWS",
+        "link": "https://docs.aws.amazon.com/guardduty/latest/ug/guardduty_finding-types-iam.html#unauthorizedaccess-iam-resourcecredentialexfiltrationoutsideaws",
+        "findingDescription": "This finding informs you that a host outside of AWS has attempted to run AWS API operations using temporary AWS credentials that were created on an ECS resource in your AWS environment."
+      },
+      {
+        "findingType": "UnauthorizedAccess:IAMUser/ResourceCredentialExfiltration.InsideAWS",
+        "link": "https://docs.aws.amazon.com/guardduty/latest/ug/guardduty_finding-types-iam.html#unauthorizedaccess-iam-resourcecredentialexfiltrationinsideaws",
+        "findingDescription": "This finding informs you that a host within AWS has attempted to run AWS API operations using temporary AWS credentials that were created on an ECS resource in your AWS environment."
+      }
+    ]
+  }
+}
