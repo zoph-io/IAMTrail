@@ -1,0 +1,18 @@
+{
+  "detected_at": "2026-07-17T03:21:31.491Z",
+  "botocore_commit": "31af253ee49bea34214380b92e7d0152d5f69fa4",
+  "botocore_commit_url": "https://github.com/boto/botocore/commit/31af253ee49bea34214380b92e7d0152d5f69fa4",
+  "summary": "1 service expansion(s)",
+  "changes": [
+    {
+      "type": "service_expansion",
+      "partition": "aws-iso-b",
+      "service": "storagegateway",
+      "id": "storagegateway",
+      "new_regions": [
+        "us-isob-west-1"
+      ],
+      "description": "storagegateway expanded to us-isob-west-1"
+    }
+  ]
+}
