@@ -92,11 +92,22 @@
                             "aws:PrincipalAccount": "${aws:ResourceAccount}"
                         }
                     }
+                },
+                {
+                    "Sid": "CloudWatchMetricsWriting",
+                    "Effect": "Allow",
+                    "Action": "cloudwatch:PutMetricData",
+                    "Resource": "arn:aws:cloudwatch:*:*:dataset/*",
+                    "Condition": {
+                        "StringEquals": {
+                            "aws:PrincipalAccount": "${aws:ResourceAccount}"
+                        }
+                    }
                 }
             ]
         },
-        "VersionId": "v2",
+        "VersionId": "v3",
         "IsDefaultVersion": true,
-        "CreateDate": "2024-04-26T20:25:54+00:00"
+        "CreateDate": "2026-07-17T08:27:27+00:00"
     }
 }
