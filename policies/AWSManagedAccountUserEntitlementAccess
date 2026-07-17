@@ -1,0 +1,25 @@
+{
+    "PolicyVersion": {
+        "Document": {
+            "Version": "2012-10-17",
+            "Statement": {
+                "Effect": "Allow",
+                "Action": [
+                    "identitystore:CreateGroup",
+                    "identitystore:GetGroupId",
+                    "identitystore:GetUserId",
+                    "identitystore:CreateGroupMembership",
+                    "sso:ListInstances",
+                    "sso-directory:ListProvisioningTenants",
+                    "account-access:ListApplications",
+                    "account-access:CreateEntitlement",
+                    "account-access:ListEntitlements"
+                ],
+                "Resource": "*"
+            }
+        },
+        "VersionId": "v1",
+        "IsDefaultVersion": true,
+        "CreateDate": "2026-07-17T21:42:25+00:00"
+    }
+}
