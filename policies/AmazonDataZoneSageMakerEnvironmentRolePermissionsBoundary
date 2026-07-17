@@ -1191,14 +1191,15 @@
                     "Effect": "Deny",
                     "Action": [
                         "sagemaker:CreateNotebookInstanceLifecycleConfig",
-                        "sagemaker:UpdateNotebookInstanceLifecycleConfig"
+                        "sagemaker:UpdateNotebookInstanceLifecycleConfig",
+                        "sagemaker:DeleteNotebookInstanceLifecycleConfig"
                     ],
                     "Resource": "*"
                 }
             ]
         },
-        "VersionId": "v12",
+        "VersionId": "v13",
         "IsDefaultVersion": true,
-        "CreateDate": "2026-06-27T00:57:10+00:00"
+        "CreateDate": "2026-07-17T17:42:13+00:00"
     }
 }
