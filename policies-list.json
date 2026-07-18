@@ -13541,12 +13541,12 @@
             "PolicyId": "ANPAZKAPJZG4MXDZTGPJI",
             "Arn": "arn:aws:iam::aws:policy/aws-service-role/AmazonPrometheusScraperServiceRolePolicy",
             "Path": "/aws-service-role/",
-            "DefaultVersionId": "v2",
+            "DefaultVersionId": "v3",
             "AttachmentCount": 0,
             "PermissionsBoundaryUsageCount": 0,
             "IsAttachable": true,
             "CreateDate": "2023-11-26T14:19:52+00:00",
-            "UpdateDate": "2024-04-26T20:25:54+00:00"
+            "UpdateDate": "2026-07-17T08:27:27+00:00"
         },
         {
             "PolicyName": "AWSRepostSpaceSupportOperationsPolicy",
@@ -14081,12 +14081,12 @@
             "PolicyId": "ANPAZKAPJZG4BVNAOGKEU",
             "Arn": "arn:aws:iam::aws:policy/AmazonDataZoneSageMakerEnvironmentRolePermissionsBoundary",
             "Path": "/",
-            "DefaultVersionId": "v12",
+            "DefaultVersionId": "v13",
             "AttachmentCount": 0,
             "PermissionsBoundaryUsageCount": 0,
             "IsAttachable": true,
             "CreateDate": "2024-04-23T23:01:14+00:00",
-            "UpdateDate": "2026-06-27T00:57:10+00:00"
+            "UpdateDate": "2026-07-17T17:42:13+00:00"
         },
         {
             "PolicyName": "AmazonDataZoneSageMakerProvisioningRolePolicy",
@@ -16361,12 +16361,12 @@
             "PolicyId": "ANPAZKAPJZG4I6LK2RZUW",
             "Arn": "arn:aws:iam::aws:policy/AmazonBedrockAgentCoreMemoryBedrockModelInferenceExecutionRolePolicy",
             "Path": "/",
-            "DefaultVersionId": "v3",
+            "DefaultVersionId": "v4",
             "AttachmentCount": 0,
             "PermissionsBoundaryUsageCount": 0,
             "IsAttachable": true,
             "CreateDate": "2025-07-16T13:37:07+00:00",
-            "UpdateDate": "2026-02-12T17:59:11+00:00"
+            "UpdateDate": "2026-07-17T17:12:16+00:00"
         },
         {
             "PolicyName": "BedrockAgentCoreFullAccess",
@@ -18275,6 +18275,42 @@
             "IsAttachable": true,
             "CreateDate": "2026-07-16T20:27:15+00:00",
             "UpdateDate": "2026-07-16T20:27:15+00:00"
+        },
+        {
+            "PolicyName": "AWSManagedBudgetsSpendLimitManagementAccess",
+            "PolicyId": "ANPAZKAPJZG4MQDCPVMBJ",
+            "Arn": "arn:aws:iam::aws:policy/AWSManagedBudgetsSpendLimitManagementAccess",
+            "Path": "/",
+            "DefaultVersionId": "v1",
+            "AttachmentCount": 0,
+            "PermissionsBoundaryUsageCount": 0,
+            "IsAttachable": true,
+            "CreateDate": "2026-07-17T21:12:21+00:00",
+            "UpdateDate": "2026-07-17T21:12:21+00:00"
+        },
+        {
+            "PolicyName": "AWSManagedAccountUserEntitlementAccess",
+            "PolicyId": "ANPAZKAPJZG4JA4XXIXLY",
+            "Arn": "arn:aws:iam::aws:policy/AWSManagedAccountUserEntitlementAccess",
+            "Path": "/",
+            "DefaultVersionId": "v1",
+            "AttachmentCount": 0,
+            "PermissionsBoundaryUsageCount": 0,
+            "IsAttachable": true,
+            "CreateDate": "2026-07-17T21:42:25+00:00",
+            "UpdateDate": "2026-07-17T21:42:25+00:00"
+        },
+        {
+            "PolicyName": "AWSBudgetsSpendLimitMemberRolePolicy",
+            "PolicyId": "ANPAZKAPJZG4I5EGUOK5S",
+            "Arn": "arn:aws:iam::aws:policy/aws-service-role/AWSBudgetsSpendLimitMemberRolePolicy",
+            "Path": "/aws-service-role/",
+            "DefaultVersionId": "v1",
+            "AttachmentCount": 0,
+            "PermissionsBoundaryUsageCount": 0,
+            "IsAttachable": true,
+            "CreateDate": "2026-07-18T00:57:16+00:00",
+            "UpdateDate": "2026-07-18T00:57:16+00:00"
         },
         {
             "PolicyName": "AWSConfigRole",
