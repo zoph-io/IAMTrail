@@ -58,6 +58,25 @@ def _extract_file_diff(all_lines, policy_name):
     return result if result else all_lines
 
 
+def _strip_diff_headers(lines):
+    """Drop git plumbing so the preview is only + / - / context content."""
+    skip_prefixes = (
+        "diff --git",
+        "index ",
+        "new file mode",
+        "deleted file mode",
+        "old mode",
+        "new mode",
+        "similarity index",
+        "rename ",
+        "copy ",
+        "---",
+        "+++",
+        "@@",
+    )
+    return [l for l in lines if l and not l.startswith(skip_prefixes)]
+
+
 def fetch_diff(commit_sha, policy_name=None):
     """Return (lines, truncated) for a policy, filtered from the cached commit diff."""
     all_lines = _fetch_commit_diff(commit_sha)
@@ -65,6 +84,7 @@ def fetch_diff(commit_sha, policy_name=None):
         return [], False
 
     lines = _extract_file_diff(all_lines, policy_name) if policy_name else all_lines
+    lines = _strip_diff_headers(lines)
     truncated = len(lines) > _DISPLAY_LINES
     return lines[:_DISPLAY_LINES], truncated
 
