@@ -1,0 +1,35 @@
+{
+  "detected_at": "2026-07-18T03:11:18.623Z",
+  "botocore_commit": "dad7113e65e5062b5787511255bf3bb2b16df019",
+  "botocore_commit_url": "https://github.com/boto/botocore/commit/dad7113e65e5062b5787511255bf3bb2b16df019",
+  "summary": "1 new service(s), 2 service expansion(s)",
+  "changes": [
+    {
+      "type": "service_expansion",
+      "partition": "aws-iso",
+      "service": "guardduty",
+      "id": "guardduty",
+      "new_regions": [
+        "us-iso-west-1"
+      ],
+      "description": "guardduty expanded to us-iso-west-1"
+    },
+    {
+      "type": "service_expansion",
+      "partition": "aws-iso-b",
+      "service": "backup",
+      "id": "backup",
+      "new_regions": [
+        "us-isob-west-1"
+      ],
+      "description": "backup expanded to us-isob-west-1"
+    },
+    {
+      "type": "new_service",
+      "partition": "aws-eusc",
+      "id": "emr-serverless",
+      "description": "emr-serverless (1 endpoint)",
+      "endpoint_count": 1
+    }
+  ]
+}
