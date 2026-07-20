@@ -17,11 +17,19 @@
                             ]
                         }
                     }
+                },
+                {
+                    "Sid": "sid2",
+                    "Effect": "Allow",
+                    "Action": [
+                        "identitystore:ListGroupMembershipsForMember"
+                    ],
+                    "Resource": "*"
                 }
             ]
         },
-        "VersionId": "v1",
+        "VersionId": "v2",
         "IsDefaultVersion": true,
-        "CreateDate": "2024-04-25T07:40:41+00:00"
+        "CreateDate": "2026-07-20T20:27:30+00:00"
     }
 }
