@@ -289,7 +289,8 @@
                         "arn:aws:ec2:*:*:volume/*",
                         "arn:aws:ec2:*:*:snapshot/*",
                         "arn:aws:ec2:*:*:network-interface/*",
-                        "arn:aws:ec2:*:*:instance/*"
+                        "arn:aws:ec2:*:*:instance/*",
+                        "arn:aws:ec2:*:*:image/*"
                     ],
                     "Condition": {
                         "StringEquals": {
@@ -298,7 +299,8 @@
                                 "CreateSecurityGroup",
                                 "CreateVolume",
                                 "CreateSnapshot",
-                                "RunInstances"
+                                "RunInstances",
+                                "RegisterImage"
                             ]
                         }
                     }
@@ -317,8 +319,8 @@
                 }
             ]
         },
-        "VersionId": "v8",
+        "VersionId": "v9",
         "IsDefaultVersion": true,
-        "CreateDate": "2026-02-12T17:57:34+00:00"
+        "CreateDate": "2026-07-19T15:12:24+00:00"
     }
 }
