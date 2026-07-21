@@ -1,0 +1,17 @@
+{
+    "PolicyVersion": {
+        "Document": {
+            "Version": "2012-10-17",
+            "Statement": {
+                "Effect": "Allow",
+                "Action": [
+                    "iam:PutAccountProperties"
+                ],
+                "Resource": "*"
+            }
+        },
+        "VersionId": "v1",
+        "IsDefaultVersion": true,
+        "CreateDate": "2026-07-21T14:27:10+00:00"
+    }
+}
