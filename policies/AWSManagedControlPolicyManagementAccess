@@ -1,0 +1,27 @@
+{
+    "PolicyVersion": {
+        "Document": {
+            "Version": "2012-10-17",
+            "Statement": {
+                "Effect": "Allow",
+                "Action": [
+                    "organizations:DescribePolicy",
+                    "organizations:UpdatePolicy",
+                    "organizations:ListPolicies",
+                    "organizations:ListRoots",
+                    "organizations:CreatePolicy",
+                    "organizations:AttachPolicy",
+                    "organizations:DetachPolicy",
+                    "organizations:DeletePolicy",
+                    "organizations:TagResource",
+                    "organizations:UntagResource",
+                    "organizations:ListTagsForResource"
+                ],
+                "Resource": "*"
+            }
+        },
+        "VersionId": "v1",
+        "IsDefaultVersion": true,
+        "CreateDate": "2026-07-21T14:27:23+00:00"
+    }
+}
