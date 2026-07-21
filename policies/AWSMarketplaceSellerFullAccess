@@ -91,7 +91,9 @@
                     "Resource": [
                         "arn:aws:aws-marketplace:*:*:AWSMarketplace*/*",
                         "arn:aws:aws-marketplace:*:*:catalog/AWSMarketplace*/*",
-                        "arn:aws:aws-marketplace:*:*:verification-type/*/verification-evidence/*"
+                        "arn:aws:aws-marketplace:*:*:verification-type/*/verification-evidence/*",
+                        "arn:aws:aws-marketplace:*:*:tax-compliance-profile/*",
+                        "arn:aws:aws-marketplace:*:*:tax-compliance-profile-change-task/*"
                     ]
                 },
                 {
@@ -271,11 +273,36 @@
                             ]
                         }
                     }
+                },
+                {
+                    "Sid": "TaxComplianceProfileChangeTaskManagement",
+                    "Effect": "Allow",
+                    "Action": [
+                        "aws-marketplace:StartTaxComplianceProfileChangeTask"
+                    ],
+                    "Resource": "arn:aws:aws-marketplace:*:*:tax-compliance-profile-change-task/*"
+                },
+                {
+                    "Sid": "TaxComplianceProfileRead",
+                    "Effect": "Allow",
+                    "Action": [
+                        "aws-marketplace:GetTaxComplianceProfile"
+                    ],
+                    "Resource": "arn:aws:aws-marketplace:*:*:tax-compliance-profile/*"
+                },
+                {
+                    "Sid": "TaxComplianceProfileList",
+                    "Effect": "Allow",
+                    "Action": [
+                        "aws-marketplace:ListTaxComplianceProfileChangeTasks",
+                        "aws-marketplace:ListTaxComplianceProfiles"
+                    ],
+                    "Resource": "*"
                 }
             ]
         },
-        "VersionId": "v31",
+        "VersionId": "v32",
         "IsDefaultVersion": true,
-        "CreateDate": "2026-06-30T17:12:18+00:00"
+        "CreateDate": "2026-07-21T16:42:13+00:00"
     }
 }
