@@ -1,0 +1,194 @@
+[
+  {
+    "findingDetails": "The 2 resource ARN(s) are redundant because they reference the same resource. Review the use of wildcards (*), or remove the resource arn:aws:s3:::atx-source-code-*/* to remove the redundancy.",
+    "findingType": "SUGGESTION",
+    "issueCode": "REDUNDANT_RESOURCE",
+    "learnMoreLink": "https://docs.aws.amazon.com/IAM/latest/UserGuide/access-analyzer-reference-policy-checks.html#access-analyzer-reference-policy-checks-suggestion-redundant-resource",
+    "locations": [
+      {
+        "path": [
+          {
+            "value": "Statement"
+          },
+          {
+            "index": 1
+          },
+          {
+            "value": "Resource"
+          },
+          {
+            "index": 0
+          }
+        ],
+        "span": {
+          "start": {
+            "line": 1,
+            "column": 450,
+            "offset": 450
+          },
+          "end": {
+            "line": 1,
+            "column": 482,
+            "offset": 482
+          }
+        }
+      },
+      {
+        "path": [
+          {
+            "value": "Statement"
+          },
+          {
+            "index": 1
+          },
+          {
+            "value": "Resource"
+          },
+          {
+            "index": 1
+          }
+        ],
+        "span": {
+          "start": {
+            "line": 1,
+            "column": 484,
+            "offset": 484
+          },
+          "end": {
+            "line": 1,
+            "column": 518,
+            "offset": 518
+          }
+        }
+      }
+    ]
+  },
+  {
+    "findingDetails": "The 2 resource ARN(s) are redundant because they reference the same resource. Review the use of wildcards (*), or remove the resource arn:aws:s3:::atx-custom-output-*/* to remove the redundancy.",
+    "findingType": "SUGGESTION",
+    "issueCode": "REDUNDANT_RESOURCE",
+    "learnMoreLink": "https://docs.aws.amazon.com/IAM/latest/UserGuide/access-analyzer-reference-policy-checks.html#access-analyzer-reference-policy-checks-suggestion-redundant-resource",
+    "locations": [
+      {
+        "path": [
+          {
+            "value": "Statement"
+          },
+          {
+            "index": 2
+          },
+          {
+            "value": "Resource"
+          },
+          {
+            "index": 0
+          }
+        ],
+        "span": {
+          "start": {
+            "line": 1,
+            "column": 711,
+            "offset": 711
+          },
+          "end": {
+            "line": 1,
+            "column": 745,
+            "offset": 745
+          }
+        }
+      },
+      {
+        "path": [
+          {
+            "value": "Statement"
+          },
+          {
+            "index": 2
+          },
+          {
+            "value": "Resource"
+          },
+          {
+            "index": 1
+          }
+        ],
+        "span": {
+          "start": {
+            "line": 1,
+            "column": 747,
+            "offset": 747
+          },
+          "end": {
+            "line": 1,
+            "column": 783,
+            "offset": 783
+          }
+        }
+      }
+    ]
+  },
+  {
+    "findingDetails": "The 2 resource ARN(s) are redundant because they reference the same resource. Review the use of wildcards (*), or remove the resource arn:aws:s3:::atx-ct-output-*/* to remove the redundancy.",
+    "findingType": "SUGGESTION",
+    "issueCode": "REDUNDANT_RESOURCE",
+    "learnMoreLink": "https://docs.aws.amazon.com/IAM/latest/UserGuide/access-analyzer-reference-policy-checks.html#access-analyzer-reference-policy-checks-suggestion-redundant-resource",
+    "locations": [
+      {
+        "path": [
+          {
+            "value": "Statement"
+          },
+          {
+            "index": 2
+          },
+          {
+            "value": "Resource"
+          },
+          {
+            "index": 2
+          }
+        ],
+        "span": {
+          "start": {
+            "line": 1,
+            "column": 785,
+            "offset": 785
+          },
+          "end": {
+            "line": 1,
+            "column": 815,
+            "offset": 815
+          }
+        }
+      },
+      {
+        "path": [
+          {
+            "value": "Statement"
+          },
+          {
+            "index": 2
+          },
+          {
+            "value": "Resource"
+          },
+          {
+            "index": 3
+          }
+        ],
+        "span": {
+          "start": {
+            "line": 1,
+            "column": 817,
+            "offset": 817
+          },
+          "end": {
+            "line": 1,
+            "column": 849,
+            "offset": 849
+          }
+        }
+      }
+    ]
+  }
+]
