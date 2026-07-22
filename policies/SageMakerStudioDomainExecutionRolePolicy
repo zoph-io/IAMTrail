@@ -61,6 +61,7 @@
                         "datazone:GetAssetFilter",
                         "datazone:GetAssetType",
                         "datazone:GetConnection",
+                        "datazone:GetCurrentEffectivePolicy",
                         "datazone:GetDataProduct",
                         "datazone:GetDataSource",
                         "datazone:GetDataSourceRun",
@@ -98,6 +99,7 @@
                         "datazone:ListDataSourceRunActivities",
                         "datazone:ListDataSourceRuns",
                         "datazone:ListDataSources",
+                        "datazone:ListDesignations",
                         "datazone:ListDomainUnitsForParent",
                         "datazone:ListEntityOwners",
                         "datazone:ListEnvironmentActions",
@@ -266,8 +268,8 @@
                 }
             ]
         },
-        "VersionId": "v20",
+        "VersionId": "v21",
         "IsDefaultVersion": true,
-        "CreateDate": "2026-02-26T00:42:09+00:00"
+        "CreateDate": "2026-07-22T16:57:26+00:00"
     }
 }
