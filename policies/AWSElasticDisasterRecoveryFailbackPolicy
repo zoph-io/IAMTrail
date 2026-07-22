@@ -43,14 +43,16 @@
                         "drs:NotifyAgentDisconnectedForDrs",
                         "drs:NotifyConsistencyAttainedForDrs",
                         "drs:GetFailbackLaunchRequestedForDrs",
-                        "drs:IssueAgentCertificateForDrs"
+                        "drs:IssueAgentCertificateForDrs",
+                        "drs:GetAgentSnapshotCreditsForDrs",
+                        "drs:SendVolumeStatsForDrs"
                     ],
                     "Resource": "arn:aws:drs:*:*:recovery-instance/${aws:SourceIdentity}"
                 }
             ]
         },
-        "VersionId": "v2",
+        "VersionId": "v3",
         "IsDefaultVersion": true,
-        "CreateDate": "2023-11-27T12:56:46+00:00"
+        "CreateDate": "2026-07-22T18:42:25+00:00"
     }
 }
