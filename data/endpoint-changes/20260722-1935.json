@@ -1,0 +1,39 @@
+{
+  "detected_at": "2026-07-22T19:35:47.045Z",
+  "botocore_commit": "770567f78fceecb4e20d777d1de8a0b4913d2316",
+  "botocore_commit_url": "https://github.com/boto/botocore/commit/770567f78fceecb4e20d777d1de8a0b4913d2316",
+  "summary": "1 new service(s), 2 service expansion(s)",
+  "changes": [
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "drs",
+      "id": "drs",
+      "new_regions": [
+        "ap-east-2",
+        "ap-southeast-5",
+        "ap-southeast-7",
+        "mx-central-1"
+      ],
+      "description": "drs expanded to ap-east-2, ap-southeast-5, ap-southeast-7, mx-central-1"
+    },
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "omics",
+      "id": "omics",
+      "new_regions": [
+        "ap-northeast-1",
+        "us-east-2"
+      ],
+      "description": "omics expanded to ap-northeast-1, us-east-2"
+    },
+    {
+      "type": "new_service",
+      "partition": "aws-eusc",
+      "id": "redshift-serverless",
+      "description": "redshift-serverless (1 endpoint)",
+      "endpoint_count": 1
+    }
+  ]
+}
