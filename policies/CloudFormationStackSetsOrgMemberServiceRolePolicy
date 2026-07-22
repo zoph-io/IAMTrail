@@ -4,15 +4,41 @@
             "Version": "2012-10-17",
             "Statement": [
                 {
+                    "Effect": "Allow",
+                    "Action": [
+                        "cloudformation:CreateStack",
+                        "cloudformation:DescribeStackEvents",
+                        "cloudformation:UpdateStack",
+                        "cloudformation:DeleteStack",
+                        "cloudformation:DescribeStacks"
+                    ],
+                    "Resource": [
+                        "arn:aws:cloudformation:*:*:stack/stacksets-exec-role-stack-*"
+                    ],
+                    "Condition": {
+                        "StringEquals": {
+                            "aws:ResourceAccount": "${aws:PrincipalAccount}"
+                        }
+                    }
+                },
+                {
                     "Action": [
                         "iam:CreateRole",
                         "iam:DeleteRole",
-                        "iam:GetRole"
+                        "iam:GetRole",
+                        "iam:GetRolePolicy",
+                        "iam:DeleteRolePolicy",
+                        "iam:PutRolePolicy"
                     ],
                     "Effect": "Allow",
                     "Resource": [
                         "arn:aws:iam::*:role/stacksets-exec-*"
-                    ]
+                    ],
+                    "Condition": {
+                        "StringEquals": {
+                            "aws:ResourceAccount": "${aws:PrincipalAccount}"
+                        }
+                    }
                 },
                 {
                     "Action": [
@@ -31,8 +57,8 @@
                 }
             ]
         },
-        "VersionId": "v1",
+        "VersionId": "v2",
         "IsDefaultVersion": true,
-        "CreateDate": "2019-12-09T23:52:37+00:00"
+        "CreateDate": "2026-07-22T20:12:14+00:00"
     }
 }
