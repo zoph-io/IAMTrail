@@ -1,0 +1,1118 @@
+[
+  {
+    "findingDetails": "The action account:GetPrimaryEmailUpdateStatus does not exist.",
+    "findingType": "ERROR",
+    "issueCode": "INVALID_ACTION",
+    "learnMoreLink": "https://docs.aws.amazon.com/IAM/latest/UserGuide/access-analyzer-reference-policy-checks.html#access-analyzer-reference-policy-checks-error-invalid-action",
+    "locations": [
+      {
+        "path": [
+          {
+            "value": "Statement"
+          },
+          {
+            "index": 0
+          },
+          {
+            "value": "Action"
+          },
+          {
+            "index": 7
+          }
+        ],
+        "span": {
+          "start": {
+            "line": 1,
+            "column": 326,
+            "offset": 326
+          },
+          "end": {
+            "line": 1,
+            "column": 363,
+            "offset": 363
+          }
+        }
+      }
+    ]
+  },
+  {
+    "findingDetails": "The action budgets:UpdateBudget does not exist.",
+    "findingType": "ERROR",
+    "issueCode": "INVALID_ACTION",
+    "learnMoreLink": "https://docs.aws.amazon.com/IAM/latest/UserGuide/access-analyzer-reference-policy-checks.html#access-analyzer-reference-policy-checks-error-invalid-action",
+    "locations": [
+      {
+        "path": [
+          {
+            "value": "Statement"
+          },
+          {
+            "index": 3
+          },
+          {
+            "value": "Action"
+          },
+          {
+            "index": 6
+          }
+        ],
+        "span": {
+          "start": {
+            "line": 1,
+            "column": 936,
+            "offset": 936
+          },
+          "end": {
+            "line": 1,
+            "column": 958,
+            "offset": 958
+          }
+        }
+      }
+    ]
+  },
+  {
+    "findingDetails": "The action budgets:CreateBudget does not exist.",
+    "findingType": "ERROR",
+    "issueCode": "INVALID_ACTION",
+    "learnMoreLink": "https://docs.aws.amazon.com/IAM/latest/UserGuide/access-analyzer-reference-policy-checks.html#access-analyzer-reference-policy-checks-error-invalid-action",
+    "locations": [
+      {
+        "path": [
+          {
+            "value": "Statement"
+          },
+          {
+            "index": 3
+          },
+          {
+            "value": "Action"
+          },
+          {
+            "index": 7
+          }
+        ],
+        "span": {
+          "start": {
+            "line": 1,
+            "column": 960,
+            "offset": 960
+          },
+          "end": {
+            "line": 1,
+            "column": 982,
+            "offset": 982
+          }
+        }
+      }
+    ]
+  },
+  {
+    "findingDetails": "The action budgets:DeleteBudget does not exist.",
+    "findingType": "ERROR",
+    "issueCode": "INVALID_ACTION",
+    "learnMoreLink": "https://docs.aws.amazon.com/IAM/latest/UserGuide/access-analyzer-reference-policy-checks.html#access-analyzer-reference-policy-checks-error-invalid-action",
+    "locations": [
+      {
+        "path": [
+          {
+            "value": "Statement"
+          },
+          {
+            "index": 3
+          },
+          {
+            "value": "Action"
+          },
+          {
+            "index": 8
+          }
+        ],
+        "span": {
+          "start": {
+            "line": 1,
+            "column": 984,
+            "offset": 984
+          },
+          "end": {
+            "line": 1,
+            "column": 1006,
+            "offset": 1006
+          }
+        }
+      }
+    ]
+  },
+  {
+    "findingDetails": "The action budgets:DescribeBudgets does not exist.",
+    "findingType": "ERROR",
+    "issueCode": "INVALID_ACTION",
+    "learnMoreLink": "https://docs.aws.amazon.com/IAM/latest/UserGuide/access-analyzer-reference-policy-checks.html#access-analyzer-reference-policy-checks-error-invalid-action",
+    "locations": [
+      {
+        "path": [
+          {
+            "value": "Statement"
+          },
+          {
+            "index": 3
+          },
+          {
+            "value": "Action"
+          },
+          {
+            "index": 9
+          }
+        ],
+        "span": {
+          "start": {
+            "line": 1,
+            "column": 1008,
+            "offset": 1008
+          },
+          "end": {
+            "line": 1,
+            "column": 1033,
+            "offset": 1033
+          }
+        }
+      }
+    ]
+  },
+  {
+    "findingDetails": "The action budgets:DescribeBudget does not exist.",
+    "findingType": "ERROR",
+    "issueCode": "INVALID_ACTION",
+    "learnMoreLink": "https://docs.aws.amazon.com/IAM/latest/UserGuide/access-analyzer-reference-policy-checks.html#access-analyzer-reference-policy-checks-error-invalid-action",
+    "locations": [
+      {
+        "path": [
+          {
+            "value": "Statement"
+          },
+          {
+            "index": 3
+          },
+          {
+            "value": "Action"
+          },
+          {
+            "index": 10
+          }
+        ],
+        "span": {
+          "start": {
+            "line": 1,
+            "column": 1035,
+            "offset": 1035
+          },
+          "end": {
+            "line": 1,
+            "column": 1059,
+            "offset": 1059
+          }
+        }
+      }
+    ]
+  },
+  {
+    "findingDetails": "The service builderid:CreateInvitation specified in the action does not exist.",
+    "findingType": "ERROR",
+    "issueCode": "INVALID_SERVICE_IN_ACTION",
+    "learnMoreLink": "https://docs.aws.amazon.com/IAM/latest/UserGuide/access-analyzer-reference-policy-checks.html#access-analyzer-reference-policy-checks-error-invalid-service-in-action",
+    "locations": [
+      {
+        "path": [
+          {
+            "value": "Statement"
+          },
+          {
+            "index": 7
+          },
+          {
+            "value": "Action"
+          },
+          {
+            "index": 22
+          }
+        ],
+        "span": {
+          "start": {
+            "line": 1,
+            "column": 2604,
+            "offset": 2604
+          },
+          "end": {
+            "line": 1,
+            "column": 2632,
+            "offset": 2632
+          }
+        }
+      }
+    ]
+  },
+  {
+    "findingDetails": "The service builderid:DeleteInvitation specified in the action does not exist.",
+    "findingType": "ERROR",
+    "issueCode": "INVALID_SERVICE_IN_ACTION",
+    "learnMoreLink": "https://docs.aws.amazon.com/IAM/latest/UserGuide/access-analyzer-reference-policy-checks.html#access-analyzer-reference-policy-checks-error-invalid-service-in-action",
+    "locations": [
+      {
+        "path": [
+          {
+            "value": "Statement"
+          },
+          {
+            "index": 7
+          },
+          {
+            "value": "Action"
+          },
+          {
+            "index": 23
+          }
+        ],
+        "span": {
+          "start": {
+            "line": 1,
+            "column": 2634,
+            "offset": 2634
+          },
+          "end": {
+            "line": 1,
+            "column": 2662,
+            "offset": 2662
+          }
+        }
+      }
+    ]
+  },
+  {
+    "findingDetails": "The service builderid:DisassociateCollaborator specified in the action does not exist.",
+    "findingType": "ERROR",
+    "issueCode": "INVALID_SERVICE_IN_ACTION",
+    "learnMoreLink": "https://docs.aws.amazon.com/IAM/latest/UserGuide/access-analyzer-reference-policy-checks.html#access-analyzer-reference-policy-checks-error-invalid-service-in-action",
+    "locations": [
+      {
+        "path": [
+          {
+            "value": "Statement"
+          },
+          {
+            "index": 7
+          },
+          {
+            "value": "Action"
+          },
+          {
+            "index": 24
+          }
+        ],
+        "span": {
+          "start": {
+            "line": 1,
+            "column": 2664,
+            "offset": 2664
+          },
+          "end": {
+            "line": 1,
+            "column": 2700,
+            "offset": 2700
+          }
+        }
+      }
+    ]
+  },
+  {
+    "findingDetails": "The service builderid:ListInvitations specified in the action does not exist.",
+    "findingType": "ERROR",
+    "issueCode": "INVALID_SERVICE_IN_ACTION",
+    "learnMoreLink": "https://docs.aws.amazon.com/IAM/latest/UserGuide/access-analyzer-reference-policy-checks.html#access-analyzer-reference-policy-checks-error-invalid-service-in-action",
+    "locations": [
+      {
+        "path": [
+          {
+            "value": "Statement"
+          },
+          {
+            "index": 7
+          },
+          {
+            "value": "Action"
+          },
+          {
+            "index": 25
+          }
+        ],
+        "span": {
+          "start": {
+            "line": 1,
+            "column": 2702,
+            "offset": 2702
+          },
+          "end": {
+            "line": 1,
+            "column": 2729,
+            "offset": 2729
+          }
+        }
+      }
+    ]
+  },
+  {
+    "findingDetails": "The action organizations:CreateBuilderIdOwnedAccount does not exist.",
+    "findingType": "ERROR",
+    "issueCode": "INVALID_ACTION",
+    "learnMoreLink": "https://docs.aws.amazon.com/IAM/latest/UserGuide/access-analyzer-reference-policy-checks.html#access-analyzer-reference-policy-checks-error-invalid-action",
+    "locations": [
+      {
+        "path": [
+          {
+            "value": "Statement"
+          },
+          {
+            "index": 9
+          },
+          {
+            "value": "Action"
+          },
+          {
+            "index": 8
+          }
+        ],
+        "span": {
+          "start": {
+            "line": 1,
+            "column": 3201,
+            "offset": 3201
+          },
+          "end": {
+            "line": 1,
+            "column": 3244,
+            "offset": 3244
+          }
+        }
+      }
+    ]
+  },
+  {
+    "findingDetails": "The action payments:BatchGetPaymentProfiles does not exist.",
+    "findingType": "ERROR",
+    "issueCode": "INVALID_ACTION",
+    "learnMoreLink": "https://docs.aws.amazon.com/IAM/latest/UserGuide/access-analyzer-reference-policy-checks.html#access-analyzer-reference-policy-checks-error-invalid-action",
+    "locations": [
+      {
+        "path": [
+          {
+            "value": "Statement"
+          },
+          {
+            "index": 11
+          },
+          {
+            "value": "Action"
+          },
+          {
+            "index": 10
+          }
+        ],
+        "span": {
+          "start": {
+            "line": 1,
+            "column": 4050,
+            "offset": 4050
+          },
+          "end": {
+            "line": 1,
+            "column": 4084,
+            "offset": 4084
+          }
+        }
+      }
+    ]
+  },
+  {
+    "findingDetails": "The action payments:AcceptTermsAndConditionsForProgramByAccountId does not exist.",
+    "findingType": "ERROR",
+    "issueCode": "INVALID_ACTION",
+    "learnMoreLink": "https://docs.aws.amazon.com/IAM/latest/UserGuide/access-analyzer-reference-policy-checks.html#access-analyzer-reference-policy-checks-error-invalid-action",
+    "locations": [
+      {
+        "path": [
+          {
+            "value": "Statement"
+          },
+          {
+            "index": 11
+          },
+          {
+            "value": "Action"
+          },
+          {
+            "index": 11
+          }
+        ],
+        "span": {
+          "start": {
+            "line": 1,
+            "column": 4086,
+            "offset": 4086
+          },
+          "end": {
+            "line": 1,
+            "column": 4142,
+            "offset": 4142
+          }
+        }
+      }
+    ]
+  },
+  {
+    "findingDetails": "The action payments:CreatePaymentAttempt does not exist.",
+    "findingType": "ERROR",
+    "issueCode": "INVALID_ACTION",
+    "learnMoreLink": "https://docs.aws.amazon.com/IAM/latest/UserGuide/access-analyzer-reference-policy-checks.html#access-analyzer-reference-policy-checks-error-invalid-action",
+    "locations": [
+      {
+        "path": [
+          {
+            "value": "Statement"
+          },
+          {
+            "index": 11
+          },
+          {
+            "value": "Action"
+          },
+          {
+            "index": 12
+          }
+        ],
+        "span": {
+          "start": {
+            "line": 1,
+            "column": 4144,
+            "offset": 4144
+          },
+          "end": {
+            "line": 1,
+            "column": 4175,
+            "offset": 4175
+          }
+        }
+      }
+    ]
+  },
+  {
+    "findingDetails": "The action payments:CreatePaymentProfile does not exist.",
+    "findingType": "ERROR",
+    "issueCode": "INVALID_ACTION",
+    "learnMoreLink": "https://docs.aws.amazon.com/IAM/latest/UserGuide/access-analyzer-reference-policy-checks.html#access-analyzer-reference-policy-checks-error-invalid-action",
+    "locations": [
+      {
+        "path": [
+          {
+            "value": "Statement"
+          },
+          {
+            "index": 11
+          },
+          {
+            "value": "Action"
+          },
+          {
+            "index": 13
+          }
+        ],
+        "span": {
+          "start": {
+            "line": 1,
+            "column": 4177,
+            "offset": 4177
+          },
+          "end": {
+            "line": 1,
+            "column": 4208,
+            "offset": 4208
+          }
+        }
+      }
+    ]
+  },
+  {
+    "findingDetails": "The action payments:Get does not exist.",
+    "findingType": "ERROR",
+    "issueCode": "INVALID_ACTION",
+    "learnMoreLink": "https://docs.aws.amazon.com/IAM/latest/UserGuide/access-analyzer-reference-policy-checks.html#access-analyzer-reference-policy-checks-error-invalid-action",
+    "locations": [
+      {
+        "path": [
+          {
+            "value": "Statement"
+          },
+          {
+            "index": 11
+          },
+          {
+            "value": "Action"
+          },
+          {
+            "index": 14
+          }
+        ],
+        "span": {
+          "start": {
+            "line": 1,
+            "column": 4210,
+            "offset": 4210
+          },
+          "end": {
+            "line": 1,
+            "column": 4224,
+            "offset": 4224
+          }
+        }
+      }
+    ]
+  },
+  {
+    "findingDetails": "The action payments:GetAcceptedTermsAndConditionsForProgramByAccountId does not exist.",
+    "findingType": "ERROR",
+    "issueCode": "INVALID_ACTION",
+    "learnMoreLink": "https://docs.aws.amazon.com/IAM/latest/UserGuide/access-analyzer-reference-policy-checks.html#access-analyzer-reference-policy-checks-error-invalid-action",
+    "locations": [
+      {
+        "path": [
+          {
+            "value": "Statement"
+          },
+          {
+            "index": 11
+          },
+          {
+            "value": "Action"
+          },
+          {
+            "index": 15
+          }
+        ],
+        "span": {
+          "start": {
+            "line": 1,
+            "column": 4226,
+            "offset": 4226
+          },
+          "end": {
+            "line": 1,
+            "column": 4287,
+            "offset": 4287
+          }
+        }
+      }
+    ]
+  },
+  {
+    "findingDetails": "The action payments:GetEligibleCurrencies does not exist.",
+    "findingType": "ERROR",
+    "issueCode": "INVALID_ACTION",
+    "learnMoreLink": "https://docs.aws.amazon.com/IAM/latest/UserGuide/access-analyzer-reference-policy-checks.html#access-analyzer-reference-policy-checks-error-invalid-action",
+    "locations": [
+      {
+        "path": [
+          {
+            "value": "Statement"
+          },
+          {
+            "index": 11
+          },
+          {
+            "value": "Action"
+          },
+          {
+            "index": 16
+          }
+        ],
+        "span": {
+          "start": {
+            "line": 1,
+            "column": 4289,
+            "offset": 4289
+          },
+          "end": {
+            "line": 1,
+            "column": 4321,
+            "offset": 4321
+          }
+        }
+      }
+    ]
+  },
+  {
+    "findingDetails": "The action payments:GetPaymentAttempt does not exist.",
+    "findingType": "ERROR",
+    "issueCode": "INVALID_ACTION",
+    "learnMoreLink": "https://docs.aws.amazon.com/IAM/latest/UserGuide/access-analyzer-reference-policy-checks.html#access-analyzer-reference-policy-checks-error-invalid-action",
+    "locations": [
+      {
+        "path": [
+          {
+            "value": "Statement"
+          },
+          {
+            "index": 11
+          },
+          {
+            "value": "Action"
+          },
+          {
+            "index": 17
+          }
+        ],
+        "span": {
+          "start": {
+            "line": 1,
+            "column": 4323,
+            "offset": 4323
+          },
+          "end": {
+            "line": 1,
+            "column": 4351,
+            "offset": 4351
+          }
+        }
+      }
+    ]
+  },
+  {
+    "findingDetails": "The action payments:GetPaymentPreferences does not exist.",
+    "findingType": "ERROR",
+    "issueCode": "INVALID_ACTION",
+    "learnMoreLink": "https://docs.aws.amazon.com/IAM/latest/UserGuide/access-analyzer-reference-policy-checks.html#access-analyzer-reference-policy-checks-error-invalid-action",
+    "locations": [
+      {
+        "path": [
+          {
+            "value": "Statement"
+          },
+          {
+            "index": 11
+          },
+          {
+            "value": "Action"
+          },
+          {
+            "index": 18
+          }
+        ],
+        "span": {
+          "start": {
+            "line": 1,
+            "column": 4353,
+            "offset": 4353
+          },
+          "end": {
+            "line": 1,
+            "column": 4385,
+            "offset": 4385
+          }
+        }
+      }
+    ]
+  },
+  {
+    "findingDetails": "The action payments:GetPreferredCurrency does not exist.",
+    "findingType": "ERROR",
+    "issueCode": "INVALID_ACTION",
+    "learnMoreLink": "https://docs.aws.amazon.com/IAM/latest/UserGuide/access-analyzer-reference-policy-checks.html#access-analyzer-reference-policy-checks-error-invalid-action",
+    "locations": [
+      {
+        "path": [
+          {
+            "value": "Statement"
+          },
+          {
+            "index": 11
+          },
+          {
+            "value": "Action"
+          },
+          {
+            "index": 19
+          }
+        ],
+        "span": {
+          "start": {
+            "line": 1,
+            "column": 4387,
+            "offset": 4387
+          },
+          "end": {
+            "line": 1,
+            "column": 4418,
+            "offset": 4418
+          }
+        }
+      }
+    ]
+  },
+  {
+    "findingDetails": "The action payments:GetRecommendedTermsAndConditionsForProgram does not exist.",
+    "findingType": "ERROR",
+    "issueCode": "INVALID_ACTION",
+    "learnMoreLink": "https://docs.aws.amazon.com/IAM/latest/UserGuide/access-analyzer-reference-policy-checks.html#access-analyzer-reference-policy-checks-error-invalid-action",
+    "locations": [
+      {
+        "path": [
+          {
+            "value": "Statement"
+          },
+          {
+            "index": 11
+          },
+          {
+            "value": "Action"
+          },
+          {
+            "index": 20
+          }
+        ],
+        "span": {
+          "start": {
+            "line": 1,
+            "column": 4420,
+            "offset": 4420
+          },
+          "end": {
+            "line": 1,
+            "column": 4473,
+            "offset": 4473
+          }
+        }
+      }
+    ]
+  },
+  {
+    "findingDetails": "The action payments:ListPaymentProfiles does not exist.",
+    "findingType": "ERROR",
+    "issueCode": "INVALID_ACTION",
+    "learnMoreLink": "https://docs.aws.amazon.com/IAM/latest/UserGuide/access-analyzer-reference-policy-checks.html#access-analyzer-reference-policy-checks-error-invalid-action",
+    "locations": [
+      {
+        "path": [
+          {
+            "value": "Statement"
+          },
+          {
+            "index": 11
+          },
+          {
+            "value": "Action"
+          },
+          {
+            "index": 21
+          }
+        ],
+        "span": {
+          "start": {
+            "line": 1,
+            "column": 4475,
+            "offset": 4475
+          },
+          "end": {
+            "line": 1,
+            "column": 4505,
+            "offset": 4505
+          }
+        }
+      }
+    ]
+  },
+  {
+    "findingDetails": "The action payments:SearchFinancialRecords does not exist.",
+    "findingType": "ERROR",
+    "issueCode": "INVALID_ACTION",
+    "learnMoreLink": "https://docs.aws.amazon.com/IAM/latest/UserGuide/access-analyzer-reference-policy-checks.html#access-analyzer-reference-policy-checks-error-invalid-action",
+    "locations": [
+      {
+        "path": [
+          {
+            "value": "Statement"
+          },
+          {
+            "index": 11
+          },
+          {
+            "value": "Action"
+          },
+          {
+            "index": 22
+          }
+        ],
+        "span": {
+          "start": {
+            "line": 1,
+            "column": 4507,
+            "offset": 4507
+          },
+          "end": {
+            "line": 1,
+            "column": 4540,
+            "offset": 4540
+          }
+        }
+      }
+    ]
+  },
+  {
+    "findingDetails": "The action payments:SetPreferredCurrency does not exist.",
+    "findingType": "ERROR",
+    "issueCode": "INVALID_ACTION",
+    "learnMoreLink": "https://docs.aws.amazon.com/IAM/latest/UserGuide/access-analyzer-reference-policy-checks.html#access-analyzer-reference-policy-checks-error-invalid-action",
+    "locations": [
+      {
+        "path": [
+          {
+            "value": "Statement"
+          },
+          {
+            "index": 11
+          },
+          {
+            "value": "Action"
+          },
+          {
+            "index": 23
+          }
+        ],
+        "span": {
+          "start": {
+            "line": 1,
+            "column": 4542,
+            "offset": 4542
+          },
+          "end": {
+            "line": 1,
+            "column": 4573,
+            "offset": 4573
+          }
+        }
+      }
+    ]
+  },
+  {
+    "findingDetails": "The action payments:UpdatePaymentProfile does not exist.",
+    "findingType": "ERROR",
+    "issueCode": "INVALID_ACTION",
+    "learnMoreLink": "https://docs.aws.amazon.com/IAM/latest/UserGuide/access-analyzer-reference-policy-checks.html#access-analyzer-reference-policy-checks-error-invalid-action",
+    "locations": [
+      {
+        "path": [
+          {
+            "value": "Statement"
+          },
+          {
+            "index": 11
+          },
+          {
+            "value": "Action"
+          },
+          {
+            "index": 24
+          }
+        ],
+        "span": {
+          "start": {
+            "line": 1,
+            "column": 4575,
+            "offset": 4575
+          },
+          "end": {
+            "line": 1,
+            "column": 4606,
+            "offset": 4606
+          }
+        }
+      }
+    ]
+  },
+  {
+    "findingDetails": "The action payments:GetAccountBalance does not exist.",
+    "findingType": "ERROR",
+    "issueCode": "INVALID_ACTION",
+    "learnMoreLink": "https://docs.aws.amazon.com/IAM/latest/UserGuide/access-analyzer-reference-policy-checks.html#access-analyzer-reference-policy-checks-error-invalid-action",
+    "locations": [
+      {
+        "path": [
+          {
+            "value": "Statement"
+          },
+          {
+            "index": 11
+          },
+          {
+            "value": "Action"
+          },
+          {
+            "index": 25
+          }
+        ],
+        "span": {
+          "start": {
+            "line": 1,
+            "column": 4608,
+            "offset": 4608
+          },
+          "end": {
+            "line": 1,
+            "column": 4636,
+            "offset": 4636
+          }
+        }
+      }
+    ]
+  },
+  {
+    "findingDetails": "The action organizations:CreateBuilderIdOwnedAccount does not exist.",
+    "findingType": "ERROR",
+    "issueCode": "INVALID_ACTION",
+    "learnMoreLink": "https://docs.aws.amazon.com/IAM/latest/UserGuide/access-analyzer-reference-policy-checks.html#access-analyzer-reference-policy-checks-error-invalid-action",
+    "locations": [
+      {
+        "path": [
+          {
+            "value": "Statement"
+          },
+          {
+            "index": 16
+          },
+          {
+            "value": "Action"
+          },
+          {
+            "index": 0
+          }
+        ],
+        "span": {
+          "start": {
+            "line": 1,
+            "column": 5636,
+            "offset": 5636
+          },
+          "end": {
+            "line": 1,
+            "column": 5679,
+            "offset": 5679
+          }
+        }
+      }
+    ]
+  },
+  {
+    "findingDetails": "The service account-access:ListApplications specified in the action does not exist.",
+    "findingType": "ERROR",
+    "issueCode": "INVALID_SERVICE_IN_ACTION",
+    "learnMoreLink": "https://docs.aws.amazon.com/IAM/latest/UserGuide/access-analyzer-reference-policy-checks.html#access-analyzer-reference-policy-checks-error-invalid-service-in-action",
+    "locations": [
+      {
+        "path": [
+          {
+            "value": "Statement"
+          },
+          {
+            "index": 16
+          },
+          {
+            "value": "Action"
+          },
+          {
+            "index": 6
+          }
+        ],
+        "span": {
+          "start": {
+            "line": 1,
+            "column": 5845,
+            "offset": 5845
+          },
+          "end": {
+            "line": 1,
+            "column": 5878,
+            "offset": 5878
+          }
+        }
+      }
+    ]
+  },
+  {
+    "findingDetails": "The service account-access:CreateApplication specified in the action does not exist.",
+    "findingType": "ERROR",
+    "issueCode": "INVALID_SERVICE_IN_ACTION",
+    "learnMoreLink": "https://docs.aws.amazon.com/IAM/latest/UserGuide/access-analyzer-reference-policy-checks.html#access-analyzer-reference-policy-checks-error-invalid-service-in-action",
+    "locations": [
+      {
+        "path": [
+          {
+            "value": "Statement"
+          },
+          {
+            "index": 16
+          },
+          {
+            "value": "Action"
+          },
+          {
+            "index": 7
+          }
+        ],
+        "span": {
+          "start": {
+            "line": 1,
+            "column": 5880,
+            "offset": 5880
+          },
+          "end": {
+            "line": 1,
+            "column": 5914,
+            "offset": 5914
+          }
+        }
+      }
+    ]
+  },
+  {
+    "findingDetails": "The service account-access:CreateEntitlement specified in the action does not exist.",
+    "findingType": "ERROR",
+    "issueCode": "INVALID_SERVICE_IN_ACTION",
+    "learnMoreLink": "https://docs.aws.amazon.com/IAM/latest/UserGuide/access-analyzer-reference-policy-checks.html#access-analyzer-reference-policy-checks-error-invalid-service-in-action",
+    "locations": [
+      {
+        "path": [
+          {
+            "value": "Statement"
+          },
+          {
+            "index": 16
+          },
+          {
+            "value": "Action"
+          },
+          {
+            "index": 8
+          }
+        ],
+        "span": {
+          "start": {
+            "line": 1,
+            "column": 5916,
+            "offset": 5916
+          },
+          "end": {
+            "line": 1,
+            "column": 5950,
+            "offset": 5950
+          }
+        }
+      }
+    ]
+  }
+]
