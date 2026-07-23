@@ -6917,12 +6917,12 @@
             "PolicyId": "ANPAZKAPJZG4LHV6H6QDU",
             "Arn": "arn:aws:iam::aws:policy/aws-service-role/CloudFormationStackSetsOrgMemberServiceRolePolicy",
             "Path": "/aws-service-role/",
-            "DefaultVersionId": "v1",
+            "DefaultVersionId": "v2",
             "AttachmentCount": 0,
             "PermissionsBoundaryUsageCount": 0,
             "IsAttachable": true,
             "CreateDate": "2019-12-09T23:52:37+00:00",
-            "UpdateDate": "2019-12-09T23:52:37+00:00"
+            "UpdateDate": "2026-07-22T20:12:14+00:00"
         },
         {
             "PolicyName": "CloudFormationStackSetsOrgAdminServiceRolePolicy",
@@ -9305,12 +9305,12 @@
             "PolicyId": "ANPAZKAPJZG4HPQNMM2HL",
             "Arn": "arn:aws:iam::aws:policy/AWSApplicationMigrationFullAccess",
             "Path": "/",
-            "DefaultVersionId": "v12",
+            "DefaultVersionId": "v13",
             "AttachmentCount": 0,
             "PermissionsBoundaryUsageCount": 0,
             "IsAttachable": true,
             "CreateDate": "2021-04-07T06:56:05+00:00",
-            "UpdateDate": "2026-05-31T13:12:11+00:00"
+            "UpdateDate": "2026-07-23T07:27:10+00:00"
         },
         {
             "PolicyName": "AWSApplicationMigrationAgentPolicy",
@@ -10325,12 +10325,12 @@
             "PolicyId": "ANPAZKAPJZG4FSEIUN7KZ",
             "Arn": "arn:aws:iam::aws:policy/service-role/AWSElasticDisasterRecoveryFailbackPolicy",
             "Path": "/service-role/",
-            "DefaultVersionId": "v2",
+            "DefaultVersionId": "v3",
             "AttachmentCount": 0,
             "PermissionsBoundaryUsageCount": 0,
             "IsAttachable": true,
             "CreateDate": "2021-11-17T10:41:40+00:00",
-            "UpdateDate": "2023-11-27T12:56:46+00:00"
+            "UpdateDate": "2026-07-22T18:42:25+00:00"
         },
         {
             "PolicyName": "AWSElasticDisasterRecoveryConsoleFullAccess",
@@ -10901,12 +10901,12 @@
             "PolicyId": "ANPAZKAPJZG4M2AUBSW6R",
             "Arn": "arn:aws:iam::aws:policy/AmazonRDSPerformanceInsightsReadOnly",
             "Path": "/",
-            "DefaultVersionId": "v6",
+            "DefaultVersionId": "v7",
             "AttachmentCount": 0,
             "PermissionsBoundaryUsageCount": 0,
             "IsAttachable": true,
             "CreateDate": "2022-04-05T00:02:08+00:00",
-            "UpdateDate": "2026-02-12T18:02:56+00:00"
+            "UpdateDate": "2026-07-22T23:42:28+00:00"
         },
         {
             "PolicyName": "ROSAManageSubscription",
@@ -13121,12 +13121,12 @@
             "PolicyId": "ANPAZKAPJZG4AOEG27H7E",
             "Arn": "arn:aws:iam::aws:policy/AmazonRDSPerformanceInsightsFullAccess",
             "Path": "/",
-            "DefaultVersionId": "v5",
+            "DefaultVersionId": "v6",
             "AttachmentCount": 0,
             "PermissionsBoundaryUsageCount": 0,
             "IsAttachable": true,
             "CreateDate": "2023-08-15T23:41:34+00:00",
-            "UpdateDate": "2026-02-12T18:02:39+00:00"
+            "UpdateDate": "2026-07-23T00:27:08+00:00"
         },
         {
             "PolicyName": "AWSEntityResolutionConsoleFullAccess",
@@ -15221,12 +15221,12 @@
             "PolicyId": "ANPAZKAPJZG4IBNDNDGG3",
             "Arn": "arn:aws:iam::aws:policy/service-role/SageMakerStudioDomainExecutionRolePolicy",
             "Path": "/service-role/",
-            "DefaultVersionId": "v20",
+            "DefaultVersionId": "v21",
             "AttachmentCount": 0,
             "PermissionsBoundaryUsageCount": 0,
             "IsAttachable": true,
             "CreateDate": "2024-11-20T21:56:55+00:00",
-            "UpdateDate": "2026-02-26T00:42:09+00:00"
+            "UpdateDate": "2026-07-22T16:57:26+00:00"
         },
         {
             "PolicyName": "SageMakerStudioProjectUserRolePermissionsBoundary",
@@ -18401,24 +18401,24 @@
             "PolicyId": "ANPAZKAPJZG4CA7JUMT6O",
             "Arn": "arn:aws:iam::aws:policy/AWSManagedSettingsReadOnlyAccess",
             "Path": "/",
-            "DefaultVersionId": "v1",
+            "DefaultVersionId": "v2",
             "AttachmentCount": 0,
             "PermissionsBoundaryUsageCount": 0,
             "IsAttachable": true,
             "CreateDate": "2026-07-22T01:12:28+00:00",
-            "UpdateDate": "2026-07-22T01:12:28+00:00"
+            "UpdateDate": "2026-07-23T00:42:16+00:00"
         },
         {
             "PolicyName": "AWSManagedSettingsAdminAccess",
             "PolicyId": "ANPAZKAPJZG4GA3LE2K77",
             "Arn": "arn:aws:iam::aws:policy/AWSManagedSettingsAdminAccess",
             "Path": "/",
-            "DefaultVersionId": "v1",
+            "DefaultVersionId": "v2",
             "AttachmentCount": 0,
             "PermissionsBoundaryUsageCount": 0,
             "IsAttachable": true,
             "CreateDate": "2026-07-22T01:27:25+00:00",
-            "UpdateDate": "2026-07-22T01:27:25+00:00"
+            "UpdateDate": "2026-07-23T00:42:22+00:00"
         },
         {
             "PolicyName": "AWSConfigRole",
