@@ -18,14 +18,15 @@
                     "Action": [
                         "artifact:ListComplianceInquiryQueries",
                         "artifact:GetComplianceInquiryMetadata",
-                        "artifact:ExportComplianceInquiry"
+                        "artifact:ExportComplianceInquiry",
+                        "artifact:PutComplianceInquiryFeedback"
                     ],
                     "Resource": "arn:aws:artifact:*:*:compliance-inquiry/*"
                 }
             ]
         },
-        "VersionId": "v1",
+        "VersionId": "v2",
         "IsDefaultVersion": true,
-        "CreateDate": "2026-06-30T19:27:34+00:00"
+        "CreateDate": "2026-07-23T20:12:25+00:00"
     }
 }
