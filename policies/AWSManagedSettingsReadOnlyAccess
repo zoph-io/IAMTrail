@@ -39,11 +39,21 @@
                         "sso:DescribeInstance"
                     ],
                     "Resource": "*"
+                },
+                {
+                    "Sid": "SSODirectoryReadOnly",
+                    "Effect": "Allow",
+                    "Action": [
+                        "sso-directory:DescribeUsers",
+                        "sso-directory:SearchGroups",
+                        "sso-directory:SearchUsers"
+                    ],
+                    "Resource": "*"
                 }
             ]
         },
-        "VersionId": "v1",
+        "VersionId": "v2",
         "IsDefaultVersion": true,
-        "CreateDate": "2026-07-22T01:12:28+00:00"
+        "CreateDate": "2026-07-23T00:42:16+00:00"
     }
 }
