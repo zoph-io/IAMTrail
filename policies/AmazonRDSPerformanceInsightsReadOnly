@@ -74,6 +74,12 @@
                     "Resource": "arn:aws:pi:*:*:perf-reports/rds/*/*"
                 },
                 {
+                    "Sid": "AmazonRDSPerformanceInsightsListPerformanceAnalysisReportRecommendations",
+                    "Effect": "Allow",
+                    "Action": "pi:ListPerformanceAnalysisReportRecommendations",
+                    "Resource": "arn:aws:pi:*:*:perf-reports/rds/*/*"
+                },
+                {
                     "Sid": "AmazonRDSPerformanceInsightsListPerformanceAnalysisReports",
                     "Effect": "Allow",
                     "Action": "pi:ListPerformanceAnalysisReports",
@@ -87,8 +93,8 @@
                 }
             ]
         },
-        "VersionId": "v6",
+        "VersionId": "v7",
         "IsDefaultVersion": true,
-        "CreateDate": "2026-02-12T18:02:56+00:00"
+        "CreateDate": "2026-07-22T23:42:28+00:00"
     }
 }
