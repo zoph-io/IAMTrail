@@ -2693,12 +2693,12 @@
             "PolicyId": "ANPAIN6D4M2KD3NBOC4M4",
             "Arn": "arn:aws:iam::aws:policy/service-role/AWSCodeStarServiceRole",
             "Path": "/service-role/",
-            "DefaultVersionId": "v11",
+            "DefaultVersionId": "v12",
             "AttachmentCount": 0,
             "PermissionsBoundaryUsageCount": 0,
             "IsAttachable": true,
             "CreateDate": "2017-04-19T15:20:50+00:00",
-            "UpdateDate": "2021-09-20T19:11:03+00:00"
+            "UpdateDate": "2026-09-08T12:47:08+00:00"
         },
         {
             "PolicyName": "AWSCodeStarFullAccess",
