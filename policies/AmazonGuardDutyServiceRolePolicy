@@ -272,11 +272,28 @@
                             "aws:ResourceAccount": "${aws:PrincipalAccount}"
                         }
                     }
+                },
+                {
+                    "Sid": "GdLatticeCreateManagedSnvaAssociation",
+                    "Effect": "Allow",
+                    "Action": "vpc-lattice:CreateServiceNetworkVpcAssociation",
+                    "Resource": "arn:aws:vpc-lattice:*:*:servicenetworkvpcassociation/*",
+                    "Condition": {
+                        "StringEquals": {
+                            "aws:ResourceAccount": "${aws:PrincipalAccount}"
+                        }
+                    }
+                },
+                {
+                    "Sid": "GdLatticeAssociateViaAwsService",
+                    "Effect": "Allow",
+                    "Action": "vpc-lattice:AssociateViaAWSService",
+                    "Resource": "*"
                 }
             ]
         },
-        "VersionId": "v12",
+        "VersionId": "v13",
         "IsDefaultVersion": true,
-        "CreateDate": "2026-04-24T20:12:17+00:00"
+        "CreateDate": "2026-09-09T21:27:07+00:00"
     }
 }
