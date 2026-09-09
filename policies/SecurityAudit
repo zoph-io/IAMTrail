@@ -365,10 +365,8 @@
                         "ec2:GetTransitGatewayAttachmentPropagations",
                         "ec2:GetTransitGatewayMulticastDomainAssociations",
                         "ec2:GetTransitGatewayPrefixListReferences",
-                        "ec2:GetTransitGatewayPrefixListReferences",
                         "ec2:GetTransitGatewayRouteTableAssociations",
                         "ec2:GetTransitGatewayRouteTablePropagations",
-                        "ec2:SearchTransitGatewayRoutes",
                         "ec2:SearchTransitGatewayRoutes",
                         "ecr-public:DescribeImages",
                         "ecr-public:DescribeImageTags",
@@ -1052,8 +1050,8 @@
                 }
             ]
         },
-        "VersionId": "v92",
+        "VersionId": "v93",
         "IsDefaultVersion": true,
-        "CreateDate": "2026-08-17T15:27:26+00:00"
+        "CreateDate": "2026-09-09T19:47:07+00:00"
     }
 }
