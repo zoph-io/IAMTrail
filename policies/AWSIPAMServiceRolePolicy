@@ -21,6 +21,7 @@
                         "ec2:GetIpamDiscoveredAccounts",
                         "ec2:GetIpamDiscoveredPublicAddresses",
                         "ec2:GetIpamDiscoveredResourceCidrs",
+                        "ec2:GetIpamDiscoveredRoutes",
                         "globalaccelerator:ListAccelerators",
                         "globalaccelerator:ListByoipCidrs",
                         "organizations:DescribeAccount",
@@ -81,8 +82,8 @@
                 }
             ]
         },
-        "VersionId": "v11",
+        "VersionId": "v12",
         "IsDefaultVersion": true,
-        "CreateDate": "2026-02-12T17:59:10+00:00"
+        "CreateDate": "2026-09-09T18:17:08+00:00"
     }
 }
