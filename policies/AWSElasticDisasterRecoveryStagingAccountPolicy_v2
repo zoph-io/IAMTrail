@@ -39,11 +39,20 @@
                     "Resource": [
                         "arn:aws:drs:*:*:source-server/*"
                     ]
+                },
+                {
+                    "Sid": "DRSStagingAccountPolicyv24",
+                    "Effect": "Allow",
+                    "Action": [
+                        "drs:CreateSourceServerForDrs",
+                        "drs:DescribeReplicationConfigurationTemplates"
+                    ],
+                    "Resource": "*"
                 }
             ]
         },
-        "VersionId": "v2",
+        "VersionId": "v3",
         "IsDefaultVersion": true,
-        "CreateDate": "2023-11-27T13:32:09+00:00"
+        "CreateDate": "2026-09-09T13:47:07+00:00"
     }
 }
