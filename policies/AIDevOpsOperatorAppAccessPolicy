@@ -49,6 +49,7 @@
                         "aidevops:ListPendingMessages",
                         "aidevops:ListRecommendations",
                         "aidevops:ListTriggers",
+                        "aidevops:ListWebhooks",
                         "aidevops:RevokeAccessToken",
                         "aidevops:RotateAccessToken",
                         "aidevops:SendMessage",
@@ -61,7 +62,10 @@
                         "aidevops:UpdateRecommendation",
                         "aidevops:UpdateTrigger"
                     ],
-                    "Resource": "arn:aws:aidevops:*:*:agentspace/${aws:PrincipalTag/AgentSpaceId}",
+                    "Resource": [
+                        "arn:aws:aidevops:*:*:agentspace/${aws:PrincipalTag/AgentSpaceId}",
+                        "arn:aws:aidevops:*:*:agentspace/${aws:PrincipalTag/AgentSpaceId}/*"
+                    ],
                     "Condition": {
                         "StringEquals": {
                             "aws:ResourceAccount": "${aws:PrincipalAccount}"
@@ -126,8 +130,8 @@
                 }
             ]
         },
-        "VersionId": "v9",
+        "VersionId": "v10",
         "IsDefaultVersion": true,
-        "CreateDate": "2026-06-26T23:57:22+00:00"
+        "CreateDate": "2026-09-10T17:47:07+00:00"
     }
 }
