@@ -97,6 +97,22 @@
                     "Resource": "arn:aws:cloudformation:*:*:stack/aws-glue*/*"
                 },
                 {
+                    "Sid": "CloudFormationTagOnCreate",
+                    "Effect": "Allow",
+                    "Action": [
+                        "cloudformation:TagResource",
+                        "cloudformation:UntagResource"
+                    ],
+                    "Resource": "arn:aws:cloudformation:*:*:stack/aws-glue*/*",
+                    "Condition": {
+                        "StringEquals": {
+                            "cloudformation:CreateAction": [
+                                "CreateStack"
+                            ]
+                        }
+                    }
+                },
+                {
                     "Effect": "Allow",
                     "Action": [
                         "ec2:RunInstances"
@@ -176,8 +192,8 @@
                 }
             ]
         },
-        "VersionId": "v14",
+        "VersionId": "v15",
         "IsDefaultVersion": true,
-        "CreateDate": "2023-07-14T14:37:54+00:00"
+        "CreateDate": "2026-09-10T20:27:08+00:00"
     }
 }
