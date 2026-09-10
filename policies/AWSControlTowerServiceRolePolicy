@@ -211,11 +211,34 @@
                         "cloudformation:DescribeOrganizationsAccess"
                     ],
                     "Resource": "*"
+                },
+                {
+                    "Sid": "CloudFormationTagOnCreate",
+                    "Effect": "Allow",
+                    "Action": [
+                        "cloudformation:TagResource",
+                        "cloudformation:UntagResource"
+                    ],
+                    "Resource": [
+                        "arn:aws:cloudformation:*:*:type/resource/AWS-IAM-Role",
+                        "arn:aws:cloudformation:*:*:stack/AWSControlTower*/*",
+                        "arn:aws:cloudformation:*:*:stack/StackSet-AWSControlTower*/*",
+                        "arn:aws:cloudformation:*:*:stackset/AWSControlTower*:*",
+                        "arn:aws:cloudformation:*:*:stackset-target/AWSControlTower*/*"
+                    ],
+                    "Condition": {
+                        "StringEquals": {
+                            "cloudformation:CreateAction": [
+                                "CreateStack",
+                                "UpdateStack"
+                            ]
+                        }
+                    }
                 }
             ]
         },
-        "VersionId": "v21",
+        "VersionId": "v22",
         "IsDefaultVersion": true,
-        "CreateDate": "2026-05-20T20:12:23+00:00"
+        "CreateDate": "2026-09-10T19:47:08+00:00"
     }
 }
