@@ -1,0 +1,23 @@
+{
+  "detected_at": "2026-09-10T20:42:58.248Z",
+  "botocore_commit": "a91f10fc1b8d630d147e8ed0d4359a6a0b4e2715",
+  "botocore_commit_url": "https://github.com/boto/botocore/commit/a91f10fc1b8d630d147e8ed0d4359a6a0b4e2715",
+  "summary": "1 service expansion",
+  "changes": [
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "dax",
+      "id": "dax",
+      "new_regions": [
+        "af-south-1",
+        "ap-east-1",
+        "ap-northeast-2",
+        "ap-northeast-3",
+        "ca-central-1",
+        "eu-south-1"
+      ],
+      "description": "dax expanded to af-south-1, ap-east-1, ap-northeast-2, ap-northeast-3, ca-central-1, eu-south-1"
+    }
+  ]
+}
