@@ -87,6 +87,22 @@
                     "Resource": "arn:aws:cloudformation:*:*:stack/aws-glue*/*"
                 },
                 {
+                    "Sid": "CloudFormationTagOnCreate",
+                    "Effect": "Allow",
+                    "Action": [
+                        "cloudformation:TagResource",
+                        "cloudformation:UntagResource"
+                    ],
+                    "Resource": "arn:aws:cloudformation:*:*:stack/aws-glue*/*",
+                    "Condition": {
+                        "StringEquals": {
+                            "cloudformation:CreateAction": [
+                                "CreateStack"
+                            ]
+                        }
+                    }
+                },
+                {
                     "Effect": "Allow",
                     "Action": [
                         "sagemaker:CreatePresignedNotebookInstanceUrl",
@@ -220,8 +236,8 @@
                 }
             ]
         },
-        "VersionId": "v3",
+        "VersionId": "v4",
         "IsDefaultVersion": true,
-        "CreateDate": "2021-07-15T15:24:19+00:00"
+        "CreateDate": "2026-09-10T20:27:07+00:00"
     }
 }
