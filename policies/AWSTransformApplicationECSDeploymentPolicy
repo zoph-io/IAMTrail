@@ -29,6 +29,23 @@
                     }
                 },
                 {
+                    "Sid": "CloudFormationTagOnCreate",
+                    "Effect": "Allow",
+                    "Action": [
+                        "cloudformation:TagResource",
+                        "cloudformation:UntagResource"
+                    ],
+                    "Resource": "arn:aws:cloudformation:*:*:stack/AWSTransform*",
+                    "Condition": {
+                        "StringEquals": {
+                            "cloudformation:CreateAction": [
+                                "CreateStack",
+                                "UpdateStack"
+                            ]
+                        }
+                    }
+                },
+                {
                     "Effect": "Allow",
                     "Action": [
                         "cloudformation:DescribeStacks",
@@ -339,8 +356,8 @@
                 }
             ]
         },
-        "VersionId": "v6",
+        "VersionId": "v7",
         "IsDefaultVersion": true,
-        "CreateDate": "2026-02-12T18:02:41+00:00"
+        "CreateDate": "2026-09-11T00:27:08+00:00"
     }
 }
