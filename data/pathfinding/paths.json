@@ -13140,8 +13140,8 @@
         "url": "https://hackingthe.cloud/aws/exploitation/iam_privilege_escalation/#iamcreatepolicyversion"
       },
       {
-        "title": "Well, That Escalated Quickly - Privesc 01",
-        "url": "https://labs.bishopfox.com/tech-blog/privilege-escalation-in-aws"
+        "title": "Well, That Escalated Quickly - Privilege Escalation in AWS",
+        "url": "https://bishopfox.com/blog/privilege-escalation-in-aws"
       },
       {
         "title": "s3cur3.it IAMVulnerable - Part 1",
@@ -13223,8 +13223,13 @@
     },
     "gitMetadata": {
       "created": "2025-10-09T19:58:48Z",
-      "lastUpdated": "2026-05-31T01:08:20Z",
+      "lastUpdated": "2026-09-10T03:14:19Z",
       "contributors": [
+        {
+          "name": "ASCIIFry",
+          "email": "32338942+ASCIIFry@users.noreply.github.com",
+          "githubUsername": "ASCIIFry"
+        },
         {
           "name": "Seth Art",
           "email": "seth.art@datadoghq.com",
