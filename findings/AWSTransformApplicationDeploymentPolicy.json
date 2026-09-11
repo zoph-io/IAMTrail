@@ -11,7 +11,7 @@
             "value": "Statement"
           },
           {
-            "index": 16
+            "index": 17
           },
           {
             "value": "Resource"
@@ -23,13 +23,13 @@
         "span": {
           "start": {
             "line": 1,
-            "column": 4505,
-            "offset": 4505
+            "column": 4794,
+            "offset": 4794
           },
           "end": {
             "line": 1,
-            "column": 4553,
-            "offset": 4553
+            "column": 4842,
+            "offset": 4842
           }
         }
       },
@@ -39,7 +39,7 @@
             "value": "Statement"
           },
           {
-            "index": 16
+            "index": 17
           },
           {
             "value": "Resource"
@@ -51,13 +51,13 @@
         "span": {
           "start": {
             "line": 1,
-            "column": 4555,
-            "offset": 4555
+            "column": 4844,
+            "offset": 4844
           },
           "end": {
             "line": 1,
-            "column": 4605,
-            "offset": 4605
+            "column": 4894,
+            "offset": 4894
           }
         }
       }
@@ -65,45 +65,6 @@
   },
   {
     "findingDetails": "We recommend replacing the key kms:EncryptionContext:aws-transform in the condition block of StringLike with {kms:EncryptionContext:aws-transform: false} to ensure better enforcement of the condition.",
-    "findingType": "SUGGESTION",
-    "issueCode": "EQUIVALENT_TO_NULL_FALSE",
-    "learnMoreLink": "https://docs.aws.amazon.com/IAM/latest/UserGuide/access-analyzer-reference-policy-checks.html#access-analyzer-reference-policy-checks-suggestion-equivalent-to-null-false",
-    "locations": [
-      {
-        "path": [
-          {
-            "value": "Statement"
-          },
-          {
-            "index": 18
-          },
-          {
-            "value": "Condition"
-          },
-          {
-            "value": "StringLike"
-          },
-          {
-            "value": "kms:EncryptionContext:aws-transform"
-          }
-        ],
-        "span": {
-          "start": {
-            "line": 1,
-            "column": 5137,
-            "offset": 5137
-          },
-          "end": {
-            "line": 1,
-            "column": 5140,
-            "offset": 5140
-          }
-        }
-      }
-    ]
-  },
-  {
-    "findingDetails": "We recommend replacing the key kms:EncryptionContext:aws:ebs:id in the condition block of StringLike with {kms:EncryptionContext:aws:ebs:id: false} to ensure better enforcement of the condition.",
     "findingType": "SUGGESTION",
     "issueCode": "EQUIVALENT_TO_NULL_FALSE",
     "learnMoreLink": "https://docs.aws.amazon.com/IAM/latest/UserGuide/access-analyzer-reference-policy-checks.html#access-analyzer-reference-policy-checks-suggestion-equivalent-to-null-false",
@@ -123,19 +84,19 @@
             "value": "StringLike"
           },
           {
-            "value": "kms:EncryptionContext:aws:ebs:id"
+            "value": "kms:EncryptionContext:aws-transform"
           }
         ],
         "span": {
           "start": {
             "line": 1,
-            "column": 5428,
-            "offset": 5428
+            "column": 5426,
+            "offset": 5426
           },
           "end": {
             "line": 1,
-            "column": 5431,
-            "offset": 5431
+            "column": 5429,
+            "offset": 5429
           }
         }
       }
@@ -168,13 +129,52 @@
         "span": {
           "start": {
             "line": 1,
-            "column": 5839,
-            "offset": 5839
+            "column": 5717,
+            "offset": 5717
           },
           "end": {
             "line": 1,
-            "column": 5842,
-            "offset": 5842
+            "column": 5720,
+            "offset": 5720
+          }
+        }
+      }
+    ]
+  },
+  {
+    "findingDetails": "We recommend replacing the key kms:EncryptionContext:aws:ebs:id in the condition block of StringLike with {kms:EncryptionContext:aws:ebs:id: false} to ensure better enforcement of the condition.",
+    "findingType": "SUGGESTION",
+    "issueCode": "EQUIVALENT_TO_NULL_FALSE",
+    "learnMoreLink": "https://docs.aws.amazon.com/IAM/latest/UserGuide/access-analyzer-reference-policy-checks.html#access-analyzer-reference-policy-checks-suggestion-equivalent-to-null-false",
+    "locations": [
+      {
+        "path": [
+          {
+            "value": "Statement"
+          },
+          {
+            "index": 21
+          },
+          {
+            "value": "Condition"
+          },
+          {
+            "value": "StringLike"
+          },
+          {
+            "value": "kms:EncryptionContext:aws:ebs:id"
+          }
+        ],
+        "span": {
+          "start": {
+            "line": 1,
+            "column": 6128,
+            "offset": 6128
+          },
+          "end": {
+            "line": 1,
+            "column": 6131,
+            "offset": 6131
           }
         }
       }

@@ -2825,12 +2825,12 @@
             "PolicyId": "ANPAJNZGDEOD7MISOVSVI",
             "Arn": "arn:aws:iam::aws:policy/AWSGlueConsoleFullAccess",
             "Path": "/",
-            "DefaultVersionId": "v14",
+            "DefaultVersionId": "v15",
             "AttachmentCount": 0,
             "PermissionsBoundaryUsageCount": 0,
             "IsAttachable": true,
             "CreateDate": "2017-08-14T13:37:39+00:00",
-            "UpdateDate": "2023-07-14T14:37:54+00:00"
+            "UpdateDate": "2026-09-10T20:27:08+00:00"
         },
         {
             "PolicyName": "AWSGlueServiceNotebookRole",
@@ -4529,12 +4529,12 @@
             "PolicyId": "ANPAJELFOHJC42QS3ZSYY",
             "Arn": "arn:aws:iam::aws:policy/AWSGlueConsoleSageMakerNotebookFullAccess",
             "Path": "/",
-            "DefaultVersionId": "v3",
+            "DefaultVersionId": "v4",
             "AttachmentCount": 0,
             "PermissionsBoundaryUsageCount": 0,
             "IsAttachable": true,
             "CreateDate": "2018-10-05T17:52:35+00:00",
-            "UpdateDate": "2021-07-15T15:24:19+00:00"
+            "UpdateDate": "2026-09-10T20:27:07+00:00"
         },
         {
             "PolicyName": "AmazonConnectReadOnlyAccess",
@@ -5597,12 +5597,12 @@
             "PolicyId": "ANPAZKAPJZG4MW35THVLF",
             "Arn": "arn:aws:iam::aws:policy/service-role/AWSControlTowerServiceRolePolicy",
             "Path": "/service-role/",
-            "DefaultVersionId": "v21",
+            "DefaultVersionId": "v22",
             "AttachmentCount": 0,
             "PermissionsBoundaryUsageCount": 0,
             "IsAttachable": true,
             "CreateDate": "2019-05-03T18:19:11+00:00",
-            "UpdateDate": "2026-05-20T20:12:23+00:00"
+            "UpdateDate": "2026-09-10T19:47:08+00:00"
         },
         {
             "PolicyName": "AmazonRoute53ResolverFullAccess",
@@ -16433,12 +16433,12 @@
             "PolicyId": "ANPAZKAPJZG4ABS5BMRXG",
             "Arn": "arn:aws:iam::aws:policy/aws-service-role/AWSObservabilityAdminTelemetryEnablementServiceRolePolicy",
             "Path": "/aws-service-role/",
-            "DefaultVersionId": "v14",
+            "DefaultVersionId": "v15",
             "AttachmentCount": 0,
             "PermissionsBoundaryUsageCount": 0,
             "IsAttachable": true,
             "CreateDate": "2025-08-01T18:04:06+00:00",
-            "UpdateDate": "2026-07-24T19:12:23+00:00"
+            "UpdateDate": "2026-09-11T00:37:07+00:00"
         },
         {
             "PolicyName": "AWSQuickSetupStartStopInstancesExecutionPolicy",
@@ -16613,12 +16613,12 @@
             "PolicyId": "ANPAZKAPJZG4C2JTRAIVR",
             "Arn": "arn:aws:iam::aws:policy/service-role/AWSTransformApplicationDeploymentPolicy",
             "Path": "/service-role/",
-            "DefaultVersionId": "v9",
+            "DefaultVersionId": "v10",
             "AttachmentCount": 0,
             "PermissionsBoundaryUsageCount": 0,
             "IsAttachable": true,
             "CreateDate": "2025-08-28T06:34:07+00:00",
-            "UpdateDate": "2026-02-12T17:59:09+00:00"
+            "UpdateDate": "2026-09-11T00:27:08+00:00"
         },
         {
             "PolicyName": "AWSBillingServiceRolePolicy",
@@ -16685,12 +16685,12 @@
             "PolicyId": "ANPAZKAPJZG4HITIWX2FY",
             "Arn": "arn:aws:iam::aws:policy/service-role/AWSTransformApplicationECSDeploymentPolicy",
             "Path": "/service-role/",
-            "DefaultVersionId": "v6",
+            "DefaultVersionId": "v7",
             "AttachmentCount": 0,
             "PermissionsBoundaryUsageCount": 0,
             "IsAttachable": true,
             "CreateDate": "2025-09-29T22:49:07+00:00",
-            "UpdateDate": "2026-02-12T18:02:41+00:00"
+            "UpdateDate": "2026-09-11T00:27:08+00:00"
         },
         {
             "PolicyName": "AWSControlTowerIdentityCenterManagementPolicy",
@@ -17585,12 +17585,12 @@
             "PolicyId": "ANPAZKAPJZG4ELWEUAH5T",
             "Arn": "arn:aws:iam::aws:policy/AIDevOpsOperatorAppAccessPolicy",
             "Path": "/",
-            "DefaultVersionId": "v9",
+            "DefaultVersionId": "v10",
             "AttachmentCount": 0,
             "PermissionsBoundaryUsageCount": 0,
             "IsAttachable": true,
             "CreateDate": "2026-03-26T03:42:13+00:00",
-            "UpdateDate": "2026-06-26T23:57:22+00:00"
+            "UpdateDate": "2026-09-10T17:47:07+00:00"
         },
         {
             "PolicyName": "AIDevOpsAgentFullAccess",
