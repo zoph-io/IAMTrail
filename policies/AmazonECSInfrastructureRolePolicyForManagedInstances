@@ -44,7 +44,6 @@
                         "arn:aws:ec2:*:*:fleet/*",
                         "arn:aws:ec2:*:*:instance/*",
                         "arn:aws:ec2:*:*:network-interface/*",
-                        "arn:aws:ec2:*:*:launch-template/*",
                         "arn:aws:ec2:*:*:volume/*"
                     ],
                     "Condition": {
@@ -64,6 +63,21 @@
                         "arn:aws:ec2:*:*:security-group/*",
                         "arn:aws:ec2:*::image/*"
                     ]
+                },
+                {
+                    "Sid": "CreateFleetForECSManagedLaunchTemplates",
+                    "Effect": "Allow",
+                    "Action": [
+                        "ec2:CreateFleet"
+                    ],
+                    "Resource": [
+                        "arn:aws:ec2:*:*:launch-template/*"
+                    ],
+                    "Condition": {
+                        "StringEquals": {
+                            "ec2:ResourceTag/AmazonECSManaged": "true"
+                        }
+                    }
                 },
                 {
                     "Sid": "RunInstancesForManagedInstances",
@@ -188,8 +202,8 @@
                 }
             ]
         },
-        "VersionId": "v11",
+        "VersionId": "v12",
         "IsDefaultVersion": true,
-        "CreateDate": "2026-02-26T18:27:10+00:00"
+        "CreateDate": "2026-09-15T17:57:08+00:00"
     }
 }
