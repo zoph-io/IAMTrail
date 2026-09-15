@@ -1077,6 +1077,21 @@
                     }
                 },
                 {
+                    "Sid": "CreateTransitGatewaySLR",
+                    "Effect": "Allow",
+                    "Action": [
+                        "iam:CreateServiceLinkedRole"
+                    ],
+                    "Resource": [
+                        "arn:aws:iam::*:role/aws-service-role/transitgateway.amazonaws.com/AWSServiceRoleForVPCTransitGateway"
+                    ],
+                    "Condition": {
+                        "StringEquals": {
+                            "iam:AWSServiceName": "transitgateway.amazonaws.com"
+                        }
+                    }
+                },
+                {
                     "Sid": "AnalyzerENIResourceTag",
                     "Effect": "Allow",
                     "Action": [
@@ -1094,8 +1109,8 @@
                 }
             ]
         },
-        "VersionId": "v6",
+        "VersionId": "v7",
         "IsDefaultVersion": true,
-        "CreateDate": "2026-07-30T07:42:10+00:00"
+        "CreateDate": "2026-09-15T13:17:07+00:00"
     }
 }
