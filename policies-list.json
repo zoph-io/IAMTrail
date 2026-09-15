@@ -11501,12 +11501,12 @@
             "PolicyId": "ANPAZKAPJZG4K2H54PAUL",
             "Arn": "arn:aws:iam::aws:policy/aws-service-role/AWSResourceExplorerServiceRolePolicy",
             "Path": "/aws-service-role/",
-            "DefaultVersionId": "v54",
+            "DefaultVersionId": "v55",
             "AttachmentCount": 1,
             "PermissionsBoundaryUsageCount": 0,
             "IsAttachable": true,
             "CreateDate": "2022-10-25T20:35:29+00:00",
-            "UpdateDate": "2026-09-09T23:27:08+00:00"
+            "UpdateDate": "2026-09-14T23:37:08+00:00"
         },
         {
             "PolicyName": "AWSFaultInjectionSimulatorSSMAccess",
@@ -15197,12 +15197,12 @@
             "PolicyId": "ANPAZKAPJZG4NSSEENOX7",
             "Arn": "arn:aws:iam::aws:policy/SageMakerStudioProjectRoleMachineLearningPolicy",
             "Path": "/",
-            "DefaultVersionId": "v43",
+            "DefaultVersionId": "v44",
             "AttachmentCount": 0,
             "PermissionsBoundaryUsageCount": 0,
             "IsAttachable": true,
             "CreateDate": "2024-11-20T21:55:27+00:00",
-            "UpdateDate": "2026-09-04T18:57:08+00:00"
+            "UpdateDate": "2026-09-14T20:37:08+00:00"
         },
         {
             "PolicyName": "SageMakerStudioDomainServiceRolePolicy",
