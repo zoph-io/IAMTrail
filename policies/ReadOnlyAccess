@@ -325,6 +325,7 @@
                         "bedrock-agentcore:GetBrowser",
                         "bedrock-agentcore:GetBrowserProfile",
                         "bedrock-agentcore:GetBrowserSession",
+                        "bedrock-agentcore:GetCapacityProvider",
                         "bedrock-agentcore:GetCodeInterpreter",
                         "bedrock-agentcore:GetCodeInterpreterSession",
                         "bedrock-agentcore:GetConfigurationBundle",
@@ -345,6 +346,8 @@
                         "bedrock-agentcore:GetRecommendation",
                         "bedrock-agentcore:GetTokenVault",
                         "bedrock-agentcore:GetWorkloadIdentity",
+                        "bedrock-agentcore:ListAgentRuntimeVersionsByCapacityProvider",
+                        "bedrock-agentcore:ListCapacityProviders",
                         "bedrock-agentcore:ListABTests",
                         "bedrock-agentcore:ListAgentRuntimeEndpoints",
                         "bedrock-agentcore:ListAgentRuntimes",
@@ -941,6 +944,8 @@
                         "devops-guru:SearchInsights",
                         "devops-guru:StartCostEstimation",
                         "directconnect:Describe*",
+                        "directconnect:ListVirtualInterfaceRoutes",
+                        "directconnect:ListVirtualInterfaceTestHistory",
                         "discovery:Describe*",
                         "discovery:Get*",
                         "discovery:List*",
@@ -2741,6 +2746,8 @@
                         "sustainability:GetCarbonFootprintSummary",
                         "sustainability:GetEstimatedCarbonEmissions",
                         "sustainability:GetEstimatedCarbonEmissionsDimensionValues",
+                        "sustainability:GetEstimatedWaterAllocation",
+                        "sustainability:GetEstimatedWaterAllocationDimensionValues",
                         "swf:Count*",
                         "swf:Describe*",
                         "swf:Get*",
@@ -2945,8 +2952,8 @@
                 }
             ]
         },
-        "VersionId": "v188",
+        "VersionId": "v189",
         "IsDefaultVersion": true,
-        "CreateDate": "2026-07-21T18:42:30+00:00"
+        "CreateDate": "2026-09-15T18:47:08+00:00"
     }
 }
