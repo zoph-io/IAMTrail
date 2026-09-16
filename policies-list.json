@@ -29,12 +29,12 @@
             "PolicyId": "ANPAILL3HVNFSB6DCOWYQ",
             "Arn": "arn:aws:iam::aws:policy/ReadOnlyAccess",
             "Path": "/",
-            "DefaultVersionId": "v188",
+            "DefaultVersionId": "v189",
             "AttachmentCount": 0,
             "PermissionsBoundaryUsageCount": 0,
             "IsAttachable": true,
             "CreateDate": "2015-02-06T18:39:48+00:00",
-            "UpdateDate": "2026-07-21T18:42:30+00:00"
+            "UpdateDate": "2026-09-15T18:47:08+00:00"
         },
         {
             "PolicyName": "AWSCloudFormationReadOnlyAccess",
@@ -16661,12 +16661,12 @@
             "PolicyId": "ANPAZKAPJZG4KN4F4RUVF",
             "Arn": "arn:aws:iam::aws:policy/AmazonECSInfrastructureRolePolicyForManagedInstances",
             "Path": "/",
-            "DefaultVersionId": "v11",
+            "DefaultVersionId": "v12",
             "AttachmentCount": 0,
             "PermissionsBoundaryUsageCount": 0,
             "IsAttachable": true,
             "CreateDate": "2025-09-26T18:04:07+00:00",
-            "UpdateDate": "2026-02-26T18:27:10+00:00"
+            "UpdateDate": "2026-09-15T17:57:08+00:00"
         },
         {
             "PolicyName": "AmazonECSInstanceRolePolicyForManagedInstances",
@@ -16829,12 +16829,12 @@
             "PolicyId": "ANPAZKAPJZG4CTZCLDWVS",
             "Arn": "arn:aws:iam::aws:policy/AWSApplicationMigrationNetworkMigrationMultiAccount",
             "Path": "/",
-            "DefaultVersionId": "v6",
+            "DefaultVersionId": "v7",
             "AttachmentCount": 0,
             "PermissionsBoundaryUsageCount": 0,
             "IsAttachable": true,
             "CreateDate": "2025-11-10T09:04:09+00:00",
-            "UpdateDate": "2026-07-30T07:42:10+00:00"
+            "UpdateDate": "2026-09-15T13:17:07+00:00"
         },
         {
             "PolicyName": "AmazonECSInfrastructureRoleforExpressGatewayServices",
@@ -18899,6 +18899,18 @@
             "IsAttachable": true,
             "CreateDate": "2026-09-09T23:27:07+00:00",
             "UpdateDate": "2026-09-09T23:27:07+00:00"
+        },
+        {
+            "PolicyName": "AWSWellArchitectedAgentOrganizationsServiceRolePolicy",
+            "PolicyId": "ANPAZKAPJZG4P3KOZ7PH7",
+            "Arn": "arn:aws:iam::aws:policy/aws-service-role/AWSWellArchitectedAgentOrganizationsServiceRolePolicy",
+            "Path": "/aws-service-role/",
+            "DefaultVersionId": "v1",
+            "AttachmentCount": 0,
+            "PermissionsBoundaryUsageCount": 0,
+            "IsAttachable": true,
+            "CreateDate": "2026-09-15T18:37:08+00:00",
+            "UpdateDate": "2026-09-15T18:37:08+00:00"
         },
         {
             "PolicyName": "AWSConfigRole",
