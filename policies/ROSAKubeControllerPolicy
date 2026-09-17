@@ -81,6 +81,7 @@
                         "elasticloadbalancing:ModifyTargetGroup",
                         "elasticloadbalancing:DeleteTargetGroup",
                         "elasticloadbalancing:ApplySecurityGroupsToLoadBalancer",
+                        "elasticloadbalancing:SetSecurityGroups",
                         "elasticloadbalancing:CreateLoadBalancerListeners",
                         "elasticloadbalancing:DeleteLoadBalancerListeners",
                         "elasticloadbalancing:AttachLoadBalancerToSubnets",
@@ -203,8 +204,8 @@
                 }
             ]
         },
-        "VersionId": "v7",
+        "VersionId": "v8",
         "IsDefaultVersion": true,
-        "CreateDate": "2026-04-10T16:12:08+00:00"
+        "CreateDate": "2026-09-17T19:17:08+00:00"
     }
 }
