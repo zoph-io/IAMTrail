@@ -42,6 +42,7 @@
                         "securityagent:BatchGetThreatModelJobTasks",
                         "securityagent:BatchGetThreatModels",
                         "securityagent:BatchGetThreats",
+                        "securityagent:BatchGetValidationRuns",
                         "securityagent:CreateCodeReview",
                         "securityagent:CreateDesignReview",
                         "securityagent:CreatePentest",
@@ -58,6 +59,7 @@
                         "securityagent:ListCodeReviews",
                         "securityagent:ListDesignReviewComments",
                         "securityagent:ListDesignReviews",
+                        "securityagent:ListDiscoveredDomains",
                         "securityagent:ListDiscoveredEndpoints",
                         "securityagent:ListFindings",
                         "securityagent:ListIntegratedResources",
@@ -73,10 +75,12 @@
                         "securityagent:StartCodeReviewJob",
                         "securityagent:StartPentestJob",
                         "securityagent:StartThreatModelJob",
+                        "securityagent:StartValidationRun",
                         "securityagent:StopCodeReviewJob",
                         "securityagent:StopPentestJob",
                         "securityagent:StopThreatModelJob",
                         "securityagent:UpdateCodeReview",
+                        "securityagent:UpdateDiscoveredDomains",
                         "securityagent:UpdateFinding",
                         "securityagent:UpdatePentest",
                         "securityagent:UpdateThreat",
@@ -91,8 +95,8 @@
                 }
             ]
         },
-        "VersionId": "v6",
+        "VersionId": "v7",
         "IsDefaultVersion": true,
-        "CreateDate": "2026-06-11T18:27:14+00:00"
+        "CreateDate": "2026-09-18T17:17:08+00:00"
     }
 }
