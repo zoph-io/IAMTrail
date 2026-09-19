@@ -277,22 +277,18 @@
       ]
     },
     "gitMetadata": {
-      "created": "2025-10-09T19:58:48Z",
-      "lastUpdated": "2026-05-31T01:08:20Z",
+      "created": "2026-09-17T18:25:17Z",
+      "lastUpdated": "2026-09-17T18:25:17Z",
       "contributors": [
         {
-          "name": "Seth Art",
-          "email": "seth.art@datadoghq.com",
-          "githubUsername": "sethsec"
-        },
-        {
-          "name": "Andoni A.",
-          "email": "14891798+andoniaf@users.noreply.github.com",
-          "githubUsername": "andoniaf"
+          "name": "Vicky Barth",
+          "email": "vicky.barth@datadoghq.com",
+          "githubUsername": "vbarth2"
         }
       ]
     },
-    "filePath": "data/paths/apprunner/apprunner-001.yaml"
+    "filePath": "data/paths/aws/apprunner/apprunner-001.yaml",
+    "cloud": "aws"
   },
   {
     "id": "apprunner-002",
@@ -568,22 +564,18 @@
       ]
     },
     "gitMetadata": {
-      "created": "2025-10-09T19:58:48Z",
-      "lastUpdated": "2026-02-13T11:28:37Z",
+      "created": "2026-09-17T18:25:17Z",
+      "lastUpdated": "2026-09-17T18:25:17Z",
       "contributors": [
         {
-          "name": "Andoni A.",
-          "email": "14891798+andoniaf@users.noreply.github.com",
-          "githubUsername": "andoniaf"
-        },
-        {
-          "name": "Seth Art",
-          "email": "seth.art@datadoghq.com",
-          "githubUsername": "sethsec"
+          "name": "Vicky Barth",
+          "email": "vicky.barth@datadoghq.com",
+          "githubUsername": "vbarth2"
         }
       ]
     },
-    "filePath": "data/paths/apprunner/apprunner-002.yaml"
+    "filePath": "data/paths/aws/apprunner/apprunner-002.yaml",
+    "cloud": "aws"
   },
   {
     "id": "batch-001",
@@ -884,22 +876,18 @@
       ]
     },
     "gitMetadata": {
-      "created": "2026-06-01T00:01:57Z",
-      "lastUpdated": "2026-08-04T11:07:33Z",
+      "created": "2026-09-17T18:25:17Z",
+      "lastUpdated": "2026-09-17T18:25:17Z",
       "contributors": [
         {
-          "name": "Daniel Barranquero",
-          "email": "daniel@prowler.com",
-          "githubUsername": "danibarranqueroo"
-        },
-        {
-          "name": "Seth Art",
-          "email": "seth.art@datadoghq.com",
-          "githubUsername": "sethsec"
+          "name": "Vicky Barth",
+          "email": "vicky.barth@datadoghq.com",
+          "githubUsername": "vbarth2"
         }
       ]
     },
-    "filePath": "data/paths/batch/batch-001.yaml"
+    "filePath": "data/paths/aws/batch/batch-001.yaml",
+    "cloud": "aws"
   },
   {
     "id": "batch-002",
@@ -1175,22 +1163,18 @@
       ]
     },
     "gitMetadata": {
-      "created": "2026-06-01T00:01:57Z",
-      "lastUpdated": "2026-08-04T11:07:33Z",
+      "created": "2026-09-17T18:25:17Z",
+      "lastUpdated": "2026-09-17T18:25:17Z",
       "contributors": [
         {
-          "name": "Daniel Barranquero",
-          "email": "daniel@prowler.com",
-          "githubUsername": "danibarranqueroo"
-        },
-        {
-          "name": "Seth Art",
-          "email": "seth.art@datadoghq.com",
-          "githubUsername": "sethsec"
+          "name": "Vicky Barth",
+          "email": "vicky.barth@datadoghq.com",
+          "githubUsername": "vbarth2"
         }
       ]
     },
-    "filePath": "data/paths/batch/batch-002.yaml"
+    "filePath": "data/paths/aws/batch/batch-002.yaml",
+    "cloud": "aws"
   },
   {
     "id": "batch-003",
@@ -1552,17 +1536,18 @@
       ]
     },
     "gitMetadata": {
-      "created": "2026-08-03T23:23:23Z",
-      "lastUpdated": "2026-08-03T23:23:23Z",
+      "created": "2026-09-17T18:25:17Z",
+      "lastUpdated": "2026-09-17T18:25:17Z",
       "contributors": [
         {
-          "name": "Seth Art",
-          "email": "seth.art@datadoghq.com",
-          "githubUsername": "sethsec"
+          "name": "Vicky Barth",
+          "email": "vicky.barth@datadoghq.com",
+          "githubUsername": "vbarth2"
         }
       ]
     },
-    "filePath": "data/paths/batch/batch-003.yaml"
+    "filePath": "data/paths/aws/batch/batch-003.yaml",
+    "cloud": "aws"
   },
   {
     "id": "bedrock-001",
@@ -1830,27 +1815,18 @@
       ]
     },
     "gitMetadata": {
-      "created": "2025-10-09T19:58:48Z",
-      "lastUpdated": "2026-07-07T10:09:46Z",
+      "created": "2026-09-17T18:25:17Z",
+      "lastUpdated": "2026-09-17T18:25:17Z",
       "contributors": [
         {
-          "name": "MrCloudSec",
-          "email": "sgarcia@beyondtrust.com",
-          "githubUsername": "MrCloudSec"
-        },
-        {
-          "name": "Seth Art",
-          "email": "seth.art@datadoghq.com",
-          "githubUsername": "sethsec"
-        },
-        {
-          "name": "Andoni A.",
-          "email": "14891798+andoniaf@users.noreply.github.com",
-          "githubUsername": "andoniaf"
+          "name": "Vicky Barth",
+          "email": "vicky.barth@datadoghq.com",
+          "githubUsername": "vbarth2"
         }
       ]
     },
-    "filePath": "data/paths/bedrock/bedrock-001.yaml"
+    "filePath": "data/paths/aws/bedrock/bedrock-001.yaml",
+    "cloud": "aws"
   },
   {
     "id": "bedrock-002",
@@ -2107,27 +2083,18 @@
       }
     },
     "gitMetadata": {
-      "created": "2025-10-09T19:58:48Z",
-      "lastUpdated": "2026-07-07T10:09:46Z",
+      "created": "2026-09-17T18:25:17Z",
+      "lastUpdated": "2026-09-17T18:25:17Z",
       "contributors": [
         {
-          "name": "MrCloudSec",
-          "email": "sgarcia@beyondtrust.com",
-          "githubUsername": "MrCloudSec"
-        },
-        {
-          "name": "Seth Art",
-          "email": "seth.art@datadoghq.com",
-          "githubUsername": "sethsec"
-        },
-        {
-          "name": "Andoni A.",
-          "email": "14891798+andoniaf@users.noreply.github.com",
-          "githubUsername": "andoniaf"
+          "name": "Vicky Barth",
+          "email": "vicky.barth@datadoghq.com",
+          "githubUsername": "vbarth2"
         }
       ]
     },
-    "filePath": "data/paths/bedrock/bedrock-002.yaml"
+    "filePath": "data/paths/aws/bedrock/bedrock-002.yaml",
+    "cloud": "aws"
   },
   {
     "id": "bedrock-003",
@@ -2394,22 +2361,18 @@
       ]
     },
     "gitMetadata": {
-      "created": "2026-06-15T19:04:36Z",
-      "lastUpdated": "2026-08-24T13:22:24Z",
+      "created": "2026-09-17T18:25:17Z",
+      "lastUpdated": "2026-09-17T18:25:17Z",
       "contributors": [
         {
-          "name": "Seth Art",
-          "email": "seth.art@datadoghq.com",
-          "githubUsername": "sethsec"
-        },
-        {
-          "name": "MrCloudSec",
-          "email": "sgarcia@beyondtrust.com",
-          "githubUsername": "MrCloudSec"
+          "name": "Vicky Barth",
+          "email": "vicky.barth@datadoghq.com",
+          "githubUsername": "vbarth2"
         }
       ]
     },
-    "filePath": "data/paths/bedrock/bedrock-003.yaml"
+    "filePath": "data/paths/aws/bedrock/bedrock-003.yaml",
+    "cloud": "aws"
   },
   {
     "id": "bedrock-004",
@@ -2660,22 +2623,18 @@
       ]
     },
     "gitMetadata": {
-      "created": "2026-06-15T19:04:36Z",
-      "lastUpdated": "2026-08-24T13:22:24Z",
+      "created": "2026-09-17T18:25:17Z",
+      "lastUpdated": "2026-09-17T18:25:17Z",
       "contributors": [
         {
-          "name": "Seth Art",
-          "email": "seth.art@datadoghq.com",
-          "githubUsername": "sethsec"
-        },
-        {
-          "name": "MrCloudSec",
-          "email": "sgarcia@beyondtrust.com",
-          "githubUsername": "MrCloudSec"
+          "name": "Vicky Barth",
+          "email": "vicky.barth@datadoghq.com",
+          "githubUsername": "vbarth2"
         }
       ]
     },
-    "filePath": "data/paths/bedrock/bedrock-004.yaml"
+    "filePath": "data/paths/aws/bedrock/bedrock-004.yaml",
+    "cloud": "aws"
   },
   {
     "id": "bedrock-005",
@@ -2955,22 +2914,18 @@
       ]
     },
     "gitMetadata": {
-      "created": "2026-06-15T19:04:36Z",
-      "lastUpdated": "2026-08-28T15:49:59Z",
+      "created": "2026-09-17T18:25:17Z",
+      "lastUpdated": "2026-09-17T18:25:17Z",
       "contributors": [
         {
-          "name": "MrCloudSec",
-          "email": "sgarcia@beyondtrust.com",
-          "githubUsername": "MrCloudSec"
-        },
-        {
-          "name": "Seth Art",
-          "email": "seth.art@datadoghq.com",
-          "githubUsername": "sethsec"
+          "name": "Vicky Barth",
+          "email": "vicky.barth@datadoghq.com",
+          "githubUsername": "vbarth2"
         }
       ]
     },
-    "filePath": "data/paths/bedrock/bedrock-005.yaml"
+    "filePath": "data/paths/aws/bedrock/bedrock-005.yaml",
+    "cloud": "aws"
   },
   {
     "id": "bedrock-006",
@@ -3193,22 +3148,18 @@
       ]
     },
     "gitMetadata": {
-      "created": "2026-06-15T19:04:36Z",
-      "lastUpdated": "2026-08-24T13:22:24Z",
+      "created": "2026-09-17T18:25:17Z",
+      "lastUpdated": "2026-09-17T18:25:17Z",
       "contributors": [
         {
-          "name": "Seth Art",
-          "email": "seth.art@datadoghq.com",
-          "githubUsername": "sethsec"
-        },
-        {
-          "name": "MrCloudSec",
-          "email": "sgarcia@beyondtrust.com",
-          "githubUsername": "MrCloudSec"
+          "name": "Vicky Barth",
+          "email": "vicky.barth@datadoghq.com",
+          "githubUsername": "vbarth2"
         }
       ]
     },
-    "filePath": "data/paths/bedrock/bedrock-006.yaml"
+    "filePath": "data/paths/aws/bedrock/bedrock-006.yaml",
+    "cloud": "aws"
   },
   {
     "id": "bedrock-007",
@@ -3417,22 +3368,18 @@
       ]
     },
     "gitMetadata": {
-      "created": "2026-06-15T19:04:36Z",
-      "lastUpdated": "2026-08-24T13:22:24Z",
+      "created": "2026-09-17T18:25:17Z",
+      "lastUpdated": "2026-09-17T18:25:17Z",
       "contributors": [
         {
-          "name": "Seth Art",
-          "email": "seth.art@datadoghq.com",
-          "githubUsername": "sethsec"
-        },
-        {
-          "name": "MrCloudSec",
-          "email": "sgarcia@beyondtrust.com",
-          "githubUsername": "MrCloudSec"
+          "name": "Vicky Barth",
+          "email": "vicky.barth@datadoghq.com",
+          "githubUsername": "vbarth2"
         }
       ]
     },
-    "filePath": "data/paths/bedrock/bedrock-007.yaml"
+    "filePath": "data/paths/aws/bedrock/bedrock-007.yaml",
+    "cloud": "aws"
   },
   {
     "id": "braket-001",
@@ -3627,22 +3574,18 @@
       ]
     },
     "gitMetadata": {
-      "created": "2026-06-01T00:01:57Z",
-      "lastUpdated": "2026-08-04T11:07:33Z",
+      "created": "2026-09-17T18:25:17Z",
+      "lastUpdated": "2026-09-17T18:25:17Z",
       "contributors": [
         {
-          "name": "Daniel Barranquero",
-          "email": "daniel@prowler.com",
-          "githubUsername": "danibarranqueroo"
-        },
-        {
-          "name": "Seth Art",
-          "email": "seth.art@datadoghq.com",
-          "githubUsername": "sethsec"
+          "name": "Vicky Barth",
+          "email": "vicky.barth@datadoghq.com",
+          "githubUsername": "vbarth2"
         }
       ]
     },
-    "filePath": "data/paths/braket/braket-001.yaml"
+    "filePath": "data/paths/aws/braket/braket-001.yaml",
+    "cloud": "aws"
   },
   {
     "id": "cloudformation-001",
@@ -3852,22 +3795,18 @@
       ]
     },
     "gitMetadata": {
-      "created": "2025-10-09T19:58:48Z",
-      "lastUpdated": "2026-05-31T01:08:20Z",
+      "created": "2026-09-17T18:25:17Z",
+      "lastUpdated": "2026-09-17T18:25:17Z",
       "contributors": [
         {
-          "name": "Seth Art",
-          "email": "seth.art@datadoghq.com",
-          "githubUsername": "sethsec"
-        },
-        {
-          "name": "Andoni A.",
-          "email": "14891798+andoniaf@users.noreply.github.com",
-          "githubUsername": "andoniaf"
+          "name": "Vicky Barth",
+          "email": "vicky.barth@datadoghq.com",
+          "githubUsername": "vbarth2"
         }
       ]
     },
-    "filePath": "data/paths/cloudformation/cloudformation-001.yaml"
+    "filePath": "data/paths/aws/cloudformation/cloudformation-001.yaml",
+    "cloud": "aws"
   },
   {
     "id": "cloudformation-002",
@@ -4103,22 +4042,18 @@
       ]
     },
     "gitMetadata": {
-      "created": "2025-11-21T03:34:07Z",
-      "lastUpdated": "2026-02-13T11:28:37Z",
+      "created": "2026-09-17T18:25:17Z",
+      "lastUpdated": "2026-09-17T18:25:17Z",
       "contributors": [
         {
-          "name": "Andoni A.",
-          "email": "14891798+andoniaf@users.noreply.github.com",
-          "githubUsername": "andoniaf"
-        },
-        {
-          "name": "Seth Art",
-          "email": "seth.art@datadoghq.com",
-          "githubUsername": "sethsec"
+          "name": "Vicky Barth",
+          "email": "vicky.barth@datadoghq.com",
+          "githubUsername": "vbarth2"
         }
       ]
     },
-    "filePath": "data/paths/cloudformation/cloudformation-002.yaml"
+    "filePath": "data/paths/aws/cloudformation/cloudformation-002.yaml",
+    "cloud": "aws"
   },
   {
     "id": "cloudformation-003",
@@ -4363,22 +4298,18 @@
       ]
     },
     "gitMetadata": {
-      "created": "2025-11-21T03:34:07Z",
-      "lastUpdated": "2026-05-31T01:08:20Z",
+      "created": "2026-09-17T18:25:17Z",
+      "lastUpdated": "2026-09-17T18:25:17Z",
       "contributors": [
         {
-          "name": "Seth Art",
-          "email": "seth.art@datadoghq.com",
-          "githubUsername": "sethsec"
-        },
-        {
-          "name": "Andoni A.",
-          "email": "14891798+andoniaf@users.noreply.github.com",
-          "githubUsername": "andoniaf"
+          "name": "Vicky Barth",
+          "email": "vicky.barth@datadoghq.com",
+          "githubUsername": "vbarth2"
         }
       ]
     },
-    "filePath": "data/paths/cloudformation/cloudformation-003.yaml"
+    "filePath": "data/paths/aws/cloudformation/cloudformation-003.yaml",
+    "cloud": "aws"
   },
   {
     "id": "cloudformation-004",
@@ -4635,22 +4566,18 @@
       ]
     },
     "gitMetadata": {
-      "created": "2025-11-21T03:34:07Z",
-      "lastUpdated": "2026-05-31T01:08:20Z",
+      "created": "2026-09-17T18:25:17Z",
+      "lastUpdated": "2026-09-17T18:25:17Z",
       "contributors": [
         {
-          "name": "Seth Art",
-          "email": "seth.art@datadoghq.com",
-          "githubUsername": "sethsec"
-        },
-        {
-          "name": "Andoni A.",
-          "email": "14891798+andoniaf@users.noreply.github.com",
-          "githubUsername": "andoniaf"
+          "name": "Vicky Barth",
+          "email": "vicky.barth@datadoghq.com",
+          "githubUsername": "vbarth2"
         }
       ]
     },
-    "filePath": "data/paths/cloudformation/cloudformation-004.yaml"
+    "filePath": "data/paths/aws/cloudformation/cloudformation-004.yaml",
+    "cloud": "aws"
   },
   {
     "id": "cloudformation-005",
@@ -4907,22 +4834,18 @@
       ]
     },
     "gitMetadata": {
-      "created": "2025-12-04T18:15:14Z",
-      "lastUpdated": "2026-05-31T01:08:20Z",
+      "created": "2026-09-17T18:25:17Z",
+      "lastUpdated": "2026-09-17T18:25:17Z",
       "contributors": [
         {
-          "name": "Seth Art",
-          "email": "seth.art@datadoghq.com",
-          "githubUsername": "sethsec"
-        },
-        {
-          "name": "Andoni A.",
-          "email": "14891798+andoniaf@users.noreply.github.com",
-          "githubUsername": "andoniaf"
+          "name": "Vicky Barth",
+          "email": "vicky.barth@datadoghq.com",
+          "githubUsername": "vbarth2"
         }
       ]
     },
-    "filePath": "data/paths/cloudformation/cloudformation-005.yaml"
+    "filePath": "data/paths/aws/cloudformation/cloudformation-005.yaml",
+    "cloud": "aws"
   },
   {
     "id": "codebuild-001",
@@ -5142,22 +5065,18 @@
       ]
     },
     "gitMetadata": {
-      "created": "2025-10-09T19:58:48Z",
-      "lastUpdated": "2026-05-31T01:08:20Z",
+      "created": "2026-09-17T18:25:17Z",
+      "lastUpdated": "2026-09-17T18:25:17Z",
       "contributors": [
         {
-          "name": "Seth Art",
-          "email": "seth.art@datadoghq.com",
-          "githubUsername": "sethsec"
-        },
-        {
-          "name": "Andoni A.",
-          "email": "14891798+andoniaf@users.noreply.github.com",
-          "githubUsername": "andoniaf"
+          "name": "Vicky Barth",
+          "email": "vicky.barth@datadoghq.com",
+          "githubUsername": "vbarth2"
         }
       ]
     },
-    "filePath": "data/paths/codebuild/codebuild-001.yaml"
+    "filePath": "data/paths/aws/codebuild/codebuild-001.yaml",
+    "cloud": "aws"
   },
   {
     "id": "codebuild-002",
@@ -5368,22 +5287,18 @@
       ]
     },
     "gitMetadata": {
-      "created": "2025-10-30T01:31:23Z",
-      "lastUpdated": "2026-02-13T11:28:37Z",
+      "created": "2026-09-17T18:25:17Z",
+      "lastUpdated": "2026-09-17T18:25:17Z",
       "contributors": [
         {
-          "name": "Andoni A.",
-          "email": "14891798+andoniaf@users.noreply.github.com",
-          "githubUsername": "andoniaf"
-        },
-        {
-          "name": "Seth Art",
-          "email": "seth.art@datadoghq.com",
-          "githubUsername": "sethsec"
+          "name": "Vicky Barth",
+          "email": "vicky.barth@datadoghq.com",
+          "githubUsername": "vbarth2"
         }
       ]
     },
-    "filePath": "data/paths/codebuild/codebuild-002.yaml"
+    "filePath": "data/paths/aws/codebuild/codebuild-002.yaml",
+    "cloud": "aws"
   },
   {
     "id": "codebuild-003",
@@ -5607,22 +5522,18 @@
       ]
     },
     "gitMetadata": {
-      "created": "2025-10-30T01:31:23Z",
-      "lastUpdated": "2026-02-13T11:28:37Z",
+      "created": "2026-09-17T18:25:17Z",
+      "lastUpdated": "2026-09-17T18:25:17Z",
       "contributors": [
         {
-          "name": "Andoni A.",
-          "email": "14891798+andoniaf@users.noreply.github.com",
-          "githubUsername": "andoniaf"
-        },
-        {
-          "name": "Seth Art",
-          "email": "seth.art@datadoghq.com",
-          "githubUsername": "sethsec"
+          "name": "Vicky Barth",
+          "email": "vicky.barth@datadoghq.com",
+          "githubUsername": "vbarth2"
         }
       ]
     },
-    "filePath": "data/paths/codebuild/codebuild-003.yaml"
+    "filePath": "data/paths/aws/codebuild/codebuild-003.yaml",
+    "cloud": "aws"
   },
   {
     "id": "codebuild-004",
@@ -5855,22 +5766,18 @@
       ]
     },
     "gitMetadata": {
-      "created": "2025-10-30T01:31:23Z",
-      "lastUpdated": "2026-05-31T01:08:20Z",
+      "created": "2026-09-17T18:25:17Z",
+      "lastUpdated": "2026-09-17T18:25:17Z",
       "contributors": [
         {
-          "name": "Seth Art",
-          "email": "seth.art@datadoghq.com",
-          "githubUsername": "sethsec"
-        },
-        {
-          "name": "Andoni A.",
-          "email": "14891798+andoniaf@users.noreply.github.com",
-          "githubUsername": "andoniaf"
+          "name": "Vicky Barth",
+          "email": "vicky.barth@datadoghq.com",
+          "githubUsername": "vbarth2"
         }
       ]
     },
-    "filePath": "data/paths/codebuild/codebuild-004.yaml"
+    "filePath": "data/paths/aws/codebuild/codebuild-004.yaml",
+    "cloud": "aws"
   },
   {
     "id": "codedeploy-001",
@@ -6094,22 +6001,18 @@
       ]
     },
     "gitMetadata": {
-      "created": "2026-06-01T00:01:57Z",
-      "lastUpdated": "2026-08-04T11:07:33Z",
+      "created": "2026-09-17T18:25:17Z",
+      "lastUpdated": "2026-09-17T18:25:17Z",
       "contributors": [
         {
-          "name": "Daniel Barranquero",
-          "email": "daniel@prowler.com",
-          "githubUsername": "danibarranqueroo"
-        },
-        {
-          "name": "Seth Art",
-          "email": "seth.art@datadoghq.com",
-          "githubUsername": "sethsec"
+          "name": "Vicky Barth",
+          "email": "vicky.barth@datadoghq.com",
+          "githubUsername": "vbarth2"
         }
       ]
     },
-    "filePath": "data/paths/codedeploy/codedeploy-001.yaml"
+    "filePath": "data/paths/aws/codedeploy/codedeploy-001.yaml",
+    "cloud": "aws"
   },
   {
     "id": "cognitoidentity-001",
@@ -6333,22 +6236,18 @@
       ]
     },
     "gitMetadata": {
-      "created": "2026-06-01T00:01:57Z",
-      "lastUpdated": "2026-08-04T11:07:33Z",
+      "created": "2026-09-17T18:25:17Z",
+      "lastUpdated": "2026-09-17T18:25:17Z",
       "contributors": [
         {
-          "name": "Daniel Barranquero",
-          "email": "daniel@prowler.com",
-          "githubUsername": "danibarranqueroo"
-        },
-        {
-          "name": "Seth Art",
-          "email": "seth.art@datadoghq.com",
-          "githubUsername": "sethsec"
+          "name": "Vicky Barth",
+          "email": "vicky.barth@datadoghq.com",
+          "githubUsername": "vbarth2"
         }
       ]
     },
-    "filePath": "data/paths/cognitoidentity/cognitoidentity-001.yaml"
+    "filePath": "data/paths/aws/cognitoidentity/cognitoidentity-001.yaml",
+    "cloud": "aws"
   },
   {
     "id": "datapipeline-001",
@@ -6555,22 +6454,18 @@
       ]
     },
     "gitMetadata": {
-      "created": "2025-10-09T19:58:48Z",
-      "lastUpdated": "2026-05-31T01:08:20Z",
+      "created": "2026-09-17T18:25:17Z",
+      "lastUpdated": "2026-09-17T18:25:17Z",
       "contributors": [
         {
-          "name": "Seth Art",
-          "email": "seth.art@datadoghq.com",
-          "githubUsername": "sethsec"
-        },
-        {
-          "name": "Andoni A.",
-          "email": "14891798+andoniaf@users.noreply.github.com",
-          "githubUsername": "andoniaf"
+          "name": "Vicky Barth",
+          "email": "vicky.barth@datadoghq.com",
+          "githubUsername": "vbarth2"
         }
       ]
     },
-    "filePath": "data/paths/datapipeline/datapipeline-001.yaml"
+    "filePath": "data/paths/aws/datapipeline/datapipeline-001.yaml",
+    "cloud": "aws"
   },
   {
     "id": "ec2-001",
@@ -6875,22 +6770,18 @@
       ]
     },
     "gitMetadata": {
-      "created": "2025-10-09T19:58:48Z",
-      "lastUpdated": "2026-05-31T01:08:20Z",
+      "created": "2026-09-17T18:25:17Z",
+      "lastUpdated": "2026-09-17T18:25:17Z",
       "contributors": [
         {
-          "name": "Seth Art",
-          "email": "seth.art@datadoghq.com",
-          "githubUsername": "sethsec"
-        },
-        {
-          "name": "Andoni A.",
-          "email": "14891798+andoniaf@users.noreply.github.com",
-          "githubUsername": "andoniaf"
+          "name": "Vicky Barth",
+          "email": "vicky.barth@datadoghq.com",
+          "githubUsername": "vbarth2"
         }
       ]
     },
-    "filePath": "data/paths/ec2/ec2-001.yaml"
+    "filePath": "data/paths/aws/ec2/ec2-001.yaml",
+    "cloud": "aws"
   },
   {
     "id": "ec2-002",
@@ -7117,22 +7008,18 @@
       }
     },
     "gitMetadata": {
-      "created": "2025-10-09T19:58:48Z",
-      "lastUpdated": "2026-05-31T01:08:20Z",
+      "created": "2026-09-17T18:25:17Z",
+      "lastUpdated": "2026-09-17T18:25:17Z",
       "contributors": [
         {
-          "name": "Seth Art",
-          "email": "seth.art@datadoghq.com",
-          "githubUsername": "sethsec"
-        },
-        {
-          "name": "Andoni A.",
-          "email": "14891798+andoniaf@users.noreply.github.com",
-          "githubUsername": "andoniaf"
+          "name": "Vicky Barth",
+          "email": "vicky.barth@datadoghq.com",
+          "githubUsername": "vbarth2"
         }
       ]
     },
-    "filePath": "data/paths/ec2/ec2-002.yaml"
+    "filePath": "data/paths/aws/ec2/ec2-002.yaml",
+    "cloud": "aws"
   },
   {
     "id": "ec2-003",
@@ -7380,22 +7267,18 @@
       ]
     },
     "gitMetadata": {
-      "created": "2025-10-09T19:58:48Z",
-      "lastUpdated": "2026-05-31T01:08:20Z",
+      "created": "2026-09-17T18:25:17Z",
+      "lastUpdated": "2026-09-17T18:25:17Z",
       "contributors": [
         {
-          "name": "Seth Art",
-          "email": "seth.art@datadoghq.com",
-          "githubUsername": "sethsec"
-        },
-        {
-          "name": "Andoni A.",
-          "email": "14891798+andoniaf@users.noreply.github.com",
-          "githubUsername": "andoniaf"
+          "name": "Vicky Barth",
+          "email": "vicky.barth@datadoghq.com",
+          "githubUsername": "vbarth2"
         }
       ]
     },
-    "filePath": "data/paths/ec2/ec2-003.yaml"
+    "filePath": "data/paths/aws/ec2/ec2-003.yaml",
+    "cloud": "aws"
   },
   {
     "id": "ec2-004",
@@ -7658,22 +7541,18 @@
       ]
     },
     "gitMetadata": {
-      "created": "2025-11-07T04:00:34Z",
-      "lastUpdated": "2026-05-31T01:08:20Z",
+      "created": "2026-09-17T18:25:17Z",
+      "lastUpdated": "2026-09-17T18:25:17Z",
       "contributors": [
         {
-          "name": "Seth Art",
-          "email": "seth.art@datadoghq.com",
-          "githubUsername": "sethsec"
-        },
-        {
-          "name": "Andoni A.",
-          "email": "14891798+andoniaf@users.noreply.github.com",
-          "githubUsername": "andoniaf"
+          "name": "Vicky Barth",
+          "email": "vicky.barth@datadoghq.com",
+          "githubUsername": "vbarth2"
         }
       ]
     },
-    "filePath": "data/paths/ec2/ec2-004.yaml"
+    "filePath": "data/paths/aws/ec2/ec2-004.yaml",
+    "cloud": "aws"
   },
   {
     "id": "ec2-005",
@@ -7900,17 +7779,18 @@
       ]
     },
     "gitMetadata": {
-      "created": "2026-06-01T00:01:57Z",
-      "lastUpdated": "2026-06-01T00:01:57Z",
+      "created": "2026-09-17T18:25:17Z",
+      "lastUpdated": "2026-09-17T18:25:17Z",
       "contributors": [
         {
-          "name": "Seth Art",
-          "email": "seth.art@datadoghq.com",
-          "githubUsername": "sethsec"
+          "name": "Vicky Barth",
+          "email": "vicky.barth@datadoghq.com",
+          "githubUsername": "vbarth2"
         }
       ]
     },
-    "filePath": "data/paths/ec2/ec2-005.yaml"
+    "filePath": "data/paths/aws/ec2/ec2-005.yaml",
+    "cloud": "aws"
   },
   {
     "id": "ec2instanceconnect-003",
@@ -8127,22 +8007,18 @@
       ]
     },
     "gitMetadata": {
-      "created": "2025-11-05T19:56:13Z",
-      "lastUpdated": "2026-05-31T01:08:20Z",
+      "created": "2026-09-17T18:25:17Z",
+      "lastUpdated": "2026-09-17T18:25:17Z",
       "contributors": [
         {
-          "name": "Seth Art",
-          "email": "seth.art@datadoghq.com",
-          "githubUsername": "sethsec"
-        },
-        {
-          "name": "Andoni A.",
-          "email": "14891798+andoniaf@users.noreply.github.com",
-          "githubUsername": "andoniaf"
+          "name": "Vicky Barth",
+          "email": "vicky.barth@datadoghq.com",
+          "githubUsername": "vbarth2"
         }
       ]
     },
-    "filePath": "data/paths/ec2-instance-connect/ec2instanceconnect-003.yaml"
+    "filePath": "data/paths/aws/ec2-instance-connect/ec2instanceconnect-003.yaml",
+    "cloud": "aws"
   },
   {
     "id": "ecs-001",
@@ -8408,22 +8284,18 @@
       ]
     },
     "gitMetadata": {
-      "created": "2025-11-11T01:49:54Z",
-      "lastUpdated": "2026-05-31T01:08:20Z",
+      "created": "2026-09-17T18:25:17Z",
+      "lastUpdated": "2026-09-17T18:25:17Z",
       "contributors": [
         {
-          "name": "Seth Art",
-          "email": "seth.art@datadoghq.com",
-          "githubUsername": "sethsec"
-        },
-        {
-          "name": "Andoni A.",
-          "email": "14891798+andoniaf@users.noreply.github.com",
-          "githubUsername": "andoniaf"
+          "name": "Vicky Barth",
+          "email": "vicky.barth@datadoghq.com",
+          "githubUsername": "vbarth2"
         }
       ]
     },
-    "filePath": "data/paths/ecs/ecs-001.yaml"
+    "filePath": "data/paths/aws/ecs/ecs-001.yaml",
+    "cloud": "aws"
   },
   {
     "id": "ecs-002",
@@ -8661,22 +8533,18 @@
       ]
     },
     "gitMetadata": {
-      "created": "2025-11-11T01:49:54Z",
-      "lastUpdated": "2026-05-31T01:08:20Z",
+      "created": "2026-09-17T18:25:17Z",
+      "lastUpdated": "2026-09-17T18:25:17Z",
       "contributors": [
         {
-          "name": "Seth Art",
-          "email": "seth.art@datadoghq.com",
-          "githubUsername": "sethsec"
-        },
-        {
-          "name": "Andoni A.",
-          "email": "14891798+andoniaf@users.noreply.github.com",
-          "githubUsername": "andoniaf"
+          "name": "Vicky Barth",
+          "email": "vicky.barth@datadoghq.com",
+          "githubUsername": "vbarth2"
         }
       ]
     },
-    "filePath": "data/paths/ecs/ecs-002.yaml"
+    "filePath": "data/paths/aws/ecs/ecs-002.yaml",
+    "cloud": "aws"
   },
   {
     "id": "ecs-003",
@@ -8935,22 +8803,18 @@
       ]
     },
     "gitMetadata": {
-      "created": "2025-11-11T01:49:54Z",
-      "lastUpdated": "2026-05-31T01:08:20Z",
+      "created": "2026-09-17T18:25:17Z",
+      "lastUpdated": "2026-09-17T18:25:17Z",
       "contributors": [
         {
-          "name": "Seth Art",
-          "email": "seth.art@datadoghq.com",
-          "githubUsername": "sethsec"
-        },
-        {
-          "name": "Andoni A.",
-          "email": "14891798+andoniaf@users.noreply.github.com",
-          "githubUsername": "andoniaf"
+          "name": "Vicky Barth",
+          "email": "vicky.barth@datadoghq.com",
+          "githubUsername": "vbarth2"
         }
       ]
     },
-    "filePath": "data/paths/ecs/ecs-003.yaml"
+    "filePath": "data/paths/aws/ecs/ecs-003.yaml",
+    "cloud": "aws"
   },
   {
     "id": "ecs-004",
@@ -9192,22 +9056,18 @@
       ]
     },
     "gitMetadata": {
-      "created": "2025-11-11T01:49:54Z",
-      "lastUpdated": "2026-05-31T01:08:20Z",
+      "created": "2026-09-17T18:25:17Z",
+      "lastUpdated": "2026-09-17T18:25:17Z",
       "contributors": [
         {
-          "name": "Seth Art",
-          "email": "seth.art@datadoghq.com",
-          "githubUsername": "sethsec"
-        },
-        {
-          "name": "Andoni A.",
-          "email": "14891798+andoniaf@users.noreply.github.com",
-          "githubUsername": "andoniaf"
+          "name": "Vicky Barth",
+          "email": "vicky.barth@datadoghq.com",
+          "githubUsername": "vbarth2"
         }
       ]
     },
-    "filePath": "data/paths/ecs/ecs-004.yaml"
+    "filePath": "data/paths/aws/ecs/ecs-004.yaml",
+    "cloud": "aws"
   },
   {
     "id": "ecs-005",
@@ -9462,22 +9322,18 @@
       ]
     },
     "gitMetadata": {
-      "created": "2025-11-11T01:49:54Z",
-      "lastUpdated": "2026-05-31T01:08:20Z",
+      "created": "2026-09-17T18:25:17Z",
+      "lastUpdated": "2026-09-17T18:25:17Z",
       "contributors": [
         {
-          "name": "Seth Art",
-          "email": "seth.art@datadoghq.com",
-          "githubUsername": "sethsec"
-        },
-        {
-          "name": "Andoni A.",
-          "email": "14891798+andoniaf@users.noreply.github.com",
-          "githubUsername": "andoniaf"
+          "name": "Vicky Barth",
+          "email": "vicky.barth@datadoghq.com",
+          "githubUsername": "vbarth2"
         }
       ]
     },
-    "filePath": "data/paths/ecs/ecs-005.yaml"
+    "filePath": "data/paths/aws/ecs/ecs-005.yaml",
+    "cloud": "aws"
   },
   {
     "id": "ecs-006",
@@ -9723,22 +9579,18 @@
       ]
     },
     "gitMetadata": {
-      "created": "2026-02-02T14:19:11Z",
-      "lastUpdated": "2026-05-31T01:08:20Z",
+      "created": "2026-09-17T18:25:17Z",
+      "lastUpdated": "2026-09-17T18:25:17Z",
       "contributors": [
         {
-          "name": "Seth Art",
-          "email": "seth.art@datadoghq.com",
-          "githubUsername": "sethsec"
-        },
-        {
-          "name": "Andoni A.",
-          "email": "14891798+andoniaf@users.noreply.github.com",
-          "githubUsername": "andoniaf"
+          "name": "Vicky Barth",
+          "email": "vicky.barth@datadoghq.com",
+          "githubUsername": "vbarth2"
         }
       ]
     },
-    "filePath": "data/paths/ecs/ecs-006.yaml"
+    "filePath": "data/paths/aws/ecs/ecs-006.yaml",
+    "cloud": "aws"
   },
   {
     "id": "ecs-007",
@@ -10073,22 +9925,18 @@
       ]
     },
     "gitMetadata": {
-      "created": "2026-02-16T14:01:45Z",
-      "lastUpdated": "2026-08-17T19:04:04Z",
+      "created": "2026-09-17T18:25:17Z",
+      "lastUpdated": "2026-09-17T18:25:17Z",
       "contributors": [
         {
-          "name": "Seth Art",
-          "email": "seth.art@datadoghq.com",
-          "githubUsername": "sethsec"
-        },
-        {
-          "name": "Thomas.Taylor-MacLean",
-          "email": "Thomas.Taylor-MacLean@withsecure.com",
-          "githubUsername": "WithSecureTTM"
+          "name": "Vicky Barth",
+          "email": "vicky.barth@datadoghq.com",
+          "githubUsername": "vbarth2"
         }
       ]
     },
-    "filePath": "data/paths/ecs/ecs-007.yaml"
+    "filePath": "data/paths/aws/ecs/ecs-007.yaml",
+    "cloud": "aws"
   },
   {
     "id": "ecs-008",
@@ -10397,22 +10245,18 @@
       ]
     },
     "gitMetadata": {
-      "created": "2026-02-16T14:01:45Z",
-      "lastUpdated": "2026-08-17T19:04:04Z",
+      "created": "2026-09-17T18:25:17Z",
+      "lastUpdated": "2026-09-17T18:25:17Z",
       "contributors": [
         {
-          "name": "Seth Art",
-          "email": "seth.art@datadoghq.com",
-          "githubUsername": "sethsec"
-        },
-        {
-          "name": "Thomas.Taylor-MacLean",
-          "email": "Thomas.Taylor-MacLean@withsecure.com",
-          "githubUsername": "WithSecureTTM"
+          "name": "Vicky Barth",
+          "email": "vicky.barth@datadoghq.com",
+          "githubUsername": "vbarth2"
         }
       ]
     },
-    "filePath": "data/paths/ecs/ecs-008.yaml"
+    "filePath": "data/paths/aws/ecs/ecs-008.yaml",
+    "cloud": "aws"
   },
   {
     "id": "ecs-009",
@@ -10629,22 +10473,18 @@
       ]
     },
     "gitMetadata": {
-      "created": "2026-05-31T01:32:59Z",
-      "lastUpdated": "2026-08-04T11:07:33Z",
+      "created": "2026-09-17T18:25:17Z",
+      "lastUpdated": "2026-09-17T18:25:17Z",
       "contributors": [
         {
-          "name": "Daniel Barranquero",
-          "email": "daniel@prowler.com",
-          "githubUsername": "danibarranqueroo"
-        },
-        {
-          "name": "Seth Art",
-          "email": "seth.art@datadoghq.com",
-          "githubUsername": "sethsec"
+          "name": "Vicky Barth",
+          "email": "vicky.barth@datadoghq.com",
+          "githubUsername": "vbarth2"
         }
       ]
     },
-    "filePath": "data/paths/ecs/ecs-009.yaml"
+    "filePath": "data/paths/aws/ecs/ecs-009.yaml",
+    "cloud": "aws"
   },
   {
     "id": "emr-001",
@@ -10856,22 +10696,18 @@
       ]
     },
     "gitMetadata": {
-      "created": "2026-06-01T00:01:57Z",
-      "lastUpdated": "2026-08-04T11:07:33Z",
+      "created": "2026-09-17T18:25:17Z",
+      "lastUpdated": "2026-09-17T18:25:17Z",
       "contributors": [
         {
-          "name": "Daniel Barranquero",
-          "email": "daniel@prowler.com",
-          "githubUsername": "danibarranqueroo"
-        },
-        {
-          "name": "Seth Art",
-          "email": "seth.art@datadoghq.com",
-          "githubUsername": "sethsec"
+          "name": "Vicky Barth",
+          "email": "vicky.barth@datadoghq.com",
+          "githubUsername": "vbarth2"
         }
       ]
     },
-    "filePath": "data/paths/emr/emr-001.yaml"
+    "filePath": "data/paths/aws/emr/emr-001.yaml",
+    "cloud": "aws"
   },
   {
     "id": "emrserverless-001",
@@ -11081,22 +10917,18 @@
       ]
     },
     "gitMetadata": {
-      "created": "2026-06-01T00:01:57Z",
-      "lastUpdated": "2026-08-04T11:07:33Z",
+      "created": "2026-09-17T18:25:17Z",
+      "lastUpdated": "2026-09-17T18:25:17Z",
       "contributors": [
         {
-          "name": "Daniel Barranquero",
-          "email": "daniel@prowler.com",
-          "githubUsername": "danibarranqueroo"
-        },
-        {
-          "name": "Seth Art",
-          "email": "seth.art@datadoghq.com",
-          "githubUsername": "sethsec"
+          "name": "Vicky Barth",
+          "email": "vicky.barth@datadoghq.com",
+          "githubUsername": "vbarth2"
         }
       ]
     },
-    "filePath": "data/paths/emrserverless/emrserverless-001.yaml"
+    "filePath": "data/paths/aws/emrserverless/emrserverless-001.yaml",
+    "cloud": "aws"
   },
   {
     "id": "gamelift-001",
@@ -11322,22 +11154,18 @@
       ]
     },
     "gitMetadata": {
-      "created": "2026-06-01T00:01:57Z",
-      "lastUpdated": "2026-08-04T11:07:33Z",
+      "created": "2026-09-17T18:25:17Z",
+      "lastUpdated": "2026-09-17T18:25:17Z",
       "contributors": [
         {
-          "name": "Daniel Barranquero",
-          "email": "daniel@prowler.com",
-          "githubUsername": "danibarranqueroo"
-        },
-        {
-          "name": "Seth Art",
-          "email": "seth.art@datadoghq.com",
-          "githubUsername": "sethsec"
+          "name": "Vicky Barth",
+          "email": "vicky.barth@datadoghq.com",
+          "githubUsername": "vbarth2"
         }
       ]
     },
-    "filePath": "data/paths/gamelift/gamelift-001.yaml"
+    "filePath": "data/paths/aws/gamelift/gamelift-001.yaml",
+    "cloud": "aws"
   },
   {
     "id": "glue-001",
@@ -11547,22 +11375,18 @@
       ]
     },
     "gitMetadata": {
-      "created": "2025-10-09T19:58:48Z",
-      "lastUpdated": "2026-05-31T01:08:20Z",
+      "created": "2026-09-17T18:25:17Z",
+      "lastUpdated": "2026-09-17T18:25:17Z",
       "contributors": [
         {
-          "name": "Seth Art",
-          "email": "seth.art@datadoghq.com",
-          "githubUsername": "sethsec"
-        },
-        {
-          "name": "Andoni A.",
-          "email": "14891798+andoniaf@users.noreply.github.com",
-          "githubUsername": "andoniaf"
+          "name": "Vicky Barth",
+          "email": "vicky.barth@datadoghq.com",
+          "githubUsername": "vbarth2"
         }
       ]
     },
-    "filePath": "data/paths/glue/glue-001.yaml"
+    "filePath": "data/paths/aws/glue/glue-001.yaml",
+    "cloud": "aws"
   },
   {
     "id": "glue-002",
@@ -11769,22 +11593,18 @@
       ]
     },
     "gitMetadata": {
-      "created": "2025-10-09T19:58:48Z",
-      "lastUpdated": "2026-05-31T01:08:20Z",
+      "created": "2026-09-17T18:25:17Z",
+      "lastUpdated": "2026-09-17T18:25:17Z",
       "contributors": [
         {
-          "name": "Seth Art",
-          "email": "seth.art@datadoghq.com",
-          "githubUsername": "sethsec"
-        },
-        {
-          "name": "Andoni A.",
-          "email": "14891798+andoniaf@users.noreply.github.com",
-          "githubUsername": "andoniaf"
+          "name": "Vicky Barth",
+          "email": "vicky.barth@datadoghq.com",
+          "githubUsername": "vbarth2"
         }
       ]
     },
-    "filePath": "data/paths/glue/glue-002.yaml"
+    "filePath": "data/paths/aws/glue/glue-002.yaml",
+    "cloud": "aws"
   },
   {
     "id": "glue-003",
@@ -12028,22 +11848,18 @@
       ]
     },
     "gitMetadata": {
-      "created": "2025-11-05T19:56:13Z",
-      "lastUpdated": "2026-05-31T01:08:20Z",
+      "created": "2026-09-17T18:25:17Z",
+      "lastUpdated": "2026-09-17T18:25:17Z",
       "contributors": [
         {
-          "name": "Seth Art",
-          "email": "seth.art@datadoghq.com",
-          "githubUsername": "sethsec"
-        },
-        {
-          "name": "Andoni A.",
-          "email": "14891798+andoniaf@users.noreply.github.com",
-          "githubUsername": "andoniaf"
+          "name": "Vicky Barth",
+          "email": "vicky.barth@datadoghq.com",
+          "githubUsername": "vbarth2"
         }
       ]
     },
-    "filePath": "data/paths/glue/glue-003.yaml"
+    "filePath": "data/paths/aws/glue/glue-003.yaml",
+    "cloud": "aws"
   },
   {
     "id": "glue-004",
@@ -12296,22 +12112,18 @@
       ]
     },
     "gitMetadata": {
-      "created": "2025-11-05T19:56:13Z",
-      "lastUpdated": "2026-05-31T01:08:20Z",
+      "created": "2026-09-17T18:25:17Z",
+      "lastUpdated": "2026-09-17T18:25:17Z",
       "contributors": [
         {
-          "name": "Seth Art",
-          "email": "seth.art@datadoghq.com",
-          "githubUsername": "sethsec"
-        },
-        {
-          "name": "Andoni A.",
-          "email": "14891798+andoniaf@users.noreply.github.com",
-          "githubUsername": "andoniaf"
+          "name": "Vicky Barth",
+          "email": "vicky.barth@datadoghq.com",
+          "githubUsername": "vbarth2"
         }
       ]
     },
-    "filePath": "data/paths/glue/glue-004.yaml"
+    "filePath": "data/paths/aws/glue/glue-004.yaml",
+    "cloud": "aws"
   },
   {
     "id": "glue-005",
@@ -12567,22 +12379,18 @@
       ]
     },
     "gitMetadata": {
-      "created": "2025-11-05T19:56:13Z",
-      "lastUpdated": "2026-05-31T01:08:20Z",
+      "created": "2026-09-17T18:25:17Z",
+      "lastUpdated": "2026-09-17T18:25:17Z",
       "contributors": [
         {
-          "name": "Seth Art",
-          "email": "seth.art@datadoghq.com",
-          "githubUsername": "sethsec"
-        },
-        {
-          "name": "Andoni A.",
-          "email": "14891798+andoniaf@users.noreply.github.com",
-          "githubUsername": "andoniaf"
+          "name": "Vicky Barth",
+          "email": "vicky.barth@datadoghq.com",
+          "githubUsername": "vbarth2"
         }
       ]
     },
-    "filePath": "data/paths/glue/glue-005.yaml"
+    "filePath": "data/paths/aws/glue/glue-005.yaml",
+    "cloud": "aws"
   },
   {
     "id": "glue-006",
@@ -12842,22 +12650,18 @@
       ]
     },
     "gitMetadata": {
-      "created": "2025-11-05T19:56:13Z",
-      "lastUpdated": "2026-05-31T01:08:20Z",
+      "created": "2026-09-17T18:25:17Z",
+      "lastUpdated": "2026-09-17T18:25:17Z",
       "contributors": [
         {
-          "name": "Seth Art",
-          "email": "seth.art@datadoghq.com",
-          "githubUsername": "sethsec"
-        },
-        {
-          "name": "Andoni A.",
-          "email": "14891798+andoniaf@users.noreply.github.com",
-          "githubUsername": "andoniaf"
+          "name": "Vicky Barth",
+          "email": "vicky.barth@datadoghq.com",
+          "githubUsername": "vbarth2"
         }
       ]
     },
-    "filePath": "data/paths/glue/glue-006.yaml"
+    "filePath": "data/paths/aws/glue/glue-006.yaml",
+    "cloud": "aws"
   },
   {
     "id": "glue-007",
@@ -13074,22 +12878,18 @@
       ]
     },
     "gitMetadata": {
-      "created": "2026-06-01T00:01:57Z",
-      "lastUpdated": "2026-08-04T11:07:33Z",
+      "created": "2026-09-17T18:25:17Z",
+      "lastUpdated": "2026-09-17T18:25:17Z",
       "contributors": [
         {
-          "name": "Daniel Barranquero",
-          "email": "daniel@prowler.com",
-          "githubUsername": "danibarranqueroo"
-        },
-        {
-          "name": "Seth Art",
-          "email": "seth.art@datadoghq.com",
-          "githubUsername": "sethsec"
+          "name": "Vicky Barth",
+          "email": "vicky.barth@datadoghq.com",
+          "githubUsername": "vbarth2"
         }
       ]
     },
-    "filePath": "data/paths/glue/glue-007.yaml"
+    "filePath": "data/paths/aws/glue/glue-007.yaml",
+    "cloud": "aws"
   },
   {
     "id": "iam-001",
@@ -13222,27 +13022,18 @@
       ]
     },
     "gitMetadata": {
-      "created": "2025-10-09T19:58:48Z",
-      "lastUpdated": "2026-09-10T03:14:19Z",
+      "created": "2026-09-17T18:25:17Z",
+      "lastUpdated": "2026-09-17T18:25:17Z",
       "contributors": [
         {
-          "name": "ASCIIFry",
-          "email": "32338942+ASCIIFry@users.noreply.github.com",
-          "githubUsername": "ASCIIFry"
-        },
-        {
-          "name": "Seth Art",
-          "email": "seth.art@datadoghq.com",
-          "githubUsername": "sethsec"
-        },
-        {
-          "name": "Andoni A.",
-          "email": "14891798+andoniaf@users.noreply.github.com",
-          "githubUsername": "andoniaf"
+          "name": "Vicky Barth",
+          "email": "vicky.barth@datadoghq.com",
+          "githubUsername": "vbarth2"
         }
       ]
     },
-    "filePath": "data/paths/iam/iam-001.yaml"
+    "filePath": "data/paths/aws/iam/iam-001.yaml",
+    "cloud": "aws"
   },
   {
     "id": "iam-002",
@@ -13448,22 +13239,18 @@
       ]
     },
     "gitMetadata": {
-      "created": "2025-10-09T19:58:48Z",
-      "lastUpdated": "2026-05-31T01:08:20Z",
+      "created": "2026-09-17T18:25:17Z",
+      "lastUpdated": "2026-09-17T18:25:17Z",
       "contributors": [
         {
-          "name": "Seth Art",
-          "email": "seth.art@datadoghq.com",
-          "githubUsername": "sethsec"
-        },
-        {
-          "name": "Andoni A.",
-          "email": "14891798+andoniaf@users.noreply.github.com",
-          "githubUsername": "andoniaf"
+          "name": "Vicky Barth",
+          "email": "vicky.barth@datadoghq.com",
+          "githubUsername": "vbarth2"
         }
       ]
     },
-    "filePath": "data/paths/iam/iam-002.yaml"
+    "filePath": "data/paths/aws/iam/iam-002.yaml",
+    "cloud": "aws"
   },
   {
     "id": "iam-003",
@@ -13669,22 +13456,18 @@
       ]
     },
     "gitMetadata": {
-      "created": "2025-10-09T19:58:48Z",
-      "lastUpdated": "2026-05-31T01:08:20Z",
+      "created": "2026-09-17T18:25:17Z",
+      "lastUpdated": "2026-09-17T18:25:17Z",
       "contributors": [
         {
-          "name": "Seth Art",
-          "email": "seth.art@datadoghq.com",
-          "githubUsername": "sethsec"
-        },
-        {
-          "name": "Andoni A.",
-          "email": "14891798+andoniaf@users.noreply.github.com",
-          "githubUsername": "andoniaf"
+          "name": "Vicky Barth",
+          "email": "vicky.barth@datadoghq.com",
+          "githubUsername": "vbarth2"
         }
       ]
     },
-    "filePath": "data/paths/iam/iam-003.yaml"
+    "filePath": "data/paths/aws/iam/iam-003.yaml",
+    "cloud": "aws"
   },
   {
     "id": "iam-004",
@@ -13873,22 +13656,18 @@
       ]
     },
     "gitMetadata": {
-      "created": "2025-10-09T19:58:48Z",
-      "lastUpdated": "2026-05-31T01:08:20Z",
+      "created": "2026-09-17T18:25:17Z",
+      "lastUpdated": "2026-09-17T18:25:17Z",
       "contributors": [
         {
-          "name": "Seth Art",
-          "email": "seth.art@datadoghq.com",
-          "githubUsername": "sethsec"
-        },
-        {
-          "name": "Andoni A.",
-          "email": "14891798+andoniaf@users.noreply.github.com",
-          "githubUsername": "andoniaf"
+          "name": "Vicky Barth",
+          "email": "vicky.barth@datadoghq.com",
+          "githubUsername": "vbarth2"
         }
       ]
     },
-    "filePath": "data/paths/iam/iam-004.yaml"
+    "filePath": "data/paths/aws/iam/iam-004.yaml",
+    "cloud": "aws"
   },
   {
     "id": "iam-005",
@@ -14028,22 +13807,18 @@
       ]
     },
     "gitMetadata": {
-      "created": "2025-10-09T19:58:48Z",
-      "lastUpdated": "2026-05-31T01:08:20Z",
+      "created": "2026-09-17T18:25:17Z",
+      "lastUpdated": "2026-09-17T18:25:17Z",
       "contributors": [
         {
-          "name": "Seth Art",
-          "email": "seth.art@datadoghq.com",
-          "githubUsername": "sethsec"
-        },
-        {
-          "name": "Andoni A.",
-          "email": "14891798+andoniaf@users.noreply.github.com",
-          "githubUsername": "andoniaf"
+          "name": "Vicky Barth",
+          "email": "vicky.barth@datadoghq.com",
+          "githubUsername": "vbarth2"
         }
       ]
     },
-    "filePath": "data/paths/iam/iam-005.yaml"
+    "filePath": "data/paths/aws/iam/iam-005.yaml",
+    "cloud": "aws"
   },
   {
     "id": "iam-006",
@@ -14232,22 +14007,18 @@
       ]
     },
     "gitMetadata": {
-      "created": "2025-10-09T19:58:48Z",
-      "lastUpdated": "2026-05-31T01:08:20Z",
+      "created": "2026-09-17T18:25:17Z",
+      "lastUpdated": "2026-09-17T18:25:17Z",
       "contributors": [
         {
-          "name": "Seth Art",
-          "email": "seth.art@datadoghq.com",
-          "githubUsername": "sethsec"
-        },
-        {
-          "name": "Andoni A.",
-          "email": "14891798+andoniaf@users.noreply.github.com",
-          "githubUsername": "andoniaf"
+          "name": "Vicky Barth",
+          "email": "vicky.barth@datadoghq.com",
+          "githubUsername": "vbarth2"
         }
       ]
     },
-    "filePath": "data/paths/iam/iam-006.yaml"
+    "filePath": "data/paths/aws/iam/iam-006.yaml",
+    "cloud": "aws"
   },
   {
     "id": "iam-007",
@@ -14372,22 +14143,18 @@
       ]
     },
     "gitMetadata": {
-      "created": "2025-10-09T19:58:48Z",
-      "lastUpdated": "2026-05-31T01:08:20Z",
+      "created": "2026-09-17T18:25:17Z",
+      "lastUpdated": "2026-09-17T18:25:17Z",
       "contributors": [
         {
-          "name": "Seth Art",
-          "email": "seth.art@datadoghq.com",
-          "githubUsername": "sethsec"
-        },
-        {
-          "name": "Andoni A.",
-          "email": "14891798+andoniaf@users.noreply.github.com",
-          "githubUsername": "andoniaf"
+          "name": "Vicky Barth",
+          "email": "vicky.barth@datadoghq.com",
+          "githubUsername": "vbarth2"
         }
       ]
     },
-    "filePath": "data/paths/iam/iam-007.yaml"
+    "filePath": "data/paths/aws/iam/iam-007.yaml",
+    "cloud": "aws"
   },
   {
     "id": "iam-008",
@@ -14563,22 +14330,18 @@
       ]
     },
     "gitMetadata": {
-      "created": "2025-10-09T19:58:48Z",
-      "lastUpdated": "2026-05-31T01:08:20Z",
+      "created": "2026-09-17T18:25:17Z",
+      "lastUpdated": "2026-09-17T18:25:17Z",
       "contributors": [
         {
-          "name": "Seth Art",
-          "email": "seth.art@datadoghq.com",
-          "githubUsername": "sethsec"
-        },
-        {
-          "name": "Andoni A.",
-          "email": "14891798+andoniaf@users.noreply.github.com",
-          "githubUsername": "andoniaf"
+          "name": "Vicky Barth",
+          "email": "vicky.barth@datadoghq.com",
+          "githubUsername": "vbarth2"
         }
       ]
     },
-    "filePath": "data/paths/iam/iam-008.yaml"
+    "filePath": "data/paths/aws/iam/iam-008.yaml",
+    "cloud": "aws"
   },
   {
     "id": "iam-009",
@@ -14703,22 +14466,18 @@
       ]
     },
     "gitMetadata": {
-      "created": "2025-10-09T19:58:48Z",
-      "lastUpdated": "2026-05-31T01:08:20Z",
+      "created": "2026-09-17T18:25:17Z",
+      "lastUpdated": "2026-09-17T18:25:17Z",
       "contributors": [
         {
-          "name": "Seth Art",
-          "email": "seth.art@datadoghq.com",
-          "githubUsername": "sethsec"
-        },
-        {
-          "name": "Andoni A.",
-          "email": "14891798+andoniaf@users.noreply.github.com",
-          "githubUsername": "andoniaf"
+          "name": "Vicky Barth",
+          "email": "vicky.barth@datadoghq.com",
+          "githubUsername": "vbarth2"
         }
       ]
     },
-    "filePath": "data/paths/iam/iam-009.yaml"
+    "filePath": "data/paths/aws/iam/iam-009.yaml",
+    "cloud": "aws"
   },
   {
     "id": "iam-010",
@@ -14855,22 +14614,18 @@
       ]
     },
     "gitMetadata": {
-      "created": "2025-10-09T19:58:48Z",
-      "lastUpdated": "2026-05-31T01:08:20Z",
+      "created": "2026-09-17T18:25:17Z",
+      "lastUpdated": "2026-09-17T18:25:17Z",
       "contributors": [
         {
-          "name": "Seth Art",
-          "email": "seth.art@datadoghq.com",
-          "githubUsername": "sethsec"
-        },
-        {
-          "name": "Andoni A.",
-          "email": "14891798+andoniaf@users.noreply.github.com",
-          "githubUsername": "andoniaf"
+          "name": "Vicky Barth",
+          "email": "vicky.barth@datadoghq.com",
+          "githubUsername": "vbarth2"
         }
       ]
     },
-    "filePath": "data/paths/iam/iam-010.yaml"
+    "filePath": "data/paths/aws/iam/iam-010.yaml",
+    "cloud": "aws"
   },
   {
     "id": "iam-011",
@@ -14995,22 +14750,18 @@
       ]
     },
     "gitMetadata": {
-      "created": "2025-10-09T19:58:48Z",
-      "lastUpdated": "2026-05-31T01:08:20Z",
+      "created": "2026-09-17T18:25:17Z",
+      "lastUpdated": "2026-09-17T18:25:17Z",
       "contributors": [
         {
-          "name": "Seth Art",
-          "email": "seth.art@datadoghq.com",
-          "githubUsername": "sethsec"
-        },
-        {
-          "name": "Andoni A.",
-          "email": "14891798+andoniaf@users.noreply.github.com",
-          "githubUsername": "andoniaf"
+          "name": "Vicky Barth",
+          "email": "vicky.barth@datadoghq.com",
+          "githubUsername": "vbarth2"
         }
       ]
     },
-    "filePath": "data/paths/iam/iam-011.yaml"
+    "filePath": "data/paths/aws/iam/iam-011.yaml",
+    "cloud": "aws"
   },
   {
     "id": "iam-012",
@@ -15192,22 +14943,18 @@
       ]
     },
     "gitMetadata": {
-      "created": "2025-10-09T19:58:48Z",
-      "lastUpdated": "2026-05-31T01:08:20Z",
+      "created": "2026-09-17T18:25:17Z",
+      "lastUpdated": "2026-09-17T18:25:17Z",
       "contributors": [
         {
-          "name": "Seth Art",
-          "email": "seth.art@datadoghq.com",
-          "githubUsername": "sethsec"
-        },
-        {
-          "name": "Andoni A.",
-          "email": "14891798+andoniaf@users.noreply.github.com",
-          "githubUsername": "andoniaf"
+          "name": "Vicky Barth",
+          "email": "vicky.barth@datadoghq.com",
+          "githubUsername": "vbarth2"
         }
       ]
     },
-    "filePath": "data/paths/iam/iam-012.yaml"
+    "filePath": "data/paths/aws/iam/iam-012.yaml",
+    "cloud": "aws"
   },
   {
     "id": "iam-013",
@@ -15387,22 +15134,18 @@
       ]
     },
     "gitMetadata": {
-      "created": "2025-10-09T19:58:48Z",
-      "lastUpdated": "2026-05-31T01:08:20Z",
+      "created": "2026-09-17T18:25:17Z",
+      "lastUpdated": "2026-09-17T18:25:17Z",
       "contributors": [
         {
-          "name": "Seth Art",
-          "email": "seth.art@datadoghq.com",
-          "githubUsername": "sethsec"
-        },
-        {
-          "name": "Andoni A.",
-          "email": "14891798+andoniaf@users.noreply.github.com",
-          "githubUsername": "andoniaf"
+          "name": "Vicky Barth",
+          "email": "vicky.barth@datadoghq.com",
+          "githubUsername": "vbarth2"
         }
       ]
     },
-    "filePath": "data/paths/iam/iam-013.yaml"
+    "filePath": "data/paths/aws/iam/iam-013.yaml",
+    "cloud": "aws"
   },
   {
     "id": "iam-014",
@@ -15599,22 +15342,18 @@
       ]
     },
     "gitMetadata": {
-      "created": "2025-11-05T19:56:13Z",
-      "lastUpdated": "2026-05-31T01:08:20Z",
+      "created": "2026-09-17T18:25:17Z",
+      "lastUpdated": "2026-09-17T18:25:17Z",
       "contributors": [
         {
-          "name": "Seth Art",
-          "email": "seth.art@datadoghq.com",
-          "githubUsername": "sethsec"
-        },
-        {
-          "name": "Andoni A.",
-          "email": "14891798+andoniaf@users.noreply.github.com",
-          "githubUsername": "andoniaf"
+          "name": "Vicky Barth",
+          "email": "vicky.barth@datadoghq.com",
+          "githubUsername": "vbarth2"
         }
       ]
     },
-    "filePath": "data/paths/iam/iam-014.yaml"
+    "filePath": "data/paths/aws/iam/iam-014.yaml",
+    "cloud": "aws"
   },
   {
     "id": "iam-015",
@@ -15857,22 +15596,18 @@
       ]
     },
     "gitMetadata": {
-      "created": "2025-11-07T04:00:34Z",
-      "lastUpdated": "2026-05-31T01:08:20Z",
+      "created": "2026-09-17T18:25:17Z",
+      "lastUpdated": "2026-09-17T18:25:17Z",
       "contributors": [
         {
-          "name": "Seth Art",
-          "email": "seth.art@datadoghq.com",
-          "githubUsername": "sethsec"
-        },
-        {
-          "name": "Andoni A.",
-          "email": "14891798+andoniaf@users.noreply.github.com",
-          "githubUsername": "andoniaf"
+          "name": "Vicky Barth",
+          "email": "vicky.barth@datadoghq.com",
+          "githubUsername": "vbarth2"
         }
       ]
     },
-    "filePath": "data/paths/iam/iam-015.yaml"
+    "filePath": "data/paths/aws/iam/iam-015.yaml",
+    "cloud": "aws"
   },
   {
     "id": "iam-016",
@@ -16099,22 +15834,18 @@
       ]
     },
     "gitMetadata": {
-      "created": "2025-11-07T04:00:34Z",
-      "lastUpdated": "2026-05-31T01:08:20Z",
+      "created": "2026-09-17T18:25:17Z",
+      "lastUpdated": "2026-09-17T18:25:17Z",
       "contributors": [
         {
-          "name": "Seth Art",
-          "email": "seth.art@datadoghq.com",
-          "githubUsername": "sethsec"
-        },
-        {
-          "name": "Andoni A.",
-          "email": "14891798+andoniaf@users.noreply.github.com",
-          "githubUsername": "andoniaf"
+          "name": "Vicky Barth",
+          "email": "vicky.barth@datadoghq.com",
+          "githubUsername": "vbarth2"
         }
       ]
     },
-    "filePath": "data/paths/iam/iam-016.yaml"
+    "filePath": "data/paths/aws/iam/iam-016.yaml",
+    "cloud": "aws"
   },
   {
     "id": "iam-017",
@@ -16368,22 +16099,18 @@
       ]
     },
     "gitMetadata": {
-      "created": "2025-11-07T04:00:34Z",
-      "lastUpdated": "2026-04-27T00:57:59Z",
+      "created": "2026-09-17T18:25:17Z",
+      "lastUpdated": "2026-09-17T18:25:17Z",
       "contributors": [
         {
-          "name": "Seth Art",
-          "email": "seth.art@datadoghq.com",
-          "githubUsername": "sethsec"
-        },
-        {
-          "name": "Andoni A.",
-          "email": "14891798+andoniaf@users.noreply.github.com",
-          "githubUsername": "andoniaf"
+          "name": "Vicky Barth",
+          "email": "vicky.barth@datadoghq.com",
+          "githubUsername": "vbarth2"
         }
       ]
     },
-    "filePath": "data/paths/iam/iam-017.yaml"
+    "filePath": "data/paths/aws/iam/iam-017.yaml",
+    "cloud": "aws"
   },
   {
     "id": "iam-018",
@@ -16637,22 +16364,18 @@
       ]
     },
     "gitMetadata": {
-      "created": "2025-11-07T04:00:34Z",
-      "lastUpdated": "2026-05-31T01:08:20Z",
+      "created": "2026-09-17T18:25:17Z",
+      "lastUpdated": "2026-09-17T18:25:17Z",
       "contributors": [
         {
-          "name": "Seth Art",
-          "email": "seth.art@datadoghq.com",
-          "githubUsername": "sethsec"
-        },
-        {
-          "name": "Andoni A.",
-          "email": "14891798+andoniaf@users.noreply.github.com",
-          "githubUsername": "andoniaf"
+          "name": "Vicky Barth",
+          "email": "vicky.barth@datadoghq.com",
+          "githubUsername": "vbarth2"
         }
       ]
     },
-    "filePath": "data/paths/iam/iam-018.yaml"
+    "filePath": "data/paths/aws/iam/iam-018.yaml",
+    "cloud": "aws"
   },
   {
     "id": "iam-019",
@@ -16876,22 +16599,18 @@
       ]
     },
     "gitMetadata": {
-      "created": "2025-11-10T13:36:26Z",
-      "lastUpdated": "2026-05-31T01:08:20Z",
+      "created": "2026-09-17T18:25:17Z",
+      "lastUpdated": "2026-09-17T18:25:17Z",
       "contributors": [
         {
-          "name": "Seth Art",
-          "email": "seth.art@datadoghq.com",
-          "githubUsername": "sethsec"
-        },
-        {
-          "name": "Andoni A.",
-          "email": "14891798+andoniaf@users.noreply.github.com",
-          "githubUsername": "andoniaf"
+          "name": "Vicky Barth",
+          "email": "vicky.barth@datadoghq.com",
+          "githubUsername": "vbarth2"
         }
       ]
     },
-    "filePath": "data/paths/iam/iam-019.yaml"
+    "filePath": "data/paths/aws/iam/iam-019.yaml",
+    "cloud": "aws"
   },
   {
     "id": "iam-020",
@@ -17130,22 +16849,18 @@
       ]
     },
     "gitMetadata": {
-      "created": "2025-11-10T13:36:26Z",
-      "lastUpdated": "2026-05-31T01:08:20Z",
+      "created": "2026-09-17T18:25:17Z",
+      "lastUpdated": "2026-09-17T18:25:17Z",
       "contributors": [
         {
-          "name": "Seth Art",
-          "email": "seth.art@datadoghq.com",
-          "githubUsername": "sethsec"
-        },
-        {
-          "name": "Andoni A.",
-          "email": "14891798+andoniaf@users.noreply.github.com",
-          "githubUsername": "andoniaf"
+          "name": "Vicky Barth",
+          "email": "vicky.barth@datadoghq.com",
+          "githubUsername": "vbarth2"
         }
       ]
     },
-    "filePath": "data/paths/iam/iam-020.yaml"
+    "filePath": "data/paths/aws/iam/iam-020.yaml",
+    "cloud": "aws"
   },
   {
     "id": "iam-021",
@@ -17401,22 +17116,18 @@
       ]
     },
     "gitMetadata": {
-      "created": "2025-11-10T13:36:26Z",
-      "lastUpdated": "2026-05-31T01:08:20Z",
+      "created": "2026-09-17T18:25:17Z",
+      "lastUpdated": "2026-09-17T18:25:17Z",
       "contributors": [
         {
-          "name": "Seth Art",
-          "email": "seth.art@datadoghq.com",
-          "githubUsername": "sethsec"
-        },
-        {
-          "name": "Andoni A.",
-          "email": "14891798+andoniaf@users.noreply.github.com",
-          "githubUsername": "andoniaf"
+          "name": "Vicky Barth",
+          "email": "vicky.barth@datadoghq.com",
+          "githubUsername": "vbarth2"
         }
       ]
     },
-    "filePath": "data/paths/iam/iam-021.yaml"
+    "filePath": "data/paths/aws/iam/iam-021.yaml",
+    "cloud": "aws"
   },
   {
     "id": "imagebuilder-001",
@@ -17657,22 +17368,18 @@
       ]
     },
     "gitMetadata": {
-      "created": "2026-06-01T00:01:57Z",
-      "lastUpdated": "2026-08-04T11:07:33Z",
+      "created": "2026-09-17T18:25:17Z",
+      "lastUpdated": "2026-09-17T18:25:17Z",
       "contributors": [
         {
-          "name": "Daniel Barranquero",
-          "email": "daniel@prowler.com",
-          "githubUsername": "danibarranqueroo"
-        },
-        {
-          "name": "Seth Art",
-          "email": "seth.art@datadoghq.com",
-          "githubUsername": "sethsec"
+          "name": "Vicky Barth",
+          "email": "vicky.barth@datadoghq.com",
+          "githubUsername": "vbarth2"
         }
       ]
     },
-    "filePath": "data/paths/imagebuilder/imagebuilder-001.yaml"
+    "filePath": "data/paths/aws/imagebuilder/imagebuilder-001.yaml",
+    "cloud": "aws"
   },
   {
     "id": "kinesisanalytics-001",
@@ -17872,22 +17579,18 @@
       ]
     },
     "gitMetadata": {
-      "created": "2026-06-01T00:01:57Z",
-      "lastUpdated": "2026-08-04T11:07:33Z",
+      "created": "2026-09-17T18:25:17Z",
+      "lastUpdated": "2026-09-17T18:25:17Z",
       "contributors": [
         {
-          "name": "Daniel Barranquero",
-          "email": "daniel@prowler.com",
-          "githubUsername": "danibarranqueroo"
-        },
-        {
-          "name": "Seth Art",
-          "email": "seth.art@datadoghq.com",
-          "githubUsername": "sethsec"
+          "name": "Vicky Barth",
+          "email": "vicky.barth@datadoghq.com",
+          "githubUsername": "vbarth2"
         }
       ]
     },
-    "filePath": "data/paths/kinesisanalytics/kinesisanalytics-001.yaml"
+    "filePath": "data/paths/aws/kinesisanalytics/kinesisanalytics-001.yaml",
+    "cloud": "aws"
   },
   {
     "id": "lambda-001",
@@ -18244,22 +17947,18 @@
       ]
     },
     "gitMetadata": {
-      "created": "2025-10-09T19:58:48Z",
-      "lastUpdated": "2026-05-31T01:08:20Z",
+      "created": "2026-09-17T18:25:17Z",
+      "lastUpdated": "2026-09-17T18:25:17Z",
       "contributors": [
         {
-          "name": "Seth Art",
-          "email": "seth.art@datadoghq.com",
-          "githubUsername": "sethsec"
-        },
-        {
-          "name": "Andoni A.",
-          "email": "14891798+andoniaf@users.noreply.github.com",
-          "githubUsername": "andoniaf"
+          "name": "Vicky Barth",
+          "email": "vicky.barth@datadoghq.com",
+          "githubUsername": "vbarth2"
         }
       ]
     },
-    "filePath": "data/paths/lambda/lambda-001.yaml"
+    "filePath": "data/paths/aws/lambda/lambda-001.yaml",
+    "cloud": "aws"
   },
   {
     "id": "lambda-002",
@@ -18621,22 +18320,18 @@
       ]
     },
     "gitMetadata": {
-      "created": "2025-10-09T19:58:48Z",
-      "lastUpdated": "2026-05-31T01:08:20Z",
+      "created": "2026-09-17T18:25:17Z",
+      "lastUpdated": "2026-09-17T18:25:17Z",
       "contributors": [
         {
-          "name": "Seth Art",
-          "email": "seth.art@datadoghq.com",
-          "githubUsername": "sethsec"
-        },
-        {
-          "name": "Andoni A.",
-          "email": "14891798+andoniaf@users.noreply.github.com",
-          "githubUsername": "andoniaf"
+          "name": "Vicky Barth",
+          "email": "vicky.barth@datadoghq.com",
+          "githubUsername": "vbarth2"
         }
       ]
     },
-    "filePath": "data/paths/lambda/lambda-002.yaml"
+    "filePath": "data/paths/aws/lambda/lambda-002.yaml",
+    "cloud": "aws"
   },
   {
     "id": "lambda-003",
@@ -18977,22 +18672,18 @@
       ]
     },
     "gitMetadata": {
-      "created": "2025-10-09T19:58:48Z",
-      "lastUpdated": "2026-05-31T01:08:20Z",
+      "created": "2026-09-17T18:25:17Z",
+      "lastUpdated": "2026-09-17T18:25:17Z",
       "contributors": [
         {
-          "name": "Seth Art",
-          "email": "seth.art@datadoghq.com",
-          "githubUsername": "sethsec"
-        },
-        {
-          "name": "Andoni A.",
-          "email": "14891798+andoniaf@users.noreply.github.com",
-          "githubUsername": "andoniaf"
+          "name": "Vicky Barth",
+          "email": "vicky.barth@datadoghq.com",
+          "githubUsername": "vbarth2"
         }
       ]
     },
-    "filePath": "data/paths/lambda/lambda-003.yaml"
+    "filePath": "data/paths/aws/lambda/lambda-003.yaml",
+    "cloud": "aws"
   },
   {
     "id": "lambda-004",
@@ -19343,22 +19034,18 @@
       ]
     },
     "gitMetadata": {
-      "created": "2025-11-25T20:02:03Z",
-      "lastUpdated": "2026-05-31T01:08:20Z",
+      "created": "2026-09-17T18:25:17Z",
+      "lastUpdated": "2026-09-17T18:25:17Z",
       "contributors": [
         {
-          "name": "Seth Art",
-          "email": "seth.art@datadoghq.com",
-          "githubUsername": "sethsec"
-        },
-        {
-          "name": "Andoni A.",
-          "email": "14891798+andoniaf@users.noreply.github.com",
-          "githubUsername": "andoniaf"
+          "name": "Vicky Barth",
+          "email": "vicky.barth@datadoghq.com",
+          "githubUsername": "vbarth2"
         }
       ]
     },
-    "filePath": "data/paths/lambda/lambda-004.yaml"
+    "filePath": "data/paths/aws/lambda/lambda-004.yaml",
+    "cloud": "aws"
   },
   {
     "id": "lambda-005",
@@ -19732,22 +19419,18 @@
       ]
     },
     "gitMetadata": {
-      "created": "2025-11-25T20:02:03Z",
-      "lastUpdated": "2026-05-31T01:08:20Z",
+      "created": "2026-09-17T18:25:17Z",
+      "lastUpdated": "2026-09-17T18:25:17Z",
       "contributors": [
         {
-          "name": "Seth Art",
-          "email": "seth.art@datadoghq.com",
-          "githubUsername": "sethsec"
-        },
-        {
-          "name": "Andoni A.",
-          "email": "14891798+andoniaf@users.noreply.github.com",
-          "githubUsername": "andoniaf"
+          "name": "Vicky Barth",
+          "email": "vicky.barth@datadoghq.com",
+          "githubUsername": "vbarth2"
         }
       ]
     },
-    "filePath": "data/paths/lambda/lambda-005.yaml"
+    "filePath": "data/paths/aws/lambda/lambda-005.yaml",
+    "cloud": "aws"
   },
   {
     "id": "lambda-006",
@@ -20147,22 +19830,18 @@
       ]
     },
     "gitMetadata": {
-      "created": "2025-11-25T20:02:03Z",
-      "lastUpdated": "2026-05-31T01:08:20Z",
+      "created": "2026-09-17T18:25:17Z",
+      "lastUpdated": "2026-09-17T18:25:17Z",
       "contributors": [
         {
-          "name": "Seth Art",
-          "email": "seth.art@datadoghq.com",
-          "githubUsername": "sethsec"
-        },
-        {
-          "name": "Andoni A.",
-          "email": "14891798+andoniaf@users.noreply.github.com",
-          "githubUsername": "andoniaf"
+          "name": "Vicky Barth",
+          "email": "vicky.barth@datadoghq.com",
+          "githubUsername": "vbarth2"
         }
       ]
     },
-    "filePath": "data/paths/lambda/lambda-006.yaml"
+    "filePath": "data/paths/aws/lambda/lambda-006.yaml",
+    "cloud": "aws"
   },
   {
     "id": "omics-001",
@@ -20395,22 +20074,18 @@
       ]
     },
     "gitMetadata": {
-      "created": "2026-06-01T00:01:57Z",
-      "lastUpdated": "2026-08-04T11:07:33Z",
+      "created": "2026-09-17T18:25:17Z",
+      "lastUpdated": "2026-09-17T18:25:17Z",
       "contributors": [
         {
-          "name": "Daniel Barranquero",
-          "email": "daniel@prowler.com",
-          "githubUsername": "danibarranqueroo"
-        },
-        {
-          "name": "Seth Art",
-          "email": "seth.art@datadoghq.com",
-          "githubUsername": "sethsec"
+          "name": "Vicky Barth",
+          "email": "vicky.barth@datadoghq.com",
+          "githubUsername": "vbarth2"
         }
       ]
     },
-    "filePath": "data/paths/omics/omics-001.yaml"
+    "filePath": "data/paths/aws/omics/omics-001.yaml",
+    "cloud": "aws"
   },
   {
     "id": "sagemaker-001",
@@ -20626,22 +20301,18 @@
       ]
     },
     "gitMetadata": {
-      "created": "2025-10-09T19:58:48Z",
-      "lastUpdated": "2026-05-31T01:08:20Z",
+      "created": "2026-09-17T18:25:17Z",
+      "lastUpdated": "2026-09-17T18:25:17Z",
       "contributors": [
         {
-          "name": "Seth Art",
-          "email": "seth.art@datadoghq.com",
-          "githubUsername": "sethsec"
-        },
-        {
-          "name": "Andoni A.",
-          "email": "14891798+andoniaf@users.noreply.github.com",
-          "githubUsername": "andoniaf"
+          "name": "Vicky Barth",
+          "email": "vicky.barth@datadoghq.com",
+          "githubUsername": "vbarth2"
         }
       ]
     },
-    "filePath": "data/paths/sagemaker/sagemaker-001.yaml"
+    "filePath": "data/paths/aws/sagemaker/sagemaker-001.yaml",
+    "cloud": "aws"
   },
   {
     "id": "sagemaker-002",
@@ -20861,22 +20532,18 @@
       ]
     },
     "gitMetadata": {
-      "created": "2025-10-09T19:58:48Z",
-      "lastUpdated": "2026-05-31T01:08:20Z",
+      "created": "2026-09-17T18:25:17Z",
+      "lastUpdated": "2026-09-17T18:25:17Z",
       "contributors": [
         {
-          "name": "Seth Art",
-          "email": "seth.art@datadoghq.com",
-          "githubUsername": "sethsec"
-        },
-        {
-          "name": "Andoni A.",
-          "email": "14891798+andoniaf@users.noreply.github.com",
-          "githubUsername": "andoniaf"
+          "name": "Vicky Barth",
+          "email": "vicky.barth@datadoghq.com",
+          "githubUsername": "vbarth2"
         }
       ]
     },
-    "filePath": "data/paths/sagemaker/sagemaker-002.yaml"
+    "filePath": "data/paths/aws/sagemaker/sagemaker-002.yaml",
+    "cloud": "aws"
   },
   {
     "id": "sagemaker-003",
@@ -21096,22 +20763,18 @@
       ]
     },
     "gitMetadata": {
-      "created": "2025-10-09T19:58:48Z",
-      "lastUpdated": "2026-05-31T01:08:20Z",
+      "created": "2026-09-17T18:25:17Z",
+      "lastUpdated": "2026-09-17T18:25:17Z",
       "contributors": [
         {
-          "name": "Seth Art",
-          "email": "seth.art@datadoghq.com",
-          "githubUsername": "sethsec"
-        },
-        {
-          "name": "Andoni A.",
-          "email": "14891798+andoniaf@users.noreply.github.com",
-          "githubUsername": "andoniaf"
+          "name": "Vicky Barth",
+          "email": "vicky.barth@datadoghq.com",
+          "githubUsername": "vbarth2"
         }
       ]
     },
-    "filePath": "data/paths/sagemaker/sagemaker-003.yaml"
+    "filePath": "data/paths/aws/sagemaker/sagemaker-003.yaml",
+    "cloud": "aws"
   },
   {
     "id": "sagemaker-004",
@@ -21302,22 +20965,18 @@
       ]
     },
     "gitMetadata": {
-      "created": "2025-10-09T19:58:48Z",
-      "lastUpdated": "2026-05-31T01:08:20Z",
+      "created": "2026-09-17T18:25:17Z",
+      "lastUpdated": "2026-09-17T18:25:17Z",
       "contributors": [
         {
-          "name": "Seth Art",
-          "email": "seth.art@datadoghq.com",
-          "githubUsername": "sethsec"
-        },
-        {
-          "name": "Andoni A.",
-          "email": "14891798+andoniaf@users.noreply.github.com",
-          "githubUsername": "andoniaf"
+          "name": "Vicky Barth",
+          "email": "vicky.barth@datadoghq.com",
+          "githubUsername": "vbarth2"
         }
       ]
     },
-    "filePath": "data/paths/sagemaker/sagemaker-004.yaml"
+    "filePath": "data/paths/aws/sagemaker/sagemaker-004.yaml",
+    "cloud": "aws"
   },
   {
     "id": "sagemaker-005",
@@ -21668,22 +21327,18 @@
       ]
     },
     "gitMetadata": {
-      "created": "2025-12-03T16:48:51Z",
-      "lastUpdated": "2026-05-31T01:08:20Z",
+      "created": "2026-09-17T18:25:17Z",
+      "lastUpdated": "2026-09-17T18:25:17Z",
       "contributors": [
         {
-          "name": "Seth Art",
-          "email": "seth.art@datadoghq.com",
-          "githubUsername": "sethsec"
-        },
-        {
-          "name": "Andoni A.",
-          "email": "14891798+andoniaf@users.noreply.github.com",
-          "githubUsername": "andoniaf"
+          "name": "Vicky Barth",
+          "email": "vicky.barth@datadoghq.com",
+          "githubUsername": "vbarth2"
         }
       ]
     },
-    "filePath": "data/paths/sagemaker/sagemaker-005.yaml"
+    "filePath": "data/paths/aws/sagemaker/sagemaker-005.yaml",
+    "cloud": "aws"
   },
   {
     "id": "scheduler-001",
@@ -21859,22 +21514,18 @@
       ]
     },
     "gitMetadata": {
-      "created": "2026-06-01T00:01:57Z",
-      "lastUpdated": "2026-08-04T11:07:33Z",
+      "created": "2026-09-17T18:25:17Z",
+      "lastUpdated": "2026-09-17T18:25:17Z",
       "contributors": [
         {
-          "name": "Daniel Barranquero",
-          "email": "daniel@prowler.com",
-          "githubUsername": "danibarranqueroo"
-        },
-        {
-          "name": "Seth Art",
-          "email": "seth.art@datadoghq.com",
-          "githubUsername": "sethsec"
+          "name": "Vicky Barth",
+          "email": "vicky.barth@datadoghq.com",
+          "githubUsername": "vbarth2"
         }
       ]
     },
-    "filePath": "data/paths/scheduler/scheduler-001.yaml"
+    "filePath": "data/paths/aws/scheduler/scheduler-001.yaml",
+    "cloud": "aws"
   },
   {
     "id": "ssm-001",
@@ -22123,22 +21774,18 @@
       ]
     },
     "gitMetadata": {
-      "created": "2025-10-09T19:58:48Z",
-      "lastUpdated": "2026-02-13T11:28:37Z",
+      "created": "2026-09-17T18:25:17Z",
+      "lastUpdated": "2026-09-17T18:25:17Z",
       "contributors": [
         {
-          "name": "Andoni A.",
-          "email": "14891798+andoniaf@users.noreply.github.com",
-          "githubUsername": "andoniaf"
-        },
-        {
-          "name": "Seth Art",
-          "email": "seth.art@datadoghq.com",
-          "githubUsername": "sethsec"
+          "name": "Vicky Barth",
+          "email": "vicky.barth@datadoghq.com",
+          "githubUsername": "vbarth2"
         }
       ]
     },
-    "filePath": "data/paths/ssm/ssm-001.yaml"
+    "filePath": "data/paths/aws/ssm/ssm-001.yaml",
+    "cloud": "aws"
   },
   {
     "id": "ssm-002",
@@ -22454,22 +22101,18 @@
       ]
     },
     "gitMetadata": {
-      "created": "2025-10-09T19:58:48Z",
-      "lastUpdated": "2026-02-13T11:28:37Z",
+      "created": "2026-09-17T18:25:17Z",
+      "lastUpdated": "2026-09-17T18:25:17Z",
       "contributors": [
         {
-          "name": "Andoni A.",
-          "email": "14891798+andoniaf@users.noreply.github.com",
-          "githubUsername": "andoniaf"
-        },
-        {
-          "name": "Seth Art",
-          "email": "seth.art@datadoghq.com",
-          "githubUsername": "sethsec"
+          "name": "Vicky Barth",
+          "email": "vicky.barth@datadoghq.com",
+          "githubUsername": "vbarth2"
         }
       ]
     },
-    "filePath": "data/paths/ssm/ssm-002.yaml"
+    "filePath": "data/paths/aws/ssm/ssm-002.yaml",
+    "cloud": "aws"
   },
   {
     "id": "ssm-003",
@@ -22684,22 +22327,18 @@
       ]
     },
     "gitMetadata": {
-      "created": "2026-06-01T00:01:57Z",
-      "lastUpdated": "2026-08-04T11:07:33Z",
+      "created": "2026-09-17T18:25:17Z",
+      "lastUpdated": "2026-09-17T18:25:17Z",
       "contributors": [
         {
-          "name": "Daniel Barranquero",
-          "email": "daniel@prowler.com",
-          "githubUsername": "danibarranqueroo"
-        },
-        {
-          "name": "Seth Art",
-          "email": "seth.art@datadoghq.com",
-          "githubUsername": "sethsec"
+          "name": "Vicky Barth",
+          "email": "vicky.barth@datadoghq.com",
+          "githubUsername": "vbarth2"
         }
       ]
     },
-    "filePath": "data/paths/ssm/ssm-003.yaml"
+    "filePath": "data/paths/aws/ssm/ssm-003.yaml",
+    "cloud": "aws"
   },
   {
     "id": "stepfunctions-001",
@@ -22887,22 +22526,18 @@
       ]
     },
     "gitMetadata": {
-      "created": "2026-06-01T00:01:57Z",
-      "lastUpdated": "2026-08-04T11:07:33Z",
+      "created": "2026-09-17T18:25:17Z",
+      "lastUpdated": "2026-09-17T18:25:17Z",
       "contributors": [
         {
-          "name": "Daniel Barranquero",
-          "email": "daniel@prowler.com",
-          "githubUsername": "danibarranqueroo"
-        },
-        {
-          "name": "Seth Art",
-          "email": "seth.art@datadoghq.com",
-          "githubUsername": "sethsec"
+          "name": "Vicky Barth",
+          "email": "vicky.barth@datadoghq.com",
+          "githubUsername": "vbarth2"
         }
       ]
     },
-    "filePath": "data/paths/stepfunctions/stepfunctions-001.yaml"
+    "filePath": "data/paths/aws/stepfunctions/stepfunctions-001.yaml",
+    "cloud": "aws"
   },
   {
     "id": "stepfunctions-002",
@@ -23088,22 +22723,18 @@
       ]
     },
     "gitMetadata": {
-      "created": "2026-06-01T00:01:57Z",
-      "lastUpdated": "2026-08-04T11:07:33Z",
+      "created": "2026-09-17T18:25:17Z",
+      "lastUpdated": "2026-09-17T18:25:17Z",
       "contributors": [
         {
-          "name": "Daniel Barranquero",
-          "email": "daniel@prowler.com",
-          "githubUsername": "danibarranqueroo"
-        },
-        {
-          "name": "Seth Art",
-          "email": "seth.art@datadoghq.com",
-          "githubUsername": "sethsec"
+          "name": "Vicky Barth",
+          "email": "vicky.barth@datadoghq.com",
+          "githubUsername": "vbarth2"
         }
       ]
     },
-    "filePath": "data/paths/stepfunctions/stepfunctions-002.yaml"
+    "filePath": "data/paths/aws/stepfunctions/stepfunctions-002.yaml",
+    "cloud": "aws"
   },
   {
     "id": "sts-001",
@@ -23320,16 +22951,17 @@
       ]
     },
     "gitMetadata": {
-      "created": "2025-10-09T19:58:48Z",
-      "lastUpdated": "2025-12-17T02:14:40Z",
+      "created": "2026-09-17T18:25:17Z",
+      "lastUpdated": "2026-09-17T18:25:17Z",
       "contributors": [
         {
-          "name": "Seth Art",
-          "email": "seth.art@datadoghq.com",
-          "githubUsername": "sethsec"
+          "name": "Vicky Barth",
+          "email": "vicky.barth@datadoghq.com",
+          "githubUsername": "vbarth2"
         }
       ]
     },
-    "filePath": "data/paths/sts/sts-001.yaml"
+    "filePath": "data/paths/aws/sts/sts-001.yaml",
+    "cloud": "aws"
   }
 ]
