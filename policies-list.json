@@ -17321,12 +17321,12 @@
             "PolicyId": "ANPAZKAPJZG4CTYAYXEAG",
             "Arn": "arn:aws:iam::aws:policy/service-role/AWSSecurityAgentWebAppPolicy",
             "Path": "/service-role/",
-            "DefaultVersionId": "v6",
+            "DefaultVersionId": "v7",
             "AttachmentCount": 0,
             "PermissionsBoundaryUsageCount": 0,
             "IsAttachable": true,
             "CreateDate": "2026-02-05T23:19:09+00:00",
-            "UpdateDate": "2026-06-11T18:27:14+00:00"
+            "UpdateDate": "2026-09-18T17:17:08+00:00"
         },
         {
             "PolicyName": "PartnerCentralIncentiveBenefitManagement",
