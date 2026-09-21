@@ -8,6 +8,7 @@
                     "Action": [
                         "billingconductor:List*",
                         "billingconductor:GetBillingGroupCostReport",
+                        "billingconductor:GetBillingTransferPreference",
                         "organizations:ListAccounts",
                         "pricing:DescribeServices",
                         "pricing:GetAttributeValues",
@@ -15,14 +16,16 @@
                         "organizations:ListRoots",
                         "organizations:ListOrganizationalUnitsForParent",
                         "organizations:ListChildren",
-                        "organizations:DescribeAccount"
+                        "organizations:DescribeAccount",
+                        "organizations:DescribeResponsibilityTransfer",
+                        "organizations:ListInboundResponsibilityTransfers"
                     ],
                     "Resource": "*"
                 }
             ]
         },
-        "VersionId": "v4",
+        "VersionId": "v5",
         "IsDefaultVersion": true,
-        "CreateDate": "2026-02-12T17:57:37+00:00"
+        "CreateDate": "2026-09-21T18:17:07+00:00"
     }
 }
