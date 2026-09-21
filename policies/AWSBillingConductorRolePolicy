@@ -1,0 +1,30 @@
+{
+    "PolicyVersion": {
+        "Document": {
+            "Version": "2012-10-17",
+            "Statement": [
+                {
+                    "Effect": "Allow",
+                    "Action": "billingconductor:CreateBillingGroup",
+                    "Resource": [
+                        "arn:aws:billingconductor::*:billinggroup/*",
+                        "arn:aws:billingconductor::*:pricingplan/*"
+                    ]
+                },
+                {
+                    "Effect": "Allow",
+                    "Action": "billingconductor:GetBillingTransferPreference",
+                    "Resource": "*"
+                },
+                {
+                    "Effect": "Allow",
+                    "Action": "organizations:DescribeResponsibilityTransfer",
+                    "Resource": "*"
+                }
+            ]
+        },
+        "VersionId": "v1",
+        "IsDefaultVersion": true,
+        "CreateDate": "2026-09-21T19:07:08+00:00"
+    }
+}
