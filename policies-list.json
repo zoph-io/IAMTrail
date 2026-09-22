@@ -10937,12 +10937,12 @@
             "PolicyId": "ANPAZKAPJZG4CR7OZHOL2",
             "Arn": "arn:aws:iam::aws:policy/AWSBillingConductorReadOnlyAccess",
             "Path": "/",
-            "DefaultVersionId": "v4",
+            "DefaultVersionId": "v5",
             "AttachmentCount": 0,
             "PermissionsBoundaryUsageCount": 0,
             "IsAttachable": true,
             "CreateDate": "2022-04-13T18:02:59+00:00",
-            "UpdateDate": "2026-02-12T17:57:37+00:00"
+            "UpdateDate": "2026-09-21T18:17:07+00:00"
         },
         {
             "PolicyName": "AwsGlueSessionUserRestrictedServiceRole",
@@ -18911,6 +18911,78 @@
             "IsAttachable": true,
             "CreateDate": "2026-09-15T18:37:08+00:00",
             "UpdateDate": "2026-09-15T18:37:08+00:00"
+        },
+        {
+            "PolicyName": "AWSBillingConductorRolePolicy",
+            "PolicyId": "ANPAZKAPJZG4BLOTO2NQY",
+            "Arn": "arn:aws:iam::aws:policy/aws-service-role/AWSBillingConductorRolePolicy",
+            "Path": "/aws-service-role/",
+            "DefaultVersionId": "v1",
+            "AttachmentCount": 0,
+            "PermissionsBoundaryUsageCount": 0,
+            "IsAttachable": true,
+            "CreateDate": "2026-09-21T19:07:08+00:00",
+            "UpdateDate": "2026-09-21T19:07:08+00:00"
+        },
+        {
+            "PolicyName": "CloudWatchOmniSpaceAccessPolicy",
+            "PolicyId": "ANPAZKAPJZG4PASQMIJJI",
+            "Arn": "arn:aws:iam::aws:policy/CloudWatchOmniSpaceAccessPolicy",
+            "Path": "/",
+            "DefaultVersionId": "v1",
+            "AttachmentCount": 0,
+            "PermissionsBoundaryUsageCount": 0,
+            "IsAttachable": true,
+            "CreateDate": "2026-09-22T01:47:07+00:00",
+            "UpdateDate": "2026-09-22T01:47:07+00:00"
+        },
+        {
+            "PolicyName": "CloudWatchOmniDomainAccessPolicy",
+            "PolicyId": "ANPAZKAPJZG4LKVGKZSG3",
+            "Arn": "arn:aws:iam::aws:policy/CloudWatchOmniDomainAccessPolicy",
+            "Path": "/",
+            "DefaultVersionId": "v1",
+            "AttachmentCount": 0,
+            "PermissionsBoundaryUsageCount": 0,
+            "IsAttachable": true,
+            "CreateDate": "2026-09-22T01:47:08+00:00",
+            "UpdateDate": "2026-09-22T01:47:08+00:00"
+        },
+        {
+            "PolicyName": "CloudWatchOmniModelInferencePolicy",
+            "PolicyId": "ANPAZKAPJZG4N6II26HRN",
+            "Arn": "arn:aws:iam::aws:policy/CloudWatchOmniModelInferencePolicy",
+            "Path": "/",
+            "DefaultVersionId": "v1",
+            "AttachmentCount": 0,
+            "PermissionsBoundaryUsageCount": 0,
+            "IsAttachable": true,
+            "CreateDate": "2026-09-22T01:47:08+00:00",
+            "UpdateDate": "2026-09-22T01:47:08+00:00"
+        },
+        {
+            "PolicyName": "CloudWatchOmniAWSIntegrationPolicy",
+            "PolicyId": "ANPAZKAPJZG4PTTZVZ43Y",
+            "Arn": "arn:aws:iam::aws:policy/CloudWatchOmniAWSIntegrationPolicy",
+            "Path": "/",
+            "DefaultVersionId": "v1",
+            "AttachmentCount": 0,
+            "PermissionsBoundaryUsageCount": 0,
+            "IsAttachable": true,
+            "CreateDate": "2026-09-22T04:07:08+00:00",
+            "UpdateDate": "2026-09-22T04:07:08+00:00"
+        },
+        {
+            "PolicyName": "AWSCloudWatchOmniServiceRolePolicy",
+            "PolicyId": "ANPAZKAPJZG4ECNQRFG6D",
+            "Arn": "arn:aws:iam::aws:policy/aws-service-role/AWSCloudWatchOmniServiceRolePolicy",
+            "Path": "/aws-service-role/",
+            "DefaultVersionId": "v1",
+            "AttachmentCount": 0,
+            "PermissionsBoundaryUsageCount": 0,
+            "IsAttachable": true,
+            "CreateDate": "2026-09-22T05:37:07+00:00",
+            "UpdateDate": "2026-09-22T05:37:07+00:00"
         },
         {
             "PolicyName": "AWSConfigRole",
