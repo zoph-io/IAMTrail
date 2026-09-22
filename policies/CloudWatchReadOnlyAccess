@@ -18,6 +18,7 @@
                         "cloudwatch:GenerateQuery",
                         "cloudwatch:Get*",
                         "cloudwatch:List*",
+                        "cloudwatch:CreateOneTimeDeepLinkCode",
                         "logs:Get*",
                         "logs:List*",
                         "logs:StartQuery",
@@ -46,6 +47,8 @@
                         "observabilityadmin:ValidateTelemetryPipelineConfiguration",
                         "observabilityadmin:GetS3TableIntegration",
                         "observabilityadmin:ListS3TableIntegrations",
+                        "observabilityadmin:GetDatasetIntegration",
+                        "observabilityadmin:ListDatasetIntegrations",
                         "sns:Get*",
                         "sns:List*",
                         "rum:BatchGet*",
@@ -116,8 +119,8 @@
                 }
             ]
         },
-        "VersionId": "v24",
+        "VersionId": "v25",
         "IsDefaultVersion": true,
-        "CreateDate": "2026-02-12T18:01:50+00:00"
+        "CreateDate": "2026-09-22T16:57:07+00:00"
     }
 }
