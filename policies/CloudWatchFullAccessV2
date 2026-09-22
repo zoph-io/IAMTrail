@@ -62,6 +62,11 @@
                         "observabilityadmin:GetS3TableIntegration",
                         "observabilityadmin:ListS3TableIntegrations",
                         "observabilityadmin:DeleteS3TableIntegration",
+                        "observabilityadmin:CreateDatasetIntegration",
+                        "observabilityadmin:GetDatasetIntegration",
+                        "observabilityadmin:ListDatasetIntegrations",
+                        "observabilityadmin:UpdateDatasetIntegration",
+                        "observabilityadmin:DeleteDatasetIntegration",
                         "rum:*",
                         "synthetics:*",
                         "xray:*"
@@ -247,8 +252,8 @@
                 }
             ]
         },
-        "VersionId": "v16",
+        "VersionId": "v17",
         "IsDefaultVersion": true,
-        "CreateDate": "2026-06-08T13:27:16+00:00"
+        "CreateDate": "2026-09-22T16:57:08+00:00"
     }
 }
