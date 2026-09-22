@@ -1,0 +1,30 @@
+{
+    "PolicyVersion": {
+        "Document": {
+            "Version": "2012-10-17",
+            "Statement": [
+                {
+                    "Sid": "CloudWatchOmniDomainAccessPermissions",
+                    "Effect": "Allow",
+                    "Action": [
+                        "cloudwatch:ListSpacesForOrganization",
+                        "cloudwatch:CreateDomainAccessGrantForOrganization",
+                        "cloudwatch:GetDomainAccessGrantForOrganization",
+                        "cloudwatch:ListDomainAccessGrantsForOrganization",
+                        "cloudwatch:DeleteDomainAccessGrantForOrganization"
+                    ],
+                    "Resource": "*",
+                    "Condition": {
+                        "StringEquals": {
+                            "aws:ResourceAccount": "${aws:PrincipalAccount}",
+                            "cloudwatch:HasAccessGrant": "true"
+                        }
+                    }
+                }
+            ]
+        },
+        "VersionId": "v1",
+        "IsDefaultVersion": true,
+        "CreateDate": "2026-09-22T01:47:08+00:00"
+    }
+}
