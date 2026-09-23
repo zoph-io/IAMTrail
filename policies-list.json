@@ -161,12 +161,12 @@
             "PolicyId": "ANPAJN23PDQP7SZQAE3QE",
             "Arn": "arn:aws:iam::aws:policy/CloudWatchReadOnlyAccess",
             "Path": "/",
-            "DefaultVersionId": "v24",
+            "DefaultVersionId": "v25",
             "AttachmentCount": 0,
             "PermissionsBoundaryUsageCount": 0,
             "IsAttachable": true,
             "CreateDate": "2015-02-06T18:40:01+00:00",
-            "UpdateDate": "2026-02-12T18:01:50+00:00"
+            "UpdateDate": "2026-09-22T16:57:07+00:00"
         },
         {
             "PolicyName": "CloudWatchLogsFullAccess",
@@ -13061,12 +13061,12 @@
             "PolicyId": "ANPAZKAPJZG4K5ELCXZSW",
             "Arn": "arn:aws:iam::aws:policy/CloudWatchFullAccessV2",
             "Path": "/",
-            "DefaultVersionId": "v16",
+            "DefaultVersionId": "v17",
             "AttachmentCount": 0,
             "PermissionsBoundaryUsageCount": 0,
             "IsAttachable": true,
             "CreateDate": "2023-08-01T11:32:57+00:00",
-            "UpdateDate": "2026-06-08T13:27:16+00:00"
+            "UpdateDate": "2026-09-22T16:57:08+00:00"
         },
         {
             "PolicyName": "AmazonSageMakerPartnerServiceCatalogProductsLambdaServiceRolePolicy",
@@ -15245,12 +15245,12 @@
             "PolicyId": "ANPAZKAPJZG4NQZUIPVLH",
             "Arn": "arn:aws:iam::aws:policy/service-role/SageMakerStudioProjectProvisioningRolePolicy",
             "Path": "/service-role/",
-            "DefaultVersionId": "v82",
+            "DefaultVersionId": "v83",
             "AttachmentCount": 0,
             "PermissionsBoundaryUsageCount": 0,
             "IsAttachable": true,
             "CreateDate": "2024-11-20T21:58:39+00:00",
-            "UpdateDate": "2026-08-24T20:37:11+00:00"
+            "UpdateDate": "2026-09-22T21:57:07+00:00"
         },
         {
             "PolicyName": "SageMakerStudioProjectUserRolePolicy",
@@ -18983,6 +18983,18 @@
             "IsAttachable": true,
             "CreateDate": "2026-09-22T05:37:07+00:00",
             "UpdateDate": "2026-09-22T05:37:07+00:00"
+        },
+        {
+            "PolicyName": "AWSTransferServiceRolePolicy",
+            "PolicyId": "ANPAZKAPJZG4GXKVSEHWZ",
+            "Arn": "arn:aws:iam::aws:policy/aws-service-role/AWSTransferServiceRolePolicy",
+            "Path": "/aws-service-role/",
+            "DefaultVersionId": "v1",
+            "AttachmentCount": 0,
+            "PermissionsBoundaryUsageCount": 0,
+            "IsAttachable": true,
+            "CreateDate": "2026-09-22T17:07:07+00:00",
+            "UpdateDate": "2026-09-22T17:07:07+00:00"
         },
         {
             "PolicyName": "AWSConfigRole",
