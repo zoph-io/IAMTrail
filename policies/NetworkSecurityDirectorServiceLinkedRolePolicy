@@ -219,11 +219,24 @@
                         }
                     },
                     "Resource": "*"
+                },
+                {
+                    "Sid": "DisableNSDPolicyType",
+                    "Effect": "Allow",
+                    "Action": [
+                        "organizations:DisablePolicyType"
+                    ],
+                    "Resource": "arn:aws:organizations::*:root/o-*/r-*",
+                    "Condition": {
+                        "StringEquals": {
+                            "organizations:PolicyType": "NETWORK_SECURITY_DIRECTOR_POLICY"
+                        }
+                    }
                 }
             ]
         },
-        "VersionId": "v6",
+        "VersionId": "v7",
         "IsDefaultVersion": true,
-        "CreateDate": "2026-02-12T17:57:54+00:00"
+        "CreateDate": "2026-09-24T18:17:08+00:00"
     }
 }
