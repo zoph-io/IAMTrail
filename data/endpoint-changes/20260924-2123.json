@@ -1,0 +1,15 @@
+{
+  "detected_at": "2026-09-24T21:23:34.664Z",
+  "botocore_commit": "d199c72d6eeb299e5945b585c5c981ff2189833f",
+  "botocore_commit_url": "https://github.com/boto/botocore/commit/d199c72d6eeb299e5945b585c5c981ff2189833f",
+  "summary": "1 new service",
+  "changes": [
+    {
+      "type": "new_service",
+      "partition": "aws",
+      "id": "eventsv2",
+      "description": "eventsv2 (14 endpoints)",
+      "endpoint_count": 14
+    }
+  ]
+}
