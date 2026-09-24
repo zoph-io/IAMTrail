@@ -139,11 +139,22 @@
                             "aws:ResourceAccount": "${aws:PrincipalAccount}"
                         }
                     }
+                },
+                {
+                    "Sid": "GetCloudWatchOmniAWSIntegrationRole",
+                    "Effect": "Allow",
+                    "Action": "iam:GetRole",
+                    "Resource": "arn:aws:iam::*:role/service-role/CloudWatchOmniAWSIntegrationRole-*",
+                    "Condition": {
+                        "StringEquals": {
+                            "aws:ResourceAccount": "${aws:PrincipalAccount}"
+                        }
+                    }
                 }
             ]
         },
-        "VersionId": "v1",
+        "VersionId": "v2",
         "IsDefaultVersion": true,
-        "CreateDate": "2026-09-22T05:37:07+00:00"
+        "CreateDate": "2026-09-24T17:47:08+00:00"
     }
 }
