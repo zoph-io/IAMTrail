@@ -66,11 +66,20 @@
                     "Effect": "Allow",
                     "Action": "sts:TagGetWebIdentityToken",
                     "Resource": "*"
+                },
+                {
+                    "Sid": "AnthropicReadOnlyKMS",
+                    "Effect": "Allow",
+                    "Action": [
+                        "kms:DescribeKey",
+                        "kms:ListKeys"
+                    ],
+                    "Resource": "*"
                 }
             ]
         },
-        "VersionId": "v2",
+        "VersionId": "v3",
         "IsDefaultVersion": true,
-        "CreateDate": "2026-04-01T22:42:19+00:00"
+        "CreateDate": "2026-09-25T20:17:08+00:00"
     }
 }
