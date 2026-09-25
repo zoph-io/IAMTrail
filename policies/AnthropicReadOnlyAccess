@@ -17,7 +17,18 @@
                     "Effect": "Allow",
                     "Action": [
                         "aws-external-anthropic:GetAccountStatus",
-                        "aws-external-anthropic:CallWithBearerToken"
+                        "aws-external-anthropic:CallWithBearerToken",
+                        "aws-external-anthropic:ListKeys",
+                        "aws-external-anthropic:GetKey"
+                    ],
+                    "Resource": "*"
+                },
+                {
+                    "Sid": "AnthropicReadOnlyKMS",
+                    "Effect": "Allow",
+                    "Action": [
+                        "kms:DescribeKey",
+                        "kms:ListKeys"
                     ],
                     "Resource": "*"
                 },
@@ -46,8 +57,8 @@
                 }
             ]
         },
-        "VersionId": "v2",
+        "VersionId": "v3",
         "IsDefaultVersion": true,
-        "CreateDate": "2026-04-01T22:42:18+00:00"
+        "CreateDate": "2026-09-25T20:17:07+00:00"
     }
 }
