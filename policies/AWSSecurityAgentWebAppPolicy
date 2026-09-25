@@ -53,6 +53,7 @@
                         "securityagent:GetDesignReview",
                         "securityagent:GetDesignReviewArtifact",
                         "securityagent:GetDesignReviewFeedback",
+                        "securityagent:ListActorMessages",
                         "securityagent:ListArtifacts",
                         "securityagent:ListCodeReviewJobsForCodeReview",
                         "securityagent:ListCodeReviewJobTasks",
@@ -95,8 +96,8 @@
                 }
             ]
         },
-        "VersionId": "v7",
+        "VersionId": "v8",
         "IsDefaultVersion": true,
-        "CreateDate": "2026-09-18T17:17:08+00:00"
+        "CreateDate": "2026-09-24T23:37:07+00:00"
     }
 }
