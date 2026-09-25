@@ -29,12 +29,12 @@
             "PolicyId": "ANPAILL3HVNFSB6DCOWYQ",
             "Arn": "arn:aws:iam::aws:policy/ReadOnlyAccess",
             "Path": "/",
-            "DefaultVersionId": "v189",
+            "DefaultVersionId": "v190",
             "AttachmentCount": 0,
             "PermissionsBoundaryUsageCount": 0,
             "IsAttachable": true,
             "CreateDate": "2015-02-06T18:39:48+00:00",
-            "UpdateDate": "2026-09-15T18:47:08+00:00"
+            "UpdateDate": "2026-09-24T17:37:08+00:00"
         },
         {
             "PolicyName": "AWSCloudFormationReadOnlyAccess",
@@ -5909,12 +5909,12 @@
             "PolicyId": "ANPAZKAPJZG4BDMP3LZME",
             "Arn": "arn:aws:iam::aws:policy/AmazonEventBridgeReadOnlyAccess",
             "Path": "/",
-            "DefaultVersionId": "v6",
+            "DefaultVersionId": "v7",
             "AttachmentCount": 0,
             "PermissionsBoundaryUsageCount": 0,
             "IsAttachable": true,
             "CreateDate": "2019-07-11T13:59:07+00:00",
-            "UpdateDate": "2022-12-01T17:02:48+00:00"
+            "UpdateDate": "2026-09-24T21:37:08+00:00"
         },
         {
             "PolicyName": "AmazonEventBridgeFullAccess",
@@ -13421,12 +13421,12 @@
             "PolicyId": "ANPAZKAPJZG4A6QQZKWX4",
             "Arn": "arn:aws:iam::aws:policy/aws-service-role/AWSServiceRolePolicyForBackupRestoreTesting",
             "Path": "/aws-service-role/",
-            "DefaultVersionId": "v3",
+            "DefaultVersionId": "v4",
             "AttachmentCount": 0,
             "PermissionsBoundaryUsageCount": 0,
             "IsAttachable": true,
             "CreateDate": "2023-11-10T23:37:45+00:00",
-            "UpdateDate": "2026-03-18T22:12:13+00:00"
+            "UpdateDate": "2026-09-25T01:57:07+00:00"
         },
         {
             "PolicyName": "AWSIncidentManagerIncidentAccessServiceRolePolicy",
@@ -16181,12 +16181,12 @@
             "PolicyId": "ANPAZKAPJZG4CFAV7CLUC",
             "Arn": "arn:aws:iam::aws:policy/aws-service-role/NetworkSecurityDirectorServiceLinkedRolePolicy",
             "Path": "/aws-service-role/",
-            "DefaultVersionId": "v6",
+            "DefaultVersionId": "v7",
             "AttachmentCount": 0,
             "PermissionsBoundaryUsageCount": 0,
             "IsAttachable": true,
             "CreateDate": "2025-06-13T20:07:06+00:00",
-            "UpdateDate": "2026-02-12T17:57:54+00:00"
+            "UpdateDate": "2026-09-24T18:17:08+00:00"
         },
         {
             "PolicyName": "MultiPartyApprovalReadOnlyAccess",
@@ -17321,12 +17321,12 @@
             "PolicyId": "ANPAZKAPJZG4CTYAYXEAG",
             "Arn": "arn:aws:iam::aws:policy/service-role/AWSSecurityAgentWebAppPolicy",
             "Path": "/service-role/",
-            "DefaultVersionId": "v7",
+            "DefaultVersionId": "v8",
             "AttachmentCount": 0,
             "PermissionsBoundaryUsageCount": 0,
             "IsAttachable": true,
             "CreateDate": "2026-02-05T23:19:09+00:00",
-            "UpdateDate": "2026-09-18T17:17:08+00:00"
+            "UpdateDate": "2026-09-24T23:37:07+00:00"
         },
         {
             "PolicyName": "PartnerCentralIncentiveBenefitManagement",
@@ -17573,12 +17573,12 @@
             "PolicyId": "ANPAZKAPJZG4KEX6FTLTS",
             "Arn": "arn:aws:iam::aws:policy/AIDevOpsAgentAccessPolicy",
             "Path": "/",
-            "DefaultVersionId": "v10",
+            "DefaultVersionId": "v11",
             "AttachmentCount": 0,
             "PermissionsBoundaryUsageCount": 0,
             "IsAttachable": true,
             "CreateDate": "2026-03-26T03:42:09+00:00",
-            "UpdateDate": "2026-08-12T23:07:09+00:00"
+            "UpdateDate": "2026-09-24T20:57:09+00:00"
         },
         {
             "PolicyName": "AIDevOpsOperatorAppAccessPolicy",
@@ -17981,12 +17981,12 @@
             "PolicyId": "ANPAZKAPJZG4KRTUHDRKJ",
             "Arn": "arn:aws:iam::aws:policy/FinOpsAgentAgentPolicy",
             "Path": "/",
-            "DefaultVersionId": "v3",
+            "DefaultVersionId": "v4",
             "AttachmentCount": 0,
             "PermissionsBoundaryUsageCount": 0,
             "IsAttachable": true,
             "CreateDate": "2026-06-03T19:57:12+00:00",
-            "UpdateDate": "2026-09-01T16:27:06+00:00"
+            "UpdateDate": "2026-09-24T13:27:07+00:00"
         },
         {
             "PolicyName": "EC2ImageBuilderExecutionPolicy",
@@ -18581,12 +18581,12 @@
             "PolicyId": "ANPAZKAPJZG4HNSXU64CN",
             "Arn": "arn:aws:iam::aws:policy/aws-service-role/AWSWellArchitectedAgentResourceScanningServiceRolePolicy",
             "Path": "/aws-service-role/",
-            "DefaultVersionId": "v2",
+            "DefaultVersionId": "v3",
             "AttachmentCount": 0,
             "PermissionsBoundaryUsageCount": 0,
             "IsAttachable": true,
             "CreateDate": "2026-08-04T17:27:18+00:00",
-            "UpdateDate": "2026-08-13T00:27:19+00:00"
+            "UpdateDate": "2026-09-24T18:57:08+00:00"
         },
         {
             "PolicyName": "AWSBedrockAgentCoreRuntimeInstancesServiceRolePolicy",
@@ -18977,12 +18977,12 @@
             "PolicyId": "ANPAZKAPJZG4ECNQRFG6D",
             "Arn": "arn:aws:iam::aws:policy/aws-service-role/AWSCloudWatchOmniServiceRolePolicy",
             "Path": "/aws-service-role/",
-            "DefaultVersionId": "v1",
+            "DefaultVersionId": "v2",
             "AttachmentCount": 0,
             "PermissionsBoundaryUsageCount": 0,
             "IsAttachable": true,
             "CreateDate": "2026-09-22T05:37:07+00:00",
-            "UpdateDate": "2026-09-22T05:37:07+00:00"
+            "UpdateDate": "2026-09-24T17:47:08+00:00"
         },
         {
             "PolicyName": "AWSTransferServiceRolePolicy",
