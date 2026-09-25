@@ -50,7 +50,8 @@
                         "rds:DescribeDBInstanceAutomatedBackups",
                         "rds:DescribeDBClusterAutomatedBackups",
                         "rds:ListTagsForResource",
-                        "redshift:DescribeClusters"
+                        "redshift:DescribeClusters",
+                        "redshift:DescribeTags"
                     ],
                     "Resource": "*"
                 },
@@ -118,8 +119,8 @@
                 }
             ]
         },
-        "VersionId": "v3",
+        "VersionId": "v4",
         "IsDefaultVersion": true,
-        "CreateDate": "2026-03-18T22:12:13+00:00"
+        "CreateDate": "2026-09-25T01:57:07+00:00"
     }
 }
