@@ -53,7 +53,9 @@
                     "Effect": "Allow",
                     "Action": [
                         "aws-external-anthropic:GetAccountStatus",
-                        "aws-external-anthropic:CallWithBearerToken"
+                        "aws-external-anthropic:CallWithBearerToken",
+                        "aws-external-anthropic:ListKeys",
+                        "aws-external-anthropic:GetKey"
                     ],
                     "Resource": "*"
                 },
@@ -93,8 +95,8 @@
                 }
             ]
         },
-        "VersionId": "v6",
+        "VersionId": "v7",
         "IsDefaultVersion": true,
-        "CreateDate": "2026-06-12T16:57:32+00:00"
+        "CreateDate": "2026-09-25T20:17:08+00:00"
     }
 }
