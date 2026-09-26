@@ -43,7 +43,7 @@ All of the following are operated by Victor Grenu through zoph.io, an independen
 
 - [zoph.io](https://zoph.io): The consulting boutique. AWS architecture, security audits and hardening, automation and DevSecOps, cloud cost optimization, and secure AI and LLM adoption.
 - [zoph.me](https://zoph.me): Personal weblog on AWS, IAM, cloud security, architecture, automation, FinOps, and indie consulting.
-- [unusd.cloud](https://unusd.cloud): SaaS that runs read-only AWS cost and waste scans across 30+ services and every region, with a weekly digest email and Navi, an AI layer grounded in your scan findings.
+- [unusd.cloud](https://unusd.cloud): Read-only AWS scans across 30+ services and every region. Weekly digest by email. Full report in the app.
 - [IAMTrail](https://iamtrail.com): Archive of every change to AWS Managed IAM Policies since 2019, with full version history and diffs, plus AWS endpoint and GuardDuty change feeds.
 - [github.com/zoph-io](https://github.com/zoph-io): Open-source AWS tooling, including ClickOps Sentinel, AWS Security Survival Kit, AWS Trustline, and Subnet-Watcher.
 - [fwd:cloudsec Europe](https://fwdcloudsec.org/conference/europe/): Vendor-neutral cloud security conference. Victor is an organizer and CFP reviewer.
