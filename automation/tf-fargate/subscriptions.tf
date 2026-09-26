@@ -134,10 +134,20 @@ resource "aws_s3_bucket_policy" "website" {
 resource "aws_cloudfront_function" "index_rewrite" {
   name    = "iamtrail-index-rewrite"
   runtime = "cloudfront-js-2.0"
+  # The www host is served by this distribution only to send it to the apex, so
+  # search engines consolidate on a single hostname.
   code    = <<-EOF
     function handler(event) {
       var request = event.request;
       var uri = request.uri;
+      var host = request.headers.host ? request.headers.host.value : '';
+      if (host === 'www.${local.domain_name}') {
+        return {
+          statusCode: 301,
+          statusDescription: 'Moved Permanently',
+          headers: { location: { value: 'https://${local.domain_name}' + uri } }
+        };
+      }
       if (uri.endsWith('/')) {
         request.uri += 'index.html';
       } else if (!uri.includes('.')) {
@@ -152,7 +162,7 @@ resource "aws_cloudfront_distribution" "website" {
   enabled             = true
   is_ipv6_enabled     = true
   default_root_object = "index.html"
-  aliases             = [local.domain_name]
+  aliases             = [local.domain_name, "www.${local.domain_name}"]
   web_acl_id          = aws_wafv2_web_acl.website.arn
 
   origin {
@@ -221,6 +231,18 @@ resource "aws_cloudfront_distribution" "website" {
 resource "aws_route53_record" "website" {
   zone_id = aws_route53_zone.iamtrail.zone_id
   name    = local.domain_name
+  type    = "A"
+
+  alias {
+    name                   = aws_cloudfront_distribution.website.domain_name
+    zone_id                = aws_cloudfront_distribution.website.hosted_zone_id
+    evaluate_target_health = false
+  }
+}
+
+resource "aws_route53_record" "website_www" {
+  zone_id = aws_route53_zone.iamtrail.zone_id
+  name    = "www.${local.domain_name}"
   type    = "A"
 
   alias {
