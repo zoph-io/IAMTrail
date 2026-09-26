@@ -39,6 +39,9 @@ help:
 	@echo "	action-registry - rebuild data/action-registry.json and data/policy-change-deltas.json from git history"
 	@echo "	iam-metadata - refresh data/iam-metadata.json from iam-dataset (access levels, service names)"
 	@echo ""
+	@echo "Content:"
+	@echo "	monthly-recap - draft the zoph.me monthly post (MONTH=YYYY-MM, default last month; OUT=../weblog/content/posts, default stdout; FORCE=1 to overwrite)"
+	@echo ""
 	@echo "Utilities:"
 	@echo "	clean - clean all build folders"
 	@echo "	longest - show 10 longest policy names"
@@ -202,6 +205,12 @@ action-registry:
 iam-metadata:
 	@echo "📚 Refreshing IAM metadata from iam-dataset..."
 	@python3 automation/scripts/build_iam_metadata.py
+####################################################
+
+################ Content ##########################
+# Writes a draft (draft: true) for Victor to finish by hand. Never publishes.
+monthly-recap:
+	@python3 automation/scripts/monthly_recap.py $(if $(MONTH),--month $(MONTH)) $(if $(OUT),--out-dir $(OUT)) $(if $(FORCE),--force)
 ####################################################
 
 longest:
