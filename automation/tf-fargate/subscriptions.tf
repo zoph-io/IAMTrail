@@ -188,16 +188,19 @@ resource "aws_cloudfront_distribution" "website" {
     max_ttl     = 31536000
   }
 
+  # Missing keys come back from the S3 REST origin as 403 (no ListBucket). Both map to the
+  # static Next.js 404 page with a real 404 status: answering 200 with /index.html made every
+  # invented URL look like a live page to search engines and LLM crawlers.
   custom_error_response {
     error_code         = 404
-    response_code      = 200
-    response_page_path = "/index.html"
+    response_code      = 404
+    response_page_path = "/404.html"
   }
 
   custom_error_response {
     error_code         = 403
-    response_code      = 200
-    response_page_path = "/index.html"
+    response_code      = 404
+    response_page_path = "/404.html"
   }
 
   restrictions {
