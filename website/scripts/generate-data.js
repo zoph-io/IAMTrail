@@ -1327,55 +1327,108 @@ async function generatePolicyData() {
     console.warn("⚠️  Could not aggregate findings:", err.message);
   }
 
-  // Generate sitemap.xml
-  console.log("🗺️  Generating sitemap.xml...");
-  const today = new Date().toISOString().split("T")[0];
-  const sitemapEntries = [
-    { loc: "/", priority: "1.0", changefreq: "daily" },
-    { loc: "/changes/", priority: "0.9", changefreq: "hourly" },
-    { loc: "/policies/", priority: "0.9", changefreq: "daily" },
+  // Sitemaps. /sitemap.xml is an index over one child per page type, so Search
+  // Console reports indexing coverage per section instead of one number for
+  // ~17k URLs. lastmod is the date the page content last changed, never the
+  // build date: a lastmod that is always "today" teaches crawlers to ignore it.
+  console.log("🗺️  Generating sitemaps...");
+  const sitemapDate = (value) => {
+    const d = new Date(value);
+    return Number.isNaN(d.getTime()) ? null : d.toISOString().split("T")[0];
+  };
+  const latestDate = (dates) =>
+    dates.reduce((max, d) => (d && (!max || d > max) ? d : max), null);
+
+  const policyLastmod = new Map(
+    policies.map((p) => [p.name, sitemapDate(p.lastModified)])
+  );
+  const archiveLastmod = latestDate([...policyLastmod.values()]);
+
+  // Pages rendered from the policy archive change exactly when a policy does.
+  // Endpoints, GuardDuty, findings and the static pages have other sources, so
+  // they carry no lastmod rather than a guessed one.
+  const pageEntries = [
+    { loc: "/", priority: "1.0", changefreq: "daily", lastmod: archiveLastmod },
+    { loc: "/changes/", priority: "0.9", changefreq: "hourly", lastmod: archiveLastmod },
+    { loc: "/policies/", priority: "0.9", changefreq: "daily", lastmod: archiveLastmod },
     { loc: "/findings/", priority: "0.8", changefreq: "daily" },
-    { loc: "/deprecated/", priority: "0.7", changefreq: "weekly" },
-    { loc: "/most-active/", priority: "0.7", changefreq: "weekly" },
-    { loc: "/accounts/", priority: "0.7", changefreq: "weekly" },
-    { loc: "/largest-policies/", priority: "0.7", changefreq: "weekly" },
-    { loc: "/service-growth/", priority: "0.7", changefreq: "weekly" },
-    { loc: "/discoveries/", priority: "0.8", changefreq: "daily" },
+    { loc: "/deprecated/", priority: "0.7", changefreq: "weekly", lastmod: archiveLastmod },
+    { loc: "/most-active/", priority: "0.7", changefreq: "weekly", lastmod: archiveLastmod },
+    { loc: "/accounts/", priority: "0.7", changefreq: "weekly", lastmod: archiveLastmod },
+    { loc: "/largest-policies/", priority: "0.7", changefreq: "weekly", lastmod: archiveLastmod },
+    { loc: "/service-growth/", priority: "0.7", changefreq: "weekly", lastmod: archiveLastmod },
+    { loc: "/discoveries/", priority: "0.8", changefreq: "daily", lastmod: archiveLastmod },
     { loc: "/endpoints/", priority: "0.8", changefreq: "daily" },
     { loc: "/guardduty/", priority: "0.8", changefreq: "daily" },
     { loc: "/feeds/", priority: "0.5", changefreq: "weekly" },
     { loc: "/api/", priority: "0.5", changefreq: "monthly" },
     { loc: "/about/", priority: "0.5", changefreq: "monthly" },
   ];
-  policies.forEach((p) => {
-    sitemapEntries.push({
-      loc: `/policies/${encodeURIComponent(p.name)}/`,
-      priority: "0.6",
-      changefreq: "weekly",
+  const policyEntries = policies.map((p) => ({
+    loc: `/policies/${encodeURIComponent(p.name)}/`,
+    priority: "0.6",
+    changefreq: "weekly",
+    lastmod: policyLastmod.get(p.name),
+  }));
+  // An action page lists the policies that allow, deny or NotAction it, so it
+  // changes whenever any of them does.
+  const actionEntries = Object.keys(actionsOut)
+    .sort()
+    .map((action) => {
+      const a = actionsOut[action];
+      const names = [
+        ...a.actionAllowPolicies,
+        ...a.actionDenyPolicies,
+        ...a.notActionPolicies,
+      ];
+      return {
+        loc: `/actions/${iamActionToSlug(action)}/`,
+        priority: "0.5",
+        changefreq: "weekly",
+        lastmod: latestDate(names.map((n) => policyLastmod.get(n))),
+      };
     });
-  });
-  for (const action of Object.keys(actionsOut).sort()) {
-    sitemapEntries.push({
-      loc: `/actions/${iamActionToSlug(action)}/`,
-      priority: "0.5",
-      changefreq: "weekly",
-    });
-  }
-  const sitemapXml = `<?xml version="1.0" encoding="UTF-8"?>
+
+  const urlsetXml = (entries) => `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-${sitemapEntries
+${entries
   .map(
     (e) => `  <url>
-    <loc>${SITE_URL}${e.loc}</loc>
-    <lastmod>${today}</lastmod>
+    <loc>${SITE_URL}${e.loc}</loc>${e.lastmod ? `
+    <lastmod>${e.lastmod}</lastmod>` : ""}
     <changefreq>${e.changefreq}</changefreq>
     <priority>${e.priority}</priority>
   </url>`
   )
   .join("\n")}
 </urlset>`;
-  fs.writeFileSync(path.join(PUBLIC_DIR, "sitemap.xml"), sitemapXml);
-  console.log(`   🗺️  Sitemap entries: ${sitemapEntries.length}`);
+
+  const sitemapChildren = [
+    { file: "sitemap-pages.xml", entries: pageEntries },
+    { file: "sitemap-policies.xml", entries: policyEntries },
+    { file: "sitemap-actions.xml", entries: actionEntries },
+  ];
+  for (const child of sitemapChildren) {
+    fs.writeFileSync(path.join(PUBLIC_DIR, child.file), urlsetXml(child.entries));
+  }
+  const sitemapIndexXml = `<?xml version="1.0" encoding="UTF-8"?>
+<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+${sitemapChildren
+  .map((child) => {
+    const lastmod = latestDate(child.entries.map((e) => e.lastmod));
+    return `  <sitemap>
+    <loc>${SITE_URL}/${child.file}</loc>${lastmod ? `
+    <lastmod>${lastmod}</lastmod>` : ""}
+  </sitemap>`;
+  })
+  .join("\n")}
+</sitemapindex>`;
+  fs.writeFileSync(path.join(PUBLIC_DIR, "sitemap.xml"), sitemapIndexXml);
+  console.log(
+    `   🗺️  Sitemap entries: ${sitemapChildren
+      .map((c) => `${c.file} ${c.entries.length}`)
+      .join(", ")}`
+  );
 
   // The one URL a consumer has to hard-code. Everything else is reachable from
   // here, so a future v2 can move files without breaking a client that starts
