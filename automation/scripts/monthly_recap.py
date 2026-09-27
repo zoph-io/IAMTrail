@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
-"""Draft the monthly "AWS managed policy changes" post for zoph.me.
+"""Draft the "AWS managed policy changes" post for zoph.me, for a month or a longer period.
 
 Replays the archive with build_action_registry.build(), keeps the deltas that
-fall in one calendar month (UTC), and renders a Hugo post with every number,
+fall in the chosen calendar months (UTC), and renders a Hugo post with every number,
 list and link already filled in. The parts that need an opinion (the hook, why
 a change matters, what to check) are left as HTML comments for the author:
 Hugo drops raw HTML, so a TODO that survives into production renders nothing.
@@ -15,16 +15,21 @@ running it mid-month works but covers the month to date only.
 
 or `make monthly-recap MONTH=2026-09 OUT=../weblog/content/posts`.
 
+A season is a range with a label, compared with the same months a year earlier:
+
+    python3 automation/scripts/monthly_recap.py --month 2026-06 --to 2026-09 \
+        --label "Summer 2026" --out-dir ../weblog/content/posts
+
 Stdlib only, like build_action_registry.py.
 """
 
 import argparse
 import base64
-import calendar
 import contextlib
 import datetime as dt
 import json
 import os
+import re
 import subprocess
 import sys
 from collections import defaultdict
@@ -115,9 +120,34 @@ def previous_month(month):
     return (start - dt.timedelta(days=1)).strftime("%Y-%m")
 
 
-def in_month(deltas, month):
-    """Deltas dated in month, oldest first, with bulk-reformat days split out."""
-    rows = sorted((d for d in deltas if d["date"].startswith(month)), key=lambda d: d["date"])
+def month_range(first, last):
+    months = [first]
+    while months[-1] < last:
+        months.append(month_bounds(months[-1])[1].strftime("%Y-%m"))
+    return months
+
+
+def comparison_months(months):
+    """A single month is compared with the one before; a longer period with the same months a year earlier."""
+    if len(months) == 1:
+        return [previous_month(months[0])]
+    return [f"{int(m[:4]) - 1}{m[4:]}" for m in months]
+
+
+def range_text(months, short=False):
+    fmt = "%b" if short else "%B"
+    first, last = month_bounds(months[0])[0], month_bounds(months[-1])[0]
+    if len(months) == 1:
+        return first.strftime(f"{fmt} %Y")
+    if first.year == last.year:
+        return f"{first.strftime(fmt)} to {last.strftime(f'{fmt} %Y')}"
+    return f"{first.strftime(f'{fmt} %Y')} to {last.strftime(f'{fmt} %Y')}"
+
+
+def in_period(deltas, months):
+    """Deltas dated in the given months, oldest first, with bulk-reformat days split out."""
+    wanted = set(months)
+    rows = sorted((d for d in deltas if d["date"][:7] in wanted), key=lambda d: d["date"])
     per_day = defaultdict(set)
     for d in rows:
         if d["status"] == "modified":
@@ -169,8 +199,8 @@ def net_changes(rows):
     return policies
 
 
-def summarize(deltas, month):
-    rows, bulk_days = in_month(deltas, month)
+def summarize(deltas, months):
+    rows, bulk_days = in_period(deltas, months)
     added = [d for d in rows if d["status"] == "added"]
     added_names = {d["policyName"] for d in added}
     removed = [d for d in rows if d["status"] == "removed"]
@@ -186,7 +216,7 @@ def summarize(deltas, month):
         for s in d["newServicePrefixes"]:
             new_prefixes.append((s, d["policyName"], d["date"]))
     return {
-        "month": month,
+        "months": months,
         "rows": rows,
         "bulk_days": bulk_days,
         "added": added,
@@ -230,18 +260,28 @@ def day(date):
     return dt.datetime.strptime(date[:10], "%Y-%m-%d").strftime("%b %-d")
 
 
-def render(summary, previous, service_names, linkable, as_of, post_date):
-    month_start, _ = month_bounds(summary["month"])
-    label = month_start.strftime("%B %Y")
-    prev_label = month_bounds(previous["month"])[0].strftime("%B")
+def render(summary, previous, label, service_names, linkable, as_of, post_date):
+    months = summary["months"]
+    span_text = range_text(months)
+    if len(months) == 1:
+        prev_label = month_bounds(previous["months"][0])[0].strftime("%B")
+    else:
+        prev_label = range_text(previous["months"], short=True)
+    if label == span_text:
+        scope = label
+    else:
+        year = month_bounds(months[-1])[0].strftime("%Y")
+        if year in label and months[0][:4] == year:
+            span_text = span_text.removesuffix(f" {year}")
+        scope = f"{label} ({span_text})"
     link_action = lambda a: action_url(a) if a in linkable else None  # noqa: E731
     service = lambda s: service_names.get(s.lower())  # noqa: E731
 
     n_new_actions = len(summary["new_actions"])
     n_prefixes = len(summary["new_prefixes"])
     description = (
-        f"{label} in AWS managed IAM policies: {summary['versions']} policy versions, "
-        f"{len(summary['added'])} new policies, {n_new_actions} new IAM actions and "
+        f"{scope} in AWS managed IAM policies: {summary['versions']:,} policy versions, "
+        f"{len(summary['added']):,} new policies, {n_new_actions:,} new IAM actions and "
         f"{n_prefixes} new service prefixes, from the IAMTrail archive."
     )
 
@@ -272,7 +312,7 @@ def render(summary, previous, service_names, linkable, as_of, post_date):
         "",
         "<!-- TODO(zoph): opening hook, one or two lines. -->",
         "",
-        f"Here is what changed in AWS managed IAM policies in **{label}**, straight from the "
+        f"Here is what changed in AWS managed IAM policies in **{scope}**, straight from the "
         f"[IAMTrail]({SITE_URL}) archive.",
         "",
         "## The Numbers",
@@ -323,17 +363,22 @@ def render(summary, previous, service_names, linkable, as_of, post_date):
 
     if summary["added"]:
         out += ["", "## New Policies", ""]
-        for d in summary["added"][:MAX_NEW_POLICIES]:
+        shown = summary["added"]
+        if len(shown) > MAX_NEW_POLICIES:
+            biggest = sorted(shown, key=lambda d: -len(d["actionsAdded"]))[:MAX_NEW_POLICIES]
+            shown = [d for d in shown if d in biggest]
+            out += [f"The {MAX_NEW_POLICIES} largest of **{len(summary['added']):,}**, by action count:", ""]
+        for d in shown:
             prefixes = sorted({a.split(":", 1)[0] for a in d["actionsAdded"]})
             count = len(d["actionsAdded"])
             services = f" across {code_list(prefixes, 4)}" if prefixes else ""
             out.append(
                 f"- [{d['policyName']}]({policy_url(d['policyName'])}), {day(d['date'])}: "
-                f"{count} action{'' if count == 1 else 's'}{services}."
+                f"{count:,} action{'' if count == 1 else 's'}{services}."
             )
         if len(summary["added"]) > MAX_NEW_POLICIES:
             out.append(
-                f"- And {len(summary['added']) - MAX_NEW_POLICIES} more on the "
+                f"- And {len(summary['added']) - MAX_NEW_POLICIES:,} more on the "
                 f"[changes page]({SITE_URL}/changes/)."
             )
 
@@ -374,7 +419,7 @@ def render(summary, previous, service_names, linkable, as_of, post_date):
             "",
             "## Brand-New IAM Actions",
             "",
-            f"**{n_new_actions}** actions appeared in a managed policy for the first time. "
+            f"**{n_new_actions:,}** actions appeared in a managed policy for the first time. "
             "Where they came from:",
             "",
         ]
@@ -386,7 +431,7 @@ def render(summary, previous, service_names, linkable, as_of, post_date):
             )
         if len(top) > TOP_NEW_ACTION_SERVICES:
             rest = sum(len(a) for _, a in top[TOP_NEW_ACTION_SERVICES:])
-            out.append(f"- {rest} more across {len(top) - TOP_NEW_ACTION_SERVICES} other services.")
+            out.append(f"- {rest:,} more across {len(top) - TOP_NEW_ACTION_SERVICES} other services.")
 
     busy = sorted(
         ((name, len(p["versions"])) for name, p in summary["modified"].items()
@@ -396,7 +441,7 @@ def render(summary, previous, service_names, linkable, as_of, post_date):
     if busy:
         out += ["", "## Most Active", ""]
         for name, count in busy[:10]:
-            out.append(f"- [{name}]({policy_url(name)}): {count} versions in one month.")
+            out.append(f"- [{name}]({policy_url(name)}): {count} versions in {label}.")
 
     if summary["removed"]:
         out += ["", "## Removed", ""]
@@ -407,7 +452,7 @@ def render(summary, previous, service_names, linkable, as_of, post_date):
         "",
         "## What to Check in Your Accounts",
         "",
-        "<!-- TODO(zoph): two or three concrete checks for this month. -->",
+        "<!-- TODO(zoph): two or three concrete checks. -->",
         "",
         "## Takeaways",
         "",
@@ -432,17 +477,23 @@ def main():
     today = dt.datetime.now(dt.timezone.utc)
     last_month = (today.replace(day=1) - dt.timedelta(days=1)).strftime("%Y-%m")
     parser.add_argument("--month", default=last_month, help="YYYY-MM, default: last month")
+    parser.add_argument("--to", help="YYYY-MM, last month of a longer period (default: --month)")
+    parser.add_argument("--label", help='post name, like "Summer 2026" (default: the month or range)')
     parser.add_argument("--out-dir", type=Path, help="weblog content/posts; stdout if omitted")
     parser.add_argument("--force", action="store_true", help="overwrite an existing draft")
     args = parser.parse_args()
 
     try:
-        month_start, month_end = month_bounds(args.month)
+        month_start, _ = month_bounds(args.month)
+        last_start, month_end = month_bounds(args.to or args.month)
     except ValueError:
-        parser.error("--month must be YYYY-MM")
-    args.month = month_start.strftime("%Y-%m")
+        parser.error("--month and --to must be YYYY-MM")
+    if last_start < month_start:
+        parser.error("--to must not be before --month")
     if month_start > today:
-        parser.error(f"{args.month} has not started yet")
+        parser.error(f"{month_start:%Y-%m} has not started yet")
+    months = month_range(month_start.strftime("%Y-%m"), last_start.strftime("%Y-%m"))
+    label = args.label or range_text(months)
     if args.out_dir:
         args.out_dir = args.out_dir.resolve()
 
@@ -454,24 +505,22 @@ def main():
         _, deltas = registry.build()
     mark_repeated_versions(deltas)
 
-    summary = summarize(deltas, args.month)
-    previous = summarize(deltas, previous_month(args.month))
+    summary = summarize(deltas, months)
+    previous = summarize(deltas, comparison_months(months))
     metadata = json.loads((REPO_ROOT / "data/iam-metadata.json").read_text())
     service_names = {k.lower(): v for k, v in metadata.get("serviceNames", {}).items()}
 
     post_date = month_end.astimezone(AUTHOR_TZ).replace(hour=7, minute=37, second=0, microsecond=0)
     as_of = today.strftime("%Y-%m-%dT%H:%MZ")
     if today < month_end:
-        as_of += f" (month to date: {args.month} is not over)"
-    text = render(summary, previous, service_names, current_literal_actions(), as_of, post_date)
+        as_of += f" (to date: {range_text(months)} is not over)"
+    text = render(summary, previous, label, service_names, current_literal_actions(), as_of, post_date)
 
     if not args.out_dir:
         sys.stdout.write(text)
         return 0
-    month_name = calendar.month_name[int(args.month[5:])].lower()
-    target = args.out_dir / (
-        f"{post_date:%Y-%m-%d}-aws-managed-policy-changes-{month_name}-{args.month[:4]}.md"
-    )
+    slug = re.sub(r"[^a-z0-9]+", "-", label.lower()).strip("-")
+    target = args.out_dir / f"{post_date:%Y-%m-%d}-aws-managed-policy-changes-{slug}.md"
     if target.exists() and not args.force:
         print(f"{target} exists; pass --force to overwrite it (and your edits).", file=sys.stderr)
         return 1

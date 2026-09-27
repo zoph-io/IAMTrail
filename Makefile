@@ -41,6 +41,7 @@ help:
 	@echo ""
 	@echo "Content:"
 	@echo "	monthly-recap - draft the zoph.me monthly post (MONTH=YYYY-MM, default last month; OUT=../weblog/content/posts, default stdout; FORCE=1 to overwrite)"
+	@echo "	               for a season add TO=YYYY-MM LABEL=\"Summer 2026\" (compared with the same months a year earlier)"
 	@echo ""
 	@echo "Utilities:"
 	@echo "	clean - clean all build folders"
@@ -210,7 +211,7 @@ iam-metadata:
 ################ Content ##########################
 # Writes a draft (draft: true) for Victor to finish by hand. Never publishes.
 monthly-recap:
-	@python3 automation/scripts/monthly_recap.py $(if $(MONTH),--month $(MONTH)) $(if $(OUT),--out-dir $(OUT)) $(if $(FORCE),--force)
+	@python3 automation/scripts/monthly_recap.py $(if $(MONTH),--month $(MONTH)) $(if $(TO),--to $(TO)) $(if $(LABEL),--label "$(LABEL)") $(if $(OUT),--out-dir $(OUT)) $(if $(FORCE),--force)
 ####################################################
 
 longest:
