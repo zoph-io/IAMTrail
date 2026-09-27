@@ -5,6 +5,8 @@ import { Rss } from "lucide-react";
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 import { iamActionToSlug } from "@/lib/actionSlug";
+import { matchWildcardGrants } from "@/lib/iamActionPattern";
+import type { WildcardGrants } from "@/lib/iamActionPattern";
 
 interface Policy {
   name: string;
@@ -20,7 +22,10 @@ type ActionEntry = {
   notActionPolicies?: string[];
 };
 
-type ActionIndex = { actions: Record<string, ActionEntry> };
+type ActionIndex = {
+  actions: Record<string, ActionEntry>;
+  wildcardGrants?: WildcardGrants;
+};
 
 /**
  * A query naming a service is asking about permissions, not about file names.
@@ -107,15 +112,21 @@ function PoliciesContent() {
 
     const matchedActions: string[] = [];
     const policyNames = new Set<string>();
+    const literalNames = new Set<string>();
     for (const [action, entry] of Object.entries(actionIndex.actions)) {
       if (!action.toLowerCase().includes(q)) continue;
       matchedActions.push(action);
-      for (const name of entry.actionAllowPolicies || []) policyNames.add(name);
-      for (const name of entry.actionDenyPolicies || []) policyNames.add(name);
-      for (const name of entry.notActionPolicies || []) policyNames.add(name);
+      for (const name of entry.actionAllowPolicies || []) literalNames.add(name);
+      for (const name of entry.actionDenyPolicies || []) literalNames.add(name);
+      for (const name of entry.notActionPolicies || []) literalNames.add(name);
+      for (const { policies } of matchWildcardGrants(actionIndex.wildcardGrants, action)) {
+        for (const name of policies) policyNames.add(name);
+      }
     }
+    literalNames.forEach((name) => policyNames.add(name));
+    const viaWildcardOnly = policyNames.size - literalNames.size;
     matchedActions.sort();
-    return { matchedActions, policyNames };
+    return { matchedActions, policyNames, viaWildcardOnly };
   }, [actionIndex, searchTerm, isActionQuery]);
 
   const filteredAndSortedPolicies = useMemo(() => {
@@ -262,7 +273,11 @@ function PoliciesContent() {
               {actionMatch.matchedActions.length === 1 ? "action" : "actions"}
             </span>{" "}
             in {actionMatch.policyNames.size.toLocaleString()}{" "}
-            {actionMatch.policyNames.size === 1 ? "policy" : "policies"}:{" "}
+            {actionMatch.policyNames.size === 1 ? "policy" : "policies"}
+            {actionMatch.viaWildcardOnly > 0
+              ? ` (${actionMatch.viaWildcardOnly.toLocaleString()} only through a wildcard)`
+              : ""}
+            :{" "}
             {actionMatch.matchedActions
               .slice(0, MAX_LISTED_ACTIONS)
               .map((action, i) => (
@@ -286,9 +301,9 @@ function PoliciesContent() {
 
         {actionMatch && actionMatch.matchedActions.length === 0 ? (
           <div className="mt-3 rounded border border-zinc-200 dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-800/50 px-3 py-2 text-xs text-zinc-600 dark:text-zinc-400">
-            No literal IAM action matches this query. Wildcards such as{" "}
-            <code className="font-mono">s3:*</code> are not indexed, since they
-            name no concrete action.
+            No IAM action named in any managed policy matches this query. A
+            pattern such as <code className="font-mono">s3:*</code> is not an
+            action itself, so search for an action it covers instead.
           </div>
         ) : null}
       </div>

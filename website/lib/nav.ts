@@ -7,6 +7,7 @@ import {
   Globe2,
   Info,
   Layers,
+  LineChart,
   Mail,
   Radar,
   Rss,
@@ -100,6 +101,12 @@ export const MENU_GROUPS: NavGroup[] = [
         description: "When each AWS service first appeared in IAM",
         icon: BarChart3,
       },
+      {
+        href: "/stats",
+        label: "Stats",
+        description: "Change velocity, seasonality and rankings",
+        icon: LineChart,
+      },
     ],
   },
   {
@@ -188,6 +195,8 @@ export function navItem(href: string): NavItem | undefined {
 // Every page that would otherwise be a dead end names the peers a reader most
 // likely wants next, so no destination depends on the nav alone.
 export const RELATED_LINKS: Record<string, string[]> = {
+  "/": ["/stats", "/endpoints", "/findings"],
+  "/stats": ["/most-active", "/largest-policies", "/service-growth"],
   "/accounts": ["/findings", "/policies", "/subscribe"],
   "/service-growth": ["/discoveries", "/changes", "/feeds"],
   "/feeds": ["/subscribe", "/api", "/discoveries"],

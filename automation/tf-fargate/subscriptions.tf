@@ -532,6 +532,11 @@ data "archive_file" "subscription_api" {
     content  = file("${path.module}/../lambdas/shared/discord_notifier.py")
     filename = "discord_notifier.py"
   }
+  # Validates a Slack webhook and posts the test message before it is saved.
+  source {
+    content  = file("${path.module}/../lambdas/shared/slack_publisher.py")
+    filename = "slack_publisher.py"
+  }
 }
 
 resource "aws_lambda_function" "subscription_api" {
@@ -632,6 +637,10 @@ data "archive_file" "digest_sender" {
     content  = file("${path.module}/../lambdas/shared/telegram_publisher.py")
     filename = "telegram_publisher.py"
   }
+  source {
+    content  = file("${path.module}/../lambdas/shared/slack_publisher.py")
+    filename = "slack_publisher.py"
+  }
   # Access levels and friendly service names, so the digest can name a service
   # and flag permissions management without reaching for the 3.5 MB site dataset.
   source {
@@ -706,6 +715,10 @@ data "archive_file" "instant_notifier" {
   source {
     content  = file("${path.module}/../lambdas/shared/iam_metadata.py")
     filename = "iam_metadata.py"
+  }
+  source {
+    content  = file("${path.module}/../lambdas/shared/slack_publisher.py")
+    filename = "slack_publisher.py"
   }
   # Access levels and friendly service names, so a post can say "permissions
   # management" and name the service instead of showing a bare prefix.
@@ -1118,6 +1131,12 @@ resource "aws_iam_role_policy" "digest_sender" {
         ]
       },
       {
+        # Detach a Slack webhook that Slack reports as permanently gone.
+        Effect   = "Allow"
+        Action   = ["dynamodb:UpdateItem"]
+        Resource = [aws_dynamodb_table.subscriptions.arn]
+      },
+      {
         # First-seen lookups for the discovery badges.
         Effect   = "Allow"
         Action   = ["dynamodb:BatchGetItem", "dynamodb:GetItem", "dynamodb:PutItem"]
@@ -1173,8 +1192,9 @@ resource "aws_iam_role_policy" "instant_notifier" {
     Version = "2012-10-17"
     Statement = [
       {
+        # UpdateItem detaches a Slack webhook that Slack reports as permanently gone.
         Effect   = "Allow"
-        Action   = ["dynamodb:Scan"]
+        Action   = ["dynamodb:Scan", "dynamodb:UpdateItem"]
         Resource = [aws_dynamodb_table.subscriptions.arn]
       },
       {

@@ -7,6 +7,7 @@ from boto3.dynamodb.conditions import Key
 import discord_notifier as discord
 import iam_metadata
 import policy_diff
+import slack_publisher
 import telegram_publisher
 
 dynamodb = boto3.resource("dynamodb")
@@ -242,6 +243,38 @@ def build_email_html(subscriber, policy_changes, endpoint_changes, guardduty_cha
     )
 
 
+def build_slack_text(policy_changes, endpoint_changes, guardduty_changes):
+    """The digest for a subscriber's Slack channel, same content as the email."""
+    return slack_publisher.render_message(
+        title="IAMTrail Digest",
+        summary=", ".join(
+            _summary_parts(policy_changes, endpoint_changes, guardduty_changes)
+        ),
+        sections=[
+            (
+                "IAM policy changes",
+                slack_publisher.render_policy_lines(policy_changes, SITE_URL),
+            ),
+            (
+                "AWS endpoint changes",
+                slack_publisher.render_topic_lines(
+                    endpoint_changes,
+                    lambda c: c.get("description") or c.get("identifier", ""),
+                ),
+            ),
+            (
+                "GuardDuty announcements",
+                slack_publisher.render_topic_lines(
+                    guardduty_changes,
+                    lambda c: c.get("short_description")
+                    or c.get("description", "")[:200],
+                ),
+            ),
+        ],
+        site_url=SITE_URL,
+    )
+
+
 def build_subject(policy_changes, endpoint_changes, guardduty_changes):
     """Build a concise email subject reflecting all included topics."""
     parts = _summary_parts(
@@ -410,6 +443,8 @@ def handler(event, context):
 
         sent_count = 0
         fail_count = 0
+        slack_sent = 0
+        slack_failed = 0
         for subscriber in subscribers:
             frequency = subscriber.get("frequency", "daily")
             topics = set(subscriber.get("topics", ["iam_policies"]))
@@ -470,10 +505,25 @@ def handler(event, context):
                     fields=[("Error", str(e)[:200], False)],
                 )
 
-        print(f"Sent {sent_count} digest emails")
+            # Separate from the email, so one failing never costs the other.
+            posted = slack_publisher.deliver(
+                subscriber,
+                lambda: build_slack_text(pc, ec, gc),
+                subs_table,
+                ses,
+                SENDER_EMAIL,
+                SITE_URL,
+            )
+            if posted is True:
+                slack_sent += 1
+            elif posted is False:
+                slack_failed += 1
+
+        print(f"Sent {sent_count} digest emails, {slack_sent} Slack posts")
 
         fields = [
             ("Emails Sent", str(sent_count), True),
+            ("Slack Posts", str(slack_sent), True),
             ("Daily Policies", str(len(daily_policy)), True),
             ("Daily Endpoints", str(len(daily_endpoints)), True),
             ("Daily GuardDuty", str(len(daily_guardduty)), True),
@@ -484,11 +534,15 @@ def handler(event, context):
             fields.append(("Weekly GuardDuty", str(len(weekly_guardduty)), True))
         if fail_count:
             fields.append(("Failures", str(fail_count), True))
+        if slack_failed:
+            fields.append(("Slack Failures", str(slack_failed), True))
 
         discord.send(
             "Digest Complete",
             f"Sent {sent_count} digest emails",
-            discord.COLOR_SUCCESS if not fail_count else discord.COLOR_WARNING,
+            discord.COLOR_SUCCESS
+            if not (fail_count or slack_failed)
+            else discord.COLOR_WARNING,
             fields=fields,
         )
 

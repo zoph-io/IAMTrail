@@ -31,6 +31,7 @@ const STUB = {
   topics: { iam_policies: 0, endpoints: 0, guardduty: 0 },
   allPoliciesSubscribers: 0,
   narrowSubscribers: 0,
+  slackSubscribers: 0,
   topNarrowPolicies: [],
   signupsByMonth: [],
 };
@@ -100,6 +101,7 @@ async function buildFromAws() {
   const topicCounts = { iam_policies: 0, endpoints: 0, guardduty: 0 };
   let allPolicies = 0;
   let narrow = 0;
+  let slack = 0;
   /** @type {Map<string, number>} */
   const policyCounts = new Map();
   /** @type {Map<string, number>} */
@@ -110,6 +112,7 @@ async function buildFromAws() {
     if (freq === "daily") frequency.daily += 1;
     else if (freq === "weekly") frequency.weekly += 1;
     else if (freq === "instant") frequency.instant += 1;
+    if (s.slack_webhook) slack += 1;
 
     const topics = Array.isArray(s.topics) && s.topics.length
       ? s.topics
@@ -183,6 +186,7 @@ async function buildFromAws() {
     topics: topicCounts,
     allPoliciesSubscribers: allPolicies,
     narrowSubscribers: narrow,
+    slackSubscribers: slack,
     topNarrowPolicies,
     signupsByMonth,
   };

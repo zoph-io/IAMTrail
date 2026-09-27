@@ -57,6 +57,32 @@ export function isDiscovery(change: PolicyChange): boolean {
   );
 }
 
+/**
+ * Worth a skimming reader's attention: something new to AWS, a permissions
+ * management grant, or a policy appearing or disappearing. The rest are routine
+ * version bumps, most of them Resource or Condition edits.
+ */
+export function changeMatters(change: PolicyChange): boolean {
+  return (
+    isDiscovery(change) ||
+    change.permissionsManagement.length > 0 ||
+    change.status !== "modified"
+  );
+}
+
+/** Sort key: a new AWS service first, then new actions, permissions, the rest. */
+export function changeRank(change: PolicyChange): number {
+  if (change.newServicePrefixes.length > 0) return 0;
+  if (change.newActions.length > 0) return 1;
+  if (change.permissionsManagement.length > 0) return 2;
+  return 3;
+}
+
+/** "1 change" / "2 changes", mirroring plural() in scripts/change-wording.js. */
+export function plural(count: number, singular: string, pluralForm?: string): string {
+  return `${count.toLocaleString()} ${count === 1 ? singular : pluralForm ?? `${singular}s`}`;
+}
+
 export function relativeDay(dateString: string): string {
   const then = new Date(dateString).getTime();
   const days = Math.floor((Date.now() - then) / 86_400_000);

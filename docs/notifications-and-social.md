@@ -11,6 +11,16 @@ IAM policies (instant-notifier Lambda), GuardDuty (Lambda + optional GitHub sync
 
 The public policy-change embed is built by **instant-notifier**, not change-recorder, for the same reason as Bluesky and Telegram: that Lambda is where diffs are resolved and never-before-seen actions are classified. change-recorder only ever receives a list of policy names, which cannot produce more than a "something changed" post.
 
+## Slack (per subscriber)
+
+Subscribers connect their own Slack incoming webhook from `/manage`. It is stored on the subscription item as `slack_webhook` and receives the same digest and instant alerts as their email, rendered by `automation/lambdas/shared/slack_publisher.py` with the canonical wording helpers from `policy_diff.py`.
+
+- **Only confirmed subscribers can attach one**, because `/manage` needs the manage token. The subscribe form takes no webhook, so nobody can point IAMTrail at a workspace that is not theirs.
+- **Only `https://hooks.slack.com/services/...` is accepted**, and the API posts a test message before saving. Each attempt counts against the signup rate limit.
+- **The webhook never leaves the table.** `GET /manage` returns a masked hint, and Slack posts carry no manage link, since anyone in the channel could otherwise change or cancel the subscription.
+- **A webhook Slack reports as permanently gone** (`no_service`, `channel_is_archived`, `invalid_token` and similar) is detached by digest-sender or instant-notifier, the subscriber is emailed, and ops Discord gets a `COLOR_ERROR` alert. `/manage` then shows why it was disconnected. Any other failure alerts ops without detaching.
+- `/usage` counts connected channels as `slackSubscribers`.
+
 ## X / Twitter
 
 Removed. IAMTrail no longer posts to X (the X handles were deleted). The `x_poster.py` script and the `iamtrail/social/*` Secrets Manager secrets have been deleted. Bluesky is the only social channel.

@@ -212,48 +212,86 @@ function fetchUrl(url) {
   });
 }
 
-/** Collect Allow actions from policy JSON (Deny / NotAction-only statements ignored for this signal). */
+/**
+ * An IAM action pattern as a regex, matched the way IAM does: case-insensitive,
+ * `*` for any run of characters and `?` for one, the colon included. Mirrored in
+ * website/lib/iamActionPattern.ts for the pages that match in the browser.
+ */
+function iamPatternRegex(pattern) {
+  let body = "";
+  for (const ch of pattern) {
+    if (ch === "*") body += ".*";
+    else if (ch === "?") body += ".";
+    else body += ch.replace(/[.+^${}()|[\]\\]/g, "\\$&");
+  }
+  return new RegExp(`^${body}$`, "i");
+}
+
+/**
+ * The bucket a wildcard pattern is filed under: its lowercased service prefix, or
+ * "*" when the prefix itself is wildcarded (`*`, `*:Get*`), since those can match
+ * an action of any service.
+ */
+function wildcardBucket(pattern) {
+  const colon = pattern.indexOf(":");
+  const prefix = colon > 0 ? pattern.slice(0, colon) : pattern;
+  return /[*?]/.test(prefix) ? "*" : prefix.toLowerCase();
+}
+
+function toArray(value) {
+  return Array.isArray(value) ? value : [value];
+}
+
+/**
+ * Everything the Allow statements of a policy grant, as literals and patterns.
+ *
+ * Partial wildcards count. Only `*` and `svc:*` used to, so `iam:Put*` never
+ * matched `iam:PutRolePolicy` and the escalation-path overlap undercounted every
+ * policy written with prefixes, which is most of the large ones. An Allow with
+ * NotAction grants everything its list does not name, as PowerUserAccess does.
+ */
 function extractAllowActionInfo(policyData) {
   const literals = new Set();
-  const serviceWildcards = new Set();
-  let globalWildcard = false;
+  const patternsByBucket = new Map();
+  const notActionAllows = [];
 
   const statements = policyData.PolicyVersion?.Document?.Statement || [];
-  const stmtArray = Array.isArray(statements) ? statements : [statements];
-  for (const stmt of stmtArray) {
-    if (stmt.Effect === "Deny") continue;
-    if (!stmt.Action) continue;
-    const raw = stmt.Action;
-    const actionArray = Array.isArray(raw) ? raw : [raw];
-    for (const action of actionArray) {
-      if (typeof action !== "string") continue;
-      const trimmed = action.trim();
-      if (!trimmed) continue;
-      if (trimmed === "*" || trimmed === "*:*") {
-        globalWildcard = true;
-        continue;
-      }
-      if (trimmed.includes("*")) {
-        const m = /^([a-zA-Z0-9.-]+):\*$/.exec(trimmed);
-        if (m) {
-          serviceWildcards.add(m[1].toLowerCase());
+  for (const stmt of toArray(statements)) {
+    if (!stmt || stmt.Effect === "Deny") continue;
+    if (stmt.Action) {
+      for (const action of toArray(stmt.Action)) {
+        if (typeof action !== "string") continue;
+        const trimmed = action.trim();
+        if (!trimmed) continue;
+        if (!trimmed.includes("*")) {
+          literals.add(trimmed.toLowerCase());
+          continue;
         }
-        continue;
+        const bucket = wildcardBucket(trimmed);
+        if (!patternsByBucket.has(bucket)) patternsByBucket.set(bucket, []);
+        patternsByBucket.get(bucket).push(iamPatternRegex(trimmed));
       }
-      literals.add(trimmed);
+    } else if (stmt.NotAction) {
+      const except = toArray(stmt.NotAction)
+        .filter((a) => typeof a === "string" && a.trim())
+        .map((a) => iamPatternRegex(a.trim()));
+      notActionAllows.push(except);
     }
   }
-  return { literals, serviceWildcards, globalWildcard };
+  return { literals, patternsByBucket, notActionAllows };
 }
 
 function policyAllowsAction(info, permission) {
   if (!permission || typeof permission !== "string") return false;
-  if (info.globalWildcard) return true;
-  if (info.literals.has(permission)) return true;
-  const colon = permission.indexOf(":");
-  if (colon <= 0) return false;
-  const svc = permission.slice(0, colon).toLowerCase();
-  return info.serviceWildcards.has(svc);
+  if (info.literals.has(permission.toLowerCase())) return true;
+  const bucket = wildcardBucket(permission);
+  for (const key of [bucket, "*"]) {
+    const patterns = info.patternsByBucket.get(key);
+    if (patterns && patterns.some((re) => re.test(permission))) return true;
+  }
+  return info.notActionAllows.some(
+    (except) => !except.some((re) => re.test(permission))
+  );
 }
 
 function pathRequiredPermissionsSatisfied(allowInfo, requiredEntries) {
@@ -482,6 +520,19 @@ async function generatePolicyData() {
     }
   }
 
+  // Allow wildcards, filed by service prefix and then by the pattern itself, so a
+  // pattern shared by forty policies is stored once rather than on every action
+  // it matches. Listing ReadOnlyAccess under each of its thousands of actions
+  // would have doubled a 4 MB index.
+  const wildcardGrants = {};
+  function noteWildcardGrant(policyName, pattern) {
+    const trimmed = pattern.trim();
+    const bucket = wildcardBucket(trimmed);
+    if (!wildcardGrants[bucket]) wildcardGrants[bucket] = {};
+    if (!wildcardGrants[bucket][trimmed]) wildcardGrants[bucket][trimmed] = new Set();
+    wildcardGrants[bucket][trimmed].add(policyName);
+  }
+
   // Read deprecated policies early so per-policy detail can reference it
   const deprecatedPath = path.join(REPO_ROOT, "DEPRECATED.json");
   let deprecated = {};
@@ -568,6 +619,7 @@ async function generatePolicyData() {
               }
               if (action.includes("*")) {
                 noteWildcardPolicy(policyName, action);
+                if (effect === "Allow") noteWildcardGrant(policyName, action);
                 continue;
               }
               uniqueLiteralActions.add(action);
@@ -952,6 +1004,30 @@ async function generatePolicyData() {
       ...(sighting || {}),
     };
   }
+
+  const wildcardGrantsOut = {};
+  const compiledGrants = {};
+  for (const bucket of Object.keys(wildcardGrants).sort()) {
+    wildcardGrantsOut[bucket] = {};
+    compiledGrants[bucket] = [];
+    for (const pattern of Object.keys(wildcardGrants[bucket]).sort()) {
+      const names = [...wildcardGrants[bucket][pattern]].sort();
+      wildcardGrantsOut[bucket][pattern] = names;
+      compiledGrants[bucket].push({ re: iamPatternRegex(pattern), names });
+    }
+  }
+  // Policies that allow an action only through a wildcard, for the sitemap: an
+  // action page lists them, so it changes whenever one of them does.
+  function wildcardPoliciesFor(action) {
+    const out = new Set();
+    for (const key of [wildcardBucket(action), "*"]) {
+      for (const { re, names } of compiledGrants[key] || []) {
+        if (re.test(action)) names.forEach((n) => out.add(n));
+      }
+    }
+    return out;
+  }
+
   const actionIndexPayload = {
     schemaVersion: 1,
     generatedAt: GENERATED_AT,
@@ -962,6 +1038,11 @@ async function generatePolicyData() {
     },
     effectiveGrantPreview: null,
     actions: actionsOut,
+    // Allow-statement wildcards, keyed by lowercased service prefix ("*" when the
+    // prefix is itself wildcarded), then pattern, then the policies using it.
+    // Match an action against its prefix bucket and the "*" bucket to find every
+    // policy that grants it without naming it.
+    wildcardGrants: wildcardGrantsOut,
     // Per service prefix rather than repeated on every action, since a prefix
     // arrives only once and thousands of actions can share it.
     services: registry.services,
@@ -1357,6 +1438,7 @@ async function generatePolicyData() {
     { loc: "/accounts/", priority: "0.7", changefreq: "weekly", lastmod: archiveLastmod },
     { loc: "/largest-policies/", priority: "0.7", changefreq: "weekly", lastmod: archiveLastmod },
     { loc: "/service-growth/", priority: "0.7", changefreq: "weekly", lastmod: archiveLastmod },
+    { loc: "/stats/", priority: "0.7", changefreq: "weekly", lastmod: archiveLastmod },
     { loc: "/discoveries/", priority: "0.8", changefreq: "daily", lastmod: archiveLastmod },
     { loc: "/endpoints/", priority: "0.8", changefreq: "daily" },
     { loc: "/guardduty/", priority: "0.8", changefreq: "daily" },
@@ -1380,6 +1462,7 @@ async function generatePolicyData() {
         ...a.actionAllowPolicies,
         ...a.actionDenyPolicies,
         ...a.notActionPolicies,
+        ...wildcardPoliciesFor(action),
       ];
       return {
         loc: `/actions/${iamActionToSlug(action)}/`,
