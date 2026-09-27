@@ -15,6 +15,8 @@ import {
 } from "@/lib/loadActionDefinitions";
 import type { ActionDefinitionRow } from "@/lib/loadActionDefinitions";
 import { iamActionToSlug, iamSlugToAction } from "@/lib/actionSlug";
+import { plural } from "@/lib/changes";
+import { breadcrumbJsonLd, pageMetadata } from "@/lib/seo";
 
 const LIST_CAP = 30;
 
@@ -236,6 +238,12 @@ export async function generateStaticParams() {
   }));
 }
 
+/** Policies naming the action only under Deny or NotAction. */
+function deniedOrExcludedBy(detail: ActionDetail | null | undefined): number {
+  if (!detail) return 0;
+  return new Set([...detail.actionDenyPolicies, ...detail.notActionPolicies]).size;
+}
+
 export async function generateMetadata(props: {
   params: Promise<{ action: string }>;
 }): Promise<Metadata> {
@@ -246,28 +254,36 @@ export async function generateMetadata(props: {
   } catch {
     action = params.action;
   }
-  const slug = params.action;
   const def = getActionDefinition(action);
-  let description = `AWS managed IAM policies that grant or reference the ${action} action, by name or through a wildcard. Unofficial data from IAMTrail.`;
-  if (def?.description?.trim()) {
-    const s = def.description.trim();
-    const short = s.length > 118 ? `${s.slice(0, 115)}...` : s;
-    description = `${short} Appearances in managed policies on IAMTrail (unofficial).`;
+  const detail = getActionDetail(action);
+  const literal = new Set(detail?.actionAllowPolicies ?? []);
+  const viaWildcard = new Set<string>();
+  for (const { policies } of getWildcardGrants(action)) {
+    for (const name of policies) if (!literal.has(name)) viaWildcard.add(name);
   }
-  return {
-    title: `${action} - IAM actions in AWS managed policies`,
-    description,
-    alternates: {
-      canonical: `https://iamtrail.com/actions/${slug}`,
-    },
-    openGraph: {
-      siteName: "IAMTrail",
-      title: `${action} | IAMTrail`,
-      description,
-      url: `https://iamtrail.com/actions/${slug}`,
-      images: ["/social.png"],
-    },
-  };
+
+  // The counts lead because they make each of the ~15,000 descriptions unique;
+  // the reference sentence alone is shared by thousands of List* and Get* actions.
+  const policies = (n: number) => plural(n, "AWS managed policy", "AWS managed policies");
+  const denied = detail?.actionDenyPolicies.length ?? 0;
+  let lead: string;
+  if (literal.size > 0) {
+    const extras: string[] = [];
+    if (viaWildcard.size > 0) extras.push(`${viaWildcard.size.toLocaleString("en-US")} more via wildcard`);
+    if (denied > 0) extras.push(`denied by ${denied.toLocaleString("en-US")}`);
+    lead = `${action} is allowed by ${policies(literal.size)}${extras.length ? ` (${extras.join(", ")})` : ""}`;
+  } else if (viaWildcard.size > 0) {
+    lead = `${action} is allowed by ${policies(viaWildcard.size)}, all through a wildcard`;
+  } else {
+    lead = `${action} is named in ${policies(deniedOrExcludedBy(detail))}, none allowing it by name or wildcard`;
+  }
+  const reference = def?.description?.trim();
+
+  return pageMetadata({
+    title: `${action} - AWS Managed Policies That Allow It`,
+    description: reference ? `${lead}. ${reference.replace(/\.?$/, ".")}` : `${lead}.`,
+    path: `/actions/${params.action}`,
+  });
 }
 
 function PolicyLinks({ names }: { names: string[] }) {
@@ -363,6 +379,18 @@ export default async function ActionDetailPage(props: {
 
   return (
     <div className="space-y-6">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(
+            breadcrumbJsonLd([
+              { name: "Home", path: "/" },
+              { name: "Policies", path: "/policies" },
+              { name: action, path: `/actions/${iamActionToSlug(action)}` },
+            ]),
+          ),
+        }}
+      />
       <nav className="flex items-center space-x-2 text-xs font-mono text-zinc-500 dark:text-zinc-400">
         <Link
           href="/"

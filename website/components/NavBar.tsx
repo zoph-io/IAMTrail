@@ -107,9 +107,9 @@ export default function NavBar() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center gap-2 sm:gap-4 h-14">
           <Link href="/" className="flex-shrink-0" aria-label="IAMTrail home">
-            <h1 className="text-lg font-bold font-mono text-zinc-900 dark:text-white tracking-tight">
+            <span className="block text-lg font-bold font-mono text-zinc-900 dark:text-white tracking-tight">
               IAMTrail<span className="text-red-600">_</span>
-            </h1>
+            </span>
           </Link>
 
           <div className="hidden md:flex items-center gap-1">

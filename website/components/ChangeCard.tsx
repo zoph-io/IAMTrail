@@ -4,7 +4,8 @@ import { useState } from "react";
 import Link from "next/link";
 import { ChevronDown, ChevronRight, Minus, Plus, Sparkles } from "lucide-react";
 import { iamActionToSlug } from "@/lib/actionSlug";
-import { isDiscovery, relativeDay, type PolicyChange } from "@/lib/changes";
+import { isDiscovery, type PolicyChange } from "@/lib/changes";
+import RelativeDay from "@/components/RelativeDay";
 
 const STATUS_BADGE: Record<string, { label: string; className: string }> = {
   added: {
@@ -125,7 +126,7 @@ export default function ChangeCard({
         </div>
         <div className="flex-shrink-0 text-right">
           <p className="text-xs font-mono text-zinc-400 dark:text-zinc-500">
-            {relativeDay(change.date)}
+            <RelativeDay date={change.date} />
           </p>
           <a
             href={change.commitUrl}

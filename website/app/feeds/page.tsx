@@ -1,12 +1,14 @@
 import { Rss, Shield, Globe, FileText, Layers, Sparkles } from "lucide-react";
 import type { Metadata } from "next";
+import { pageMetadata } from "@/lib/seo";
 import RelatedPages from "@/components/RelatedPages";
 
-export const metadata: Metadata = {
-  title: "RSS Feeds",
+export const metadata: Metadata = pageMetadata({
+  title: "RSS Feeds for AWS IAM Policy Changes",
   description:
-    "Subscribe to IAMTrail RSS feeds for IAM policy changes, endpoint updates, and GuardDuty announcements.",
-};
+    "RSS feeds for AWS Managed IAM Policy changes, new AWS service discoveries, endpoint updates and GuardDuty announcements. Free, no sign-up.",
+  path: "/feeds",
+});
 
 const SITE_URL = "https://iamtrail.com";
 

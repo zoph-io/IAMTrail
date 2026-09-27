@@ -80,7 +80,8 @@ export function changeRank(change: PolicyChange): number {
 
 /** "1 change" / "2 changes", mirroring plural() in scripts/change-wording.js. */
 export function plural(count: number, singular: string, pluralForm?: string): string {
-  return `${count.toLocaleString()} ${count === 1 ? singular : pluralForm ?? `${singular}s`}`;
+  // A fixed locale, or a page built as "1,965" hydrates as "1 965" in France.
+  return `${count.toLocaleString("en-US")} ${count === 1 ? singular : pluralForm ?? `${singular}s`}`;
 }
 
 export function relativeDay(dateString: string): string {

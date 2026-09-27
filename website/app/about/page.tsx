@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { pageMetadata } from "@/lib/seo";
 import Link from "next/link";
 import {
   BookOpen,
@@ -25,22 +26,12 @@ import {
 } from "@/lib/galaxy";
 import { TELEGRAM_URL } from "@/lib/social";
 
-export const metadata: Metadata = {
-  title: "About IAMTrail - AWS IAM Policy, Endpoint & GuardDuty Change Archive",
+export const metadata: Metadata = pageMetadata({
+  absoluteTitle: "About IAMTrail - The Unofficial AWS Managed Policy Archive",
   description:
-    "IAMTrail is an unofficial archive tracking AWS Managed IAM Policy changes, endpoint updates, and GuardDuty announcements since 2019. Full version history, diffs, validation, and RSS feeds.",
-  alternates: {
-    canonical: "https://iamtrail.com/about",
-  },
-  openGraph: {
-    siteName: "IAMTrail",
-    title: "About IAMTrail | AWS Change Archive Since 2019",
-    description:
-      "An unofficial archive tracking AWS IAM policy changes, endpoint updates, and GuardDuty announcements - with full version history, diffs, and RSS feeds.",
-    url: "https://iamtrail.com/about",
-    images: ["/social.png"],
-  },
-};
+    "IAMTrail is an unofficial archive of AWS Managed IAM Policy changes, endpoint updates and GuardDuty announcements since 2019, with full version history.",
+  path: "/about",
+});
 
 const personSchema = {
   "@context": "https://schema.org",

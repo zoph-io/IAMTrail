@@ -1,14 +1,15 @@
 import Link from "next/link";
 import type { Metadata } from "next";
+import { pageMetadata } from "@/lib/seo";
 import { Braces, Code2, Terminal } from "lucide-react";
 import RelatedPages from "@/components/RelatedPages";
 
-export const metadata: Metadata = {
-  title: "API",
+export const metadata: Metadata = pageMetadata({
+  title: "Free JSON API for AWS Managed IAM Policy Changes",
   description:
     "A free, versioned JSON API over the IAMTrail archive of AWS Managed IAM Policy changes. No key, no sign-up, served as static files from CloudFront.",
-  alternates: { canonical: "https://iamtrail.com/api" },
-};
+  path: "/api",
+});
 
 const BASE = "https://iamtrail.com/api/v1";
 

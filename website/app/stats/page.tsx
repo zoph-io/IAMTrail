@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { pageMetadata } from "@/lib/seo";
 import Link from "next/link";
 import {
   FileText,
@@ -18,14 +19,12 @@ import VersionDistributionChart from "@/components/VersionDistributionChart";
 import VelocityChart from "@/components/VelocityChart";
 import RelatedPages from "@/components/RelatedPages";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
   title: "AWS Managed IAM Policies by the Numbers",
   description:
-    "Charts and rankings across every AWS Managed IAM Policy since 2019: change velocity, seasonality, the re:Invent pulse, version distribution, and the largest and most active policies.",
-  alternates: {
-    canonical: "https://iamtrail.com/stats",
-  },
-};
+    "Charts across every AWS Managed IAM Policy since 2019: change velocity, seasonality, the re:Invent pulse, version distribution and the most active policies.",
+  path: "/stats",
+});
 
 async function getSummaryData() {
   try {

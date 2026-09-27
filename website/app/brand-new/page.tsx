@@ -1,15 +1,14 @@
 import Link from "next/link";
 import type { Metadata } from "next";
+import { pageMetadata } from "@/lib/seo";
 import RelatedPages from "@/components/RelatedPages";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
   title: "Brand New (v1) AWS Managed IAM Policies",
   description:
-    "Recently created AWS Managed IAM Policies still at version 1. Spot upcoming AWS services and features early.",
-  alternates: {
-    canonical: "https://iamtrail.com/brand-new",
-  },
-};
+    "Recently created AWS Managed IAM Policies still at version 1. Spot upcoming AWS services and features before they are announced.",
+  path: "/brand-new",
+});
 
 async function getSummaryData() {
   const fs = require("fs");

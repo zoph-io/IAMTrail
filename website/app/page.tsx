@@ -4,11 +4,20 @@ import {
   changeMatters,
   changeRank,
   plural,
-  relativeDay,
   type ChangesFile,
 } from "@/lib/changes";
+import RelativeDay from "@/components/RelativeDay";
+import type { Metadata } from "next";
 import Link from "next/link";
 import { ChevronRight, History, Radar } from "lucide-react";
+import { pageMetadata } from "@/lib/seo";
+
+export const metadata: Metadata = pageMetadata({
+  absoluteTitle: "IAMTrail - AWS Managed IAM Policy Changes Archive (Unofficial)",
+  description:
+    "Every AWS Managed IAM Policy change since 2019, with full version history and diffs, never-before-seen actions and new AWS services, checked every hour.",
+  path: "/",
+});
 
 const WEEK_MS = 7 * 86_400_000;
 const MAX_WEEK_CARDS = 8;
@@ -237,7 +246,7 @@ export default async function Home() {
                     ) : null}
                   </p>
                   <p className="text-xs text-zinc-500 dark:text-zinc-400 font-mono mt-0.5 truncate">
-                    {relativeDay(service.firstSeen)} / {plural(service.actionCount, "action")} / in{" "}
+                    <RelativeDay date={service.firstSeen} /> / {plural(service.actionCount, "action")} / in{" "}
                     {service.firstPolicy}
                   </p>
                 </div>

@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { pageMetadata } from "@/lib/seo";
 import Link from "next/link";
 import {
   ArrowRight,
@@ -47,19 +48,12 @@ interface UsageStats {
   signupsByMonth?: { month: string; count: number }[];
 }
 
-export const metadata: Metadata = {
-  title: "Notification usage - IAMTrail",
+export const metadata: Metadata = pageMetadata({
+  title: "Notification Usage Statistics",
   description:
-    "Aggregate, privacy-preserving usage statistics for IAMTrail email notification subscriptions. No personal data.",
-  alternates: { canonical: `${SITE}/usage` },
-  openGraph: {
-    siteName: "IAMTrail",
-    title: "Notification usage | IAMTrail",
-    description: "How subscribers use IAMTrail email notifications. Aggregate stats only.",
-    url: `${SITE}/usage`,
-    images: ["/social.png"],
-  },
-};
+    "Aggregate, privacy-preserving usage statistics for IAMTrail notifications: subscribers, frequencies, topics and channels. No personal data.",
+  path: "/usage",
+});
 
 const TOPIC_LABELS: Record<string, string> = {
   iam_policies: "IAM policies",

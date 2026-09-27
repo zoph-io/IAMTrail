@@ -107,7 +107,7 @@ export default function VelocityChart({
         </span>
         <span className="ml-auto">
           <strong className="text-zinc-700 dark:text-zinc-300">
-            {totalAll.toLocaleString()}
+            {totalAll.toLocaleString("en-US")}
           </strong>{" "}
           total commits tracked
         </span>

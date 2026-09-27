@@ -1,21 +1,12 @@
 import type { Metadata } from "next";
+import { pageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
-  title: "Security Findings - Access Analyzer & pathfinding.cloud",
+export const metadata: Metadata = pageMetadata({
+  title: "Security Findings: Access Analyzer and Escalation Paths",
   description:
-    "AWS IAM Access Analyzer validation plus action-level overlap with documented privilege escalation paths from pathfinding.cloud on AWS managed policies in IAMTrail.",
-  alternates: {
-    canonical: "https://iamtrail.com/findings",
-  },
-  openGraph: {
-    siteName: "IAMTrail",
-    title: "Security Findings | IAMTrail",
-    description:
-      "Access Analyzer results and pathfinding.cloud path overlaps on archived AWS managed IAM policies.",
-    url: "https://iamtrail.com/findings",
-    images: ["/social.png"],
-  },
-};
+    "IAM Access Analyzer validation findings and overlaps with documented privilege escalation paths from pathfinding.cloud, for every AWS managed IAM policy.",
+  path: "/findings",
+});
 
 export default function FindingsLayout({
   children,

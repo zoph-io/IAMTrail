@@ -49,3 +49,11 @@ body {
 ::-webkit-scrollbar-thumb:hover {
   background: #52525b;
 }
+
+/* IAM actions linked inside a policy document. A class rather than an inline
+   style, since the largest policies link thousands of them. */
+.iamtrail-action-link {
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  color: inherit;
+}

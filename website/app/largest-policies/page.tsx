@@ -1,15 +1,14 @@
 import Link from "next/link";
 import type { Metadata } from "next";
+import { pageMetadata } from "@/lib/seo";
 import RelatedPages from "@/components/RelatedPages";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
   title: "Largest AWS Managed IAM Policies by Action Count",
   description:
-    "AWS Managed IAM Policies ranked by number of IAM actions granted. Discover the broadest policies.",
-  alternates: {
-    canonical: "https://iamtrail.com/largest-policies",
-  },
-};
+    "AWS Managed IAM Policies ranked by the number of IAM actions they grant. Find the broadest policies before you attach one.",
+  path: "/largest-policies",
+});
 
 async function getSummaryData() {
   const fs = require("fs");

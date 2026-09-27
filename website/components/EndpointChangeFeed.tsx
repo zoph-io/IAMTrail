@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect } from "react";
 import { ExternalLink, Search, Filter, ChevronDown, ChevronUp } from "lucide-react";
 
 interface Change {
@@ -90,6 +90,7 @@ function ChangeTypeBadge({ type }: { type: string }) {
 function formatDate(iso: string) {
   const d = new Date(iso);
   return d.toLocaleDateString("en-US", {
+    timeZone: "UTC",
     year: "numeric",
     month: "short",
     day: "numeric",
@@ -117,6 +118,10 @@ export default function EndpointChangeFeed({
   changes: ChangeRecord[];
 }) {
   const [searchQuery, setSearchQuery] = useState("");
+  // "3d ago" depends on the visitor's clock, so it appears once mounted and
+  // the static HTML carries only the date.
+  const [mounted, setMounted] = useState(false);
+  useEffect(() => setMounted(true), []);
   const [typeFilter, setTypeFilter] = useState<string>("all");
   const [partitionFilter, setPartitionFilter] = useState<string>("all");
   const [showFilters, setShowFilters] = useState(false);
@@ -294,7 +299,7 @@ export default function EndpointChangeFeed({
                   {formatDate(record.detected_at)}
                 </span>
                 <span className="text-xs text-zinc-400 dark:text-zinc-500">
-                  {formatRelativeTime(record.detected_at)}
+                  {mounted ? formatRelativeTime(record.detected_at) : null}
                 </span>
               </div>
               {record.botocore_commit_url && (

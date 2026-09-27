@@ -204,17 +204,7 @@ function SubscribeContent() {
 
   return (
     <div className="space-y-6">
-      <div className="py-8 border-b border-zinc-100 dark:border-zinc-800">
-        <h1 className="text-2xl font-bold font-mono text-zinc-900 dark:text-white mb-2">
-          Subscribe to IAMTrail
-        </h1>
-        <p className="text-sm text-zinc-600 dark:text-zinc-400">
-          Get notified about AWS Managed IAM Policy changes, endpoint
-          availability updates, and GuardDuty announcements. Once you confirm,
-          your manage page can also post every notification to a Slack
-          channel.
-        </p>
-      </div>
+      <SubscribeHeader />
 
       <form onSubmit={handleSubmit} className="space-y-4">
         {/* Email */}
@@ -571,9 +561,27 @@ function ResendManageLink() {
   );
 }
 
+function SubscribeHeader() {
+  return (
+    <div className="py-8 border-b border-zinc-100 dark:border-zinc-800">
+      <h1 className="text-2xl font-bold font-mono text-zinc-900 dark:text-white mb-2">
+        Subscribe to IAMTrail
+      </h1>
+      <p className="text-sm text-zinc-600 dark:text-zinc-400">
+        Get notified about AWS Managed IAM Policy changes, endpoint
+        availability updates, and GuardDuty announcements. Once you confirm,
+        your manage page can also post every notification to a Slack
+        channel.
+      </p>
+    </div>
+  );
+}
+
+// The form reads ?policy= and ?status=, so the static HTML holds only this
+// fallback; the header keeps it from reaching crawlers as an empty page.
 export default function SubscribePage() {
   return (
-    <Suspense>
+    <Suspense fallback={<SubscribeHeader />}>
       <SubscribeContent />
     </Suspense>
   );

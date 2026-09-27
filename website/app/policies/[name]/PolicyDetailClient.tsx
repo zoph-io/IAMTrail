@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useCallback, useMemo } from "react";
 import type { CSSProperties } from "react";
 import Link from "next/link";
 import { AlertTriangle, Bell, Shield } from "lucide-react";
@@ -117,7 +117,7 @@ interface PathfindingOverlap {
   pathfindingUrl: string;
 }
 
-interface PolicyData {
+export interface PolicyData {
   name: string;
   createDate: string | null;
   versionId: string | null;
@@ -125,6 +125,8 @@ interface PolicyData {
   versionsCount: number;
   size: number;
   actionCount?: number;
+  servicePrefixes?: string[];
+  firstSeen?: string | null;
   history: PolicyVersion[];
   content: any;
   deprecation?: {
@@ -137,22 +139,85 @@ interface PolicyData {
   };
 }
 
+/**
+ * The policy JSON as plain text with each IAM action linked, for the static HTML.
+ * The highlighter's markup puts an inline style on every token, which made the
+ * largest policy pages 3 MB; this keeps the links crawlers follow at a fraction
+ * of that, and the highlighter replaces it once the page is mounted.
+ */
+function PlainPolicyJson({ json }: { json: string }) {
+  const parts: React.ReactNode[] = [];
+  const token = /"(?:[^"\\]|\\.)*"/g;
+  let last = 0;
+  let match: RegExpExecArray | null;
+  while ((match = token.exec(json))) {
+    const inner = match[0].slice(1, -1);
+    if (!isLiteralIamActionString(inner)) continue;
+    parts.push(json.slice(last, match.index + 1));
+    parts.push(
+      <a
+        key={match.index}
+        href={`/actions/${iamActionToSlug(inner)}/`}
+        className="iamtrail-action-link"
+      >
+        {inner}
+      </a>,
+    );
+    last = match.index + match[0].length - 1;
+  }
+  parts.push(json.slice(last));
+
+  const lines = json.split("\n").length;
+  return (
+    <pre
+      className="text-zinc-300"
+      style={{
+        margin: 0,
+        padding: "1em",
+        overflow: "auto",
+        fontSize: "0.8rem",
+        lineHeight: "1.5",
+        background: "#18181b",
+        display: "flex",
+      }}
+    >
+      <span
+        aria-hidden="true"
+        style={{
+          minWidth: "3.5em",
+          paddingRight: "1em",
+          color: "#52525b",
+          userSelect: "none",
+          textAlign: "right",
+        }}
+      >
+        {Array.from({ length: lines }, (_, i) => i + 1).join("\n")}
+      </span>
+      <code style={{ fontFamily: "var(--font-mono, 'JetBrains Mono', monospace)" }}>
+        {parts}
+      </code>
+    </pre>
+  );
+}
+
 /** ReadOnlyAccess is 115 versions deep; the rest of the archive is far shorter. */
 const VERSIONS_PAGE_SIZE = 20;
 
-export default function PolicyDetailClient({
-  policyName,
-}: {
-  policyName: string;
-}) {
-  const decodedName = decodeURIComponent(policyName);
-  const [policy, setPolicy] = useState<PolicyData | null>(null);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
-  const [isDark, setIsDark] = useState(false);
+export default function PolicyDetailClient({ policy }: { policy: PolicyData }) {
+  // The site is always dark, so the build renders the dark highlighter theme and
+  // only a visitor who prefers light switches after mount.
+  const [isDark, setIsDark] = useState(true);
   const [visibleVersions, setVisibleVersions] = useState(VERSIONS_PAGE_SIZE);
+  // Relative times depend on the visitor's clock, so the build prints the date
+  // and the browser swaps in "3 days ago" once mounted, keeping hydration exact.
+  const [mounted, setMounted] = useState(false);
+  const policyJson = useMemo(
+    () => JSON.stringify(policy.content, null, 2),
+    [policy.content],
+  );
 
   useEffect(() => {
+    setMounted(true);
     const mediaQuery = window.matchMedia("(prefers-color-scheme: dark)");
     setIsDark(mediaQuery.matches);
 
@@ -161,35 +226,24 @@ export default function PolicyDetailClient({
     return () => mediaQuery.removeEventListener("change", handler);
   }, []);
 
-  useEffect(() => {
-    async function loadPolicy() {
-      try {
-        const response = await fetch(
-          `/data/${encodeURIComponent(decodedName)}.json`
-        );
-        if (!response.ok) {
-          throw new Error("Policy not found");
-        }
-        const data = await response.json();
-        setPolicy(data);
-      } catch (err) {
-        setError(err instanceof Error ? err.message : "Failed to load policy");
-      } finally {
-        setLoading(false);
-      }
-    }
-    loadPolicy();
-  }, [decodedName]);
-
   const formatDate = (dateString: string) => {
-    return new Date(dateString).toLocaleDateString("en-US", {
+    return `${new Date(dateString).toLocaleDateString("en-US", {
       year: "numeric",
       month: "long",
       day: "numeric",
       hour: "2-digit",
       minute: "2-digit",
-    });
+      timeZone: "UTC",
+    })} UTC`;
   };
+
+  const formatDay = (dateString: string) =>
+    new Date(dateString).toLocaleDateString("en-US", {
+      year: "numeric",
+      month: "short",
+      day: "numeric",
+      timeZone: "UTC",
+    });
 
   const iamActionRenderer = useCallback(
     ({
@@ -215,6 +269,7 @@ export default function PolicyDetailClient({
   );
 
   const getRelativeTime = (dateString: string) => {
+    if (!mounted) return formatDay(dateString);
     const date = new Date(dateString);
     const now = new Date();
     const diffInMs = now.getTime() - date.getTime();
@@ -242,34 +297,6 @@ export default function PolicyDetailClient({
     }
     return `${years}y ${remainingMonths}m ago`;
   };
-
-  if (loading) {
-    return (
-      <div className="text-center py-16">
-        <div className="animate-spin inline-block w-6 h-6 border-2 border-zinc-300 border-t-red-600 rounded-full mb-4"></div>
-        <p className="text-zinc-600 dark:text-zinc-400 text-sm font-mono">Loading policy...</p>
-      </div>
-    );
-  }
-
-  if (error || !policy) {
-    return (
-      <div className="text-center py-16">
-        <h1 className="text-2xl font-bold font-mono text-zinc-900 dark:text-white mb-2">
-          Policy Not Found
-        </h1>
-        <p className="text-sm text-zinc-600 dark:text-zinc-400 mb-6">
-          {error || "The requested policy could not be found."}
-        </p>
-        <Link
-          href="/policies"
-          className="inline-flex items-center px-4 py-2 bg-red-600 text-white rounded font-mono text-sm hover:bg-red-700 transition-colors"
-        >
-          Back to Policies
-        </Link>
-      </div>
-    );
-  }
 
   return (
     <div className="space-y-6">
@@ -351,9 +378,7 @@ export default function PolicyDetailClient({
               Created
             </p>
             <p className="text-sm font-medium text-zinc-900 dark:text-white">
-              {policy.createDate
-                ? new Date(policy.createDate).toLocaleDateString()
-                : "N/A"}
+              {policy.createDate ? formatDay(policy.createDate) : "N/A"}
             </p>
           </div>
           {policy.actionCount !== undefined && (
@@ -470,34 +495,38 @@ export default function PolicyDetailClient({
           </a>
         </div>
         <div className="overflow-hidden">
-          <SyntaxHighlighter
-            language="json"
-            style={isDark ? vscDarkPlus : vs}
-            showLineNumbers={true}
-            wrapLines={true}
-            renderer={iamActionRenderer}
-            customStyle={{
-              margin: 0,
-              borderRadius: 0,
-              fontSize: "0.8rem",
-              lineHeight: "1.5",
-              background: isDark ? "#18181b" : "#fafafa",
-            }}
-            lineNumberStyle={{
-              minWidth: "3.5em",
-              paddingRight: "1em",
-              color: isDark ? "#52525b" : "#a1a1aa",
-              userSelect: "none",
-              textAlign: "right",
-            }}
-            codeTagProps={{
-              style: {
-                fontFamily: "var(--font-mono, 'JetBrains Mono', monospace)",
-              },
-            }}
-          >
-            {JSON.stringify(policy.content, null, 2)}
-          </SyntaxHighlighter>
+          {!mounted ? (
+            <PlainPolicyJson json={policyJson} />
+          ) : (
+            <SyntaxHighlighter
+              language="json"
+              style={isDark ? vscDarkPlus : vs}
+              showLineNumbers={true}
+              wrapLines={true}
+              renderer={iamActionRenderer}
+              customStyle={{
+                margin: 0,
+                borderRadius: 0,
+                fontSize: "0.8rem",
+                lineHeight: "1.5",
+                background: isDark ? "#18181b" : "#fafafa",
+              }}
+              lineNumberStyle={{
+                minWidth: "3.5em",
+                paddingRight: "1em",
+                color: isDark ? "#52525b" : "#a1a1aa",
+                userSelect: "none",
+                textAlign: "right",
+              }}
+              codeTagProps={{
+                style: {
+                  fontFamily: "var(--font-mono, 'JetBrains Mono', monospace)",
+                },
+              }}
+            >
+              {policyJson}
+            </SyntaxHighlighter>
+          )}
         </div>
       </div>
 

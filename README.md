@@ -27,7 +27,7 @@ Explore AWS Managed IAM Policies through a searchable web interface at **[iamtra
 - A homepage that leads with this week's changes that matter and the newest AWS services spotted, with the charts on [/stats](https://iamtrail.com/stats)
 - Search and filter across 1,465+ managed policies, or search an IAM action to find every policy that grants it, by name or through a wildcard such as `s3:Get*`
 - Full version history with git diffs for every policy
-- Syntax-highlighted JSON policy viewer
+- Syntax-highlighted JSON policy viewer, rendered at build time so every policy and IAM action page is readable by search engines and link previews
 - New (v1) policy tracking to spot new AWS services
 - Policy validation findings from AWS Access Analyzer, and privilege escalation path overlap from [pathfinding.cloud](https://pathfinding.cloud) (partial wildcards and `NotAction` included)
 - [Known AWS Account lookup](https://iamtrail.com/accounts) - identify who owns one or a whole list of AWS account IDs, powered by the [fwdcloudsec/known_aws_accounts](https://github.com/fwdcloudsec/known_aws_accounts) community dataset
