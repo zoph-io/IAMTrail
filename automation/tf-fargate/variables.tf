@@ -86,7 +86,9 @@ variable "security_groups" {
 }
 
 variable "schedule" {
-  default     = "cron(0 * ? * MON-FRI *)"
+  # Every day, not weekdays only: AWS ships policy changes on weekends too, and
+  # a Saturday change used to reach even instant subscribers on Monday.
+  default     = "cron(0 * * * ? *)"
   description = "Schedule for your job"
 }
 

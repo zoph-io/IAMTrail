@@ -3,7 +3,8 @@
 import { useState, useEffect, useMemo, Suspense } from "react";
 import { useSearchParams } from "next/navigation";
 import Link from "next/link";
-import { Shield, Globe, Eye, Radar } from "lucide-react";
+import { Shield, Globe, Eye, Radar, MessageSquare } from "lucide-react";
+import AttachedPoliciesImport from "@/components/AttachedPoliciesImport";
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL || "https://api.iamtrail.com";
 
@@ -36,11 +37,21 @@ interface Policy {
   name: string;
 }
 
+interface SlackStatus {
+  connected: boolean;
+  /** Masked webhook, enough to recognise it. The API never returns the URL. */
+  hint: string | null;
+  /** Slack's reason, set when a revoked webhook was disconnected. */
+  error: string | null;
+  error_at: string | null;
+}
+
 interface Subscription {
   email: string;
   policies: string[];
   frequency: string;
   topics: Topic[];
+  slack?: SlackStatus;
   created_at: string;
   updated_at: string;
 }
@@ -66,6 +77,10 @@ function ManageContent() {
   const [selectedPolicies, setSelectedPolicies] = useState<string[]>([]);
   const [policySearch, setPolicySearch] = useState("");
   const [policies, setPolicies] = useState<Policy[]>([]);
+  const [slack, setSlack] = useState<SlackStatus | null>(null);
+  const [slackInput, setSlackInput] = useState("");
+  const [slackSaving, setSlackSaving] = useState(false);
+  const [slackMessage, setSlackMessage] = useState<{ ok: boolean; text: string } | null>(null);
 
   useEffect(() => {
     fetch("/data/summary.json")
@@ -88,6 +103,7 @@ function ManageContent() {
       })
       .then((data: Subscription) => {
         setSubscription(data);
+        setSlack(data.slack ?? null);
         setFrequency(data.frequency as "daily" | "weekly" | "instant");
         setSelectedTopics(data.topics || ["iam_policies"]);
         const isAll =
@@ -126,6 +142,42 @@ function ManageContent() {
     setSelectedPolicies((prev) =>
       prev.includes(name) ? prev.filter((p) => p !== name) : [...prev, name]
     );
+  };
+
+  const knownPolicyNames = useMemo(() => policies.map((p) => p.name), [policies]);
+  const importPolicies = (names: string[]) => {
+    setAllPolicies(false);
+    setSelectedPolicies((prev) => [...new Set([...prev, ...names])].sort());
+  };
+
+  // Saved on its own rather than with the form, because connecting posts a test
+  // message and the API refuses a webhook Slack rejects.
+  const saveSlack = async (webhook: string) => {
+    if (!token) return;
+    setSlackSaving(true);
+    setSlackMessage(null);
+    try {
+      const res = await fetch(`${API_URL}/manage/${token}`, {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ slack_webhook: webhook }),
+      });
+      const data = await res.json().catch(() => ({}));
+      if (!res.ok) throw new Error(data.error || "Failed to update Slack");
+      const refreshed = await fetch(`${API_URL}/manage/${token}`).then((r) => r.json());
+      setSlack(refreshed.slack ?? null);
+      setSlackInput("");
+      setSlackMessage({
+        ok: true,
+        text: webhook
+          ? "Connected. A test message was posted to the channel."
+          : "Slack channel removed.",
+      });
+    } catch (err: any) {
+      setSlackMessage({ ok: false, text: err.message });
+    } finally {
+      setSlackSaving(false);
+    }
   };
 
   const iamSelected = selectedTopics.includes("iam_policies");
@@ -351,7 +403,7 @@ function ManageContent() {
         {frequency === "instant" && (
           <p className="mt-3 text-xs font-mono text-amber-700 dark:text-amber-400">
             Instant alerts are currently available for IAM Policy changes only
-            (checks run every hour, Mon-Fri). Endpoint and GuardDuty
+            (checks run every hour, every day). Endpoint and GuardDuty
             updates are included in daily/weekly digests.
           </p>
         )}
@@ -363,6 +415,11 @@ function ManageContent() {
           <label className="block text-xs font-semibold font-mono uppercase tracking-wider text-zinc-900 dark:text-white mb-3">
             Which policies?
           </label>
+
+          <AttachedPoliciesImport
+            knownPolicies={knownPolicyNames}
+            onImport={importPolicies}
+          />
 
           <label className="flex items-center gap-3 mb-4 cursor-pointer">
             <input
@@ -449,6 +506,84 @@ function ManageContent() {
         >
           {saving ? "Saving..." : "Save Changes"}
         </button>
+      </div>
+
+      {/* Slack channel */}
+      <div className="bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 rounded-lg p-5 space-y-3">
+        <div className="flex items-center gap-2">
+          <MessageSquare className="w-4 h-4 text-zinc-500 dark:text-zinc-400" />
+          <h3 className="text-xs font-semibold font-mono uppercase tracking-wider text-zinc-900 dark:text-white">
+            Slack channel
+          </h3>
+        </div>
+        <p className="text-sm text-zinc-600 dark:text-zinc-400">
+          Post the same notifications to a Slack channel, so your whole team
+          sees them. Create an{" "}
+          <a
+            href="https://api.slack.com/messaging/webhooks"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-red-600 dark:text-red-400 hover:underline"
+          >
+            incoming webhook
+          </a>{" "}
+          for the channel and paste its URL. Email keeps arriving as well.
+        </p>
+
+        {slack?.connected ? (
+          <div className="flex flex-wrap items-center justify-between gap-3 rounded border border-green-200 dark:border-green-900/50 bg-green-50/60 dark:bg-green-950/20 px-3 py-2">
+            <span className="text-xs font-mono text-green-800 dark:text-green-300 break-all">
+              Connected: {slack.hint}
+            </span>
+            <button
+              type="button"
+              onClick={() => saveSlack("")}
+              disabled={slackSaving}
+              className="px-3 py-1.5 border border-zinc-300 dark:border-zinc-700 text-zinc-700 dark:text-zinc-300 rounded text-xs font-mono hover:bg-zinc-50 dark:hover:bg-zinc-800 disabled:opacity-50"
+            >
+              {slackSaving ? "..." : "Remove"}
+            </button>
+          </div>
+        ) : (
+          <>
+            {slack?.error && (
+              <p className="text-xs font-mono text-red-600 dark:text-red-400">
+                Your previous webhook was disconnected
+                {slack.error_at ? ` on ${slack.error_at.slice(0, 10)}` : ""}{" "}
+                because Slack answered {slack.error}. Connect a new one below.
+              </p>
+            )}
+            <div className="flex flex-col sm:flex-row gap-2">
+              <input
+                type="url"
+                value={slackInput}
+                onChange={(e) => setSlackInput(e.target.value)}
+                placeholder="https://hooks.slack.com/services/T.../B.../..."
+                className="flex-1 min-w-0 px-3 py-2 border border-zinc-200 dark:border-zinc-700 rounded bg-white dark:bg-zinc-900 text-zinc-900 dark:text-white placeholder-zinc-400 font-mono text-xs focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-transparent"
+              />
+              <button
+                type="button"
+                onClick={() => saveSlack(slackInput.trim())}
+                disabled={slackSaving || !slackInput.trim()}
+                className="px-4 py-2 bg-zinc-900 dark:bg-white text-white dark:text-zinc-900 rounded text-xs font-mono font-medium hover:bg-zinc-800 dark:hover:bg-zinc-100 disabled:opacity-50 transition-colors"
+              >
+                {slackSaving ? "Testing..." : "Connect"}
+              </button>
+            </div>
+          </>
+        )}
+
+        {slackMessage && (
+          <p
+            className={`text-xs font-mono ${
+              slackMessage.ok
+                ? "text-green-700 dark:text-green-400"
+                : "text-red-600 dark:text-red-400"
+            }`}
+          >
+            {slackMessage.text}
+          </p>
+        )}
       </div>
 
       {/* Danger Zone */}

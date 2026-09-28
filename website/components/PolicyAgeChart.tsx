@@ -53,7 +53,7 @@ export default function PolicyAgeChart({
       <div className="mt-3 flex items-center justify-between text-xs font-mono text-zinc-400 dark:text-zinc-500">
         <span>{years[0]}</span>
         <span>
-          {counts.reduce((a, b) => a + b, 0).toLocaleString()} total policies
+          {counts.reduce((a, b) => a + b, 0).toLocaleString("en-US")} total policies
         </span>
         <span>{years[years.length - 1]}</span>
       </div>

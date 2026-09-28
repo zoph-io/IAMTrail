@@ -1,22 +1,17 @@
 import Link from "next/link";
 import type { Metadata } from "next";
+import { pageMetadata } from "@/lib/seo";
 import { Rss } from "lucide-react";
 import ChangeTimeline from "@/components/ChangeTimeline";
 import type { ChangesFile } from "@/lib/changes";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
   title: "AWS Managed IAM Policy Changes",
   description:
     "Every recent change to an AWS Managed IAM Policy, with the actions added and removed named in full, plus never-before-seen actions and new AWS services.",
-  alternates: {
-    canonical: "https://iamtrail.com/changes",
-    types: {
-      "application/rss+xml": [
-        { url: "/feeds/iam-policies.xml", title: "IAMTrail - IAM Policy Changes" },
-      ],
-    },
-  },
-};
+  path: "/changes",
+  feeds: [{ url: "/feeds/iam-policies.xml", title: "IAMTrail - IAM Policy Changes" }],
+});
 
 // Enough rows to fill the first screen and give crawlers real content; the
 // client swaps in the full timeline for search, filters and paging.

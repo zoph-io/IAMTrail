@@ -1,5 +1,7 @@
 import fs from "fs";
 import path from "path";
+import { matchWildcardGrants } from "./iamActionPattern";
+import type { WildcardGrant, WildcardGrants } from "./iamActionPattern";
 
 /** Earliest appearance anywhere in the archive. Absent for pre-registry builds. */
 export type FirstSighting = {
@@ -29,6 +31,7 @@ export type ActionIndexFile = {
   };
   effectiveGrantPreview: unknown;
   actions: Record<string, ActionDetail>;
+  wildcardGrants?: WildcardGrants;
   /** Keyed by lowercased service prefix, for example "nova-act". */
   services?: Record<string, FirstSighting>;
   /** YYYY-MM-DD of the archive's first commit. */
@@ -59,6 +62,15 @@ export function getActionDetail(action: string): ActionDetail | null {
   if (!idx?.actions) return null;
   const detail = idx.actions[action];
   return detail ?? null;
+}
+
+/**
+ * Policies that allow the action through a wildcard such as `s3:Get*`, without
+ * naming it. Most-attached policies like ReadOnlyAccess grant almost everything
+ * this way, so a literal-only list leaves them out.
+ */
+export function getWildcardGrants(action: string): WildcardGrant[] {
+  return matchWildcardGrants(readIndex()?.wildcardGrants, action);
 }
 
 /** First appearance of an action's whole service prefix, for example "nova-act". */

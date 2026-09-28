@@ -1,5 +1,6 @@
 import Link from "next/link";
 import type { Metadata } from "next";
+import { pageMetadata } from "@/lib/seo";
 import { Rss } from "lucide-react";
 import DiscoveryExplorer, {
   type ActionDiscovery,
@@ -7,19 +8,13 @@ import DiscoveryExplorer, {
 } from "@/components/DiscoveryExplorer";
 import { TELEGRAM_URL } from "@/lib/social";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
   title: "New AWS Service Discoveries in IAM",
   description:
-    "IAM actions and service prefixes appearing for the first time in AWS managed policies. Often the earliest public sign of an unannounced AWS service or feature.",
-  alternates: {
-    canonical: "https://iamtrail.com/discoveries",
-    types: {
-      "application/rss+xml": [
-        { url: "/feeds/discoveries.xml", title: "IAMTrail - Discoveries" },
-      ],
-    },
-  },
-};
+    "IAM actions and service prefixes appearing for the first time in AWS managed policies. Often the earliest public sign of an unannounced AWS service.",
+  path: "/discoveries",
+  feeds: [{ url: "/feeds/discoveries.xml", title: "IAMTrail - Discoveries" }],
+});
 
 // Enough rows to fill the first screen and give crawlers the recent sightings;
 // the client swaps in the full set for search and paging.

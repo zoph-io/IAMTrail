@@ -12,6 +12,11 @@ on:
       - "DEPRECATED.json"
       - "policies-list.json"
       - ".github/workflows/deploy-cloudfront.yml"
+  schedule:
+    # The homepage's "This week" window and /usage are computed at build time, so
+    # a week with no data commit would otherwise freeze them on stale content.
+    # After the 08:00 UTC digest, so /usage counts that morning's sends.
+    - cron: "30 8 * * *"
   workflow_dispatch:
 
 permissions:

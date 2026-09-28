@@ -6,6 +6,7 @@ import { Suspense } from "react";
 import Link from "next/link";
 import { Shield, Globe, Eye, Radar } from "lucide-react";
 import { TELEGRAM_URL } from "@/lib/social";
+import AttachedPoliciesImport from "@/components/AttachedPoliciesImport";
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL || "https://api.iamtrail.com";
 
@@ -172,6 +173,12 @@ function SubscribeContent() {
     );
   };
 
+  const knownPolicyNames = useMemo(() => policies.map((p) => p.name), [policies]);
+  const importPolicies = (names: string[]) => {
+    setAllPolicies(false);
+    setSelectedPolicies((prev) => [...new Set([...prev, ...names])].sort());
+  };
+
   const iamSelected = selectedTopics.includes("iam_policies");
   const canSubmit =
     selectedTopics.length > 0 &&
@@ -197,15 +204,7 @@ function SubscribeContent() {
 
   return (
     <div className="space-y-6">
-      <div className="py-8 border-b border-zinc-100 dark:border-zinc-800">
-        <h1 className="text-2xl font-bold font-mono text-zinc-900 dark:text-white mb-2">
-          Subscribe to IAMTrail
-        </h1>
-        <p className="text-sm text-zinc-600 dark:text-zinc-400">
-          Get notified about AWS Managed IAM Policy changes, endpoint
-          availability updates, and GuardDuty announcements.
-        </p>
-      </div>
+      <SubscribeHeader />
 
       <form onSubmit={handleSubmit} className="space-y-4">
         {/* Email */}
@@ -342,7 +341,7 @@ function SubscribeContent() {
           {frequency === "instant" && (
             <p className="mt-3 text-xs text-amber-700 dark:text-amber-400 font-mono">
               Instant alerts are currently available for IAM Policy changes only
-              (checks run every hour, Mon-Fri). Endpoint and GuardDuty
+              (checks run every hour, every day). Endpoint and GuardDuty
               updates are included in daily/weekly digests.
             </p>
           )}
@@ -354,6 +353,11 @@ function SubscribeContent() {
             <label className="block text-xs font-semibold font-mono uppercase tracking-wider text-zinc-900 dark:text-white mb-3">
               Which policies?
             </label>
+
+            <AttachedPoliciesImport
+              knownPolicies={knownPolicyNames}
+              onImport={importPolicies}
+            />
 
             <label className="flex items-center gap-3 mb-4 cursor-pointer">
               <input
@@ -474,6 +478,7 @@ function SubscribeContent() {
               <li>Double opt-in: you must confirm via email before anything is sent.</li>
               <li>Every email includes a one-click unsubscribe link. No account needed.</li>
               <li>Your data is stored in AWS (eu-west-1) and deleted immediately upon unsubscription.</li>
+              <li>If you connect a Slack channel, its webhook URL is stored with your subscription, never shown back in full, and deleted with it.</li>
             </ul>
           </div>
         </div>
@@ -556,9 +561,27 @@ function ResendManageLink() {
   );
 }
 
+function SubscribeHeader() {
+  return (
+    <div className="py-8 border-b border-zinc-100 dark:border-zinc-800">
+      <h1 className="text-2xl font-bold font-mono text-zinc-900 dark:text-white mb-2">
+        Subscribe to IAMTrail
+      </h1>
+      <p className="text-sm text-zinc-600 dark:text-zinc-400">
+        Get notified about AWS Managed IAM Policy changes, endpoint
+        availability updates, and GuardDuty announcements. Once you confirm,
+        your manage page can also post every notification to a Slack
+        channel.
+      </p>
+    </div>
+  );
+}
+
+// The form reads ?policy= and ?status=, so the static HTML holds only this
+// fallback; the header keeps it from reaching crawlers as an empty page.
 export default function SubscribePage() {
   return (
-    <Suspense>
+    <Suspense fallback={<SubscribeHeader />}>
       <SubscribeContent />
     </Suspense>
   );

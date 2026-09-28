@@ -32,7 +32,6 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "en_US",
-    url: "https://iamtrail.com",
     siteName: "IAMTrail - AWS Managed Policy Changes Archive",
     title: "IAMTrail - AWS Managed Policy Changes Archive (Unofficial)",
     description:
@@ -53,8 +52,9 @@ export const metadata: Metadata = {
       "Track every change to AWS Managed IAM Policies with full version history.",
     images: ["/social.png"],
   },
+  // No canonical here: an inherited one would point every page that forgets its
+  // own at the homepage. Each page sets it through pageMetadata().
   alternates: {
-    canonical: "https://iamtrail.com",
     types: {
       "application/rss+xml": [
         { url: "/feeds/all.xml", title: "IAMTrail - All Changes" },

@@ -7,6 +7,7 @@ import traceback
 import boto3
 from boto3.dynamodb.conditions import Key
 import discord_notifier as discord
+import slack_publisher
 
 dynamodb = boto3.resource("dynamodb")
 ses = boto3.client("ses", region_name=os.environ.get("SES_REGION", "eu-west-3"))
@@ -26,6 +27,11 @@ VALID_TOPICS = {"iam_policies", "endpoints", "guardduty", "discoveries"}
 RATE_LIMIT_COUNT = 3
 RATE_LIMIT_WINDOW_S = 3600
 
+# A pasted `list-policies --only-attached` from a large organisation runs to a few
+# hundred names. The cap keeps an item far below DynamoDB's 400 KB limit.
+MAX_POLICIES = 2000
+MAX_POLICY_NAME = 128
+
 
 def canonicalize_email(raw: str) -> str:
     email = raw.strip().lower()
@@ -43,6 +49,26 @@ def validate_topics(topics):
         return None
     cleaned = [t for t in topics if t in VALID_TOPICS]
     return cleaned if cleaned else None
+
+
+def validate_policies(policies):
+    """The policy list as stored, or None when it is not a list of names."""
+    if not isinstance(policies, list) or not policies or len(policies) > MAX_POLICIES:
+        return None
+    if not all(isinstance(p, str) and 0 < len(p) <= MAX_POLICY_NAME for p in policies):
+        return None
+    return sorted(set(policies))
+
+
+def slack_status(item):
+    """What the manage page shows, never the webhook itself."""
+    url = item.get("slack_webhook")
+    return {
+        "connected": bool(url),
+        "hint": slack_publisher.mask(url) if url else None,
+        "error": item.get("slack_error"),
+        "error_at": item.get("slack_error_at"),
+    }
 
 
 def get_source_ip(event) -> str:
@@ -113,7 +139,9 @@ def handle_subscribe(body, source_ip: str):
 
     email = canonicalize_email(email_raw)
 
-    policies = body.get("policies", ["*"])
+    policies = validate_policies(body.get("policies", ["*"]))
+    if policies is None:
+        return respond(400, {"error": f"Policies must be a list of up to {MAX_POLICIES} names"})
     frequency = body.get("frequency", "daily")
     topics = validate_topics(body.get("topics")) or ["iam_policies"]
 
@@ -226,12 +254,13 @@ def handle_get_manage(token):
         "policies": item.get("policies", ["*"]),
         "frequency": item.get("frequency", "daily"),
         "topics": list(item.get("topics", ["iam_policies"])),
+        "slack": slack_status(item),
         "created_at": item.get("created_at"),
         "updated_at": item.get("updated_at"),
     })
 
 
-def handle_put_manage(token, body):
+def handle_put_manage(token, body, source_ip: str):
     result = table.query(
         IndexName="manage_token-index",
         KeyConditionExpression=Key("manage_token").eq(token),
@@ -245,23 +274,68 @@ def handle_put_manage(token, body):
     if not item.get("confirmed"):
         return respond(403, {"error": "Subscription not yet confirmed"})
 
-    policies = body.get("policies", item.get("policies", ["*"]))
+    policies = validate_policies(body.get("policies", item.get("policies", ["*"])))
+    if policies is None:
+        return respond(400, {"error": f"Policies must be a list of up to {MAX_POLICIES} names"})
     frequency = body.get("frequency", item.get("frequency", "daily"))
     topics = validate_topics(body.get("topics")) or list(item.get("topics", ["iam_policies"]))
 
     if frequency not in ("daily", "weekly", "instant"):
         return respond(400, {"error": "Frequency must be 'daily', 'weekly', or 'instant'"})
 
+    sets = ["policies = :p", "frequency = :f", "topics = :t", "updated_at = :u"]
+    removes = []
+    values = {
+        ":p": policies,
+        ":f": frequency,
+        ":t": topics,
+        ":u": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()),
+    }
+
+    # Absent means "leave the channel alone", so saving topics never touches it.
+    slack_connected = False
+    if "slack_webhook" in body:
+        webhook = str(body.get("slack_webhook") or "").strip()
+        if not webhook:
+            removes += ["slack_webhook", "slack_error", "slack_error_at"]
+        elif webhook != item.get("slack_webhook"):
+            if not slack_publisher.is_valid_webhook(webhook):
+                return respond(400, {
+                    "error": "That is not a Slack incoming webhook URL. It should start with https://hooks.slack.com/services/",
+                })
+            # Each attempt posts a message, so it shares the signup rate limit.
+            if not check_rate_limit(source_ip):
+                return respond(429, {"error": "Too many requests, try again later"})
+            # Proven before it is saved, so a typo cannot leave a channel that
+            # silently never receives anything.
+            ok, error = slack_publisher.post(
+                webhook,
+                "*IAMTrail is connected*: this channel will receive the same "
+                "notifications as the subscription's email. Remove the webhook "
+                f"from the manage page to stop them. {slack_publisher.link(SITE_URL, 'iamtrail.com')}",
+            )
+            if not ok:
+                return respond(400, {"error": f"Slack rejected the test message ({error}). Check the webhook and try again."})
+            sets.append("slack_webhook = :w")
+            removes += ["slack_error", "slack_error_at"]
+            values[":w"] = webhook
+            slack_connected = True
+
+    expression = "SET " + ", ".join(sets)
+    if removes:
+        expression += " REMOVE " + ", ".join(removes)
     table.update_item(
         Key={"email": item["email"]},
-        UpdateExpression="SET policies = :p, frequency = :f, topics = :t, updated_at = :u",
-        ExpressionAttributeValues={
-            ":p": policies,
-            ":f": frequency,
-            ":t": topics,
-            ":u": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()),
-        },
+        UpdateExpression=expression,
+        ExpressionAttributeValues=values,
     )
+
+    if slack_connected:
+        discord.send(
+            "Slack Channel Connected",
+            f"{discord.mask_email(item['email'])} connected a Slack channel",
+            discord.COLOR_SUCCESS,
+        )
 
     return respond(200, {"message": "Subscription updated"})
 
@@ -352,7 +426,7 @@ def handler(event, context):
 
         if method == "PUT" and path.startswith("/manage/"):
             token = path.split("/manage/")[1]
-            return handle_put_manage(token, body)
+            return handle_put_manage(token, body, source_ip)
 
         if method == "DELETE" and path.startswith("/manage/"):
             token = path.split("/manage/")[1]

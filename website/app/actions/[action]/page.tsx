@@ -6,6 +6,7 @@ import {
   getActionDetail,
   getActionIndex,
   getServiceFirstSighting,
+  getWildcardGrants,
 } from "@/lib/loadActionIndex";
 import type { ActionDetail, FirstSighting } from "@/lib/loadActionIndex";
 import {
@@ -14,6 +15,8 @@ import {
 } from "@/lib/loadActionDefinitions";
 import type { ActionDefinitionRow } from "@/lib/loadActionDefinitions";
 import { iamActionToSlug, iamSlugToAction } from "@/lib/actionSlug";
+import { plural } from "@/lib/changes";
+import { breadcrumbJsonLd, pageMetadata } from "@/lib/seo";
 
 const LIST_CAP = 30;
 
@@ -235,6 +238,12 @@ export async function generateStaticParams() {
   }));
 }
 
+/** Policies naming the action only under Deny or NotAction. */
+function deniedOrExcludedBy(detail: ActionDetail | null | undefined): number {
+  if (!detail) return 0;
+  return new Set([...detail.actionDenyPolicies, ...detail.notActionPolicies]).size;
+}
+
 export async function generateMetadata(props: {
   params: Promise<{ action: string }>;
 }): Promise<Metadata> {
@@ -245,28 +254,36 @@ export async function generateMetadata(props: {
   } catch {
     action = params.action;
   }
-  const slug = params.action;
   const def = getActionDefinition(action);
-  let description = `Managed IAM policies that reference the ${action} action as a literal string (wildcards excluded). Unofficial data from IAMTrail.`;
-  if (def?.description?.trim()) {
-    const s = def.description.trim();
-    const short = s.length > 118 ? `${s.slice(0, 115)}...` : s;
-    description = `${short} Appearances in managed policies on IAMTrail (unofficial).`;
+  const detail = getActionDetail(action);
+  const literal = new Set(detail?.actionAllowPolicies ?? []);
+  const viaWildcard = new Set<string>();
+  for (const { policies } of getWildcardGrants(action)) {
+    for (const name of policies) if (!literal.has(name)) viaWildcard.add(name);
   }
-  return {
-    title: `${action} - IAM actions in AWS managed policies`,
-    description,
-    alternates: {
-      canonical: `https://iamtrail.com/actions/${slug}`,
-    },
-    openGraph: {
-      siteName: "IAMTrail",
-      title: `${action} | IAMTrail`,
-      description,
-      url: `https://iamtrail.com/actions/${slug}`,
-      images: ["/social.png"],
-    },
-  };
+
+  // The counts lead because they make each of the ~15,000 descriptions unique;
+  // the reference sentence alone is shared by thousands of List* and Get* actions.
+  const policies = (n: number) => plural(n, "AWS managed policy", "AWS managed policies");
+  const denied = detail?.actionDenyPolicies.length ?? 0;
+  let lead: string;
+  if (literal.size > 0) {
+    const extras: string[] = [];
+    if (viaWildcard.size > 0) extras.push(`${viaWildcard.size.toLocaleString("en-US")} more via wildcard`);
+    if (denied > 0) extras.push(`denied by ${denied.toLocaleString("en-US")}`);
+    lead = `${action} is allowed by ${policies(literal.size)}${extras.length ? ` (${extras.join(", ")})` : ""}`;
+  } else if (viaWildcard.size > 0) {
+    lead = `${action} is allowed by ${policies(viaWildcard.size)}, all through a wildcard`;
+  } else {
+    lead = `${action} is named in ${policies(deniedOrExcludedBy(detail))}, none allowing it by name or wildcard`;
+  }
+  const reference = def?.description?.trim();
+
+  return pageMetadata({
+    title: `${action} - AWS Managed Policies That Allow It`,
+    description: reference ? `${lead}. ${reference.replace(/\.?$/, ".")}` : `${lead}.`,
+    path: `/actions/${params.action}`,
+  });
 }
 
 function PolicyLinks({ names }: { names: string[] }) {
@@ -283,6 +300,33 @@ function PolicyLinks({ names }: { names: string[] }) {
           >
             {name}
           </Link>
+        </li>
+      ))}
+    </ul>
+  );
+}
+
+function WildcardPolicyLinks({
+  rows,
+}: {
+  rows: { name: string; patterns: string[] }[];
+}) {
+  if (rows.length === 0) {
+    return <span className="text-zinc-500 dark:text-zinc-400">None</span>;
+  }
+  return (
+    <ul className="space-y-1.5 text-sm font-mono">
+      {rows.map(({ name, patterns }) => (
+        <li key={name}>
+          <Link
+            href={`/policies/${encodeURIComponent(name)}`}
+            className="text-red-600 dark:text-red-400 hover:underline"
+          >
+            {name}
+          </Link>
+          <span className="block text-xs text-zinc-500 dark:text-zinc-400">
+            via {patterns.join(", ")}
+          </span>
         </li>
       ))}
     </ul>
@@ -311,14 +355,42 @@ export default async function ActionDetailPage(props: {
   const allowN = detail.actionAllowPolicies.length;
   const denyN = detail.actionDenyPolicies.length;
   const notN = detail.notActionPolicies.length;
+
+  // A policy that already names the action is listed under Allow (Action) alone.
+  const literalAllow = new Set(detail.actionAllowPolicies);
+  const patternsByPolicy = new Map<string, string[]>();
+  for (const { pattern, policies } of getWildcardGrants(action)) {
+    for (const name of policies) {
+      if (literalAllow.has(name)) continue;
+      patternsByPolicy.set(name, [...(patternsByPolicy.get(name) ?? []), pattern]);
+    }
+  }
+  const wildcardRows = [...patternsByPolicy.entries()]
+    .map(([name, patterns]) => ({ name, patterns: patterns.sort() }))
+    .sort((a, b) => a.name.localeCompare(b.name));
+  const wildcardN = wildcardRows.length;
+
   const union = new Set([
     ...detail.actionAllowPolicies,
+    ...patternsByPolicy.keys(),
     ...detail.actionDenyPolicies,
     ...detail.notActionPolicies,
   ]);
 
   return (
     <div className="space-y-6">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(
+            breadcrumbJsonLd([
+              { name: "Home", path: "/" },
+              { name: "Policies", path: "/policies" },
+              { name: action, path: `/actions/${iamActionToSlug(action)}` },
+            ]),
+          ),
+        }}
+      />
       <nav className="flex items-center space-x-2 text-xs font-mono text-zinc-500 dark:text-zinc-400">
         <Link
           href="/"
@@ -342,14 +414,15 @@ export default async function ActionDetailPage(props: {
           {action}
         </h1>
         <p className="text-sm text-zinc-600 dark:text-zinc-400 leading-relaxed">
-          Literal appearances in AWS managed IAM policies. Statements that use
-          wildcards (for example{" "}
+          AWS managed IAM policies that name this action, plus the ones that
+          allow it through a wildcard such as{" "}
           <code className="text-xs bg-zinc-100 dark:bg-zinc-800 px-1 rounded">
-            s3:*
+            {action.split(":")[0]}:*
           </code>
-          ) are not counted here. This is not an IAM authorization simulation.
+          . Allow statements written with NotAction are not expanded. This is
+          not an IAM authorization simulation.
         </p>
-        <div className="mt-4 grid grid-cols-2 md:grid-cols-4 gap-3 text-center">
+        <div className="mt-4 grid grid-cols-2 md:grid-cols-5 gap-3 text-center">
           <div className="rounded border border-zinc-200 dark:border-zinc-800 p-3">
             <p className="text-[10px] font-mono uppercase text-zinc-500">
               Policies (any)
@@ -364,6 +437,14 @@ export default async function ActionDetailPage(props: {
             </p>
             <p className="text-xl font-bold font-mono text-zinc-900 dark:text-white">
               {allowN}
+            </p>
+          </div>
+          <div className="rounded border border-zinc-200 dark:border-zinc-800 p-3">
+            <p className="text-[10px] font-mono uppercase text-zinc-500">
+              Allow (wildcard)
+            </p>
+            <p className="text-xl font-bold font-mono text-zinc-900 dark:text-white">
+              {wildcardN}
             </p>
           </div>
           <div className="rounded border border-zinc-200 dark:border-zinc-800 p-3">
@@ -385,8 +466,9 @@ export default async function ActionDetailPage(props: {
         </div>
         <p className="mt-3 text-xs text-zinc-500 dark:text-zinc-400 font-mono">
           {idx.stats.policiesWithWildcardActions} policies include at least one
-          wildcard action string (any service). Index regenerated on every
-          deploy.
+          wildcard action string (any service). A wildcard also covers actions
+          AWS adds later, without a new policy version. Index regenerated on
+          every deploy.
         </p>
       </div>
 
@@ -400,7 +482,7 @@ export default async function ActionDetailPage(props: {
 
       {sarDef ? <ActionReferenceCard def={sarDef} /> : null}
 
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
         <div className="bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 rounded-lg overflow-hidden">
           <div className="px-5 py-3 border-b border-zinc-200 dark:border-zinc-800">
             <h2 className="text-sm font-semibold font-mono uppercase tracking-wider text-zinc-900 dark:text-white">
@@ -409,6 +491,16 @@ export default async function ActionDetailPage(props: {
           </div>
           <div className="px-5 py-4 max-h-[28rem] overflow-y-auto">
             <PolicyLinks names={detail.actionAllowPolicies} />
+          </div>
+        </div>
+        <div className="bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 rounded-lg overflow-hidden">
+          <div className="px-5 py-3 border-b border-zinc-200 dark:border-zinc-800">
+            <h2 className="text-sm font-semibold font-mono uppercase tracking-wider text-zinc-900 dark:text-white">
+              Allow (wildcard)
+            </h2>
+          </div>
+          <div className="px-5 py-4 max-h-[28rem] overflow-y-auto">
+            <WildcardPolicyLinks rows={wildcardRows} />
           </div>
         </div>
         <div className="bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 rounded-lg overflow-hidden">

@@ -1,14 +1,15 @@
 import Link from "next/link";
 import type { Metadata } from "next";
+import { pageMetadata } from "@/lib/seo";
 import { Braces, Code2, Terminal } from "lucide-react";
 import RelatedPages from "@/components/RelatedPages";
 
-export const metadata: Metadata = {
-  title: "API",
+export const metadata: Metadata = pageMetadata({
+  title: "Free JSON API for AWS Managed IAM Policy Changes",
   description:
     "A free, versioned JSON API over the IAMTrail archive of AWS Managed IAM Policy changes. No key, no sign-up, served as static files from CloudFront.",
-  alternates: { canonical: "https://iamtrail.com/api" },
-};
+  path: "/api",
+});
 
 const BASE = "https://iamtrail.com/api/v1";
 
@@ -47,7 +48,7 @@ const RESOURCES: Resource[] = [
     path: "/actions.json",
     title: "Action index",
     description:
-      "Every literal IAM action seen in a managed policy, mapped to the policies that allow, deny or NotAction it, with the date it was first seen anywhere in the archive.",
+      "Every literal IAM action seen in a managed policy, mapped to the policies that allow, deny or NotAction it, with the date it was first seen anywhere in the archive. wildcardGrants lists every Allow wildcard such as s3:Get* by service prefix, so you can find the policies that grant an action without naming it.",
   },
   {
     path: "/discoveries.json",
@@ -166,6 +167,21 @@ export default function ApiPage() {
           </p>
           <Snippet>{`curl -s --compressed ${BASE}/actions.json \\
   | jq -r '.actions["kms:Decrypt"].actionAllowPolicies[]'`}</Snippet>
+          <p className="text-sm text-zinc-600 dark:text-zinc-400">
+            Most broad policies grant through wildcards instead. Those live in{" "}
+            <code className="font-mono text-xs">wildcardGrants</code>, keyed by
+            service prefix, with <code className="font-mono text-xs">&quot;*&quot;</code>{" "}
+            holding patterns whose prefix is itself a wildcard. Match them the
+            way IAM does, case-insensitively:
+          </p>
+          <Snippet>{`curl -s --compressed ${BASE}/actions.json \\
+  | jq -r --arg a "kms:Decrypt" '
+      .wildcardGrants as $g
+      | ($g[$a | split(":")[0] | ascii_downcase] // {}) + ($g["*"] // {})
+      | to_entries[]
+      | .key as $p
+      | select($a | test("^" + ($p | gsub("\\\\*"; ".*") | gsub("\\\\?"; ".")) + "$"; "i"))
+      | "\\($p): \\(.value | join(", "))"'`}</Snippet>
         </div>
 
         <div>
@@ -194,7 +210,7 @@ export default function ApiPage() {
           <li>
             Files under <code className="font-mono text-xs">/api/v1/</code> are
             regenerated on every deploy and served with a short cache lifetime.
-            The scraper runs hourly on weekdays, so polling more than a few
+            The scraper runs hourly, every day, so polling more than a few
             times an hour buys you nothing.
           </li>
           <li>

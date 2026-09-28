@@ -24,11 +24,12 @@ Explore AWS Managed IAM Policies through a searchable web interface at **[iamtra
 
 [![IAMTrail Website](assets/screenshot.png)](https://iamtrail.com)
 
-- Search and filter across 1,465+ managed policies
+- A homepage that leads with this week's changes that matter and the newest AWS services spotted, with the charts on [/stats](https://iamtrail.com/stats)
+- Search and filter across 1,465+ managed policies, or search an IAM action to find every policy that grants it, by name or through a wildcard such as `s3:Get*`
 - Full version history with git diffs for every policy
-- Syntax-highlighted JSON policy viewer
+- Syntax-highlighted JSON policy viewer, rendered at build time so every policy and IAM action page is readable by search engines and link previews
 - New (v1) policy tracking to spot new AWS services
-- Policy validation findings from AWS Access Analyzer
+- Policy validation findings from AWS Access Analyzer, and privilege escalation path overlap from [pathfinding.cloud](https://pathfinding.cloud) (partial wildcards and `NotAction` included)
 - [Known AWS Account lookup](https://iamtrail.com/accounts) - identify who owns one or a whole list of AWS account IDs, powered by the [fwdcloudsec/known_aws_accounts](https://github.com/fwdcloudsec/known_aws_accounts) community dataset
 
 ---
@@ -37,7 +38,13 @@ Explore AWS Managed IAM Policies through a searchable web interface at **[iamtra
 
 Subscribe to policy changes:
 
-- **Email Digest** (recommended): [Subscribe on iamtrail.com](https://iamtrail.com/subscribe) - daily or weekly emails with inline diffs, per-policy filtering, no account required
+- **Email Digest** (recommended): [Subscribe on iamtrail.com](https://iamtrail.com/subscribe) - instant, daily or weekly emails with inline diffs, no account required. Paste the output of the command below to follow only the AWS managed policies attached in your account; it is parsed in your browser and only the matched names are stored:
+
+  ```bash
+  aws iam list-policies --scope AWS --only-attached --query 'Policies[].Arn' --output text
+  ```
+
+- **Slack**: once your email subscription is confirmed, connect a Slack [incoming webhook](https://api.slack.com/messaging/webhooks) from the manage page and every notification is also posted to that channel. A webhook Slack revokes is detached automatically and you are emailed.
 - **Bluesky** (unified feed - IAM policies, endpoints, GuardDuty): [@iamtrail.bsky.social](https://bsky.app/profile/iamtrail.bsky.social)
 - **RSS Feeds** ([all feeds](https://iamtrail.com/feeds/)):
   - [All Changes](https://iamtrail.com/feeds/all.xml) - everything in one feed
@@ -49,7 +56,7 @@ See [docs/notifications-and-social.md](docs/notifications-and-social.md) for SSM
 
 ## Browse the Data
 
-All policies are stored as JSON in this repository and updated automatically every hour on weekdays.
+All policies are stored as JSON in this repository and updated automatically every hour, every day.
 
 | Path | Description |
 | --- | --- |
@@ -67,7 +74,7 @@ The whole archive is also published as versioned JSON at `https://iamtrail.com/a
 | [`/api/v1/policies.json`](https://iamtrail.com/api/v1/policies.json) | Every tracked policy with its ARN, current version and dates |
 | `/api/v1/policies/{policyName}.json` | One policy: current IAM document plus full version history with per-version action deltas |
 | [`/api/v1/changes.json`](https://iamtrail.com/api/v1/changes.json) | Recent changes, each naming the actions added and removed |
-| [`/api/v1/actions.json`](https://iamtrail.com/api/v1/actions.json) | Every literal IAM action mapped to the policies that allow, deny or NotAction it |
+| [`/api/v1/actions.json`](https://iamtrail.com/api/v1/actions.json) | Every literal IAM action mapped to the policies that allow, deny or NotAction it, plus `wildcardGrants`: every Allow wildcard by service prefix and pattern |
 | [`/api/v1/discoveries.json`](https://iamtrail.com/api/v1/discoveries.json) | Actions and service prefixes seen for the first time anywhere in the archive |
 
 ```bash
@@ -82,13 +89,15 @@ Fields are added, never removed or repurposed, within a version. A breaking chan
 
 ## How It Works
 
-An automated workflow runs every hour (Mon-Fri):
+An automated workflow runs every hour, every day:
 
 1. Fetch all AWS Managed IAM Policies via the AWS API
 2. Detect new, updated, or deprecated policies
 3. Validate each policy with AWS Access Analyzer
 4. Commit changes to git (one commit per policy)
-5. Notify via Bluesky, RSS, email digests, and an invite-only Discord webhook (SSM only, not linked on the site)
+5. Notify via Bluesky, Telegram, RSS, email digests, subscribers' Slack channels, and an invite-only Discord webhook (SSM only, not linked on the site)
+
+The website also rebuilds daily on its own schedule, so the homepage's seven-day window keeps moving through a week with no policy change.
 
 ## Credits
 

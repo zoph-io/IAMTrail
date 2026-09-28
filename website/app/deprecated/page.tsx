@@ -1,15 +1,14 @@
 import Link from "next/link";
 import type { Metadata } from "next";
+import { pageMetadata } from "@/lib/seo";
 import RelatedPages from "@/components/RelatedPages";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
   title: "Deprecated AWS Managed IAM Policies",
   description:
-    "Complete list of deprecated AWS Managed IAM Policies with deprecation dates. Track which policies have been removed from AWS.",
-  alternates: {
-    canonical: "https://iamtrail.com/deprecated",
-  },
-};
+    "Every AWS Managed IAM Policy AWS has removed, with its deprecation date and how long it lived. Find out whether a policy you attach is gone.",
+  path: "/deprecated",
+});
 
 async function getSummaryData() {
   const fs = require("fs");

@@ -1,14 +1,13 @@
 import type { Metadata } from "next";
+import { pageMetadata } from "@/lib/seo";
 import RelatedPages from "@/components/RelatedPages";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
   title: "AWS Service Growth Timeline",
   description:
-    "See when new AWS IAM service namespaces first appeared in managed policies. Track the growth of the AWS ecosystem over time.",
-  alternates: {
-    canonical: "https://iamtrail.com/service-growth",
-  },
-};
+    "When each AWS service prefix first appeared in a managed IAM policy, year by year. Track the growth of the AWS ecosystem since 2019.",
+  path: "/service-growth",
+});
 
 async function getSummaryData() {
   const fs = require("fs");

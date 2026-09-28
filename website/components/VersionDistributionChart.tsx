@@ -84,7 +84,7 @@ export default function VersionDistributionChart({
       <div className="mt-5 p-3 bg-zinc-50 dark:bg-zinc-800 rounded border border-zinc-100 dark:border-zinc-700">
         <p className="text-xs text-zinc-600 dark:text-zinc-400 font-mono">
           <strong className="text-zinc-900 dark:text-white">{v1Pct}%</strong>{" "}
-          of policies ({v1Count.toLocaleString()}) are still at v1 - created
+          of policies ({v1Count.toLocaleString("en-US")}) are still at v1 - created
           once and never updated.
         </p>
       </div>

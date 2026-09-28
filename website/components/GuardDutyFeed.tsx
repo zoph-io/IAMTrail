@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { ExternalLink } from "lucide-react";
 
 interface Announcement {
@@ -64,6 +64,7 @@ function TypeBadge({ type }: { type: string }) {
 function formatDate(iso: string) {
   const d = new Date(iso);
   return d.toLocaleDateString("en-US", {
+    timeZone: "UTC",
     year: "numeric",
     month: "short",
     day: "numeric",
@@ -89,6 +90,10 @@ export default function GuardDutyFeed({
   announcements: Announcement[];
 }) {
   const [activeFilter, setActiveFilter] = useState<string | null>(null);
+  // "3d ago" depends on the visitor's clock, so it appears once mounted and
+  // the static HTML carries only the date.
+  const [mounted, setMounted] = useState(false);
+  useEffect(() => setMounted(true), []);
 
   const filtered = activeFilter
     ? announcements.filter((a) => a.type === activeFilter)
@@ -158,7 +163,7 @@ export default function GuardDutyFeed({
                   {formatDate(ann.detected_at)}
                 </span>
                 <span className="text-xs text-zinc-400 dark:text-zinc-500">
-                  {formatRelativeTime(ann.detected_at)}
+                  {mounted ? formatRelativeTime(ann.detected_at) : null}
                 </span>
               </div>
               {ann.link && (

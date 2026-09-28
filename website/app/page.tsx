@@ -1,109 +1,77 @@
-import StatsCard from "@/components/StatsCard";
 import ChangeCard from "@/components/ChangeCard";
-import PolicyList from "@/components/PolicyList";
-import type { PolicyChange } from "@/lib/changes";
-import PolicyAgeChart from "@/components/PolicyAgeChart";
-import SeasonalityChart from "@/components/SeasonalityChart";
-import ReinventPulseChart from "@/components/ReinventPulseChart";
-import VersionDistributionChart from "@/components/VersionDistributionChart";
-import VelocityChart from "@/components/VelocityChart";
-import Link from "next/link";
+import RelatedPages from "@/components/RelatedPages";
 import {
-  FileText,
-  Sparkles,
-  Trash2,
-  TrendingUp,
-  Ruler,
-  Layers,
-  ChevronRight,
-  Globe,
-  History,
-  Key,
-} from "lucide-react";
+  changeMatters,
+  changeRank,
+  plural,
+  type ChangesFile,
+} from "@/lib/changes";
+import RelativeDay from "@/components/RelativeDay";
+import type { Metadata } from "next";
+import Link from "next/link";
+import { ChevronRight, History, Radar } from "lucide-react";
+import { pageMetadata } from "@/lib/seo";
 
-const ENDPOINT_CHANGE_BADGE: Record<
-  string,
-  { label: string; color: string; bg: string; border: string }
-> = {
-  new_region: {
-    label: "New Region",
-    color: "text-emerald-700 dark:text-emerald-400",
-    bg: "bg-emerald-50 dark:bg-emerald-950/30",
-    border: "border-emerald-200 dark:border-emerald-800",
-  },
-  new_service: {
-    label: "New Service",
-    color: "text-blue-700 dark:text-blue-400",
-    bg: "bg-blue-50 dark:bg-blue-950/30",
-    border: "border-blue-200 dark:border-blue-800",
-  },
-  service_expansion: {
-    label: "Expansion",
-    color: "text-indigo-700 dark:text-indigo-400",
-    bg: "bg-indigo-50 dark:bg-indigo-950/30",
-    border: "border-indigo-200 dark:border-indigo-800",
-  },
-  removed_region: {
-    label: "Removed",
-    color: "text-red-700 dark:text-red-400",
-    bg: "bg-red-50 dark:bg-red-950/30",
-    border: "border-red-200 dark:border-red-800",
-  },
+export const metadata: Metadata = pageMetadata({
+  absoluteTitle: "IAMTrail - AWS Managed IAM Policy Changes Archive (Unofficial)",
+  description:
+    "Every AWS Managed IAM Policy change since 2019, with full version history and diffs, never-before-seen actions and new AWS services, checked every hour.",
+  path: "/",
+});
+
+const WEEK_MS = 7 * 86_400_000;
+const MAX_WEEK_CARDS = 8;
+const MAX_SERVICES = 6;
+
+type DiscoveredService = {
+  prefix: string;
+  firstSeen: string;
+  firstPolicy: string;
+  actionCount: number;
 };
 
-async function getEndpointsSummary() {
+function readJson(relativePath: string) {
   try {
     const fs = require("fs");
     const path = require("path");
-    const dataPath = path.join(
-      process.cwd(),
-      "public/data/endpoints-summary.json"
-    );
+    const dataPath = path.join(process.cwd(), relativePath);
     if (!fs.existsSync(dataPath)) return null;
     return JSON.parse(fs.readFileSync(dataPath, "utf8"));
-  } catch {
-    return null;
-  }
-}
-
-async function getRecentChanges() {
-  try {
-    const fs = require("fs");
-    const path = require("path");
-    const dataPath = path.join(process.cwd(), "public/data/changes.json");
-    if (!fs.existsSync(dataPath)) return null;
-    const data = JSON.parse(fs.readFileSync(dataPath, "utf8"));
-    return {
-      changes: (data.changes || []).slice(0, 6) as PolicyChange[],
-      total: data.stats?.total ?? 0,
-    };
-  } catch {
-    return null;
-  }
-}
-
-async function getSummaryData() {
-  try {
-    const fs = require("fs");
-    const path = require("path");
-    const dataPath = path.join(process.cwd(), "public/data/summary.json");
-
-    if (!fs.existsSync(dataPath)) {
-      return null;
-    }
-
-    const data = fs.readFileSync(dataPath, "utf8");
-    return JSON.parse(data);
   } catch (error) {
-    console.error("Error loading summary data:", error);
+    console.error(`Error loading ${relativePath}:`, error);
     return null;
   }
+}
+
+/**
+ * The last seven days of changes, measured from the build rather than the
+ * visitor's clock, since the page is static. The deploy runs daily on its own
+ * cron so the window keeps moving through a quiet week.
+ */
+function getWeek(file: ChangesFile | null) {
+  if (!file) return null;
+  const asOf = new Date(file.generatedAt);
+  const cutoff = asOf.getTime() - WEEK_MS;
+  const inWeek = file.changes.filter((c) => new Date(c.date).getTime() >= cutoff);
+  // changes.json is capped, so a bulk week can run past its oldest entry, and
+  // the count is then a floor rather than the total.
+  const oldest = file.changes[file.changes.length - 1];
+  const truncated =
+    inWeek.length === file.changes.length &&
+    !!oldest &&
+    new Date(oldest.date).getTime() > cutoff;
+  const mattering = inWeek
+    .filter(changeMatters)
+    .sort((a, b) => changeRank(a) - changeRank(b) || b.date.localeCompare(a.date));
+  return { asOf, inWeek, mattering, truncated };
 }
 
 export default async function Home() {
-  const summaryData = await getSummaryData();
-  const endpointsData = await getEndpointsSummary();
-  const recentChanges = await getRecentChanges();
+  const summaryData = readJson("public/data/summary.json");
+  const week = getWeek(readJson("public/data/changes.json"));
+  const discoveries = readJson("public/data/discoveries.json");
+  const serviceNames: Record<string, string> =
+    readJson("../data/iam-metadata.json")?.serviceNames ?? {};
 
   if (!summaryData) {
     return (
@@ -122,8 +90,23 @@ export default async function Home() {
     );
   }
 
-  const { stats, deprecated } = summaryData;
-  const deprecatedCount = Object.keys(deprecated).length;
+  // generate-data writes all three together, so one missing means a broken
+  // build, which must not ship a homepage that looks like a quiet week.
+  if (!week || !discoveries) {
+    throw new Error(
+      "public/data/changes.json or discoveries.json is missing: run npm run generate-data",
+    );
+  }
+
+  const { stats } = summaryData;
+  const services: DiscoveredService[] = (discoveries?.services ?? []).slice(0, MAX_SERVICES);
+  const routine = week.inWeek.length - week.mattering.length;
+  const asOfLabel = week.asOf.toLocaleDateString("en-US", {
+    month: "short",
+    day: "numeric",
+    year: "numeric",
+    timeZone: "UTC",
+  });
 
   return (
     <div className="space-y-10">
@@ -141,7 +124,7 @@ export default async function Home() {
           <p className="text-lg md:text-xl text-zinc-900 dark:text-white leading-relaxed">
             AWS silently updates Managed IAM policies all the time.
             <br />
-            <span className="text-red-600 dark:text-red-400 font-semibold">We catch every single change.</span>
+            <span className="text-red-600 dark:text-red-400 font-semibold">We archive every published version.</span>
           </p>
           <p className="mt-4 text-sm text-zinc-500 dark:text-zinc-400">
             Full version history and diffs for{" "}
@@ -161,60 +144,38 @@ export default async function Home() {
         </div>
       </div>
 
-      {/* Stats Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-        <Link href="/policies">
-          <StatsCard
-            title="Total Policies"
-            value={stats.totalPolicies.toLocaleString()}
-            description="Active AWS Managed Policies"
-            icon={<FileText className="w-8 h-8" />}
-          />
-        </Link>
-        <Link href="/brand-new">
-          <StatsCard
-            title="Brand New (v1)"
-            value={stats.brandNew?.length || 0}
-            description="New AWS services/features"
-            icon={<Sparkles className="w-8 h-8" />}
-          />
-        </Link>
-        <Link href="/deprecated">
-          <StatsCard
-            title="Deprecated"
-            value={deprecatedCount.toLocaleString()}
-            description="Removed from AWS"
-            icon={<Trash2 className="w-8 h-8" />}
-          />
-        </Link>
-        <Link href="/most-active">
-          <StatsCard
-            title="Most Active"
-            value={stats.mostModified[0]?.versionsCount || 0}
-            description={`${stats.mostModified[0]?.name.substring(0, 20)}...`}
-            icon={<TrendingUp className="w-8 h-8" />}
-          />
-        </Link>
-      </div>
-
-      {/* Latest Changes */}
-      {recentChanges && recentChanges.changes.length > 0 && (
-        <div className="border border-zinc-200 dark:border-zinc-800 rounded-lg overflow-hidden">
-          <div className="px-6 py-4 bg-zinc-50 dark:bg-zinc-900 border-b border-zinc-200 dark:border-zinc-800">
-            <div className="flex items-center space-x-3">
-              <History className="w-5 h-5 text-zinc-500 dark:text-zinc-400" />
-              <div>
-                <h3 className="text-sm font-bold font-mono uppercase tracking-wider text-zinc-700 dark:text-zinc-300">
-                  Latest Changes
-                </h3>
-                <p className="text-xs text-zinc-500 dark:text-zinc-400 mt-0.5">
-                  What AWS changed most recently, and exactly which actions moved
-                </p>
-              </div>
+      {/* This week: changes that matter */}
+      <section className="border border-zinc-200 dark:border-zinc-800 rounded-lg overflow-hidden">
+        <div className="px-6 py-4 bg-zinc-50 dark:bg-zinc-900 border-b border-zinc-200 dark:border-zinc-800">
+          <div className="flex items-center space-x-3">
+            <History className="w-5 h-5 text-zinc-500 dark:text-zinc-400" />
+            <div>
+              <h2 className="text-sm font-bold font-mono uppercase tracking-wider text-zinc-700 dark:text-zinc-300">
+                This week: changes that matter
+              </h2>
+              <p className="text-xs text-zinc-500 dark:text-zinc-400 mt-0.5">
+                New AWS services, never-before-seen actions, permissions
+                management, new and removed policies. Last 7 days as of{" "}
+                {asOfLabel}.
+              </p>
             </div>
           </div>
+        </div>
+
+        {week.inWeek.length === 0 ? (
+          <p className="px-5 py-4 text-sm text-zinc-500 dark:text-zinc-400">
+            No policy changes recorded in the last 7 days.
+          </p>
+        ) : week.mattering.length === 0 ? (
+          <p className="px-5 py-4 text-sm text-zinc-500 dark:text-zinc-400">
+            {plural(week.inWeek.length, "routine change")}
+            {week.truncated ? " or more" : ""}. None added a new AWS service, a
+            never-before-seen action or a permissions management action, and no
+            policy was created or removed.
+          </p>
+        ) : (
           <div className="divide-y divide-zinc-100 dark:divide-zinc-800">
-            {recentChanges.changes.map((change) => (
+            {week.mattering.slice(0, MAX_WEEK_CARDS).map((change) => (
               <ChangeCard
                 key={`${change.sha}:${change.policyName}`}
                 change={change}
@@ -222,69 +183,88 @@ export default async function Home() {
               />
             ))}
           </div>
-          <div className="px-5 py-3 border-t border-zinc-100 dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-900">
+        )}
+
+        {week.inWeek.length > 0 && (
+          <div className="px-5 py-3 border-t border-zinc-100 dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-900 flex flex-wrap items-center justify-between gap-2">
+            <span className="text-xs font-mono text-zinc-500 dark:text-zinc-400">
+              {plural(week.mattering.length, "change")} that{" "}
+              {week.mattering.length === 1 ? "matters" : "matter"}
+              {week.mattering.length > MAX_WEEK_CARDS
+                ? ` (${MAX_WEEK_CARDS} shown)`
+                : ""}
+              , {plural(routine, "routine change")}
+              {week.truncated ? " or more" : ""}
+            </span>
             <Link
               href="/changes"
               className="inline-flex items-center gap-1 text-sm font-medium font-mono text-red-600 dark:text-red-400 hover:text-red-700 dark:hover:text-red-300 transition-colors"
             >
-              View all {recentChanges.total.toLocaleString()} recent changes
+              View all changes
               <ChevronRight className="w-4 h-4" />
             </Link>
           </div>
-        </div>
-      )}
+        )}
+      </section>
 
-      {/* Brand New Policies Spotlight */}
-      {stats.brandNew && stats.brandNew.length > 0 && (
-        <div className="border border-red-200 dark:border-red-900/50 rounded-lg overflow-hidden">
-          <div className="px-6 py-4 bg-red-50 dark:bg-red-950/30 border-b border-red-200 dark:border-red-900/50">
-            <div className="flex items-center space-x-3">
-              <Sparkles className="w-5 h-5 text-red-600 dark:text-red-400" />
-              <div>
-                <h3 className="text-sm font-bold font-mono uppercase tracking-wider text-red-700 dark:text-red-400">
-                  Brand New Policies (v1)
-                </h3>
-                <p className="text-xs text-red-600/70 dark:text-red-400/70 mt-0.5">
-                  Spot upcoming AWS services early - {stats.brandNew.length} new
-                  policies detected
-                </p>
-              </div>
+      {/* New AWS services spotted */}
+      <section className="border border-red-200 dark:border-red-900/50 rounded-lg overflow-hidden">
+        <div className="px-6 py-4 bg-red-50 dark:bg-red-950/30 border-b border-red-200 dark:border-red-900/50">
+          <div className="flex items-center space-x-3">
+            <Radar className="w-5 h-5 text-red-600 dark:text-red-400" />
+            <div>
+              <h2 className="text-sm font-bold font-mono uppercase tracking-wider text-red-700 dark:text-red-400">
+                New AWS services spotted
+              </h2>
+              <p className="text-xs text-red-600/70 dark:text-red-400/70 mt-0.5">
+                Service prefixes that appeared in a managed policy for the first
+                time, often before AWS announces the service
+              </p>
             </div>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 divide-y md:divide-y-0 md:divide-x divide-zinc-100 dark:divide-zinc-800">
-            {stats.brandNew.slice(0, 6).map((policy: any) => (
+        </div>
+        {services.length === 0 ? (
+          <p className="px-5 py-4 text-sm text-zinc-500 dark:text-zinc-400">
+            No new AWS service spotted yet.
+          </p>
+        ) : (
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-px bg-zinc-100 dark:bg-zinc-800">
+            {services.map((service) => (
               <Link
-                key={policy.name}
-                href={`/policies/${encodeURIComponent(policy.name)}`}
-                className="flex items-center justify-between px-5 py-3 hover:bg-zinc-50 dark:hover:bg-zinc-800/50 transition-colors group"
+                key={service.prefix}
+                href={`/policies/${encodeURIComponent(service.firstPolicy)}`}
+                className="flex items-center justify-between px-5 py-3 bg-white dark:bg-zinc-900 hover:bg-zinc-50 dark:hover:bg-zinc-800/50 transition-colors group"
               >
                 <div className="flex-1 min-w-0">
                   <p className="text-sm font-medium text-zinc-900 dark:text-white truncate group-hover:text-red-600 dark:group-hover:text-red-400 transition-colors">
-                    {policy.name}
+                    <code className="font-mono font-semibold">{service.prefix}</code>
+                    {serviceNames[service.prefix] ? (
+                      <span className="text-zinc-500 dark:text-zinc-400 font-normal">
+                        {" "}
+                        {serviceNames[service.prefix]}
+                      </span>
+                    ) : null}
                   </p>
-                  <p className="text-xs text-zinc-500 dark:text-zinc-400 font-mono mt-0.5">
-                    {policy.versionId} / {policy.createDate
-                      ? new Date(policy.createDate).toLocaleDateString()
-                      : "recently"}
+                  <p className="text-xs text-zinc-500 dark:text-zinc-400 font-mono mt-0.5 truncate">
+                    <RelativeDay date={service.firstSeen} /> / {plural(service.actionCount, "action")} / in{" "}
+                    {service.firstPolicy}
                   </p>
                 </div>
                 <ChevronRight className="w-4 h-4 text-zinc-300 dark:text-zinc-600 flex-shrink-0 ml-2 group-hover:text-red-500 transition-colors" />
               </Link>
             ))}
           </div>
-          {stats.brandNew.length > 6 && (
-            <div className="px-5 py-3 border-t border-zinc-100 dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-900">
-              <Link
-                href="/brand-new"
-                className="inline-flex items-center gap-1 text-sm font-medium font-mono text-red-600 dark:text-red-400 hover:text-red-700 dark:hover:text-red-300 transition-colors"
-              >
-                View all {stats.brandNew.length} new policies
-                <ChevronRight className="w-4 h-4" />
-              </Link>
-            </div>
-          )}
+        )}
+        <div className="px-5 py-3 border-t border-zinc-100 dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-900">
+          <Link
+            href="/discoveries"
+            className="inline-flex items-center gap-1 text-sm font-medium font-mono text-red-600 dark:text-red-400 hover:text-red-700 dark:hover:text-red-300 transition-colors"
+          >
+            All discoveries
+            <ChevronRight className="w-4 h-4" />
+          </Link>
         </div>
-      )}
+      </section>
 
       {/* Subscribe CTA */}
       <div className="border border-zinc-900 dark:border-zinc-100 rounded-lg p-6 bg-zinc-900 dark:bg-zinc-100">
@@ -296,11 +276,12 @@ export default async function Home() {
                 Free - No account needed
               </span>
             </div>
-            <h3 className="text-lg font-bold font-mono text-white dark:text-zinc-900">
-              Get notified when policies change
-            </h3>
+            <h2 className="text-lg font-bold font-mono text-white dark:text-zinc-900">
+              Get notified when the policies you use change
+            </h2>
             <p className="text-sm text-zinc-400 dark:text-zinc-600 mt-1">
-              Daily or weekly email digests with inline diffs. Pick specific policies or track them all.
+              Paste the AWS managed policies attached in your account, or track
+              them all. Instant, daily or weekly, by email or in a Slack channel.
             </p>
           </div>
           <Link
@@ -312,250 +293,7 @@ export default async function Home() {
         </div>
       </div>
 
-      {/* Endpoint Signals */}
-      {endpointsData && (
-        <div className="border border-zinc-200 dark:border-zinc-800 rounded-lg overflow-hidden">
-          <div className="px-6 py-4 bg-zinc-50 dark:bg-zinc-900 border-b border-zinc-200 dark:border-zinc-800">
-            <div className="flex items-center space-x-3">
-              <Globe className="w-5 h-5 text-zinc-500 dark:text-zinc-400" />
-              <div>
-                <h3 className="text-sm font-bold font-mono uppercase tracking-wider text-zinc-700 dark:text-zinc-300">
-                  Endpoint Signals
-                </h3>
-                <p className="text-xs text-zinc-500 dark:text-zinc-400 mt-0.5">
-                  {endpointsData.currentState.totalRegions} regions,{" "}
-                  {endpointsData.currentState.partitions.find((p: any) => p.partition === "aws")?.serviceCount || endpointsData.currentState.totalServices} services tracked from botocore
-                </p>
-              </div>
-            </div>
-          </div>
-          {endpointsData.recentChanges.length > 0 ? (
-            <>
-              <div className="divide-y divide-zinc-100 dark:divide-zinc-800">
-                {endpointsData.recentChanges
-                  .slice(0, 3)
-                  .flatMap((record: any) =>
-                    record.changes.slice(0, 5).map((change: any, cIdx: number) => ({
-                      ...change,
-                      detected_at: record.detected_at,
-                      key: `${record.detected_at}-${cIdx}`,
-                    }))
-                  )
-                  .slice(0, 5)
-                  .map((change: any) => {
-                    const badge = ENDPOINT_CHANGE_BADGE[change.type] || {
-                      label: change.type,
-                      color: "text-zinc-600 dark:text-zinc-400",
-                      bg: "bg-zinc-50 dark:bg-zinc-800",
-                      border: "border-zinc-200 dark:border-zinc-700",
-                    };
-                    const regions = change.new_regions || change.removed_regions;
-                    return (
-                      <div
-                        key={change.key}
-                        className="px-5 py-3 flex items-center gap-3"
-                      >
-                        <span
-                          className={`flex-shrink-0 inline-flex items-center px-2 py-0.5 rounded text-[10px] font-mono font-medium ${badge.bg} ${badge.color} border ${badge.border}`}
-                        >
-                          {badge.label}
-                        </span>
-                        {change.service ? (
-                          <span className="flex items-center gap-2 min-w-0">
-                            <code className="text-sm font-mono font-semibold text-zinc-800 dark:text-zinc-200 flex-shrink-0">
-                              {change.service}
-                            </code>
-                            {regions && regions.length > 0 && (
-                              <span className="flex flex-wrap gap-1 min-w-0">
-                                {regions.slice(0, 3).map((r: string) => (
-                                  <span
-                                    key={r}
-                                    className={`text-[10px] font-mono px-1 py-0.5 rounded ${
-                                      change.new_regions
-                                        ? "bg-emerald-50 dark:bg-emerald-950/30 text-emerald-700 dark:text-emerald-400"
-                                        : "bg-red-50 dark:bg-red-950/30 text-red-700 dark:text-red-400"
-                                    }`}
-                                  >
-                                    {r}
-                                  </span>
-                                ))}
-                                {regions.length > 3 && (
-                                  <span className="text-[10px] font-mono text-zinc-400">
-                                    +{regions.length - 3}
-                                  </span>
-                                )}
-                              </span>
-                            )}
-                          </span>
-                        ) : (
-                          <span className="text-sm text-zinc-700 dark:text-zinc-300 truncate">
-                            {change.description}
-                          </span>
-                        )}
-                        <span className="text-xs text-zinc-400 dark:text-zinc-500 flex-shrink-0 ml-auto font-mono">
-                          {change.partition}
-                        </span>
-                      </div>
-                    );
-                  })}
-              </div>
-              <div className="px-5 py-3 border-t border-zinc-100 dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-900">
-                <Link
-                  href="/endpoints"
-                  className="inline-flex items-center gap-1 text-sm font-medium font-mono text-red-600 dark:text-red-400 hover:text-red-700 dark:hover:text-red-300 transition-colors"
-                >
-                  View all endpoint changes
-                  <ChevronRight className="w-4 h-4" />
-                </Link>
-              </div>
-            </>
-          ) : (
-            <div className="px-5 py-4 flex items-center justify-between">
-              <span className="text-sm text-zinc-500 dark:text-zinc-400">
-                No recent changes detected
-              </span>
-              <Link
-                href="/endpoints"
-                className="inline-flex items-center gap-1 text-sm font-medium font-mono text-red-600 dark:text-red-400 hover:text-red-700 dark:hover:text-red-300 transition-colors"
-              >
-                Explore endpoints
-                <ChevronRight className="w-4 h-4" />
-              </Link>
-            </div>
-          )}
-        </div>
-      )}
-
-      {/* Policy Age Histogram + Stats */}
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
-        <div className="lg:col-span-2">
-          {stats.policiesByYear && (
-            <PolicyAgeChart policiesByYear={stats.policiesByYear} />
-          )}
-        </div>
-        <div className="space-y-4">
-          <Link href="/largest-policies">
-            <StatsCard
-              title="Largest Policy"
-              value={`${stats.largestByActionCount?.[0]?.actionCount || 0} actions`}
-              description={
-                stats.largestByActionCount?.[0]?.name.substring(0, 25) +
-                  "..." || "N/A"
-              }
-              icon={<Ruler className="w-8 h-8" />}
-            />
-          </Link>
-          <Link href="/service-growth">
-            <StatsCard
-              title="AWS Services Tracked"
-              value={
-                stats.serviceGrowth
-                  ? Object.values(
-                      stats.serviceGrowth as Record<string, string[]>,
-                    ).reduce((sum, arr) => sum + arr.length, 0)
-                  : 0
-              }
-              description="IAM service namespaces over time"
-              icon={<Layers className="w-8 h-8" />}
-            />
-          </Link>
-          <StatsCard
-            title="IAM Actions (literals)"
-            value={
-              typeof stats.uniqueLiteralActionCount === "number"
-                ? stats.uniqueLiteralActionCount.toLocaleString()
-                : "~14,055"
-            }
-            description="Distinct action strings in managed policies (no wildcards)"
-            icon={<Key className="w-8 h-8" />}
-          />
-        </div>
-      </div>
-
-      {/* Velocity + Version Distribution */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
-        {stats.yearlyVelocity && (
-          <VelocityChart
-            yearlyVelocity={stats.yearlyVelocity}
-            bulkDaysExcluded={stats.bulkDaysExcluded}
-          />
-        )}
-        {stats.versionDistribution && (
-          <VersionDistributionChart
-            versionDistribution={stats.versionDistribution}
-            topVersionPolicies={stats.topVersionPolicies || []}
-          />
-        )}
-      </div>
-
-      {/* Seasonality + re:Invent Pulse */}
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
-        <div className="lg:col-span-2">
-          {stats.changesByMonth && (
-            <SeasonalityChart changesByMonth={stats.changesByMonth} />
-          )}
-        </div>
-        {stats.reinventPulse && (
-          <ReinventPulseChart reinventPulse={stats.reinventPulse} />
-        )}
-      </div>
-
-      {/* Policy Lists Grid */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
-        <PolicyList
-          title="Recently Updated"
-          policies={stats.recentlyUpdated}
-          showVersions={true}
-        />
-        {stats.volatileThisYear && stats.volatileThisYear.length > 0 ? (
-          <div className="bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 rounded-lg overflow-hidden">
-            <div className="px-5 py-3 border-b border-zinc-200 dark:border-zinc-800">
-              <h3 className="text-sm font-semibold font-mono uppercase tracking-wider text-zinc-900 dark:text-white">
-                Most Volatile (Trailing 12 Months)
-              </h3>
-            </div>
-            <div className="divide-y divide-zinc-100 dark:divide-zinc-800">
-              {stats.volatileThisYear.map(
-                (p: { name: string; changesThisYear: number }) => (
-                  <Link
-                    key={p.name}
-                    href={`/policies/${encodeURIComponent(p.name)}`}
-                    className="flex items-center justify-between px-5 py-3 hover:bg-zinc-50 dark:hover:bg-zinc-800/50 transition-colors"
-                  >
-                    <span className="text-sm text-zinc-900 dark:text-white truncate mr-3">
-                      {p.name}
-                    </span>
-                    <span className="flex-shrink-0 inline-flex items-center px-2 py-0.5 rounded text-xs font-mono font-medium bg-amber-50 text-amber-700 dark:bg-amber-900/30 dark:text-amber-300 border border-amber-200 dark:border-amber-800">
-                      {p.changesThisYear} changes
-                    </span>
-                  </Link>
-                ),
-              )}
-            </div>
-          </div>
-        ) : (
-          <PolicyList
-            title="Newest Policies"
-            policies={stats.newest}
-            showVersions={false}
-          />
-        )}
-      </div>
-
-      {stats.volatileThisYear && stats.volatileThisYear.length > 0 && (
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
-          <PolicyList
-            title="Newest Policies"
-            policies={stats.newest}
-            showVersions={false}
-          />
-          <PolicyList
-            title="Oldest Policies"
-            policies={stats.oldest}
-            showVersions={false}
-          />
-        </div>
-      )}
+      <RelatedPages current="/" />
     </div>
   );
 }

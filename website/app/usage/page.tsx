@@ -1,11 +1,14 @@
 import type { Metadata } from "next";
+import { pageMetadata } from "@/lib/seo";
 import Link from "next/link";
 import {
   ArrowRight,
   BarChart3,
   Calendar,
+  Crosshair,
   ListOrdered,
   Mail,
+  MessageSquare,
   UserCheck,
 } from "lucide-react";
 import StatsCard from "@/components/StatsCard";
@@ -40,23 +43,17 @@ interface UsageStats {
   topics?: { iam_policies: number; endpoints: number; guardduty: number };
   allPoliciesSubscribers?: number;
   narrowSubscribers?: number;
+  slackSubscribers?: number;
   topNarrowPolicies?: { name: string; count: number }[];
   signupsByMonth?: { month: string; count: number }[];
 }
 
-export const metadata: Metadata = {
-  title: "Notification usage - IAMTrail",
+export const metadata: Metadata = pageMetadata({
+  title: "Notification Usage Statistics",
   description:
-    "Aggregate, privacy-preserving usage statistics for IAMTrail email notification subscriptions. No personal data.",
-  alternates: { canonical: `${SITE}/usage` },
-  openGraph: {
-    siteName: "IAMTrail",
-    title: "Notification usage | IAMTrail",
-    description: "How subscribers use IAMTrail email notifications. Aggregate stats only.",
-    url: `${SITE}/usage`,
-    images: ["/social.png"],
-  },
-};
+    "Aggregate, privacy-preserving usage statistics for IAMTrail notifications: subscribers, frequencies, topics and channels. No personal data.",
+  path: "/usage",
+});
 
 const TOPIC_LABELS: Record<string, string> = {
   iam_policies: "IAM policies",
@@ -157,6 +154,20 @@ export default function UsagePage() {
             value={d.daysActive ?? 0}
             description={`Since public launch on ${(d.launchDate || "").slice(0, 10)}. One running count per calendar day.`}
             icon={<Calendar className="w-8 h-8" />}
+          />
+          {/* The number this project steers by: a subscriber who picked the
+              policies they actually use gets alerts that apply to them. */}
+          <StatsCard
+            title="Scoped to their own policies"
+            value={d.narrowSubscribers ?? 0}
+            description="Subscribers who chose specific policies instead of all of them, for example by pasting the ones attached in their account."
+            icon={<Crosshair className="w-8 h-8" />}
+          />
+          <StatsCard
+            title="Slack channels"
+            value={d.slackSubscribers ?? 0}
+            description="Subscriptions that also post to a team's Slack channel."
+            icon={<MessageSquare className="w-8 h-8" />}
           />
         </section>
       )}

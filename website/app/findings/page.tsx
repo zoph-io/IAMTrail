@@ -177,6 +177,39 @@ function normalizeFindingsPayload(raw: unknown): FindingsData | null {
   return raw as FindingsData;
 }
 
+/** Shared by the loaded page and its loading state, which is what the static HTML holds. */
+function FindingsIntro() {
+  return (
+    <>
+      <h1 className="text-2xl font-bold font-mono text-zinc-900 dark:text-white mb-2">
+        Security findings
+      </h1>
+      <p className="text-sm text-zinc-600 dark:text-zinc-400 max-w-3xl">
+        Signals on AWS managed policies in this archive:{" "}
+        <strong className="text-zinc-800 dark:text-zinc-200">
+          IAM Access Analyzer
+        </strong>{" "}
+        validation (AWS tooling) and{" "}
+        <strong className="text-zinc-800 dark:text-zinc-200">
+          action-level overlap
+        </strong>{" "}
+        with documented privilege escalation paths from{" "}
+        <a
+          href="https://pathfinding.cloud/paths/"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-red-600 dark:text-red-400 hover:underline font-medium"
+        >
+          pathfinding.cloud
+        </a>{" "}
+        (open source). Path overlap does not prove escalation in your
+        account. It only means the published policy JSON allows the IAM
+        actions those paths list as required.
+      </p>
+    </>
+  );
+}
+
 export default function FindingsPage() {
   const [data, setData] = useState<FindingsData | null>(null);
   const [searchTerm, setSearchTerm] = useState("");
@@ -255,11 +288,16 @@ export default function FindingsPage() {
 
   if (loading) {
     return (
-      <div className="text-center py-16">
-        <div className="animate-spin inline-block w-6 h-6 border-2 border-zinc-300 border-t-red-600 rounded-full mb-4"></div>
-        <p className="text-zinc-600 dark:text-zinc-400 text-sm font-mono">
-          Loading findings...
-        </p>
+      <div className="space-y-6">
+        <div className="py-8 border-b border-zinc-100 dark:border-zinc-800">
+          <FindingsIntro />
+        </div>
+        <div className="text-center py-16">
+          <div className="animate-spin inline-block w-6 h-6 border-2 border-zinc-300 border-t-red-600 rounded-full mb-4"></div>
+          <p className="text-zinc-600 dark:text-zinc-400 text-sm font-mono">
+            Loading findings...
+          </p>
+        </div>
       </div>
     );
   }
@@ -280,31 +318,7 @@ export default function FindingsPage() {
   return (
     <div className="space-y-6">
       <div className="py-8 border-b border-zinc-100 dark:border-zinc-800">
-        <h1 className="text-2xl font-bold font-mono text-zinc-900 dark:text-white mb-2">
-          Security findings
-        </h1>
-        <p className="text-sm text-zinc-600 dark:text-zinc-400 max-w-3xl">
-          Signals on AWS managed policies in this archive:{" "}
-          <strong className="text-zinc-800 dark:text-zinc-200">
-            IAM Access Analyzer
-          </strong>{" "}
-          validation (AWS tooling) and{" "}
-          <strong className="text-zinc-800 dark:text-zinc-200">
-            action-level overlap
-          </strong>{" "}
-          with documented privilege escalation paths from{" "}
-          <a
-            href="https://pathfinding.cloud/paths/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-red-600 dark:text-red-400 hover:underline font-medium"
-          >
-            pathfinding.cloud
-          </a>{" "}
-          (open source). Path overlap does not prove escalation in your
-          account. It only means the published policy JSON allows the IAM
-          actions those paths list as required.
-        </p>
+        <FindingsIntro />
         <p className="mt-2 text-xs font-mono text-zinc-400 dark:text-zinc-500">
           Last updated: {data.lastUpdated}
         </p>

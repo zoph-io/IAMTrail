@@ -9,6 +9,7 @@ import boto3
 import discord_notifier as discord
 import iam_metadata
 import policy_diff
+import slack_publisher
 import telegram_publisher
 
 dynamodb = boto3.resource("dynamodb")
@@ -452,6 +453,26 @@ def build_email_html(subscriber, policy_changes):
     )
 
 
+def build_slack_text(policy_changes):
+    """The instant alert for a subscriber's Slack channel, led like the email."""
+    prefixes = new_service_prefixes(policy_changes)
+    if prefixes:
+        summary = f"Never seen before in any AWS managed policy: {', '.join(prefixes)}"
+    else:
+        summary = f"{policy_diff.summarize_counts(policy_changes)} just changed"
+    return slack_publisher.render_message(
+        title="IAMTrail Instant Alert",
+        summary=summary,
+        sections=[
+            (
+                "IAM policy changes",
+                slack_publisher.render_policy_lines(policy_changes, SITE_URL),
+            )
+        ],
+        site_url=SITE_URL,
+    )
+
+
 def get_instant_subscribers():
     """Scan for confirmed instant subscribers that want policy or discovery alerts."""
     items = []
@@ -558,6 +579,8 @@ def handler(event, context):
 
             sent_count = 0
             fail_count = 0
+            slack_sent = 0
+            slack_failed = 0
             for subscriber in subscribers:
                 subscribed_policies = set(subscriber.get("policies", ["*"]))
 
@@ -596,7 +619,22 @@ def handler(event, context):
                         fields=[("Error", str(e)[:200], False)],
                     )
 
-            print(f"Sent {sent_count} instant notification emails")
+                posted = slack_publisher.deliver(
+                    subscriber,
+                    lambda: build_slack_text(matching),
+                    subs_table,
+                    ses,
+                    SENDER_EMAIL,
+                    SITE_URL,
+                )
+                if posted is True:
+                    slack_sent += 1
+                elif posted is False:
+                    slack_failed += 1
+
+            print(
+                f"Sent {sent_count} instant notification emails, {slack_sent} Slack posts"
+            )
 
             preview = ", ".join(policy_names[:5])
             if len(policy_names) > 5:
@@ -604,6 +642,7 @@ def handler(event, context):
 
             fields = [
                 ("Emails Sent", str(sent_count), True),
+                ("Slack Posts", str(slack_sent), True),
                 ("Policies", str(len(policy_names)), True),
             ]
             prefixes = new_service_prefixes(policy_changes)
@@ -613,11 +652,15 @@ def handler(event, context):
                 fields.append(("Commit", f"[View]({commit_url})", True))
             if fail_count:
                 fields.append(("Failures", str(fail_count), True))
+            if slack_failed:
+                fields.append(("Slack Failures", str(slack_failed), True))
 
             discord.send(
                 "Instant Alerts Sent",
                 preview,
-                discord.COLOR_SUCCESS if not fail_count else discord.COLOR_WARNING,
+                discord.COLOR_SUCCESS
+                if not (fail_count or slack_failed)
+                else discord.COLOR_WARNING,
                 fields=fields,
             )
 
