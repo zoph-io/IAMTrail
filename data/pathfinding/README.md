@@ -1,6 +1,6 @@
 # pathfinding.cloud catalog (vendored snapshot)
 
-This directory holds a JSON export of [pathfinding.cloud](https://pathfinding.cloud/paths/) privilege escalation paths, used by `website/scripts/generate-data.js` to flag AWS managed policies whose **Allow** actions cover each path’s `permissions.required` set (action-level overlap only; not account-specific exploitability).
+This directory holds a JSON export of [pathfinding.cloud](https://pathfinding.cloud/paths/) privilege escalation paths, used by the risk assessment in `website/scripts/policy-risk.js` to flag AWS managed policies whose effective **Allow** grants cover each path's `permissions.required` set. Wildcards and `NotAction` are expanded, an unconditional Deny cancels a grant, and each path is marked unrestricted (every resource, no condition) or scoped. It reads the policy document only, not account-specific exploitability. The website build fails if this file is missing or empty.
 
 ## License
 
@@ -8,10 +8,4 @@ The path data is from [DataDog/pathfinding.cloud](https://github.com/DataDog/pat
 
 ## Updating the snapshot
 
-Refresh `paths.json` from the official site (same file their UI loads):
-
-```bash
-curl -fsSL "https://pathfinding.cloud/paths.json" -o data/pathfinding/paths.json
-```
-
-Commit the updated file when you want IAMTrail builds to track a newer catalog.
+The daily `[Prod] IAMTrail - Data Freshness` workflow (`.github/workflows/data-freshness.yml`) downloads `paths.json` from the official site (the same file their UI loads), commits it when it moved and triggers a website deployment. A failed refresh alerts the ops channel.

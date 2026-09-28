@@ -134,7 +134,7 @@ export const MENU_GROUPS: NavGroup[] = [
       {
         href: "/findings",
         label: "Security findings",
-        description: "Access Analyzer and privilege escalation paths",
+        description: "Risky managed policies to use with caution",
         icon: ShieldAlert,
       },
     ],
