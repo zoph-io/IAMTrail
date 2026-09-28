@@ -1,10 +1,12 @@
 const fs = require("fs");
 const path = require("path");
 const https = require("https");
+const { spawnSync } = require("child_process");
 const { simpleGit } = require("simple-git");
 const yaml = require("js-yaml");
 const { generateUsageStats } = require("./generate-usage-stats");
 const wording = require("./change-wording");
+const { createRiskEngine, diffAssessments, LEVELS } = require("./policy-risk");
 
 const REPO_ROOT = path.join(__dirname, "../..");
 const POLICIES_DIR = path.join(REPO_ROOT, "policies");
@@ -238,80 +240,6 @@ function wildcardBucket(pattern) {
   return /[*?]/.test(prefix) ? "*" : prefix.toLowerCase();
 }
 
-function toArray(value) {
-  return Array.isArray(value) ? value : [value];
-}
-
-/**
- * Everything the Allow statements of a policy grant, as literals and patterns.
- *
- * Partial wildcards count. Only `*` and `svc:*` used to, so `iam:Put*` never
- * matched `iam:PutRolePolicy` and the escalation-path overlap undercounted every
- * policy written with prefixes, which is most of the large ones. An Allow with
- * NotAction grants everything its list does not name, as PowerUserAccess does.
- */
-function extractAllowActionInfo(policyData) {
-  const literals = new Set();
-  const patternsByBucket = new Map();
-  const notActionAllows = [];
-
-  const statements = policyData.PolicyVersion?.Document?.Statement || [];
-  for (const stmt of toArray(statements)) {
-    if (!stmt || stmt.Effect === "Deny") continue;
-    if (stmt.Action) {
-      for (const action of toArray(stmt.Action)) {
-        if (typeof action !== "string") continue;
-        const trimmed = action.trim();
-        if (!trimmed) continue;
-        if (!trimmed.includes("*")) {
-          literals.add(trimmed.toLowerCase());
-          continue;
-        }
-        const bucket = wildcardBucket(trimmed);
-        if (!patternsByBucket.has(bucket)) patternsByBucket.set(bucket, []);
-        patternsByBucket.get(bucket).push(iamPatternRegex(trimmed));
-      }
-    } else if (stmt.NotAction) {
-      const except = toArray(stmt.NotAction)
-        .filter((a) => typeof a === "string" && a.trim())
-        .map((a) => iamPatternRegex(a.trim()));
-      notActionAllows.push(except);
-    }
-  }
-  return { literals, patternsByBucket, notActionAllows };
-}
-
-function policyAllowsAction(info, permission) {
-  if (!permission || typeof permission !== "string") return false;
-  if (info.literals.has(permission.toLowerCase())) return true;
-  const bucket = wildcardBucket(permission);
-  for (const key of [bucket, "*"]) {
-    const patterns = info.patternsByBucket.get(key);
-    if (patterns && patterns.some((re) => re.test(permission))) return true;
-  }
-  return info.notActionAllows.some(
-    (except) => !except.some((re) => re.test(permission))
-  );
-}
-
-function pathRequiredPermissionsSatisfied(allowInfo, requiredEntries) {
-  if (!Array.isArray(requiredEntries) || requiredEntries.length === 0) {
-    return false;
-  }
-  for (const entry of requiredEntries) {
-    const perm =
-      typeof entry === "string" ? entry : entry && entry.permission;
-    if (!perm || !policyAllowsAction(allowInfo, perm)) {
-      return false;
-    }
-  }
-  return true;
-}
-
-function pathfindingPathUrl(pathId) {
-  return `https://pathfinding.cloud/paths/${encodeURIComponent(pathId)}`;
-}
-
 /**
  * Build per-policy git history from a SINGLE `git log --name-only` pass over
  * policies/ instead of spawning one `git log` subprocess per policy
@@ -411,67 +339,139 @@ async function buildPolicyHistory() {
   return { historyByPolicy, versionsCountByPolicy, firstSeenByPolicy, bulkDays };
 }
 
-function buildPathfindingFindingsForPolicy(allowInfo, catalogPaths) {
-  const out = [];
-  for (const pathEntry of catalogPaths) {
-    const req = pathEntry.permissions?.required;
-    if (!pathRequiredPermissionsSatisfied(allowInfo, req)) continue;
-    const pathId = pathEntry.id;
-    if (!pathId) continue;
-    const pathName = pathEntry.name || pathId;
-    const category = pathEntry.category || "unknown";
-    const url = pathfindingPathUrl(pathId);
-    const details = `This managed policy allows every IAM action listed as required for the documented privilege escalation path "${pathName}" (${pathId}, category: ${category}). That is action coverage in this JSON only. It does not mean escalation succeeds in every AWS account: trust policies, resource scope, and other prerequisites still matter. Open the link for the interactive visualization, full technique, and mitigations on pathfinding.cloud.`;
-    out.push({
-      source: "pathfinding",
-      findingType: "DOCUMENTED_PATH",
-      issueCode: `PATHFINDING_${String(pathId).replace(/[^a-zA-Z0-9_-]/g, "_")}`,
-      findingDetails: details,
-      learnMoreLink: url,
-      pathId,
-      pathName,
-      pathCategory: category,
-    });
+/**
+ * The pathfinding.cloud privilege escalation catalog, refreshed by the
+ * data-freshness workflow. Required: without it every policy would read as
+ * having no escalation path, which is the one thing /findings must never claim
+ * by accident.
+ */
+function loadPathfindingCatalog() {
+  const raw = readRequired(
+    PATHFINDING_PATHS_JSON,
+    "Without it /findings and every policy page report no privilege escalation paths, which reads as though no managed policy can escalate.",
+    'curl -fsSL "https://pathfinding.cloud/paths.json" -o data/pathfinding/paths.json'
+  );
+  if (!Array.isArray(raw) || raw.length === 0) {
+    console.error(`\n❌ ${path.relative(process.cwd(), PATHFINDING_PATHS_JSON)} holds no paths\n`);
+    process.exit(1);
   }
-  out.sort((a, b) => a.pathId.localeCompare(b.pathId));
-  return out;
+  let catalogLastUpdated = null;
+  for (const p of raw) {
+    const lu = p.gitMetadata?.lastUpdated;
+    if (typeof lu === "string" && (!catalogLastUpdated || lu > catalogLastUpdated)) {
+      catalogLastUpdated = lu;
+    }
+  }
+  return { paths: raw, catalogLastUpdated };
 }
 
-function loadPathfindingCatalogPaths() {
-  let catalogPaths = [];
-  let catalogLastUpdated = null;
-  try {
-    if (!fs.existsSync(PATHFINDING_PATHS_JSON)) {
-      console.warn(
-        `⚠️  No pathfinding catalog at ${PATHFINDING_PATHS_JSON} (see data/pathfinding/README.md)`
-      );
-      return { catalogPaths, catalogLastUpdated };
-    }
-    const pfRaw = JSON.parse(fs.readFileSync(PATHFINDING_PATHS_JSON, "utf8"));
-    if (!Array.isArray(pfRaw)) {
-      console.warn("⚠️  pathfinding paths.json is not an array");
-      return { catalogPaths, catalogLastUpdated };
-    }
-    for (const p of pfRaw) {
-      const req = p.permissions?.required;
-      if (!Array.isArray(req) || req.length === 0) continue;
-      catalogPaths.push(p);
-      const lu = p.gitMetadata?.lastUpdated;
-      if (
-        lu &&
-        typeof lu === "string" &&
-        (!catalogLastUpdated || lu > catalogLastUpdated)
-      ) {
-        catalogLastUpdated = lu;
-      }
-    }
-    console.log(
-      `🧭 Pathfinding catalog: ${catalogPaths.length} paths with required permissions`
-    );
-  } catch (e) {
-    console.warn("⚠️  Could not load pathfinding catalog:", e.message);
+/**
+ * Many "<rev>:<path>" blobs from one `git cat-file --batch` process rather than
+ * a subprocess each. A spec that does not resolve, because the policy did not
+ * exist at that revision, maps to null.
+ */
+function readGitBlobs(specs) {
+  const blobs = new Map();
+  if (!specs.length) return blobs;
+  const result = spawnSync("git", ["cat-file", "--batch"], {
+    cwd: REPO_ROOT,
+    input: `${specs.join("\n")}\n`,
+    maxBuffer: 1024 * 1024 * 1024,
+  });
+  if (result.status !== 0) {
+    throw new Error(`git cat-file --batch failed: ${result.stderr}`);
   }
-  return { catalogPaths, catalogLastUpdated };
+  const out = result.stdout;
+  let pos = 0;
+  for (const spec of specs) {
+    const eol = out.indexOf(10, pos);
+    if (eol < 0) throw new Error(`git cat-file --batch ended early at ${spec}`);
+    const header = out.toString("utf8", pos, eol);
+    pos = eol + 1;
+    if (/ (missing|ambiguous)$/.test(header)) {
+      blobs.set(spec, null);
+      continue;
+    }
+    const size = Number(header.split(" ")[2]);
+    blobs.set(spec, out.toString("utf8", pos, pos + size));
+    pos += size + 1;
+  }
+  return blobs;
+}
+
+const RISK_CHANGE_WINDOW_DAYS = 90;
+
+/**
+ * Every recent policy version whose risk differs from the one before it, newest
+ * first. This is what only an archive can say: not that a policy is risky, but
+ * that AWS made it so on a given day.
+ *
+ * Access Analyzer findings exist only for the current version, so both sides are
+ * assessed from the document alone to compare like with like.
+ */
+function computeRiskChanges({ historyByPolicy, bulkDays, riskEngine, currentPolicies }) {
+  const since = Date.parse(GENERATED_AT) - RISK_CHANGE_WINDOW_DAYS * 86_400_000;
+  const commits = [];
+  for (const [policyName, entries] of historyByPolicy) {
+    if (!currentPolicies.has(policyName)) continue;
+    for (const entry of entries) {
+      if (Date.parse(entry.date) < since) break;
+      if (bulkDays.has(new Date(entry.date).toISOString().slice(0, 10))) continue;
+      commits.push({ policyName, hash: entry.hash, date: entry.date });
+    }
+  }
+  const spec = (rev, name) => `${rev}:policies/${name}`;
+  const blobs = readGitBlobs(
+    commits.flatMap((c) => [spec(c.hash, c.policyName), spec(`${c.hash}^`, c.policyName)])
+  );
+  // undefined when a version exists but cannot be parsed, like the empty files
+  // an interrupted scrape once committed: no honest comparison is possible.
+  const assessBlob = (text) => {
+    if (text === null) return null;
+    try {
+      return riskEngine.assess(JSON.parse(text).PolicyVersion?.Document);
+    } catch {
+      return undefined;
+    }
+  };
+
+  const changes = [];
+  let unreadable = 0;
+  for (const c of commits) {
+    const after = assessBlob(blobs.get(spec(c.hash, c.policyName)));
+    const before = assessBlob(blobs.get(spec(`${c.hash}^`, c.policyName)));
+    if (after === undefined || before === undefined) {
+      unreadable++;
+      continue;
+    }
+    if (!after) continue;
+    const base = { policy: c.policyName, date: c.date, hash: c.hash };
+    if (before === null) {
+      if (after.level === "critical" || after.level === "high") {
+        changes.push({
+          ...base,
+          kind: "new",
+          from: null,
+          to: after.level,
+          direction: "riskier",
+          added: after.signals
+            .filter((s) => s.severity !== "medium")
+            .map((s) => ({ id: s.id, title: s.title, severity: s.severity })),
+          removed: [],
+          pathsAdded: after.openPathIds,
+          pathsRemoved: [],
+        });
+      }
+      continue;
+    }
+    const diff = diffAssessments(before, after);
+    if (diff) changes.push({ ...base, kind: "change", ...diff });
+  }
+  if (unreadable) {
+    console.log(`   ⚠️  Risk timeline: ${unreadable} versions could not be parsed and were not compared`);
+  }
+  changes.sort((a, b) => Date.parse(b.date) - Date.parse(a.date));
+  return changes;
 }
 
 async function generatePolicyData() {
@@ -491,10 +491,15 @@ async function generatePolicyData() {
   const actionBuckets = new Map();
   const policiesWithWildcard = new Set();
   const wildcardPoliciesByService = {};
-  const pathfindingPoliciesForJson = [];
-
-  const { catalogPaths: pathfindingCatalogPaths, catalogLastUpdated: pathfindingCatalogLastUpdated } =
-    loadPathfindingCatalogPaths();
+  const pathfinding = loadPathfindingCatalog();
+  const riskEngine = createRiskEngine({
+    paths: pathfinding.paths,
+    permissionsManagement: loadIamMetadata().permissionsManagement,
+  });
+  console.log(`🧭 Pathfinding catalog: ${riskEngine.pathsInCatalog} paths with required permissions`);
+  // Every policy's assessment, and the Access Analyzer findings read alongside it.
+  const riskByPolicy = new Map();
+  const accessAnalyzerByPolicy = new Map();
 
   function actionBucket(action) {
     if (!actionBuckets.has(action)) {
@@ -701,30 +706,35 @@ async function generatePolicyData() {
         return row;
       });
 
-      const allowInfo = extractAllowActionInfo(policyData);
-      const pathfindingFindings = buildPathfindingFindingsForPolicy(
-        allowInfo,
-        pathfindingCatalogPaths
-      );
-      if (pathfindingFindings.length > 0) {
-        pathfindingPoliciesForJson.push({
-          name: policyName,
-          findings: pathfindingFindings,
-        });
+      // A policy with no file here has no Access Analyzer finding. One that cannot
+      // be read is not the same thing, so it stops the build instead of quietly
+      // dropping the policy's security warnings.
+      let accessAnalyzerFindings = [];
+      const findingsPath = path.join(FINDINGS_DIR, `${policyName}.json`);
+      if (fs.existsSync(findingsPath)) {
+        const arr = readRequired(
+          findingsPath,
+          "The policy would lose its Access Analyzer findings on /findings and on its own page.",
+          "re-run the policy validation workflow, or delete the file if the policy has no findings"
+        );
+        accessAnalyzerFindings = (Array.isArray(arr) ? arr : []).map((f) => ({
+          source: "access_analyzer",
+          findingType: f.findingType,
+          findingDetails: f.findingDetails,
+          issueCode: f.issueCode,
+          learnMoreLink: f.learnMoreLink,
+        }));
+      }
+      if (accessAnalyzerFindings.length) {
+        accessAnalyzerByPolicy.set(policyName, accessAnalyzerFindings);
       }
 
-      let accessAnalyzerFindingCount = 0;
-      try {
-        const findingsPath = path.join(FINDINGS_DIR, `${policyName}.json`);
-        if (fs.existsSync(findingsPath)) {
-          const arr = JSON.parse(fs.readFileSync(findingsPath, "utf8"));
-          if (Array.isArray(arr)) {
-            accessAnalyzerFindingCount = arr.length;
-          }
-        }
-      } catch {
-        /* ignore */
-      }
+      const risk = riskEngine.assess(policyData.PolicyVersion?.Document, {
+        securityWarnings: accessAnalyzerFindings.filter(
+          (f) => f.findingType === "SECURITY_WARNING"
+        ),
+      });
+      riskByPolicy.set(policyName, risk);
 
       // Save individual policy with full content
       const policyDetail = {
@@ -741,13 +751,8 @@ async function generatePolicyData() {
             }
           : null,
         securitySignals: {
-          accessAnalyzerFindingCount,
-          pathfindingOverlaps: pathfindingFindings.map((f) => ({
-            pathId: f.pathId,
-            pathName: f.pathName,
-            category: f.pathCategory,
-            pathfindingUrl: f.learnMoreLink,
-          })),
+          accessAnalyzerFindings,
+          risk: risk.level ? { level: risk.level, signals: risk.signals } : null,
         },
       };
 
@@ -1240,6 +1245,7 @@ async function generatePolicyData() {
       versionsCount: p.versionsCount,
       versionId: p.versionId,
       actionCount: p.actionCount,
+      ...(riskByPolicy.get(p.name)?.level ? { risk: riskByPolicy.get(p.name).level } : {}),
     })),
     deprecated,
   };
@@ -1320,93 +1326,117 @@ async function generatePolicyData() {
     console.warn("⚠️  Could not fetch known AWS accounts:", err.message);
   }
 
-  // Aggregate findings from Access Analyzer validation + pathfinding overlaps
-  console.log("🔎 Aggregating security findings (Access Analyzer + pathfinding)...");
-  try {
-    const findingsFiles = fs
-      .readdirSync(FINDINGS_DIR)
-      .filter((f) => f.endsWith(".json"));
-
-    const byType = { ERROR: 0, SECURITY_WARNING: 0, WARNING: 0, SUGGESTION: 0 };
-    const accessAnalyzerPolicies = [];
-
-    for (const file of findingsFiles) {
-      try {
-        const raw = JSON.parse(
-          fs.readFileSync(path.join(FINDINGS_DIR, file), "utf8")
-        );
-        const policyName = file.replace(/\.json$/, "");
-        const stripped = raw.map((f) => ({
-          source: "access_analyzer",
-          findingType: f.findingType,
-          findingDetails: f.findingDetails,
-          issueCode: f.issueCode,
-          learnMoreLink: f.learnMoreLink,
-        }));
-        for (const f of stripped) {
-          if (byType[f.findingType] !== undefined) byType[f.findingType]++;
-        }
-        accessAnalyzerPolicies.push({ name: policyName, findings: stripped });
-      } catch (e) {
-        // skip unparseable findings files
-      }
-    }
-
-    accessAnalyzerPolicies.sort((a, b) => a.name.localeCompare(b.name));
-
-    const accessAnalyzerWithAny = accessAnalyzerPolicies.filter(
-      (p) => p.findings.length > 0
-    ).length;
-    const accessAnalyzerFindingTotal = Object.values(byType).reduce(
-      (a, b) => a + b,
-      0
-    );
-
-    pathfindingPoliciesForJson.sort((a, b) => a.name.localeCompare(b.name));
-    const pathfindingByCategory = {};
-    let pathfindingOverlapTotal = 0;
-    for (const pol of pathfindingPoliciesForJson) {
-      for (const f of pol.findings) {
-        const c = f.pathCategory || "unknown";
-        pathfindingByCategory[c] = (pathfindingByCategory[c] || 0) + 1;
-        pathfindingOverlapTotal++;
-      }
-    }
-
-    const findingsData = {
-      lastUpdated: new Date().toISOString().split("T")[0],
-      totalPoliciesAnalyzed: policies.length,
-      accessAnalyzer: {
-        policiesWithFindings: accessAnalyzerWithAny,
-        totalFindingRows: accessAnalyzerFindingTotal,
-        byType,
-        policies: accessAnalyzerPolicies,
-      },
-      pathfinding: {
-        attribution:
-          "Path definitions from pathfinding.cloud (Apache-2.0, open source by Datadog). IAMTrail matches required IAM actions only.",
-        catalogLastUpdated: pathfindingCatalogLastUpdated,
-        pathsInCatalog: pathfindingCatalogPaths.length,
-        policiesWithOverlaps: pathfindingPoliciesForJson.length,
-        totalOverlaps: pathfindingOverlapTotal,
-        byCategory: pathfindingByCategory,
-        policies: pathfindingPoliciesForJson,
-      },
-    };
-
-    fs.writeFileSync(
-      path.join(OUTPUT_DIR, "findings.json"),
-      JSON.stringify(findingsData, null, 2)
-    );
-    console.log(
-      `   🛡️  Access Analyzer: ${accessAnalyzerWithAny} policies with ≥1 finding, ${accessAnalyzerFindingTotal} rows`
-    );
-    console.log(
-      `   🧭 Pathfinding overlaps: ${pathfindingPoliciesForJson.length} policies, ${pathfindingOverlapTotal} policy-path pairs`
-    );
-  } catch (err) {
-    console.warn("⚠️  Could not aggregate findings:", err.message);
+  // Risk, from the policy documents themselves, plus Access Analyzer's
+  // validation, which is mostly hygiene and is kept apart from it. Not wrapped
+  // in a try: a /findings page that fails to build must fail the deploy, not
+  // publish "no risky policies".
+  console.log("🔎 Assessing policy risk...");
+  const riskCounts = { critical: 0, high: 0, medium: 0 };
+  const riskSignalCounts = {};
+  const riskPolicies = [];
+  let escalationAny = 0;
+  let escalationOpen = 0;
+  for (const p of policies) {
+    const r = riskByPolicy.get(p.name);
+    if (!r || !r.level) continue;
+    riskCounts[r.level]++;
+    if (r.pathIds.length) escalationAny++;
+    if (r.openPathIds.length) escalationOpen++;
+    for (const s of r.signals) riskSignalCounts[s.id] = (riskSignalCounts[s.id] || 0) + 1;
+    riskPolicies.push({
+      name: p.name,
+      level: r.level,
+      score: r.score,
+      headline: r.signals[0].title,
+      reason: r.signals[0].summary,
+      signals: r.signals.map((s) => ({ id: s.id, severity: s.severity, title: s.title })),
+      paths: r.pathIds.length,
+      openPaths: r.openPathIds.length,
+      lastModified: p.lastModified,
+    });
   }
+  riskPolicies.sort((a, b) => b.score - a.score || a.name.localeCompare(b.name));
+
+  const riskChanges = computeRiskChanges({
+    historyByPolicy,
+    bulkDays,
+    riskEngine,
+    currentPolicies: new Set(policies.map((p) => p.name)),
+  });
+
+  const byType = { ERROR: 0, SECURITY_WARNING: 0, WARNING: 0, SUGGESTION: 0 };
+  const accessAnalyzerPolicies = [...accessAnalyzerByPolicy]
+    .map(([name, findings]) => ({ name, findings }))
+    .sort((a, b) => a.name.localeCompare(b.name));
+  for (const pol of accessAnalyzerPolicies) {
+    for (const f of pol.findings) {
+      if (byType[f.findingType] !== undefined) byType[f.findingType]++;
+    }
+  }
+
+  const findingsData = {
+    lastUpdated: GENERATED_AT.slice(0, 10),
+    generatedAt: GENERATED_AT,
+    totalPoliciesAnalyzed: policies.length,
+    risk: {
+      counts: riskCounts,
+      signalCounts: riskSignalCounts,
+      escalationAny,
+      escalationOpen,
+      policies: riskPolicies,
+      changesWindowDays: RISK_CHANGE_WINDOW_DAYS,
+      changes: riskChanges,
+    },
+    pathfinding: {
+      attribution:
+        "Privilege escalation paths from pathfinding.cloud (Apache-2.0, open source by Datadog).",
+      catalogLastUpdated: pathfinding.catalogLastUpdated,
+      pathsInCatalog: riskEngine.pathsInCatalog,
+    },
+    accessAnalyzer: {
+      policiesWithFindings: accessAnalyzerPolicies.length,
+      totalFindingRows: Object.values(byType).reduce((a, b) => a + b, 0),
+      byType,
+      policies: accessAnalyzerPolicies,
+    },
+  };
+  fs.writeFileSync(path.join(OUTPUT_DIR, "findings.json"), JSON.stringify(findingsData));
+  // What the "check your policies" box needs and nothing more: every tracked
+  // name, so it can tell a policy with no signal from one it does not know.
+  fs.writeFileSync(
+    path.join(OUTPUT_DIR, "risk-lookup.json"),
+    JSON.stringify({
+      names: policies.map((p) => p.name).sort(),
+      risk: Object.fromEntries(riskPolicies.map((p) => [p.name, [p.level, p.headline]])),
+    })
+  );
+  fs.writeFileSync(
+    path.join(API_DIR, "risk.json"),
+    JSON.stringify({
+      schemaVersion: 1,
+      generatedAt: GENERATED_AT,
+      documentation: `${SITE_URL}/findings/#methodology`,
+      levels: LEVELS,
+      count: riskPolicies.length,
+      policies: riskPolicies.map((p) => {
+        const r = riskByPolicy.get(p.name);
+        const open = new Set(r.openPathIds);
+        return {
+          name: p.name,
+          level: p.level,
+          signals: p.signals,
+          escalationPaths: r.pathIds.map((id) => ({ id, unrestricted: open.has(id) })),
+        };
+      }),
+    })
+  );
+  console.log(
+    `   🚨 Risk: ${riskCounts.critical} critical, ${riskCounts.high} high, ${riskCounts.medium} medium; ` +
+      `${riskChanges.length} risk changes in ${RISK_CHANGE_WINDOW_DAYS} days`
+  );
+  console.log(
+    `   🛡️  Access Analyzer: ${accessAnalyzerPolicies.length} policies with a finding, ${findingsData.accessAnalyzer.totalFindingRows} rows`
+  );
 
   // Sitemaps. /sitemap.xml is an index over one child per page type, so Search
   // Console reports indexing coverage per section instead of one number for
@@ -1546,6 +1576,7 @@ ${sitemapChildren
           changes: `${apiBase}/changes.json`,
           actions: `${apiBase}/actions.json`,
           discoveries: `${apiBase}/discoveries.json`,
+          risk: `${apiBase}/risk.json`,
         },
         feeds: {
           all: `${SITE_URL}/feeds/all.xml`,
@@ -1559,7 +1590,7 @@ ${sitemapChildren
       2
     )
   );
-  console.log(`   🔌 API ${API_VERSION}: ${policies.length + 5} documents`);
+  console.log(`   🔌 API ${API_VERSION}: ${policies.length + 6} documents`);
 
   console.log("✅ Data generation complete!");
   console.log(`   📁 Policies processed: ${policies.length}`);

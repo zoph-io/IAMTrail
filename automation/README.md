@@ -67,7 +67,7 @@ The script generates several output files:
 
 - `{policy_name}.json`: Individual policy findings in JSON format
 
-The [IAMTrail website](https://iamtrail.com/findings) aggregates these into browseable data together with [pathfinding.cloud](https://pathfinding.cloud/paths/) path overlap (`website` build runs `generate-data`, which produces `public/data/findings.json`). The pathfinding snapshot lives under `data/pathfinding/` (see `data/pathfinding/README.md`).
+The [IAMTrail website](https://iamtrail.com/findings) feeds the SECURITY_WARNING findings into its per-policy risk assessment, alongside the [pathfinding.cloud](https://pathfinding.cloud/paths/) escalation paths (`website/scripts/policy-risk.js`). The `website` build runs `generate-data`, which produces `public/data/findings.json`, `public/data/risk-lookup.json` and `public/api/v1/risk.json`, and fails if a findings file cannot be read. The pathfinding snapshot lives under `data/pathfinding/` (see `data/pathfinding/README.md`).
 
 ### Log Files
 

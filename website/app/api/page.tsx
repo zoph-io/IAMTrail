@@ -56,6 +56,12 @@ const RESOURCES: Resource[] = [
     description:
       "Service prefixes and actions that appeared for the first time anywhere in the archive, newest first. AWS usually ships the IAM component before the SDK and the docs.",
   },
+  {
+    path: "/risk.json",
+    title: "Risk assessment",
+    description:
+      "Every policy that carries a risk signal, with its level (critical, high or medium), its signals and the pathfinding.cloud escalation paths it covers, each marked unrestricted or scoped. A policy absent from the list carries no signal. Levels are data: they move when AWS changes a policy, and signal ids may be added as the assessment grows. The methodology is on the Security findings page.",
+  },
 ];
 
 function Snippet({ children }: { children: string }) {
@@ -182,6 +188,19 @@ export default function ApiPage() {
       | .key as $p
       | select($a | test("^" + ($p | gsub("\\\\*"; ".*") | gsub("\\\\?"; ".")) + "$"; "i"))
       | "\\($p): \\(.value | join(", "))"'`}</Snippet>
+        </div>
+
+        <div>
+          <p className="text-sm text-zinc-600 dark:text-zinc-400">
+            Fail a pipeline when the account has a critical AWS managed policy
+            attached:
+          </p>
+          <Snippet>{`attached=$(aws iam list-policies --scope AWS --only-attached \\
+  --query 'Policies[].PolicyName' --output json)
+critical=$(curl -s --compressed ${BASE}/risk.json \\
+  | jq -r --argjson mine "$attached" \\
+      '.policies[] | select(.level == "critical" and (.name | IN($mine[]))) | .name')
+[ -z "$critical" ] || { echo "Critical AWS managed policies attached: $critical"; exit 1; }`}</Snippet>
         </div>
 
         <div>

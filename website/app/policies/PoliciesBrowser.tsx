@@ -7,6 +7,8 @@ import { useSearchParams } from "next/navigation";
 import { iamActionToSlug } from "@/lib/actionSlug";
 import { matchWildcardGrants } from "@/lib/iamActionPattern";
 import type { WildcardGrants } from "@/lib/iamActionPattern";
+import RiskBadge from "@/components/RiskBadge";
+import type { RiskLevel } from "@/lib/risk";
 
 interface Policy {
   name: string;
@@ -14,6 +16,7 @@ interface Policy {
   createDate: string | null;
   versionsCount: number;
   versionId: string | null;
+  risk?: RiskLevel;
 }
 
 type ActionEntry = {
@@ -343,6 +346,12 @@ function PoliciesContent() {
                 <span>Versions</span>
                 <span className="font-medium">{policy.versionsCount}</span>
               </div>
+              {(policy.risk === "critical" || policy.risk === "high") && (
+                <div className="flex items-center justify-between">
+                  <span>Risk</span>
+                  <RiskBadge level={policy.risk} />
+                </div>
+              )}
               {policy.createDate && (
                 <div className="flex items-center justify-between">
                   <span>Created</span>

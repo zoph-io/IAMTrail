@@ -6,6 +6,7 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
+    "test": "node --test scripts/",
     "generate-data": "node scripts/generate-data.js",
     "generate-og": "node scripts/generate-og-images.mjs",
     "deploy-s3": "node scripts/deploy-s3.mjs --bucket iamtrail.com",

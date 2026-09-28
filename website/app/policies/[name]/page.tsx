@@ -79,7 +79,15 @@ function describe(policy: PolicyData): string {
     : `last changed ${formatDay(policy.lastModified)}`;
 
   const name = policy.name;
+  // What people search a risky policy for, so it leads when there is one.
+  const risk = policy.securitySignals?.risk;
+  const riskLead =
+    risk && risk.level !== "medium"
+      ? `rated ${risk.level} risk: ${risk.signals[0].title.charAt(0).toLowerCase()}${risk.signals[0].title.slice(1)}`
+      : "";
   const candidates = [
+    riskLead && `${name} is an AWS managed IAM policy ${riskLead}. ${history}, ${status}. Full JSON and diffs.`,
+    riskLead && `${name}: AWS managed IAM policy ${riskLead}. ${history}, ${status}.`,
     actions && `${name} is an AWS managed IAM policy naming ${actions}${across}. ${history}, ${status}. Full JSON and diffs.`,
     actions && `${name} is an AWS managed IAM policy naming ${actions}${across}. ${history}, ${status}.`,
     actions && `${name}: AWS managed IAM policy naming ${actions}. ${history}, ${status}.`,
