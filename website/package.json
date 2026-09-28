@@ -25,8 +25,8 @@
     "@types/react-syntax-highlighter": "^15.5.13",
     "autoprefixer": "^10.4.20",
     "lucide-react": "^0.577.0",
-    "next": "^15.1.6",
-    "postcss": "^8.4.49",
+    "next": "^15.5.26",
+    "postcss": "^8.5.28",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "react-syntax-highlighter": "^15.6.6",
@@ -38,7 +38,11 @@
     "@aws-sdk/client-dynamodb": "^3.700.0",
     "@aws-sdk/client-s3": "^3.1085.0",
     "@aws-sdk/util-dynamodb": "^3.700.0",
-    "js-yaml": "^4.1.1",
-    "simple-git": "^3.28.0"
+    "js-yaml": "^4.3.2",
+    "simple-git": "^3.36.0"
+  },
+  "overrides": {
+    "postcss": "$postcss",
+    "prismjs": "^1.30.0"
   }
 }
