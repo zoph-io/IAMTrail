@@ -99,7 +99,7 @@ jobs:
           PAYLOAD=$(jq -n --arg url "$RUN" --arg ts "$(date -u +%Y-%m-%dT%H:%M:%SZ)" '{
             embeds: [{
               title: "Data freshness run failed",
-              description: "The action registry, the IAM metadata or the pathfinding catalog was not refreshed. Discovery detection and the permissions-management callouts drift until this passes.",
+              description: "The action registry, the IAM metadata or the pathfinding catalog was not refreshed. Discovery detection, the permissions-management callouts and the policy risk levels drift until this passes.",
               url: $url,
               color: 15158332,
               footer: {text: "IAMTrail - data freshness"},

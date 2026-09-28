@@ -29,7 +29,7 @@ Explore AWS Managed IAM Policies through a searchable web interface at **[iamtra
 - Full version history with git diffs for every policy
 - Syntax-highlighted JSON policy viewer, rendered at build time so every policy and IAM action page is readable by search engines and link previews
 - New (v1) policy tracking to spot new AWS services
-- Policy validation findings from AWS Access Analyzer, and privilege escalation path overlap from [pathfinding.cloud](https://pathfinding.cloud) (partial wildcards and `NotAction` included)
+- [Security findings](https://iamtrail.com/findings) - a critical, high or medium risk level for every managed policy that grants admin access, a documented [pathfinding.cloud](https://pathfinding.cloud) privilege escalation path, identity administration, secret or data reads, the power to disable monitoring, or a whole-service wildcard. Each finding says whether the grant is unrestricted or scoped to named resources or a condition, and how to use the policy with caution. Paste `aws iam list-attached-role-policies` output to check your own role, follow the 90-day timeline of policies that became riskier, or script against [`/api/v1/risk.json`](https://iamtrail.com/api/v1/risk.json). Access Analyzer security warnings feed the same assessment
 - [Known AWS Account lookup](https://iamtrail.com/accounts) - identify who owns one or a whole list of AWS account IDs, powered by the [fwdcloudsec/known_aws_accounts](https://github.com/fwdcloudsec/known_aws_accounts) community dataset
 
 ---

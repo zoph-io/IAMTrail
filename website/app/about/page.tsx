@@ -138,8 +138,9 @@ export default function AboutPage() {
             </div>
             <p className="text-sm text-zinc-600 dark:text-zinc-400 leading-relaxed">
               The original archive. Every AWS managed IAM policy versioned in
-              Git with full diffs, Access Analyzer validation, and optional
-              overlap with documented privilege escalation paths (see{" "}
+              Git with full diffs, and a risk level for each one that flags
+              admin access, privilege escalation paths, secret reads and broad
+              wildcards (see{" "}
               <Link
                 href="/findings"
                 className="text-red-600 dark:text-red-400 hover:underline font-medium"
@@ -230,8 +231,8 @@ export default function AboutPage() {
             </div>
             <div className="space-y-3">
               <p className="text-sm text-zinc-600 dark:text-zinc-400 leading-relaxed">
-                Privilege escalation path definitions used for action-level
-                overlap on{" "}
+                Privilege escalation path definitions used by the risk
+                assessment on{" "}
                 <Link
                   href="/findings"
                   className="text-red-600 dark:text-red-400 hover:underline font-medium"

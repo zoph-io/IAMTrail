@@ -2,9 +2,9 @@ import type { Metadata } from "next";
 import { pageMetadata } from "@/lib/seo";
 
 export const metadata: Metadata = pageMetadata({
-  title: "Security Findings: Access Analyzer and Escalation Paths",
+  title: "Risky AWS Managed IAM Policies: Privilege Escalation and Broad Access",
   description:
-    "IAM Access Analyzer validation findings and overlaps with documented privilege escalation paths from pathfinding.cloud, for every AWS managed IAM policy.",
+    "Which AWS managed IAM policies grant admin, privilege escalation paths, secret reads or the power to disable monitoring, ranked by risk, with what changed recently.",
   path: "/findings",
 });
 

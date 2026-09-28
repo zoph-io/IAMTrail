@@ -62,6 +62,12 @@ jobs:
         working-directory: ./website
         run: npm ci
 
+      - name: Test the data scripts
+        # The risk assessment decides what /findings tells readers to be wary
+        # of, so a regression in it must stop the deploy before it publishes.
+        working-directory: ./website
+        run: npm test
+
       - name: Cache Next.js build cache
         uses: actions/cache@v4
         with:
