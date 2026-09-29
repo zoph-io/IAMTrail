@@ -1,0 +1,22 @@
+{
+    "PolicyVersion": {
+        "Document": {
+            "Version": "2012-10-17",
+            "Statement": [
+                {
+                    "Effect": "Allow",
+                    "Action": "cloudwatch:PutMetricData",
+                    "Resource": "*",
+                    "Condition": {
+                        "StringEquals": {
+                            "cloudwatch:namespace": "AWS/EndUserMessaging"
+                        }
+                    }
+                }
+            ]
+        },
+        "VersionId": "v1",
+        "IsDefaultVersion": true,
+        "CreateDate": "2026-09-29T19:37:07+00:00"
+    }
+}
