@@ -25,7 +25,9 @@
                         "payments:MakePayment",
                         "payments:UpdatePaymentPreferences",
                         "payments:CreatePaymentInstrument",
-                        "payments:UpdatePaymentInstrument"
+                        "payments:UpdatePaymentInstrument",
+                        "payments:DeletePaymentInstrument",
+                        "payments:ListPaymentInstruments"
                     ],
                     "Resource": "*"
                 },
@@ -114,8 +116,8 @@
                 }
             ]
         },
-        "VersionId": "v9",
+        "VersionId": "v10",
         "IsDefaultVersion": true,
-        "CreateDate": "2026-09-01T15:17:07+00:00"
+        "CreateDate": "2026-09-29T15:07:07+00:00"
     }
 }
