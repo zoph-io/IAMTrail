@@ -16109,12 +16109,12 @@
             "PolicyId": "ANPAZKAPJZG4KFR4NCDHT",
             "Arn": "arn:aws:iam::aws:policy/AmazonGuardDutyFullAccess_v2",
             "Path": "/",
-            "DefaultVersionId": "v6",
+            "DefaultVersionId": "v7",
             "AttachmentCount": 0,
             "PermissionsBoundaryUsageCount": 0,
             "IsAttachable": true,
             "CreateDate": "2025-06-04T20:22:07+00:00",
-            "UpdateDate": "2026-02-12T17:59:55+00:00"
+            "UpdateDate": "2026-09-28T21:37:07+00:00"
         },
         {
             "PolicyName": "AWSSecurityHubV2ServiceRolePolicy",
