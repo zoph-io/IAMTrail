@@ -31,6 +31,30 @@
                     ]
                 },
                 {
+                    "Sid": "GetRule",
+                    "Effect": "Allow",
+                    "Action": "vpc-lattice:GetRule",
+                    "Resource": [
+                        "arn:aws:vpc-lattice:*:*:service/*/listener/*/rule/*"
+                    ]
+                },
+                {
+                    "Sid": "UpdateRule",
+                    "Effect": "Allow",
+                    "Action": "vpc-lattice:UpdateRule",
+                    "Resource": [
+                        "arn:aws:vpc-lattice:*:*:service/*/listener/*/rule/*"
+                    ]
+                },
+                {
+                    "Sid": "UpdateListener",
+                    "Effect": "Allow",
+                    "Action": "vpc-lattice:UpdateListener",
+                    "Resource": [
+                        "arn:aws:vpc-lattice:*:*:service/*/listener/*"
+                    ]
+                },
+                {
                     "Sid": "DescribeEc2Resources",
                     "Effect": "Allow",
                     "Action": [
@@ -44,8 +68,8 @@
                 }
             ]
         },
-        "VersionId": "v1",
+        "VersionId": "v2",
         "IsDefaultVersion": true,
-        "CreateDate": "2024-11-15T20:02:55+00:00"
+        "CreateDate": "2026-09-29T15:57:07+00:00"
     }
 }
