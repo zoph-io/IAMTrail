@@ -9,7 +9,9 @@
                         "account:GetContactInformation",
                         "account:PutContactInformation",
                         "account:GetAccountInformation",
-                        "account:CloseAccount"
+                        "account:CloseAccount",
+                        "account:SendPhoneNumberVerification",
+                        "account:VerifyPhoneNumber"
                     ],
                     "Resource": "*"
                 },
@@ -116,8 +118,8 @@
                 }
             ]
         },
-        "VersionId": "v10",
+        "VersionId": "v11",
         "IsDefaultVersion": true,
-        "CreateDate": "2026-09-29T15:07:07+00:00"
+        "CreateDate": "2026-09-30T19:27:08+00:00"
     }
 }
