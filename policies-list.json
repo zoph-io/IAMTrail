@@ -10549,30 +10549,6 @@
             "UpdateDate": "2024-04-11T17:45:46+00:00"
         },
         {
-            "PolicyName": "AmazonCloudWatchEvidentlyReadOnlyAccess",
-            "PolicyId": "ANPAZKAPJZG4EQ6XHY7DQ",
-            "Arn": "arn:aws:iam::aws:policy/AmazonCloudWatchEvidentlyReadOnlyAccess",
-            "Path": "/",
-            "DefaultVersionId": "v1",
-            "AttachmentCount": 0,
-            "PermissionsBoundaryUsageCount": 0,
-            "IsAttachable": true,
-            "CreateDate": "2021-11-29T15:08:38+00:00",
-            "UpdateDate": "2021-11-29T15:08:38+00:00"
-        },
-        {
-            "PolicyName": "AmazonCloudWatchEvidentlyFullAccess",
-            "PolicyId": "ANPAZKAPJZG4OBNGJAXBS",
-            "Arn": "arn:aws:iam::aws:policy/AmazonCloudWatchEvidentlyFullAccess",
-            "Path": "/",
-            "DefaultVersionId": "v1",
-            "AttachmentCount": 0,
-            "PermissionsBoundaryUsageCount": 0,
-            "IsAttachable": true,
-            "CreateDate": "2021-11-29T15:10:14+00:00",
-            "UpdateDate": "2021-11-29T15:10:14+00:00"
-        },
-        {
             "PolicyName": "AmazonCloudWatchRUMReadOnlyAccess",
             "PolicyId": "ANPAZKAPJZG4MNS2SANVJ",
             "Arn": "arn:aws:iam::aws:policy/AmazonCloudWatchRUMReadOnlyAccess",
@@ -11387,18 +11363,6 @@
             "IsAttachable": true,
             "CreateDate": "2022-09-09T00:44:25+00:00",
             "UpdateDate": "2024-08-16T04:35:23+00:00"
-        },
-        {
-            "PolicyName": "AmazonCloudWatchEvidentlyServiceRolePolicy",
-            "PolicyId": "ANPAZKAPJZG4LFONJYLB3",
-            "Arn": "arn:aws:iam::aws:policy/aws-service-role/AmazonCloudWatchEvidentlyServiceRolePolicy",
-            "Path": "/aws-service-role/",
-            "DefaultVersionId": "v1",
-            "AttachmentCount": 0,
-            "PermissionsBoundaryUsageCount": 0,
-            "IsAttachable": true,
-            "CreateDate": "2022-09-13T17:25:36+00:00",
-            "UpdateDate": "2022-09-13T17:25:36+00:00"
         },
         {
             "PolicyName": "AWSDeviceFarmServiceRolePolicy",
@@ -14993,12 +14957,12 @@
             "PolicyId": "ANPAZKAPJZG4LAY36SJ4I",
             "Arn": "arn:aws:iam::aws:policy/AmazonECSInfrastructureRolePolicyForVpcLattice",
             "Path": "/",
-            "DefaultVersionId": "v1",
+            "DefaultVersionId": "v2",
             "AttachmentCount": 0,
             "PermissionsBoundaryUsageCount": 0,
             "IsAttachable": true,
             "CreateDate": "2024-11-15T20:02:55+00:00",
-            "UpdateDate": "2024-11-15T20:02:55+00:00"
+            "UpdateDate": "2026-09-29T15:57:07+00:00"
         },
         {
             "PolicyName": "AWSQuickSetupEnableDHMCExecutionPolicy",
@@ -17237,12 +17201,12 @@
             "PolicyId": "ANPAZKAPJZG4CVFC7PYPE",
             "Arn": "arn:aws:iam::aws:policy/AWSAccountSettingsManagementRole",
             "Path": "/",
-            "DefaultVersionId": "v9",
+            "DefaultVersionId": "v10",
             "AttachmentCount": 0,
             "PermissionsBoundaryUsageCount": 0,
             "IsAttachable": true,
             "CreateDate": "2025-12-11T17:49:09+00:00",
-            "UpdateDate": "2026-09-01T15:17:07+00:00"
+            "UpdateDate": "2026-09-29T15:07:07+00:00"
         },
         {
             "PolicyName": "AWSUserAttributeCostAllocationPolicy",
@@ -19007,6 +18971,18 @@
             "IsAttachable": true,
             "CreateDate": "2026-09-25T21:17:07+00:00",
             "UpdateDate": "2026-09-25T21:17:07+00:00"
+        },
+        {
+            "PolicyName": "EndUserMessagingServiceRolePolicy",
+            "PolicyId": "ANPAZKAPJZG4CPA5ZQ67I",
+            "Arn": "arn:aws:iam::aws:policy/aws-service-role/EndUserMessagingServiceRolePolicy",
+            "Path": "/aws-service-role/",
+            "DefaultVersionId": "v1",
+            "AttachmentCount": 0,
+            "PermissionsBoundaryUsageCount": 0,
+            "IsAttachable": true,
+            "CreateDate": "2026-09-29T19:37:07+00:00",
+            "UpdateDate": "2026-09-29T19:37:07+00:00"
         },
         {
             "PolicyName": "AWSConfigRole",

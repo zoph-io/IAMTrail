@@ -1,5 +1,8 @@
 {
   "AmazonApplicationWizardFullaccess": "2021-04-02",
+  "AmazonCloudWatchEvidentlyFullAccess": "2026-09-30",
+  "AmazonCloudWatchEvidentlyReadOnlyAccess": "2026-09-30",
+  "AmazonCloudWatchEvidentlyServiceRolePolicy": "2026-09-30",
   "AmazonConnectFullAccess": "2021-04-02",
   "AmazonDataZonePortalFullAccessPolicy": "2023-10-05",
   "AmazonDataZonePreviewConsoleFullAccess": "2023-10-05",
