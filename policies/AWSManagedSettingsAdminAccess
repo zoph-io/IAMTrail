@@ -27,7 +27,12 @@
                         "account:PutContactInformation",
                         "account:StartPrimaryEmailUpdate",
                         "account:AcceptPrimaryEmailUpdate",
-                        "account:GetPrimaryEmailUpdateStatus"
+                        "account:GetPrimaryEmailUpdateStatus",
+                        "account:SendPhoneNumberVerification",
+                        "account:VerifyPhoneNumber",
+                        "notifications:AssociateManagedNotificationAccountContact",
+                        "notifications:DisassociateManagedNotificationAccountContact",
+                        "notifications:ListManagedNotificationChannelAssociations"
                     ],
                     "Resource": "*"
                 },
@@ -434,8 +439,8 @@
                 }
             ]
         },
-        "VersionId": "v7",
+        "VersionId": "v8",
         "IsDefaultVersion": true,
-        "CreateDate": "2026-09-01T00:37:08+00:00"
+        "CreateDate": "2026-09-30T22:27:07+00:00"
     }
 }
