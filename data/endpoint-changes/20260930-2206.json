@@ -1,0 +1,15 @@
+{
+  "detected_at": "2026-09-30T22:06:18.145Z",
+  "botocore_commit": "3d316f06c903c6aab747913b9834bb77333c1bda",
+  "botocore_commit_url": "https://github.com/boto/botocore/commit/3d316f06c903c6aab747913b9834bb77333c1bda",
+  "summary": "1 new service",
+  "changes": [
+    {
+      "type": "new_service",
+      "partition": "aws-us-gov",
+      "id": "dax",
+      "description": "dax (2 endpoints)",
+      "endpoint_count": 2
+    }
+  ]
+}
