@@ -22,11 +22,29 @@
                         "artifact:PutComplianceInquiryFeedback"
                     ],
                     "Resource": "arn:aws:artifact:*:*:compliance-inquiry/*"
+                },
+                {
+                    "Sid": "NotificationConfigurationListActions",
+                    "Effect": "Allow",
+                    "Action": [
+                        "notifications:ListNotificationConfigurations",
+                        "notifications:ListChannels",
+                        "notifications:ListEventRules"
+                    ],
+                    "Resource": "*"
+                },
+                {
+                    "Sid": "NotificationConfigurationContactReadActions",
+                    "Effect": "Allow",
+                    "Action": [
+                        "notifications-contacts:GetEmailContact"
+                    ],
+                    "Resource": "arn:aws:notifications-contacts::*:emailcontact/*"
                 }
             ]
         },
-        "VersionId": "v2",
+        "VersionId": "v3",
         "IsDefaultVersion": true,
-        "CreateDate": "2026-07-23T20:12:25+00:00"
+        "CreateDate": "2026-09-30T22:47:08+00:00"
     }
 }
