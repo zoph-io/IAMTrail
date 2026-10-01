@@ -1,0 +1,18 @@
+{
+  "detected_at": "2026-10-01T22:33:15.229Z",
+  "botocore_commit": "66727259aabc1d5dc7f5265060d1f3998dd11a8e",
+  "botocore_commit_url": "https://github.com/boto/botocore/commit/66727259aabc1d5dc7f5265060d1f3998dd11a8e",
+  "summary": "1 service expansion",
+  "changes": [
+    {
+      "type": "service_expansion",
+      "partition": "aws-us-gov",
+      "service": "codestar-connections",
+      "id": "codestar-connections",
+      "new_regions": [
+        "us-gov-west-1"
+      ],
+      "description": "codestar-connections expanded to us-gov-west-1"
+    }
+  ]
+}
