@@ -701,12 +701,12 @@
             "PolicyId": "ANPAIX2T3QCXHR2OGGCTO",
             "Arn": "arn:aws:iam::aws:policy/SecurityAudit",
             "Path": "/",
-            "DefaultVersionId": "v93",
+            "DefaultVersionId": "v94",
             "AttachmentCount": 3,
             "PermissionsBoundaryUsageCount": 0,
             "IsAttachable": true,
             "CreateDate": "2015-02-06T18:41:01+00:00",
-            "UpdateDate": "2026-09-09T19:47:07+00:00"
+            "UpdateDate": "2026-09-30T20:27:08+00:00"
         },
         {
             "PolicyName": "AmazonSESFullAccess",
@@ -2129,12 +2129,12 @@
             "PolicyId": "ANPAID22R6XPJATWOFDK6",
             "Arn": "arn:aws:iam::aws:policy/job-function/ViewOnlyAccess",
             "Path": "/job-function/",
-            "DefaultVersionId": "v45",
+            "DefaultVersionId": "v46",
             "AttachmentCount": 1,
             "PermissionsBoundaryUsageCount": 0,
             "IsAttachable": true,
             "CreateDate": "2016-11-10T17:20:15+00:00",
-            "UpdateDate": "2026-04-22T18:12:21+00:00"
+            "UpdateDate": "2026-09-30T20:27:08+00:00"
         },
         {
             "PolicyName": "SupportUser",
@@ -14501,12 +14501,12 @@
             "PolicyId": "ANPAZKAPJZG4LSTCNC74O",
             "Arn": "arn:aws:iam::aws:policy/aws-service-role/AWSPCSServiceRolePolicy",
             "Path": "/aws-service-role/",
-            "DefaultVersionId": "v9",
+            "DefaultVersionId": "v10",
             "AttachmentCount": 0,
             "PermissionsBoundaryUsageCount": 0,
             "IsAttachable": true,
             "CreateDate": "2024-08-27T16:01:15+00:00",
-            "UpdateDate": "2026-02-12T18:01:59+00:00"
+            "UpdateDate": "2026-09-30T18:07:08+00:00"
         },
         {
             "PolicyName": "AmazonSageMakerHyperPodServiceRolePolicy",
@@ -17201,12 +17201,12 @@
             "PolicyId": "ANPAZKAPJZG4CVFC7PYPE",
             "Arn": "arn:aws:iam::aws:policy/AWSAccountSettingsManagementRole",
             "Path": "/",
-            "DefaultVersionId": "v10",
+            "DefaultVersionId": "v11",
             "AttachmentCount": 0,
             "PermissionsBoundaryUsageCount": 0,
             "IsAttachable": true,
             "CreateDate": "2025-12-11T17:49:09+00:00",
-            "UpdateDate": "2026-09-29T15:07:07+00:00"
+            "UpdateDate": "2026-09-30T19:27:08+00:00"
         },
         {
             "PolicyName": "AWSUserAttributeCostAllocationPolicy",
@@ -18113,12 +18113,12 @@
             "PolicyId": "ANPAZKAPJZG4NT3NSLDTJ",
             "Arn": "arn:aws:iam::aws:policy/AWSArtifactComplianceInquiriesFullAccess",
             "Path": "/",
-            "DefaultVersionId": "v2",
+            "DefaultVersionId": "v3",
             "AttachmentCount": 0,
             "PermissionsBoundaryUsageCount": 0,
             "IsAttachable": true,
             "CreateDate": "2026-06-30T19:27:34+00:00",
-            "UpdateDate": "2026-07-23T20:12:25+00:00"
+            "UpdateDate": "2026-09-30T22:47:08+00:00"
         },
         {
             "PolicyName": "AWSArtifactComplianceInquiriesReadOnlyAccess",
@@ -18233,12 +18233,12 @@
             "PolicyId": "ANPAZKAPJZG4NHISN5UIR",
             "Arn": "arn:aws:iam::aws:policy/WellArchitectedAgentResourceScanning",
             "Path": "/",
-            "DefaultVersionId": "v1",
+            "DefaultVersionId": "v2",
             "AttachmentCount": 0,
             "PermissionsBoundaryUsageCount": 0,
             "IsAttachable": true,
             "CreateDate": "2026-07-16T20:27:15+00:00",
-            "UpdateDate": "2026-07-16T20:27:15+00:00"
+            "UpdateDate": "2026-09-30T18:37:07+00:00"
         },
         {
             "PolicyName": "AWSManagedBudgetsSpendLimitManagementAccess",
@@ -18377,12 +18377,12 @@
             "PolicyId": "ANPAZKAPJZG4GA3LE2K77",
             "Arn": "arn:aws:iam::aws:policy/AWSManagedSettingsAdminAccess",
             "Path": "/",
-            "DefaultVersionId": "v7",
+            "DefaultVersionId": "v8",
             "AttachmentCount": 0,
             "PermissionsBoundaryUsageCount": 0,
             "IsAttachable": true,
             "CreateDate": "2026-07-22T01:27:25+00:00",
-            "UpdateDate": "2026-09-01T00:37:08+00:00"
+            "UpdateDate": "2026-09-30T22:27:07+00:00"
         },
         {
             "PolicyName": "AmazonODBFullAccess",
