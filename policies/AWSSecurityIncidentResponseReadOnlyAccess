@@ -16,14 +16,15 @@
                         "security-ir:ListComments",
                         "security-ir:ListCaseEdits",
                         "security-ir:ListTagsForResource",
-                        "security-ir:ListInvestigations"
+                        "security-ir:ListInvestigations",
+                        "security-ir:GetFindingMetrics"
                     ],
                     "Resource": "*"
                 }
             ]
         },
-        "VersionId": "v4",
+        "VersionId": "v5",
         "IsDefaultVersion": true,
-        "CreateDate": "2026-04-22T16:12:20+00:00"
+        "CreateDate": "2026-10-01T21:07:07+00:00"
     }
 }
