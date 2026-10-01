@@ -157,6 +157,20 @@
                 {
                     "Effect": "Allow",
                     "Action": [
+                        "eks:CreateCertificateAuthority",
+                        "eks:DeleteCertificateAuthority",
+                        "eks:ActivateCertificateAuthority"
+                    ],
+                    "Resource": "arn:aws:eks:*:*:cluster/*",
+                    "Condition": {
+                        "StringEquals": {
+                            "aws:ResourceAccount": "${aws:PrincipalAccount}"
+                        }
+                    }
+                },
+                {
+                    "Effect": "Allow",
+                    "Action": [
                         "eks:CreateAccessEntry",
                         "eks:DeleteAccessEntry"
                     ],
@@ -266,7 +280,8 @@
                     "Effect": "Allow",
                     "Action": [
                         "ec2:DeleteLaunchTemplate",
-                        "ec2:TerminateInstances"
+                        "ec2:TerminateInstances",
+                        "ec2:RebootInstances"
                     ],
                     "Resource": [
                         "arn:aws:ec2:*:*:launch-template/*",
@@ -282,7 +297,8 @@
                     "Effect": "Allow",
                     "Action": [
                         "ec2:DeleteLaunchTemplate",
-                        "ec2:TerminateInstances"
+                        "ec2:TerminateInstances",
+                        "ec2:RebootInstances"
                     ],
                     "Resource": "*",
                     "Condition": {
@@ -335,8 +351,8 @@
                 }
             ]
         },
-        "VersionId": "v27",
+        "VersionId": "v28",
         "IsDefaultVersion": true,
-        "CreateDate": "2026-08-21T17:17:09+00:00"
+        "CreateDate": "2026-10-01T16:27:08+00:00"
     }
 }
