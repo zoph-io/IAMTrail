@@ -2,27 +2,42 @@
     "PolicyVersion": {
         "Document": {
             "Version": "2012-10-17",
-            "Statement": {
-                "Effect": "Allow",
-                "Action": [
-                    "iam:AttachRolePolicy",
-                    "iam:CreateRole",
-                    "iam:DeleteRole",
-                    "iam:DeleteRolePermissionsBoundary",
-                    "iam:DeleteRolePolicy",
-                    "iam:DetachRolePolicy",
-                    "iam:PutRolePermissionsBoundary",
-                    "iam:PutRolePolicy",
-                    "iam:TagRole",
-                    "iam:UntagRole",
-                    "iam:UpdateAssumeRolePolicy",
-                    "iam:UpdateRole"
-                ],
-                "Resource": "arn:*:iam::*:role/managed/*"
-            }
+            "Statement": [
+                {
+                    "Effect": "Allow",
+                    "Action": [
+                        "iam:AttachRolePolicy",
+                        "iam:CreateRole",
+                        "iam:DeleteRole",
+                        "iam:DeleteRolePermissionsBoundary",
+                        "iam:DeleteRolePolicy",
+                        "iam:DetachRolePolicy",
+                        "iam:GetRole",
+                        "iam:ListAttachedRolePolicies",
+                        "iam:ListRolePolicies",
+                        "iam:PutRolePermissionsBoundary",
+                        "iam:PutRolePolicy",
+                        "iam:TagRole",
+                        "iam:UntagRole",
+                        "iam:UpdateAssumeRolePolicy",
+                        "iam:UpdateRole"
+                    ],
+                    "Resource": "arn:*:iam::*:role/managed/*"
+                },
+                {
+                    "Effect": "Allow",
+                    "Action": "sts:AssumeRole",
+                    "Resource": "arn:*:iam::*:role/managed/AWSManagedAccountManagementAccessRole",
+                    "Condition": {
+                        "StringEquals": {
+                            "aws:ResourceOrgID": "${aws:PrincipalOrgID}"
+                        }
+                    }
+                }
+            ]
         },
-        "VersionId": "v1",
+        "VersionId": "v2",
         "IsDefaultVersion": true,
-        "CreateDate": "2026-07-20T19:57:12+00:00"
+        "CreateDate": "2026-10-01T19:07:08+00:00"
     }
 }
