@@ -11,7 +11,7 @@
             "value": "Statement"
           },
           {
-            "index": 13
+            "index": 14
           },
           {
             "value": "Condition"
@@ -26,13 +26,13 @@
         "span": {
           "start": {
             "line": 1,
-            "column": 5054,
-            "offset": 5054
+            "column": 5315,
+            "offset": 5315
           },
           "end": {
             "line": 1,
-            "column": 5057,
-            "offset": 5057
+            "column": 5318,
+            "offset": 5318
           }
         }
       }
@@ -50,7 +50,7 @@
             "value": "Statement"
           },
           {
-            "index": 19
+            "index": 20
           },
           {
             "value": "Condition"
@@ -65,52 +65,13 @@
         "span": {
           "start": {
             "line": 1,
-            "column": 6090,
-            "offset": 6090
+            "column": 6374,
+            "offset": 6374
           },
           "end": {
             "line": 1,
-            "column": 6093,
-            "offset": 6093
-          }
-        }
-      }
-    ]
-  },
-  {
-    "findingDetails": "We recommend replacing the key aws:ResourceTag/eks:eks-cluster-name in the condition block of StringLike with {aws:ResourceTag/eks:eks-cluster-name: false} to ensure better enforcement of the condition.",
-    "findingType": "SUGGESTION",
-    "issueCode": "EQUIVALENT_TO_NULL_FALSE",
-    "learnMoreLink": "https://docs.aws.amazon.com/IAM/latest/UserGuide/access-analyzer-reference-policy-checks.html#access-analyzer-reference-policy-checks-suggestion-equivalent-to-null-false",
-    "locations": [
-      {
-        "path": [
-          {
-            "value": "Statement"
-          },
-          {
-            "index": 21
-          },
-          {
-            "value": "Condition"
-          },
-          {
-            "value": "StringLike"
-          },
-          {
-            "value": "aws:ResourceTag/eks:eks-cluster-name"
-          }
-        ],
-        "span": {
-          "start": {
-            "line": 1,
-            "column": 6427,
-            "offset": 6427
-          },
-          "end": {
-            "line": 1,
-            "column": 6430,
-            "offset": 6430
+            "column": 6377,
+            "offset": 6377
           }
         }
       }
@@ -143,13 +104,13 @@
         "span": {
           "start": {
             "line": 1,
-            "column": 6575,
-            "offset": 6575
+            "column": 6734,
+            "offset": 6734
           },
           "end": {
             "line": 1,
-            "column": 6578,
-            "offset": 6578
+            "column": 6737,
+            "offset": 6737
           }
         }
       }
@@ -182,13 +143,52 @@
         "span": {
           "start": {
             "line": 1,
-            "column": 6887,
-            "offset": 6887
+            "column": 6882,
+            "offset": 6882
           },
           "end": {
             "line": 1,
-            "column": 6890,
-            "offset": 6890
+            "column": 6885,
+            "offset": 6885
+          }
+        }
+      }
+    ]
+  },
+  {
+    "findingDetails": "We recommend replacing the key aws:ResourceTag/eks:eks-cluster-name in the condition block of StringLike with {aws:ResourceTag/eks:eks-cluster-name: false} to ensure better enforcement of the condition.",
+    "findingType": "SUGGESTION",
+    "issueCode": "EQUIVALENT_TO_NULL_FALSE",
+    "learnMoreLink": "https://docs.aws.amazon.com/IAM/latest/UserGuide/access-analyzer-reference-policy-checks.html#access-analyzer-reference-policy-checks-suggestion-equivalent-to-null-false",
+    "locations": [
+      {
+        "path": [
+          {
+            "value": "Statement"
+          },
+          {
+            "index": 24
+          },
+          {
+            "value": "Condition"
+          },
+          {
+            "value": "StringLike"
+          },
+          {
+            "value": "aws:ResourceTag/eks:eks-cluster-name"
+          }
+        ],
+        "span": {
+          "start": {
+            "line": 1,
+            "column": 7194,
+            "offset": 7194
+          },
+          "end": {
+            "line": 1,
+            "column": 7197,
+            "offset": 7197
           }
         }
       }

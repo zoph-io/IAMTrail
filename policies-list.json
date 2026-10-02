@@ -7121,12 +7121,12 @@
             "PolicyId": "ANPAZKAPJZG4KZBLSP26Y",
             "Arn": "arn:aws:iam::aws:policy/aws-service-role/AmazonEKSServiceRolePolicy",
             "Path": "/aws-service-role/",
-            "DefaultVersionId": "v27",
+            "DefaultVersionId": "v28",
             "AttachmentCount": 1,
             "PermissionsBoundaryUsageCount": 0,
             "IsAttachable": true,
             "CreateDate": "2020-02-21T20:10:47+00:00",
-            "UpdateDate": "2026-08-21T17:17:09+00:00"
+            "UpdateDate": "2026-10-01T16:27:08+00:00"
         },
         {
             "PolicyName": "ComputeOptimizerReadOnlyAccess",
@@ -11465,12 +11465,12 @@
             "PolicyId": "ANPAZKAPJZG4K2H54PAUL",
             "Arn": "arn:aws:iam::aws:policy/aws-service-role/AWSResourceExplorerServiceRolePolicy",
             "Path": "/aws-service-role/",
-            "DefaultVersionId": "v55",
+            "DefaultVersionId": "v56",
             "AttachmentCount": 1,
             "PermissionsBoundaryUsageCount": 0,
             "IsAttachable": true,
             "CreateDate": "2022-10-25T20:35:29+00:00",
-            "UpdateDate": "2026-09-14T23:37:08+00:00"
+            "UpdateDate": "2026-10-01T18:07:09+00:00"
         },
         {
             "PolicyName": "AWSFaultInjectionSimulatorSSMAccess",
@@ -15389,12 +15389,12 @@
             "PolicyId": "ANPAZKAPJZG4BW45DRUEH",
             "Arn": "arn:aws:iam::aws:policy/AWSSecurityIncidentResponseReadOnlyAccess",
             "Path": "/",
-            "DefaultVersionId": "v4",
+            "DefaultVersionId": "v5",
             "AttachmentCount": 0,
             "PermissionsBoundaryUsageCount": 0,
             "IsAttachable": true,
             "CreateDate": "2024-12-01T23:06:06+00:00",
-            "UpdateDate": "2026-04-22T16:12:20+00:00"
+            "UpdateDate": "2026-10-01T21:07:07+00:00"
         },
         {
             "PolicyName": "AWSSecurityIncidentResponseCaseFullAccess",
@@ -18293,12 +18293,12 @@
             "PolicyId": "ANPAZKAPJZG4DHB27L5MN",
             "Arn": "arn:aws:iam::aws:policy/AWSManagedAccountManagementAccess",
             "Path": "/",
-            "DefaultVersionId": "v1",
+            "DefaultVersionId": "v2",
             "AttachmentCount": 0,
             "PermissionsBoundaryUsageCount": 0,
             "IsAttachable": true,
             "CreateDate": "2026-07-20T19:57:12+00:00",
-            "UpdateDate": "2026-07-20T19:57:12+00:00"
+            "UpdateDate": "2026-10-01T19:07:08+00:00"
         },
         {
             "PolicyName": "AWSTransformInfrastructureExecutorAccessBatch",
@@ -18983,6 +18983,18 @@
             "IsAttachable": true,
             "CreateDate": "2026-09-29T19:37:07+00:00",
             "UpdateDate": "2026-09-29T19:37:07+00:00"
+        },
+        {
+            "PolicyName": "AWSLambdaInvokeWebFunctionEndpointAccess",
+            "PolicyId": "ANPAZKAPJZG4AQU6V2Q3X",
+            "Arn": "arn:aws:iam::aws:policy/AWSLambdaInvokeWebFunctionEndpointAccess",
+            "Path": "/",
+            "DefaultVersionId": "v1",
+            "AttachmentCount": 0,
+            "PermissionsBoundaryUsageCount": 0,
+            "IsAttachable": true,
+            "CreateDate": "2026-10-01T16:47:07+00:00",
+            "UpdateDate": "2026-10-01T16:47:07+00:00"
         },
         {
             "PolicyName": "AWSConfigRole",
