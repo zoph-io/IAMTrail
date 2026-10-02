@@ -71,6 +71,7 @@
                         "organizations:DescribeAccount",
                         "rds:DescribeDBInstances",
                         "rds:DescribeDBClusters",
+                        "rds:DescribeDBMajorEngineVersions",
                         "pricing:DescribeServices",
                         "pricing:GetAttributeValues",
                         "pricing:GetProducts",
@@ -134,7 +135,10 @@
                         "savingsplans:DescribeSavingsPlansOfferingRates",
                         "savingsplans:ListTagsForResource",
                         "cost-optimization-hub:ListEfficiencyMetrics",
-                        "billing:GetBillingPreferences"
+                        "cost-optimization-hub:ListEnrollmentStatuses",
+                        "cost-optimization-hub:GetPreferences",
+                        "billing:GetBillingPreferences",
+                        "billing:ListBillingViewSegments"
                     ],
                     "Resource": "*"
                 },
@@ -173,8 +177,8 @@
                 }
             ]
         },
-        "VersionId": "v4",
+        "VersionId": "v5",
         "IsDefaultVersion": true,
-        "CreateDate": "2026-09-24T13:27:07+00:00"
+        "CreateDate": "2026-10-02T18:27:07+00:00"
     }
 }
