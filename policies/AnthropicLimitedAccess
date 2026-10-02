@@ -24,7 +24,6 @@
                         "aws-external-anthropic:CreateMemoryStore",
                         "aws-external-anthropic:CreateSession",
                         "aws-external-anthropic:CreateSkill",
-                        "aws-external-anthropic:CreateUserProfile",
                         "aws-external-anthropic:CreateVault",
                         "aws-external-anthropic:CreateWebhook",
                         "aws-external-anthropic:DeleteBatchInference",
@@ -42,7 +41,6 @@
                         "aws-external-anthropic:UpdateMemoryStore",
                         "aws-external-anthropic:UpdateSession",
                         "aws-external-anthropic:UpdateSkill",
-                        "aws-external-anthropic:UpdateUserProfile",
                         "aws-external-anthropic:UpdateVault",
                         "aws-external-anthropic:UpdateWebhook"
                     ],
@@ -55,7 +53,11 @@
                         "aws-external-anthropic:GetAccountStatus",
                         "aws-external-anthropic:CallWithBearerToken",
                         "aws-external-anthropic:ListKeys",
-                        "aws-external-anthropic:GetKey"
+                        "aws-external-anthropic:GetKey",
+                        "aws-external-anthropic:CreateUserProfile",
+                        "aws-external-anthropic:GetUserProfile",
+                        "aws-external-anthropic:UpdateUserProfile",
+                        "aws-external-anthropic:ListUserProfiles"
                     ],
                     "Resource": "*"
                 },
@@ -95,8 +97,8 @@
                 }
             ]
         },
-        "VersionId": "v7",
+        "VersionId": "v8",
         "IsDefaultVersion": true,
-        "CreateDate": "2026-09-25T20:17:08+00:00"
+        "CreateDate": "2026-10-02T16:37:08+00:00"
     }
 }
