@@ -4469,12 +4469,12 @@
             "PolicyId": "ANPAJ6R6FMTSRUJSKI72Y",
             "Arn": "arn:aws:iam::aws:policy/aws-service-role/AmazonConnectServiceLinkedRolePolicy",
             "Path": "/aws-service-role/",
-            "DefaultVersionId": "v55",
+            "DefaultVersionId": "v56",
             "AttachmentCount": 0,
             "PermissionsBoundaryUsageCount": 0,
             "IsAttachable": true,
             "CreateDate": "2018-09-07T00:21:43+00:00",
-            "UpdateDate": "2026-05-27T21:57:16+00:00"
+            "UpdateDate": "2026-10-02T23:27:08+00:00"
         },
         {
             "PolicyName": "ElasticLoadBalancingReadOnly",
@@ -16745,12 +16745,12 @@
             "PolicyId": "ANPAZKAPJZG4EL57A4O72",
             "Arn": "arn:aws:iam::aws:policy/AmazonApplicationRecoveryControllerRegionSwitchPlanExecutionPolicy",
             "Path": "/",
-            "DefaultVersionId": "v4",
+            "DefaultVersionId": "v5",
             "AttachmentCount": 0,
             "PermissionsBoundaryUsageCount": 0,
             "IsAttachable": true,
             "CreateDate": "2025-11-03T19:34:08+00:00",
-            "UpdateDate": "2026-03-05T19:27:12+00:00"
+            "UpdateDate": "2026-10-02T18:57:08+00:00"
         },
         {
             "PolicyName": "AWSApplicationMigrationNetworkMigrationCustomResource",
@@ -17585,24 +17585,24 @@
             "PolicyId": "ANPAZKAPJZG4ALSUBTRPI",
             "Arn": "arn:aws:iam::aws:policy/AnthropicReadOnlyAccess",
             "Path": "/",
-            "DefaultVersionId": "v3",
+            "DefaultVersionId": "v4",
             "AttachmentCount": 0,
             "PermissionsBoundaryUsageCount": 0,
             "IsAttachable": true,
             "CreateDate": "2026-04-01T04:57:09+00:00",
-            "UpdateDate": "2026-09-25T20:17:07+00:00"
+            "UpdateDate": "2026-10-02T16:37:08+00:00"
         },
         {
             "PolicyName": "AnthropicLimitedAccess",
             "PolicyId": "ANPAZKAPJZG4PVRRB6AVZ",
             "Arn": "arn:aws:iam::aws:policy/AnthropicLimitedAccess",
             "Path": "/",
-            "DefaultVersionId": "v7",
+            "DefaultVersionId": "v8",
             "AttachmentCount": 0,
             "PermissionsBoundaryUsageCount": 0,
             "IsAttachable": true,
             "CreateDate": "2026-04-01T04:57:18+00:00",
-            "UpdateDate": "2026-09-25T20:17:08+00:00"
+            "UpdateDate": "2026-10-02T16:37:08+00:00"
         },
         {
             "PolicyName": "AnthropicFullAccess",
@@ -17945,12 +17945,12 @@
             "PolicyId": "ANPAZKAPJZG4KRTUHDRKJ",
             "Arn": "arn:aws:iam::aws:policy/FinOpsAgentAgentPolicy",
             "Path": "/",
-            "DefaultVersionId": "v4",
+            "DefaultVersionId": "v5",
             "AttachmentCount": 0,
             "PermissionsBoundaryUsageCount": 0,
             "IsAttachable": true,
             "CreateDate": "2026-06-03T19:57:12+00:00",
-            "UpdateDate": "2026-09-24T13:27:07+00:00"
+            "UpdateDate": "2026-10-02T18:27:07+00:00"
         },
         {
             "PolicyName": "EC2ImageBuilderExecutionPolicy",
