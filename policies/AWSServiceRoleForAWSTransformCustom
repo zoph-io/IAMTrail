@@ -11,7 +11,10 @@
                     "Resource": "*",
                     "Condition": {
                         "StringEquals": {
-                            "cloudwatch:namespace": "AWS/TransformCustom"
+                            "cloudwatch:namespace": [
+                                "AWS/TransformCustom",
+                                "AWS/TransformContinuousModernization"
+                            ]
                         }
                     }
                 },
@@ -35,8 +38,8 @@
                 }
             ]
         },
-        "VersionId": "v2",
+        "VersionId": "v3",
         "IsDefaultVersion": true,
-        "CreateDate": "2026-05-05T19:42:14+00:00"
+        "CreateDate": "2026-10-06T18:47:08+00:00"
     }
 }
