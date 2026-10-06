@@ -43,7 +43,11 @@
                         "connect:*MetricData*",
                         "connect:*UserData*",
                         "connect:*ContactEvaluation",
-                        "connect:*AttachedFile*",
+                        "connect:GetAttachedFile",
+                        "connect:BatchGetAttachedFileMetadata",
+                        "connect:DeleteAttachedFile",
+                        "connect:CompleteAttachedFileUpload",
+                        "connect:CreateAttachedFile",
                         "connect:UpdateContactSchedule",
                         "connect:UpdateContactRoutingData",
                         "connect:ListContactReferences",
@@ -78,8 +82,8 @@
                 }
             ]
         },
-        "VersionId": "v5",
+        "VersionId": "v6",
         "IsDefaultVersion": true,
-        "CreateDate": "2025-11-21T20:19:09+00:00"
+        "CreateDate": "2026-10-06T17:57:08+00:00"
     }
 }
