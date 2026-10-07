@@ -13313,12 +13313,12 @@
             "PolicyId": "ANPAZKAPJZG4J2PE2WH3Y",
             "Arn": "arn:aws:iam::aws:policy/aws-service-role/AmazonConnectSynchronizationServiceRolePolicy",
             "Path": "/aws-service-role/",
-            "DefaultVersionId": "v5",
+            "DefaultVersionId": "v6",
             "AttachmentCount": 0,
             "PermissionsBoundaryUsageCount": 0,
             "IsAttachable": true,
             "CreateDate": "2023-10-27T22:38:25+00:00",
-            "UpdateDate": "2025-11-21T20:19:09+00:00"
+            "UpdateDate": "2026-10-06T17:57:08+00:00"
         },
         {
             "PolicyName": "AmazonSageMakerCanvasDataPrepFullAccess",
@@ -17285,12 +17285,12 @@
             "PolicyId": "ANPAZKAPJZG4CTYAYXEAG",
             "Arn": "arn:aws:iam::aws:policy/service-role/AWSSecurityAgentWebAppPolicy",
             "Path": "/service-role/",
-            "DefaultVersionId": "v8",
+            "DefaultVersionId": "v9",
             "AttachmentCount": 0,
             "PermissionsBoundaryUsageCount": 0,
             "IsAttachable": true,
             "CreateDate": "2026-02-05T23:19:09+00:00",
-            "UpdateDate": "2026-09-24T23:37:07+00:00"
+            "UpdateDate": "2026-10-06T17:27:07+00:00"
         },
         {
             "PolicyName": "PartnerCentralIncentiveBenefitManagement",
@@ -17477,12 +17477,12 @@
             "PolicyId": "ANPAZKAPJZG4ES3EBGHBU",
             "Arn": "arn:aws:iam::aws:policy/aws-service-role/AWSServiceRoleForAWSTransformCustom",
             "Path": "/aws-service-role/",
-            "DefaultVersionId": "v2",
+            "DefaultVersionId": "v3",
             "AttachmentCount": 0,
             "PermissionsBoundaryUsageCount": 0,
             "IsAttachable": true,
             "CreateDate": "2026-03-25T02:57:08+00:00",
-            "UpdateDate": "2026-05-05T19:42:14+00:00"
+            "UpdateDate": "2026-10-06T18:47:08+00:00"
         },
         {
             "PolicyName": "DBModDiscoveryAndAssessment",
