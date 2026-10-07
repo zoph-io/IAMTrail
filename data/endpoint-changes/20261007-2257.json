@@ -1,0 +1,15 @@
+{
+  "detected_at": "2026-10-07T22:57:45.027Z",
+  "botocore_commit": "f3f605867bf5f6768e98941ad011aff3e17f1045",
+  "botocore_commit_url": "https://github.com/boto/botocore/commit/f3f605867bf5f6768e98941ad011aff3e17f1045",
+  "summary": "1 new service",
+  "changes": [
+    {
+      "type": "new_service",
+      "partition": "aws-iso-e",
+      "id": "runtime.sagemaker",
+      "description": "runtime.sagemaker (1 endpoint)",
+      "endpoint_count": 1
+    }
+  ]
+}
