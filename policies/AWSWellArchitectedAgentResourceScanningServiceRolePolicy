@@ -422,6 +422,7 @@
                         "cloudformation:GetStackPolicy",
                         "cloudformation:GetTemplate",
                         "cloudformation:ListResources",
+                        "cloudformation:ListStackResources",
                         "cloudformation:ListStackInstances",
                         "cloudformation:ListStackSets",
                         "cloudformation:ListStacks",
@@ -1888,6 +1889,7 @@
                         "resource-groups:ListGroupResources",
                         "resource-groups:ListGroups",
                         "resource-groups:ListTagSyncTasks",
+                        "resource-groups:SearchResources",
                         "robomaker:DescribeFleet",
                         "robomaker:DescribeRobot",
                         "robomaker:DescribeRobotApplication",
@@ -2823,8 +2825,8 @@
                 }
             ]
         },
-        "VersionId": "v3",
+        "VersionId": "v4",
         "IsDefaultVersion": true,
-        "CreateDate": "2026-09-24T18:57:08+00:00"
+        "CreateDate": "2026-10-08T19:37:08+00:00"
     }
 }
