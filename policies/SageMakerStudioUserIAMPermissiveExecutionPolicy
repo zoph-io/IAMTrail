@@ -247,7 +247,8 @@
                                 "emr-serverless.amazonaws.com",
                                 "elasticmapreduce.amazonaws.com",
                                 "airflow-serverless.amazonaws.com",
-                                "pods.eks.amazonaws.com"
+                                "pods.eks.amazonaws.com",
+                                "access-grants.s3.amazonaws.com"
                             ]
                         }
                     }
@@ -628,11 +629,46 @@
                     "Resource": [
                         "arn:aws:ec2:*:*:network-interface/*"
                     ]
+                },
+                {
+                    "Sid": "SSOInstanceReadOnlyPermissions",
+                    "Effect": "Allow",
+                    "Action": [
+                        "sso:DescribeInstance",
+                        "sso:DescribeApplication"
+                    ],
+                    "Resource": [
+                        "arn:aws:sso:::instance/*",
+                        "arn:aws:sso::*:application/*/*"
+                    ],
+                    "Condition": {
+                        "Bool": {
+                            "aws:ViaAWSService": "true"
+                        }
+                    }
+                },
+                {
+                    "Sid": "IdentityStoreReadOnlyPermissions",
+                    "Effect": "Allow",
+                    "Action": [
+                        "identitystore:DescribeUser",
+                        "identitystore:DescribeGroup"
+                    ],
+                    "Resource": [
+                        "arn:aws:identitystore::*:identitystore/*",
+                        "arn:aws:identitystore:::user/*",
+                        "arn:aws:identitystore:::group/*"
+                    ],
+                    "Condition": {
+                        "Bool": {
+                            "aws:ViaAWSService": "true"
+                        }
+                    }
                 }
             ]
         },
-        "VersionId": "v24",
+        "VersionId": "v25",
         "IsDefaultVersion": true,
-        "CreateDate": "2026-08-13T18:37:09+00:00"
+        "CreateDate": "2026-10-08T17:57:08+00:00"
     }
 }
