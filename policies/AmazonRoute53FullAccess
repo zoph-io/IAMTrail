@@ -35,11 +35,23 @@
                     "Effect": "Allow",
                     "Action": "apigateway:GET",
                     "Resource": "arn:aws:apigateway:*::/domainnames"
+                },
+                {
+                    "Effect": "Allow",
+                    "Action": [
+                        "iam:CreateServiceLinkedRole"
+                    ],
+                    "Resource": "*",
+                    "Condition": {
+                        "StringEquals": {
+                            "iam:AWSServiceName": "route53healthchecks.amazonaws.com"
+                        }
+                    }
                 }
             ]
         },
-        "VersionId": "v7",
+        "VersionId": "v8",
         "IsDefaultVersion": true,
-        "CreateDate": "2026-02-12T18:00:40+00:00"
+        "CreateDate": "2026-10-08T20:17:07+00:00"
     }
 }
