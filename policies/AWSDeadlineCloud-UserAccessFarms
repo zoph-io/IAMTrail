@@ -217,6 +217,7 @@
                         "deadline:ListFarms",
                         "deadline:ListFleets",
                         "deadline:ListJobs",
+                        "deadline:ListMemberships",
                         "deadline:ListQueues"
                     ],
                     "Resource": [
@@ -266,8 +267,8 @@
                 }
             ]
         },
-        "VersionId": "v7",
+        "VersionId": "v8",
         "IsDefaultVersion": true,
-        "CreateDate": "2026-05-29T20:27:22+00:00"
+        "CreateDate": "2026-10-09T16:37:07+00:00"
     }
 }
