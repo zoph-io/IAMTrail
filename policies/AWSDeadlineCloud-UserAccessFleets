@@ -142,7 +142,8 @@
                     "Sid": "ListBasedOnMembership",
                     "Effect": "Allow",
                     "Action": [
-                        "deadline:ListFleets"
+                        "deadline:ListFleets",
+                        "deadline:ListMemberships"
                     ],
                     "Resource": [
                         "*"
@@ -155,8 +156,8 @@
                 }
             ]
         },
-        "VersionId": "v2",
+        "VersionId": "v3",
         "IsDefaultVersion": true,
-        "CreateDate": "2026-05-29T21:27:30+00:00"
+        "CreateDate": "2026-10-09T16:47:08+00:00"
     }
 }
