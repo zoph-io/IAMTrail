@@ -4,8 +4,8 @@
   "sourceUrl": "https://github.com/iann0036/iam-dataset",
   "sourceLicense": "MIT",
   "attribution": "Action access levels and service names from iam-dataset (Ian McKay, github.com/iann0036/iam-dataset), MIT license. Derived from the AWS Service Authorization Reference; not guaranteed current.",
-  "generatedAt": "2026-10-01T11:40:47Z",
-  "stats": {"permissionsManagementCount": 565, "serviceNameCount": 455},
+  "generatedAt": "2026-10-09T11:58:06Z",
+  "stats": {"permissionsManagementCount": 565, "serviceNameCount": 456},
   "permissionsManagement": [
     "acm-pca:createpermission",
     "acm-pca:deletepermission",
@@ -739,6 +739,7 @@
     "elemental-support-content": "AWS Elemental Support Content",
     "emr-containers": "Amazon EMR on EKS (EMR Containers)",
     "emr-serverless": "Amazon EMR Serverless",
+    "end-user-messaging": "AWS End User Messaging",
     "entityresolution": "AWS Entity Resolution",
     "es": "Amazon OpenSearch Service",
     "events": "Amazon EventBridge",

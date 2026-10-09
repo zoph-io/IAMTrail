@@ -11168,6 +11168,219 @@
     "cloud": "aws"
   },
   {
+    "id": "gcp-iam-001",
+    "name": "iam.serviceAccounts.getAccessToken",
+    "category": "principal-access",
+    "services": [
+      "iam"
+    ],
+    "permissions": {
+      "required": [
+        {
+          "permission": "iam.serviceAccounts.getAccessToken",
+          "resourceConstraints": "Must be granted on the target service account, either via a custom role scoped to this permission or the predefined `roles/iam.serviceAccountTokenCreator` role"
+        }
+      ],
+      "additional": [
+        {
+          "permission": "resourcemanager.projects.get",
+          "resourceConstraints": "Helpful for confirming the current project context and the caller's own lack of project-level roles"
+        },
+        {
+          "permission": "iam.serviceAccounts.list",
+          "resourceConstraints": "Helpful for enumerating service accounts in the project to identify impersonation targets"
+        },
+        {
+          "permission": "iam.serviceAccounts.getIamPolicy",
+          "resourceConstraints": "Useful for inspecting IAM policy bindings on candidate service accounts to find impersonation grants (`roles/iam.serviceAccountTokenCreator` or a custom role granting `iam.serviceAccounts.getAccessToken`)"
+        }
+      ]
+    },
+    "description": "A principal holding `iam.serviceAccounts.getAccessToken` on a service account can call the IAM Credentials API's `generateAccessToken` method to mint a short-lived OAuth 2.0 access token that authenticates as that service account, without ever needing a long-lived key. `gcloud` wraps this in the `--impersonate-service-account` flag. If the target service account holds a privileged project role, the attacker inherits all of its permissions for the lifetime of the minted token, entirely through IAM bindings and with no credential theft or code execution involved.",
+    "prerequisites": {
+      "admin": [
+        "A target service account must exist that the attacker's principal holds `iam.serviceAccounts.getAccessToken` on, whether via a custom role or the predefined `roles/iam.serviceAccountTokenCreator` role",
+        "The target service account must hold administrative permissions at the project level (e.g., `roles/owner`, `roles/editor`, or an equivalent custom role)"
+      ],
+      "lateral": [
+        "A target service account must exist that the attacker's principal holds `iam.serviceAccounts.getAccessToken` on, whether via a custom role or the predefined `roles/iam.serviceAccountTokenCreator` role"
+      ]
+    },
+    "exploitationSteps": {
+      "gcloud": [
+        {
+          "step": 1,
+          "command": "gcloud iam service-accounts list --format='value(email)'\n",
+          "description": "Enumerate service accounts in the project to identify potential impersonation targets"
+        },
+        {
+          "step": 2,
+          "command": "gcloud iam service-accounts get-iam-policy TARGET_SA@PROJECT_ID.iam.gserviceaccount.com\n",
+          "description": "Inspect the IAM policy on a candidate service account to confirm the attacker's principal holds `iam.serviceAccounts.getAccessToken` on it (via a custom role or `roles/iam.serviceAccountTokenCreator`)"
+        },
+        {
+          "step": 3,
+          "command": "gcloud projects get-iam-policy PROJECT_ID \\\n  --flatten=\"bindings[].members\" \\\n  --filter=\"bindings.members:TARGET_SA@PROJECT_ID.iam.gserviceaccount.com\" \\\n  --format=\"table(bindings.role)\"\n",
+          "description": "Confirm the target service account's own project-level role to determine the value of impersonating it"
+        },
+        {
+          "step": 4,
+          "command": "gcloud auth print-access-token \\\n  --impersonate-service-account=TARGET_SA@PROJECT_ID.iam.gserviceaccount.com\n",
+          "description": "Mint a short-lived OAuth access token that authenticates as the target service account"
+        },
+        {
+          "step": 5,
+          "command": "gcloud PROJECT_RESOURCE_COMMAND \\\n  --impersonate-service-account=TARGET_SA@PROJECT_ID.iam.gserviceaccount.com\n",
+          "description": "Run any `gcloud` command with `--impersonate-service-account` set to the target account to operate with its inherited project permissions"
+        }
+      ],
+      "gcpwn": [
+        {
+          "step": 1,
+          "command": "modules run enum_gcp --iam\n",
+          "description": "Enumerate IAM bindings across the project (GCPwn's IAM enumeration module surfaces `iam.serviceAccounts.getAccessToken` grants as it maps out privilege escalation edges)"
+        },
+        {
+          "step": 2,
+          "command": "modules run exploit_generate_access_token \\\n  --target-sa projects/PROJECT_ID/serviceAccounts/TARGET_SA@PROJECT_ID.iam.gserviceaccount.com\n",
+          "description": "Use GCPwn's single-permission-movement exploit module to mint a short-lived OAuth 2.0 access token for the target service account and pivot the active session's credentials to it"
+        }
+      ]
+    },
+    "limitations": "This path provides administrative access only if the target service account holds `roles/owner`, `roles/editor`, or an equivalent administrative custom role at the project level. If the target only has narrowly scoped permissions, the attacker inherits only those, though even limited additional access may enable further multi-hop escalation. Note that `roles/editor` and `roles/viewer` deliberately exclude Secret Manager payload access (`secretmanager.versions.access`), so reaching secrets specifically requires the target to also hold an explicit `roles/secretmanager.secretAccessor` grant.\n",
+    "recommendation": "Service account impersonation is Google's recommended alternative to long-lived service account keys, but granting `iam.serviceAccounts.getAccessToken` across a privilege boundary turns that best practice into a privilege escalation path.\n\n- **Avoid granting impersonation rights across privilege boundaries** - Never grant `iam.serviceAccounts.getAccessToken` (whether via the predefined `roles/iam.serviceAccountTokenCreator` role or a custom role bundling just this permission) to a principal that should not otherwise hold the target service account's permissions.\n- **Scope impersonation grants with IAM Conditions** - Restrict bindings with time-bound or attribute-based conditions rather than granting unconditional, standing access:\n\n```json\n{\n  \"role\": \"roles/iam.serviceAccountTokenCreator\",\n  \"members\": [\"serviceAccount:automation-sa@PROJECT_ID.iam.gserviceaccount.com\"],\n  \"condition\": {\n    \"title\": \"time-bound-impersonation\",\n    \"expression\": \"request.time < timestamp(\\\"2026-12-31T00:00:00Z\\\")\"\n  }\n}\n```\n\n- **Apply least privilege to service accounts that can be impersonated** - Replace broad primitive roles like `roles/editor` or `roles/owner` with narrowly scoped predefined or custom roles.\n- **Prefer Workload Identity Federation** - Where possible, grant external workloads direct, narrowly-scoped access instead of chaining through an intermediate impersonatable service account.\n- Monitor Cloud Audit Logs for `iam.googleapis.com/GenerateAccessToken` events where the impersonated service account holds `roles/editor` or `roles/owner`.\n- Monitor for `iam.googleapis.com/SetIamPolicy` events that add new `iam.serviceAccounts.getAccessToken` grants (via `roles/iam.serviceAccountTokenCreator` or a custom role) to service accounts holding elevated project roles.\n- Investigate `GenerateAccessToken` or `SignJwt` events followed within seconds by API calls the caller's own identity does not otherwise have access to.\n- Regularly audit IAM bindings with Policy Analyzer / IAM Recommender to identify service accounts with unused or overly broad impersonation grants.\n",
+    "discoveryAttribution": {
+      "firstDocumented": {
+        "author": "Spencer Gietzen",
+        "organization": "Rhino Security Labs",
+        "date": 2020,
+        "link": "https://rhinosecuritylabs.com/gcp/privilege-escalation-google-cloud-platform-part-1/"
+      }
+    },
+    "references": [
+      {
+        "title": "Privilege Escalation in Google Cloud Platform - Part 1 (IAM) - Rhino Security Labs",
+        "url": "https://rhinosecuritylabs.com/gcp/privilege-escalation-google-cloud-platform-part-1/"
+      },
+      {
+        "title": "RhinoSecurityLabs/GCP-IAM-Privilege-Escalation - iam.serviceAccounts.getAccessToken exploit script",
+        "url": "https://github.com/RhinoSecurityLabs/GCP-IAM-Privilege-Escalation/blob/master/ExploitScripts/iam.serviceAccounts.getAccessToken.py"
+      },
+      {
+        "title": "GCP - IAM Privesc - HackTricks Cloud",
+        "url": "https://cloud.hacktricks.wiki/en/pentesting-cloud/gcp-security/gcp-privilege-escalation/gcp-iam-privesc.html"
+      },
+      {
+        "title": "Google Cloud: Manage short-lived service account credentials",
+        "url": "https://cloud.google.com/iam/docs/create-short-lived-credentials-direct"
+      },
+      {
+        "title": "MITRE ATT&CK T1550.001: Use Alternate Authentication Material - Application Access Token",
+        "url": "https://attack.mitre.org/techniques/T1550/001/"
+      }
+    ],
+    "detectionTools": {
+      "prowler": "https://github.com/prowler-cloud/prowler/blob/master/prowler/providers/gcp/services/iam/iam_no_service_roles_at_project_level/iam_no_service_roles_at_project_level.py#L19-L22",
+      "gcp-scanner": "https://github.com/google/gcp_scanner/blob/main/src/gcp_scanner/scanner.py#L305-L356"
+    },
+    "learningEnvironments": {
+      "pathfinding-labs": {
+        "type": "open-source",
+        "githubLink": "https://github.com/DataDog/pathfinding-labs",
+        "scenario": "modules/scenarios/gcp/single-account/privesc-one-hop/to-admin/gcp-iam-001-iam-serviceaccountsgetaccesstoken",
+        "description": "Deploy Terraform into your own GCP project to practice this attack path: a service account holding `iam.serviceAccounts.getAccessToken` on a second, privileged service account impersonates it to inherit its project-level `roles/editor` and Secret Manager access."
+      },
+      "gcpgoat": {
+        "type": "open-source",
+        "githubLink": "https://github.com/ine-labs/GCPGoat",
+        "scenario": "Privilege Escalation Using Service Account Impersonation",
+        "description": "A deliberately vulnerable GCP infrastructure deployed via Terraform into your own GCP account. Its privilege escalation module has an attacker-controlled service account holding `roles/iam.serviceAccountTokenCreator` impersonate the `default-compute-engine` service account, inheriting its project-level `roles/editor` access."
+      }
+    },
+    "attackVisualization": {
+      "nodes": [
+        {
+          "id": "start",
+          "label": "Starting Service Account",
+          "type": "principal",
+          "description": "The attacker's starting service account. It holds no project-level roles of its own, but has been granted `iam.serviceAccounts.getAccessToken` on a second, privileged service account, either via the predefined `roles/iam.serviceAccountTokenCreator` role or a custom role scoped to just this permission."
+        },
+        {
+          "id": "target_sa",
+          "label": "Target Service Account",
+          "type": "principal",
+          "description": "The privileged service account being impersonated. What the attacker actually gains depends entirely on what this service account holds at the time of the attack, since impersonation inherits its permissions rather than granting any fixed set."
+        },
+        {
+          "id": "admin",
+          "label": "Effective Administrator",
+          "type": "outcome",
+          "color": "#99ff99",
+          "description": "The target service account holds `roles/owner`, `roles/editor`, or an equivalent administrative custom role at the project level. Impersonating it grants the attacker administrative control over the project. Note that `roles/editor` alone does not include Secret Manager payload access (`secretmanager.versions.access`), so reaching a specific secret's value also requires the target to hold an explicit `roles/secretmanager.secretAccessor` grant on that secret."
+        },
+        {
+          "id": "limited_access",
+          "label": "Limited Additional Access",
+          "type": "outcome",
+          "color": "#ffeb99",
+          "description": "The target service account holds narrower, non-administrative permissions, such as access to a specific resource or service. Impersonating it grants only that scoped access, which may still enable further lateral movement or multi-hop escalation."
+        },
+        {
+          "id": "no_access",
+          "label": "No Additional Access",
+          "type": "outcome",
+          "color": "#cccccc",
+          "description": "The target service account holds minimal or no meaningful permissions beyond what the attacker's starting principal already had, so impersonating it provides no material benefit."
+        }
+      ],
+      "edges": [
+        {
+          "from": "start",
+          "to": "target_sa",
+          "label": "iam.serviceAccounts.getAccessToken",
+          "description": "The attacker calls the IAM Credentials API's `generateAccessToken` method, wrapped by `gcloud auth print-access-token --impersonate-service-account=...`, to mint a short-lived OAuth 2.0 access token that authenticates as the target service account."
+        },
+        {
+          "from": "target_sa",
+          "to": "admin",
+          "label": "If target holds roles/editor or roles/owner",
+          "branch": "A",
+          "condition": "admin",
+          "description": "If the target service account holds `roles/owner`, `roles/editor`, or an equivalent administrative custom role, the attacker inherits effective administrative control over the project for the lifetime of the minted token."
+        },
+        {
+          "from": "target_sa",
+          "to": "limited_access",
+          "label": "If target holds narrower permissions",
+          "branch": "B",
+          "condition": "some_permissions",
+          "description": "If the target service account holds only narrowly scoped permissions, such as access to a specific secret or resource, the attacker inherits that limited access."
+        },
+        {
+          "from": "target_sa",
+          "to": "no_access",
+          "label": "If target holds minimal permissions",
+          "branch": "C",
+          "condition": "no_permissions",
+          "description": "If the target service account has no meaningful permissions beyond the attacker's own, impersonating it provides no additional access."
+        }
+      ]
+    },
+    "gitMetadata": {
+      "created": "2026-10-08T11:30:45Z",
+      "lastUpdated": "2026-10-08T11:30:45Z",
+      "contributors": [
+        {
+          "name": "Seth Art",
+          "email": "seth.art@datadoghq.com",
+          "githubUsername": "sethsec"
+        }
+      ]
+    },
+    "filePath": "data/paths/gcp/iam/gcp-iam-001.yaml",
+    "cloud": "gcp"
+  },
+  {
     "id": "glue-001",
     "name": "iam:PassRole + glue:CreateDevEndpoint",
     "category": "new-passrole",
