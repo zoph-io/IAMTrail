@@ -59,6 +59,33 @@
                     ]
                 },
                 {
+                    "Sid": "CloudFormationTagOnCreate",
+                    "Effect": "Allow",
+                    "Action": [
+                        "cloudformation:TagResource"
+                    ],
+                    "Resource": [
+                        "arn:aws:cloudformation:*:*:stack/ApplicationInsights-*"
+                    ],
+                    "Condition": {
+                        "StringEquals": {
+                            "cloudformation:CreateAction": [
+                                "CreateStack",
+                                "UpdateStack"
+                            ],
+                            "aws:RequestTag/ApplicationInsightsManaged": "TRUE"
+                        },
+                        "ForAllValues:StringEquals": {
+                            "aws:TagKeys": [
+                                "ApplicationInsightsManaged"
+                            ]
+                        },
+                        "Null": {
+                            "aws:TagKeys": "false"
+                        }
+                    }
+                },
+                {
                     "Sid": "CloudFormationStacks",
                     "Effect": "Allow",
                     "Action": [
@@ -455,8 +482,8 @@
                 }
             ]
         },
-        "VersionId": "v25",
+        "VersionId": "v26",
         "IsDefaultVersion": true,
-        "CreateDate": "2024-07-25T16:24:03+00:00"
+        "CreateDate": "2026-10-09T16:27:08+00:00"
     }
 }
