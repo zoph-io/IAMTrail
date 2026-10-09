@@ -186,6 +186,7 @@
                     "Effect": "Allow",
                     "Action": [
                         "deadline:ListJobs",
+                        "deadline:ListMemberships",
                         "deadline:ListQueues"
                     ],
                     "Resource": [
@@ -199,8 +200,8 @@
                 }
             ]
         },
-        "VersionId": "v2",
+        "VersionId": "v3",
         "IsDefaultVersion": true,
-        "CreateDate": "2024-10-07T18:25:13+00:00"
+        "CreateDate": "2026-10-09T16:57:07+00:00"
     }
 }
