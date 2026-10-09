@@ -1,0 +1,18 @@
+{
+  "type": "NEW_FEATURES",
+  "detected_at": "2026-10-09T00:29:28Z",
+  "description": "Amazon GuardDuty announces an expansion of RDS Protection that extends threat detection beyond login anomalies to identify data exfiltration and data destruction attacks targeting Amazon Aurora PostgreSQL and Amazon RDS for PostgreSQL databases. Available as RDS Protection for data activity, this new capability uses machine learning (ML)-based anomaly detection and integrated threat intelligence to continuously monitor database query patterns, helping you detect unusual data activity without requiring any agents, additional infrastructure, or database configuration changes.",
+  "short_description": "Amazon GuardDuty announces an expansion of RDS Protection that extends threat detection beyond login anomalies to identify data exfiltration and data ",
+  "link": "https://docs.aws.amazon.com/guardduty/latest/ug/rds-protection.html",
+  "gist_url": "",
+  "raw_sns_message": {
+    "version": "1",
+    "type": "NEW_FEATURES",
+    "featureDetails": [
+      {
+        "featureLink": "https://docs.aws.amazon.com/guardduty/latest/ug/rds-protection.html",
+        "featureDescription": "Amazon GuardDuty announces an expansion of RDS Protection that extends threat detection beyond login anomalies to identify data exfiltration and data destruction attacks targeting Amazon Aurora PostgreSQL and Amazon RDS for PostgreSQL databases. Available as RDS Protection for data activity, this new capability uses machine learning (ML)-based anomaly detection and integrated threat intelligence to continuously monitor database query patterns, helping you detect unusual data activity without requiring any agents, additional infrastructure, or database configuration changes."
+      }
+    ]
+  }
+}
