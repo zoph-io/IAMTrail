@@ -629,12 +629,12 @@
             "PolicyId": "ANPAJWVDLG5RPST6PHQ3A",
             "Arn": "arn:aws:iam::aws:policy/AmazonRoute53FullAccess",
             "Path": "/",
-            "DefaultVersionId": "v7",
+            "DefaultVersionId": "v8",
             "AttachmentCount": 0,
             "PermissionsBoundaryUsageCount": 0,
             "IsAttachable": true,
             "CreateDate": "2015-02-06T18:40:54+00:00",
-            "UpdateDate": "2026-02-12T18:00:40+00:00"
+            "UpdateDate": "2026-10-08T20:17:07+00:00"
         },
         {
             "PolicyName": "AmazonRoute53ReadOnlyAccess",
@@ -11465,12 +11465,12 @@
             "PolicyId": "ANPAZKAPJZG4K2H54PAUL",
             "Arn": "arn:aws:iam::aws:policy/aws-service-role/AWSResourceExplorerServiceRolePolicy",
             "Path": "/aws-service-role/",
-            "DefaultVersionId": "v56",
+            "DefaultVersionId": "v57",
             "AttachmentCount": 1,
             "PermissionsBoundaryUsageCount": 0,
             "IsAttachable": true,
             "CreateDate": "2022-10-25T20:35:29+00:00",
-            "UpdateDate": "2026-10-01T18:07:09+00:00"
+            "UpdateDate": "2026-10-08T14:07:07+00:00"
         },
         {
             "PolicyName": "AWSFaultInjectionSimulatorSSMAccess",
@@ -16481,48 +16481,48 @@
             "PolicyId": "ANPAZKAPJZG4BV3PMY4IB",
             "Arn": "arn:aws:iam::aws:policy/SageMakerStudioUserIAMDefaultExecutionPolicy",
             "Path": "/",
-            "DefaultVersionId": "v29",
+            "DefaultVersionId": "v30",
             "AttachmentCount": 0,
             "PermissionsBoundaryUsageCount": 0,
             "IsAttachable": true,
             "CreateDate": "2025-08-18T17:19:07+00:00",
-            "UpdateDate": "2026-08-13T18:37:16+00:00"
+            "UpdateDate": "2026-10-08T15:17:08+00:00"
         },
         {
             "PolicyName": "SageMakerStudioAdminIAMPermissiveExecutionPolicy",
             "PolicyId": "ANPAZKAPJZG4DPB4UTXYO",
             "Arn": "arn:aws:iam::aws:policy/SageMakerStudioAdminIAMPermissiveExecutionPolicy",
             "Path": "/",
-            "DefaultVersionId": "v21",
+            "DefaultVersionId": "v22",
             "AttachmentCount": 0,
             "PermissionsBoundaryUsageCount": 0,
             "IsAttachable": true,
             "CreateDate": "2025-08-18T17:19:07+00:00",
-            "UpdateDate": "2026-07-14T18:57:27+00:00"
+            "UpdateDate": "2026-10-08T18:57:08+00:00"
         },
         {
             "PolicyName": "SageMakerStudioAdminIAMDefaultExecutionPolicy",
             "PolicyId": "ANPAZKAPJZG4NZY6YGCPE",
             "Arn": "arn:aws:iam::aws:policy/SageMakerStudioAdminIAMDefaultExecutionPolicy",
             "Path": "/",
-            "DefaultVersionId": "v24",
+            "DefaultVersionId": "v25",
             "AttachmentCount": 0,
             "PermissionsBoundaryUsageCount": 0,
             "IsAttachable": true,
             "CreateDate": "2025-08-18T17:19:07+00:00",
-            "UpdateDate": "2026-07-14T18:57:22+00:00"
+            "UpdateDate": "2026-10-08T18:57:07+00:00"
         },
         {
             "PolicyName": "SageMakerStudioUserIAMPermissiveExecutionPolicy",
             "PolicyId": "ANPAZKAPJZG4MQ2K3CR4F",
             "Arn": "arn:aws:iam::aws:policy/SageMakerStudioUserIAMPermissiveExecutionPolicy",
             "Path": "/",
-            "DefaultVersionId": "v24",
+            "DefaultVersionId": "v25",
             "AttachmentCount": 0,
             "PermissionsBoundaryUsageCount": 0,
             "IsAttachable": true,
             "CreateDate": "2025-08-18T17:19:08+00:00",
-            "UpdateDate": "2026-08-13T18:37:09+00:00"
+            "UpdateDate": "2026-10-08T17:57:08+00:00"
         },
         {
             "PolicyName": "SageMakerStudioUserIAMConsolePolicy",
@@ -17165,36 +17165,36 @@
             "PolicyId": "ANPAZKAPJZG4JAHPPZRBR",
             "Arn": "arn:aws:iam::aws:policy/AccountManagementFromVercel",
             "Path": "/",
-            "DefaultVersionId": "v4",
+            "DefaultVersionId": "v5",
             "AttachmentCount": 0,
             "PermissionsBoundaryUsageCount": 0,
             "IsAttachable": true,
             "CreateDate": "2025-12-11T16:34:19+00:00",
-            "UpdateDate": "2026-05-07T18:57:18+00:00"
+            "UpdateDate": "2026-10-08T13:47:08+00:00"
         },
         {
             "PolicyName": "ConsoleFullAccessFromVercel",
             "PolicyId": "ANPAZKAPJZG4CSYHH4JUN",
             "Arn": "arn:aws:iam::aws:policy/ConsoleFullAccessFromVercel",
             "Path": "/",
-            "DefaultVersionId": "v4",
+            "DefaultVersionId": "v5",
             "AttachmentCount": 0,
             "PermissionsBoundaryUsageCount": 0,
             "IsAttachable": true,
             "CreateDate": "2025-12-11T16:49:10+00:00",
-            "UpdateDate": "2026-04-09T18:57:11+00:00"
+            "UpdateDate": "2026-10-08T14:27:08+00:00"
         },
         {
             "PolicyName": "ConsoleViewOnlyAccessFromVercel",
             "PolicyId": "ANPAZKAPJZG4BUPY7IZ5Y",
             "Arn": "arn:aws:iam::aws:policy/ConsoleViewOnlyAccessFromVercel",
             "Path": "/",
-            "DefaultVersionId": "v5",
+            "DefaultVersionId": "v6",
             "AttachmentCount": 0,
             "PermissionsBoundaryUsageCount": 0,
             "IsAttachable": true,
             "CreateDate": "2025-12-11T16:49:11+00:00",
-            "UpdateDate": "2026-04-09T18:27:08+00:00"
+            "UpdateDate": "2026-10-08T13:47:07+00:00"
         },
         {
             "PolicyName": "AWSAccountSettingsManagementRole",
@@ -18545,12 +18545,12 @@
             "PolicyId": "ANPAZKAPJZG4HNSXU64CN",
             "Arn": "arn:aws:iam::aws:policy/aws-service-role/AWSWellArchitectedAgentResourceScanningServiceRolePolicy",
             "Path": "/aws-service-role/",
-            "DefaultVersionId": "v3",
+            "DefaultVersionId": "v4",
             "AttachmentCount": 0,
             "PermissionsBoundaryUsageCount": 0,
             "IsAttachable": true,
             "CreateDate": "2026-08-04T17:27:18+00:00",
-            "UpdateDate": "2026-09-24T18:57:08+00:00"
+            "UpdateDate": "2026-10-08T19:37:08+00:00"
         },
         {
             "PolicyName": "AWSBedrockAgentCoreRuntimeInstancesServiceRolePolicy",
