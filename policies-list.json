@@ -4493,12 +4493,12 @@
             "PolicyId": "ANPAIDPMLA3IUIOQCISJ4",
             "Arn": "arn:aws:iam::aws:policy/ElasticLoadBalancingFullAccess",
             "Path": "/",
-            "DefaultVersionId": "v9",
+            "DefaultVersionId": "v10",
             "AttachmentCount": 0,
             "PermissionsBoundaryUsageCount": 0,
             "IsAttachable": true,
             "CreateDate": "2018-09-20T20:42:07+00:00",
-            "UpdateDate": "2026-02-23T18:57:07+00:00"
+            "UpdateDate": "2026-10-09T19:27:08+00:00"
         },
         {
             "PolicyName": "LightsailExportAccess",
@@ -5129,12 +5129,12 @@
             "PolicyId": "ANPAJH3SHQERZRQMQOQ44",
             "Arn": "arn:aws:iam::aws:policy/aws-service-role/CloudwatchApplicationInsightsServiceLinkedRolePolicy",
             "Path": "/aws-service-role/",
-            "DefaultVersionId": "v25",
+            "DefaultVersionId": "v26",
             "AttachmentCount": 0,
             "PermissionsBoundaryUsageCount": 0,
             "IsAttachable": true,
             "CreateDate": "2018-12-01T16:22:12+00:00",
-            "UpdateDate": "2024-07-25T16:24:03+00:00"
+            "UpdateDate": "2026-10-09T16:27:08+00:00"
         },
         {
             "PolicyName": "AWSIoTSiteWiseFullAccess",
@@ -13961,48 +13961,48 @@
             "PolicyId": "ANPAZKAPJZG4A7BV6IHOE",
             "Arn": "arn:aws:iam::aws:policy/AWSDeadlineCloud-UserAccessFarms",
             "Path": "/",
-            "DefaultVersionId": "v7",
+            "DefaultVersionId": "v8",
             "AttachmentCount": 0,
             "PermissionsBoundaryUsageCount": 0,
             "IsAttachable": true,
             "CreateDate": "2024-04-01T16:54:00+00:00",
-            "UpdateDate": "2026-05-29T20:27:22+00:00"
+            "UpdateDate": "2026-10-09T16:37:07+00:00"
         },
         {
             "PolicyName": "AWSDeadlineCloud-UserAccessFleets",
             "PolicyId": "ANPAZKAPJZG4EGC4P2WVA",
             "Arn": "arn:aws:iam::aws:policy/AWSDeadlineCloud-UserAccessFleets",
             "Path": "/",
-            "DefaultVersionId": "v2",
+            "DefaultVersionId": "v3",
             "AttachmentCount": 0,
             "PermissionsBoundaryUsageCount": 0,
             "IsAttachable": true,
             "CreateDate": "2024-04-01T17:01:50+00:00",
-            "UpdateDate": "2026-05-29T21:27:30+00:00"
+            "UpdateDate": "2026-10-09T16:47:08+00:00"
         },
         {
             "PolicyName": "AWSDeadlineCloud-UserAccessJobs",
             "PolicyId": "ANPAZKAPJZG4EX3W2YLFT",
             "Arn": "arn:aws:iam::aws:policy/AWSDeadlineCloud-UserAccessJobs",
             "Path": "/",
-            "DefaultVersionId": "v2",
+            "DefaultVersionId": "v3",
             "AttachmentCount": 0,
             "PermissionsBoundaryUsageCount": 0,
             "IsAttachable": true,
             "CreateDate": "2024-04-01T17:05:38+00:00",
-            "UpdateDate": "2024-10-07T18:24:52+00:00"
+            "UpdateDate": "2026-10-09T17:07:08+00:00"
         },
         {
             "PolicyName": "AWSDeadlineCloud-UserAccessQueues",
             "PolicyId": "ANPAZKAPJZG4BWFZHEQCZ",
             "Arn": "arn:aws:iam::aws:policy/AWSDeadlineCloud-UserAccessQueues",
             "Path": "/",
-            "DefaultVersionId": "v2",
+            "DefaultVersionId": "v3",
             "AttachmentCount": 0,
             "PermissionsBoundaryUsageCount": 0,
             "IsAttachable": true,
             "CreateDate": "2024-04-01T17:10:03+00:00",
-            "UpdateDate": "2024-10-07T18:25:13+00:00"
+            "UpdateDate": "2026-10-09T16:57:07+00:00"
         },
         {
             "PolicyName": "AWSDeadlineCloud-FleetWorker",
