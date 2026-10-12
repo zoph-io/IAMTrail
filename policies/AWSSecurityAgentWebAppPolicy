@@ -78,6 +78,8 @@
                         "securityagent:BatchDeleteCodeReviews",
                         "securityagent:BatchDeletePentests",
                         "securityagent:BatchDeleteThreatModels",
+                        "securityagent:BatchDisassociateFindingIssue",
+                        "securityagent:BatchExportFindings",
                         "securityagent:BatchGetAgentSpaces",
                         "securityagent:BatchGetArtifactMetadata",
                         "securityagent:BatchGetCodeReviewJobs",
@@ -146,8 +148,8 @@
                 }
             ]
         },
-        "VersionId": "v9",
+        "VersionId": "v10",
         "IsDefaultVersion": true,
-        "CreateDate": "2026-10-06T17:27:07+00:00"
+        "CreateDate": "2026-10-12T16:17:07+00:00"
     }
 }
