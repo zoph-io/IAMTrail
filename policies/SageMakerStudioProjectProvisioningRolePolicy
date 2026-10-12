@@ -239,7 +239,7 @@
                     ]
                 },
                 {
-                    "Sid": "IAMMng",
+                    "Sid": "IamManage",
                     "Effect": "Allow",
                     "Action": [
                         "iam:CreateRole",
@@ -821,10 +821,11 @@
                     }
                 },
                 {
-                    "Sid": "GlueDbDelete",
+                    "Sid": "GlueDbManage",
                     "Effect": "Allow",
                     "Action": [
-                        "glue:DeleteDatabase"
+                        "glue:DeleteDatabase",
+                        "glue:UpdateDatabase"
                     ],
                     "Resource": "*",
                     "Condition": {
@@ -2020,7 +2021,8 @@
                     "Condition": {
                         "ForAllValues:StringLike": {
                             "aws:TagKeys": [
-                                "AmazonDataZone*"
+                                "AmazonDataZone*",
+                                "aws:cloudformation:*"
                             ]
                         },
                         "Null": {
@@ -3010,8 +3012,8 @@
                 }
             ]
         },
-        "VersionId": "v83",
+        "VersionId": "v84",
         "IsDefaultVersion": true,
-        "CreateDate": "2026-09-22T21:57:07+00:00"
+        "CreateDate": "2026-10-12T16:17:08+00:00"
     }
 }
