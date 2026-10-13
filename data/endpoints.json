@@ -51514,7 +51514,8 @@
                   ]
                 }
               ]
-            }
+            },
+            "us-isob-west-1": {}
           }
         },
         "dynamodb": {
@@ -54258,6 +54259,11 @@
           }
         },
         "kafka": {
+          "endpoints": {
+            "eusc-de-east-1": {}
+          }
+        },
+        "kafkaconnect": {
           "endpoints": {
             "eusc-de-east-1": {}
           }

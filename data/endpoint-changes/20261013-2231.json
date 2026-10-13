@@ -1,0 +1,25 @@
+{
+  "detected_at": "2026-10-13T22:31:32.657Z",
+  "botocore_commit": "d7ce073534345e7d24326bf7fb98ec7b93497753",
+  "botocore_commit_url": "https://github.com/boto/botocore/commit/d7ce073534345e7d24326bf7fb98ec7b93497753",
+  "summary": "1 new service, 1 service expansion",
+  "changes": [
+    {
+      "type": "service_expansion",
+      "partition": "aws-iso-b",
+      "service": "ds",
+      "id": "ds",
+      "new_regions": [
+        "us-isob-west-1"
+      ],
+      "description": "ds expanded to us-isob-west-1"
+    },
+    {
+      "type": "new_service",
+      "partition": "aws-eusc",
+      "id": "kafkaconnect",
+      "description": "kafkaconnect (1 endpoint)",
+      "endpoint_count": 1
+    }
+  ]
+}
