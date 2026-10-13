@@ -2957,12 +2957,12 @@
             "PolicyId": "ANPAIUMWW3QP7DPZPNVU4",
             "Arn": "arn:aws:iam::aws:policy/aws-service-role/AWSElasticLoadBalancingClassicServiceRolePolicy",
             "Path": "/aws-service-role/",
-            "DefaultVersionId": "v2",
+            "DefaultVersionId": "v3",
             "AttachmentCount": 0,
             "PermissionsBoundaryUsageCount": 0,
             "IsAttachable": true,
             "CreateDate": "2017-09-19T22:36:18+00:00",
-            "UpdateDate": "2019-10-07T23:04:27+00:00"
+            "UpdateDate": "2026-10-12T19:07:07+00:00"
         },
         {
             "PolicyName": "AWSEnhancedClassicNetworkingMangementPolicy",
@@ -15209,12 +15209,12 @@
             "PolicyId": "ANPAZKAPJZG4NQZUIPVLH",
             "Arn": "arn:aws:iam::aws:policy/service-role/SageMakerStudioProjectProvisioningRolePolicy",
             "Path": "/service-role/",
-            "DefaultVersionId": "v83",
+            "DefaultVersionId": "v84",
             "AttachmentCount": 0,
             "PermissionsBoundaryUsageCount": 0,
             "IsAttachable": true,
             "CreateDate": "2024-11-20T21:58:39+00:00",
-            "UpdateDate": "2026-09-22T21:57:07+00:00"
+            "UpdateDate": "2026-10-12T16:17:08+00:00"
         },
         {
             "PolicyName": "SageMakerStudioProjectUserRolePolicy",
@@ -17285,12 +17285,12 @@
             "PolicyId": "ANPAZKAPJZG4CTYAYXEAG",
             "Arn": "arn:aws:iam::aws:policy/service-role/AWSSecurityAgentWebAppPolicy",
             "Path": "/service-role/",
-            "DefaultVersionId": "v9",
+            "DefaultVersionId": "v10",
             "AttachmentCount": 0,
             "PermissionsBoundaryUsageCount": 0,
             "IsAttachable": true,
             "CreateDate": "2026-02-05T23:19:09+00:00",
-            "UpdateDate": "2026-10-06T17:27:07+00:00"
+            "UpdateDate": "2026-10-12T16:17:07+00:00"
         },
         {
             "PolicyName": "PartnerCentralIncentiveBenefitManagement",
@@ -19007,6 +19007,30 @@
             "IsAttachable": true,
             "CreateDate": "2026-10-05T16:27:08+00:00",
             "UpdateDate": "2026-10-05T16:27:08+00:00"
+        },
+        {
+            "PolicyName": "AmazonSageMakerTrainingSessionAccess",
+            "PolicyId": "ANPAZKAPJZG4DASXUEWRE",
+            "Arn": "arn:aws:iam::aws:policy/AmazonSageMakerTrainingSessionAccess",
+            "Path": "/",
+            "DefaultVersionId": "v1",
+            "AttachmentCount": 0,
+            "PermissionsBoundaryUsageCount": 0,
+            "IsAttachable": true,
+            "CreateDate": "2026-10-13T00:37:07+00:00",
+            "UpdateDate": "2026-10-13T00:37:07+00:00"
+        },
+        {
+            "PolicyName": "AmazonSageMakerTrainingSessionFullAccess",
+            "PolicyId": "ANPAZKAPJZG4DKNKCM6Q2",
+            "Arn": "arn:aws:iam::aws:policy/AmazonSageMakerTrainingSessionFullAccess",
+            "Path": "/",
+            "DefaultVersionId": "v1",
+            "AttachmentCount": 0,
+            "PermissionsBoundaryUsageCount": 0,
+            "IsAttachable": true,
+            "CreateDate": "2026-10-13T00:37:08+00:00",
+            "UpdateDate": "2026-10-13T00:37:08+00:00"
         },
         {
             "PolicyName": "AWSConfigRole",
