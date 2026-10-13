@@ -7,6 +7,7 @@ const yaml = require("js-yaml");
 const { generateUsageStats } = require("./generate-usage-stats");
 const wording = require("./change-wording");
 const reinventWindow = require("./reinvent-window");
+const { fetchWhatsNew } = require("./whats-new");
 const { createRiskEngine, diffAssessments, LEVELS } = require("./policy-risk");
 
 const REPO_ROOT = path.join(__dirname, "../..");
@@ -2710,7 +2711,7 @@ function appendSitemapPages(entries) {
  * The re:Invent archive. Written after endpoints and GuardDuty exist, and
  * required: a missing file would ship /reinvent as an empty season.
  */
-function writeReinventArchive(policyData, endpointsData, guarddutyData) {
+async function writeReinventArchive(policyData, endpointsData, guarddutyData) {
   if (!policyData.reinventInput) {
     throw new Error(
       "generatePolicyData did not return reinvent input, so /reinvent would render an empty season."
@@ -2723,6 +2724,23 @@ function writeReinventArchive(policyData, endpointsData, guarddutyData) {
   }
   const editions = JSON.parse(fs.readFileSync(REINVENT_EDITIONS_JSON, "utf8"));
   const meta = loadIamMetadata();
+  let whatsNewByYear = null;
+  let whatsNewUnavailable = false;
+  try {
+    const fetched = await fetchWhatsNew(GENERATED_AT);
+    whatsNewByYear = fetched.byYear;
+    for (const failure of fetched.errors) {
+      const message = failure.error && failure.error.message;
+      console.error(
+        `   What's New data unavailable for ${failure.year}: ${message || "unknown error"}`
+      );
+    }
+  } catch (error) {
+    whatsNewUnavailable = true;
+    console.error(
+      `   What's New data unavailable: ${error && error.message ? error.message : error}`
+    );
+  }
   const payload = reinventWindow.buildArchive({
     ...policyData.reinventInput,
     endpointChanges: flattenEndpointChanges(endpointsData.allChangeRecords),
@@ -2731,6 +2749,8 @@ function writeReinventArchive(policyData, endpointsData, guarddutyData) {
     serviceNames: meta.serviceNames,
     permissions: meta.permissionsManagement,
     generatedAt: GENERATED_AT,
+    whatsNewByYear,
+    whatsNewUnavailable,
   });
   const json = JSON.stringify(payload);
   fs.writeFileSync(path.join(OUTPUT_DIR, "reinvent.json"), json);
@@ -2751,9 +2771,15 @@ function writeReinventArchive(policyData, endpointsData, guarddutyData) {
     })),
   ];
   appendSitemapPages(pages);
+  const open = payload.editions.find((edition) => edition.status === "open");
+  const pre =
+    open && open.whatsNewPosts.available
+      ? open.whatsNewPosts.items.filter((post) => post.timing === "before").length
+      : null;
   console.log(
-    `   🎪 re:Invent: ${payload.editions.length} seasons` +
-      (payload.currentYear ? `, ${payload.currentYear} open` : "")
+    `   re:Invent: ${payload.editions.length} seasons` +
+      (payload.currentYear ? `, ${payload.currentYear} open` : "") +
+      (pre === null ? ", What's New data unavailable" : `, ${pre} pre-re:Invent announcements`)
   );
 }
 
@@ -2761,7 +2787,7 @@ async function main() {
   const policyData = await generatePolicyData();
   const endpointsData = await generateEndpointsData();
   const guarddutyData = await generateGuardDutyData();
-  writeReinventArchive(policyData, endpointsData, guarddutyData);
+  await writeReinventArchive(policyData, endpointsData, guarddutyData);
   generateRSSFeeds(policyData, endpointsData, guarddutyData);
   await generateUsageStats();
 }

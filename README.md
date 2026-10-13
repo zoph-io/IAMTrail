@@ -77,7 +77,7 @@ The whole archive is also published as versioned JSON at `https://iamtrail.com/a
 | [`/api/v1/changes.json`](https://iamtrail.com/api/v1/changes.json) | Recent changes, each naming the actions added and removed |
 | [`/api/v1/actions.json`](https://iamtrail.com/api/v1/actions.json) | Every literal IAM action mapped to the policies that allow, deny or NotAction it, plus `wildcardGrants`: every Allow wildcard by service prefix and pattern |
 | [`/api/v1/discoveries.json`](https://iamtrail.com/api/v1/discoveries.json) | Actions and service prefixes seen for the first time anywhere in the archive |
-| [`/api/v1/reinvent.json`](https://iamtrail.com/api/v1/reinvent.json) | Each re:Invent season (October 1 through December 31): new AWS services, never-before-seen actions, and the announcement roundup |
+| [`/api/v1/reinvent.json`](https://iamtrail.com/api/v1/reinvent.json) | Each re:Invent season (October 1 through December 31): new AWS services, never-before-seen actions, the announcement roundup, and major What's New posts (`whatsNewPosts`, timing `before` is pre-re:Invent) |
 
 ```bash
 # What changed in the last day

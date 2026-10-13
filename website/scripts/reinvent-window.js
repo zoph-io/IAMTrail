@@ -9,6 +9,9 @@
  * website/data/reinvent-editions.json. A year with no entry there still appears
  * as soon as the archive has a sighting, so a new season does not wait on anyone
  * to type a URL.
+ *
+ * What's New year indexes 404. Posts come from website/scripts/whats-new.js,
+ * and a launch before the conference is timing "before" (pre-re:Invent).
  */
 
 const WINDOW_LABEL = "October 1 through December 31";
@@ -68,6 +71,27 @@ function decorate(action, permissions) {
  * Years are newest first. The open season is included even when nothing has
  * been spotted yet, so the page can say so instead of disappearing.
  */
+function whatsNewFor(year, meta, whatsNewByYear, whatsNewUnavailable) {
+  if (whatsNewUnavailable) return { available: false, items: [] };
+  if (!whatsNewByYear) return { available: true, items: [] };
+  const row = whatsNewByYear[year];
+  if (!row || row.available === false) return { available: false, items: [] };
+  const items = (row.posts || [])
+    .map((post) => ({
+      headline: String(post.headline || "")
+        .replace(/\s+/g, " ")
+        .trim(),
+      url: post.url,
+      date: day(post.date),
+      timing: timingFor(post.date, meta),
+    }))
+    .filter((post) => post.headline && post.url && post.date)
+    .sort(
+      (a, b) => b.date.localeCompare(a.date) || a.headline.localeCompare(b.headline)
+    );
+  return { available: true, items };
+}
+
 function buildArchive({
   generatedAt,
   services = [],
@@ -79,6 +103,8 @@ function buildArchive({
   editions = {},
   serviceNames = {},
   permissions = new Set(),
+  whatsNewByYear = null,
+  whatsNewUnavailable = false,
 }) {
   const perm = permissions instanceof Set ? permissions : new Set(permissions);
   const currentYear = seasonYear(generatedAt);
@@ -261,12 +287,20 @@ function buildArchive({
       }
       permissionsManagement.sort((a, b) => a.action.localeCompare(b.action));
 
+      const whatsNewPosts = whatsNewFor(
+        year,
+        meta,
+        whatsNewByYear,
+        whatsNewUnavailable
+      );
+
       const lastmod = maxDay([
         ...serviceRows.map((service) => service.firstSeen),
         ...row.actions.map((action) => action.firstSeen),
         ...newPolicies.map((policy) => policy.firstSeen),
         ...row.endpointChanges.map((change) => change.detectedAt),
         ...guarddutyItems.map((item) => item.detectedAt),
+        ...whatsNewPosts.items.map((post) => post.date),
       ]);
 
       return {
@@ -282,8 +316,8 @@ function buildArchive({
               title: meta.roundupTitle || "Announcement roundup",
             }
           : null,
-        whatsNew: `https://aws.amazon.com/about-aws/whats-new/${year}/`,
         eventUrl: meta.event || null,
+        whatsNewPosts,
         changes: row.changes,
         newPolicies,
         services: serviceRows,

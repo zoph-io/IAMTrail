@@ -25,13 +25,20 @@ export type ReinventActionGroup = {
   actions: ReinventAction[];
 };
 
+export type WhatsNewPost = {
+  headline: string;
+  url: string;
+  date: string;
+  timing: ReinventTiming | null;
+};
+
 export type ReinventEdition = {
   year: string;
   status: "open" | "closed";
   conference: { starts: string; ends: string; place: string } | null;
   roundup: { url: string; title: string } | null;
-  whatsNew: string;
   eventUrl: string | null;
+  whatsNewPosts: { available: boolean; items: WhatsNewPost[] };
   changes: number;
   newPolicies: { name: string; firstSeen: string }[];
   services: ReinventService[];
@@ -116,10 +123,18 @@ export function endpointTotal(edition: ReinventEdition): number {
 }
 
 const TIMING_LABEL: Record<ReinventTiming, string> = {
-  before: "Before the conference",
+  before: "Pre-re:Invent",
   during: "During the conference",
   after: "After the conference",
 };
+
+/** null when the feed failed. An empty array is a season with no pre-re:Invent post. */
+export function preReinventionPosts(
+  edition: ReinventEdition,
+): WhatsNewPost[] | null {
+  if (!edition.whatsNewPosts.available) return null;
+  return edition.whatsNewPosts.items.filter((item) => item.timing === "before");
+}
 
 export function timingLabel(timing: ReinventTiming | null): string {
   return timing ? TIMING_LABEL[timing] : "";

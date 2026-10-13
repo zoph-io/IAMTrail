@@ -20,9 +20,16 @@ export async function generateMetadata(props: {
 }): Promise<Metadata> {
   const { year } = await props.params;
   const edition = loadReinvent().editions.find((item) => item.year === year);
-  const description = edition
-    ? `re:Invent ${year}: ${plural(edition.services.length, "new AWS service")} and ${plural(edition.neverBeforeSeen, "never-before-seen action")} in managed IAM policies, October through December, with the announcement roundup.`
-    : `re:Invent ${year} in the IAMTrail archive of AWS managed IAM policy changes.`;
+  const pre = edition
+    ? edition.whatsNewPosts.available
+      ? edition.whatsNewPosts.items.filter((post) => post.timing === "before").length
+      : null
+    : null;
+  const description = !edition
+    ? `re:Invent ${year} in the IAMTrail archive of AWS managed IAM policy changes.`
+    : pre === null
+      ? `re:Invent ${year}: ${plural(edition.services.length, "new AWS service")} in managed IAM policies. What's New data unavailable.`
+      : `re:Invent ${year}: ${plural(pre, "pre-re:Invent announcement")} and ${plural(edition.services.length, "new AWS service")} in managed IAM policies.`;
   return pageMetadata({
     title: `re:Invent ${year}`,
     description,

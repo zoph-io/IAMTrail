@@ -109,6 +109,9 @@ test("a new prefix keeps its actions, and an older prefix is grouped apart", () 
   assert.equal(year.guardduty.total, 1);
   assert.equal(year.guardduty.items[0].href, "https://example.com/gd");
   assert.ok(year.roundup.url.includes("2024"));
+  assert.equal(year.whatsNew, undefined);
+  assert.equal(year.whatsNewPosts.available, true);
+  assert.deepEqual(year.whatsNewPosts.items, []);
   assert.equal(year.lastmod, "2024-12-03");
 });
 
@@ -143,6 +146,62 @@ test("an open season with nothing spotted yet is still listed", () => {
     "https://aws.amazon.com/events/reinvent/"
   );
   assert.equal(archive.editions[0].lastmod, null);
+  assert.equal(archive.editions[0].whatsNew, undefined);
+});
+
+test("a launch before the conference is pre-re:Invent, and a failed feed stays unavailable", () => {
+  const lambda = {
+    headline: "AWS Lambda announces Lambda Web Functions",
+    url: "https://aws.amazon.com/about-aws/whats-new/2026/10/aws-lambda-web-functions/",
+    date: "2026-10-12",
+  };
+  const editions = {
+    2026: {
+      starts: "2026-11-30",
+      ends: "2026-12-04",
+      place: "Las Vegas",
+      event: "https://aws.amazon.com/events/reinvent/",
+    },
+  };
+  const archive = buildArchive({
+    generatedAt: "2026-10-13T12:00:00Z",
+    editions,
+    whatsNewByYear: {
+      2026: {
+        available: true,
+        posts: [
+          lambda,
+          {
+            headline: "Announcing something during the week",
+            url: "https://aws.amazon.com/about-aws/whats-new/2026/12/during-week/",
+            date: "2026-12-01",
+          },
+          {
+            headline: "Announcing something after",
+            url: "https://aws.amazon.com/about-aws/whats-new/2026/12/after-week/",
+            date: "2026-12-10",
+          },
+        ],
+      },
+    },
+  });
+  const posts = archive.editions[0].whatsNewPosts.items;
+  assert.deepEqual(
+    posts.map((post) => post.timing),
+    ["after", "during", "before"]
+  );
+  assert.equal(posts[2].url, lambda.url);
+  assert.equal(posts[2].timing, "before");
+  assert.equal(archive.editions[0].whatsNew, undefined);
+  assert.equal(archive.editions[0].lastmod, "2026-12-10");
+
+  const failed = buildArchive({
+    generatedAt: "2026-10-13T12:00:00Z",
+    editions,
+    whatsNewUnavailable: true,
+  });
+  assert.equal(failed.editions[0].whatsNewPosts.available, false);
+  assert.deepEqual(failed.editions[0].whatsNewPosts.items, []);
 });
 
 test("outside the season the latest closed year leads and the next one is absent", () => {

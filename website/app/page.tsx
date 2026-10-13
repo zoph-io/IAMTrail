@@ -11,8 +11,10 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { CalendarDays, ChevronRight, History, Radar } from "lucide-react";
 import { pageMetadata } from "@/lib/seo";
+import VegasFrame from "@/components/VegasFrame";
 import {
   conferenceLabel,
+  preReinventionPosts,
   type ReinventFile,
 } from "@/lib/reinvent";
 
@@ -107,6 +109,7 @@ export default async function Home() {
   const season = reinvent.currentYear
     ? reinvent.editions.find((edition) => edition.year === reinvent.currentYear)
     : null;
+  const pre = season ? preReinventionPosts(season) : null;
   const services: DiscoveredService[] = (discoveries?.services ?? []).slice(0, MAX_SERVICES);
   const routine = week.inWeek.length - week.mattering.length;
   const asOfLabel = week.asOf.toLocaleDateString("en-US", {
@@ -153,37 +156,41 @@ export default async function Home() {
       </div>
 
       {season ? (
-        <Link
-          href={`/reinvent/${season.year}`}
-          className="block border border-amber-200 dark:border-amber-900/60 rounded-lg px-6 py-4 bg-amber-50 dark:bg-amber-950/20 hover:border-amber-400 dark:hover:border-amber-700 transition-colors"
-        >
-          <div className="flex items-start gap-3">
-            <CalendarDays className="w-5 h-5 text-amber-600 dark:text-amber-400 flex-shrink-0 mt-0.5" />
-            <div className="min-w-0">
-              <p className="text-sm font-bold font-mono uppercase tracking-wider text-amber-800 dark:text-amber-300">
-                re:Invent {season.year}
-              </p>
-              <p className="mt-1 text-sm text-zinc-700 dark:text-zinc-300">
-                {season.services.length > 0 || season.neverBeforeSeen > 0 ? (
-                  <>
-                    {plural(season.services.length, "new AWS service")} and{" "}
-                    {plural(season.neverBeforeSeen, "never-before-seen action")}{" "}
-                    since October 1
-                    {season.conference
-                      ? `. Conference ${conferenceLabel(season.conference)}`
-                      : ""}
-                    .
-                  </>
-                ) : (
-                  <>
-                    The watch is open through December 31. A new AWS service
-                    usually shows up in a managed policy before AWS announces it.
-                  </>
-                )}
-              </p>
+        <Link href={`/reinvent/${season.year}`} className="block">
+          <VegasFrame>
+            <div className="flex items-start gap-3 px-5 py-4 sm:px-6">
+              <CalendarDays className="w-5 h-5 text-amber-300 flex-shrink-0 mt-0.5" />
+              <div className="min-w-0">
+                <p className="text-sm font-bold font-mono uppercase tracking-wider text-amber-300">
+                  re:Invent {season.year}
+                </p>
+                <p className="mt-1 text-sm text-zinc-300">
+                  {season.services.length > 0 || season.neverBeforeSeen > 0 ? (
+                    <>
+                      {plural(season.services.length, "new AWS service")} and{" "}
+                      {plural(season.neverBeforeSeen, "never-before-seen action")}{" "}
+                      since October 1
+                      {season.conference
+                        ? `. Conference ${conferenceLabel(season.conference)}`
+                        : ""}
+                      .
+                    </>
+                  ) : (
+                    <>
+                      The watch is open through December 31. A new AWS service
+                      usually shows up in a managed policy before AWS announces it.
+                    </>
+                  )}
+                  {pre === null ? (
+                    <> What&apos;s New data unavailable.</>
+                  ) : pre.length > 0 ? (
+                    <> {plural(pre.length, "pre-re:Invent announcement")} on What&apos;s New.</>
+                  ) : null}
+                </p>
+              </div>
+              <ChevronRight className="w-4 h-4 text-amber-300 flex-shrink-0 mt-1" />
             </div>
-            <ChevronRight className="w-4 h-4 text-amber-600 dark:text-amber-400 flex-shrink-0 mt-1" />
-          </div>
+          </VegasFrame>
         </Link>
       ) : null}
 

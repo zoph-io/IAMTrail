@@ -60,7 +60,7 @@ const RESOURCES: Resource[] = [
     path: "/reinvent.json",
     title: "re:Invent seasons",
     description:
-      "October 1 through December 31 of each year: new AWS services, never-before-seen actions, new policies, endpoint changes and GuardDuty announcements, plus the AWS News Blog roundup URL when one exists. editions[0] is the newest season.",
+      "October 1 through December 31 of each year: new AWS services, never-before-seen actions, new policies, endpoint changes and GuardDuty announcements, plus major What's New posts in whatsNewPosts. A post with timing \"before\" is pre-re:Invent. Regional rollouts are omitted. whatsNewPosts.available is false when that feed could not be loaded. editions[0] is the newest season.",
   },
   {
     path: "/risk.json",
@@ -179,6 +179,16 @@ export default function ApiPage() {
           </p>
           <Snippet>{`curl -s --compressed ${BASE}/reinvent.json \\
   | jq -r '.editions[0].services[] | "\\(.firstSeen) \\(.prefix) \\(.name // "")"'`}</Snippet>
+        </div>
+
+        <div>
+          <p className="text-sm text-zinc-600 dark:text-zinc-400">
+            Pre-re:Invent What&apos;s New posts in the latest season:
+          </p>
+          <Snippet>{`curl -s --compressed ${BASE}/reinvent.json \\
+  | jq -r '.editions[0].whatsNewPosts.items[]
+      | select(.timing == "before")
+      | "\\(.date) \\(.headline)"'`}</Snippet>
         </div>
 
         <div>
