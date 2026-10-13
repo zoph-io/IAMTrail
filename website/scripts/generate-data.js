@@ -6,6 +6,7 @@ const { simpleGit } = require("simple-git");
 const yaml = require("js-yaml");
 const { generateUsageStats } = require("./generate-usage-stats");
 const wording = require("./change-wording");
+const reinventWindow = require("./reinvent-window");
 const { createRiskEngine, diffAssessments, LEVELS } = require("./policy-risk");
 
 const REPO_ROOT = path.join(__dirname, "../..");
@@ -883,11 +884,10 @@ async function generatePolicyData() {
     const yrStr = yr.toString();
     newPoliciesByYear[yrStr] = (newPoliciesByYear[yrStr] || 0) + 1;
 
-    const mo = d.getUTCMonth() + 1;
-    const day = d.getUTCDate();
-    if ((mo === 11 && day >= 15) || (mo === 12 && day <= 15)) {
-      newPoliciesByReinventYear[yrStr] =
-        (newPoliciesByReinventYear[yrStr] || 0) + 1;
+    const season = reinventWindow.seasonYear(p.firstSeen);
+    if (season) {
+      newPoliciesByReinventYear[season] =
+        (newPoliciesByReinventYear[season] || 0) + 1;
     }
   }
 
@@ -923,15 +923,12 @@ async function generatePolicyData() {
   }
   stats.changesByMonth = changesByMonth;
 
-  // re:Invent pulse: Nov 15 - Dec 15 window per year
+  // re:Invent pulse: October 1 - December 31, the same season /reinvent uses.
   const reinventByYear = {};
   for (const e of cleanEntries) {
-    const d = new Date(e.date);
-    const mo = d.getUTCMonth() + 1;
-    const day = d.getUTCDate();
-    const yr = d.getUTCFullYear().toString();
-    if ((mo === 11 && day >= 15) || (mo === 12 && day <= 15)) {
-      reinventByYear[yr] = (reinventByYear[yr] || 0) + 1;
+    const season = reinventWindow.seasonYear(e.date);
+    if (season) {
+      reinventByYear[season] = (reinventByYear[season] || 0) + 1;
     }
   }
   const reinventYears = Object.keys(reinventByYear).sort();
@@ -940,6 +937,7 @@ async function generatePolicyData() {
     changes: reinventByYear[yr] || 0,
     newPolicies: newPoliciesByReinventYear[yr] || 0,
   }));
+  stats.reinventWindow = reinventWindow.WINDOW_LABEL;
 
   // Version distribution: count policies at each current version
   const versionDist = {};
@@ -1576,6 +1574,7 @@ ${sitemapChildren
           changes: `${apiBase}/changes.json`,
           actions: `${apiBase}/actions.json`,
           discoveries: `${apiBase}/discoveries.json`,
+          reinvent: `${apiBase}/reinvent.json`,
           risk: `${apiBase}/risk.json`,
         },
         feeds: {
@@ -1590,14 +1589,35 @@ ${sitemapChildren
       2
     )
   );
-  console.log(`   🔌 API ${API_VERSION}: ${policies.length + 6} documents`);
+  console.log(`   🔌 API ${API_VERSION}: ${policies.length + 7} documents`);
 
   console.log("✅ Data generation complete!");
   console.log(`   📁 Policies processed: ${policies.length}`);
   console.log(`   ⚠️  Errors: ${errors.length}`);
   console.log(`   📊 Output directory: ${OUTPUT_DIR}`);
 
-  return { policies, allCommitEntries, discoveredServices, discoveredActions };
+  const reinventActions = Object.entries(registry.actions)
+    .filter(([, value]) => !value.sinceStart && value.firstSeen)
+    .map(([action, value]) => ({
+      action:
+        currentActionCasing[action] || registry.actionLabels[action] || action,
+      firstSeen: value.firstSeen,
+      firstPolicy: value.firstPolicy || "",
+      hasPage: Boolean(currentActionCasing[action]),
+    }));
+
+  return {
+    policies,
+    allCommitEntries,
+    discoveredServices,
+    discoveredActions,
+    reinventInput: {
+      services: discoveredServices,
+      actions: reinventActions,
+      policies: policies.map((p) => ({ name: p.name, firstSeen: p.firstSeen })),
+      changeDates: cleanEntries.map((e) => e.date),
+    },
+  };
 }
 
 const GUARDDUTY_DIR = path.join(REPO_ROOT, "data/guardduty");
@@ -2633,10 +2653,115 @@ function generateRSSFeeds(policyData, endpointsData, guarddutyData) {
   }
 }
 
+const REINVENT_EDITIONS_JSON = path.join(
+  __dirname,
+  "../data/reinvent-editions.json"
+);
+
+function flattenEndpointChanges(records) {
+  const out = [];
+  for (const record of records || []) {
+    for (const change of record.changes || []) {
+      if (
+        change.type !== "new_region" &&
+        change.type !== "new_service" &&
+        change.type !== "service_expansion"
+      ) {
+        continue;
+      }
+      out.push({
+        detectedAt: record.detected_at,
+        type: change.type,
+        id: change.id || change.service || "",
+        description: change.description || "",
+      });
+    }
+  }
+  return out;
+}
+
+function appendSitemapPages(entries) {
+  const file = path.join(PUBLIC_DIR, "sitemap-pages.xml");
+  if (!fs.existsSync(file) || entries.length === 0) return;
+  let xml = fs.readFileSync(file, "utf8");
+  const fresh = entries.filter(
+    (entry) => !xml.includes(`${SITE_URL}${entry.loc}`)
+  );
+  if (fresh.length === 0) return;
+  const blocks = fresh
+    .map(
+      (entry) => `  <url>
+    <loc>${SITE_URL}${entry.loc}</loc>${
+        entry.lastmod
+          ? `
+    <lastmod>${entry.lastmod}</lastmod>`
+          : ""
+      }
+    <changefreq>${entry.changefreq}</changefreq>
+    <priority>${entry.priority}</priority>
+  </url>`
+    )
+    .join("\n");
+  xml = xml.replace("</urlset>", `${blocks}\n</urlset>`);
+  fs.writeFileSync(file, xml);
+}
+
+/**
+ * The re:Invent archive. Written after endpoints and GuardDuty exist, and
+ * required: a missing file would ship /reinvent as an empty season.
+ */
+function writeReinventArchive(policyData, endpointsData, guarddutyData) {
+  if (!policyData.reinventInput) {
+    throw new Error(
+      "generatePolicyData did not return reinvent input, so /reinvent would render an empty season."
+    );
+  }
+  if (!fs.existsSync(REINVENT_EDITIONS_JSON)) {
+    throw new Error(
+      `Missing ${REINVENT_EDITIONS_JSON}. Conference dates and announcement roundup URLs live there.`
+    );
+  }
+  const editions = JSON.parse(fs.readFileSync(REINVENT_EDITIONS_JSON, "utf8"));
+  const meta = loadIamMetadata();
+  const payload = reinventWindow.buildArchive({
+    ...policyData.reinventInput,
+    endpointChanges: flattenEndpointChanges(endpointsData.allChangeRecords),
+    announcements: guarddutyData.announcements || [],
+    editions,
+    serviceNames: meta.serviceNames,
+    permissions: meta.permissionsManagement,
+    generatedAt: GENERATED_AT,
+  });
+  const json = JSON.stringify(payload);
+  fs.writeFileSync(path.join(OUTPUT_DIR, "reinvent.json"), json);
+  fs.writeFileSync(path.join(API_DIR, "reinvent.json"), json);
+
+  const pages = [
+    {
+      loc: "/reinvent/",
+      priority: "0.8",
+      changefreq: "daily",
+      lastmod: payload.lastmod,
+    },
+    ...payload.editions.map((edition) => ({
+      loc: `/reinvent/${edition.year}/`,
+      priority: "0.7",
+      changefreq: "weekly",
+      lastmod: edition.lastmod,
+    })),
+  ];
+  appendSitemapPages(pages);
+  console.log(
+    `   🎪 re:Invent: ${payload.editions.length} seasons` +
+      (payload.currentYear ? `, ${payload.currentYear} open` : "")
+  );
+}
+
 async function main() {
   const policyData = await generatePolicyData();
   const endpointsData = await generateEndpointsData();
   const guarddutyData = await generateGuardDutyData();
+  writeReinventArchive(policyData, endpointsData, guarddutyData);
   generateRSSFeeds(policyData, endpointsData, guarddutyData);
   await generateUsageStats();
 }

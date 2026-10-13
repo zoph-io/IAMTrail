@@ -4,6 +4,7 @@ import {
   Code2,
   FileText,
   GitBranch,
+  CalendarDays,
   Globe2,
   Info,
   Layers,
@@ -114,6 +115,12 @@ export const MENU_GROUPS: NavGroup[] = [
     label: "AWS ecosystem",
     items: [
       {
+        href: "/reinvent",
+        label: "re:Invent",
+        description: "Each season's new AWS services and announcement roundups",
+        icon: CalendarDays,
+      },
+      {
         href: "/endpoints",
         label: "Endpoints",
         description: "New regions, services and endpoint expansions",
@@ -199,6 +206,7 @@ export const RELATED_LINKS: Record<string, string[]> = {
   "/stats": ["/most-active", "/largest-policies", "/service-growth"],
   "/accounts": ["/findings", "/policies", "/subscribe"],
   "/service-growth": ["/discoveries", "/changes", "/feeds"],
+  "/reinvent": ["/discoveries", "/stats", "/endpoints"],
   "/feeds": ["/subscribe", "/api", "/discoveries"],
   "/guardduty": ["/endpoints", "/feeds", "/subscribe"],
   "/endpoints": ["/guardduty", "/discoveries", "/feeds"],

@@ -1,5 +1,7 @@
 "use client";
 
+import Link from "next/link";
+
 interface ReinventPulseEntry {
   year: string;
   changes: number;
@@ -12,7 +14,8 @@ interface ReinventPulseChartProps {
 
 export default function ReinventPulseChart({
   reinventPulse,
-}: ReinventPulseChartProps) {
+  windowLabel = "October 1 through December 31",
+}: ReinventPulseChartProps & { windowLabel?: string }) {
   const filtered = (reinventPulse || []).filter((r) => r.year !== "2019");
   if (filtered.length === 0) return null;
 
@@ -24,7 +27,10 @@ export default function ReinventPulseChart({
         re:Invent Pulse
       </h3>
       <p className="text-xs text-zinc-500 dark:text-zinc-400 mb-6">
-        Policy changes during the Nov 15 - Dec 15 window each year
+        Policy changes from {windowLabel} each year.{" "}
+        <Link href="/reinvent" className="text-red-600 dark:text-red-400 hover:underline">
+          Season archive
+        </Link>
       </p>
       <div className="flex items-end gap-2 sm:gap-3 h-40 sm:h-48">
         {filtered.map((entry) => {

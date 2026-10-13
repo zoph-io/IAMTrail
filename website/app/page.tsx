@@ -9,8 +9,12 @@ import {
 import RelativeDay from "@/components/RelativeDay";
 import type { Metadata } from "next";
 import Link from "next/link";
-import { ChevronRight, History, Radar } from "lucide-react";
+import { CalendarDays, ChevronRight, History, Radar } from "lucide-react";
 import { pageMetadata } from "@/lib/seo";
+import {
+  conferenceLabel,
+  type ReinventFile,
+} from "@/lib/reinvent";
 
 export const metadata: Metadata = pageMetadata({
   absoluteTitle: "IAMTrail - AWS Managed IAM Policy Changes Archive (Unofficial)",
@@ -90,15 +94,19 @@ export default async function Home() {
     );
   }
 
-  // generate-data writes all three together, so one missing means a broken
+  // generate-data writes these together, so one missing means a broken
   // build, which must not ship a homepage that looks like a quiet week.
-  if (!week || !discoveries) {
+  const reinvent = readJson("public/data/reinvent.json") as ReinventFile | null;
+  if (!week || !discoveries || !reinvent) {
     throw new Error(
-      "public/data/changes.json or discoveries.json is missing: run npm run generate-data",
+      "public/data/changes.json, discoveries.json or reinvent.json is missing: run npm run generate-data",
     );
   }
 
   const { stats } = summaryData;
+  const season = reinvent.currentYear
+    ? reinvent.editions.find((edition) => edition.year === reinvent.currentYear)
+    : null;
   const services: DiscoveredService[] = (discoveries?.services ?? []).slice(0, MAX_SERVICES);
   const routine = week.inWeek.length - week.mattering.length;
   const asOfLabel = week.asOf.toLocaleDateString("en-US", {
@@ -143,6 +151,41 @@ export default async function Home() {
           </p>
         </div>
       </div>
+
+      {season ? (
+        <Link
+          href={`/reinvent/${season.year}`}
+          className="block border border-amber-200 dark:border-amber-900/60 rounded-lg px-6 py-4 bg-amber-50 dark:bg-amber-950/20 hover:border-amber-400 dark:hover:border-amber-700 transition-colors"
+        >
+          <div className="flex items-start gap-3">
+            <CalendarDays className="w-5 h-5 text-amber-600 dark:text-amber-400 flex-shrink-0 mt-0.5" />
+            <div className="min-w-0">
+              <p className="text-sm font-bold font-mono uppercase tracking-wider text-amber-800 dark:text-amber-300">
+                re:Invent {season.year}
+              </p>
+              <p className="mt-1 text-sm text-zinc-700 dark:text-zinc-300">
+                {season.services.length > 0 || season.neverBeforeSeen > 0 ? (
+                  <>
+                    {plural(season.services.length, "new AWS service")} and{" "}
+                    {plural(season.neverBeforeSeen, "never-before-seen action")}{" "}
+                    since October 1
+                    {season.conference
+                      ? `. Conference ${conferenceLabel(season.conference)}`
+                      : ""}
+                    .
+                  </>
+                ) : (
+                  <>
+                    The watch is open through December 31. A new AWS service
+                    usually shows up in a managed policy before AWS announces it.
+                  </>
+                )}
+              </p>
+            </div>
+            <ChevronRight className="w-4 h-4 text-amber-600 dark:text-amber-400 flex-shrink-0 mt-1" />
+          </div>
+        </Link>
+      ) : null}
 
       {/* This week: changes that matter */}
       <section className="border border-zinc-200 dark:border-zinc-800 rounded-lg overflow-hidden">

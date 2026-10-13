@@ -57,6 +57,12 @@ const RESOURCES: Resource[] = [
       "Service prefixes and actions that appeared for the first time anywhere in the archive, newest first. AWS usually ships the IAM component before the SDK and the docs.",
   },
   {
+    path: "/reinvent.json",
+    title: "re:Invent seasons",
+    description:
+      "October 1 through December 31 of each year: new AWS services, never-before-seen actions, new policies, endpoint changes and GuardDuty announcements, plus the AWS News Blog roundup URL when one exists. editions[0] is the newest season.",
+  },
+  {
     path: "/risk.json",
     title: "Risk assessment",
     description:
@@ -165,6 +171,14 @@ export default function ApiPage() {
           <Snippet>{`curl -s --compressed ${BASE}/changes.json \\
   | jq -r '.changes[] | select(.newActions | length > 0)
       | "\\(.date[0:10]) \\(.policyName): \\(.newActions | join(", "))"'`}</Snippet>
+        </div>
+
+        <div>
+          <p className="text-sm text-zinc-600 dark:text-zinc-400">
+            New AWS services in the latest re:Invent season:
+          </p>
+          <Snippet>{`curl -s --compressed ${BASE}/reinvent.json \\
+  | jq -r '.editions[0].services[] | "\\(.firstSeen) \\(.prefix) \\(.name // "")"'`}</Snippet>
         </div>
 
         <div>
