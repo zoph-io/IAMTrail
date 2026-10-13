@@ -57,3 +57,24 @@ body {
   text-underline-offset: 2px;
   color: inherit;
 }
+
+/* Marquee bulbs on the re:Invent pages. The night panel stays dark in both themes. */
+.vegas-bulb {
+  animation: vegas-bulb 1.8s ease-in-out infinite;
+}
+
+@keyframes vegas-bulb {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.28;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .vegas-bulb {
+    animation: none;
+  }
+}
