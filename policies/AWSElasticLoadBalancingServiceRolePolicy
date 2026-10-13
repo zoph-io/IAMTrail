@@ -12,6 +12,7 @@
                         "ec2:DescribeNetworkInterfaces",
                         "ec2:DescribeSubnets",
                         "ec2:DescribeSecurityGroups",
+                        "ec2:ValidateSecurityGroupQuotasForInterface",
                         "ec2:DescribeVpcs",
                         "ec2:DescribeInternetGateways",
                         "ec2:DescribeAccountAttributes",
@@ -47,8 +48,8 @@
                 }
             ]
         },
-        "VersionId": "v14",
+        "VersionId": "v15",
         "IsDefaultVersion": true,
-        "CreateDate": "2026-02-12T17:58:08+00:00"
+        "CreateDate": "2026-10-13T19:47:07+00:00"
     }
 }
