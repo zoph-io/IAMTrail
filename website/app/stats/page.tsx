@@ -167,7 +167,10 @@ export default async function StatsPage() {
           )}
         </div>
         {stats.reinventPulse && (
-          <ReinventPulseChart reinventPulse={stats.reinventPulse} />
+          <ReinventPulseChart
+            reinventPulse={stats.reinventPulse}
+            windowLabel={stats.reinventWindow}
+          />
         )}
       </div>
 

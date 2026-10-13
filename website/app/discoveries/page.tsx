@@ -132,13 +132,21 @@ export default async function DiscoveriesPage() {
         <code className="text-xs bg-zinc-100 dark:bg-zinc-800 px-1 rounded">
           s3:*
         </code>{" "}
-        are excluded because they name no concrete action. For a year-by-year
+        are excluded because they name no concrete action.         For a year-by-year
         view of the same namespace growth, see the{" "}
         <Link
           href="/service-growth"
           className="text-red-600 dark:text-red-400 hover:underline"
         >
           service growth timeline
+        </Link>
+        . October through December, including the weeks before the conference,
+        is collected on{" "}
+        <Link
+          href="/reinvent"
+          className="text-red-600 dark:text-red-400 hover:underline"
+        >
+          re:Invent
         </Link>
         .
       </p>

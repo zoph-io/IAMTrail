@@ -1,0 +1,50 @@
+{
+  "2020": {
+    "starts": "2020-11-30",
+    "ends": "2020-12-18",
+    "place": "Virtual",
+    "roundup": "https://aws.amazon.com/blogs/aws/aws-reinvent-announcements-2020/",
+    "roundupTitle": "AWS re:Invent 2020 top announcements"
+  },
+  "2021": {
+    "starts": "2021-11-29",
+    "ends": "2021-12-03",
+    "place": "Las Vegas",
+    "roundup": "https://aws.amazon.com/blogs/aws/top-announcements-of-aws-reinvent-2021/",
+    "roundupTitle": "Top announcements of AWS re:Invent 2021"
+  },
+  "2022": {
+    "starts": "2022-11-28",
+    "ends": "2022-12-02",
+    "place": "Las Vegas",
+    "roundup": "https://aws.amazon.com/blogs/aws/top-announcements-of-aws-reinvent-2022/",
+    "roundupTitle": "Top announcements of AWS re:Invent 2022"
+  },
+  "2023": {
+    "starts": "2023-11-27",
+    "ends": "2023-12-01",
+    "place": "Las Vegas",
+    "roundup": "https://aws.amazon.com/blogs/aws/top-announcements-of-aws-reinvent-2023/",
+    "roundupTitle": "Top announcements of AWS re:Invent 2023"
+  },
+  "2024": {
+    "starts": "2024-12-02",
+    "ends": "2024-12-06",
+    "place": "Las Vegas",
+    "roundup": "https://aws.amazon.com/blogs/aws/top-announcements-of-aws-reinvent-2024/",
+    "roundupTitle": "Top announcements of AWS re:Invent 2024"
+  },
+  "2025": {
+    "starts": "2025-12-01",
+    "ends": "2025-12-05",
+    "place": "Las Vegas",
+    "roundup": "https://aws.amazon.com/blogs/aws/top-announcements-of-aws-reinvent-2025/",
+    "roundupTitle": "Top announcements of AWS re:Invent 2025"
+  },
+  "2026": {
+    "starts": "2026-11-30",
+    "ends": "2026-12-04",
+    "place": "Las Vegas",
+    "event": "https://aws.amazon.com/events/reinvent/"
+  }
+}

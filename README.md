@@ -25,6 +25,7 @@ Explore AWS Managed IAM Policies through a searchable web interface at **[iamtra
 [![IAMTrail Website](assets/screenshot.png)](https://iamtrail.com)
 
 - A homepage that leads with this week's changes that matter and the newest AWS services spotted, with the charts on [/stats](https://iamtrail.com/stats)
+- [re:Invent](https://iamtrail.com/reinvent) - each October 1 to December 31 season: new AWS services and never-before-seen actions, often before the conference, next to that year's AWS News Blog announcement roundup
 - Search and filter across 1,465+ managed policies, or search an IAM action to find every policy that grants it, by name or through a wildcard such as `s3:Get*`
 - Full version history with git diffs for every policy
 - Syntax-highlighted JSON policy viewer, rendered at build time so every policy and IAM action page is readable by search engines and link previews
@@ -76,6 +77,7 @@ The whole archive is also published as versioned JSON at `https://iamtrail.com/a
 | [`/api/v1/changes.json`](https://iamtrail.com/api/v1/changes.json) | Recent changes, each naming the actions added and removed |
 | [`/api/v1/actions.json`](https://iamtrail.com/api/v1/actions.json) | Every literal IAM action mapped to the policies that allow, deny or NotAction it, plus `wildcardGrants`: every Allow wildcard by service prefix and pattern |
 | [`/api/v1/discoveries.json`](https://iamtrail.com/api/v1/discoveries.json) | Actions and service prefixes seen for the first time anywhere in the archive |
+| [`/api/v1/reinvent.json`](https://iamtrail.com/api/v1/reinvent.json) | Each re:Invent season (October 1 through December 31): new AWS services, never-before-seen actions, and the announcement roundup |
 
 ```bash
 # What changed in the last day

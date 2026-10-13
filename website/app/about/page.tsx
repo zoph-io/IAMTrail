@@ -7,6 +7,7 @@ import {
   GitBranch,
   ShieldCheck,
   Shield,
+  CalendarDays,
   Globe,
   Search,
   FileText,
@@ -150,6 +151,26 @@ export default function AboutPage() {
               ). Spot new service launches early via v1 policies. Literal
               actions in the policy JSON link to per-action pages that list
               which other managed policies reference the same string.
+            </p>
+          </Link>
+
+          <Link
+            href="/reinvent"
+            className="bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 rounded-lg p-5 group hover:border-red-300 dark:hover:border-red-800 transition-colors"
+          >
+            <div className="flex items-center gap-3 mb-3">
+              <div className="p-1.5 bg-red-50 dark:bg-red-950/30 rounded">
+                <CalendarDays className="w-4 h-4 text-red-600 dark:text-red-400" />
+              </div>
+              <h3 className="font-semibold text-sm text-zinc-900 dark:text-white group-hover:text-red-600 dark:group-hover:text-red-400 transition-colors">
+                re:Invent
+              </h3>
+            </div>
+            <p className="text-sm text-zinc-600 dark:text-zinc-400 leading-relaxed">
+              October 1 through December 31 each year. New AWS services and
+              never-before-seen actions from the archive, often before the
+              conference, next to that year&apos;s AWS News Blog announcement
+              roundup.
             </p>
           </Link>
 

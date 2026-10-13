@@ -31,7 +31,7 @@ export default function SeasonalityChart({
       <div className="flex items-end gap-1 sm:gap-2 h-48 sm:h-56">
         {months.map((m) => {
           const heightPct = Math.max((m.count / maxCount) * 100, 2);
-          const isReinvent = m.month === 11 || m.month === 12;
+          const isReinvent = m.month >= 10;
           return (
             <div
               key={m.label}
@@ -68,10 +68,13 @@ export default function SeasonalityChart({
       <div className="mt-4 flex items-center gap-2 text-xs font-mono text-zinc-500 dark:text-zinc-400">
         <span className="inline-block w-3 h-3 rounded-sm bg-amber-500" />
         <span>
-          re:Invent season (Nov-Dec) -{" "}
+          re:Invent season (Oct-Dec) -{" "}
           <strong className="text-zinc-700 dark:text-zinc-300">
             {Math.round(
-              ((months[10].count + months[11].count) / 2 / avg) * 100 -
+              ((months[9].count + months[10].count + months[11].count) /
+                3 /
+                avg) *
+                100 -
                 100,
             )}
             % above average
