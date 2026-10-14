@@ -117,6 +117,8 @@
                     "Action": [
                         "datazone:AcceptPredictions",
                         "datazone:AcceptSubscriptionRequest",
+                        "datazone:BatchGetAttributesMetadata",
+                        "datazone:BatchPutAttributesMetadata",
                         "datazone:BatchUpdateNotifications",
                         "datazone:CancelMetadataGenerationRun",
                         "datazone:CancelSubscription",
@@ -168,7 +170,11 @@
                         "datazone:CancelMessage",
                         "datazone:QueryGraph",
                         "datazone:StartCompute",
-                        "datazone:StopCompute"
+                        "datazone:StopCompute",
+                        "datazone:*Agent*",
+                        "datazone:DeleteConversation",
+                        "datazone:UpdateConversation",
+                        "datazone:*DataApp*"
                     ],
                     "Resource": "*"
                 },
@@ -667,8 +673,8 @@
                 }
             ]
         },
-        "VersionId": "v25",
+        "VersionId": "v26",
         "IsDefaultVersion": true,
-        "CreateDate": "2026-10-08T17:57:08+00:00"
+        "CreateDate": "2026-10-14T19:37:08+00:00"
     }
 }
