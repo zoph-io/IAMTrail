@@ -2945,12 +2945,12 @@
             "PolicyId": "ANPAIMHWGGSRHLOQUICJQ",
             "Arn": "arn:aws:iam::aws:policy/aws-service-role/AWSElasticLoadBalancingServiceRolePolicy",
             "Path": "/aws-service-role/",
-            "DefaultVersionId": "v14",
+            "DefaultVersionId": "v15",
             "AttachmentCount": 1,
             "PermissionsBoundaryUsageCount": 0,
             "IsAttachable": true,
             "CreateDate": "2017-09-19T22:19:04+00:00",
-            "UpdateDate": "2026-02-12T17:58:08+00:00"
+            "UpdateDate": "2026-10-13T19:47:07+00:00"
         },
         {
             "PolicyName": "AWSElasticLoadBalancingClassicServiceRolePolicy",
@@ -18593,12 +18593,12 @@
             "PolicyId": "ANPAZKAPJZG4OPHV5P744",
             "Arn": "arn:aws:iam::aws:policy/service-role/AIDevOpsConstellationAccessPolicy",
             "Path": "/service-role/",
-            "DefaultVersionId": "v1",
+            "DefaultVersionId": "v2",
             "AttachmentCount": 0,
             "PermissionsBoundaryUsageCount": 0,
             "IsAttachable": true,
             "CreateDate": "2026-08-05T16:27:17+00:00",
-            "UpdateDate": "2026-08-05T16:27:17+00:00"
+            "UpdateDate": "2026-10-13T20:37:07+00:00"
         },
         {
             "PolicyName": "AWSAgentRegistryServiceRolePolicy",
@@ -19031,6 +19031,18 @@
             "IsAttachable": true,
             "CreateDate": "2026-10-13T00:37:08+00:00",
             "UpdateDate": "2026-10-13T00:37:08+00:00"
+        },
+        {
+            "PolicyName": "SageMakerStudioDataAppsAccessRolePolicy",
+            "PolicyId": "ANPAZKAPJZG4LHBWULZI2",
+            "Arn": "arn:aws:iam::aws:policy/service-role/SageMakerStudioDataAppsAccessRolePolicy",
+            "Path": "/service-role/",
+            "DefaultVersionId": "v1",
+            "AttachmentCount": 0,
+            "PermissionsBoundaryUsageCount": 0,
+            "IsAttachable": true,
+            "CreateDate": "2026-10-13T21:57:08+00:00",
+            "UpdateDate": "2026-10-13T21:57:08+00:00"
         },
         {
             "PolicyName": "AWSConfigRole",
