@@ -239,7 +239,8 @@
                             "iam:PolicyARN": [
                                 "arn:aws:iam::aws:policy/SageMakerStudioUserIAMDefaultExecutionPolicy",
                                 "arn:aws:iam::aws:policy/SageMakerStudioUserIAMPermissiveExecutionPolicy",
-                                "arn:aws:iam::aws:policy/service-role/AmazonS3TablesLakeFormationServiceRole"
+                                "arn:aws:iam::aws:policy/service-role/AmazonS3TablesLakeFormationServiceRole",
+                                "arn:aws:iam::aws:policy/service-role/SageMakerStudioDataAppsAccessRolePolicy"
                             ]
                         }
                     }
@@ -808,8 +809,8 @@
                 }
             ]
         },
-        "VersionId": "v22",
+        "VersionId": "v23",
         "IsDefaultVersion": true,
-        "CreateDate": "2026-10-08T18:57:08+00:00"
+        "CreateDate": "2026-10-14T19:37:08+00:00"
     }
 }
