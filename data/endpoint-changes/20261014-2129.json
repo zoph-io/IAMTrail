@@ -1,0 +1,15 @@
+{
+  "detected_at": "2026-10-14T21:29:42.290Z",
+  "botocore_commit": "b7ed9a9502ac22ec534cf5c6cdc82947e419e773",
+  "botocore_commit_url": "https://github.com/boto/botocore/commit/b7ed9a9502ac22ec534cf5c6cdc82947e419e773",
+  "summary": "1 new service",
+  "changes": [
+    {
+      "type": "new_service",
+      "partition": "aws-iso",
+      "id": "aps",
+      "description": "aps (2 endpoints)",
+      "endpoint_count": 2
+    }
+  ]
+}
