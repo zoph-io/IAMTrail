@@ -1,6 +1,6 @@
 [
   {
-    "findingDetails": "The 23179 characters in the identity policy, excluding whitespace, exceed the 10240 character maximum for inline and managed policies. We recommend that you use multiple granular policies.",
+    "findingDetails": "The 23651 characters in the identity policy, excluding whitespace, exceed the 10240 character maximum for inline and managed policies. We recommend that you use multiple granular policies.",
     "findingType": "WARNING",
     "issueCode": "POLICY_SIZE_EXCEEDS_IDENTITY_POLICY_QUOTA",
     "learnMoreLink": "https://docs.aws.amazon.com/IAM/latest/UserGuide/access-analyzer-reference-policy-checks.html#access-analyzer-reference-policy-checks-general-warning-policy-size-exceeds-identity-policy-quota",
@@ -15,8 +15,8 @@
           },
           "end": {
             "line": 1,
-            "column": 23928,
-            "offset": 23928
+            "column": 24414,
+            "offset": 24414
           }
         }
       }
@@ -40,19 +40,19 @@
             "value": "Action"
           },
           {
-            "index": 647
+            "index": 661
           }
         ],
         "span": {
           "start": {
             "line": 1,
-            "column": 20718,
-            "offset": 20718
+            "column": 21204,
+            "offset": 21204
           },
           "end": {
             "line": 1,
-            "column": 20729,
-            "offset": 20729
+            "column": 21215,
+            "offset": 21215
           }
         }
       },
@@ -68,19 +68,19 @@
             "value": "Action"
           },
           {
-            "index": 648
+            "index": 662
           }
         ],
         "span": {
           "start": {
             "line": 1,
-            "column": 20731,
-            "offset": 20731
+            "column": 21217,
+            "offset": 21217
           },
           "end": {
             "line": 1,
-            "column": 20757,
-            "offset": 20757
+            "column": 21243,
+            "offset": 21243
           }
         }
       }

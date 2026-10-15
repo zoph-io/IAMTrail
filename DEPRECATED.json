@@ -43,6 +43,8 @@
   "AWSElasticBeanstalkReadOnlyAccess": "2021-04-20",
   "AWSIoT1ClickFullAccess": "2025-09-18",
   "AWSIoT1ClickReadOnlyAccess": "2025-09-18",
+  "AWSIoTEventsFullAccess": "2026-10-15",
+  "AWSIoTEventsReadOnlyAccess": "2026-10-15",
   "AWSIotRoboRunnerFullAccess": "2024-04-10",
   "AWSIotRoboRunnerReadOnly": "2024-04-10",
   "AWSIotRoboRunnerServiceRolePolicy": "2024-04-10",
