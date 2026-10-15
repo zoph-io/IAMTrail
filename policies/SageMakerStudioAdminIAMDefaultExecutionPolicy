@@ -952,6 +952,7 @@
                         "identitystore:DescribeUser",
                         "identitystore:DescribeGroup",
                         "sso:CreateApplication",
+                        "sso:DeleteApplication",
                         "sso:DescribeInstance",
                         "sso:DescribeApplication",
                         "sso:PutApplicationGrant",
@@ -1122,6 +1123,21 @@
                     }
                 },
                 {
+                    "Sid": "S3AGIdentityCenterAssociation",
+                    "Effect": "Allow",
+                    "Action": [
+                        "s3:AssociateAccessGrantsIdentityCenter"
+                    ],
+                    "Resource": [
+                        "arn:aws:s3:*:*:access-grants/default"
+                    ],
+                    "Condition": {
+                        "StringEquals": {
+                            "aws:ResourceAccount": "${aws:PrincipalAccount}"
+                        }
+                    }
+                },
+                {
                     "Sid": "S3AGLocationPermissions",
                     "Effect": "Allow",
                     "Action": [
@@ -1174,8 +1190,8 @@
                 }
             ]
         },
-        "VersionId": "v26",
+        "VersionId": "v27",
         "IsDefaultVersion": true,
-        "CreateDate": "2026-10-14T19:37:08+00:00"
+        "CreateDate": "2026-10-15T21:47:07+00:00"
     }
 }
