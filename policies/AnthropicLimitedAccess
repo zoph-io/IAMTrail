@@ -18,6 +18,7 @@
                         "aws-external-anthropic:CountTokens",
                         "aws-external-anthropic:CreateAgent",
                         "aws-external-anthropic:CreateBatchInference",
+                        "aws-external-anthropic:CreateDeployment",
                         "aws-external-anthropic:CreateEnvironment",
                         "aws-external-anthropic:CreateFile",
                         "aws-external-anthropic:CreateInference",
@@ -97,8 +98,8 @@
                 }
             ]
         },
-        "VersionId": "v8",
+        "VersionId": "v9",
         "IsDefaultVersion": true,
-        "CreateDate": "2026-10-02T16:37:08+00:00"
+        "CreateDate": "2026-10-15T18:37:08+00:00"
     }
 }
