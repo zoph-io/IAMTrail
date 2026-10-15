@@ -694,6 +694,7 @@
                         "identitystore:DescribeUser",
                         "identitystore:DescribeGroup",
                         "sso:CreateApplication",
+                        "sso:DeleteApplication",
                         "sso:DescribeInstance",
                         "sso:DescribeApplication",
                         "sso:PutApplicationGrant",
@@ -809,8 +810,8 @@
                 }
             ]
         },
-        "VersionId": "v23",
+        "VersionId": "v24",
         "IsDefaultVersion": true,
-        "CreateDate": "2026-10-14T19:37:08+00:00"
+        "CreateDate": "2026-10-15T21:47:07+00:00"
     }
 }
