@@ -35,7 +35,7 @@
                         "*"
                     ],
                     "Condition": {
-                        "StringEquals": {
+                        "StringEqualsIfExists": {
                             "cloudwatch:namespace": "/aws/sagemaker/Clusters"
                         }
                     }
@@ -69,8 +69,8 @@
                 }
             ]
         },
-        "VersionId": "v1",
+        "VersionId": "v2",
         "IsDefaultVersion": true,
-        "CreateDate": "2023-11-29T15:11:26+00:00"
+        "CreateDate": "2026-10-16T20:17:08+00:00"
     }
 }
