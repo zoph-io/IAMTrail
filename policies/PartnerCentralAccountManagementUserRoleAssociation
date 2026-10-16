@@ -25,11 +25,30 @@
                         "partnercentral-account-management:DisassociatePartnerUser"
                     ],
                     "Resource": "*"
+                },
+                {
+                    "Sid": "PartnerCentralContentAccess",
+                    "Effect": "Allow",
+                    "Action": [
+                        "partnercentral:GetPartnerCentralContentDocument",
+                        "partnercentral:GetPartnerCentralContentMetadata",
+                        "partnercentral:ListPartnerCentralContent",
+                        "partnercentral:SearchPartnerCentralContent"
+                    ],
+                    "Resource": "*",
+                    "Condition": {
+                        "StringEquals": {
+                            "partnercentral:Catalog": [
+                                "AWS",
+                                "Sandbox"
+                            ]
+                        }
+                    }
                 }
             ]
         },
-        "VersionId": "v1",
+        "VersionId": "v2",
         "IsDefaultVersion": true,
-        "CreateDate": "2023-11-10T02:03:40+00:00"
+        "CreateDate": "2026-10-16T01:27:08+00:00"
     }
 }
