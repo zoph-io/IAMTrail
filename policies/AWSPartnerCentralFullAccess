@@ -131,7 +131,8 @@
                     "Resource": [
                         "arn:aws:aws-marketplace:*:*:AWSMarketplace*/Solution/*",
                         "arn:aws:aws-marketplace:*:*:AWSMarketplace*/OfferSet/*",
-                        "arn:aws:aws-marketplace:*:*:AWSMarketplace*/Offer/*"
+                        "arn:aws:aws-marketplace:*:*:AWSMarketplace*/Offer/*",
+                        "arn:aws:aws-marketplace:*:*:AWSMarketplace*/CaseStudy/*"
                     ]
                 },
                 {
@@ -180,11 +181,59 @@
                             "aws:IsMcpServiceAction": "true"
                         }
                     }
+                },
+                {
+                    "Sid": "CaseStudyStartChangeSet",
+                    "Effect": "Allow",
+                    "Action": [
+                        "aws-marketplace:StartChangeSet"
+                    ],
+                    "Resource": [
+                        "arn:aws:aws-marketplace:*:*:AWSMarketplace*/CaseStudy/*",
+                        "arn:aws:aws-marketplace:*:*:AWSMarketplace*/ChangeSet/*"
+                    ],
+                    "Condition": {
+                        "StringEquals": {
+                            "catalog:ChangeType": [
+                                "CreateCaseStudy",
+                                "UpdateInformation",
+                                "ReleaseCaseStudy",
+                                "RestrictCaseStudy",
+                                "UpdateVisibility"
+                            ]
+                        }
+                    }
+                },
+                {
+                    "Sid": "CaseStudyDescribeChangeSet",
+                    "Effect": "Allow",
+                    "Action": [
+                        "aws-marketplace:DescribeChangeSet"
+                    ],
+                    "Resource": "arn:aws:aws-marketplace:*:*:AWSMarketplace*/ChangeSet/*"
+                },
+                {
+                    "Sid": "CaseStudyListChangeSets",
+                    "Effect": "Allow",
+                    "Action": [
+                        "aws-marketplace:ListChangeSets"
+                    ],
+                    "Resource": "*"
+                },
+                {
+                    "Sid": "CaseStudyEntityTagAccess",
+                    "Effect": "Allow",
+                    "Action": [
+                        "aws-marketplace:ListTagsForResource",
+                        "aws-marketplace:TagResource",
+                        "aws-marketplace:UntagResource"
+                    ],
+                    "Resource": "arn:aws:aws-marketplace:*:*:AWSMarketplace*/CaseStudy/*"
                 }
             ]
         },
-        "VersionId": "v14",
+        "VersionId": "v15",
         "IsDefaultVersion": true,
-        "CreateDate": "2026-03-12T17:12:13+00:00"
+        "CreateDate": "2026-10-17T11:37:08+00:00"
     }
 }
