@@ -15113,12 +15113,12 @@
             "PolicyId": "ANPAZKAPJZG4DRJMXIHNK",
             "Arn": "arn:aws:iam::aws:policy/AWSPartnerCentralFullAccess",
             "Path": "/",
-            "DefaultVersionId": "v14",
+            "DefaultVersionId": "v15",
             "AttachmentCount": 0,
             "PermissionsBoundaryUsageCount": 0,
             "IsAttachable": true,
             "CreateDate": "2024-11-18T23:33:28+00:00",
-            "UpdateDate": "2026-03-12T17:12:13+00:00"
+            "UpdateDate": "2026-10-17T11:37:08+00:00"
         },
         {
             "PolicyName": "AWSMarketplaceSellerOfferManagement",
