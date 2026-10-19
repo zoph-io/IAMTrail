@@ -1,0 +1,18 @@
+{
+  "type": "NEW_FEATURES",
+  "detected_at": "2026-10-19T18:36:52Z",
+  "description": "Amazon GuardDuty now supports optional detection rules for Runtime Monitoring. In addition to the existing rules for AWS CloudTrail management events, you can now enable more than 50 Runtime Monitoring rules that help detect process, file, and network activity that might be routine in one environment but a sign of compromise in another, such as modifying sudoers files or disabling audit logging.\n\nThe new rules, providing detections for Amazon EC2 instances, Amazon EKS, and Amazon ECS on both EC2 and AWS Fargate, span 13 Runtime Monitoring finding types, including four new ones: CommandAndControl:Runtime/SuspiciousCommand, CredentialAccess:Runtime/SensitiveFileRead, Discovery:Runtime/SensitiveFileRead, and Exfiltration:Runtime/SuspiciousCommand. Each rule is mapped to MITRE ATT&CK® tactics spanning persistence, privilege escalation, execution, defense evasion, discovery, exfiltration, and command and control. As with CloudTrail rules, you can start in dry-run mode to measure signal volume before enabling live detection.",
+  "short_description": "Amazon GuardDuty now supports optional detection rules for Runtime Monitoring. In addition to the existing rules for AWS CloudTrail management events,",
+  "link": "https://docs.aws.amazon.com/guardduty/latest/ug/findings-custom-detection-rules.html#cdr-runtime-monitoring",
+  "gist_url": "",
+  "raw_sns_message": {
+    "version": "1",
+    "type": "NEW_FEATURES",
+    "featureDetails": [
+      {
+        "featureDescription": "Amazon GuardDuty now supports optional detection rules for Runtime Monitoring. In addition to the existing rules for AWS CloudTrail management events, you can now enable more than 50 Runtime Monitoring rules that help detect process, file, and network activity that might be routine in one environment but a sign of compromise in another, such as modifying sudoers files or disabling audit logging.\n\nThe new rules, providing detections for Amazon EC2 instances, Amazon EKS, and Amazon ECS on both EC2 and AWS Fargate, span 13 Runtime Monitoring finding types, including four new ones: CommandAndControl:Runtime/SuspiciousCommand, CredentialAccess:Runtime/SensitiveFileRead, Discovery:Runtime/SensitiveFileRead, and Exfiltration:Runtime/SuspiciousCommand. Each rule is mapped to MITRE ATT&CK® tactics spanning persistence, privilege escalation, execution, defense evasion, discovery, exfiltration, and command and control. As with CloudTrail rules, you can start in dry-run mode to measure signal volume before enabling live detection.",
+        "featureLink": "https://docs.aws.amazon.com/guardduty/latest/ug/findings-custom-detection-rules.html#cdr-runtime-monitoring"
+      }
+    ]
+  }
+}
