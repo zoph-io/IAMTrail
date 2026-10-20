@@ -329,7 +329,8 @@
                             "iam:PassedToService": [
                                 "lambda.amazonaws.com",
                                 "ec2.amazonaws.com",
-                                "ec2.amazonaws.com.cn"
+                                "ec2.amazonaws.com.cn",
+                                "ssm.amazonaws.com"
                             ]
                         }
                     }
@@ -935,8 +936,8 @@
                 }
             ]
         },
-        "VersionId": "v2",
+        "VersionId": "v3",
         "IsDefaultVersion": true,
-        "CreateDate": "2026-08-18T19:27:25+00:00"
+        "CreateDate": "2026-10-20T16:37:07+00:00"
     }
 }
