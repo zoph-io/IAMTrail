@@ -1,0 +1,18 @@
+{
+  "type": "NEW_FEATURES",
+  "detected_at": "2026-10-20T02:57:12Z",
+  "description": "Amazon GuardDuty now lets you specify the expected bucket owner when you export findings to Amazon S3. GuardDuty verifies that the account you specify owns the destination bucket before it exports findings, which protects your findings if the bucket is deleted and re-created by another account.",
+  "short_description": "Amazon GuardDuty now lets you specify the expected bucket owner when you export findings to Amazon S3. GuardDuty verifies that the account you specify",
+  "link": "https://docs.aws.amazon.com/guardduty/latest/ug/guardduty_exportfindings.html#guardduty-exportfindings-expected-bucket-owner",
+  "gist_url": "",
+  "raw_sns_message": {
+    "version": "1",
+    "type": "NEW_FEATURES",
+    "featureDetails": [
+      {
+        "featureLink": "https://docs.aws.amazon.com/guardduty/latest/ug/guardduty_exportfindings.html#guardduty-exportfindings-expected-bucket-owner",
+        "featureDescription": "Amazon GuardDuty now lets you specify the expected bucket owner when you export findings to Amazon S3. GuardDuty verifies that the account you specify owns the destination bucket before it exports findings, which protects your findings if the bucket is deleted and re-created by another account."
+      }
+    ]
+  }
+}
