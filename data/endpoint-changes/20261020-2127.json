@@ -1,0 +1,26 @@
+{
+  "detected_at": "2026-10-20T21:27:41.698Z",
+  "botocore_commit": "cfc93341636892bec4389a0ed8f6c7c66916e1ff",
+  "botocore_commit_url": "https://github.com/boto/botocore/commit/cfc93341636892bec4389a0ed8f6c7c66916e1ff",
+  "summary": "3 removed services",
+  "changes": [
+    {
+      "type": "removed_service",
+      "partition": "aws",
+      "id": "finspace",
+      "description": "finspace"
+    },
+    {
+      "type": "removed_service",
+      "partition": "aws",
+      "id": "finspace-api",
+      "description": "finspace-api"
+    },
+    {
+      "type": "removed_service",
+      "partition": "aws",
+      "id": "tnb",
+      "description": "tnb"
+    }
+  ]
+}
