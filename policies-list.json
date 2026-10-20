@@ -19033,6 +19033,18 @@
             "UpdateDate": "2026-10-16T01:07:08+00:00"
         },
         {
+            "PolicyName": "AmazonQuickSuiteAccessPolicy",
+            "PolicyId": "ANPAZKAPJZG4GL3LWPTEC",
+            "Arn": "arn:aws:iam::aws:policy/service-role/AmazonQuickSuiteAccessPolicy",
+            "Path": "/service-role/",
+            "DefaultVersionId": "v1",
+            "AttachmentCount": 0,
+            "PermissionsBoundaryUsageCount": 0,
+            "IsAttachable": true,
+            "CreateDate": "2026-10-19T23:57:07+00:00",
+            "UpdateDate": "2026-10-19T23:57:07+00:00"
+        },
+        {
             "PolicyName": "AWSConfigRole",
             "PolicyId": "ANPAIQRXRDRGJUA33ELIO",
             "Arn": "arn:aws:iam::aws:policy/service-role/AWSConfigRole",
