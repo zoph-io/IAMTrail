@@ -299,11 +299,43 @@
                         "aws-marketplace:ListTaxComplianceProfiles"
                     ],
                     "Resource": "*"
+                },
+                {
+                    "Sid": "ListAccountConnections",
+                    "Effect": "Allow",
+                    "Action": [
+                        "partnercentral:ListConnections"
+                    ],
+                    "Resource": "*",
+                    "Condition": {
+                        "StringEquals": {
+                            "partnercentral:Catalog": [
+                                "AWS",
+                                "Sandbox"
+                            ]
+                        }
+                    }
+                },
+                {
+                    "Sid": "ReadAccountConnections",
+                    "Effect": "Allow",
+                    "Action": [
+                        "partnercentral:GetConnection"
+                    ],
+                    "Resource": "arn:aws:partnercentral:*::catalog/*/connection/*",
+                    "Condition": {
+                        "StringEquals": {
+                            "partnercentral:Catalog": [
+                                "AWS",
+                                "Sandbox"
+                            ]
+                        }
+                    }
                 }
             ]
         },
-        "VersionId": "v33",
+        "VersionId": "v34",
         "IsDefaultVersion": true,
-        "CreateDate": "2026-08-12T16:47:10+00:00"
+        "CreateDate": "2026-10-22T17:47:07+00:00"
     }
 }
