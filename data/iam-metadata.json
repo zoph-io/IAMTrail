@@ -4,8 +4,8 @@
   "sourceUrl": "https://github.com/iann0036/iam-dataset",
   "sourceLicense": "MIT",
   "attribution": "Action access levels and service names from iam-dataset (Ian McKay, github.com/iann0036/iam-dataset), MIT license. Derived from the AWS Service Authorization Reference; not guaranteed current.",
-  "generatedAt": "2026-10-15T10:03:17Z",
-  "stats": {"permissionsManagementCount": 567, "serviceNameCount": 456},
+  "generatedAt": "2026-10-22T10:18:30Z",
+  "stats": {"permissionsManagementCount": 567, "serviceNameCount": 457},
   "permissionsManagement": [
     "acm-pca:createpermission",
     "acm-pca:deletepermission",
@@ -618,6 +618,7 @@
     "arc-zonal-shift": "Amazon Application Recovery Controller - Zonal Shift",
     "arsenal": "Application Discovery Arsenal",
     "artifact": "AWS Artifact",
+    "assurance": "AWS Assurance",
     "athena": "Amazon Athena",
     "auditmanager": "AWS Audit Manager",
     "autoscaling": "Amazon EC2 Auto Scaling",
