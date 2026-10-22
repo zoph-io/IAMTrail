@@ -199,11 +199,26 @@
                         "tag:GetResources"
                     ],
                     "Resource": "*"
+                },
+                {
+                    "Sid": "ValidateDataVolumeConfigurationForManagedInstances",
+                    "Effect": "Allow",
+                    "Action": [
+                        "ec2:CreateVolume"
+                    ],
+                    "Resource": [
+                        "arn:aws:ec2:*:*:volume/*"
+                    ],
+                    "Condition": {
+                        "StringEquals": {
+                            "aws:RequestTag/AmazonECSManaged": "true"
+                        }
+                    }
                 }
             ]
         },
-        "VersionId": "v12",
+        "VersionId": "v13",
         "IsDefaultVersion": true,
-        "CreateDate": "2026-09-15T17:57:08+00:00"
+        "CreateDate": "2026-10-22T21:27:07+00:00"
     }
 }
