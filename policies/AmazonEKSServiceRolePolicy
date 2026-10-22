@@ -23,6 +23,7 @@
                         "ec2:DescribeAvailabilityZones",
                         "ec2:DescribeCapacityReservations",
                         "ec2:DescribeCoipPools",
+                        "ec2:DescribeDhcpOptions",
                         "ec2:DescribeInstances",
                         "ec2:DescribeInstanceTypeOfferings",
                         "ec2:DescribeInstanceTypes",
@@ -351,8 +352,8 @@
                 }
             ]
         },
-        "VersionId": "v28",
+        "VersionId": "v29",
         "IsDefaultVersion": true,
-        "CreateDate": "2026-10-01T16:27:08+00:00"
+        "CreateDate": "2026-10-22T16:37:07+00:00"
     }
 }
