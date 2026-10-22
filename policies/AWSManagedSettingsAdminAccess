@@ -70,7 +70,8 @@
                         "budgets:DeleteBudget",
                         "budgets:DescribeBudgets",
                         "budgets:DescribeBudget",
-                        "budgets:DescribeBudgetActionHistories"
+                        "budgets:DescribeBudgetActionHistories",
+                        "budgets:ExecuteBudgetAction"
                     ],
                     "Resource": "*"
                 },
@@ -439,8 +440,8 @@
                 }
             ]
         },
-        "VersionId": "v8",
+        "VersionId": "v9",
         "IsDefaultVersion": true,
-        "CreateDate": "2026-09-30T22:27:07+00:00"
+        "CreateDate": "2026-10-22T22:57:07+00:00"
     }
 }
