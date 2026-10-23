@@ -11,7 +11,7 @@
             "value": "Statement"
           },
           {
-            "index": 1
+            "index": 3
           },
           {
             "value": "Resource"
@@ -23,13 +23,13 @@
         "span": {
           "start": {
             "line": 1,
-            "column": 605,
-            "offset": 605
+            "column": 1189,
+            "offset": 1189
           },
           "end": {
             "line": 1,
-            "column": 640,
-            "offset": 640
+            "column": 1224,
+            "offset": 1224
           }
         }
       },
@@ -39,7 +39,7 @@
             "value": "Statement"
           },
           {
-            "index": 1
+            "index": 3
           },
           {
             "value": "Resource"
@@ -51,13 +51,13 @@
         "span": {
           "start": {
             "line": 1,
-            "column": 642,
-            "offset": 642
+            "column": 1226,
+            "offset": 1226
           },
           "end": {
             "line": 1,
-            "column": 679,
-            "offset": 679
+            "column": 1263,
+            "offset": 1263
           }
         }
       }
