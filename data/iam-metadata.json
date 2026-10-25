@@ -4,8 +4,8 @@
   "sourceUrl": "https://github.com/iann0036/iam-dataset",
   "sourceLicense": "MIT",
   "attribution": "Action access levels and service names from iam-dataset (Ian McKay, github.com/iann0036/iam-dataset), MIT license. Derived from the AWS Service Authorization Reference; not guaranteed current.",
-  "generatedAt": "2026-10-22T10:18:30Z",
-  "stats": {"permissionsManagementCount": 567, "serviceNameCount": 457},
+  "generatedAt": "2026-10-25T09:54:36Z",
+  "stats": {"permissionsManagementCount": 567, "serviceNameCount": 458},
   "permissionsManagement": [
     "acm-pca:createpermission",
     "acm-pca:deletepermission",
@@ -692,6 +692,7 @@
     "connect-campaigns": "Amazon Connect Outbound Campaigns",
     "consoleapp": "AWS Management Console Mobile App",
     "consolidatedbilling": "AWS Consolidated Billing",
+    "continuum": "AWS Continuum",
     "controlcatalog": "AWS Control Catalog",
     "controltower": "AWS Control Tower",
     "cost-optimization-hub": "AWS Cost Optimization Hub",
