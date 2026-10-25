@@ -112,11 +112,22 @@
                             "aws:RequestTag/AWSApplicationMigrationServiceManaged": "false"
                         }
                     }
+                },
+                {
+                    "Sid": "FSxListTagsSnapshot",
+                    "Effect": "Allow",
+                    "Action": "fsx:ListTagsForResource",
+                    "Resource": "arn:aws:fsx:*:*:snapshot/*/*",
+                    "Condition": {
+                        "Null": {
+                            "aws:ResourceTag/AWSApplicationMigrationServiceManaged": "false"
+                        }
+                    }
                 }
             ]
         },
-        "VersionId": "v2",
+        "VersionId": "v3",
         "IsDefaultVersion": true,
-        "CreateDate": "2026-08-09T12:17:24+00:00"
+        "CreateDate": "2026-10-25T09:47:07+00:00"
     }
 }
