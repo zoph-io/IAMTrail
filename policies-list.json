@@ -17837,12 +17837,12 @@
             "PolicyId": "ANPAZKAPJZG4NQPHG73TS",
             "Arn": "arn:aws:iam::aws:policy/service-role/AWSApplicationMigrationFSxProxyPolicy",
             "Path": "/service-role/",
-            "DefaultVersionId": "v2",
+            "DefaultVersionId": "v3",
             "AttachmentCount": 0,
             "PermissionsBoundaryUsageCount": 0,
             "IsAttachable": true,
             "CreateDate": "2026-05-31T13:12:14+00:00",
-            "UpdateDate": "2026-08-09T12:17:24+00:00"
+            "UpdateDate": "2026-10-25T09:47:07+00:00"
         },
         {
             "PolicyName": "AWSApplicationMigrationFSxProxyVPCPolicy",
