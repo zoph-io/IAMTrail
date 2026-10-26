@@ -36656,6 +36656,7 @@
         },
         "textract": {
           "endpoints": {
+            "ap-northeast-1": {},
             "ap-northeast-2": {
               "variants": [
                 {
@@ -36729,6 +36730,7 @@
                 }
               ]
             },
+            "eu-central-2": {},
             "eu-south-2": {
               "variants": [
                 {
