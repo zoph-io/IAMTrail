@@ -12,6 +12,7 @@
                         "ivs:GetChannel",
                         "ivs:GetComposition",
                         "ivs:GetEncoderConfiguration",
+                        "ivs:GetFailoverSlateConfiguration",
                         "ivs:GetIngestConfiguration",
                         "ivs:GetParticipant",
                         "ivs:GetPlaybackKeyPair",
@@ -27,6 +28,7 @@
                         "ivs:ListChannels",
                         "ivs:ListCompositions",
                         "ivs:ListEncoderConfigurations",
+                        "ivs:ListFailoverSlateConfigurations",
                         "ivs:ListIngestConfigurations",
                         "ivs:ListParticipants",
                         "ivs:ListParticipantReplicas",
@@ -47,8 +49,8 @@
                 }
             ]
         },
-        "VersionId": "v7",
+        "VersionId": "v8",
         "IsDefaultVersion": true,
-        "CreateDate": "2026-09-25T19:47:08+00:00"
+        "CreateDate": "2026-10-26T19:37:07+00:00"
     }
 }
