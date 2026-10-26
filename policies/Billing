@@ -23,6 +23,7 @@
                         "billing:GetIAMAccessPreference",
                         "billing:GetSellerOfRecord",
                         "billing:ListBillingViews",
+                        "billing:ListContracts",
                         "billing:PutContractInformation",
                         "billing:RedeemCredits",
                         "billing:GetResourcePolicy",
@@ -162,11 +163,25 @@
                         "tax:UpdateExemptions"
                     ],
                     "Resource": "*"
+                },
+                {
+                    "Sid": "ContractAdministration",
+                    "Effect": "Allow",
+                    "Action": [
+                        "billing:AssociateContract",
+                        "billing:CancelContractualInvestmentAttestation",
+                        "billing:CreateContractualInvestmentAttestation",
+                        "billing:DisassociateContract",
+                        "billing:ListContractualInvestmentAttestations",
+                        "billing:ListContractualInvestments",
+                        "billing:ListContractualInvestmentSummaries"
+                    ],
+                    "Resource": "arn:aws:billing::*:contract/*"
                 }
             ]
         },
-        "VersionId": "v30",
+        "VersionId": "v31",
         "IsDefaultVersion": true,
-        "CreateDate": "2026-07-30T22:12:16+00:00"
+        "CreateDate": "2026-10-26T17:07:08+00:00"
     }
 }
