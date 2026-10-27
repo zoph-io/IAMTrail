@@ -76,11 +76,24 @@
                             "iam:AWSServiceName": "config.amazonaws.com"
                         }
                     }
+                },
+                {
+                    "Effect": "Allow",
+                    "Action": "ssm:GetCalendarState",
+                    "Resource": "arn:aws:ssm:*:*:document/*",
+                    "Condition": {
+                        "StringLike": {
+                            "aws:userid": "*:SystemsManager-Automation-ChangeCalendar-Check"
+                        },
+                        "StringEquals": {
+                            "ssm:DocumentType": "ChangeCalendar"
+                        }
+                    }
                 }
             ]
         },
-        "VersionId": "v1",
+        "VersionId": "v2",
         "IsDefaultVersion": true,
-        "CreateDate": "2024-06-26T09:40:20+00:00"
+        "CreateDate": "2026-10-27T15:57:09+00:00"
     }
 }
