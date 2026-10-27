@@ -56,7 +56,8 @@
                         "arn:aws:aws-marketplace:*:*:AWSMarketplace/ProfessionalServicesProduct/*",
                         "arn:aws:aws-marketplace:*:*:AWSMarketplace/SaaSProduct/*",
                         "arn:aws:aws-marketplace:*:*:AWSMarketplace/AmiProduct/*",
-                        "arn:aws:aws-marketplace:*:*:AWSMarketplace/ResaleAuthorization/*"
+                        "arn:aws:aws-marketplace:*:*:AWSMarketplace/ResaleAuthorization/*",
+                        "arn:aws:aws-marketplace:*:*:AWSMarketplace/SubsidiaryAuthorization/*"
                     ]
                 },
                 {
@@ -103,8 +104,8 @@
                 }
             ]
         },
-        "VersionId": "v2",
+        "VersionId": "v3",
         "IsDefaultVersion": true,
-        "CreateDate": "2026-03-31T16:57:09+00:00"
+        "CreateDate": "2026-10-27T00:47:06+00:00"
     }
 }
