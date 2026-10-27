@@ -34,11 +34,24 @@
                             ]
                         }
                     }
+                },
+                {
+                    "Effect": "Allow",
+                    "Action": "ssm:GetCalendarState",
+                    "Resource": "arn:aws:ssm:*:*:document/*",
+                    "Condition": {
+                        "StringLike": {
+                            "aws:userid": "*:SystemsManager-Automation-ChangeCalendar-Check"
+                        },
+                        "StringEquals": {
+                            "ssm:DocumentType": "ChangeCalendar"
+                        }
+                    }
                 }
             ]
         },
-        "VersionId": "v7",
+        "VersionId": "v8",
         "IsDefaultVersion": true,
-        "CreateDate": "2026-03-05T16:57:14+00:00"
+        "CreateDate": "2026-10-27T15:57:08+00:00"
     }
 }
