@@ -2201,12 +2201,12 @@
             "PolicyId": "ANPAIFTHXT6FFMIRT7ZEA",
             "Arn": "arn:aws:iam::aws:policy/job-function/Billing",
             "Path": "/job-function/",
-            "DefaultVersionId": "v30",
+            "DefaultVersionId": "v31",
             "AttachmentCount": 0,
             "PermissionsBoundaryUsageCount": 0,
             "IsAttachable": true,
             "CreateDate": "2016-11-10T17:33:18+00:00",
-            "UpdateDate": "2026-07-30T22:12:16+00:00"
+            "UpdateDate": "2026-10-26T17:07:08+00:00"
         },
         {
             "PolicyName": "IAMUserChangePassword",
@@ -7925,12 +7925,12 @@
             "PolicyId": "ANPAZKAPJZG4LJ3OSZ5SX",
             "Arn": "arn:aws:iam::aws:policy/AWSBillingReadOnlyAccess",
             "Path": "/",
-            "DefaultVersionId": "v28",
+            "DefaultVersionId": "v29",
             "AttachmentCount": 0,
             "PermissionsBoundaryUsageCount": 0,
             "IsAttachable": true,
             "CreateDate": "2020-08-27T20:08:51+00:00",
-            "UpdateDate": "2026-07-30T22:12:29+00:00"
+            "UpdateDate": "2026-10-26T17:07:07+00:00"
         },
         {
             "PolicyName": "ElementalActivationsReadOnlyAccess",
@@ -8201,12 +8201,12 @@
             "PolicyId": "ANPAJ7W6266ELXF5MISDS",
             "Arn": "arn:aws:iam::aws:policy/aws-service-role/AWSSupportServiceRolePolicy",
             "Path": "/aws-service-role/",
-            "DefaultVersionId": "v59",
+            "DefaultVersionId": "v60",
             "AttachmentCount": 1,
             "PermissionsBoundaryUsageCount": 0,
             "IsAttachable": true,
             "CreateDate": "2018-04-19T18:04:44+00:00",
-            "UpdateDate": "2026-08-19T17:37:19+00:00"
+            "UpdateDate": "2026-10-26T21:37:07+00:00"
         },
         {
             "PolicyName": "AWSBudgetsReadOnlyAccess",
@@ -13637,12 +13637,12 @@
             "PolicyId": "ANPAZKAPJZG4KSFZMGQOA",
             "Arn": "arn:aws:iam::aws:policy/IVSReadOnlyAccess",
             "Path": "/",
-            "DefaultVersionId": "v7",
+            "DefaultVersionId": "v8",
             "AttachmentCount": 0,
             "PermissionsBoundaryUsageCount": 0,
             "IsAttachable": true,
             "CreateDate": "2023-12-05T18:00:37+00:00",
-            "UpdateDate": "2026-09-25T19:47:08+00:00"
+            "UpdateDate": "2026-10-26T19:37:07+00:00"
         },
         {
             "PolicyName": "AWSMSKReplicatorExecutionRole",
@@ -15125,12 +15125,12 @@
             "PolicyId": "ANPAZKAPJZG4BMTW6QBBN",
             "Arn": "arn:aws:iam::aws:policy/AWSMarketplaceSellerOfferManagement",
             "Path": "/",
-            "DefaultVersionId": "v2",
+            "DefaultVersionId": "v3",
             "AttachmentCount": 0,
             "PermissionsBoundaryUsageCount": 0,
             "IsAttachable": true,
             "CreateDate": "2024-11-19T00:41:38+00:00",
-            "UpdateDate": "2026-03-31T16:57:09+00:00"
+            "UpdateDate": "2026-10-27T00:47:06+00:00"
         },
         {
             "PolicyName": "SageMakerStudioProjectRoleMachineLearningPolicy",
@@ -17801,12 +17801,12 @@
             "PolicyId": "ANPAZKAPJZG4J5XY2SPNP",
             "Arn": "arn:aws:iam::aws:policy/AmazonEKSBlockStoragePolicyV2",
             "Path": "/",
-            "DefaultVersionId": "v1",
+            "DefaultVersionId": "v2",
             "AttachmentCount": 0,
             "PermissionsBoundaryUsageCount": 0,
             "IsAttachable": true,
             "CreateDate": "2026-05-11T16:27:15+00:00",
-            "UpdateDate": "2026-05-11T16:27:15+00:00"
+            "UpdateDate": "2026-10-26T23:27:07+00:00"
         },
         {
             "PolicyName": "AmazonSageMakerModelCustomizationCoreAccess",
@@ -18761,12 +18761,12 @@
             "PolicyId": "ANPAZKAPJZG4LFYJ5QTSC",
             "Arn": "arn:aws:iam::aws:policy/service-role/AIDevOpsChannelAccessPolicy",
             "Path": "/service-role/",
-            "DefaultVersionId": "v1",
+            "DefaultVersionId": "v2",
             "AttachmentCount": 0,
             "PermissionsBoundaryUsageCount": 0,
             "IsAttachable": true,
             "CreateDate": "2026-08-26T21:07:07+00:00",
-            "UpdateDate": "2026-08-26T21:07:07+00:00"
+            "UpdateDate": "2026-10-26T22:17:07+00:00"
         },
         {
             "PolicyName": "AssuranceServiceRolePolicy",
@@ -19067,6 +19067,18 @@
             "IsAttachable": true,
             "CreateDate": "2026-10-21T15:17:07+00:00",
             "UpdateDate": "2026-10-21T15:17:07+00:00"
+        },
+        {
+            "PolicyName": "AWSMarketplaceSubsidiaryAuthorizationServiceRolePolicy",
+            "PolicyId": "ANPAZKAPJZG4AXKN5E32L",
+            "Arn": "arn:aws:iam::aws:policy/service-role/AWSMarketplaceSubsidiaryAuthorizationServiceRolePolicy",
+            "Path": "/service-role/",
+            "DefaultVersionId": "v1",
+            "AttachmentCount": 0,
+            "PermissionsBoundaryUsageCount": 0,
+            "IsAttachable": true,
+            "CreateDate": "2026-10-26T17:27:07+00:00",
+            "UpdateDate": "2026-10-26T17:27:07+00:00"
         },
         {
             "PolicyName": "AWSConfigRole",
