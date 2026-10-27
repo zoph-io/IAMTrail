@@ -32,6 +32,7 @@
                     ],
                     "Resource": [
                         "arn:aws:ssm:*:*:document/AWS-InstallDistributorPackageOnAzure*",
+                        "arn:aws:ssm:*:*:document/AWS-InstallDistributorPackageOnGcp*",
                         "arn:aws:ssm:*:*:association/*"
                     ]
                 },
@@ -61,7 +62,8 @@
                     ],
                     "Resource": [
                         "arn:aws:ssm:*:*:document/AmazonInspector2-*",
-                        "arn:aws:ssm:*:*:document/AWS-InstallDistributorPackageOnAzure*"
+                        "arn:aws:ssm:*:*:document/AWS-InstallDistributorPackageOnAzure*",
+                        "arn:aws:ssm:*:*:document/AWS-InstallDistributorPackageOnGcp*"
                     ],
                     "Condition": {
                         "StringEquals": {
@@ -81,6 +83,7 @@
                     ],
                     "Resource": [
                         "arn:aws:ssm:*:*:document/AWS-InstallDistributorPackageOnAzure*",
+                        "arn:aws:ssm:*:*:document/AWS-InstallDistributorPackageOnGcp*",
                         "arn:aws:ssm:*:*:automation-execution/*"
                     ]
                 },
@@ -174,7 +177,8 @@
                         },
                         "ForAnyValue:StringLike": {
                             "sts:IdentityTokenAudience": [
-                                "api://AzureADTokenExchange"
+                                "api://AzureADTokenExchange",
+                                "https://sts.googleapis.com"
                             ]
                         }
                     }
@@ -194,8 +198,8 @@
                 }
             ]
         },
-        "VersionId": "v1",
+        "VersionId": "v2",
         "IsDefaultVersion": true,
-        "CreateDate": "2026-06-26T15:27:27+00:00"
+        "CreateDate": "2026-10-27T20:37:07+00:00"
     }
 }
