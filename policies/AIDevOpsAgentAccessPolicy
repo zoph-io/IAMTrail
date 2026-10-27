@@ -864,7 +864,6 @@
                         "ssm:GetCommandInvocation",
                         "ssm:GetDefaultPatchBaseline",
                         "ssm:GetDocument",
-                        "ssm:GetParameters",
                         "ssm:GetPatchBaseline",
                         "ssm:GetResourcePolicies",
                         "ssm:List*",
@@ -989,8 +988,8 @@
                 }
             ]
         },
-        "VersionId": "v11",
+        "VersionId": "v12",
         "IsDefaultVersion": true,
-        "CreateDate": "2026-09-24T20:57:09+00:00"
+        "CreateDate": "2026-10-27T18:07:08+00:00"
     }
 }
