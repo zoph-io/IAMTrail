@@ -1,0 +1,21 @@
+{
+    "PolicyVersion": {
+        "Document": {
+            "Version": "2012-10-17",
+            "Statement": [
+                {
+                    "Sid": "XRayAPIKeyTraceIngestion",
+                    "Effect": "Allow",
+                    "Action": [
+                        "xray:CallWithBearerToken",
+                        "xray:PutTraceSegments"
+                    ],
+                    "Resource": "*"
+                }
+            ]
+        },
+        "VersionId": "v1",
+        "IsDefaultVersion": true,
+        "CreateDate": "2026-10-27T18:17:07+00:00"
+    }
+}
