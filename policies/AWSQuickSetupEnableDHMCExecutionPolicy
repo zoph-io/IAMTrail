@@ -40,11 +40,24 @@
                         "ssm:UpdateServiceSetting"
                     ],
                     "Resource": "arn:aws:ssm:*:*:servicesetting/ssm/managed-instance/default-ec2-instance-management-role"
+                },
+                {
+                    "Effect": "Allow",
+                    "Action": "ssm:GetCalendarState",
+                    "Resource": "arn:aws:ssm:*:*:document/*",
+                    "Condition": {
+                        "StringLike": {
+                            "aws:userid": "*:SystemsManager-Automation-ChangeCalendar-Check"
+                        },
+                        "StringEquals": {
+                            "ssm:DocumentType": "ChangeCalendar"
+                        }
+                    }
                 }
             ]
         },
-        "VersionId": "v1",
+        "VersionId": "v2",
         "IsDefaultVersion": true,
-        "CreateDate": "2024-11-15T21:27:47+00:00"
+        "CreateDate": "2026-10-27T15:57:09+00:00"
     }
 }
