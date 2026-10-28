@@ -1247,7 +1247,8 @@
                     "Effect": "Allow",
                     "Action": "iam:CreateServiceLinkedRole",
                     "Resource": [
-                        "arn:aws:iam::*:role/aws-service-role/airflow-serverless.amazonaws.com/AWSServiceRoleForAmazonMWAAServerless"
+                        "arn:aws:iam::*:role/aws-service-role/airflow-serverless.amazonaws.com/AWSServiceRoleForAmazonMWAAServerless",
+                        "arn:*:iam::*:role/aws-service-role/sagemaker.amazonaws.com/AWSServiceRoleForAmazonSageMakerNotebooks"
                     ]
                 },
                 {
@@ -1319,8 +1320,8 @@
                 }
             ]
         },
-        "VersionId": "v45",
+        "VersionId": "v46",
         "IsDefaultVersion": true,
-        "CreateDate": "2026-10-14T19:37:07+00:00"
+        "CreateDate": "2026-10-28T17:07:08+00:00"
     }
 }
