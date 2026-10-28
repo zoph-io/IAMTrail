@@ -384,6 +384,8 @@
                         "config:ListStoredQueries",
                         "config:ListTagsForResource",
                         "config:SelectResourceConfig",
+                        "config:BatchGetResourceConfig",
+                        "config:ListDiscoveredResources",
                         "connect-campaigns:DescribeCampaign",
                         "connect-campaigns:ListCampaigns",
                         "connect:DescribeInstance",
@@ -1748,8 +1750,8 @@
                 }
             ]
         },
-        "VersionId": "v2",
+        "VersionId": "v3",
         "IsDefaultVersion": true,
-        "CreateDate": "2026-10-20T15:37:08+00:00"
+        "CreateDate": "2026-10-28T15:17:08+00:00"
     }
 }
