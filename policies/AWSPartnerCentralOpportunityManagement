@@ -131,6 +131,25 @@
                     }
                 },
                 {
+                    "Sid": "PartnerCentralContentAccess",
+                    "Effect": "Allow",
+                    "Action": [
+                        "partnercentral:GetPartnerCentralContentDocument",
+                        "partnercentral:GetPartnerCentralContentMetadata",
+                        "partnercentral:ListPartnerCentralContent",
+                        "partnercentral:SearchPartnerCentralContent"
+                    ],
+                    "Resource": "*",
+                    "Condition": {
+                        "StringEquals": {
+                            "partnercentral:Catalog": [
+                                "AWS",
+                                "Sandbox"
+                            ]
+                        }
+                    }
+                },
+                {
                     "Sid": "TaggingAccess",
                     "Effect": "Allow",
                     "Action": [
@@ -184,8 +203,8 @@
                 }
             ]
         },
-        "VersionId": "v10",
+        "VersionId": "v11",
         "IsDefaultVersion": true,
-        "CreateDate": "2026-06-16T13:27:14+00:00"
+        "CreateDate": "2026-10-28T13:47:08+00:00"
     }
 }
