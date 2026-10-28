@@ -6605,12 +6605,12 @@
             "PolicyId": "ANPAZKAPJZG4NE22WISEW",
             "Arn": "arn:aws:iam::aws:policy/aws-service-role/AWSServiceRoleForImageBuilder",
             "Path": "/aws-service-role/",
-            "DefaultVersionId": "v28",
+            "DefaultVersionId": "v29",
             "AttachmentCount": 0,
             "PermissionsBoundaryUsageCount": 0,
             "IsAttachable": true,
             "CreateDate": "2019-11-29T22:02:13+00:00",
-            "UpdateDate": "2026-07-09T15:27:28+00:00"
+            "UpdateDate": "2026-10-27T23:37:07+00:00"
         },
         {
             "PolicyName": "EC2InstanceProfileForImageBuilder",
@@ -14261,24 +14261,24 @@
             "PolicyId": "ANPAZKAPJZG4JVV2S5LCL",
             "Arn": "arn:aws:iam::aws:policy/AWSSystemsManagerEnableConfigRecordingExecutionPolicy",
             "Path": "/",
-            "DefaultVersionId": "v1",
+            "DefaultVersionId": "v2",
             "AttachmentCount": 0,
             "PermissionsBoundaryUsageCount": 0,
             "IsAttachable": true,
             "CreateDate": "2024-06-26T09:40:20+00:00",
-            "UpdateDate": "2024-06-26T09:40:20+00:00"
+            "UpdateDate": "2026-10-27T15:57:09+00:00"
         },
         {
             "PolicyName": "AWSSystemsManagerEnableExplorerExecutionPolicy",
             "PolicyId": "ANPAZKAPJZG4EUDBLZ7AR",
             "Arn": "arn:aws:iam::aws:policy/AWSSystemsManagerEnableExplorerExecutionPolicy",
             "Path": "/",
-            "DefaultVersionId": "v1",
+            "DefaultVersionId": "v2",
             "AttachmentCount": 0,
             "PermissionsBoundaryUsageCount": 0,
             "IsAttachable": true,
             "CreateDate": "2024-06-26T09:42:47+00:00",
-            "UpdateDate": "2024-06-26T09:42:47+00:00"
+            "UpdateDate": "2026-10-27T15:57:08+00:00"
         },
         {
             "PolicyName": "AWSQuickSetupDevOpsGuruPermissionsBoundary",
@@ -14945,36 +14945,36 @@
             "PolicyId": "ANPAZKAPJZG4EJJU5UJ5K",
             "Arn": "arn:aws:iam::aws:policy/AWSQuickSetupEnableDHMCExecutionPolicy",
             "Path": "/",
-            "DefaultVersionId": "v1",
+            "DefaultVersionId": "v2",
             "AttachmentCount": 0,
             "PermissionsBoundaryUsageCount": 0,
             "IsAttachable": true,
             "CreateDate": "2024-11-15T21:27:47+00:00",
-            "UpdateDate": "2024-11-15T21:27:47+00:00"
+            "UpdateDate": "2026-10-27T15:57:09+00:00"
         },
         {
             "PolicyName": "AWSQuickSetupManagedInstanceProfileExecutionPolicy",
             "PolicyId": "ANPAZKAPJZG4KKPPGQNXT",
             "Arn": "arn:aws:iam::aws:policy/AWSQuickSetupManagedInstanceProfileExecutionPolicy",
             "Path": "/",
-            "DefaultVersionId": "v8",
+            "DefaultVersionId": "v9",
             "AttachmentCount": 0,
             "PermissionsBoundaryUsageCount": 0,
             "IsAttachable": true,
             "CreateDate": "2024-11-15T21:51:23+00:00",
-            "UpdateDate": "2026-06-03T14:12:12+00:00"
+            "UpdateDate": "2026-10-27T15:57:09+00:00"
         },
         {
             "PolicyName": "AWSQuickSetupSSMLifecycleManagementExecutionPolicy",
             "PolicyId": "ANPAZKAPJZG4KKAHZNZYJ",
             "Arn": "arn:aws:iam::aws:policy/AWSQuickSetupSSMLifecycleManagementExecutionPolicy",
             "Path": "/",
-            "DefaultVersionId": "v4",
+            "DefaultVersionId": "v5",
             "AttachmentCount": 0,
             "PermissionsBoundaryUsageCount": 0,
             "IsAttachable": true,
             "CreateDate": "2024-11-15T21:55:57+00:00",
-            "UpdateDate": "2026-02-12T18:01:58+00:00"
+            "UpdateDate": "2026-10-27T15:57:08+00:00"
         },
         {
             "PolicyName": "AWSQuickSetupSSMDeploymentS3BucketRolePolicy",
@@ -14993,12 +14993,12 @@
             "PolicyId": "ANPAZKAPJZG4B4VUJZWXE",
             "Arn": "arn:aws:iam::aws:policy/AWSQuickSetupEnableAREXExecutionPolicy",
             "Path": "/",
-            "DefaultVersionId": "v1",
+            "DefaultVersionId": "v2",
             "AttachmentCount": 0,
             "PermissionsBoundaryUsageCount": 0,
             "IsAttachable": true,
             "CreateDate": "2024-11-15T22:45:53+00:00",
-            "UpdateDate": "2024-11-15T22:45:53+00:00"
+            "UpdateDate": "2026-10-27T15:57:09+00:00"
         },
         {
             "PolicyName": "AWSQuickSetupSSMManageResourcesExecutionPolicy",
@@ -16241,12 +16241,12 @@
             "PolicyId": "ANPAZKAPJZG4LAYOUDP4B",
             "Arn": "arn:aws:iam::aws:policy/AmazonInspector2FullAccess_v2",
             "Path": "/",
-            "DefaultVersionId": "v9",
+            "DefaultVersionId": "v10",
             "AttachmentCount": 0,
             "PermissionsBoundaryUsageCount": 0,
             "IsAttachable": true,
             "CreateDate": "2025-07-03T16:07:07+00:00",
-            "UpdateDate": "2026-07-08T19:12:18+00:00"
+            "UpdateDate": "2026-10-27T15:57:09+00:00"
         },
         {
             "PolicyName": "SageMakerStudioAdminProjectUserRolePolicy",
@@ -16385,24 +16385,24 @@
             "PolicyId": "ANPAZKAPJZG4GE4A2SUDO",
             "Arn": "arn:aws:iam::aws:policy/AWSQuickSetupStartStopInstancesExecutionPolicy",
             "Path": "/",
-            "DefaultVersionId": "v6",
+            "DefaultVersionId": "v7",
             "AttachmentCount": 0,
             "PermissionsBoundaryUsageCount": 0,
             "IsAttachable": true,
             "CreateDate": "2025-08-08T12:04:07+00:00",
-            "UpdateDate": "2026-02-12T17:57:46+00:00"
+            "UpdateDate": "2026-10-27T15:57:08+00:00"
         },
         {
             "PolicyName": "AWSQuickSetupStartSSMAssociationsExecutionPolicy",
             "PolicyId": "ANPAZKAPJZG4JPUVBQPNJ",
             "Arn": "arn:aws:iam::aws:policy/AWSQuickSetupStartSSMAssociationsExecutionPolicy",
             "Path": "/",
-            "DefaultVersionId": "v7",
+            "DefaultVersionId": "v8",
             "AttachmentCount": 0,
             "PermissionsBoundaryUsageCount": 0,
             "IsAttachable": true,
             "CreateDate": "2025-08-08T12:04:07+00:00",
-            "UpdateDate": "2026-03-05T16:57:14+00:00"
+            "UpdateDate": "2026-10-27T15:57:08+00:00"
         },
         {
             "PolicyName": "ROSASharedVPCRoute53Policy",
@@ -17513,12 +17513,12 @@
             "PolicyId": "ANPAZKAPJZG4KEX6FTLTS",
             "Arn": "arn:aws:iam::aws:policy/AIDevOpsAgentAccessPolicy",
             "Path": "/",
-            "DefaultVersionId": "v11",
+            "DefaultVersionId": "v12",
             "AttachmentCount": 0,
             "PermissionsBoundaryUsageCount": 0,
             "IsAttachable": true,
             "CreateDate": "2026-03-26T03:42:09+00:00",
-            "UpdateDate": "2026-09-24T20:57:09+00:00"
+            "UpdateDate": "2026-10-27T18:07:08+00:00"
         },
         {
             "PolicyName": "AIDevOpsOperatorAppAccessPolicy",
@@ -17933,12 +17933,12 @@
             "PolicyId": "ANPAZKAPJZG4GT75OHC7J",
             "Arn": "arn:aws:iam::aws:policy/EC2ImageBuilderExecutionPolicy",
             "Path": "/",
-            "DefaultVersionId": "v2",
+            "DefaultVersionId": "v3",
             "AttachmentCount": 0,
             "PermissionsBoundaryUsageCount": 0,
             "IsAttachable": true,
             "CreateDate": "2026-06-04T17:12:14+00:00",
-            "UpdateDate": "2026-07-08T16:27:23+00:00"
+            "UpdateDate": "2026-10-27T23:47:08+00:00"
         },
         {
             "PolicyName": "ReInventTicketApprovalAccess",
@@ -18041,12 +18041,12 @@
             "PolicyId": "ANPAZKAPJZG4E3NMS7BB2",
             "Arn": "arn:aws:iam::aws:policy/aws-service-role/AmazonInspector2ThirdPartyServiceRolePolicy",
             "Path": "/aws-service-role/",
-            "DefaultVersionId": "v1",
+            "DefaultVersionId": "v2",
             "AttachmentCount": 0,
             "PermissionsBoundaryUsageCount": 0,
             "IsAttachable": true,
             "CreateDate": "2026-06-26T15:27:27+00:00",
-            "UpdateDate": "2026-06-26T15:27:27+00:00"
+            "UpdateDate": "2026-10-27T20:37:07+00:00"
         },
         {
             "PolicyName": "AccountAccessManagerServiceRolePolicy",
@@ -19079,6 +19079,18 @@
             "IsAttachable": true,
             "CreateDate": "2026-10-26T17:27:07+00:00",
             "UpdateDate": "2026-10-26T17:27:07+00:00"
+        },
+        {
+            "PolicyName": "AWSXRayAPIKeyAccess",
+            "PolicyId": "ANPAZKAPJZG4KQYBKCD2F",
+            "Arn": "arn:aws:iam::aws:policy/AWSXRayAPIKeyAccess",
+            "Path": "/",
+            "DefaultVersionId": "v1",
+            "AttachmentCount": 0,
+            "PermissionsBoundaryUsageCount": 0,
+            "IsAttachable": true,
+            "CreateDate": "2026-10-27T18:17:07+00:00",
+            "UpdateDate": "2026-10-27T18:17:07+00:00"
         },
         {
             "PolicyName": "AWSConfigRole",
