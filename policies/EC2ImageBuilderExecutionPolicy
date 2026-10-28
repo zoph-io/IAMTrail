@@ -551,8 +551,11 @@
                     "Condition": {
                         "StringEquals": {
                             "iam:AWSServiceName": [
-                                "ssm.amazonaws.com",
-                                "ec2fastlaunch.amazonaws.com"
+                                "agentless.inspector2.amazonaws.com",
+                                "ami.inspector2.amazonaws.com",
+                                "ec2fastlaunch.amazonaws.com",
+                                "inspector2.amazonaws.com",
+                                "ssm.amazonaws.com"
                             ]
                         }
                     }
@@ -581,6 +584,18 @@
                         "inspector2:ListFindings"
                     ],
                     "Resource": "*"
+                },
+                {
+                    "Sid": "InspectorOnDemandScanningPermissions",
+                    "Effect": "Allow",
+                    "Action": [
+                        "inspector2:StartOnDemandScan",
+                        "inspector2:GetOnDemandScanStatus",
+                        "inspector2:ListOnDemandScans"
+                    ],
+                    "Resource": [
+                        "arn:aws:inspector2:*:*:*"
+                    ]
                 },
                 {
                     "Sid": "CreateECRImageForInspectorScanningPermissions",
@@ -666,8 +681,8 @@
                 }
             ]
         },
-        "VersionId": "v2",
+        "VersionId": "v3",
         "IsDefaultVersion": true,
-        "CreateDate": "2026-07-08T16:27:23+00:00"
+        "CreateDate": "2026-10-27T23:47:08+00:00"
     }
 }
