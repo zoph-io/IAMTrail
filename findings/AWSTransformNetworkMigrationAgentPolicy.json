@@ -1,6 +1,6 @@
 [
   {
-    "findingDetails": "The 28045 characters in the identity policy, excluding whitespace, exceed the 10240 character maximum for inline and managed policies. We recommend that you use multiple granular policies.",
+    "findingDetails": "The 29354 characters in the identity policy, excluding whitespace, exceed the 10240 character maximum for inline and managed policies. We recommend that you use multiple granular policies.",
     "findingType": "WARNING",
     "issueCode": "POLICY_SIZE_EXCEEDS_IDENTITY_POLICY_QUOTA",
     "learnMoreLink": "https://docs.aws.amazon.com/IAM/latest/UserGuide/access-analyzer-reference-policy-checks.html#access-analyzer-reference-policy-checks-general-warning-policy-size-exceeds-identity-policy-quota",
@@ -15,8 +15,8 @@
           },
           "end": {
             "line": 1,
-            "column": 29211,
-            "offset": 29211
+            "column": 30572,
+            "offset": 30572
           }
         }
       }
@@ -1694,6 +1694,123 @@
             "line": 1,
             "column": 28783,
             "offset": 28783
+          }
+        }
+      }
+    ]
+  },
+  {
+    "findingDetails": "The Region ${aws:PrincipalTag/TargetRegion} is not valid. Update the condition value to a supported Region.",
+    "findingType": "ERROR",
+    "issueCode": "INVALID_REGION",
+    "learnMoreLink": "https://docs.aws.amazon.com/IAM/latest/UserGuide/access-analyzer-reference-policy-checks.html#access-analyzer-reference-policy-checks-error-invalid-region",
+    "locations": [
+      {
+        "path": [
+          {
+            "value": "Statement"
+          },
+          {
+            "index": 55
+          },
+          {
+            "value": "Condition"
+          },
+          {
+            "value": "StringEquals"
+          },
+          {
+            "value": "aws:RequestedRegion"
+          }
+        ],
+        "span": {
+          "start": {
+            "line": 1,
+            "column": 29401,
+            "offset": 29401
+          },
+          "end": {
+            "line": 1,
+            "column": 29435,
+            "offset": 29435
+          }
+        }
+      }
+    ]
+  },
+  {
+    "findingDetails": "The Region ${aws:PrincipalTag/TargetRegion} is not valid. Update the condition value to a supported Region.",
+    "findingType": "ERROR",
+    "issueCode": "INVALID_REGION",
+    "learnMoreLink": "https://docs.aws.amazon.com/IAM/latest/UserGuide/access-analyzer-reference-policy-checks.html#access-analyzer-reference-policy-checks-error-invalid-region",
+    "locations": [
+      {
+        "path": [
+          {
+            "value": "Statement"
+          },
+          {
+            "index": 56
+          },
+          {
+            "value": "Condition"
+          },
+          {
+            "value": "StringEquals"
+          },
+          {
+            "value": "aws:RequestedRegion"
+          }
+        ],
+        "span": {
+          "start": {
+            "line": 1,
+            "column": 30088,
+            "offset": 30088
+          },
+          "end": {
+            "line": 1,
+            "column": 30122,
+            "offset": 30122
+          }
+        }
+      }
+    ]
+  },
+  {
+    "findingDetails": "The Region ${aws:PrincipalTag/TargetRegion} is not valid. Update the condition value to a supported Region.",
+    "findingType": "ERROR",
+    "issueCode": "INVALID_REGION",
+    "learnMoreLink": "https://docs.aws.amazon.com/IAM/latest/UserGuide/access-analyzer-reference-policy-checks.html#access-analyzer-reference-policy-checks-error-invalid-region",
+    "locations": [
+      {
+        "path": [
+          {
+            "value": "Statement"
+          },
+          {
+            "index": 57
+          },
+          {
+            "value": "Condition"
+          },
+          {
+            "value": "StringEquals"
+          },
+          {
+            "value": "aws:RequestedRegion"
+          }
+        ],
+        "span": {
+          "start": {
+            "line": 1,
+            "column": 30483,
+            "offset": 30483
+          },
+          "end": {
+            "line": 1,
+            "column": 30517,
+            "offset": 30517
           }
         }
       }
