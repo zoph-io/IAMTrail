@@ -21,7 +21,8 @@
                         "sagemaker-data-science-assistant:*",
                         "rds:*",
                         "quicksight:*",
-                        "events:*"
+                        "events:*",
+                        "xray:*"
                     ],
                     "Resource": "*"
                 },
@@ -31,6 +32,7 @@
                     "Action": [
                         "athena:*",
                         "bedrock:*",
+                        "bedrock-agentcore:*",
                         "codewhisperer:*",
                         "sagemaker-unified-studio-mcp:*",
                         "datazone:*",
@@ -137,7 +139,9 @@
                         "iam:ListRoles",
                         "iam:GetUser",
                         "iam:ListUsers",
-                        "sts:AssumeRole"
+                        "sts:AssumeRole",
+                        "ecr-public:GetAuthorizationToken",
+                        "sts:GetServiceBearerToken"
                     ],
                     "Resource": "*"
                 },
@@ -155,7 +159,11 @@
                         "arn:aws:iam::*:role/aws-service-role/elasticmapreduce.amazonaws.com/AWSServiceRoleForEMRCleanup",
                         "arn:aws:iam::*:role/aws-service-role/sagemaker.application-autoscaling.amazonaws.com/AWSServiceRoleForApplicationAutoScaling_SageMakerEndpoint",
                         "arn:aws:iam::*:role/aws-service-role/observability.aoss.amazonaws.com/AWSServiceRoleForAmazonOpenSearchServerless",
-                        "arn:aws:iam::*:role/aws-service-role/ops.athena.amazonaws.com/AWSServiceRoleForAmazonAthena"
+                        "arn:aws:iam::*:role/aws-service-role/ops.athena.amazonaws.com/AWSServiceRoleForAmazonAthena",
+                        "arn:aws:iam::*:role/aws-service-role/runtime-identity.bedrock-agentcore.amazonaws.com/AWSServiceRoleForBedrockAgentCoreRuntimeIdentity",
+                        "arn:aws:iam::*:role/aws-service-role/network.bedrock-agentcore.amazonaws.com/AWSServiceRoleForBedrockAgentCoreNetwork",
+                        "arn:aws:iam::*:role/aws-service-role/bedrock-agentcore.amazonaws.com/AWSServiceRoleForBedrockAgentCoreGatewayNetwork",
+                        "arn:aws:iam::*:role/aws-service-role/identity-network.bedrock-agentcore.amazonaws.com/AWSServiceRoleForBedrockAgentCoreIdentity"
                     ]
                 },
                 {
@@ -174,6 +182,17 @@
                             ]
                         }
                     }
+                },
+                {
+                    "Sid": "UpdateDzManagedRoleTrustPolicy",
+                    "Effect": "Allow",
+                    "Action": "iam:UpdateAssumeRolePolicy",
+                    "Resource": [
+                        "arn:aws:iam::*:role/service-role/AmazonSageMakerAdminIAMExecutionRole*",
+                        "arn:aws:iam::*:role/service-role/AmazonSageMakerUserIAMExecutionRole*",
+                        "arn:aws:iam::*:role/AmazonSageMakerAdminIAMExecutionRole*",
+                        "arn:aws:iam::*:role/AmazonSageMakerUserIAMExecutionRole*"
+                    ]
                 },
                 {
                     "Sid": "PassRoleForProvisioning",
@@ -206,6 +225,8 @@
                         "StringEquals": {
                             "iam:PassedToService": [
                                 "bedrock.amazonaws.com",
+                                "bedrock-agentcore.amazonaws.com",
+                                "agent-registry.amazonaws.com",
                                 "datazone.amazonaws.com",
                                 "redshift-serverless.amazonaws.com",
                                 "redshift.amazonaws.com",
@@ -807,11 +828,19 @@
                             ]
                         }
                     }
+                },
+                {
+                    "Sid": "TagLookup",
+                    "Effect": "Allow",
+                    "Action": [
+                        "tag:GetResources"
+                    ],
+                    "Resource": "*"
                 }
             ]
         },
-        "VersionId": "v24",
+        "VersionId": "v25",
         "IsDefaultVersion": true,
-        "CreateDate": "2026-10-15T21:47:07+00:00"
+        "CreateDate": "2026-10-29T19:27:07+00:00"
     }
 }
