@@ -115,11 +115,23 @@
                         "support:DescribeCommunications"
                     ],
                     "Resource": "*"
+                },
+                {
+                    "Effect": "Allow",
+                    "Action": [
+                        "user-subscriptions:CreatePurchaseSession",
+                        "user-subscriptions:ConfirmPurchaseSession",
+                        "user-subscriptions:CancelPurchaseSession",
+                        "user-subscriptions:GetPurchaseSession",
+                        "user-subscriptions:ListEntitlements",
+                        "user-subscriptions:SetOverageConfig"
+                    ],
+                    "Resource": "*"
                 }
             ]
         },
-        "VersionId": "v11",
+        "VersionId": "v12",
         "IsDefaultVersion": true,
-        "CreateDate": "2026-09-30T19:27:08+00:00"
+        "CreateDate": "2026-10-29T17:37:08+00:00"
     }
 }
