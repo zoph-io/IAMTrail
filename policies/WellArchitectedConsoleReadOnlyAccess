@@ -21,11 +21,16 @@
                         "trustedadvisor:Get*"
                     ],
                     "Resource": "*"
+                },
+                {
+                    "Effect": "Allow",
+                    "Action": "iam:GetRole",
+                    "Resource": "arn:aws:iam::*:role/aws-service-role/scanning.agent.wellarchitected.amazonaws.com/AWSServiceRoleForWellArchitectedAgent_ResourceScanning"
                 }
             ]
         },
-        "VersionId": "v3",
+        "VersionId": "v4",
         "IsDefaultVersion": true,
-        "CreateDate": "2026-07-09T17:27:19+00:00"
+        "CreateDate": "2026-10-29T22:17:07+00:00"
     }
 }
