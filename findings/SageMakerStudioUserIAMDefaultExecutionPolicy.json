@@ -1,6 +1,6 @@
 [
   {
-    "findingDetails": "The 22282 characters in the identity policy, excluding whitespace, exceed the 10240 character maximum for inline and managed policies. We recommend that you use multiple granular policies.",
+    "findingDetails": "The 26167 characters in the identity policy, excluding whitespace, exceed the 10240 character maximum for inline and managed policies. We recommend that you use multiple granular policies.",
     "findingType": "WARNING",
     "issueCode": "POLICY_SIZE_EXCEEDS_IDENTITY_POLICY_QUOTA",
     "learnMoreLink": "https://docs.aws.amazon.com/IAM/latest/UserGuide/access-analyzer-reference-policy-checks.html#access-analyzer-reference-policy-checks-general-warning-policy-size-exceeds-identity-policy-quota",
@@ -15,8 +15,8 @@
           },
           "end": {
             "line": 1,
-            "column": 23410,
-            "offset": 23410
+            "column": 27443,
+            "offset": 27443
           }
         }
       }
@@ -46,13 +46,13 @@
         "span": {
           "start": {
             "line": 1,
-            "column": 7929,
-            "offset": 7929
+            "column": 8595,
+            "offset": 8595
           },
           "end": {
             "line": 1,
-            "column": 7957,
-            "offset": 7957
+            "column": 8623,
+            "offset": 8623
           }
         }
       },
@@ -77,13 +77,205 @@
         "span": {
           "start": {
             "line": 1,
-            "column": 8522,
-            "offset": 8522
+            "column": 9188,
+            "offset": 9188
           },
           "end": {
             "line": 1,
-            "column": 8566,
-            "offset": 8566
+            "column": 9232,
+            "offset": 9232
+          }
+        }
+      }
+    ]
+  },
+  {
+    "findingDetails": "The 2 action(s) are redundant because they provide similar permissions. Update the policy to remove the redundant action such as: bedrock-agentcore:ListHarnesses.",
+    "findingType": "SUGGESTION",
+    "issueCode": "REDUNDANT_ACTION",
+    "learnMoreLink": "https://docs.aws.amazon.com/IAM/latest/UserGuide/access-analyzer-reference-policy-checks.html#access-analyzer-reference-policy-checks-suggestion-redundant-action",
+    "locations": [
+      {
+        "path": [
+          {
+            "value": "Statement"
+          },
+          {
+            "index": 63
+          },
+          {
+            "value": "Action"
+          },
+          {
+            "index": 0
+          }
+        ],
+        "span": {
+          "start": {
+            "line": 1,
+            "column": 22100,
+            "offset": 22100
+          },
+          "end": {
+            "line": 1,
+            "column": 22129,
+            "offset": 22129
+          }
+        }
+      },
+      {
+        "path": [
+          {
+            "value": "Statement"
+          },
+          {
+            "index": 63
+          },
+          {
+            "value": "Action"
+          },
+          {
+            "index": 16
+          }
+        ],
+        "span": {
+          "start": {
+            "line": 1,
+            "column": 22680,
+            "offset": 22680
+          },
+          "end": {
+            "line": 1,
+            "column": 22713,
+            "offset": 22713
+          }
+        }
+      }
+    ]
+  },
+  {
+    "findingDetails": "The 2 action(s) are redundant because they provide similar permissions. Update the policy to remove the redundant action such as: bedrock-agentcore:ListDatasets.",
+    "findingType": "SUGGESTION",
+    "issueCode": "REDUNDANT_ACTION",
+    "learnMoreLink": "https://docs.aws.amazon.com/IAM/latest/UserGuide/access-analyzer-reference-policy-checks.html#access-analyzer-reference-policy-checks-suggestion-redundant-action",
+    "locations": [
+      {
+        "path": [
+          {
+            "value": "Statement"
+          },
+          {
+            "index": 63
+          },
+          {
+            "value": "Action"
+          },
+          {
+            "index": 11
+          }
+        ],
+        "span": {
+          "start": {
+            "line": 1,
+            "column": 22477,
+            "offset": 22477
+          },
+          "end": {
+            "line": 1,
+            "column": 22506,
+            "offset": 22506
+          }
+        }
+      },
+      {
+        "path": [
+          {
+            "value": "Statement"
+          },
+          {
+            "index": 63
+          },
+          {
+            "value": "Action"
+          },
+          {
+            "index": 20
+          }
+        ],
+        "span": {
+          "start": {
+            "line": 1,
+            "column": 22835,
+            "offset": 22835
+          },
+          "end": {
+            "line": 1,
+            "column": 22867,
+            "offset": 22867
+          }
+        }
+      }
+    ]
+  },
+  {
+    "findingDetails": "The 2 action(s) are redundant because they provide similar permissions. Update the policy to remove the redundant action such as: bedrock-agentcore:ListBatchEvaluations.",
+    "findingType": "SUGGESTION",
+    "issueCode": "REDUNDANT_ACTION",
+    "learnMoreLink": "https://docs.aws.amazon.com/IAM/latest/UserGuide/access-analyzer-reference-policy-checks.html#access-analyzer-reference-policy-checks-suggestion-redundant-action",
+    "locations": [
+      {
+        "path": [
+          {
+            "value": "Statement"
+          },
+          {
+            "index": 63
+          },
+          {
+            "value": "Action"
+          },
+          {
+            "index": 12
+          }
+        ],
+        "span": {
+          "start": {
+            "line": 1,
+            "column": 22508,
+            "offset": 22508
+          },
+          "end": {
+            "line": 1,
+            "column": 22545,
+            "offset": 22545
+          }
+        }
+      },
+      {
+        "path": [
+          {
+            "value": "Statement"
+          },
+          {
+            "index": 63
+          },
+          {
+            "value": "Action"
+          },
+          {
+            "index": 21
+          }
+        ],
+        "span": {
+          "start": {
+            "line": 1,
+            "column": 22869,
+            "offset": 22869
+          },
+          "end": {
+            "line": 1,
+            "column": 22909,
+            "offset": 22909
           }
         }
       }
