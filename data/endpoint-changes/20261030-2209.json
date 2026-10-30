@@ -1,0 +1,15 @@
+{
+  "detected_at": "2026-10-30T22:09:04.182Z",
+  "botocore_commit": "70ea7e376aff09029ace10f830a7b39ec481f4e1",
+  "botocore_commit_url": "https://github.com/boto/botocore/commit/70ea7e376aff09029ace10f830a7b39ec481f4e1",
+  "summary": "1 new service",
+  "changes": [
+    {
+      "type": "new_service",
+      "partition": "aws-eusc",
+      "id": "transcribestreaming",
+      "description": "transcribestreaming (1 endpoint)",
+      "endpoint_count": 1
+    }
+  ]
+}
