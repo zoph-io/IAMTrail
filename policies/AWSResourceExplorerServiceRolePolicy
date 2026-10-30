@@ -18,7 +18,18 @@
                         "organizations:ListAccounts",
                         "organizations:ListDelegatedAdministrators",
                         "organizations:ListOrganizationalUnitsForParent",
-                        "organizations:ListRoots"
+                        "organizations:ListRoots",
+                        "autoscaling:DescribeNotificationConfigurations",
+                        "neptune-graph:GetExportTask",
+                        "neptune-graph:ListExportTasks",
+                        "neptune-graph:ListGraphs",
+                        "quicksight:DescribeAgent",
+                        "quicksight:DescribeAgentPermissions",
+                        "quicksight:DescribeBrand",
+                        "quicksight:DescribeIngestion",
+                        "quicksight:DescribeNamespace",
+                        "quicksight:ListIngestions",
+                        "quicksight:ListNamespaces"
                     ],
                     "Resource": "*"
                 },
@@ -3404,8 +3415,8 @@
                 }
             ]
         },
-        "VersionId": "v58",
+        "VersionId": "v59",
         "IsDefaultVersion": true,
-        "CreateDate": "2026-10-28T19:57:08+00:00"
+        "CreateDate": "2026-10-30T20:27:08+00:00"
     }
 }
