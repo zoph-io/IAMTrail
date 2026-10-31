@@ -1,6 +1,6 @@
 [
   {
-    "findingDetails": "The 23651 characters in the identity policy, excluding whitespace, exceed the 10240 character maximum for inline and managed policies. We recommend that you use multiple granular policies.",
+    "findingDetails": "The 26775 characters in the identity policy, excluding whitespace, exceed the 10240 character maximum for inline and managed policies. We recommend that you use multiple granular policies.",
     "findingType": "WARNING",
     "issueCode": "POLICY_SIZE_EXCEEDS_IDENTITY_POLICY_QUOTA",
     "learnMoreLink": "https://docs.aws.amazon.com/IAM/latest/UserGuide/access-analyzer-reference-policy-checks.html#access-analyzer-reference-policy-checks-general-warning-policy-size-exceeds-identity-policy-quota",
@@ -15,8 +15,8 @@
           },
           "end": {
             "line": 1,
-            "column": 24414,
-            "offset": 24414
+            "column": 27625,
+            "offset": 27625
           }
         }
       }
@@ -40,19 +40,19 @@
             "value": "Action"
           },
           {
-            "index": 661
+            "index": 748
           }
         ],
         "span": {
           "start": {
             "line": 1,
-            "column": 21204,
-            "offset": 21204
+            "column": 24415,
+            "offset": 24415
           },
           "end": {
             "line": 1,
-            "column": 21215,
-            "offset": 21215
+            "column": 24426,
+            "offset": 24426
           }
         }
       },
@@ -68,19 +68,19 @@
             "value": "Action"
           },
           {
-            "index": 662
+            "index": 749
           }
         ],
         "span": {
           "start": {
             "line": 1,
-            "column": 21217,
-            "offset": 21217
+            "column": 24428,
+            "offset": 24428
           },
           "end": {
             "line": 1,
-            "column": 21243,
-            "offset": 21243
+            "column": 24454,
+            "offset": 24454
           }
         }
       }

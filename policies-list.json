@@ -29,12 +29,12 @@
             "PolicyId": "ANPAILL3HVNFSB6DCOWYQ",
             "Arn": "arn:aws:iam::aws:policy/ReadOnlyAccess",
             "Path": "/",
-            "DefaultVersionId": "v190",
+            "DefaultVersionId": "v191",
             "AttachmentCount": 0,
             "PermissionsBoundaryUsageCount": 0,
             "IsAttachable": true,
             "CreateDate": "2015-02-06T18:39:48+00:00",
-            "UpdateDate": "2026-09-24T17:37:08+00:00"
+            "UpdateDate": "2026-10-30T17:27:08+00:00"
         },
         {
             "PolicyName": "AWSCloudFormationReadOnlyAccess",
@@ -2129,12 +2129,12 @@
             "PolicyId": "ANPAID22R6XPJATWOFDK6",
             "Arn": "arn:aws:iam::aws:policy/job-function/ViewOnlyAccess",
             "Path": "/job-function/",
-            "DefaultVersionId": "v47",
+            "DefaultVersionId": "v48",
             "AttachmentCount": 1,
             "PermissionsBoundaryUsageCount": 0,
             "IsAttachable": true,
             "CreateDate": "2016-11-10T17:20:15+00:00",
-            "UpdateDate": "2026-10-14T18:07:08+00:00"
+            "UpdateDate": "2026-10-30T14:07:07+00:00"
         },
         {
             "PolicyName": "SupportUser",
@@ -11441,12 +11441,12 @@
             "PolicyId": "ANPAZKAPJZG4K2H54PAUL",
             "Arn": "arn:aws:iam::aws:policy/aws-service-role/AWSResourceExplorerServiceRolePolicy",
             "Path": "/aws-service-role/",
-            "DefaultVersionId": "v58",
+            "DefaultVersionId": "v59",
             "AttachmentCount": 1,
             "PermissionsBoundaryUsageCount": 0,
             "IsAttachable": true,
             "CreateDate": "2022-10-25T20:35:29+00:00",
-            "UpdateDate": "2026-10-28T19:57:08+00:00"
+            "UpdateDate": "2026-10-30T20:27:08+00:00"
         },
         {
             "PolicyName": "AWSFaultInjectionSimulatorSSMAccess",
@@ -18773,12 +18773,12 @@
             "PolicyId": "ANPAZKAPJZG4CQU24Q4FF",
             "Arn": "arn:aws:iam::aws:policy/aws-service-role/AssuranceServiceRolePolicy",
             "Path": "/aws-service-role/",
-            "DefaultVersionId": "v3",
+            "DefaultVersionId": "v4",
             "AttachmentCount": 0,
             "PermissionsBoundaryUsageCount": 0,
             "IsAttachable": true,
             "CreateDate": "2026-08-26T21:07:08+00:00",
-            "UpdateDate": "2026-10-28T15:17:08+00:00"
+            "UpdateDate": "2026-10-30T19:57:07+00:00"
         },
         {
             "PolicyName": "AmazonODBExascaleVmClusterAdmin",
@@ -19127,6 +19127,18 @@
             "IsAttachable": true,
             "CreateDate": "2026-10-29T17:17:06+00:00",
             "UpdateDate": "2026-10-29T17:17:06+00:00"
+        },
+        {
+            "PolicyName": "Route53PrivateHealthChecksServiceRolePolicy",
+            "PolicyId": "ANPAZKAPJZG4NPA5LYICW",
+            "Arn": "arn:aws:iam::aws:policy/aws-service-role/Route53PrivateHealthChecksServiceRolePolicy",
+            "Path": "/aws-service-role/",
+            "DefaultVersionId": "v1",
+            "AttachmentCount": 0,
+            "PermissionsBoundaryUsageCount": 0,
+            "IsAttachable": true,
+            "CreateDate": "2026-10-30T20:07:08+00:00",
+            "UpdateDate": "2026-10-30T20:07:08+00:00"
         },
         {
             "PolicyName": "AWSConfigRole",
