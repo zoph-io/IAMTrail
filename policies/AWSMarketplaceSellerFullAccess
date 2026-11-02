@@ -281,7 +281,10 @@
                     "Action": [
                         "aws-marketplace:StartTaxComplianceProfileChangeTask"
                     ],
-                    "Resource": "arn:aws:aws-marketplace:*:*:tax-compliance-profile-change-task/*"
+                    "Resource": [
+                        "arn:aws:aws-marketplace:*:*:tax-compliance-profile-change-task/*",
+                        "arn:aws:aws-marketplace:*:*:tax-compliance-profile/*"
+                    ]
                 },
                 {
                     "Sid": "TaxComplianceProfileRead",
@@ -334,8 +337,8 @@
                 }
             ]
         },
-        "VersionId": "v34",
+        "VersionId": "v35",
         "IsDefaultVersion": true,
-        "CreateDate": "2026-10-22T17:47:07+00:00"
+        "CreateDate": "2026-11-02T19:27:07+00:00"
     }
 }
