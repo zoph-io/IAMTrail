@@ -8,6 +8,7 @@
                     "Effect": "Allow",
                     "Action": [
                         "cloudwatch:PutMetricData",
+                        "cloudwatch:PutProfileRecords",
                         "ec2:DescribeTags",
                         "logs:PutLogEvents",
                         "logs:PutRetentionPolicy",
@@ -34,8 +35,8 @@
                 }
             ]
         },
-        "VersionId": "v2",
+        "VersionId": "v3",
         "IsDefaultVersion": true,
-        "CreateDate": "2024-02-05T20:59:57+00:00"
+        "CreateDate": "2026-11-03T13:57:08+00:00"
     }
 }
