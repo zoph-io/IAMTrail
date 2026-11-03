@@ -13,6 +13,14 @@
                     "Resource": "*"
                 },
                 {
+                    "Sid": "CloudWatchProfilesAPIs",
+                    "Effect": "Allow",
+                    "Action": [
+                        "cloudwatch:PutProfileRecords"
+                    ],
+                    "Resource": "arn:aws:cloudwatch:*:*:dataset/*"
+                },
+                {
                     "Sid": "KMSDecryptForCMKDatasets",
                     "Effect": "Allow",
                     "Action": [
@@ -28,8 +36,8 @@
                 }
             ]
         },
-        "VersionId": "v2",
+        "VersionId": "v3",
         "IsDefaultVersion": true,
-        "CreateDate": "2026-06-04T20:42:29+00:00"
+        "CreateDate": "2026-11-03T13:57:07+00:00"
     }
 }
