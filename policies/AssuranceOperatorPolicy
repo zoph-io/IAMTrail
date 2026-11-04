@@ -23,7 +23,6 @@
                         "assurance:DeleteFramework",
                         "assurance:DeleteProject",
                         "assurance:DisableFramework",
-                        "assurance:DownloadEvidence",
                         "assurance:EnableFramework",
                         "assurance:GetAnnotation",
                         "assurance:GetAssessment",
@@ -50,13 +49,13 @@
                         "assurance:ListConnectionItems",
                         "assurance:ListControls",
                         "assurance:ListControlGroups",
+                        "assurance:ListControlResources",
                         "assurance:ListDiscoveredResources",
                         "assurance:ListEnabledFrameworks",
                         "assurance:ListEnvironmentConnections",
                         "assurance:ListEvidence",
                         "assurance:ListFrameworks",
                         "assurance:ListProjects",
-                        "assurance:ListResourcesForControl",
                         "assurance:ListTagsForResource",
                         "assurance:ListTaskHistory",
                         "assurance:ListTasks",
@@ -72,8 +71,7 @@
                         "assurance:UpdateEvidence",
                         "assurance:UpdateFramework",
                         "assurance:UpdateProject",
-                        "assurance:UpdateTask",
-                        "assurance:UploadEvidence"
+                        "assurance:UpdateTask"
                     ],
                     "Resource": [
                         "arn:aws:assurance:*:*:environment/*"
@@ -90,8 +88,8 @@
                 }
             ]
         },
-        "VersionId": "v1",
+        "VersionId": "v2",
         "IsDefaultVersion": true,
-        "CreateDate": "2026-10-21T15:17:07+00:00"
+        "CreateDate": "2026-11-04T18:57:08+00:00"
     }
 }
