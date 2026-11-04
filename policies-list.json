@@ -3821,24 +3821,24 @@
             "PolicyId": "ANPAICMXPKT7EBAF6KR3O",
             "Arn": "arn:aws:iam::aws:policy/CloudWatchAgentAdminPolicy",
             "Path": "/",
-            "DefaultVersionId": "v2",
+            "DefaultVersionId": "v3",
             "AttachmentCount": 0,
             "PermissionsBoundaryUsageCount": 0,
             "IsAttachable": true,
             "CreateDate": "2018-03-07T00:52:31+00:00",
-            "UpdateDate": "2024-02-05T20:59:57+00:00"
+            "UpdateDate": "2026-11-03T13:57:08+00:00"
         },
         {
             "PolicyName": "CloudWatchAgentServerPolicy",
             "PolicyId": "ANPAIGOPKN7KRDAKTLG4I",
             "Arn": "arn:aws:iam::aws:policy/CloudWatchAgentServerPolicy",
             "Path": "/",
-            "DefaultVersionId": "v3",
+            "DefaultVersionId": "v4",
             "AttachmentCount": 0,
             "PermissionsBoundaryUsageCount": 0,
             "IsAttachable": true,
             "CreateDate": "2018-03-07T01:06:44+00:00",
-            "UpdateDate": "2024-02-06T16:37:37+00:00"
+            "UpdateDate": "2026-11-03T13:57:08+00:00"
         },
         {
             "PolicyName": "AWSResourceGroupsReadOnlyAccess",
@@ -17765,12 +17765,12 @@
             "PolicyId": "ANPAZKAPJZG4EOV7OM4RW",
             "Arn": "arn:aws:iam::aws:policy/CloudWatchAPIKeyAccess",
             "Path": "/",
-            "DefaultVersionId": "v2",
+            "DefaultVersionId": "v3",
             "AttachmentCount": 0,
             "PermissionsBoundaryUsageCount": 0,
             "IsAttachable": true,
             "CreateDate": "2026-05-08T08:57:08+00:00",
-            "UpdateDate": "2026-06-04T20:42:29+00:00"
+            "UpdateDate": "2026-11-03T13:57:07+00:00"
         },
         {
             "PolicyName": "AWSAppConfigServiceRolePolicy",
