@@ -47,6 +47,7 @@
                         "StringEquals": {
                             "organizations:ServicePrincipal": [
                                 "inspector2.amazonaws.com",
+                                "ami.inspector2.amazonaws.com",
                                 "agentless.inspector2.amazonaws.com",
                                 "thirdparty.inspector2.amazonaws.com"
                             ]
@@ -138,8 +139,8 @@
                 }
             ]
         },
-        "VersionId": "v10",
+        "VersionId": "v11",
         "IsDefaultVersion": true,
-        "CreateDate": "2026-10-27T15:57:09+00:00"
+        "CreateDate": "2026-11-05T00:57:07+00:00"
     }
 }
