@@ -1,6 +1,6 @@
 [
   {
-    "findingDetails": "The 26503 characters in the identity policy, excluding whitespace, exceed the 10240 character maximum for inline and managed policies. We recommend that you use multiple granular policies.",
+    "findingDetails": "The 27459 characters in the identity policy, excluding whitespace, exceed the 10240 character maximum for inline and managed policies. We recommend that you use multiple granular policies.",
     "findingType": "WARNING",
     "issueCode": "POLICY_SIZE_EXCEEDS_IDENTITY_POLICY_QUOTA",
     "learnMoreLink": "https://docs.aws.amazon.com/IAM/latest/UserGuide/access-analyzer-reference-policy-checks.html#access-analyzer-reference-policy-checks-general-warning-policy-size-exceeds-identity-policy-quota",
@@ -15,8 +15,8 @@
           },
           "end": {
             "line": 1,
-            "column": 27484,
-            "offset": 27484
+            "column": 28463,
+            "offset": 28463
           }
         }
       }
@@ -46,13 +46,13 @@
         "span": {
           "start": {
             "line": 1,
-            "column": 26514,
-            "offset": 26514
+            "column": 27493,
+            "offset": 27493
           },
           "end": {
             "line": 1,
-            "column": 26549,
-            "offset": 26549
+            "column": 27528,
+            "offset": 27528
           }
         }
       },
@@ -74,13 +74,13 @@
         "span": {
           "start": {
             "line": 1,
-            "column": 26551,
-            "offset": 26551
+            "column": 27530,
+            "offset": 27530
           },
           "end": {
             "line": 1,
-            "column": 26598,
-            "offset": 26598
+            "column": 27577,
+            "offset": 27577
           }
         }
       },
@@ -102,13 +102,13 @@
         "span": {
           "start": {
             "line": 1,
-            "column": 26600,
-            "offset": 26600
+            "column": 27579,
+            "offset": 27579
           },
           "end": {
             "line": 1,
-            "column": 26649,
-            "offset": 26649
+            "column": 27628,
+            "offset": 27628
           }
         }
       },
@@ -130,13 +130,13 @@
         "span": {
           "start": {
             "line": 1,
-            "column": 26651,
-            "offset": 26651
+            "column": 27630,
+            "offset": 27630
           },
           "end": {
             "line": 1,
-            "column": 26721,
-            "offset": 26721
+            "column": 27700,
+            "offset": 27700
           }
         }
       },
@@ -158,13 +158,13 @@
         "span": {
           "start": {
             "line": 1,
-            "column": 26723,
-            "offset": 26723
+            "column": 27702,
+            "offset": 27702
           },
           "end": {
             "line": 1,
-            "column": 26795,
-            "offset": 26795
+            "column": 27774,
+            "offset": 27774
           }
         }
       },
@@ -186,13 +186,13 @@
         "span": {
           "start": {
             "line": 1,
-            "column": 26797,
-            "offset": 26797
+            "column": 27776,
+            "offset": 27776
           },
           "end": {
             "line": 1,
-            "column": 26839,
-            "offset": 26839
+            "column": 27818,
+            "offset": 27818
           }
         }
       },
@@ -214,13 +214,13 @@
         "span": {
           "start": {
             "line": 1,
-            "column": 26841,
-            "offset": 26841
+            "column": 27820,
+            "offset": 27820
           },
           "end": {
             "line": 1,
-            "column": 26885,
-            "offset": 26885
+            "column": 27864,
+            "offset": 27864
           }
         }
       }
@@ -250,13 +250,13 @@
         "span": {
           "start": {
             "line": 1,
-            "column": 26918,
-            "offset": 26918
+            "column": 27897,
+            "offset": 27897
           },
           "end": {
             "line": 1,
-            "column": 26949,
-            "offset": 26949
+            "column": 27928,
+            "offset": 27928
           }
         }
       },
@@ -278,13 +278,13 @@
         "span": {
           "start": {
             "line": 1,
-            "column": 26951,
-            "offset": 26951
+            "column": 27930,
+            "offset": 27930
           },
           "end": {
             "line": 1,
-            "column": 26994,
-            "offset": 26994
+            "column": 27973,
+            "offset": 27973
           }
         }
       },
@@ -306,13 +306,13 @@
         "span": {
           "start": {
             "line": 1,
-            "column": 26996,
-            "offset": 26996
+            "column": 27975,
+            "offset": 27975
           },
           "end": {
             "line": 1,
-            "column": 27041,
-            "offset": 27041
+            "column": 28020,
+            "offset": 28020
           }
         }
       },
@@ -334,13 +334,13 @@
         "span": {
           "start": {
             "line": 1,
-            "column": 27043,
-            "offset": 27043
+            "column": 28022,
+            "offset": 28022
           },
           "end": {
             "line": 1,
-            "column": 27087,
-            "offset": 27087
+            "column": 28066,
+            "offset": 28066
           }
         }
       },
@@ -362,13 +362,13 @@
         "span": {
           "start": {
             "line": 1,
-            "column": 27089,
-            "offset": 27089
+            "column": 28068,
+            "offset": 28068
           },
           "end": {
             "line": 1,
-            "column": 27135,
-            "offset": 27135
+            "column": 28114,
+            "offset": 28114
           }
         }
       },
@@ -390,13 +390,13 @@
         "span": {
           "start": {
             "line": 1,
-            "column": 27137,
-            "offset": 27137
+            "column": 28116,
+            "offset": 28116
           },
           "end": {
             "line": 1,
-            "column": 27175,
-            "offset": 27175
+            "column": 28154,
+            "offset": 28154
           }
         }
       },
@@ -418,13 +418,13 @@
         "span": {
           "start": {
             "line": 1,
-            "column": 27177,
-            "offset": 27177
+            "column": 28156,
+            "offset": 28156
           },
           "end": {
             "line": 1,
-            "column": 27217,
-            "offset": 27217
+            "column": 28196,
+            "offset": 28196
           }
         }
       }

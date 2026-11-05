@@ -1,77 +1,5 @@
 [
   {
-    "findingDetails": "The action assurance:DownloadEvidence does not exist.",
-    "findingType": "ERROR",
-    "issueCode": "INVALID_ACTION",
-    "learnMoreLink": "https://docs.aws.amazon.com/IAM/latest/UserGuide/access-analyzer-reference-policy-checks.html#access-analyzer-reference-policy-checks-error-invalid-action",
-    "locations": [
-      {
-        "path": [
-          {
-            "value": "Statement"
-          },
-          {
-            "index": 0
-          },
-          {
-            "value": "Action"
-          },
-          {
-            "index": 16
-          }
-        ],
-        "span": {
-          "start": {
-            "line": 1,
-            "column": 549,
-            "offset": 549
-          },
-          "end": {
-            "line": 1,
-            "column": 577,
-            "offset": 577
-          }
-        }
-      }
-    ]
-  },
-  {
-    "findingDetails": "The action assurance:ListResourcesForControl does not exist.",
-    "findingType": "ERROR",
-    "issueCode": "INVALID_ACTION",
-    "learnMoreLink": "https://docs.aws.amazon.com/IAM/latest/UserGuide/access-analyzer-reference-policy-checks.html#access-analyzer-reference-policy-checks-error-invalid-action",
-    "locations": [
-      {
-        "path": [
-          {
-            "value": "Statement"
-          },
-          {
-            "index": 0
-          },
-          {
-            "value": "Action"
-          },
-          {
-            "index": 49
-          }
-        ],
-        "span": {
-          "start": {
-            "line": 1,
-            "column": 1554,
-            "offset": 1554
-          },
-          "end": {
-            "line": 1,
-            "column": 1589,
-            "offset": 1589
-          }
-        }
-      }
-    ]
-  },
-  {
     "findingDetails": "The action assurance:StartResourceDiscovery does not exist.",
     "findingType": "ERROR",
     "issueCode": "INVALID_ACTION",
@@ -89,55 +17,19 @@
             "value": "Action"
           },
           {
-            "index": 58
+            "index": 57
           }
         ],
         "span": {
           "start": {
             "line": 1,
-            "column": 1839,
-            "offset": 1839
+            "column": 1806,
+            "offset": 1806
           },
           "end": {
             "line": 1,
-            "column": 1873,
-            "offset": 1873
-          }
-        }
-      }
-    ]
-  },
-  {
-    "findingDetails": "The action assurance:UploadEvidence does not exist.",
-    "findingType": "ERROR",
-    "issueCode": "INVALID_ACTION",
-    "learnMoreLink": "https://docs.aws.amazon.com/IAM/latest/UserGuide/access-analyzer-reference-policy-checks.html#access-analyzer-reference-policy-checks-error-invalid-action",
-    "locations": [
-      {
-        "path": [
-          {
-            "value": "Statement"
-          },
-          {
-            "index": 0
-          },
-          {
-            "value": "Action"
-          },
-          {
-            "index": 66
-          }
-        ],
-        "span": {
-          "start": {
-            "line": 1,
-            "column": 2069,
-            "offset": 2069
-          },
-          "end": {
-            "line": 1,
-            "column": 2095,
-            "offset": 2095
+            "column": 1840,
+            "offset": 1840
           }
         }
       }
