@@ -70,6 +70,14 @@
                     "Resource": "*"
                 },
                 {
+                    "Sid": "AllowGetActionForPaymentsConnectedAccount",
+                    "Effect": "Allow",
+                    "Action": [
+                        "payments:GetConnectedAccount"
+                    ],
+                    "Resource": "arn:aws:payments::*:connectedaccount/*"
+                },
+                {
                     "Sid": "AllowListActionsForALB",
                     "Effect": "Allow",
                     "Action": [
@@ -252,8 +260,8 @@
                 }
             ]
         },
-        "VersionId": "v17",
+        "VersionId": "v18",
         "IsDefaultVersion": true,
-        "CreateDate": "2026-07-28T21:42:26+00:00"
+        "CreateDate": "2026-11-05T22:17:08+00:00"
     }
 }
