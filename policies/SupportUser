@@ -204,6 +204,19 @@
                         "ssm:Describe*",
                         "storagegateway:Describe*",
                         "storagegateway:List*",
+                        "support-console:CheckSubscription",
+                        "support-console:CreateCaseDraft",
+                        "support-console:CreateContact",
+                        "support-console:DeleteCaseDraft",
+                        "support-console:DescribeDynamicHelp",
+                        "support-console:GetAccountGovCloudEnabled",
+                        "support-console:GetAccountState",
+                        "support-console:GetBanner",
+                        "support-console:GetCaseDraft",
+                        "support-console:GetIssueClassificationPredictions",
+                        "support-console:GetIssueTextSummary",
+                        "support-console:GetQuestionnaire",
+                        "support-console:SaveFeedback",
                         "swf:Count*",
                         "swf:Describe*",
                         "swf:Get*",
@@ -220,8 +233,8 @@
                 }
             ]
         },
-        "VersionId": "v11",
+        "VersionId": "v12",
         "IsDefaultVersion": true,
-        "CreateDate": "2026-02-12T18:03:12+00:00"
+        "CreateDate": "2026-11-05T18:07:07+00:00"
     }
 }
