@@ -102,6 +102,7 @@
                         "datazone:ListDataSourceRunActivities",
                         "datazone:ListDataSourceRuns",
                         "datazone:ListDataSources",
+                        "datazone:ListDeployableEnvironmentBlueprints",
                         "datazone:ListDesignations",
                         "datazone:ListDomainUnitsForParent",
                         "datazone:ListEntityOwners",
@@ -271,8 +272,8 @@
                 }
             ]
         },
-        "VersionId": "v24",
+        "VersionId": "v25",
         "IsDefaultVersion": true,
-        "CreateDate": "2026-11-04T21:47:08+00:00"
+        "CreateDate": "2026-11-05T22:47:07+00:00"
     }
 }
