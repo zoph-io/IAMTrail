@@ -178,6 +178,7 @@
                         "cloudwatch:GetMetricStatistics",
                         "cloudwatch:GetMetricStream",
                         "cloudwatch:GetOTelEnrichment",
+                        "cloudwatch:GetProfileRecords",
                         "cloudwatch:GetService",
                         "cloudwatch:GetServiceLevelObjective",
                         "cloudwatch:List*",
@@ -1011,8 +1012,8 @@
                 }
             ]
         },
-        "VersionId": "v13",
+        "VersionId": "v14",
         "IsDefaultVersion": true,
-        "CreateDate": "2026-11-04T18:07:07+00:00"
+        "CreateDate": "2026-11-06T21:57:08+00:00"
     }
 }
