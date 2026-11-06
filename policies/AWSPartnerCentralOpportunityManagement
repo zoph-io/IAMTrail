@@ -32,6 +32,7 @@
                         "partnercentral:ListEngagementResourceAssociations",
                         "partnercentral:ListEngagements",
                         "partnercentral:ListOpportunities",
+                        "partnercentral:SearchOpportunities",
                         "partnercentral:ListOpportunityFromEngagementTasks",
                         "partnercentral:ListProspectingFromEngagementTasks",
                         "partnercentral:ListResourceSnapshotJobs",
@@ -203,8 +204,8 @@
                 }
             ]
         },
-        "VersionId": "v11",
+        "VersionId": "v12",
         "IsDefaultVersion": true,
-        "CreateDate": "2026-10-28T13:47:08+00:00"
+        "CreateDate": "2026-11-06T02:27:07+00:00"
     }
 }
