@@ -66,11 +66,26 @@
                         "ssmmessages:OpenDataChannel"
                     ],
                     "Resource": "*"
+                },
+                {
+                    "Sid": "CloudwatchPutProfileRecordsAccess",
+                    "Effect": "Allow",
+                    "Action": [
+                        "cloudwatch:PutProfileRecords"
+                    ],
+                    "Resource": [
+                        "arn:aws:cloudwatch:*:*:dataset/*"
+                    ],
+                    "Condition": {
+                        "StringEquals": {
+                            "aws:ResourceAccount": "${aws:PrincipalAccount}"
+                        }
+                    }
                 }
             ]
         },
-        "VersionId": "v2",
+        "VersionId": "v3",
         "IsDefaultVersion": true,
-        "CreateDate": "2026-10-16T20:17:08+00:00"
+        "CreateDate": "2026-11-06T22:37:07+00:00"
     }
 }
