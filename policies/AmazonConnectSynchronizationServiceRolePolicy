@@ -94,6 +94,7 @@
                     "Effect": "Allow",
                     "Action": [
                         "app-integrations:CreateApplication",
+                        "app-integrations:CreateApplicationAssociation",
                         "app-integrations:GetApplication",
                         "app-integrations:UpdateApplication",
                         "app-integrations:DeleteApplication",
@@ -102,6 +103,22 @@
                         "app-integrations:UntagResource"
                     ],
                     "Resource": "arn:aws:app-integrations:*:*:application/*",
+                    "Condition": {
+                        "StringEquals": {
+                            "aws:ResourceAccount": "${aws:PrincipalAccount}"
+                        }
+                    }
+                },
+                {
+                    "Sid": "AllowAppIntegrationsScopedToApplicationAssociations",
+                    "Effect": "Allow",
+                    "Action": [
+                        "app-integrations:DeleteApplicationAssociation",
+                        "app-integrations:ListTagsForResource",
+                        "app-integrations:TagResource",
+                        "app-integrations:UntagResource"
+                    ],
+                    "Resource": "arn:aws:app-integrations:*:*:application-association/*",
                     "Condition": {
                         "StringEquals": {
                             "aws:ResourceAccount": "${aws:PrincipalAccount}"
@@ -388,8 +405,8 @@
                 }
             ]
         },
-        "VersionId": "v7",
+        "VersionId": "v8",
         "IsDefaultVersion": true,
-        "CreateDate": "2026-10-28T19:17:08+00:00"
+        "CreateDate": "2026-11-06T19:27:07+00:00"
     }
 }
