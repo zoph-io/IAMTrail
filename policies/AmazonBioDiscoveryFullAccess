@@ -104,11 +104,57 @@
                             "kms:ViaService": "identitystore.*.amazonaws.com"
                         }
                     }
+                },
+                {
+                    "Sid": "AllowCreateAmazonBioDiscoveryServiceLinkedRole",
+                    "Effect": "Allow",
+                    "Action": "iam:CreateServiceLinkedRole",
+                    "Resource": "arn:aws:iam::*:role/aws-service-role/researchstudio.amazonaws.com/AWSServiceRoleForAmazonBioDiscovery",
+                    "Condition": {
+                        "StringEquals": {
+                            "iam:AWSServiceName": "researchstudio.amazonaws.com"
+                        }
+                    }
+                },
+                {
+                    "Sid": "AmazonBioDiscoveryVpcDescribeAccess",
+                    "Effect": "Allow",
+                    "Action": [
+                        "ec2:DescribeVpcs",
+                        "ec2:DescribeSubnets",
+                        "ec2:DescribeSecurityGroups"
+                    ],
+                    "Resource": "*"
+                },
+                {
+                    "Sid": "AmazonBioDiscoveryS3ListBucketsAccess",
+                    "Effect": "Allow",
+                    "Action": "s3:ListAllMyBuckets",
+                    "Resource": "*",
+                    "Condition": {
+                        "StringEquals": {
+                            "s3:ResourceAccount": "${aws:PrincipalAccount}"
+                        }
+                    }
+                },
+                {
+                    "Sid": "AmazonBioDiscoveryS3BucketReadAccess",
+                    "Effect": "Allow",
+                    "Action": [
+                        "s3:ListBucket",
+                        "s3:GetEncryptionConfiguration"
+                    ],
+                    "Resource": "arn:aws:s3:::*",
+                    "Condition": {
+                        "StringEquals": {
+                            "aws:ResourceAccount": "${aws:PrincipalAccount}"
+                        }
+                    }
                 }
             ]
         },
-        "VersionId": "v1",
+        "VersionId": "v2",
         "IsDefaultVersion": true,
-        "CreateDate": "2026-08-18T06:27:20+00:00"
+        "CreateDate": "2026-11-06T22:37:08+00:00"
     }
 }
