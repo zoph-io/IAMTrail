@@ -136,6 +136,17 @@
                     }
                 },
                 {
+                    "Sid": "AllowAppIntegrationsGetApplication",
+                    "Effect": "Allow",
+                    "Action": "app-integrations:GetApplication",
+                    "Resource": "arn:aws:app-integrations:*:*:application/*",
+                    "Condition": {
+                        "StringEquals": {
+                            "aws:ResourceAccount": "${aws:PrincipalAccount}"
+                        }
+                    }
+                },
+                {
                     "Sid": "AllowWisdomForConnectEnabledTaggedResources",
                     "Effect": "Allow",
                     "Action": [
@@ -374,8 +385,8 @@
                 }
             ]
         },
-        "VersionId": "v56",
+        "VersionId": "v57",
         "IsDefaultVersion": true,
-        "CreateDate": "2026-10-02T23:27:08+00:00"
+        "CreateDate": "2026-11-05T23:47:08+00:00"
     }
 }
