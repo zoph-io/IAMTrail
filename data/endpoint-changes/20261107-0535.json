@@ -1,0 +1,30 @@
+{
+  "detected_at": "2026-11-07T05:35:59.117Z",
+  "botocore_commit": "bbb7c713081ceb597199571252c5f57f187bedea",
+  "botocore_commit_url": "https://github.com/boto/botocore/commit/bbb7c713081ceb597199571252c5f57f187bedea",
+  "summary": "2 service expansions",
+  "changes": [
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "email",
+      "id": "email",
+      "new_regions": [
+        "ap-east-2",
+        "ap-southeast-6",
+        "mx-central-1"
+      ],
+      "description": "email expanded to ap-east-2, ap-southeast-6, mx-central-1"
+    },
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "emr-containers",
+      "id": "emr-containers",
+      "new_regions": [
+        "ap-southeast-7"
+      ],
+      "description": "emr-containers expanded to ap-southeast-7"
+    }
+  ]
+}
