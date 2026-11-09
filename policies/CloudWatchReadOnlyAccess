@@ -29,26 +29,10 @@
                         "logs:StartLiveTail",
                         "logs:StopLiveTail",
                         "oam:ListSinks",
-                        "observabilityadmin:GetCentralizationRuleForOrganization",
-                        "observabilityadmin:ListCentralizationRulesForOrganization",
-                        "observabilityadmin:GetTelemetryEvaluationStatus",
-                        "observabilityadmin:GetTelemetryEvaluationStatusForOrganization",
-                        "observabilityadmin:GetTelemetryRule",
-                        "observabilityadmin:GetTelemetryRuleForOrganization",
-                        "observabilityadmin:ListResourceTelemetry",
-                        "observabilityadmin:ListResourceTelemetryForOrganization",
-                        "observabilityadmin:ListTelemetryRules",
-                        "observabilityadmin:ListTelemetryRulesForOrganization",
-                        "observabilityadmin:GetTelemetryEnrichmentStatus",
-                        "observabilityadmin:ListTagsForResource",
-                        "observabilityadmin:GetTelemetryPipeline",
-                        "observabilityadmin:ListTelemetryPipelines",
+                        "observabilityadmin:Get*",
+                        "observabilityadmin:List*",
                         "observabilityadmin:TestTelemetryPipeline",
                         "observabilityadmin:ValidateTelemetryPipelineConfiguration",
-                        "observabilityadmin:GetS3TableIntegration",
-                        "observabilityadmin:ListS3TableIntegrations",
-                        "observabilityadmin:GetDatasetIntegration",
-                        "observabilityadmin:ListDatasetIntegrations",
                         "sns:Get*",
                         "sns:List*",
                         "rum:BatchGet*",
@@ -119,8 +103,8 @@
                 }
             ]
         },
-        "VersionId": "v25",
+        "VersionId": "v26",
         "IsDefaultVersion": true,
-        "CreateDate": "2026-09-22T16:57:07+00:00"
+        "CreateDate": "2026-11-09T19:27:07+00:00"
     }
 }
