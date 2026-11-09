@@ -73,11 +73,27 @@
                         "ssm:GetDocument"
                     ],
                     "Resource": "arn:aws:ssm:*:*:document/*"
+                },
+                {
+                    "Sid": "SsmViaMgnSendCommandToConnector",
+                    "Effect": "Allow",
+                    "Action": "ssm:SendCommand",
+                    "Resource": "arn:aws:ssm:*:*:managed-instance/*",
+                    "Condition": {
+                        "ForAnyValue:StringEquals": {
+                            "aws:CalledVia": [
+                                "mgn.amazonaws.com"
+                            ]
+                        },
+                        "StringEquals": {
+                            "aws:ResourceAccount": "${aws:PrincipalAccount}"
+                        }
+                    }
                 }
             ]
         },
-        "VersionId": "v5",
+        "VersionId": "v6",
         "IsDefaultVersion": true,
-        "CreateDate": "2026-02-12T18:00:51+00:00"
+        "CreateDate": "2026-11-09T08:37:07+00:00"
     }
 }
