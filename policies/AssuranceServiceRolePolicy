@@ -1637,6 +1637,16 @@
                     }
                 },
                 {
+                    "Sid": "ReadAwsManagedPolicies",
+                    "Effect": "Allow",
+                    "Action": [
+                        "iam:GetPolicy",
+                        "iam:GetPolicyVersion",
+                        "iam:ListEntitiesForPolicy"
+                    ],
+                    "Resource": "arn:*:iam::aws:policy/*"
+                },
+                {
                     "Sid": "ApiGatewayRead",
                     "Effect": "Allow",
                     "Action": [
@@ -1736,35 +1746,25 @@
                         "assurance:ListComments",
                         "assurance:ListConnectionItems",
                         "assurance:ListControlGroups",
+                        "assurance:ListControlResources",
                         "assurance:ListControls",
                         "assurance:ListDiscoveredResources",
                         "assurance:ListEnabledFrameworks",
                         "assurance:ListEvidence",
                         "assurance:ListEvidenceAnnotations",
                         "assurance:ListProjects",
-                        "assurance:ListResourcesForControl",
                         "assurance:ListTasks",
                         "assurance:PutEvidence",
-                        "assurance:StartResourceDiscovery",
                         "assurance:UpdateAnnotation",
                         "assurance:UpdateAssessment",
                         "assurance:UpdateTask"
                     ],
                     "Resource": "arn:aws:assurance:*:*:environment/*"
-                },
-                {
-                    "Sid": "AssuranceLegacyOperations",
-                    "Effect": "Allow",
-                    "Action": [
-                        "assurance:DownloadEvidence",
-                        "assurance:UploadEvidence"
-                    ],
-                    "Resource": "arn:aws:assurance:*:*:environment/*"
                 }
             ]
         },
-        "VersionId": "v4",
+        "VersionId": "v5",
         "IsDefaultVersion": true,
-        "CreateDate": "2026-10-30T19:57:07+00:00"
+        "CreateDate": "2026-11-09T20:07:07+00:00"
     }
 }
