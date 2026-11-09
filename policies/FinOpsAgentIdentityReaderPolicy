@@ -14,13 +14,14 @@
                     "Resource": [
                         "arn:aws:identitystore::*:identitystore/*",
                         "arn:aws:identitystore:::user/*",
-                        "arn:aws:identitystore:::group/*"
+                        "arn:aws:identitystore:::group/*",
+                        "arn:aws:identitystore:::membership/*"
                     ]
                 }
             ]
         },
-        "VersionId": "v1",
+        "VersionId": "v2",
         "IsDefaultVersion": true,
-        "CreateDate": "2026-10-29T17:17:06+00:00"
+        "CreateDate": "2026-11-09T18:17:07+00:00"
     }
 }
