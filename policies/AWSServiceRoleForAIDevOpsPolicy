@@ -19,6 +19,14 @@
                     }
                 },
                 {
+                    "Sid": "CloudWatchGetVendedMetrics",
+                    "Effect": "Allow",
+                    "Action": [
+                        "cloudwatch:GetMetricData"
+                    ],
+                    "Resource": "*"
+                },
+                {
                     "Sid": "LatticeCreateResourceGateway",
                     "Effect": "Allow",
                     "Action": [
@@ -93,8 +101,8 @@
                 }
             ]
         },
-        "VersionId": "v2",
+        "VersionId": "v3",
         "IsDefaultVersion": true,
-        "CreateDate": "2026-03-27T00:42:09+00:00"
+        "CreateDate": "2026-11-09T20:07:07+00:00"
     }
 }
