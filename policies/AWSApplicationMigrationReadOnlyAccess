@@ -21,7 +21,12 @@
                         "mgn:ListExports",
                         "mgn:ListImports",
                         "mgn:ListImportErrors",
-                        "mgn:ListExportErrors"
+                        "mgn:ListExportErrors",
+                        "mgn:ListRemoteSourceActions",
+                        "mgn:ListRemoteSourceActionJobs",
+                        "mgn:ListRemoteSourceActionInvocations",
+                        "mgn:ListRemoteSourceActionInvocationResults",
+                        "mgn:GetLaunchConfigurationDefaults"
                     ],
                     "Resource": "*"
                 },
@@ -51,8 +56,8 @@
                 }
             ]
         },
-        "VersionId": "v6",
+        "VersionId": "v7",
         "IsDefaultVersion": true,
-        "CreateDate": "2026-07-01T14:57:15+00:00"
+        "CreateDate": "2026-11-09T08:37:08+00:00"
     }
 }
