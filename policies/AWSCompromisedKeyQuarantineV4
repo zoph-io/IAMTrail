@@ -39,6 +39,7 @@
                         "iam:DeleteRole",
                         "iam:DeleteAccessKey",
                         "iam:ListUsers",
+                        "iam:UpdateServiceSpecificCredential",
                         "lambda:AddLayerVersionPermission",
                         "lambda:AddPermission",
                         "lambda:CreateFunction",
@@ -159,7 +160,16 @@
                         "apprunner:UntagResource",
                         "sagemaker:CreateTrainingJob",
                         "sagemaker:CreateEndpoint",
-                        "bedrock-mantle:CreateInference",
+                        "bedrock-mantle:Create*",
+                        "bedrock-mantle:Delete*",
+                        "bedrock-mantle:Update*",
+                        "bedrock-mantle:Put*",
+                        "bedrock-mantle:Cancel*",
+                        "bedrock-mantle:Associate*",
+                        "bedrock-mantle:Disassociate*",
+                        "bedrock-mantle:ArchiveProject",
+                        "bedrock-mantle:TagResource",
+                        "bedrock-mantle:UntagResource",
                         "aws-marketplace:Subscribe",
                         "aws-marketplace:AcceptAgreementApprovalRequest",
                         "apprunner:DeleteService",
@@ -229,8 +239,8 @@
                 }
             ]
         },
-        "VersionId": "v1",
+        "VersionId": "v2",
         "IsDefaultVersion": true,
-        "CreateDate": "2026-11-06T00:37:07+00:00"
+        "CreateDate": "2026-11-09T22:27:07+00:00"
     }
 }
