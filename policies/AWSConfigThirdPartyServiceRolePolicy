@@ -11,7 +11,8 @@
                     "Condition": {
                         "ForAnyValue:StringLike": {
                             "sts:IdentityTokenAudience": [
-                                "api://AzureADTokenExchange"
+                                "api://AzureADTokenExchange",
+                                "https://sts.googleapis.com"
                             ]
                         }
                     }
@@ -40,8 +41,8 @@
                 }
             ]
         },
-        "VersionId": "v1",
+        "VersionId": "v2",
         "IsDefaultVersion": true,
-        "CreateDate": "2026-06-22T17:57:23+00:00"
+        "CreateDate": "2026-11-09T22:37:08+00:00"
     }
 }
