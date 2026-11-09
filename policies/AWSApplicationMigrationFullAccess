@@ -353,11 +353,50 @@
                             ]
                         }
                     }
+                },
+                {
+                    "Sid": "SsmViaMgnSendCommandToConnector",
+                    "Effect": "Allow",
+                    "Action": "ssm:SendCommand",
+                    "Resource": "arn:aws:ssm:*:*:managed-instance/*",
+                    "Condition": {
+                        "ForAnyValue:StringEquals": {
+                            "aws:CalledVia": [
+                                "mgn.amazonaws.com"
+                            ]
+                        },
+                        "StringEquals": {
+                            "aws:ResourceAccount": "${aws:PrincipalAccount}"
+                        }
+                    }
+                },
+                {
+                    "Sid": "S3OutpostsReadPermissions",
+                    "Effect": "Allow",
+                    "Action": [
+                        "s3-outposts:ListOutpostsWithS3"
+                    ],
+                    "Resource": "*"
+                },
+                {
+                    "Sid": "CloudWatchDescribeOperations",
+                    "Effect": "Allow",
+                    "Action": [
+                        "cloudwatch:GetMetricData"
+                    ],
+                    "Resource": "*",
+                    "Condition": {
+                        "ForAnyValue:StringEquals": {
+                            "aws:CalledVia": [
+                                "mgn.amazonaws.com"
+                            ]
+                        }
+                    }
                 }
             ]
         },
-        "VersionId": "v14",
+        "VersionId": "v15",
         "IsDefaultVersion": true,
-        "CreateDate": "2026-08-03T10:57:21+00:00"
+        "CreateDate": "2026-11-09T08:37:08+00:00"
     }
 }
