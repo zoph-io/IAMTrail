@@ -9281,12 +9281,12 @@
             "PolicyId": "ANPAZKAPJZG4HPQNMM2HL",
             "Arn": "arn:aws:iam::aws:policy/AWSApplicationMigrationFullAccess",
             "Path": "/",
-            "DefaultVersionId": "v14",
+            "DefaultVersionId": "v15",
             "AttachmentCount": 0,
             "PermissionsBoundaryUsageCount": 0,
             "IsAttachable": true,
             "CreateDate": "2021-04-07T06:56:05+00:00",
-            "UpdateDate": "2026-08-03T10:57:21+00:00"
+            "UpdateDate": "2026-11-09T08:37:08+00:00"
         },
         {
             "PolicyName": "AWSApplicationMigrationAgentPolicy",
@@ -9329,12 +9329,12 @@
             "PolicyId": "ANPAZKAPJZG4M2IUSVNLL",
             "Arn": "arn:aws:iam::aws:policy/AWSApplicationMigrationReadOnlyAccess",
             "Path": "/",
-            "DefaultVersionId": "v6",
+            "DefaultVersionId": "v7",
             "AttachmentCount": 0,
             "PermissionsBoundaryUsageCount": 0,
             "IsAttachable": true,
             "CreateDate": "2021-04-07T07:15:26+00:00",
-            "UpdateDate": "2026-07-01T14:57:15+00:00"
+            "UpdateDate": "2026-11-09T08:37:08+00:00"
         },
         {
             "PolicyName": "AWSApplicationMigrationReplicationServerPolicy",
@@ -11729,12 +11729,12 @@
             "PolicyId": "ANPAZKAPJZG4EEPTUBLGD",
             "Arn": "arn:aws:iam::aws:policy/AWSApplicationMigrationSSMAccess",
             "Path": "/",
-            "DefaultVersionId": "v5",
+            "DefaultVersionId": "v6",
             "AttachmentCount": 0,
             "PermissionsBoundaryUsageCount": 0,
             "IsAttachable": true,
             "CreateDate": "2022-11-27T09:29:05+00:00",
-            "UpdateDate": "2026-02-12T18:00:51+00:00"
+            "UpdateDate": "2026-11-09T08:37:07+00:00"
         },
         {
             "PolicyName": "OAMReadOnlyAccess",
