@@ -45,7 +45,8 @@
                         "securityhub:EnableSecurityHubV2",
                         "securityhub:DescribeSecurityHubV2",
                         "securityhub:EnableSecurityHubFeatureV2",
-                        "securityhub:DisableSecurityHubFeatureV2"
+                        "securityhub:DisableSecurityHubFeatureV2",
+                        "securityhub:UpdateSecurityHubV2"
                     ],
                     "Resource": "arn:aws:securityhub:*:*:hubv2/*",
                     "Condition": {
@@ -110,7 +111,8 @@
                     "Sid": "SecurityHubV2ServiceRoleLambdaAndConfigMetricPermissions",
                     "Effect": "Allow",
                     "Action": [
-                        "cloudwatch:GetMetricData"
+                        "cloudwatch:GetMetricData",
+                        "cloudwatch:ListMetrics"
                     ],
                     "Resource": "*"
                 },
@@ -250,8 +252,8 @@
                 }
             ]
         },
-        "VersionId": "v8",
+        "VersionId": "v9",
         "IsDefaultVersion": true,
-        "CreateDate": "2026-06-27T00:42:11+00:00"
+        "CreateDate": "2026-11-09T20:37:08+00:00"
     }
 }
