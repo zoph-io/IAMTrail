@@ -22,6 +22,7 @@
                         "partnercentral:GetEngagement",
                         "partnercentral:GetEngagementInvitation",
                         "partnercentral:GetOpportunity",
+                        "partnercentral:GetOpportunityBulkJobReportUrl",
                         "partnercentral:GetProspectingFromEngagementTask",
                         "partnercentral:GetResourceSnapshot",
                         "partnercentral:GetResourceSnapshotJob",
@@ -32,15 +33,18 @@
                         "partnercentral:ListEngagementResourceAssociations",
                         "partnercentral:ListEngagements",
                         "partnercentral:ListOpportunities",
-                        "partnercentral:SearchOpportunities",
+                        "partnercentral:ListOpportunityBulkJobs",
+                        "partnercentral:ListOpportunityBulkJobResults",
                         "partnercentral:ListOpportunityFromEngagementTasks",
                         "partnercentral:ListProspectingFromEngagementTasks",
                         "partnercentral:ListResourceSnapshotJobs",
                         "partnercentral:ListResourceSnapshots",
                         "partnercentral:ListSolutions",
                         "partnercentral:RejectEngagementInvitation",
+                        "partnercentral:SearchOpportunities",
                         "partnercentral:StartEngagementByAcceptingInvitationTask",
                         "partnercentral:StartEngagementFromOpportunityTask",
+                        "partnercentral:StartOpportunityBulkJob",
                         "partnercentral:StartOpportunityFromEngagementTask",
                         "partnercentral:StartProspectingFromEngagementTask",
                         "partnercentral:StartResourceSnapshotJob",
@@ -204,8 +208,8 @@
                 }
             ]
         },
-        "VersionId": "v12",
+        "VersionId": "v13",
         "IsDefaultVersion": true,
-        "CreateDate": "2026-11-06T02:27:07+00:00"
+        "CreateDate": "2026-11-10T03:17:07+00:00"
     }
 }
