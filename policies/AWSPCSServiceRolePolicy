@@ -59,7 +59,9 @@
                         "ec2:DescribeImages",
                         "ec2:DescribeImageAttribute",
                         "ec2:DescribeCapacityReservations",
-                        "ec2:DescribeTags"
+                        "ec2:DescribeTags",
+                        "ec2:DescribeInstanceTopology",
+                        "ec2:DescribeCapacityReservationTopology"
                     ],
                     "Resource": "*"
                 },
@@ -214,8 +216,8 @@
                 }
             ]
         },
-        "VersionId": "v10",
+        "VersionId": "v11",
         "IsDefaultVersion": true,
-        "CreateDate": "2026-09-30T18:07:08+00:00"
+        "CreateDate": "2026-11-10T09:47:08+00:00"
     }
 }
