@@ -69,6 +69,7 @@
   "AWSSchemasServiceRolePolicy": "2021-04-02",
   "AWSServiceRoleForCodeGuruProfiler": "2021-04-02",
   "AWSServiceRoleForGammaInternalAmazonEKSNodegroup": "2021-04-02",
+  "AWSServiceRoleForSMS": "2026-11-10",
   "AWSServiceRoleForThorInternalDevPolicy": "2021-04-02",
   "CheesepuffsServiceRolePolicy": "2021-04-02",
   "GroundTruthSyntheticConsoleFullAccess": "2025-05-28",

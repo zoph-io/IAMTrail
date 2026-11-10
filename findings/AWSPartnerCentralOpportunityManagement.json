@@ -1,0 +1,146 @@
+[
+  {
+    "findingDetails": "The action partnercentral:GetOpportunityBulkJobReportUrl does not exist.",
+    "findingType": "ERROR",
+    "issueCode": "INVALID_ACTION",
+    "learnMoreLink": "https://docs.aws.amazon.com/IAM/latest/UserGuide/access-analyzer-reference-policy-checks.html#access-analyzer-reference-policy-checks-error-invalid-action",
+    "locations": [
+      {
+        "path": [
+          {
+            "value": "Statement"
+          },
+          {
+            "index": 0
+          },
+          {
+            "value": "Action"
+          },
+          {
+            "index": 15
+          }
+        ],
+        "span": {
+          "start": {
+            "line": 1,
+            "column": 702,
+            "offset": 702
+          },
+          "end": {
+            "line": 1,
+            "column": 749,
+            "offset": 749
+          }
+        }
+      }
+    ]
+  },
+  {
+    "findingDetails": "The action partnercentral:ListOpportunityBulkJobs does not exist.",
+    "findingType": "ERROR",
+    "issueCode": "INVALID_ACTION",
+    "learnMoreLink": "https://docs.aws.amazon.com/IAM/latest/UserGuide/access-analyzer-reference-policy-checks.html#access-analyzer-reference-policy-checks-error-invalid-action",
+    "locations": [
+      {
+        "path": [
+          {
+            "value": "Statement"
+          },
+          {
+            "index": 0
+          },
+          {
+            "value": "Action"
+          },
+          {
+            "index": 26
+          }
+        ],
+        "span": {
+          "start": {
+            "line": 1,
+            "column": 1200,
+            "offset": 1200
+          },
+          "end": {
+            "line": 1,
+            "column": 1240,
+            "offset": 1240
+          }
+        }
+      }
+    ]
+  },
+  {
+    "findingDetails": "The action partnercentral:ListOpportunityBulkJobResults does not exist.",
+    "findingType": "ERROR",
+    "issueCode": "INVALID_ACTION",
+    "learnMoreLink": "https://docs.aws.amazon.com/IAM/latest/UserGuide/access-analyzer-reference-policy-checks.html#access-analyzer-reference-policy-checks-error-invalid-action",
+    "locations": [
+      {
+        "path": [
+          {
+            "value": "Statement"
+          },
+          {
+            "index": 0
+          },
+          {
+            "value": "Action"
+          },
+          {
+            "index": 27
+          }
+        ],
+        "span": {
+          "start": {
+            "line": 1,
+            "column": 1242,
+            "offset": 1242
+          },
+          "end": {
+            "line": 1,
+            "column": 1288,
+            "offset": 1288
+          }
+        }
+      }
+    ]
+  },
+  {
+    "findingDetails": "The action partnercentral:StartOpportunityBulkJob does not exist.",
+    "findingType": "ERROR",
+    "issueCode": "INVALID_ACTION",
+    "learnMoreLink": "https://docs.aws.amazon.com/IAM/latest/UserGuide/access-analyzer-reference-policy-checks.html#access-analyzer-reference-policy-checks-error-invalid-action",
+    "locations": [
+      {
+        "path": [
+          {
+            "value": "Statement"
+          },
+          {
+            "index": 0
+          },
+          {
+            "value": "Action"
+          },
+          {
+            "index": 37
+          }
+        ],
+        "span": {
+          "start": {
+            "line": 1,
+            "column": 1706,
+            "offset": 1706
+          },
+          "end": {
+            "line": 1,
+            "column": 1746,
+            "offset": 1746
+          }
+        }
+      }
+    ]
+  }
+]
