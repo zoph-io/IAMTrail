@@ -9,11 +9,34 @@
                         "cognito-idp:Describe*"
                     ],
                     "Resource": "*"
+                },
+                {
+                    "Sid": "SecretsManagerSecret",
+                    "Effect": "Allow",
+                    "Action": [
+                        "secretsmanager:DeleteSecret",
+                        "secretsmanager:RestoreSecret",
+                        "secretsmanager:DescribeSecret",
+                        "secretsmanager:PutSecretValue",
+                        "secretsmanager:UpdateSecretVersionStage",
+                        "secretsmanager:RotateSecret",
+                        "secretsmanager:ReplicateSecretToRegions",
+                        "secretsmanager:RemoveRegionsFromReplication"
+                    ],
+                    "Resource": [
+                        "arn:aws:secretsmanager:*:*:secret:cognito-idp!*"
+                    ],
+                    "Condition": {
+                        "StringEquals": {
+                            "secretsmanager:ResourceTag/aws:secretsmanager:owningService": "cognito-idp",
+                            "aws:ResourceAccount": "${aws:PrincipalAccount}"
+                        }
+                    }
                 }
             ]
         },
-        "VersionId": "v1",
+        "VersionId": "v2",
         "IsDefaultVersion": true,
-        "CreateDate": "2020-06-26T22:30:20+00:00"
+        "CreateDate": "2026-11-10T19:27:08+00:00"
     }
 }
