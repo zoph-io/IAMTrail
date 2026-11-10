@@ -1,0 +1,15 @@
+{
+  "detected_at": "2026-11-10T01:23:28.608Z",
+  "botocore_commit": "b76ffb91c5d6901b74df9e60672ec7549698b5b2",
+  "botocore_commit_url": "https://github.com/boto/botocore/commit/b76ffb91c5d6901b74df9e60672ec7549698b5b2",
+  "summary": "1 new service",
+  "changes": [
+    {
+      "type": "new_service",
+      "partition": "aws-eusc",
+      "id": "transcribe",
+      "description": "transcribe (1 endpoint)",
+      "endpoint_count": 1
+    }
+  ]
+}
