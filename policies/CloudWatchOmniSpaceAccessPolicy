@@ -65,7 +65,8 @@
                         "cloudwatch:PutIntelligenceConfiguration",
                         "cloudwatch:TagResource",
                         "cloudwatch:UntagResource",
-                        "cloudwatch:ListTagsForResource"
+                        "cloudwatch:ListTagsForResource",
+                        "cloudwatch:GetSpaceDataAccess"
                     ],
                     "Resource": "*",
                     "Condition": {
@@ -526,8 +527,8 @@
                 }
             ]
         },
-        "VersionId": "v2",
+        "VersionId": "v3",
         "IsDefaultVersion": true,
-        "CreateDate": "2026-10-14T22:17:08+00:00"
+        "CreateDate": "2026-11-11T01:27:08+00:00"
     }
 }
