@@ -19,6 +19,7 @@
                         "cloudwatch:Get*",
                         "cloudwatch:List*",
                         "cloudwatch:CreateOneTimeDeepLinkCode",
+                        "cloudwatch:DetectGroupOutliers",
                         "logs:Get*",
                         "logs:List*",
                         "logs:StartQuery",
@@ -103,8 +104,8 @@
                 }
             ]
         },
-        "VersionId": "v26",
+        "VersionId": "v27",
         "IsDefaultVersion": true,
-        "CreateDate": "2026-11-09T19:27:07+00:00"
+        "CreateDate": "2026-11-11T13:47:08+00:00"
     }
 }
