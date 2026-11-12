@@ -41,7 +41,7 @@
                     "Resource": "arn:aws:iam::*:role/SSM-JustInTimeAccessTokenRole",
                     "Condition": {
                         "ArnEquals": {
-                            "iam:PolicyARN": "arn:aws:iam::*:policy/AWSSystemsManagerJustInTimeAccessTokenPolicy"
+                            "iam:PolicyARN": "arn:aws:iam::aws:policy/AWSSystemsManagerJustInTimeAccessTokenPolicy"
                         }
                     }
                 },
@@ -82,8 +82,8 @@
                 }
             ]
         },
-        "VersionId": "v6",
+        "VersionId": "v7",
         "IsDefaultVersion": true,
-        "CreateDate": "2026-02-12T17:57:30+00:00"
+        "CreateDate": "2026-11-12T17:27:08+00:00"
     }
 }
