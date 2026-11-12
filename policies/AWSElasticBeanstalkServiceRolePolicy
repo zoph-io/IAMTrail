@@ -181,6 +181,19 @@
                     }
                 },
                 {
+                    "Sid": "EBIamSimulateRolePermissions",
+                    "Effect": "Allow",
+                    "Action": [
+                        "iam:SimulatePrincipalPolicy"
+                    ],
+                    "Resource": "arn:aws:iam::*:role/*",
+                    "Condition": {
+                        "StringEquals": {
+                            "aws:ResourceAccount": "${aws:PrincipalAccount}"
+                        }
+                    }
+                },
+                {
                     "Sid": "EBEKSS3Permissions",
                     "Effect": "Allow",
                     "Action": [
@@ -599,8 +612,8 @@
                 }
             ]
         },
-        "VersionId": "v8",
+        "VersionId": "v9",
         "IsDefaultVersion": true,
-        "CreateDate": "2026-08-18T17:17:24+00:00"
+        "CreateDate": "2026-11-12T20:37:08+00:00"
     }
 }
