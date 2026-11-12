@@ -143,6 +143,7 @@
                         "datazone:StartDataSourceRun",
                         "datazone:StartMetadataGenerationRun",
                         "datazone:UpdateAssetFilter",
+                        "datazone:UpdateAssetOwner",
                         "datazone:UpdateConnection",
                         "datazone:UpdateDataSource",
                         "datazone:UpdateDomainUnit",
@@ -275,8 +276,8 @@
                 }
             ]
         },
-        "VersionId": "v26",
+        "VersionId": "v27",
         "IsDefaultVersion": true,
-        "CreateDate": "2026-11-12T14:17:07+00:00"
+        "CreateDate": "2026-11-12T19:47:07+00:00"
     }
 }
