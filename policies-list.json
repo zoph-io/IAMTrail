@@ -161,12 +161,12 @@
             "PolicyId": "ANPAJN23PDQP7SZQAE3QE",
             "Arn": "arn:aws:iam::aws:policy/CloudWatchReadOnlyAccess",
             "Path": "/",
-            "DefaultVersionId": "v26",
+            "DefaultVersionId": "v27",
             "AttachmentCount": 0,
             "PermissionsBoundaryUsageCount": 0,
             "IsAttachable": true,
             "CreateDate": "2015-02-06T18:40:01+00:00",
-            "UpdateDate": "2026-11-09T19:27:07+00:00"
+            "UpdateDate": "2026-11-11T13:47:08+00:00"
         },
         {
             "PolicyName": "CloudWatchLogsFullAccess",
@@ -15149,12 +15149,12 @@
             "PolicyId": "ANPAZKAPJZG4IBNDNDGG3",
             "Arn": "arn:aws:iam::aws:policy/service-role/SageMakerStudioDomainExecutionRolePolicy",
             "Path": "/service-role/",
-            "DefaultVersionId": "v25",
+            "DefaultVersionId": "v26",
             "AttachmentCount": 0,
             "PermissionsBoundaryUsageCount": 0,
             "IsAttachable": true,
             "CreateDate": "2024-11-20T21:56:55+00:00",
-            "UpdateDate": "2026-11-05T22:47:07+00:00"
+            "UpdateDate": "2026-11-12T14:17:07+00:00"
         },
         {
             "PolicyName": "SageMakerStudioProjectUserRolePermissionsBoundary",
@@ -15437,12 +15437,12 @@
             "PolicyId": "ANPAZKAPJZG4NLZGIT7C3",
             "Arn": "arn:aws:iam::aws:policy/aws-service-role/AuroraDsqlServiceLinkedRolePolicy",
             "Path": "/aws-service-role/",
-            "DefaultVersionId": "v6",
+            "DefaultVersionId": "v7",
             "AttachmentCount": 0,
             "PermissionsBoundaryUsageCount": 0,
             "IsAttachable": true,
             "CreateDate": "2024-12-03T15:06:07+00:00",
-            "UpdateDate": "2026-02-12T18:01:12+00:00"
+            "UpdateDate": "2026-11-12T00:37:08+00:00"
         },
         {
             "PolicyName": "AmazonS3TablesReadOnlyAccess",
@@ -17513,12 +17513,12 @@
             "PolicyId": "ANPAZKAPJZG4ELWEUAH5T",
             "Arn": "arn:aws:iam::aws:policy/AIDevOpsOperatorAppAccessPolicy",
             "Path": "/",
-            "DefaultVersionId": "v12",
+            "DefaultVersionId": "v13",
             "AttachmentCount": 0,
             "PermissionsBoundaryUsageCount": 0,
             "IsAttachable": true,
             "CreateDate": "2026-03-26T03:42:13+00:00",
-            "UpdateDate": "2026-11-05T01:07:08+00:00"
+            "UpdateDate": "2026-11-11T18:07:08+00:00"
         },
         {
             "PolicyName": "AIDevOpsAgentFullAccess",
@@ -18593,12 +18593,12 @@
             "PolicyId": "ANPAZKAPJZG4KVIHBDOCE",
             "Arn": "arn:aws:iam::aws:policy/AWSTransformServerMigrationAgentPolicy",
             "Path": "/",
-            "DefaultVersionId": "v3",
+            "DefaultVersionId": "v4",
             "AttachmentCount": 0,
             "PermissionsBoundaryUsageCount": 0,
             "IsAttachable": true,
             "CreateDate": "2026-08-06T15:27:14+00:00",
-            "UpdateDate": "2026-10-11T08:47:08+00:00"
+            "UpdateDate": "2026-11-12T06:37:07+00:00"
         },
         {
             "PolicyName": "AWSTransformNetworkMigrationAgentPolicy",
@@ -19211,6 +19211,30 @@
             "IsAttachable": true,
             "CreateDate": "2026-11-10T23:37:08+00:00",
             "UpdateDate": "2026-11-10T23:37:08+00:00"
+        },
+        {
+            "PolicyName": "AWSNetworkFirewallIGWServiceRolePolicy",
+            "PolicyId": "ANPAZKAPJZG4D6N6T2COE",
+            "Arn": "arn:aws:iam::aws:policy/aws-service-role/AWSNetworkFirewallIGWServiceRolePolicy",
+            "Path": "/aws-service-role/",
+            "DefaultVersionId": "v1",
+            "AttachmentCount": 0,
+            "PermissionsBoundaryUsageCount": 0,
+            "IsAttachable": true,
+            "CreateDate": "2026-11-11T19:57:07+00:00",
+            "UpdateDate": "2026-11-11T19:57:07+00:00"
+        },
+        {
+            "PolicyName": "AmazonBioDiscoveryServiceLinkedRolePolicy",
+            "PolicyId": "ANPAZKAPJZG4FVREWUXQ4",
+            "Arn": "arn:aws:iam::aws:policy/aws-service-role/AmazonBioDiscoveryServiceLinkedRolePolicy",
+            "Path": "/aws-service-role/",
+            "DefaultVersionId": "v1",
+            "AttachmentCount": 0,
+            "PermissionsBoundaryUsageCount": 0,
+            "IsAttachable": true,
+            "CreateDate": "2026-11-12T00:17:08+00:00",
+            "UpdateDate": "2026-11-12T00:17:08+00:00"
         },
         {
             "PolicyName": "AWSConfigRole",

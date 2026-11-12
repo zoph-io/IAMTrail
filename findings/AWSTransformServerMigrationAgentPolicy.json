@@ -1,6 +1,6 @@
 [
   {
-    "findingDetails": "The 20888 characters in the identity policy, excluding whitespace, exceed the 10240 character maximum for inline and managed policies. We recommend that you use multiple granular policies.",
+    "findingDetails": "The 24707 characters in the identity policy, excluding whitespace, exceed the 10240 character maximum for inline and managed policies. We recommend that you use multiple granular policies.",
     "findingType": "WARNING",
     "issueCode": "POLICY_SIZE_EXCEEDS_IDENTITY_POLICY_QUOTA",
     "learnMoreLink": "https://docs.aws.amazon.com/IAM/latest/UserGuide/access-analyzer-reference-policy-checks.html#access-analyzer-reference-policy-checks-general-warning-policy-size-exceeds-identity-policy-quota",
@@ -15,8 +15,8 @@
           },
           "end": {
             "line": 1,
-            "column": 21880,
-            "offset": 21880
+            "column": 25864,
+            "offset": 25864
           }
         }
       }
@@ -49,13 +49,13 @@
         "span": {
           "start": {
             "line": 1,
-            "column": 325,
-            "offset": 325
+            "column": 286,
+            "offset": 286
           },
           "end": {
             "line": 1,
-            "column": 359,
-            "offset": 359
+            "column": 320,
+            "offset": 320
           }
         }
       }
@@ -88,13 +88,13 @@
         "span": {
           "start": {
             "line": 1,
-            "column": 639,
-            "offset": 639
+            "column": 610,
+            "offset": 610
           },
           "end": {
             "line": 1,
-            "column": 673,
-            "offset": 673
+            "column": 644,
+            "offset": 644
           }
         }
       }
@@ -127,13 +127,13 @@
         "span": {
           "start": {
             "line": 1,
-            "column": 1012,
-            "offset": 1012
+            "column": 961,
+            "offset": 961
           },
           "end": {
             "line": 1,
-            "column": 1046,
-            "offset": 1046
+            "column": 995,
+            "offset": 995
           }
         }
       }
@@ -166,13 +166,13 @@
         "span": {
           "start": {
             "line": 1,
-            "column": 1830,
-            "offset": 1830
+            "column": 1334,
+            "offset": 1334
           },
           "end": {
             "line": 1,
-            "column": 1864,
-            "offset": 1864
+            "column": 1368,
+            "offset": 1368
           }
         }
       }
@@ -205,13 +205,13 @@
         "span": {
           "start": {
             "line": 1,
-            "column": 2617,
-            "offset": 2617
+            "column": 2152,
+            "offset": 2152
           },
           "end": {
             "line": 1,
-            "column": 2651,
-            "offset": 2651
+            "column": 2186,
+            "offset": 2186
           }
         }
       }
@@ -244,13 +244,13 @@
         "span": {
           "start": {
             "line": 1,
-            "column": 3052,
-            "offset": 3052
+            "column": 2939,
+            "offset": 2939
           },
           "end": {
             "line": 1,
-            "column": 3086,
-            "offset": 3086
+            "column": 2973,
+            "offset": 2973
           }
         }
       }
@@ -283,13 +283,13 @@
         "span": {
           "start": {
             "line": 1,
-            "column": 3598,
-            "offset": 3598
+            "column": 3374,
+            "offset": 3374
           },
           "end": {
             "line": 1,
-            "column": 3632,
-            "offset": 3632
+            "column": 3408,
+            "offset": 3408
           }
         }
       }
@@ -322,13 +322,13 @@
         "span": {
           "start": {
             "line": 1,
-            "column": 4350,
-            "offset": 4350
+            "column": 3920,
+            "offset": 3920
           },
           "end": {
             "line": 1,
-            "column": 4384,
-            "offset": 4384
+            "column": 3954,
+            "offset": 3954
           }
         }
       }
@@ -361,13 +361,13 @@
         "span": {
           "start": {
             "line": 1,
-            "column": 4689,
-            "offset": 4689
+            "column": 4672,
+            "offset": 4672
           },
           "end": {
             "line": 1,
-            "column": 4723,
-            "offset": 4723
+            "column": 4706,
+            "offset": 4706
           }
         }
       }
@@ -400,13 +400,13 @@
         "span": {
           "start": {
             "line": 1,
-            "column": 5094,
-            "offset": 5094
+            "column": 4978,
+            "offset": 4978
           },
           "end": {
             "line": 1,
-            "column": 5128,
-            "offset": 5128
+            "column": 5012,
+            "offset": 5012
           }
         }
       }
@@ -439,13 +439,13 @@
         "span": {
           "start": {
             "line": 1,
-            "column": 5393,
-            "offset": 5393
+            "column": 5430,
+            "offset": 5430
           },
           "end": {
             "line": 1,
-            "column": 5427,
-            "offset": 5427
+            "column": 5464,
+            "offset": 5464
           }
         }
       }
@@ -478,13 +478,13 @@
         "span": {
           "start": {
             "line": 1,
-            "column": 5827,
-            "offset": 5827
+            "column": 5835,
+            "offset": 5835
           },
           "end": {
             "line": 1,
-            "column": 5861,
-            "offset": 5861
+            "column": 5869,
+            "offset": 5869
           }
         }
       }
@@ -517,13 +517,13 @@
         "span": {
           "start": {
             "line": 1,
-            "column": 6257,
-            "offset": 6257
+            "column": 6134,
+            "offset": 6134
           },
           "end": {
             "line": 1,
-            "column": 6291,
-            "offset": 6291
+            "column": 6168,
+            "offset": 6168
           }
         }
       }
@@ -556,13 +556,13 @@
         "span": {
           "start": {
             "line": 1,
-            "column": 6879,
-            "offset": 6879
+            "column": 6568,
+            "offset": 6568
           },
           "end": {
             "line": 1,
-            "column": 6913,
-            "offset": 6913
+            "column": 6602,
+            "offset": 6602
           }
         }
       }
@@ -595,13 +595,13 @@
         "span": {
           "start": {
             "line": 1,
-            "column": 7324,
-            "offset": 7324
+            "column": 6998,
+            "offset": 6998
           },
           "end": {
             "line": 1,
-            "column": 7358,
-            "offset": 7358
+            "column": 7032,
+            "offset": 7032
           }
         }
       }
@@ -634,13 +634,13 @@
         "span": {
           "start": {
             "line": 1,
-            "column": 7764,
-            "offset": 7764
+            "column": 7620,
+            "offset": 7620
           },
           "end": {
             "line": 1,
-            "column": 7798,
-            "offset": 7798
+            "column": 7654,
+            "offset": 7654
           }
         }
       }
@@ -673,13 +673,13 @@
         "span": {
           "start": {
             "line": 1,
-            "column": 8062,
-            "offset": 8062
+            "column": 8065,
+            "offset": 8065
           },
           "end": {
             "line": 1,
-            "column": 8096,
-            "offset": 8096
+            "column": 8099,
+            "offset": 8099
           }
         }
       }
@@ -712,13 +712,13 @@
         "span": {
           "start": {
             "line": 1,
-            "column": 8473,
-            "offset": 8473
+            "column": 8567,
+            "offset": 8567
           },
           "end": {
             "line": 1,
-            "column": 8507,
-            "offset": 8507
+            "column": 8601,
+            "offset": 8601
           }
         }
       }
@@ -751,13 +751,13 @@
         "span": {
           "start": {
             "line": 1,
-            "column": 8913,
-            "offset": 8913
+            "column": 8851,
+            "offset": 8851
           },
           "end": {
             "line": 1,
-            "column": 8947,
-            "offset": 8947
+            "column": 8885,
+            "offset": 8885
           }
         }
       }
@@ -790,13 +790,91 @@
         "span": {
           "start": {
             "line": 1,
-            "column": 9363,
-            "offset": 9363
+            "column": 9203,
+            "offset": 9203
           },
           "end": {
             "line": 1,
-            "column": 9397,
-            "offset": 9397
+            "column": 9237,
+            "offset": 9237
+          }
+        }
+      }
+    ]
+  },
+  {
+    "findingDetails": "The Region ${aws:PrincipalTag/TargetRegion} is not valid. Update the condition value to a supported Region.",
+    "findingType": "ERROR",
+    "issueCode": "INVALID_REGION",
+    "learnMoreLink": "https://docs.aws.amazon.com/IAM/latest/UserGuide/access-analyzer-reference-policy-checks.html#access-analyzer-reference-policy-checks-error-invalid-region",
+    "locations": [
+      {
+        "path": [
+          {
+            "value": "Statement"
+          },
+          {
+            "index": 20
+          },
+          {
+            "value": "Condition"
+          },
+          {
+            "value": "StringEquals"
+          },
+          {
+            "value": "aws:RequestedRegion"
+          }
+        ],
+        "span": {
+          "start": {
+            "line": 1,
+            "column": 9501,
+            "offset": 9501
+          },
+          "end": {
+            "line": 1,
+            "column": 9535,
+            "offset": 9535
+          }
+        }
+      }
+    ]
+  },
+  {
+    "findingDetails": "The Region ${aws:PrincipalTag/TargetRegion} is not valid. Update the condition value to a supported Region.",
+    "findingType": "ERROR",
+    "issueCode": "INVALID_REGION",
+    "learnMoreLink": "https://docs.aws.amazon.com/IAM/latest/UserGuide/access-analyzer-reference-policy-checks.html#access-analyzer-reference-policy-checks-error-invalid-region",
+    "locations": [
+      {
+        "path": [
+          {
+            "value": "Statement"
+          },
+          {
+            "index": 21
+          },
+          {
+            "value": "Condition"
+          },
+          {
+            "value": "StringEquals"
+          },
+          {
+            "value": "aws:RequestedRegion"
+          }
+        ],
+        "span": {
+          "start": {
+            "line": 1,
+            "column": 9912,
+            "offset": 9912
+          },
+          "end": {
+            "line": 1,
+            "column": 9946,
+            "offset": 9946
           }
         }
       }
@@ -829,13 +907,13 @@
         "span": {
           "start": {
             "line": 1,
-            "column": 10500,
-            "offset": 10500
+            "column": 10352,
+            "offset": 10352
           },
           "end": {
             "line": 1,
-            "column": 10534,
-            "offset": 10534
+            "column": 10386,
+            "offset": 10386
           }
         }
       }
@@ -868,91 +946,13 @@
         "span": {
           "start": {
             "line": 1,
-            "column": 10821,
-            "offset": 10821
+            "column": 10802,
+            "offset": 10802
           },
           "end": {
             "line": 1,
-            "column": 10855,
-            "offset": 10855
-          }
-        }
-      }
-    ]
-  },
-  {
-    "findingDetails": "The Region ${aws:PrincipalTag/TargetRegion} is not valid. Update the condition value to a supported Region.",
-    "findingType": "ERROR",
-    "issueCode": "INVALID_REGION",
-    "learnMoreLink": "https://docs.aws.amazon.com/IAM/latest/UserGuide/access-analyzer-reference-policy-checks.html#access-analyzer-reference-policy-checks-error-invalid-region",
-    "locations": [
-      {
-        "path": [
-          {
-            "value": "Statement"
-          },
-          {
-            "index": 24
-          },
-          {
-            "value": "Condition"
-          },
-          {
-            "value": "StringEquals"
-          },
-          {
-            "value": "aws:RequestedRegion"
-          }
-        ],
-        "span": {
-          "start": {
-            "line": 1,
-            "column": 11227,
-            "offset": 11227
-          },
-          "end": {
-            "line": 1,
-            "column": 11261,
-            "offset": 11261
-          }
-        }
-      }
-    ]
-  },
-  {
-    "findingDetails": "The Region ${aws:PrincipalTag/TargetRegion} is not valid. Update the condition value to a supported Region.",
-    "findingType": "ERROR",
-    "issueCode": "INVALID_REGION",
-    "learnMoreLink": "https://docs.aws.amazon.com/IAM/latest/UserGuide/access-analyzer-reference-policy-checks.html#access-analyzer-reference-policy-checks-error-invalid-region",
-    "locations": [
-      {
-        "path": [
-          {
-            "value": "Statement"
-          },
-          {
-            "index": 25
-          },
-          {
-            "value": "Condition"
-          },
-          {
-            "value": "StringEquals"
-          },
-          {
-            "value": "aws:RequestedRegion"
-          }
-        ],
-        "span": {
-          "start": {
-            "line": 1,
-            "column": 11575,
-            "offset": 11575
-          },
-          "end": {
-            "line": 1,
-            "column": 11609,
-            "offset": 11609
+            "column": 10836,
+            "offset": 10836
           }
         }
       }
@@ -985,13 +985,13 @@
         "span": {
           "start": {
             "line": 1,
-            "column": 11942,
-            "offset": 11942
+            "column": 11939,
+            "offset": 11939
           },
           "end": {
             "line": 1,
-            "column": 11976,
-            "offset": 11976
+            "column": 11973,
+            "offset": 11973
           }
         }
       }
@@ -1024,13 +1024,13 @@
         "span": {
           "start": {
             "line": 1,
-            "column": 12382,
-            "offset": 12382
+            "column": 12292,
+            "offset": 12292
           },
           "end": {
             "line": 1,
-            "column": 12416,
-            "offset": 12416
+            "column": 12326,
+            "offset": 12326
           }
         }
       }
@@ -1063,147 +1063,13 @@
         "span": {
           "start": {
             "line": 1,
-            "column": 12759,
-            "offset": 12759
+            "column": 12698,
+            "offset": 12698
           },
           "end": {
             "line": 1,
-            "column": 12793,
-            "offset": 12793
-          }
-        }
-      }
-    ]
-  },
-  {
-    "findingDetails": "Using the effect Allow with the condition key aws:ResourceTag/ATWorkspace and actions for services with the following prefixes does not affect the policy: mgn. The actions for the listed service are not allowed by this statement. We recommend that you move these actions to a different statement without this condition key.",
-    "findingType": "SUGGESTION",
-    "issueCode": "ALLOW_WITH_UNSUPPORTED_TAG_CONDITION_KEY_FOR_SERVICE",
-    "learnMoreLink": "https://docs.aws.amazon.com/IAM/latest/UserGuide/access-analyzer-reference-policy-checks.html#access-analyzer-reference-policy-checks-suggestion-allow-with-unsupported-tag-condition-key-for-service",
-    "locations": [
-      {
-        "path": [
-          {
-            "value": "Statement"
-          },
-          {
-            "index": 29
-          },
-          {
-            "value": "Action"
-          },
-          {
-            "index": 4
-          }
-        ],
-        "span": {
-          "start": {
-            "line": 1,
-            "column": 13237,
-            "offset": 13237
-          },
-          "end": {
-            "line": 1,
-            "column": 13262,
-            "offset": 13262
-          }
-        }
-      },
-      {
-        "path": [
-          {
-            "value": "Statement"
-          },
-          {
-            "index": 29
-          },
-          {
-            "value": "Condition"
-          },
-          {
-            "value": "StringEquals"
-          },
-          {
-            "key": "aws:ResourceTag/ATWorkspace"
-          }
-        ],
-        "span": {
-          "start": {
-            "line": 1,
-            "column": 13732,
-            "offset": 13732
-          },
-          "end": {
-            "line": 1,
-            "column": 13761,
-            "offset": 13761
-          }
-        }
-      }
-    ]
-  },
-  {
-    "findingDetails": "Using the effect Allow with the condition key aws:ResourceTag/CreatedBy and actions for services with the following prefixes does not affect the policy: mgn. The actions for the listed service are not allowed by this statement. We recommend that you move these actions to a different statement without this condition key.",
-    "findingType": "SUGGESTION",
-    "issueCode": "ALLOW_WITH_UNSUPPORTED_TAG_CONDITION_KEY_FOR_SERVICE",
-    "learnMoreLink": "https://docs.aws.amazon.com/IAM/latest/UserGuide/access-analyzer-reference-policy-checks.html#access-analyzer-reference-policy-checks-suggestion-allow-with-unsupported-tag-condition-key-for-service",
-    "locations": [
-      {
-        "path": [
-          {
-            "value": "Statement"
-          },
-          {
-            "index": 29
-          },
-          {
-            "value": "Action"
-          },
-          {
-            "index": 4
-          }
-        ],
-        "span": {
-          "start": {
-            "line": 1,
-            "column": 13237,
-            "offset": 13237
-          },
-          "end": {
-            "line": 1,
-            "column": 13262,
-            "offset": 13262
-          }
-        }
-      },
-      {
-        "path": [
-          {
-            "value": "Statement"
-          },
-          {
-            "index": 29
-          },
-          {
-            "value": "Condition"
-          },
-          {
-            "value": "StringEquals"
-          },
-          {
-            "key": "aws:ResourceTag/CreatedBy"
-          }
-        ],
-        "span": {
-          "start": {
-            "line": 1,
-            "column": 13798,
-            "offset": 13798
-          },
-          "end": {
-            "line": 1,
-            "column": 13825,
-            "offset": 13825
+            "column": 12732,
+            "offset": 12732
           }
         }
       }
@@ -1236,13 +1102,52 @@
         "span": {
           "start": {
             "line": 1,
-            "column": 13646,
-            "offset": 13646
+            "column": 13046,
+            "offset": 13046
           },
           "end": {
             "line": 1,
-            "column": 13680,
-            "offset": 13680
+            "column": 13080,
+            "offset": 13080
+          }
+        }
+      }
+    ]
+  },
+  {
+    "findingDetails": "The Region ${aws:PrincipalTag/TargetRegion} is not valid. Update the condition value to a supported Region.",
+    "findingType": "ERROR",
+    "issueCode": "INVALID_REGION",
+    "learnMoreLink": "https://docs.aws.amazon.com/IAM/latest/UserGuide/access-analyzer-reference-policy-checks.html#access-analyzer-reference-policy-checks-error-invalid-region",
+    "locations": [
+      {
+        "path": [
+          {
+            "value": "Statement"
+          },
+          {
+            "index": 30
+          },
+          {
+            "value": "Condition"
+          },
+          {
+            "value": "StringEquals"
+          },
+          {
+            "value": "aws:RequestedRegion"
+          }
+        ],
+        "span": {
+          "start": {
+            "line": 1,
+            "column": 13501,
+            "offset": 13501
+          },
+          "end": {
+            "line": 1,
+            "column": 13535,
+            "offset": 13535
           }
         }
       }
@@ -1275,13 +1180,13 @@
         "span": {
           "start": {
             "line": 1,
-            "column": 14264,
-            "offset": 14264
+            "column": 14086,
+            "offset": 14086
           },
           "end": {
             "line": 1,
-            "column": 14298,
-            "offset": 14298
+            "column": 14120,
+            "offset": 14120
           }
         }
       }
@@ -1299,7 +1204,85 @@
             "value": "Statement"
           },
           {
-            "index": 35
+            "index": 32
+          },
+          {
+            "value": "Condition"
+          },
+          {
+            "value": "StringEquals"
+          },
+          {
+            "value": "aws:RequestedRegion"
+          }
+        ],
+        "span": {
+          "start": {
+            "line": 1,
+            "column": 14463,
+            "offset": 14463
+          },
+          "end": {
+            "line": 1,
+            "column": 14497,
+            "offset": 14497
+          }
+        }
+      }
+    ]
+  },
+  {
+    "findingDetails": "The Region ${aws:PrincipalTag/TargetRegion} is not valid. Update the condition value to a supported Region.",
+    "findingType": "ERROR",
+    "issueCode": "INVALID_REGION",
+    "learnMoreLink": "https://docs.aws.amazon.com/IAM/latest/UserGuide/access-analyzer-reference-policy-checks.html#access-analyzer-reference-policy-checks-error-invalid-region",
+    "locations": [
+      {
+        "path": [
+          {
+            "value": "Statement"
+          },
+          {
+            "index": 33
+          },
+          {
+            "value": "Condition"
+          },
+          {
+            "value": "StringEquals"
+          },
+          {
+            "value": "aws:RequestedRegion"
+          }
+        ],
+        "span": {
+          "start": {
+            "line": 1,
+            "column": 15022,
+            "offset": 15022
+          },
+          "end": {
+            "line": 1,
+            "column": 15056,
+            "offset": 15056
+          }
+        }
+      }
+    ]
+  },
+  {
+    "findingDetails": "The Region ${aws:PrincipalTag/TargetRegion} is not valid. Update the condition value to a supported Region.",
+    "findingType": "ERROR",
+    "issueCode": "INVALID_REGION",
+    "learnMoreLink": "https://docs.aws.amazon.com/IAM/latest/UserGuide/access-analyzer-reference-policy-checks.html#access-analyzer-reference-policy-checks-error-invalid-region",
+    "locations": [
+      {
+        "path": [
+          {
+            "value": "Statement"
+          },
+          {
+            "index": 34
           },
           {
             "value": "Condition"
@@ -1338,6 +1321,45 @@
             "value": "Statement"
           },
           {
+            "index": 35
+          },
+          {
+            "value": "Condition"
+          },
+          {
+            "value": "StringEquals"
+          },
+          {
+            "value": "aws:RequestedRegion"
+          }
+        ],
+        "span": {
+          "start": {
+            "line": 1,
+            "column": 15876,
+            "offset": 15876
+          },
+          "end": {
+            "line": 1,
+            "column": 15910,
+            "offset": 15910
+          }
+        }
+      }
+    ]
+  },
+  {
+    "findingDetails": "The Region ${aws:PrincipalTag/TargetRegion} is not valid. Update the condition value to a supported Region.",
+    "findingType": "ERROR",
+    "issueCode": "INVALID_REGION",
+    "learnMoreLink": "https://docs.aws.amazon.com/IAM/latest/UserGuide/access-analyzer-reference-policy-checks.html#access-analyzer-reference-policy-checks-error-invalid-region",
+    "locations": [
+      {
+        "path": [
+          {
+            "value": "Statement"
+          },
+          {
             "index": 36
           },
           {
@@ -1353,13 +1375,147 @@
         "span": {
           "start": {
             "line": 1,
-            "column": 16158,
-            "offset": 16158
+            "column": 16338,
+            "offset": 16338
           },
           "end": {
             "line": 1,
-            "column": 16192,
-            "offset": 16192
+            "column": 16372,
+            "offset": 16372
+          }
+        }
+      }
+    ]
+  },
+  {
+    "findingDetails": "Using the effect Allow with the condition key aws:ResourceTag/ATWorkspace and actions for services with the following prefixes does not affect the policy: mgn. The actions for the listed service are not allowed by this statement. We recommend that you move these actions to a different statement without this condition key.",
+    "findingType": "SUGGESTION",
+    "issueCode": "ALLOW_WITH_UNSUPPORTED_TAG_CONDITION_KEY_FOR_SERVICE",
+    "learnMoreLink": "https://docs.aws.amazon.com/IAM/latest/UserGuide/access-analyzer-reference-policy-checks.html#access-analyzer-reference-policy-checks-suggestion-allow-with-unsupported-tag-condition-key-for-service",
+    "locations": [
+      {
+        "path": [
+          {
+            "value": "Statement"
+          },
+          {
+            "index": 37
+          },
+          {
+            "value": "Action"
+          },
+          {
+            "index": 5
+          }
+        ],
+        "span": {
+          "start": {
+            "line": 1,
+            "column": 16784,
+            "offset": 16784
+          },
+          "end": {
+            "line": 1,
+            "column": 16809,
+            "offset": 16809
+          }
+        }
+      },
+      {
+        "path": [
+          {
+            "value": "Statement"
+          },
+          {
+            "index": 37
+          },
+          {
+            "value": "Condition"
+          },
+          {
+            "value": "StringEquals"
+          },
+          {
+            "key": "aws:ResourceTag/ATWorkspace"
+          }
+        ],
+        "span": {
+          "start": {
+            "line": 1,
+            "column": 17357,
+            "offset": 17357
+          },
+          "end": {
+            "line": 1,
+            "column": 17386,
+            "offset": 17386
+          }
+        }
+      }
+    ]
+  },
+  {
+    "findingDetails": "Using the effect Allow with the condition key aws:ResourceTag/CreatedBy and actions for services with the following prefixes does not affect the policy: mgn. The actions for the listed service are not allowed by this statement. We recommend that you move these actions to a different statement without this condition key.",
+    "findingType": "SUGGESTION",
+    "issueCode": "ALLOW_WITH_UNSUPPORTED_TAG_CONDITION_KEY_FOR_SERVICE",
+    "learnMoreLink": "https://docs.aws.amazon.com/IAM/latest/UserGuide/access-analyzer-reference-policy-checks.html#access-analyzer-reference-policy-checks-suggestion-allow-with-unsupported-tag-condition-key-for-service",
+    "locations": [
+      {
+        "path": [
+          {
+            "value": "Statement"
+          },
+          {
+            "index": 37
+          },
+          {
+            "value": "Action"
+          },
+          {
+            "index": 5
+          }
+        ],
+        "span": {
+          "start": {
+            "line": 1,
+            "column": 16784,
+            "offset": 16784
+          },
+          "end": {
+            "line": 1,
+            "column": 16809,
+            "offset": 16809
+          }
+        }
+      },
+      {
+        "path": [
+          {
+            "value": "Statement"
+          },
+          {
+            "index": 37
+          },
+          {
+            "value": "Condition"
+          },
+          {
+            "value": "StringEquals"
+          },
+          {
+            "key": "aws:ResourceTag/CreatedBy"
+          }
+        ],
+        "span": {
+          "start": {
+            "line": 1,
+            "column": 17423,
+            "offset": 17423
+          },
+          "end": {
+            "line": 1,
+            "column": 17450,
+            "offset": 17450
           }
         }
       }
@@ -1392,52 +1548,13 @@
         "span": {
           "start": {
             "line": 1,
-            "column": 16616,
-            "offset": 16616
+            "column": 17271,
+            "offset": 17271
           },
           "end": {
             "line": 1,
-            "column": 16650,
-            "offset": 16650
-          }
-        }
-      }
-    ]
-  },
-  {
-    "findingDetails": "The Region ${aws:PrincipalTag/TargetRegion} is not valid. Update the condition value to a supported Region.",
-    "findingType": "ERROR",
-    "issueCode": "INVALID_REGION",
-    "learnMoreLink": "https://docs.aws.amazon.com/IAM/latest/UserGuide/access-analyzer-reference-policy-checks.html#access-analyzer-reference-policy-checks-error-invalid-region",
-    "locations": [
-      {
-        "path": [
-          {
-            "value": "Statement"
-          },
-          {
-            "index": 38
-          },
-          {
-            "value": "Condition"
-          },
-          {
-            "value": "StringEquals"
-          },
-          {
-            "value": "aws:RequestedRegion"
-          }
-        ],
-        "span": {
-          "start": {
-            "line": 1,
-            "column": 17058,
-            "offset": 17058
-          },
-          "end": {
-            "line": 1,
-            "column": 17092,
-            "offset": 17092
+            "column": 17305,
+            "offset": 17305
           }
         }
       }
@@ -1470,52 +1587,13 @@
         "span": {
           "start": {
             "line": 1,
-            "column": 17440,
-            "offset": 17440
+            "column": 17889,
+            "offset": 17889
           },
           "end": {
             "line": 1,
-            "column": 17474,
-            "offset": 17474
-          }
-        }
-      }
-    ]
-  },
-  {
-    "findingDetails": "The Region ${aws:PrincipalTag/TargetRegion} is not valid. Update the condition value to a supported Region.",
-    "findingType": "ERROR",
-    "issueCode": "INVALID_REGION",
-    "learnMoreLink": "https://docs.aws.amazon.com/IAM/latest/UserGuide/access-analyzer-reference-policy-checks.html#access-analyzer-reference-policy-checks-error-invalid-region",
-    "locations": [
-      {
-        "path": [
-          {
-            "value": "Statement"
-          },
-          {
-            "index": 40
-          },
-          {
-            "value": "Condition"
-          },
-          {
-            "value": "StringEquals"
-          },
-          {
-            "value": "aws:RequestedRegion"
-          }
-        ],
-        "span": {
-          "start": {
-            "line": 1,
-            "column": 17789,
-            "offset": 17789
-          },
-          "end": {
-            "line": 1,
-            "column": 17823,
-            "offset": 17823
+            "column": 17923,
+            "offset": 17923
           }
         }
       }
@@ -1548,91 +1626,13 @@
         "span": {
           "start": {
             "line": 1,
-            "column": 18024,
-            "offset": 18024
+            "column": 18378,
+            "offset": 18378
           },
           "end": {
             "line": 1,
-            "column": 18058,
-            "offset": 18058
-          }
-        }
-      }
-    ]
-  },
-  {
-    "findingDetails": "The Region ${aws:PrincipalTag/TargetRegion} is not valid. Update the condition value to a supported Region.",
-    "findingType": "ERROR",
-    "issueCode": "INVALID_REGION",
-    "learnMoreLink": "https://docs.aws.amazon.com/IAM/latest/UserGuide/access-analyzer-reference-policy-checks.html#access-analyzer-reference-policy-checks-error-invalid-region",
-    "locations": [
-      {
-        "path": [
-          {
-            "value": "Statement"
-          },
-          {
-            "index": 42
-          },
-          {
-            "value": "Condition"
-          },
-          {
-            "value": "StringEquals"
-          },
-          {
-            "value": "aws:RequestedRegion"
-          }
-        ],
-        "span": {
-          "start": {
-            "line": 1,
-            "column": 18393,
-            "offset": 18393
-          },
-          "end": {
-            "line": 1,
-            "column": 18427,
-            "offset": 18427
-          }
-        }
-      }
-    ]
-  },
-  {
-    "findingDetails": "The Region ${aws:PrincipalTag/TargetRegion} is not valid. Update the condition value to a supported Region.",
-    "findingType": "ERROR",
-    "issueCode": "INVALID_REGION",
-    "learnMoreLink": "https://docs.aws.amazon.com/IAM/latest/UserGuide/access-analyzer-reference-policy-checks.html#access-analyzer-reference-policy-checks-error-invalid-region",
-    "locations": [
-      {
-        "path": [
-          {
-            "value": "Statement"
-          },
-          {
-            "index": 43
-          },
-          {
-            "value": "Condition"
-          },
-          {
-            "value": "StringEquals"
-          },
-          {
-            "value": "aws:RequestedRegion"
-          }
-        ],
-        "span": {
-          "start": {
-            "line": 1,
-            "column": 18685,
-            "offset": 18685
-          },
-          "end": {
-            "line": 1,
-            "column": 18719,
-            "offset": 18719
+            "column": 18412,
+            "offset": 18412
           }
         }
       }
@@ -1665,13 +1665,13 @@
         "span": {
           "start": {
             "line": 1,
-            "column": 18963,
-            "offset": 18963
+            "column": 19398,
+            "offset": 19398
           },
           "end": {
             "line": 1,
-            "column": 18997,
-            "offset": 18997
+            "column": 19432,
+            "offset": 19432
           }
         }
       }
@@ -1704,13 +1704,13 @@
         "span": {
           "start": {
             "line": 1,
-            "column": 19291,
-            "offset": 19291
+            "column": 20101,
+            "offset": 20101
           },
           "end": {
             "line": 1,
-            "column": 19325,
-            "offset": 19325
+            "column": 20135,
+            "offset": 20135
           }
         }
       }
@@ -1743,13 +1743,13 @@
         "span": {
           "start": {
             "line": 1,
-            "column": 19637,
-            "offset": 19637
+            "column": 20600,
+            "offset": 20600
           },
           "end": {
             "line": 1,
-            "column": 19671,
-            "offset": 19671
+            "column": 20634,
+            "offset": 20634
           }
         }
       }
@@ -1782,13 +1782,13 @@
         "span": {
           "start": {
             "line": 1,
-            "column": 20114,
-            "offset": 20114
+            "column": 21042,
+            "offset": 21042
           },
           "end": {
             "line": 1,
-            "column": 20148,
-            "offset": 20148
+            "column": 21076,
+            "offset": 21076
           }
         }
       }
@@ -1821,13 +1821,13 @@
         "span": {
           "start": {
             "line": 1,
-            "column": 20565,
-            "offset": 20565
+            "column": 21424,
+            "offset": 21424
           },
           "end": {
             "line": 1,
-            "column": 20599,
-            "offset": 20599
+            "column": 21458,
+            "offset": 21458
           }
         }
       }
@@ -1860,13 +1860,130 @@
         "span": {
           "start": {
             "line": 1,
-            "column": 20949,
-            "offset": 20949
+            "column": 21773,
+            "offset": 21773
           },
           "end": {
             "line": 1,
-            "column": 20983,
-            "offset": 20983
+            "column": 21807,
+            "offset": 21807
+          }
+        }
+      }
+    ]
+  },
+  {
+    "findingDetails": "The Region ${aws:PrincipalTag/TargetRegion} is not valid. Update the condition value to a supported Region.",
+    "findingType": "ERROR",
+    "issueCode": "INVALID_REGION",
+    "learnMoreLink": "https://docs.aws.amazon.com/IAM/latest/UserGuide/access-analyzer-reference-policy-checks.html#access-analyzer-reference-policy-checks-error-invalid-region",
+    "locations": [
+      {
+        "path": [
+          {
+            "value": "Statement"
+          },
+          {
+            "index": 50
+          },
+          {
+            "value": "Condition"
+          },
+          {
+            "value": "StringEquals"
+          },
+          {
+            "value": "aws:RequestedRegion"
+          }
+        ],
+        "span": {
+          "start": {
+            "line": 1,
+            "column": 22008,
+            "offset": 22008
+          },
+          "end": {
+            "line": 1,
+            "column": 22042,
+            "offset": 22042
+          }
+        }
+      }
+    ]
+  },
+  {
+    "findingDetails": "The Region ${aws:PrincipalTag/TargetRegion} is not valid. Update the condition value to a supported Region.",
+    "findingType": "ERROR",
+    "issueCode": "INVALID_REGION",
+    "learnMoreLink": "https://docs.aws.amazon.com/IAM/latest/UserGuide/access-analyzer-reference-policy-checks.html#access-analyzer-reference-policy-checks-error-invalid-region",
+    "locations": [
+      {
+        "path": [
+          {
+            "value": "Statement"
+          },
+          {
+            "index": 51
+          },
+          {
+            "value": "Condition"
+          },
+          {
+            "value": "StringEquals"
+          },
+          {
+            "value": "aws:RequestedRegion"
+          }
+        ],
+        "span": {
+          "start": {
+            "line": 1,
+            "column": 22377,
+            "offset": 22377
+          },
+          "end": {
+            "line": 1,
+            "column": 22411,
+            "offset": 22411
+          }
+        }
+      }
+    ]
+  },
+  {
+    "findingDetails": "The Region ${aws:PrincipalTag/TargetRegion} is not valid. Update the condition value to a supported Region.",
+    "findingType": "ERROR",
+    "issueCode": "INVALID_REGION",
+    "learnMoreLink": "https://docs.aws.amazon.com/IAM/latest/UserGuide/access-analyzer-reference-policy-checks.html#access-analyzer-reference-policy-checks-error-invalid-region",
+    "locations": [
+      {
+        "path": [
+          {
+            "value": "Statement"
+          },
+          {
+            "index": 52
+          },
+          {
+            "value": "Condition"
+          },
+          {
+            "value": "StringEquals"
+          },
+          {
+            "value": "aws:RequestedRegion"
+          }
+        ],
+        "span": {
+          "start": {
+            "line": 1,
+            "column": 22669,
+            "offset": 22669
+          },
+          "end": {
+            "line": 1,
+            "column": 22703,
+            "offset": 22703
           }
         }
       }
