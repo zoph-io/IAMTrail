@@ -4,6 +4,7 @@
             "Version": "2012-10-17",
             "Statement": [
                 {
+                    "Sid": "AllowCloudwatchMetricsAccess",
                     "Effect": "Allow",
                     "Action": [
                         "cloudwatch:PutMetricData"
@@ -18,11 +19,30 @@
                             "aws:ResourceAccount": "${aws:PrincipalAccount}"
                         }
                     }
+                },
+                {
+                    "Sid": "AllowCloudwatchLogsAccess",
+                    "Effect": "Allow",
+                    "Action": [
+                        "logs:CreateLogGroup",
+                        "logs:CreateLogStream",
+                        "logs:PutLogEvents",
+                        "logs:PutRetentionPolicy"
+                    ],
+                    "Resource": [
+                        "arn:aws:logs:*:*:log-group:/aws/dsql/normalized-sql-text",
+                        "arn:aws:logs:*:*:log-group:/aws/dsql/normalized-sql-text:*"
+                    ],
+                    "Condition": {
+                        "StringEquals": {
+                            "aws:ResourceAccount": "${aws:PrincipalAccount}"
+                        }
+                    }
                 }
             ]
         },
-        "VersionId": "v6",
+        "VersionId": "v7",
         "IsDefaultVersion": true,
-        "CreateDate": "2026-02-12T18:01:12+00:00"
+        "CreateDate": "2026-11-12T00:37:08+00:00"
     }
 }
