@@ -51108,6 +51108,11 @@
             }
           }
         },
+        "verifiedpermissions": {
+          "endpoints": {
+            "us-iso-east-1": {}
+          }
+        },
         "wafv2": {
           "endpoints": {
             "us-iso-east-1": {}
@@ -52603,6 +52608,11 @@
           }
         },
         "glue": {
+          "endpoints": {
+            "eu-isoe-west-1": {}
+          }
+        },
+        "guardduty": {
           "endpoints": {
             "eu-isoe-west-1": {}
           }
