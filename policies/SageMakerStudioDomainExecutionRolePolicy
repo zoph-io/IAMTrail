@@ -32,6 +32,7 @@
                         "datazone:CreateGlossary",
                         "datazone:CreateGlossaryTerm",
                         "datazone:CreateListingChangeSet",
+                        "datazone:CreateNotificationPreference",
                         "datazone:CreateProject",
                         "datazone:CreateProjectMembership",
                         "datazone:CreateRule",
@@ -84,6 +85,7 @@
                         "datazone:GetLineageNode",
                         "datazone:GetListing",
                         "datazone:GetMetadataGenerationRun",
+                        "datazone:GetNotificationPreference",
                         "datazone:GetProject",
                         "datazone:GetRule",
                         "datazone:GetSubscription",
@@ -149,6 +151,7 @@
                         "datazone:UpdateEnvironmentProfile",
                         "datazone:UpdateGlossary",
                         "datazone:UpdateGlossaryTerm",
+                        "datazone:UpdateNotificationPreference",
                         "datazone:UpdateProject",
                         "datazone:UpdateRule",
                         "datazone:UpdateSubscriptionGrantStatus",
@@ -272,8 +275,8 @@
                 }
             ]
         },
-        "VersionId": "v25",
+        "VersionId": "v26",
         "IsDefaultVersion": true,
-        "CreateDate": "2026-11-05T22:47:07+00:00"
+        "CreateDate": "2026-11-12T14:17:07+00:00"
     }
 }
