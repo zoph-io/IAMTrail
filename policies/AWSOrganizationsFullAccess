@@ -22,7 +22,9 @@
                         "account:EnableRegion",
                         "account:DisableRegion",
                         "account:PutAccountName",
-                        "account:GetAccountInformation"
+                        "account:GetAccountInformation",
+                        "account:SendPhoneNumberVerification",
+                        "account:VerifyPhoneNumber"
                     ],
                     "Resource": "*"
                 },
@@ -39,8 +41,8 @@
                 }
             ]
         },
-        "VersionId": "v9",
+        "VersionId": "v10",
         "IsDefaultVersion": true,
-        "CreateDate": "2026-02-12T17:59:07+00:00"
+        "CreateDate": "2026-11-12T18:57:07+00:00"
     }
 }
