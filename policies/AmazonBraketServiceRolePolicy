@@ -43,7 +43,10 @@
                         "logs:CreateLogGroup",
                         "logs:DescribeLogGroups"
                     ],
-                    "Resource": "arn:aws:logs:*:*:log-group:/aws/braket:*",
+                    "Resource": [
+                        "arn:aws:logs:*:*:log-group:/aws/braket:*",
+                        "arn:aws:logs:*:*:log-group:/aws/braket"
+                    ],
                     "Condition": {
                         "StringEquals": {
                             "aws:ResourceAccount": "${aws:PrincipalAccount}"
@@ -52,8 +55,8 @@
                 }
             ]
         },
-        "VersionId": "v4",
+        "VersionId": "v5",
         "IsDefaultVersion": true,
-        "CreateDate": "2026-07-06T18:42:30+00:00"
+        "CreateDate": "2026-11-13T19:47:08+00:00"
     }
 }
