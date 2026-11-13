@@ -71,20 +71,30 @@
                 },
                 {
                     "Effect": "Allow",
-                    "Action": [
-                        "iam:CreateRole",
-                        "iam:AttachRolePolicy"
-                    ],
+                    "Action": "iam:CreateRole",
                     "Resource": "arn:aws:iam::*:role/service-role/*"
                 },
                 {
                     "Effect": "Allow",
-                    "Action": [
-                        "iam:CreatePolicy",
-                        "iam:CreatePolicyVersion",
-                        "iam:DeletePolicyVersion"
-                    ],
-                    "Resource": "arn:aws:iam::*:policy/service-role/*"
+                    "Action": "iam:AttachRolePolicy",
+                    "Resource": "arn:aws:iam::*:role/service-role/*",
+                    "Condition": {
+                        "ArnLike": {
+                            "iam:PolicyARN": [
+                                "arn:aws:iam::aws:policy/WellArchitectedAgentResourceScanning",
+                                "arn:aws:iam::*:policy/service-role/WAAgentExecutionRolePolicy*",
+                                "arn:aws:iam::*:policy/service-role/WAAgentExecutionPolicy*"
+                            ]
+                        }
+                    }
+                },
+                {
+                    "Effect": "Allow",
+                    "Action": "iam:CreatePolicy",
+                    "Resource": [
+                        "arn:aws:iam::*:policy/service-role/WAAgentExecutionRolePolicy*",
+                        "arn:aws:iam::*:policy/service-role/WAAgentExecutionPolicy*"
+                    ]
                 },
                 {
                     "Effect": "Allow",
@@ -111,8 +121,8 @@
                 }
             ]
         },
-        "VersionId": "v3",
+        "VersionId": "v4",
         "IsDefaultVersion": true,
-        "CreateDate": "2026-10-29T22:37:07+00:00"
+        "CreateDate": "2026-11-13T19:37:08+00:00"
     }
 }
