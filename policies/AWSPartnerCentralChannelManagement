@@ -106,6 +106,25 @@
                     }
                 },
                 {
+                    "Sid": "PartnerCentralContentAccess",
+                    "Effect": "Allow",
+                    "Action": [
+                        "partnercentral:GetPartnerCentralContentDocument",
+                        "partnercentral:GetPartnerCentralContentMetadata",
+                        "partnercentral:ListPartnerCentralContent",
+                        "partnercentral:SearchPartnerCentralContent"
+                    ],
+                    "Resource": "*",
+                    "Condition": {
+                        "StringEquals": {
+                            "partnercentral:Catalog": [
+                                "AWS",
+                                "Sandbox"
+                            ]
+                        }
+                    }
+                },
+                {
                     "Sid": "AmazonQPartnerAssistantAccess",
                     "Effect": "Allow",
                     "Action": [
@@ -119,8 +138,8 @@
                 }
             ]
         },
-        "VersionId": "v7",
+        "VersionId": "v8",
         "IsDefaultVersion": true,
-        "CreateDate": "2026-02-14T00:57:09+00:00"
+        "CreateDate": "2026-11-13T17:37:08+00:00"
     }
 }
