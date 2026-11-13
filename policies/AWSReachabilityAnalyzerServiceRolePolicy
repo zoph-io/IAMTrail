@@ -37,6 +37,7 @@
                         "ec2:DescribeTransitGatewayPolicyTables",
                         "ec2:GetTransitGatewayPolicyTableEntries",
                         "ec2:GetTransitGatewayPolicyTableAssociations",
+                        "ec2:GetTransitGatewayAttachmentNatConfiguration",
                         "ec2:DescribeVpcEndpointServiceConfigurations",
                         "ec2:DescribeAddresses",
                         "ec2:DescribeVpcEndpoints",
@@ -94,8 +95,8 @@
                 }
             ]
         },
-        "VersionId": "v5",
+        "VersionId": "v6",
         "IsDefaultVersion": true,
-        "CreateDate": "2026-08-14T17:17:24+00:00"
+        "CreateDate": "2026-11-13T18:07:08+00:00"
     }
 }
