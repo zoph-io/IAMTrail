@@ -358,7 +358,8 @@
                         "glue:*DataQuality*"
                     ],
                     "Resource": [
-                        "arn:aws:glue:*:*:dataQualityRuleset/dq_etl_ruleset_${aws:PrincipalTag/AmazonDataZoneProject}_*"
+                        "arn:aws:glue:*:*:dataQualityRuleset/dq_etl_ruleset_${aws:PrincipalTag/AmazonDataZoneProject}_*",
+                        "arn:aws:glue:*:*:dataQualityEvaluationConfig/sagemaker_unified_studio_profiling_${aws:PrincipalTag/AmazonDataZoneProject}_*"
                     ],
                     "Condition": {
                         "StringEquals": {
@@ -1365,7 +1366,8 @@
                                 "access-grants.s3.amazonaws.com",
                                 "pods.eks.amazonaws.com",
                                 "bedrock-agentcore.amazonaws.com",
-                                "agent-registry.amazonaws.com"
+                                "agent-registry.amazonaws.com",
+                                "bedrock.amazonaws.com"
                             ]
                         }
                     }
@@ -2014,19 +2016,24 @@
                         "bedrock:CreateBlueprint",
                         "bedrock:CreateBlueprintVersion",
                         "bedrock:CreateDataAutomationProject",
+                        "bedrock:CreateDataSource",
                         "bedrock:CreateEvaluationJob",
+                        "bedrock:CreateKnowledgeBase",
                         "bedrock:CreatePrompt",
                         "bedrock:CreatePromptVersion",
                         "bedrock:DeleteAgentAlias",
                         "bedrock:DeleteAgentVersion",
                         "bedrock:DeleteBlueprint",
                         "bedrock:DeleteDataAutomationProject",
+                        "bedrock:DeleteDataSource",
+                        "bedrock:DeleteKnowledgeBase",
                         "bedrock:DeletePrompt",
                         "bedrock:GetAgentAlias",
                         "bedrock:GetAgentVersion",
                         "bedrock:GetBlueprint",
                         "bedrock:GetDataAutomationProject",
                         "bedrock:GetDataAutomationStatus",
+                        "bedrock:GetDataSource",
                         "bedrock:GetEvaluationJob",
                         "bedrock:GetKnowledgeBase",
                         "bedrock:GetIngestionJob",
@@ -2036,6 +2043,7 @@
                         "bedrock:InvokeFlow",
                         "bedrock:ListAgentAliases",
                         "bedrock:ListAgentVersions",
+                        "bedrock:ListDataSources",
                         "bedrock:ListIngestionJobs",
                         "bedrock:ListPrompts",
                         "bedrock:ListTagsForResource",
@@ -2045,6 +2053,8 @@
                         "bedrock:UpdateAgentAlias",
                         "bedrock:UpdateBlueprint",
                         "bedrock:UpdateDataAutomationProject",
+                        "bedrock:UpdateDataSource",
+                        "bedrock:UpdateKnowledgeBase",
                         "bedrock:ListAgentActionGroups",
                         "bedrock:ListAgentKnowledgeBases"
                     ],
@@ -2833,8 +2843,8 @@
                 }
             ]
         },
-        "VersionId": "v76",
+        "VersionId": "v77",
         "IsDefaultVersion": true,
-        "CreateDate": "2026-10-29T22:37:07+00:00"
+        "CreateDate": "2026-11-13T20:47:08+00:00"
     }
 }
