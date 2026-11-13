@@ -1,6 +1,6 @@
 [
   {
-    "findingDetails": "The 11581 characters in the identity policy, excluding whitespace, exceed the 10240 character maximum for inline and managed policies. We recommend that you use multiple granular policies.",
+    "findingDetails": "The 11792 characters in the identity policy, excluding whitespace, exceed the 10240 character maximum for inline and managed policies. We recommend that you use multiple granular policies.",
     "findingType": "WARNING",
     "issueCode": "POLICY_SIZE_EXCEEDS_IDENTITY_POLICY_QUOTA",
     "learnMoreLink": "https://docs.aws.amazon.com/IAM/latest/UserGuide/access-analyzer-reference-policy-checks.html#access-analyzer-reference-policy-checks-general-warning-policy-size-exceeds-identity-policy-quota",
@@ -15,8 +15,8 @@
           },
           "end": {
             "line": 1,
-            "column": 12142,
-            "offset": 12142
+            "column": 12365,
+            "offset": 12365
           }
         }
       }
@@ -34,7 +34,7 @@
             "value": "Statement"
           },
           {
-            "index": 9
+            "index": 10
           },
           {
             "value": "Resource"
@@ -46,13 +46,13 @@
         "span": {
           "start": {
             "line": 1,
-            "column": 3968,
-            "offset": 3968
+            "column": 4191,
+            "offset": 4191
           },
           "end": {
             "line": 1,
-            "column": 4001,
-            "offset": 4001
+            "column": 4224,
+            "offset": 4224
           }
         }
       },
@@ -62,7 +62,7 @@
             "value": "Statement"
           },
           {
-            "index": 9
+            "index": 10
           },
           {
             "value": "Resource"
@@ -74,13 +74,13 @@
         "span": {
           "start": {
             "line": 1,
-            "column": 4003,
-            "offset": 4003
+            "column": 4226,
+            "offset": 4226
           },
           "end": {
             "line": 1,
-            "column": 4038,
-            "offset": 4038
+            "column": 4261,
+            "offset": 4261
           }
         }
       }
