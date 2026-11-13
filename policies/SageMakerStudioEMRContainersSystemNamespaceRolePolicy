@@ -61,11 +61,39 @@
                             "aws:ResourceTag/AmazonDataZoneProject": "${aws:PrincipalTag/AmazonDataZoneProject}"
                         }
                     }
+                },
+                {
+                    "Sid": "AssumeTaggedExecutionRole",
+                    "Effect": "Allow",
+                    "Action": [
+                        "sts:AssumeRole",
+                        "sts:TagSession",
+                        "sts:SetContext"
+                    ],
+                    "Resource": "arn:aws:iam::*:role/${aws:PrincipalTag/AmazonDataZoneExecutionRolePath}",
+                    "Condition": {
+                        "ForAllValues:StringEquals": {
+                            "aws:TagKeys": [
+                                "LakeFormationAuthorizedCaller"
+                            ]
+                        },
+                        "StringEquals": {
+                            "aws:ResourceAccount": "${aws:PrincipalAccount}"
+                        },
+                        "StringEqualsIfExists": {
+                            "aws:RequestTag/LakeFormationAuthorizedCaller": "EMR on EKS Engine"
+                        },
+                        "ForAllValues:ArnEquals": {
+                            "sts:RequestContextProviders": [
+                                "arn:aws:iam::aws:contextProvider/IdentityCenter"
+                            ]
+                        }
+                    }
                 }
             ]
         },
-        "VersionId": "v6",
+        "VersionId": "v7",
         "IsDefaultVersion": true,
-        "CreateDate": "2026-02-12T18:01:48+00:00"
+        "CreateDate": "2026-11-13T21:17:07+00:00"
     }
 }
