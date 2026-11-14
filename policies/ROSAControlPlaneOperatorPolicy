@@ -11,7 +11,8 @@
                         "ec2:DescribeVpcs",
                         "ec2:DescribeSecurityGroups",
                         "ec2:DescribeSubnets",
-                        "route53:ListHostedZones"
+                        "route53:ListHostedZones",
+                        "route53:GetHostedZone"
                     ],
                     "Resource": "*"
                 },
@@ -95,10 +96,31 @@
                     "Condition": {
                         "ForAllValues:StringLike": {
                             "route53:ChangeResourceRecordSetsNormalizedRecordNames": [
-                                "*.hypershift.local"
+                                "*.hypershift.local",
+                                "*.openshiftapps.com",
+                                "*.devshift.org",
+                                "*.openshiftusgov.com",
+                                "*.devshiftusgov.com"
                             ]
                         }
                     }
+                },
+                {
+                    "Sid": "ManageHostedZones",
+                    "Effect": "Allow",
+                    "Action": [
+                        "route53:CreateHostedZone",
+                        "route53:DeleteHostedZone"
+                    ],
+                    "Resource": "*"
+                },
+                {
+                    "Sid": "TagHostedZones",
+                    "Effect": "Allow",
+                    "Action": [
+                        "route53:ChangeTagsForResource"
+                    ],
+                    "Resource": "arn:aws:route53:::hostedzone/*"
                 },
                 {
                     "Sid": "VPCEndpointWithCondition",
@@ -214,8 +236,8 @@
                 }
             ]
         },
-        "VersionId": "v7",
+        "VersionId": "v8",
         "IsDefaultVersion": true,
-        "CreateDate": "2026-07-28T23:12:18+00:00"
+        "CreateDate": "2026-11-13T23:47:08+00:00"
     }
 }
