@@ -1,6 +1,6 @@
 [
   {
-    "findingDetails": "The 13467 characters in the identity policy, excluding whitespace, exceed the 10240 character maximum for inline and managed policies. We recommend that you use multiple granular policies.",
+    "findingDetails": "The 16100 characters in the identity policy, excluding whitespace, exceed the 10240 character maximum for inline and managed policies. We recommend that you use multiple granular policies.",
     "findingType": "WARNING",
     "issueCode": "POLICY_SIZE_EXCEEDS_IDENTITY_POLICY_QUOTA",
     "learnMoreLink": "https://docs.aws.amazon.com/IAM/latest/UserGuide/access-analyzer-reference-policy-checks.html#access-analyzer-reference-policy-checks-general-warning-policy-size-exceeds-identity-policy-quota",
@@ -15,8 +15,8 @@
           },
           "end": {
             "line": 1,
-            "column": 14122,
-            "offset": 14122
+            "column": 16867,
+            "offset": 16867
           }
         }
       }
@@ -40,19 +40,19 @@
             "value": "Action"
           },
           {
-            "index": 9
+            "index": 8
           }
         ],
         "span": {
           "start": {
             "line": 1,
-            "column": 1056,
-            "offset": 1056
+            "column": 1072,
+            "offset": 1072
           },
           "end": {
             "line": 1,
-            "column": 1084,
-            "offset": 1084
+            "column": 1100,
+            "offset": 1100
           }
         }
       },
@@ -77,13 +77,13 @@
         "span": {
           "start": {
             "line": 1,
-            "column": 1649,
-            "offset": 1649
+            "column": 1604,
+            "offset": 1604
           },
           "end": {
             "line": 1,
-            "column": 1693,
-            "offset": 1693
+            "column": 1648,
+            "offset": 1648
           }
         }
       }

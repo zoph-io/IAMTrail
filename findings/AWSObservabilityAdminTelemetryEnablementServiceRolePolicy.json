@@ -1,6 +1,6 @@
 [
   {
-    "findingDetails": "The 15703 characters in the identity policy, excluding whitespace, exceed the 10240 character maximum for inline and managed policies. We recommend that you use multiple granular policies.",
+    "findingDetails": "The 16096 characters in the identity policy, excluding whitespace, exceed the 10240 character maximum for inline and managed policies. We recommend that you use multiple granular policies.",
     "findingType": "WARNING",
     "issueCode": "POLICY_SIZE_EXCEEDS_IDENTITY_POLICY_QUOTA",
     "learnMoreLink": "https://docs.aws.amazon.com/IAM/latest/UserGuide/access-analyzer-reference-policy-checks.html#access-analyzer-reference-policy-checks-general-warning-policy-size-exceeds-identity-policy-quota",
@@ -15,8 +15,8 @@
           },
           "end": {
             "line": 1,
-            "column": 16472,
-            "offset": 16472
+            "column": 16881,
+            "offset": 16881
           }
         }
       }
@@ -46,13 +46,13 @@
         "span": {
           "start": {
             "line": 1,
-            "column": 1840,
-            "offset": 1840
+            "column": 1888,
+            "offset": 1888
           },
           "end": {
             "line": 1,
-            "column": 1864,
-            "offset": 1864
+            "column": 1912,
+            "offset": 1912
           }
         }
       },
@@ -74,13 +74,13 @@
         "span": {
           "start": {
             "line": 1,
-            "column": 1974,
-            "offset": 1974
+            "column": 2022,
+            "offset": 2022
           },
           "end": {
             "line": 1,
-            "column": 1998,
-            "offset": 1998
+            "column": 2046,
+            "offset": 2046
           }
         }
       },
@@ -105,13 +105,13 @@
         "span": {
           "start": {
             "line": 1,
-            "column": 2099,
-            "offset": 2099
+            "column": 2147,
+            "offset": 2147
           },
           "end": {
             "line": 1,
-            "column": 2147,
-            "offset": 2147
+            "column": 2195,
+            "offset": 2195
           }
         }
       }
@@ -129,7 +129,7 @@
             "value": "Statement"
           },
           {
-            "index": 53
+            "index": 54
           },
           {
             "value": "Condition"
@@ -144,13 +144,13 @@
         "span": {
           "start": {
             "line": 1,
-            "column": 15883,
-            "offset": 15883
+            "column": 16292,
+            "offset": 16292
           },
           "end": {
             "line": 1,
-            "column": 15929,
-            "offset": 15929
+            "column": 16338,
+            "offset": 16338
           }
         }
       }
