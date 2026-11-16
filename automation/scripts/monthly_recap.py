@@ -2,10 +2,12 @@
 """Draft the "AWS managed policy changes" post for zoph.me, for a month or a longer period.
 
 Replays the archive with build_action_registry.build(), keeps the deltas that
-fall in the chosen calendar months (UTC), and renders a Hugo post with every number,
-list and link already filled in. The parts that need an opinion (the hook, why
-a change matters, what to check) are left as HTML comments for the author:
-Hugo drops raw HTML, so a TODO that survives into production renders nothing.
+fall in the chosen calendar months (UTC), and renders a short Hugo post (about
+TARGET_WORDS words once written): the numbers table, the new service prefixes
+and links to iamtrail.com for the full lists. The long lists (biggest updates,
+new policies, wildcards, rollbacks...) go to a fact sheet comment the author
+picks two or three stories from. The parts that need an opinion are left as
+HTML comments: Hugo drops raw HTML, so a TODO that survives renders nothing.
 
 The post is always written with draft: true. Run it after the month closes;
 running it mid-month works but covers the month to date only.
@@ -24,7 +26,6 @@ Stdlib only, like build_action_registry.py.
 """
 
 import argparse
-import base64
 import contextlib
 import datetime as dt
 import json
@@ -34,7 +35,6 @@ import subprocess
 import sys
 from collections import defaultdict
 from pathlib import Path
-from urllib.parse import quote
 from zoneinfo import ZoneInfo
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
@@ -49,21 +49,17 @@ AUTHOR_TZ = ZoneInfo("Europe/Paris")
 # not AWS publishing new versions.
 BULK_DAY_THRESHOLD = 50
 
-TOP_UPDATES = 10
-MAX_NEW_POLICIES = 15
+# The post is a digest of about this many words; the long lists go to a comment
+# for the author (the fact sheet) and readers get a link to iamtrail.com/changes.
+TARGET_WORDS = 500
+MAX_PREFIXES = 8
+TOP_UPDATES = 8
+TOP_NEW_POLICIES = 5
 MAX_LISTED_ACTIONS = 5
-TOP_NEW_ACTION_SERVICES = 8
+TOP_NEW_ACTION_SERVICES = 6
 MIN_VERSIONS_MOST_ACTIVE = 3
-
-
-def policy_url(name):
-    return f"{SITE_URL}/policies/{quote(name, safe='')}/"
-
-
-def action_url(action):
-    """Mirror iamActionToSlug in website/lib/actionSlug.ts."""
-    slug = base64.urlsafe_b64encode(action.encode()).decode().rstrip("=")
-    return f"{SITE_URL}/actions/{slug}/"
+# Policies attached to a lot of humans and vendors: a change there matters to almost everyone.
+WATCHED = ["AdministratorAccess", "PowerUserAccess", "ReadOnlyAccess", "ViewOnlyAccess", "SecurityAudit"]
 
 
 def git_doc(rev, path):
@@ -96,17 +92,6 @@ def allowed_wildcards(doc):
             if isinstance(value, str) and "*" in value:
                 found[value.lower()] = value
     return found
-
-
-def current_literal_actions():
-    """Exact action spellings in today's policies: the ones with an action page."""
-    actions = set()
-    for path in (REPO_ROOT / "policies").iterdir():
-        try:
-            actions |= registry.literal_actions(json.loads(path.read_text()))
-        except (json.JSONDecodeError, UnicodeDecodeError, IsADirectoryError):
-            continue
-    return actions
 
 
 def month_bounds(month):
@@ -248,9 +233,8 @@ def wildcard_changes(summary):
     return sorted(out, key=lambda item: item[0].lower())
 
 
-def code_list(items, limit=MAX_LISTED_ACTIONS, link=None):
-    shown = [f"[`{a}`]({link(a)})" if link and link(a) else f"`{a}`" for a in items[:limit]]
-    text = ", ".join(shown)
+def code_list(items, limit=MAX_LISTED_ACTIONS):
+    text = ", ".join(f"`{a}`" for a in items[:limit])
     if len(items) > limit:
         text += f" and {len(items) - limit:,} more"
     return text
@@ -260,7 +244,92 @@ def day(date):
     return dt.datetime.strptime(date[:10], "%Y-%m-%d").strftime("%b %-d")
 
 
-def render(summary, previous, label, service_names, linkable, as_of, post_date):
+def plural(count, word):
+    return f"{count:,} {word}{'' if count == 1 else 's'}"
+
+
+def comment_safe(text):
+    """An HTML comment ends at the first `--`, so keep it out of the fact sheet."""
+    return text.replace("--", "- -")
+
+
+def visible_words(text):
+    """Words a reader sees: body only, without HTML comments, code blocks and link targets."""
+    body = text.split("\n---\n", 1)[-1]
+    body = re.sub(r"<!--.*?-->", " ", body, flags=re.S)
+    body = re.sub(r"```.*?```", " ", body, flags=re.S)
+    body = re.sub(r"\]\([^)]*\)", "]", body)
+    return len(re.findall(r"[A-Za-z0-9][\w'.,:%/-]*", body))
+
+
+def fact_sheet(summary, label, service):
+    """The long lists, as notes for the author: the post itself only keeps two or three of them."""
+    notes = []
+
+    def section(title, lines):
+        if lines:
+            notes.extend(["", f"{title}:"] + [f"  - {line}" for line in lines])
+
+    modified = summary["modified"]
+    section("Widely attached policies that changed", [
+        f"{name} ({plural(len(modified[name]['versions']), 'version')}): +{len(modified[name]['added']):,} / "
+        f"-{len(modified[name]['removed']):,}, like {code_list(sorted(modified[name]['added'].values()), 3)}"
+        for name in WATCHED if name in modified
+    ])
+
+    ranked = sorted(
+        ((name, p) for name, p in modified.items() if p["added"] or p["removed"]),
+        key=lambda item: (-(len(item[1]["added"]) + len(item[1]["removed"])), item[0].lower()),
+    )
+    section("Biggest updates", [
+        f"{name}: +{len(p['added']):,} / -{len(p['removed']):,}" for name, p in ranked[:TOP_UPDATES]
+    ])
+
+    section("Largest new policies", [
+        f"{d['policyName']} ({day(d['date'])}): {len(d['actionsAdded']):,} actions"
+        for d in sorted(summary["added"], key=lambda d: -len(d["actionsAdded"]))[:TOP_NEW_POLICIES]
+    ])
+
+    wildcards = [
+        (name, [w for w in gained if w.endswith(":*") or w == "*"], is_new)
+        for name, gained, is_new in wildcard_changes(summary)
+    ]
+    section("New service-wide wildcards (service:*) in Allow statements", [
+        f"{name} ({'new' if is_new else 'updated'}): {code_list(gained)}"
+        for name, gained, is_new in wildcards if gained
+    ])
+
+    section("Rolled back (AWS set an older version as default again)", [
+        f"{name}: {' > '.join(p['sequence'])}" for name, p in modified.items()
+        if p["sequence"] and p["sequence"][-1] in p["sequence"][:-1]
+    ])
+
+    busy = sorted(
+        ((name, len(p["versions"])) for name, p in modified.items()
+         if len(p["versions"]) >= MIN_VERSIONS_MOST_ACTIVE),
+        key=lambda item: (-item[1], item[0].lower()),
+    )
+    section("Most active", [f"{name}: {plural(count, 'version')}" for name, count in busy[:TOP_UPDATES]])
+
+    by_service = defaultdict(int)
+    for action, _ in summary["new_actions"].values():
+        by_service[action.split(":", 1)[0].lower()] += 1
+    section("Brand-new actions by service", [
+        f"{prefix}{f' ({service(prefix)})' if service(prefix) else ''}: {count}"
+        for prefix, count in sorted(by_service.items(), key=lambda i: (-i[1], i[0]))[:TOP_NEW_ACTION_SERVICES]
+    ])
+
+    section("Removed policies", [f"{d['policyName']} ({day(d['date'])})" for d in summary["removed"]])
+
+    return [
+        "<!-- FACT SHEET for the author, not rendered. Pick the two or three stories that matter,",
+        "     give each a short section with your opinion, then delete this comment.",
+        f"     Full lists for readers: {SITE_URL}/changes/ (link it, do not copy it).",
+        f"     Link a policy as {SITE_URL}/policies/<PolicyName>/.",
+    ] + [comment_safe(f"     {line}") for line in notes] + ["-->"]
+
+
+def render(summary, previous, label, service_names, as_of, post_date):
     months = summary["months"]
     span_text = range_text(months)
     if len(months) == 1:
@@ -274,7 +343,6 @@ def render(summary, previous, label, service_names, linkable, as_of, post_date):
         if year in label and months[0][:4] == year:
             span_text = span_text.removesuffix(f" {year}")
         scope = f"{label} ({span_text})"
-    link_action = lambda a: action_url(a) if a in linkable else None  # noqa: E731
     service = lambda s: service_names.get(s.lower())  # noqa: E731
 
     n_new_actions = len(summary["new_actions"])
@@ -294,13 +362,13 @@ def render(summary, previous, label, service_names, linkable, as_of, post_date):
         f'description: "{description}"',
         "images: []",
         "tags:",
-        "  - AWS",
-        "  - IAM",
-        "  - Security",
-        "  - IAMTrail",
+        "  - aws",
+        "  - iam",
+        "  - security",
         "---",
         "",
         f"<!-- Generated by IAMTrail automation/scripts/monthly_recap.py from the archive as of {as_of}.",
+        f"     Target: around {TARGET_WORDS} words. A digest, not a data dump: the lists live on iamtrail.com.",
         "     Replace each TODO comment with your own words, add a social image to images, then set draft: false. -->",
     ]
     if summary["bulk_days"]:
@@ -312,8 +380,11 @@ def render(summary, previous, label, service_names, linkable, as_of, post_date):
         "",
         "<!-- TODO(zoph): opening hook, one or two lines. -->",
         "",
-        f"Here is what changed in AWS managed IAM policies in **{scope}**, straight from the "
-        f"[IAMTrail]({SITE_URL}) archive.",
+        f"**{summary['versions']:,}** new policy versions, **{len(summary['added']):,}** new policies and "
+        f"**{n_new_actions:,}** IAM actions that never showed up in a managed policy before.",
+        "",
+        f"Here is the short version of **{scope}**, from the [IAMTrail]({SITE_URL}) archive. "
+        f"The full lists (every policy, every diff) live on the [changes page]({SITE_URL}/changes/).",
         "",
         "## The Numbers",
         "",
@@ -322,11 +393,8 @@ def render(summary, previous, label, service_names, linkable, as_of, post_date):
     ]
     table = [
         ("Policy versions published", "versions"),
-        ("Distinct policies updated", lambda s: len(s["modified"])),
         ("New policies", lambda s: len(s["added"])),
-        ("Policies removed", lambda s: len(s["removed"])),
         ("Actions added to existing policies", "actions_added"),
-        ("Actions removed from existing policies", "actions_removed"),
         ("IAM actions seen for the first time", lambda s: len(s["new_actions"])),
         ("New service prefixes", lambda s: len(s["new_prefixes"])),
     ]
@@ -335,131 +403,34 @@ def render(summary, previous, label, service_names, linkable, as_of, post_date):
         out.append(f"| {title} | **{get(summary):,}** | {get(previous):,} |")
 
     if summary["new_prefixes"]:
+        prefixes = [p for p, _, _ in summary["new_prefixes"]]
         out += [
             "",
             "## New Service Prefixes",
             "",
-            "The strongest signal in the archive: the IAM prefix usually lands before the SDK and the docs.",
+            f"A new IAM prefix usually lands before the SDK and the docs. "
+            f"{'This one' if n_prefixes == 1 else f'These {n_prefixes}'}: {code_list(prefixes, MAX_PREFIXES)}.",
             "",
-        ]
-        for prefix, policy, date in summary["new_prefixes"]:
-            name = service(prefix)
-            count = sum(1 for a, _ in summary["new_actions"].values()
-                        if a.split(":", 1)[0].lower() == prefix.lower())
-            out.append(
-                f"- `{prefix}`{f' ({name})' if name else ''}: first seen in "
-                f"[{policy}]({policy_url(policy)}) on {day(date)}, with {count} action"
-                f"{'' if count == 1 else 's'}."
-            )
-        out += ["", "<!-- TODO(zoph): what are these services? -->"]
+            "<!-- TODO(zoph): the theme in one or two lines. Prefix details:",
+        ] + [
+            comment_safe(f"     - {p}{f' ({service(p)})' if service(p) else ''}: first in {pol} on {day(d)}")
+            for p, pol, d in summary["new_prefixes"]
+        ] + ["-->"]
 
-    wildcards = wildcard_changes(summary)
-    if wildcards:
-        out += ["", "## New Wildcard Grants", ""]
-        for name, gained, is_new in wildcards:
-            where = "new policy" if is_new else "updated"
-            out.append(f"- [{name}]({policy_url(name)}) ({where}): {code_list(gained)}")
-        out += ["", "<!-- TODO(zoph): which of these deserve a second look? -->"]
-
-    if summary["added"]:
-        out += ["", "## New Policies", ""]
-        shown = summary["added"]
-        if len(shown) > MAX_NEW_POLICIES:
-            biggest = sorted(shown, key=lambda d: -len(d["actionsAdded"]))[:MAX_NEW_POLICIES]
-            shown = [d for d in shown if d in biggest]
-            out += [f"The {MAX_NEW_POLICIES} largest of **{len(summary['added']):,}**, by action count:", ""]
-        for d in shown:
-            prefixes = sorted({a.split(":", 1)[0] for a in d["actionsAdded"]})
-            count = len(d["actionsAdded"])
-            services = f" across {code_list(prefixes, 4)}" if prefixes else ""
-            out.append(
-                f"- [{d['policyName']}]({policy_url(d['policyName'])}), {day(d['date'])}: "
-                f"{count:,} action{'' if count == 1 else 's'}{services}."
-            )
-        if len(summary["added"]) > MAX_NEW_POLICIES:
-            out.append(
-                f"- And {len(summary['added']) - MAX_NEW_POLICIES:,} more on the "
-                f"[changes page]({SITE_URL}/changes/)."
-            )
-
-    ranked = sorted(
-        summary["modified"].items(),
-        key=lambda item: (-(len(item[1]["added"]) + len(item[1]["removed"])), item[0].lower()),
-    )
-    ranked = [item for item in ranked if item[1]["added"] or item[1]["removed"]][:TOP_UPDATES]
-    if ranked:
-        out += ["", "## Biggest Updates", ""]
-        for name, p in ranked:
-            seq = p["sequence"]
-            if not seq:
-                span = ""
-            elif len(seq) == 1:
-                span = f" (`{seq[0]}`)"
-            elif seq[-1] in seq[:-1]:
-                span = f" (`{seq[0]}` to `{seq[-2]}`, then rolled back to `{seq[-1]}`)"
-            else:
-                span = f" (`{seq[0]}` to `{seq[-1]}`)"
-            line = (
-                f"- **[{name}]({policy_url(name)})**{span}: "
-                f"**+{len(p['added']):,}** / **-{len(p['removed']):,}**."
-            )
-            if p["added"]:
-                line += f" Added {code_list(sorted(p['added'].values()))}."
-            if p["removed"]:
-                line += f" Removed {code_list(sorted(p['removed'].values()))}."
-            out.append(line)
-        out += ["", "<!-- TODO(zoph): pick the two or three that matter and say why. -->"]
-
-    if summary["new_actions"]:
-        by_service = defaultdict(list)
-        for action, _ in summary["new_actions"].values():
-            by_service[action.split(":", 1)[0].lower()].append(action)
-        top = sorted(by_service.items(), key=lambda item: (-len(item[1]), item[0]))
-        out += [
-            "",
-            "## Brand-New IAM Actions",
-            "",
-            f"**{n_new_actions:,}** actions appeared in a managed policy for the first time. "
-            "Where they came from:",
-            "",
-        ]
-        for prefix, actions in top[:TOP_NEW_ACTION_SERVICES]:
-            name = service(prefix)
-            out.append(
-                f"- `{prefix}`{f' ({name})' if name else ''}: **{len(actions)}**, like "
-                f"{code_list(sorted(actions), 3, link=link_action)}"
-            )
-        if len(top) > TOP_NEW_ACTION_SERVICES:
-            rest = sum(len(a) for _, a in top[TOP_NEW_ACTION_SERVICES:])
-            out.append(f"- {rest:,} more across {len(top) - TOP_NEW_ACTION_SERVICES} other services.")
-
-    busy = sorted(
-        ((name, len(p["versions"])) for name, p in summary["modified"].items()
-         if len(p["versions"]) >= MIN_VERSIONS_MOST_ACTIVE),
-        key=lambda item: (-item[1], item[0].lower()),
-    )
-    if busy:
-        out += ["", "## Most Active", ""]
-        for name, count in busy[:10]:
-            out.append(f"- [{name}]({policy_url(name)}): {count} versions in {label}.")
-
-    if summary["removed"]:
-        out += ["", "## Removed", ""]
-        for d in summary["removed"]:
-            out.append(f"- `{d['policyName']}`, {day(d['date'])}.")
-
-    out += [
+    out += [""] + fact_sheet(summary, label, service) + [
+        "",
+        "<!-- TODO(zoph): two or three short sections (## headline each), one story per section, with your opinion. -->",
         "",
         "## What to Check in Your Accounts",
         "",
-        "<!-- TODO(zoph): two or three concrete checks. -->",
+        "<!-- TODO(zoph): one or two concrete checks, a command if it helps. -->",
         "",
         "## Takeaways",
         "",
-        "<!-- TODO(zoph): the short list. -->",
+        "<!-- TODO(zoph): three or four bullets. -->",
         "",
-        f"IAMTrail sends [instant or daily alerts]({SITE_URL}/subscribe/) when a policy you care "
-        f"about changes, and every change is also on the [RSS feeds]({SITE_URL}/feeds/).",
+        f"Do not read diffs by hand: [subscribe on IAMTrail]({SITE_URL}/subscribe/) to the policies you "
+        f"actually attach (instant or daily alerts, or [RSS]({SITE_URL}/feeds/)).",
         "",
         "Want someone to check how these changes land in your own AWS Organization? That is "
         "literally my job at [zoph.io](https://zoph.io) (Self-promotion).",
@@ -514,7 +485,9 @@ def main():
     as_of = today.strftime("%Y-%m-%dT%H:%MZ")
     if today < month_end:
         as_of += f" (to date: {range_text(months)} is not over)"
-    text = render(summary, previous, label, service_names, current_literal_actions(), as_of, post_date)
+    text = render(summary, previous, label, service_names, as_of, post_date)
+    words = visible_words(text)
+    print(f"Generated {words} visible words, before your prose (target: about {TARGET_WORDS}).", file=sys.stderr)
 
     if not args.out_dir:
         sys.stdout.write(text)
