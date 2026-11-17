@@ -2512,6 +2512,7 @@
                         "timestream-influxdb:GetDbInstance",
                         "timestream-influxdb:ListDbClusters",
                         "timestream-influxdb:ListDbInstances",
+                        "timestream-influxdb:ListDbInstancesForCluster",
                         "timestream-influxdb:ListTagsForResource",
                         "timestream:DescribeDatabase",
                         "timestream:DescribeEndpoints",
@@ -2638,8 +2639,8 @@
                 }
             ]
         },
-        "VersionId": "v74",
+        "VersionId": "v75",
         "IsDefaultVersion": true,
-        "CreateDate": "2026-10-28T21:57:07+00:00"
+        "CreateDate": "2026-11-16T23:37:08+00:00"
     }
 }
