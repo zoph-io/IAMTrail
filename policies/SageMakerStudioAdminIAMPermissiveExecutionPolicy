@@ -903,7 +903,8 @@
                     "Condition": {
                         "StringLike": {
                             "ram:ResourceShareName": [
-                                "DataZone*"
+                                "DataZone*",
+                                "LakeFormation-*"
                             ]
                         }
                     }
@@ -934,8 +935,8 @@
                 }
             ]
         },
-        "VersionId": "v26",
+        "VersionId": "v27",
         "IsDefaultVersion": true,
-        "CreateDate": "2026-11-14T00:07:09+00:00"
+        "CreateDate": "2026-11-17T18:07:08+00:00"
     }
 }
