@@ -45,11 +45,30 @@
                         "outposts:GetOutpostInstanceTypes"
                     ],
                     "Resource": "*"
+                },
+                {
+                    "Sid": "NLBSecretsManagerAccess",
+                    "Effect": "Allow",
+                    "Action": [
+                        "secretsmanager:RotateSecret",
+                        "secretsmanager:PutSecretValue",
+                        "secretsmanager:DescribeSecret",
+                        "secretsmanager:UpdateSecretVersionStage",
+                        "secretsmanager:DeleteSecret"
+                    ],
+                    "Resource": [
+                        "arn:aws:secretsmanager:*:*:secret:elasticloadbalancing-nlb!*"
+                    ],
+                    "Condition": {
+                        "StringEquals": {
+                            "aws:ResourceAccount": "${aws:PrincipalAccount}"
+                        }
+                    }
                 }
             ]
         },
-        "VersionId": "v15",
+        "VersionId": "v16",
         "IsDefaultVersion": true,
-        "CreateDate": "2026-10-13T19:47:07+00:00"
+        "CreateDate": "2026-11-17T22:27:08+00:00"
     }
 }
