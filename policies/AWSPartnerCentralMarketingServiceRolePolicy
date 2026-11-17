@@ -1,0 +1,29 @@
+{
+    "PolicyVersion": {
+        "Document": {
+            "Version": "2012-10-17",
+            "Statement": [
+                {
+                    "Sid": "CreateEngagementFromCampaignLeads",
+                    "Effect": "Allow",
+                    "Action": [
+                        "partnercentral:CreateEngagement"
+                    ],
+                    "Resource": "*",
+                    "Condition": {
+                        "StringEquals": {
+                            "partnercentral:Catalog": [
+                                "AWS",
+                                "Sandbox"
+                            ],
+                            "aws:ResourceAccount": "${aws:PrincipalAccount}"
+                        }
+                    }
+                }
+            ]
+        },
+        "VersionId": "v1",
+        "IsDefaultVersion": true,
+        "CreateDate": "2026-11-17T18:47:09+00:00"
+    }
+}
