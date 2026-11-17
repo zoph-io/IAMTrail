@@ -4145,12 +4145,12 @@
             "PolicyId": "ANPAJUCWFHNZER665LLQQ",
             "Arn": "arn:aws:iam::aws:policy/aws-service-role/AWSConfigServiceRolePolicy",
             "Path": "/aws-service-role/",
-            "DefaultVersionId": "v97",
+            "DefaultVersionId": "v98",
             "AttachmentCount": 1,
             "PermissionsBoundaryUsageCount": 0,
             "IsAttachable": true,
             "CreateDate": "2018-05-30T23:31:46+00:00",
-            "UpdateDate": "2026-10-28T21:57:07+00:00"
+            "UpdateDate": "2026-11-16T23:37:08+00:00"
         },
         {
             "PolicyName": "AmazonRDSPreviewServiceRolePolicy",
@@ -7997,12 +7997,12 @@
             "PolicyId": "ANPAZKAPJZG4PP7QZ4FBG",
             "Arn": "arn:aws:iam::aws:policy/service-role/AWS_ConfigRole",
             "Path": "/service-role/",
-            "DefaultVersionId": "v74",
+            "DefaultVersionId": "v75",
             "AttachmentCount": 1,
             "PermissionsBoundaryUsageCount": 0,
             "IsAttachable": true,
             "CreateDate": "2020-09-15T20:30:30+00:00",
-            "UpdateDate": "2026-10-28T21:57:07+00:00"
+            "UpdateDate": "2026-11-16T23:37:08+00:00"
         },
         {
             "PolicyName": "MediaPackageServiceRolePolicy",
@@ -14345,12 +14345,12 @@
             "PolicyId": "ANPAZKAPJZG4CG2CDKZLJ",
             "Arn": "arn:aws:iam::aws:policy/AWSQuickSetupDeploymentRolePolicy",
             "Path": "/",
-            "DefaultVersionId": "v14",
+            "DefaultVersionId": "v15",
             "AttachmentCount": 0,
             "PermissionsBoundaryUsageCount": 0,
             "IsAttachable": true,
             "CreateDate": "2024-06-26T09:55:21+00:00",
-            "UpdateDate": "2026-09-07T15:07:07+00:00"
+            "UpdateDate": "2026-11-17T10:17:08+00:00"
         },
         {
             "PolicyName": "AWSQuickSetupPatchPolicyDeploymentRolePolicy",
@@ -19259,6 +19259,30 @@
             "IsAttachable": true,
             "CreateDate": "2026-11-13T17:27:08+00:00",
             "UpdateDate": "2026-11-13T17:27:08+00:00"
+        },
+        {
+            "PolicyName": "CloudWatchOmniAWSIntegrationPolicyV2",
+            "PolicyId": "ANPAZKAPJZG4LOYCV3MHF",
+            "Arn": "arn:aws:iam::aws:policy/CloudWatchOmniAWSIntegrationPolicyV2",
+            "Path": "/",
+            "DefaultVersionId": "v1",
+            "AttachmentCount": 0,
+            "PermissionsBoundaryUsageCount": 0,
+            "IsAttachable": true,
+            "CreateDate": "2026-11-16T18:27:07+00:00",
+            "UpdateDate": "2026-11-16T18:27:07+00:00"
+        },
+        {
+            "PolicyName": "KiroVpcConnectionPolicy",
+            "PolicyId": "ANPAZKAPJZG4AY3JJEEJJ",
+            "Arn": "arn:aws:iam::aws:policy/KiroVpcConnectionPolicy",
+            "Path": "/",
+            "DefaultVersionId": "v1",
+            "AttachmentCount": 0,
+            "PermissionsBoundaryUsageCount": 0,
+            "IsAttachable": true,
+            "CreateDate": "2026-11-16T23:27:08+00:00",
+            "UpdateDate": "2026-11-16T23:27:08+00:00"
         },
         {
             "PolicyName": "AWSConfigRole",
