@@ -1468,11 +1468,20 @@
                             "aws:ViaAWSService": "true"
                         }
                     }
+                },
+                {
+                    "Sid": "S3TablesList",
+                    "Effect": "Allow",
+                    "Action": [
+                        "s3tables:ListTableBuckets",
+                        "s3tables:GetTableBucket"
+                    ],
+                    "Resource": "*"
                 }
             ]
         },
-        "VersionId": "v33",
+        "VersionId": "v34",
         "IsDefaultVersion": true,
-        "CreateDate": "2026-11-14T00:07:08+00:00"
+        "CreateDate": "2026-11-17T18:07:07+00:00"
     }
 }
