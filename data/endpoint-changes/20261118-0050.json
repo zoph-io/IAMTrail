@@ -1,0 +1,15 @@
+{
+  "detected_at": "2026-11-18T00:50:17.450Z",
+  "botocore_commit": "1d26ebf7e085ea6d9f2445a0427247cc39c8099e",
+  "botocore_commit_url": "https://github.com/boto/botocore/commit/1d26ebf7e085ea6d9f2445a0427247cc39c8099e",
+  "summary": "1 new service",
+  "changes": [
+    {
+      "type": "new_service",
+      "partition": "aws-eusc",
+      "id": "aps",
+      "description": "aps (1 endpoint)",
+      "endpoint_count": 1
+    }
+  ]
+}
