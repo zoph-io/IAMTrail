@@ -107,11 +107,42 @@
                         "organizations:ListDelegatedAdministrators"
                     ],
                     "Resource": "*"
+                },
+                {
+                    "Sid": "PrivateMarketplaceBuyerApprovalPermissions",
+                    "Effect": "Allow",
+                    "Action": [
+                        "aws-marketplace:ListAgreementApprovals",
+                        "aws-marketplace:GetAgreementApproval",
+                        "aws-marketplace:GetAgreementRequest",
+                        "aws-marketplace:GetAgreementRequestTerms",
+                        "aws-marketplace:AcceptAgreementApproval",
+                        "aws-marketplace:RejectAgreementApproval"
+                    ],
+                    "Resource": "*"
+                },
+                {
+                    "Sid": "PrivateMarketplaceProcurementPortalPermissions",
+                    "Effect": "Allow",
+                    "Action": [
+                        "invoicing:ListProcurementPortalPreferences",
+                        "invoicing:GetProcurementPortalPreference",
+                        "invoicing:CreateProcurementPortalPreference",
+                        "invoicing:PutProcurementPortalPreference",
+                        "invoicing:ListProcurementPortals",
+                        "invoicing:ListProcurementPortalSuppliers"
+                    ],
+                    "Resource": "*",
+                    "Condition": {
+                        "StringEquals": {
+                            "aws:ResourceAccount": "${aws:PrincipalAccount}"
+                        }
+                    }
                 }
             ]
         },
-        "VersionId": "v9",
+        "VersionId": "v10",
         "IsDefaultVersion": true,
-        "CreateDate": "2026-02-12T18:01:07+00:00"
+        "CreateDate": "2026-11-18T21:17:08+00:00"
     }
 }
