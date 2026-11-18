@@ -72,6 +72,57 @@
                     }
                 },
                 {
+                    "Sid": "AWSMarketplaceAgreementRequestAndApprovalAccess",
+                    "Effect": "Allow",
+                    "Action": [
+                        "aws-marketplace:GetAgreementRequest",
+                        "aws-marketplace:AcceptAgreementRequest",
+                        "aws-marketplace:CancelAgreementRequest",
+                        "aws-marketplace:GetAgreementRequestTerms",
+                        "aws-marketplace:StartAgreementApprovals",
+                        "aws-marketplace:GetAgreementRequestApprovalPlans",
+                        "aws-marketplace:GetAgreementApproval"
+                    ],
+                    "Resource": "*",
+                    "Condition": {
+                        "ForAllValues:StringEquals": {
+                            "aws-marketplace:AgreementType": [
+                                "PurchaseAgreement"
+                            ]
+                        },
+                        "Null": {
+                            "aws-marketplace:AgreementType": "false"
+                        }
+                    }
+                },
+                {
+                    "Sid": "AWSMarketplaceAgreementRequestAndApprovalListAccess",
+                    "Effect": "Allow",
+                    "Action": [
+                        "aws-marketplace:ListAgreementRequests",
+                        "aws-marketplace:ListAgreementApprovals"
+                    ],
+                    "Resource": "*"
+                },
+                {
+                    "Sid": "AWSMarketplaceAgreementContactsReadAccess",
+                    "Effect": "Allow",
+                    "Action": [
+                        "aws-marketplace:GetAgreementContacts"
+                    ],
+                    "Resource": "*",
+                    "Condition": {
+                        "ForAllValues:StringEquals": {
+                            "aws-marketplace:AgreementType": [
+                                "PurchaseAgreement"
+                            ]
+                        },
+                        "Null": {
+                            "aws-marketplace:AgreementType": "false"
+                        }
+                    }
+                },
+                {
                     "Sid": "AWSMarketplaceChangeSetReadAccess",
                     "Effect": "Allow",
                     "Action": [
@@ -130,11 +181,19 @@
                             "aws-marketplace:PartyType": "Acceptor"
                         }
                     }
+                },
+                {
+                    "Sid": "AWSMarketplaceDeploymentConfigurationReadAccess",
+                    "Effect": "Allow",
+                    "Action": [
+                        "aws-marketplace:GetDeploymentConfiguration"
+                    ],
+                    "Resource": "arn:aws:aws-marketplace:*:*:DeploymentConfiguration:catalogs/AWSMarketplace/*"
                 }
             ]
         },
-        "VersionId": "v9",
+        "VersionId": "v10",
         "IsDefaultVersion": true,
-        "CreateDate": "2026-05-07T16:42:22+00:00"
+        "CreateDate": "2026-11-18T17:17:08+00:00"
     }
 }
