@@ -107,7 +107,10 @@
                         "organizations:ListRoots",
                         "organizations:DescribeOrganizationalUnit",
                         "organizations:ListPolicies",
-                        "organizations:DescribeResourcePolicy"
+                        "organizations:DescribeResourcePolicy",
+                        "networkmanager:ListAttachmentNatConfigurations",
+                        "ec2:GetTransitGatewayAttachmentNatConfiguration",
+                        "directconnect:ListVirtualInterfaceRoutes"
                     ],
                     "Effect": "Allow",
                     "Resource": "*"
@@ -257,8 +260,8 @@
                 }
             ]
         },
-        "VersionId": "v9",
+        "VersionId": "v10",
         "IsDefaultVersion": true,
-        "CreateDate": "2026-11-12T21:57:09+00:00"
+        "CreateDate": "2026-11-18T21:47:08+00:00"
     }
 }
