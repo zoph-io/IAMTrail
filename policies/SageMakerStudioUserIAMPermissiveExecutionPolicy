@@ -386,6 +386,19 @@
                     "Resource": "*"
                 },
                 {
+                    "Sid": "LfFilters",
+                    "Effect": "Allow",
+                    "Action": [
+                        "lakeformation:GetResourceLFTags",
+                        "lakeformation:CreateDataCellsFilter",
+                        "lakeformation:GetDataCellsFilter",
+                        "lakeformation:ListDataCellsFilter",
+                        "lakeformation:UpdateDataCellsFilter",
+                        "lakeformation:DeleteDataCellsFilter"
+                    ],
+                    "Resource": "*"
+                },
+                {
                     "Sid": "FederatedConn",
                     "Effect": "Allow",
                     "Action": [
@@ -770,6 +783,42 @@
                     "Resource": "*"
                 },
                 {
+                    "Sid": "RamRead",
+                    "Effect": "Allow",
+                    "Action": [
+                        "ram:GetResourceShareInvitations",
+                        "ram:ListResources"
+                    ],
+                    "Resource": "*"
+                },
+                {
+                    "Sid": "RamViaLf",
+                    "Effect": "Allow",
+                    "Action": "ram:*ResourceShare*",
+                    "Resource": "*",
+                    "Condition": {
+                        "ForAnyValue:StringEquals": {
+                            "aws:CalledVia": [
+                                "lakeformation.amazonaws.com"
+                            ]
+                        }
+                    }
+                },
+                {
+                    "Sid": "RamAccept",
+                    "Effect": "Allow",
+                    "Action": "ram:AcceptResourceShareInvitation",
+                    "Resource": "arn:*:ram:*:*:resource-share-invitation/*",
+                    "Condition": {
+                        "StringLike": {
+                            "ram:ResourceShareName": [
+                                "LakeFormation*",
+                                "DataZoneS3AG*"
+                            ]
+                        }
+                    }
+                },
+                {
                     "Sid": "SSOInstanceReadOnlyPermissions",
                     "Effect": "Allow",
                     "Action": [
@@ -807,8 +856,8 @@
                 }
             ]
         },
-        "VersionId": "v28",
+        "VersionId": "v29",
         "IsDefaultVersion": true,
-        "CreateDate": "2026-11-14T00:07:08+00:00"
+        "CreateDate": "2026-11-18T17:37:09+00:00"
     }
 }
