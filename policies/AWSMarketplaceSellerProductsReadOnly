@@ -22,7 +22,20 @@
                     "Action": [
                         "aws-marketplace:ListTagsForResource"
                     ],
-                    "Resource": "arn:aws:aws-marketplace:*:*:AWSMarketplace/*"
+                    "Resource": [
+                        "arn:aws:aws-marketplace:*:*:AWSMarketplace/*",
+                        "arn:aws:aws-marketplace:*:*:DeploymentConfiguration:catalogs/AWSMarketplace/*"
+                    ]
+                },
+                {
+                    "Sid": "DeploymentConfigurationRead",
+                    "Effect": "Allow",
+                    "Action": [
+                        "aws-marketplace:GetDeploymentConfigurationJob",
+                        "aws-marketplace:ListDeploymentConfigurationJobs",
+                        "aws-marketplace:GetDeploymentConfiguration"
+                    ],
+                    "Resource": "arn:aws:aws-marketplace:*:*:DeploymentConfiguration:catalogs/AWSMarketplace/*"
                 },
                 {
                     "Effect": "Allow",
@@ -33,8 +46,8 @@
                 }
             ]
         },
-        "VersionId": "v7",
+        "VersionId": "v8",
         "IsDefaultVersion": true,
-        "CreateDate": "2026-02-12T18:01:38+00:00"
+        "CreateDate": "2026-11-18T18:37:08+00:00"
     }
 }
