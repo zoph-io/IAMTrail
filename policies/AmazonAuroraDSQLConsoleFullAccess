@@ -36,7 +36,8 @@
                         "dsql:DeleteStream",
                         "dsql:GetStream",
                         "dsql:ListStreams",
-                        "dsql:UpdateStream"
+                        "dsql:UpdateStream",
+                        "dsql:AllowVendedLogDeliveryForResource"
                     ],
                     "Resource": "*"
                 },
@@ -103,8 +104,8 @@
                 }
             ]
         },
-        "VersionId": "v16",
+        "VersionId": "v17",
         "IsDefaultVersion": true,
-        "CreateDate": "2026-05-13T18:57:14+00:00"
+        "CreateDate": "2026-11-18T17:57:11+00:00"
     }
 }
