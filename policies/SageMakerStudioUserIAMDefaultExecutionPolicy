@@ -496,6 +496,19 @@
                     "Resource": "*"
                 },
                 {
+                    "Sid": "LfFilters",
+                    "Effect": "Allow",
+                    "Action": [
+                        "lakeformation:GetResourceLFTags",
+                        "lakeformation:CreateDataCellsFilter",
+                        "lakeformation:GetDataCellsFilter",
+                        "lakeformation:ListDataCellsFilter",
+                        "lakeformation:UpdateDataCellsFilter",
+                        "lakeformation:DeleteDataCellsFilter"
+                    ],
+                    "Resource": "*"
+                },
+                {
                     "Sid": "SQLWorkBench",
                     "Effect": "Allow",
                     "Action": [
@@ -602,7 +615,11 @@
                         "s3:GetAccessGrantsInstance",
                         "s3:GetAccessGrantsInstanceForPrefix",
                         "s3:GetDataAccess",
-                        "s3:List*"
+                        "s3:List*",
+                        "s3:GetBucketLocation",
+                        "s3:GetAccountPublicAccessBlock",
+                        "s3:GetBucketPublicAccessBlock",
+                        "s3:GetEncryptionConfiguration"
                     ],
                     "Resource": "*"
                 },
@@ -1434,6 +1451,42 @@
                     }
                 },
                 {
+                    "Sid": "RamRead",
+                    "Effect": "Allow",
+                    "Action": [
+                        "ram:GetResourceShareInvitations",
+                        "ram:ListResources"
+                    ],
+                    "Resource": "*"
+                },
+                {
+                    "Sid": "RamViaLf",
+                    "Effect": "Allow",
+                    "Action": "ram:*ResourceShare*",
+                    "Resource": "*",
+                    "Condition": {
+                        "ForAnyValue:StringEquals": {
+                            "aws:CalledVia": [
+                                "lakeformation.amazonaws.com"
+                            ]
+                        }
+                    }
+                },
+                {
+                    "Sid": "RamAccept",
+                    "Effect": "Allow",
+                    "Action": "ram:AcceptResourceShareInvitation",
+                    "Resource": "arn:*:ram:*:*:resource-share-invitation/*",
+                    "Condition": {
+                        "StringLike": {
+                            "ram:ResourceShareName": [
+                                "LakeFormation*",
+                                "DataZoneS3AG*"
+                            ]
+                        }
+                    }
+                },
+                {
                     "Sid": "SSOInstanceReadOnlyPermissions",
                     "Effect": "Allow",
                     "Action": [
@@ -1480,8 +1533,8 @@
                 }
             ]
         },
-        "VersionId": "v34",
+        "VersionId": "v35",
         "IsDefaultVersion": true,
-        "CreateDate": "2026-11-17T18:07:07+00:00"
+        "CreateDate": "2026-11-18T17:37:08+00:00"
     }
 }
