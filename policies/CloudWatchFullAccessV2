@@ -213,7 +213,10 @@
                     "Resource": "arn:aws:kms:*:*:key/*",
                     "Condition": {
                         "StringLike": {
-                            "kms:ViaService": "logs.*.amazonaws.com"
+                            "kms:ViaService": [
+                                "logs.*.amazonaws.com",
+                                "cloudwatch.*.amazonaws.com"
+                            ]
                         },
                         "StringEquals": {
                             "aws:ResourceAccount": "${aws:PrincipalAccount}"
@@ -262,8 +265,8 @@
                 }
             ]
         },
-        "VersionId": "v19",
+        "VersionId": "v20",
         "IsDefaultVersion": true,
-        "CreateDate": "2026-11-17T19:07:07+00:00"
+        "CreateDate": "2026-11-18T15:07:08+00:00"
     }
 }
