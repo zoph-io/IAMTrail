@@ -49,6 +49,18 @@
                     "Resource": "arn:aws:secretsmanager:*:*:secret:events!*"
                 },
                 {
+                    "Sid": "SecretsManagerAccessForWebhookEvents",
+                    "Effect": "Allow",
+                    "Action": [
+                        "secretsmanager:CreateSecret",
+                        "secretsmanager:UpdateSecret",
+                        "secretsmanager:DeleteSecret",
+                        "secretsmanager:GetSecretValue",
+                        "secretsmanager:PutSecretValue"
+                    ],
+                    "Resource": "arn:aws:secretsmanager:*:*:secret:events-webhook!*"
+                },
+                {
                     "Sid": "IAMPassRoleAccessForEventBridge",
                     "Effect": "Allow",
                     "Action": "iam:PassRole",
@@ -83,8 +95,8 @@
                 }
             ]
         },
-        "VersionId": "v7",
+        "VersionId": "v8",
         "IsDefaultVersion": true,
-        "CreateDate": "2026-02-12T17:58:25+00:00"
+        "CreateDate": "2026-11-19T18:17:08+00:00"
     }
 }
