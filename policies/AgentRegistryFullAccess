@@ -35,12 +35,15 @@
                     "Sid": "AllowGetResourceOauth2TokenForOauthBasedSynchronization",
                     "Effect": "Allow",
                     "Action": [
-                        "bedrock-agentcore:GetResourceOauth2Token"
+                        "bedrock-agentcore:GetResourceOauth2Token",
+                        "bedrock-agentcore:GetWorkloadAccessTokenForUserId",
+                        "bedrock-agentcore:CompleteResourceTokenAuth"
                     ],
                     "Resource": [
                         "arn:aws:bedrock-agentcore:*:*:credential-provider/*",
                         "arn:aws:bedrock-agentcore:*:*:workload-identity-directory/*",
-                        "arn:aws:bedrock-agentcore:*:*:token-vault/*/oauth2credentialprovider/*"
+                        "arn:aws:bedrock-agentcore:*:*:token-vault/*/oauth2credentialprovider/*",
+                        "arn:aws:bedrock-agentcore:*:*:token-vault/default"
                     ]
                 },
                 {
@@ -151,8 +154,8 @@
                 }
             ]
         },
-        "VersionId": "v2",
+        "VersionId": "v3",
         "IsDefaultVersion": true,
-        "CreateDate": "2026-08-31T17:07:08+00:00"
+        "CreateDate": "2026-11-19T16:17:08+00:00"
     }
 }
