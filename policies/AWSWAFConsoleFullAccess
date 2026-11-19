@@ -392,11 +392,63 @@
                         "bedrock-agentcore:ListGateways"
                     ],
                     "Resource": "*"
+                },
+                {
+                    "Sid": "AllowListActionsForObservabilityAdmin",
+                    "Effect": "Allow",
+                    "Action": [
+                        "observabilityadmin:ListTelemetryRules",
+                        "observabilityadmin:GetTelemetryEvaluationStatus"
+                    ],
+                    "Resource": "*"
+                },
+                {
+                    "Sid": "AllowListConnectedAccountsForPayments",
+                    "Effect": "Allow",
+                    "Action": [
+                        "payments:ListConnectedAccounts"
+                    ],
+                    "Resource": "*"
+                },
+                {
+                    "Sid": "AllowGetConnectedAccountForPayments",
+                    "Effect": "Allow",
+                    "Action": [
+                        "payments:GetConnectedAccount"
+                    ],
+                    "Resource": "arn:aws:payments::*:connectedaccount/*"
+                },
+                {
+                    "Sid": "AllowMarketplaceAgreementActions",
+                    "Effect": "Allow",
+                    "Action": [
+                        "aws-marketplace:SearchAgreements",
+                        "aws-marketplace:ListEntitlementDetails"
+                    ],
+                    "Resource": "*"
+                },
+                {
+                    "Sid": "AllowListRolesForAISecurity",
+                    "Effect": "Allow",
+                    "Action": [
+                        "iam:ListRoles"
+                    ],
+                    "Resource": "*"
+                },
+                {
+                    "Sid": "AllowApexQueryActions",
+                    "Effect": "Allow",
+                    "Action": [
+                        "apex:GetStatistics",
+                        "apex:GetStatisticsTimeSeries",
+                        "apex:Search"
+                    ],
+                    "Resource": "*"
                 }
             ]
         },
-        "VersionId": "v22",
+        "VersionId": "v23",
         "IsDefaultVersion": true,
-        "CreateDate": "2026-07-01T04:12:13+00:00"
+        "CreateDate": "2026-11-19T17:37:08+00:00"
     }
 }
