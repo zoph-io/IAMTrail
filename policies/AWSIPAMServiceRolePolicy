@@ -94,11 +94,22 @@
                         "ec2:DeleteDhcpOptions"
                     ],
                     "Resource": "*"
+                },
+                {
+                    "Sid": "IPAMRoute53IpGuardrailPolicyActions",
+                    "Effect": "Allow",
+                    "Action": [
+                        "route53:CreateIpGuardrailPolicy",
+                        "route53:GetIpGuardrailPolicy",
+                        "route53:UpdateIpGuardrailPolicy",
+                        "route53:DeleteIpGuardrailPolicy"
+                    ],
+                    "Resource": "*"
                 }
             ]
         },
-        "VersionId": "v13",
+        "VersionId": "v14",
         "IsDefaultVersion": true,
-        "CreateDate": "2026-10-15T15:57:07+00:00"
+        "CreateDate": "2026-11-19T17:07:08+00:00"
     }
 }
