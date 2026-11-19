@@ -1,0 +1,18 @@
+{
+  "detected_at": "2026-11-19T00:08:24.644Z",
+  "botocore_commit": "525c902de337988a69b626fe823757b7234be69f",
+  "botocore_commit_url": "https://github.com/boto/botocore/commit/525c902de337988a69b626fe823757b7234be69f",
+  "summary": "1 service expansion",
+  "changes": [
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "aoss",
+      "id": "aoss",
+      "new_regions": [
+        "af-south-1"
+      ],
+      "description": "aoss expanded to af-south-1"
+    }
+  ]
+}
