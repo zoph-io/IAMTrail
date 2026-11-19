@@ -324,11 +324,47 @@
                         "bedrock-agentcore:ListGateways"
                     ],
                     "Resource": "*"
+                },
+                {
+                    "Sid": "AllowListActionsForObservabilityAdmin",
+                    "Effect": "Allow",
+                    "Action": [
+                        "observabilityadmin:ListTelemetryRules",
+                        "observabilityadmin:GetTelemetryEvaluationStatus"
+                    ],
+                    "Resource": "*"
+                },
+                {
+                    "Sid": "AllowListConnectedAccountsForPayments",
+                    "Effect": "Allow",
+                    "Action": [
+                        "payments:ListConnectedAccounts"
+                    ],
+                    "Resource": "*"
+                },
+                {
+                    "Sid": "AllowMarketplaceAgreementActions",
+                    "Effect": "Allow",
+                    "Action": [
+                        "aws-marketplace:SearchAgreements",
+                        "aws-marketplace:ListEntitlementDetails"
+                    ],
+                    "Resource": "*"
+                },
+                {
+                    "Sid": "AllowApexQueryActions",
+                    "Effect": "Allow",
+                    "Action": [
+                        "apex:GetStatistics",
+                        "apex:GetStatisticsTimeSeries",
+                        "apex:Search"
+                    ],
+                    "Resource": "*"
                 }
             ]
         },
-        "VersionId": "v21",
+        "VersionId": "v22",
         "IsDefaultVersion": true,
-        "CreateDate": "2026-07-01T04:12:24+00:00"
+        "CreateDate": "2026-11-19T17:37:09+00:00"
     }
 }
