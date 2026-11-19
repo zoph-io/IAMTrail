@@ -10,14 +10,11 @@
                     "bedrock-agentcore:GetWorkloadAccessTokenForJWT",
                     "bedrock-agentcore:GetWorkloadAccessTokenForUserId"
                 ],
-                "Resource": [
-                    "arn:aws:bedrock-agentcore:*:*:workload-identity-directory/default",
-                    "arn:aws:bedrock-agentcore:*:*:workload-identity-directory/default/workload-identity/*"
-                ]
+                "Resource": "*"
             }
         },
-        "VersionId": "v1",
+        "VersionId": "v2",
         "IsDefaultVersion": true,
-        "CreateDate": "2025-10-11T01:04:08+00:00"
+        "CreateDate": "2026-11-19T19:47:08+00:00"
     }
 }
