@@ -18,6 +18,10 @@
                         "aws-marketplace:DescribeEntity",
                         "aws-marketplace:GetSellerDashboard",
                         "aws-marketplace:GetSellerReportingData",
+                        "aws-marketplace:CreateDataSubscription",
+                        "aws-marketplace:GetDataSubscription",
+                        "aws-marketplace:ListDataSubscriptions",
+                        "aws-marketplace:DeleteDataSubscription",
                         "aws-marketplace:ListAssessments",
                         "aws-marketplace:DescribeAssessment",
                         "ec2:DescribeImages",
@@ -376,8 +380,8 @@
                 }
             ]
         },
-        "VersionId": "v37",
+        "VersionId": "v38",
         "IsDefaultVersion": true,
-        "CreateDate": "2026-11-18T20:07:09+00:00"
+        "CreateDate": "2026-11-19T20:47:09+00:00"
     }
 }
