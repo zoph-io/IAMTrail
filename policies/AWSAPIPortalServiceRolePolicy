@@ -13,7 +13,8 @@
                         "organizations:ListAccounts",
                         "organizations:ListChildren",
                         "organizations:ListParents",
-                        "organizations:ListDelegatedAdministrators"
+                        "organizations:ListDelegatedAdministrators",
+                        "organizations:ListAWSServiceAccessForOrganization"
                     ],
                     "Resource": "*"
                 },
@@ -55,8 +56,8 @@
                 }
             ]
         },
-        "VersionId": "v1",
+        "VersionId": "v2",
         "IsDefaultVersion": true,
-        "CreateDate": "2026-11-17T23:37:09+00:00"
+        "CreateDate": "2026-11-19T17:27:08+00:00"
     }
 }
