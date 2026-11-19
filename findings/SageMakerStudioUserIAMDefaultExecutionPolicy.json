@@ -1,6 +1,6 @@
 [
   {
-    "findingDetails": "The 29368 characters in the identity policy, excluding whitespace, exceed the 10240 character maximum for inline and managed policies. We recommend that you use multiple granular policies.",
+    "findingDetails": "The 30283 characters in the identity policy, excluding whitespace, exceed the 10240 character maximum for inline and managed policies. We recommend that you use multiple granular policies.",
     "findingType": "WARNING",
     "issueCode": "POLICY_SIZE_EXCEEDS_IDENTITY_POLICY_QUOTA",
     "learnMoreLink": "https://docs.aws.amazon.com/IAM/latest/UserGuide/access-analyzer-reference-policy-checks.html#access-analyzer-reference-policy-checks-general-warning-policy-size-exceeds-identity-policy-quota",
@@ -15,8 +15,8 @@
           },
           "end": {
             "line": 1,
-            "column": 30771,
-            "offset": 30771
+            "column": 31737,
+            "offset": 31737
           }
         }
       }
@@ -101,7 +101,7 @@
             "value": "Statement"
           },
           {
-            "index": 64
+            "index": 65
           },
           {
             "value": "Action"
@@ -113,13 +113,13 @@
         "span": {
           "start": {
             "line": 1,
-            "column": 23394,
-            "offset": 23394
+            "column": 23813,
+            "offset": 23813
           },
           "end": {
             "line": 1,
-            "column": 23423,
-            "offset": 23423
+            "column": 23842,
+            "offset": 23842
           }
         }
       },
@@ -129,7 +129,7 @@
             "value": "Statement"
           },
           {
-            "index": 64
+            "index": 65
           },
           {
             "value": "Action"
@@ -141,13 +141,13 @@
         "span": {
           "start": {
             "line": 1,
-            "column": 23974,
-            "offset": 23974
+            "column": 24393,
+            "offset": 24393
           },
           "end": {
             "line": 1,
-            "column": 24007,
-            "offset": 24007
+            "column": 24426,
+            "offset": 24426
           }
         }
       }
@@ -165,7 +165,7 @@
             "value": "Statement"
           },
           {
-            "index": 64
+            "index": 65
           },
           {
             "value": "Action"
@@ -177,13 +177,13 @@
         "span": {
           "start": {
             "line": 1,
-            "column": 23771,
-            "offset": 23771
+            "column": 24190,
+            "offset": 24190
           },
           "end": {
             "line": 1,
-            "column": 23800,
-            "offset": 23800
+            "column": 24219,
+            "offset": 24219
           }
         }
       },
@@ -193,7 +193,7 @@
             "value": "Statement"
           },
           {
-            "index": 64
+            "index": 65
           },
           {
             "value": "Action"
@@ -205,13 +205,13 @@
         "span": {
           "start": {
             "line": 1,
-            "column": 24129,
-            "offset": 24129
+            "column": 24548,
+            "offset": 24548
           },
           "end": {
             "line": 1,
-            "column": 24161,
-            "offset": 24161
+            "column": 24580,
+            "offset": 24580
           }
         }
       }
@@ -229,7 +229,7 @@
             "value": "Statement"
           },
           {
-            "index": 64
+            "index": 65
           },
           {
             "value": "Action"
@@ -241,13 +241,13 @@
         "span": {
           "start": {
             "line": 1,
-            "column": 23802,
-            "offset": 23802
+            "column": 24221,
+            "offset": 24221
           },
           "end": {
             "line": 1,
-            "column": 23839,
-            "offset": 23839
+            "column": 24258,
+            "offset": 24258
           }
         }
       },
@@ -257,7 +257,7 @@
             "value": "Statement"
           },
           {
-            "index": 64
+            "index": 65
           },
           {
             "value": "Action"
@@ -269,13 +269,13 @@
         "span": {
           "start": {
             "line": 1,
-            "column": 24163,
-            "offset": 24163
+            "column": 24582,
+            "offset": 24582
           },
           "end": {
             "line": 1,
-            "column": 24203,
-            "offset": 24203
+            "column": 24622,
+            "offset": 24622
           }
         }
       }
