@@ -175,14 +175,6 @@
                     ]
                 },
                 {
-                    "Sid": "Support",
-                    "Effect": "Allow",
-                    "Action": [
-                        "support:CreateCase"
-                    ],
-                    "Resource": "*"
-                },
-                {
                     "Sid": "ResourcePolicyManagement",
                     "Effect": "Allow",
                     "Action": [
@@ -377,11 +369,39 @@
                         "aws-marketplace:StartAssessment"
                     ],
                     "Resource": "arn:aws:aws-marketplace:*:*:AWSMarketplace*/*"
+                },
+                {
+                    "Sid": "Support",
+                    "Effect": "Allow",
+                    "Action": [
+                        "support:CreateCase",
+                        "support:DescribeCases",
+                        "support:DescribeCommunications",
+                        "support:DescribeAttachment",
+                        "support:AddCommunicationToCase",
+                        "support:ResolveCase",
+                        "support:AddAttachmentsToSet",
+                        "support:SearchForCases",
+                        "support:DescribeServices",
+                        "support:DescribeCreateCaseOptions"
+                    ],
+                    "Resource": "*"
+                },
+                {
+                    "Sid": "SupportConsole",
+                    "Effect": "Allow",
+                    "Action": [
+                        "support-console:GetAccountState",
+                        "support-console:GetAccountGovCloudEnabled",
+                        "support-console:CheckSubscription",
+                        "support-console:GetBanner"
+                    ],
+                    "Resource": "*"
                 }
             ]
         },
-        "VersionId": "v38",
+        "VersionId": "v39",
         "IsDefaultVersion": true,
-        "CreateDate": "2026-11-19T20:47:09+00:00"
+        "CreateDate": "2026-11-20T05:27:06+00:00"
     }
 }
