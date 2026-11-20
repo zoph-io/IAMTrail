@@ -1,0 +1,22 @@
+{
+  "detected_at": "2026-11-20T00:30:19.621Z",
+  "botocore_commit": "dfed1ad4f5ee6c8e4a6fe5e5f3817e863d65b36c",
+  "botocore_commit_url": "https://github.com/boto/botocore/commit/dfed1ad4f5ee6c8e4a6fe5e5f3817e863d65b36c",
+  "summary": "1 service expansion",
+  "changes": [
+    {
+      "type": "service_expansion",
+      "partition": "aws",
+      "service": "s3-control",
+      "id": "s3-control",
+      "new_regions": [
+        "ap-east-2",
+        "ap-southeast-5",
+        "ap-southeast-6",
+        "ap-southeast-7",
+        "mx-central-1"
+      ],
+      "description": "s3-control expanded to ap-east-2, ap-southeast-5, ap-southeast-6, ap-southeast-7, mx-central-1"
+    }
+  ]
+}
