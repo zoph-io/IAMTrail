@@ -135,11 +135,39 @@
                         "q:PassRequest"
                     ],
                     "Resource": "*"
+                },
+                {
+                    "Sid": "Support",
+                    "Effect": "Allow",
+                    "Action": [
+                        "support:CreateCase",
+                        "support:DescribeCases",
+                        "support:DescribeCommunications",
+                        "support:DescribeAttachment",
+                        "support:AddCommunicationToCase",
+                        "support:ResolveCase",
+                        "support:AddAttachmentsToSet",
+                        "support:SearchForCases",
+                        "support:DescribeServices",
+                        "support:DescribeCreateCaseOptions"
+                    ],
+                    "Resource": "*"
+                },
+                {
+                    "Sid": "SupportConsole",
+                    "Effect": "Allow",
+                    "Action": [
+                        "support-console:GetAccountState",
+                        "support-console:GetAccountGovCloudEnabled",
+                        "support-console:CheckSubscription",
+                        "support-console:GetBanner"
+                    ],
+                    "Resource": "*"
                 }
             ]
         },
-        "VersionId": "v8",
+        "VersionId": "v9",
         "IsDefaultVersion": true,
-        "CreateDate": "2026-11-13T17:37:08+00:00"
+        "CreateDate": "2026-11-20T01:37:07+00:00"
     }
 }
