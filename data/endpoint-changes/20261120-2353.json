@@ -1,0 +1,15 @@
+{
+  "detected_at": "2026-11-20T23:53:16.208Z",
+  "botocore_commit": "d1bf5f8a389af256c57d302c045536f7a58a16ed",
+  "botocore_commit_url": "https://github.com/boto/botocore/commit/d1bf5f8a389af256c57d302c045536f7a58a16ed",
+  "summary": "1 new service",
+  "changes": [
+    {
+      "type": "new_service",
+      "partition": "aws-eusc",
+      "id": "outposts",
+      "description": "outposts (1 endpoint)",
+      "endpoint_count": 1
+    }
+  ]
+}

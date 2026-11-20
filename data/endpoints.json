@@ -54368,6 +54368,11 @@
             "eusc-de-east-1": {}
           }
         },
+        "outposts": {
+          "endpoints": {
+            "eusc-de-east-1": {}
+          }
+        },
         "pi": {
           "endpoints": {
             "eusc-de-east-1": {}
