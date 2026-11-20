@@ -47,7 +47,10 @@
                     "Sid": "AccessBootstrapActionScriptS3Permission",
                     "Effect": "Allow",
                     "Action": "s3:GetObject",
-                    "Resource": "arn:aws:s3:::${aws:PrincipalTag/DomainBucketName}/${aws:PrincipalTag/AmazonDataZoneDomain}/${aws:PrincipalTag/AmazonDataZoneProject}/${aws:PrincipalTag/AmazonDataZoneScopeName}/sys/emr/bootstrap-script/*",
+                    "Resource": [
+                        "arn:aws:s3:::${aws:PrincipalTag/DomainBucketName}/${aws:PrincipalTag/AmazonDataZoneDomain}/${aws:PrincipalTag/AmazonDataZoneProject}/${aws:PrincipalTag/AmazonDataZoneScopeName}/sys/emr/bootstrap-script/*",
+                        "arn:aws:s3:::${aws:PrincipalTag/DomainBucketName}/shared/sys/emr/bootstrap-script/*"
+                    ],
                     "Condition": {
                         "StringNotEquals": {
                             "aws:PrincipalTag/DomainBucketName": "",
@@ -67,7 +70,10 @@
                     "Sid": "EMRClusterLogUploadS3Permission",
                     "Effect": "Allow",
                     "Action": "s3:PutObject",
-                    "Resource": "arn:aws:s3:::${aws:PrincipalTag/DomainBucketName}/${aws:PrincipalTag/AmazonDataZoneDomain}/${aws:PrincipalTag/AmazonDataZoneProject}/${aws:PrincipalTag/AmazonDataZoneScopeName}/sys/emr/*",
+                    "Resource": [
+                        "arn:aws:s3:::${aws:PrincipalTag/DomainBucketName}/${aws:PrincipalTag/AmazonDataZoneDomain}/${aws:PrincipalTag/AmazonDataZoneProject}/${aws:PrincipalTag/AmazonDataZoneScopeName}/sys/emr/*",
+                        "arn:aws:s3:::${aws:PrincipalTag/DomainBucketName}/shared/sys/emr/*"
+                    ],
                     "Condition": {
                         "StringNotEquals": {
                             "aws:PrincipalTag/DomainBucketName": "",
@@ -161,8 +167,8 @@
                 }
             ]
         },
-        "VersionId": "v5",
+        "VersionId": "v6",
         "IsDefaultVersion": true,
-        "CreateDate": "2026-11-13T21:17:07+00:00"
+        "CreateDate": "2026-11-20T17:47:07+00:00"
     }
 }
