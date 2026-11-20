@@ -21,7 +21,11 @@
                         "partnercentral:AcceptChannelHandshake",
                         "partnercentral:RejectChannelHandshake",
                         "partnercentral:CancelChannelHandshake",
-                        "partnercentral:ListChannelHandshakes"
+                        "partnercentral:ListChannelHandshakes",
+                        "partnercentral:CreateChannelContract",
+                        "partnercentral:CancelChannelContract",
+                        "partnercentral:GetChannelContract",
+                        "partnercentral:ListChannelContracts"
                     ],
                     "Resource": "*",
                     "Condition": {
@@ -54,7 +58,8 @@
                     ],
                     "Resource": [
                         "arn:aws:partnercentral:*:*:catalog/*/program-management-account/*",
-                        "arn:aws:partnercentral:*:*:catalog/*/channel-handshake/*"
+                        "arn:aws:partnercentral:*:*:catalog/*/channel-handshake/*",
+                        "arn:aws:partnercentral:*:*:catalog/*/channel-contract/*"
                     ],
                     "Condition": {
                         "StringEquals": {
@@ -166,8 +171,8 @@
                 }
             ]
         },
-        "VersionId": "v9",
+        "VersionId": "v10",
         "IsDefaultVersion": true,
-        "CreateDate": "2026-11-20T01:37:07+00:00"
+        "CreateDate": "2026-11-20T21:17:07+00:00"
     }
 }
