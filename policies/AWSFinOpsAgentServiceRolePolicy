@@ -208,7 +208,7 @@
                     ],
                     "Resource": "*",
                     "Condition": {
-                        "StringLikeIfExists": {
+                        "StringEquals": {
                             "organizations:ServicePrincipal": [
                                 "finops-agent.amazonaws.com"
                             ]
@@ -460,6 +460,21 @@
                     }
                 },
                 {
+                    "Sid": "BCMDataHubQueryAccess",
+                    "Effect": "Allow",
+                    "Action": [
+                        "bcm-data-hub:ListDatasets",
+                        "bcm-data-hub:GetDataset",
+                        "bcm-data-hub:GetDatasetSchema",
+                        "bcm-data-hub:StartQueryExecution",
+                        "bcm-data-hub:GetQueryExecution",
+                        "bcm-data-hub:GetQueryExecutionResults",
+                        "bcm-data-hub:CancelQueryExecution",
+                        "bcm-data-hub:ListQueryExecutions"
+                    ],
+                    "Resource": "*"
+                },
+                {
                     "Sid": "EventBridgeManagedRuleManagementReadPermissions",
                     "Effect": "Allow",
                     "Action": [
@@ -470,8 +485,8 @@
                 }
             ]
         },
-        "VersionId": "v1",
+        "VersionId": "v2",
         "IsDefaultVersion": true,
-        "CreateDate": "2026-10-20T16:07:08+00:00"
+        "CreateDate": "2026-11-20T01:47:08+00:00"
     }
 }
