@@ -1049,12 +1049,12 @@
             "PolicyId": "ANPAI2DV5ULJSO2FYVPYG",
             "Arn": "arn:aws:iam::aws:policy/AWSMarketplaceFullAccess",
             "Path": "/",
-            "DefaultVersionId": "v8",
+            "DefaultVersionId": "v9",
             "AttachmentCount": 0,
             "PermissionsBoundaryUsageCount": 0,
             "IsAttachable": true,
             "CreateDate": "2015-02-11T17:21:45+00:00",
-            "UpdateDate": "2026-09-11T16:27:07+00:00"
+            "UpdateDate": "2026-11-19T15:37:08+00:00"
         },
         {
             "PolicyName": "AWSConfigUserAccess",
@@ -5837,24 +5837,24 @@
             "PolicyId": "ANPAZKAPJZG4JF7OFUANW",
             "Arn": "arn:aws:iam::aws:policy/AWSMarketplaceSellerFullAccess",
             "Path": "/",
-            "DefaultVersionId": "v37",
+            "DefaultVersionId": "v39",
             "AttachmentCount": 0,
             "PermissionsBoundaryUsageCount": 0,
             "IsAttachable": true,
             "CreateDate": "2019-07-02T20:40:09+00:00",
-            "UpdateDate": "2026-11-18T20:07:09+00:00"
+            "UpdateDate": "2026-11-20T05:27:06+00:00"
         },
         {
             "PolicyName": "AWSMarketplaceSellerProductsFullAccess",
             "PolicyId": "ANPAZKAPJZG4DS2YFEG4N",
             "Arn": "arn:aws:iam::aws:policy/AWSMarketplaceSellerProductsFullAccess",
             "Path": "/",
-            "DefaultVersionId": "v17",
+            "DefaultVersionId": "v18",
             "AttachmentCount": 0,
             "PermissionsBoundaryUsageCount": 0,
             "IsAttachable": true,
             "CreateDate": "2019-07-02T21:06:25+00:00",
-            "UpdateDate": "2026-11-18T20:07:09+00:00"
+            "UpdateDate": "2026-11-20T05:27:07+00:00"
         },
         {
             "PolicyName": "AWSMarketplaceSellerProductsReadOnly",
@@ -5897,12 +5897,12 @@
             "PolicyId": "ANPAZKAPJZG4BUM4GCASI",
             "Arn": "arn:aws:iam::aws:policy/AmazonEventBridgeFullAccess",
             "Path": "/",
-            "DefaultVersionId": "v7",
+            "DefaultVersionId": "v8",
             "AttachmentCount": 0,
             "PermissionsBoundaryUsageCount": 0,
             "IsAttachable": true,
             "CreateDate": "2019-07-11T14:08:55+00:00",
-            "UpdateDate": "2026-02-12T17:58:25+00:00"
+            "UpdateDate": "2026-11-19T18:17:08+00:00"
         },
         {
             "PolicyName": "CloudWatch-CrossAccountAccess",
@@ -7145,24 +7145,24 @@
             "PolicyId": "ANPAZKAPJZG4AZOTQ7KAT",
             "Arn": "arn:aws:iam::aws:policy/AWSWAFConsoleFullAccess",
             "Path": "/",
-            "DefaultVersionId": "v22",
+            "DefaultVersionId": "v23",
             "AttachmentCount": 0,
             "PermissionsBoundaryUsageCount": 0,
             "IsAttachable": true,
             "CreateDate": "2020-04-06T18:38:38+00:00",
-            "UpdateDate": "2026-07-01T04:12:13+00:00"
+            "UpdateDate": "2026-11-19T17:37:08+00:00"
         },
         {
             "PolicyName": "AWSWAFConsoleReadOnlyAccess",
             "PolicyId": "ANPAZKAPJZG4NCJLTIT64",
             "Arn": "arn:aws:iam::aws:policy/AWSWAFConsoleReadOnlyAccess",
             "Path": "/",
-            "DefaultVersionId": "v21",
+            "DefaultVersionId": "v22",
             "AttachmentCount": 0,
             "PermissionsBoundaryUsageCount": 0,
             "IsAttachable": true,
             "CreateDate": "2020-04-06T18:43:24+00:00",
-            "UpdateDate": "2026-07-01T04:12:24+00:00"
+            "UpdateDate": "2026-11-19T17:37:09+00:00"
         },
         {
             "PolicyName": "AmazonWorkDocsFullAccess",
@@ -10577,12 +10577,12 @@
             "PolicyId": "ANPAZKAPJZG4JEQHJ6QN6",
             "Arn": "arn:aws:iam::aws:policy/aws-service-role/AWSIPAMServiceRolePolicy",
             "Path": "/aws-service-role/",
-            "DefaultVersionId": "v13",
+            "DefaultVersionId": "v14",
             "AttachmentCount": 0,
             "PermissionsBoundaryUsageCount": 0,
             "IsAttachable": true,
             "CreateDate": "2021-11-30T19:08:11+00:00",
-            "UpdateDate": "2026-10-15T15:57:07+00:00"
+            "UpdateDate": "2026-11-19T17:07:08+00:00"
         },
         {
             "PolicyName": "AWSPrivateNetworksServiceRolePolicy",
@@ -11429,12 +11429,12 @@
             "PolicyId": "ANPAZKAPJZG4K2H54PAUL",
             "Arn": "arn:aws:iam::aws:policy/aws-service-role/AWSResourceExplorerServiceRolePolicy",
             "Path": "/aws-service-role/",
-            "DefaultVersionId": "v60",
+            "DefaultVersionId": "v61",
             "AttachmentCount": 1,
             "PermissionsBoundaryUsageCount": 0,
             "IsAttachable": true,
             "CreateDate": "2022-10-25T20:35:29+00:00",
-            "UpdateDate": "2026-11-13T18:57:09+00:00"
+            "UpdateDate": "2026-11-19T23:57:07+00:00"
         },
         {
             "PolicyName": "AWSFaultInjectionSimulatorSSMAccess",
@@ -14825,12 +14825,12 @@
             "PolicyId": "ANPAZKAPJZG4OANYBNL3Z",
             "Arn": "arn:aws:iam::aws:policy/AWSPartnerCentralOpportunityManagement",
             "Path": "/",
-            "DefaultVersionId": "v13",
+            "DefaultVersionId": "v14",
             "AttachmentCount": 0,
             "PermissionsBoundaryUsageCount": 0,
             "IsAttachable": true,
             "CreateDate": "2024-11-14T19:09:05+00:00",
-            "UpdateDate": "2026-11-10T03:17:07+00:00"
+            "UpdateDate": "2026-11-20T03:37:07+00:00"
         },
         {
             "PolicyName": "AWSPartnerCentralSandboxFullAccess",
@@ -15101,24 +15101,24 @@
             "PolicyId": "ANPAZKAPJZG4DRJMXIHNK",
             "Arn": "arn:aws:iam::aws:policy/AWSPartnerCentralFullAccess",
             "Path": "/",
-            "DefaultVersionId": "v17",
+            "DefaultVersionId": "v18",
             "AttachmentCount": 0,
             "PermissionsBoundaryUsageCount": 0,
             "IsAttachable": true,
             "CreateDate": "2024-11-18T23:33:28+00:00",
-            "UpdateDate": "2026-11-10T08:27:08+00:00"
+            "UpdateDate": "2026-11-20T06:17:06+00:00"
         },
         {
             "PolicyName": "AWSMarketplaceSellerOfferManagement",
             "PolicyId": "ANPAZKAPJZG4BMTW6QBBN",
             "Arn": "arn:aws:iam::aws:policy/AWSMarketplaceSellerOfferManagement",
             "Path": "/",
-            "DefaultVersionId": "v4",
+            "DefaultVersionId": "v5",
             "AttachmentCount": 0,
             "PermissionsBoundaryUsageCount": 0,
             "IsAttachable": true,
             "CreateDate": "2024-11-19T00:41:38+00:00",
-            "UpdateDate": "2026-11-18T20:07:09+00:00"
+            "UpdateDate": "2026-11-20T03:57:07+00:00"
         },
         {
             "PolicyName": "SageMakerStudioProjectRoleMachineLearningPolicy",
@@ -16361,12 +16361,12 @@
             "PolicyId": "ANPAZKAPJZG4ABS5BMRXG",
             "Arn": "arn:aws:iam::aws:policy/aws-service-role/AWSObservabilityAdminTelemetryEnablementServiceRolePolicy",
             "Path": "/aws-service-role/",
-            "DefaultVersionId": "v17",
+            "DefaultVersionId": "v18",
             "AttachmentCount": 0,
             "PermissionsBoundaryUsageCount": 0,
             "IsAttachable": true,
             "CreateDate": "2025-08-01T18:04:06+00:00",
-            "UpdateDate": "2026-11-13T21:27:08+00:00"
+            "UpdateDate": "2026-11-19T22:07:08+00:00"
         },
         {
             "PolicyName": "AWSQuickSetupStartStopInstancesExecutionPolicy",
@@ -16661,12 +16661,12 @@
             "PolicyId": "ANPAZKAPJZG4IMA46VNZF",
             "Arn": "arn:aws:iam::aws:policy/aws-service-role/BedrockAgentCoreRuntimeIdentityServiceRolePolicy",
             "Path": "/aws-service-role/",
-            "DefaultVersionId": "v1",
+            "DefaultVersionId": "v2",
             "AttachmentCount": 0,
             "PermissionsBoundaryUsageCount": 0,
             "IsAttachable": true,
             "CreateDate": "2025-10-11T01:04:08+00:00",
-            "UpdateDate": "2025-10-11T01:04:08+00:00"
+            "UpdateDate": "2026-11-19T19:47:08+00:00"
         },
         {
             "PolicyName": "DynamoDBGlobalTableSettingsManagementServiceRolePolicy",
@@ -16889,12 +16889,12 @@
             "PolicyId": "ANPAZKAPJZG4EKQNXSK5L",
             "Arn": "arn:aws:iam::aws:policy/AWSPartnerCentralChannelManagement",
             "Path": "/",
-            "DefaultVersionId": "v8",
+            "DefaultVersionId": "v9",
             "AttachmentCount": 0,
             "PermissionsBoundaryUsageCount": 0,
             "IsAttachable": true,
             "CreateDate": "2025-11-19T16:34:09+00:00",
-            "UpdateDate": "2026-11-13T17:37:08+00:00"
+            "UpdateDate": "2026-11-20T01:37:07+00:00"
         },
         {
             "PolicyName": "SignInLocalDevelopmentAccess",
@@ -17021,12 +17021,12 @@
             "PolicyId": "ANPAZKAPJZG4EDTAKOI7T",
             "Arn": "arn:aws:iam::aws:policy/AWSPartnerCentralMarketingManagement",
             "Path": "/",
-            "DefaultVersionId": "v6",
+            "DefaultVersionId": "v7",
             "AttachmentCount": 0,
             "PermissionsBoundaryUsageCount": 0,
             "IsAttachable": true,
             "CreateDate": "2025-12-01T00:34:10+00:00",
-            "UpdateDate": "2026-10-28T17:47:08+00:00"
+            "UpdateDate": "2026-11-20T04:37:07+00:00"
         },
         {
             "PolicyName": "SecurityAgentWebAppAPIPolicy",
@@ -17261,12 +17261,12 @@
             "PolicyId": "ANPAZKAPJZG4EOKHP6GLY",
             "Arn": "arn:aws:iam::aws:policy/PartnerCentralIncentiveBenefitManagement",
             "Path": "/",
-            "DefaultVersionId": "v5",
+            "DefaultVersionId": "v6",
             "AttachmentCount": 0,
             "PermissionsBoundaryUsageCount": 0,
             "IsAttachable": true,
             "CreateDate": "2026-02-11T16:42:14+00:00",
-            "UpdateDate": "2026-10-28T13:47:08+00:00"
+            "UpdateDate": "2026-11-20T04:37:07+00:00"
         },
         {
             "PolicyName": "AmazonInspector2ManagedTelemetryPolicy",
@@ -17909,12 +17909,12 @@
             "PolicyId": "ANPAZKAPJZG4KRTUHDRKJ",
             "Arn": "arn:aws:iam::aws:policy/FinOpsAgentAgentPolicy",
             "Path": "/",
-            "DefaultVersionId": "v5",
+            "DefaultVersionId": "v6",
             "AttachmentCount": 0,
             "PermissionsBoundaryUsageCount": 0,
             "IsAttachable": true,
             "CreateDate": "2026-06-03T19:57:12+00:00",
-            "UpdateDate": "2026-10-02T18:27:07+00:00"
+            "UpdateDate": "2026-11-20T02:07:08+00:00"
         },
         {
             "PolicyName": "EC2ImageBuilderExecutionPolicy",
@@ -18065,12 +18065,12 @@
             "PolicyId": "ANPAZKAPJZG4A4543BUQP",
             "Arn": "arn:aws:iam::aws:policy/AWSPartnerCentralRevenueAttributionManagement",
             "Path": "/",
-            "DefaultVersionId": "v2",
+            "DefaultVersionId": "v3",
             "AttachmentCount": 0,
             "PermissionsBoundaryUsageCount": 0,
             "IsAttachable": true,
             "CreateDate": "2026-06-30T19:12:18+00:00",
-            "UpdateDate": "2026-10-28T13:47:08+00:00"
+            "UpdateDate": "2026-11-20T04:27:06+00:00"
         },
         {
             "PolicyName": "AWSArtifactComplianceInquiriesFullAccess",
@@ -18629,12 +18629,12 @@
             "PolicyId": "ANPAZKAPJZG4CXNIJLWPU",
             "Arn": "arn:aws:iam::aws:policy/AgentRegistryFullAccess",
             "Path": "/",
-            "DefaultVersionId": "v2",
+            "DefaultVersionId": "v3",
             "AttachmentCount": 0,
             "PermissionsBoundaryUsageCount": 0,
             "IsAttachable": true,
             "CreateDate": "2026-08-06T18:12:14+00:00",
-            "UpdateDate": "2026-08-31T17:07:08+00:00"
+            "UpdateDate": "2026-11-19T16:17:08+00:00"
         },
         {
             "PolicyName": "AgentRegistryReadOnlyAccess",
@@ -18857,12 +18857,12 @@
             "PolicyId": "ANPAZKAPJZG4PASQMIJJI",
             "Arn": "arn:aws:iam::aws:policy/CloudWatchOmniSpaceAccessPolicy",
             "Path": "/",
-            "DefaultVersionId": "v4",
+            "DefaultVersionId": "v5",
             "AttachmentCount": 0,
             "PermissionsBoundaryUsageCount": 0,
             "IsAttachable": true,
             "CreateDate": "2026-09-22T01:47:07+00:00",
-            "UpdateDate": "2026-11-17T16:37:08+00:00"
+            "UpdateDate": "2026-11-19T23:37:09+00:00"
         },
         {
             "PolicyName": "CloudWatchOmniDomainAccessPolicy",
@@ -19037,12 +19037,12 @@
             "PolicyId": "ANPAZKAPJZG4IEPXQJW74",
             "Arn": "arn:aws:iam::aws:policy/aws-service-role/AWSFinOpsAgentServiceRolePolicy",
             "Path": "/aws-service-role/",
-            "DefaultVersionId": "v1",
+            "DefaultVersionId": "v2",
             "AttachmentCount": 0,
             "PermissionsBoundaryUsageCount": 0,
             "IsAttachable": true,
             "CreateDate": "2026-10-20T16:07:08+00:00",
-            "UpdateDate": "2026-10-20T16:07:08+00:00"
+            "UpdateDate": "2026-11-20T01:47:08+00:00"
         },
         {
             "PolicyName": "AssuranceOperatorPolicy",
@@ -19337,12 +19337,12 @@
             "PolicyId": "ANPAZKAPJZG4MD2TDGPAC",
             "Arn": "arn:aws:iam::aws:policy/aws-service-role/AWSAPIPortalServiceRolePolicy",
             "Path": "/aws-service-role/",
-            "DefaultVersionId": "v1",
+            "DefaultVersionId": "v2",
             "AttachmentCount": 0,
             "PermissionsBoundaryUsageCount": 0,
             "IsAttachable": true,
             "CreateDate": "2026-11-17T23:37:09+00:00",
-            "UpdateDate": "2026-11-17T23:37:09+00:00"
+            "UpdateDate": "2026-11-19T17:27:08+00:00"
         },
         {
             "PolicyName": "AWSAccountAccessManagerReadOnlyAccess",
@@ -19403,6 +19403,54 @@
             "IsAttachable": true,
             "CreateDate": "2026-11-19T03:17:08+00:00",
             "UpdateDate": "2026-11-19T03:17:08+00:00"
+        },
+        {
+            "PolicyName": "CertificateManagerOrganizationManagementServiceRolePolicy",
+            "PolicyId": "ANPAZKAPJZG4AUAKLOOYM",
+            "Arn": "arn:aws:iam::aws:policy/aws-service-role/CertificateManagerOrganizationManagementServiceRolePolicy",
+            "Path": "/aws-service-role/",
+            "DefaultVersionId": "v1",
+            "AttachmentCount": 0,
+            "PermissionsBoundaryUsageCount": 0,
+            "IsAttachable": true,
+            "CreateDate": "2026-11-19T18:47:08+00:00",
+            "UpdateDate": "2026-11-19T18:47:08+00:00"
+        },
+        {
+            "PolicyName": "VirtualEdgeNetworkServiceRolePolicy",
+            "PolicyId": "ANPAZKAPJZG4IWXG4IUVA",
+            "Arn": "arn:aws:iam::aws:policy/aws-service-role/VirtualEdgeNetworkServiceRolePolicy",
+            "Path": "/aws-service-role/",
+            "DefaultVersionId": "v1",
+            "AttachmentCount": 0,
+            "PermissionsBoundaryUsageCount": 0,
+            "IsAttachable": true,
+            "CreateDate": "2026-11-19T19:57:09+00:00",
+            "UpdateDate": "2026-11-19T19:57:09+00:00"
+        },
+        {
+            "PolicyName": "CertificateManagerInventoryServiceRolePolicy",
+            "PolicyId": "ANPAZKAPJZG4JVBL7L7TE",
+            "Arn": "arn:aws:iam::aws:policy/aws-service-role/CertificateManagerInventoryServiceRolePolicy",
+            "Path": "/aws-service-role/",
+            "DefaultVersionId": "v1",
+            "AttachmentCount": 0,
+            "PermissionsBoundaryUsageCount": 0,
+            "IsAttachable": true,
+            "CreateDate": "2026-11-19T20:47:08+00:00",
+            "UpdateDate": "2026-11-19T20:47:08+00:00"
+        },
+        {
+            "PolicyName": "ConnectCampaignsInternalReserveRolePolicy",
+            "PolicyId": "ANPAZKAPJZG4BYHQX6E5M",
+            "Arn": "arn:aws:iam::aws:policy/service-role/ConnectCampaignsInternalReserveRolePolicy",
+            "Path": "/service-role/",
+            "DefaultVersionId": "v1",
+            "AttachmentCount": 0,
+            "PermissionsBoundaryUsageCount": 0,
+            "IsAttachable": true,
+            "CreateDate": "2026-11-19T23:27:08+00:00",
+            "UpdateDate": "2026-11-19T23:27:08+00:00"
         },
         {
             "PolicyName": "AWSConfigRole",
