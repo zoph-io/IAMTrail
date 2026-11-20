@@ -68,6 +68,7 @@
                         "payments:GetFinancingOption",
                         "payments:GetPaymentInstrument",
                         "payments:GetPaymentStatus",
+                        "payments:ListConnectedAccounts",
                         "payments:ListFinancingApplications",
                         "payments:ListFinancingLines",
                         "payments:ListFinancingLineWithdrawals",
@@ -97,11 +98,19 @@
                         "billing:ListContractualInvestmentSummaries"
                     ],
                     "Resource": "arn:aws:billing::*:contract/*"
+                },
+                {
+                    "Sid": "ConnectedAccountReadOnly",
+                    "Effect": "Allow",
+                    "Action": [
+                        "payments:GetConnectedAccount"
+                    ],
+                    "Resource": "arn:aws:payments::*:connectedaccount/*"
                 }
             ]
         },
-        "VersionId": "v29",
+        "VersionId": "v30",
         "IsDefaultVersion": true,
-        "CreateDate": "2026-10-26T17:07:07+00:00"
+        "CreateDate": "2026-11-20T21:37:08+00:00"
     }
 }
