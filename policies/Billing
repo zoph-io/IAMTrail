@@ -110,6 +110,7 @@
                         "mapcredits:ListQuarterSpend",
                         "mapcredits:ListAssociatedPrograms",
                         "mapcredits:ListQuarterCredits",
+                        "payments:CreateConnectedAccount",
                         "payments:CreateFinancingApplication",
                         "payments:CreatePaymentInstrument",
                         "payments:DeletePaymentInstrument",
@@ -119,6 +120,7 @@
                         "payments:GetFinancingOption",
                         "payments:GetPaymentInstrument",
                         "payments:GetPaymentStatus",
+                        "payments:ListConnectedAccounts",
                         "payments:ListFinancingApplications",
                         "payments:ListFinancingLines",
                         "payments:ListFinancingLineWithdrawals",
@@ -177,11 +179,20 @@
                         "billing:ListContractualInvestmentSummaries"
                     ],
                     "Resource": "arn:aws:billing::*:contract/*"
+                },
+                {
+                    "Sid": "ConnectedAccountAdministration",
+                    "Effect": "Allow",
+                    "Action": [
+                        "payments:DeleteConnectedAccount",
+                        "payments:GetConnectedAccount"
+                    ],
+                    "Resource": "arn:aws:payments::*:connectedaccount/*"
                 }
             ]
         },
-        "VersionId": "v31",
+        "VersionId": "v32",
         "IsDefaultVersion": true,
-        "CreateDate": "2026-10-26T17:07:08+00:00"
+        "CreateDate": "2026-11-20T22:07:07+00:00"
     }
 }
