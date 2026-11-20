@@ -178,11 +178,39 @@
                             ]
                         }
                     }
+                },
+                {
+                    "Sid": "Support",
+                    "Effect": "Allow",
+                    "Action": [
+                        "support:CreateCase",
+                        "support:DescribeCases",
+                        "support:DescribeCommunications",
+                        "support:DescribeAttachment",
+                        "support:AddCommunicationToCase",
+                        "support:ResolveCase",
+                        "support:AddAttachmentsToSet",
+                        "support:SearchForCases",
+                        "support:DescribeServices",
+                        "support:DescribeCreateCaseOptions"
+                    ],
+                    "Resource": "*"
+                },
+                {
+                    "Sid": "SupportConsole",
+                    "Effect": "Allow",
+                    "Action": [
+                        "support-console:GetAccountState",
+                        "support-console:GetAccountGovCloudEnabled",
+                        "support-console:CheckSubscription",
+                        "support-console:GetBanner"
+                    ],
+                    "Resource": "*"
                 }
             ]
         },
-        "VersionId": "v17",
+        "VersionId": "v18",
         "IsDefaultVersion": true,
-        "CreateDate": "2026-11-18T20:07:09+00:00"
+        "CreateDate": "2026-11-20T05:27:07+00:00"
     }
 }
