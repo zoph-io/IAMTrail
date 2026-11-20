@@ -10,6 +10,14 @@
                     "Resource": "arn:aws:agent-registry:*:*:*"
                 },
                 {
+                    "Sid": "AgentRegistryPublicDiscoveryAccess",
+                    "Effect": "Allow",
+                    "Action": [
+                        "agent-discovery:SearchPublicRecords"
+                    ],
+                    "Resource": "*"
+                },
+                {
                     "Sid": "AgentRegistryPassRoleAccess",
                     "Effect": "Allow",
                     "Action": "iam:PassRole",
@@ -154,8 +162,8 @@
                 }
             ]
         },
-        "VersionId": "v3",
+        "VersionId": "v4",
         "IsDefaultVersion": true,
-        "CreateDate": "2026-11-19T16:17:08+00:00"
+        "CreateDate": "2026-11-20T20:57:07+00:00"
     }
 }
