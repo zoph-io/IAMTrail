@@ -65,6 +65,7 @@
                     "Effect": "Allow",
                     "Action": [
                         "partnercentral:GetMarketplaceRevenueShare",
+                        "partnercentral:UpdateMarketplaceRevenueShare",
                         "partnercentral:GetMarketplaceRevenueShareAllocation",
                         "partnercentral:UpdateMarketplaceRevenueShareAllocation"
                     ],
@@ -211,11 +212,39 @@
                         "q:PassRequest"
                     ],
                     "Resource": "*"
+                },
+                {
+                    "Sid": "Support",
+                    "Effect": "Allow",
+                    "Action": [
+                        "support:CreateCase",
+                        "support:DescribeCases",
+                        "support:DescribeCommunications",
+                        "support:DescribeAttachment",
+                        "support:AddCommunicationToCase",
+                        "support:ResolveCase",
+                        "support:AddAttachmentsToSet",
+                        "support:SearchForCases",
+                        "support:DescribeServices",
+                        "support:DescribeCreateCaseOptions"
+                    ],
+                    "Resource": "*"
+                },
+                {
+                    "Sid": "SupportConsole",
+                    "Effect": "Allow",
+                    "Action": [
+                        "support-console:GetAccountState",
+                        "support-console:GetAccountGovCloudEnabled",
+                        "support-console:CheckSubscription",
+                        "support-console:GetBanner"
+                    ],
+                    "Resource": "*"
                 }
             ]
         },
-        "VersionId": "v2",
+        "VersionId": "v3",
         "IsDefaultVersion": true,
-        "CreateDate": "2026-10-28T13:47:08+00:00"
+        "CreateDate": "2026-11-20T04:27:06+00:00"
     }
 }
