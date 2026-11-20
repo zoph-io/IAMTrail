@@ -142,7 +142,8 @@
                             "ec2:CreateAction": [
                                 "CreateFleet",
                                 "CreateLaunchTemplate",
-                                "RunInstances"
+                                "RunInstances",
+                                "CreateVolume"
                             ]
                         }
                     }
@@ -217,8 +218,8 @@
                 }
             ]
         },
-        "VersionId": "v13",
+        "VersionId": "v14",
         "IsDefaultVersion": true,
-        "CreateDate": "2026-10-22T21:27:07+00:00"
+        "CreateDate": "2026-11-20T17:27:06+00:00"
     }
 }
