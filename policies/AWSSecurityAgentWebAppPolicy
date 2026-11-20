@@ -105,6 +105,7 @@
                         "securityagent:GetDesignReview",
                         "securityagent:GetDesignReviewArtifact",
                         "securityagent:GetDesignReviewFeedback",
+                        "securityagent:GetPentestEstimate",
                         "securityagent:ListActorMessages",
                         "securityagent:ListArtifacts",
                         "securityagent:ListCodeReviewJobsForCodeReview",
@@ -127,10 +128,12 @@
                         "securityagent:StartCodeRemediation",
                         "securityagent:StartCodeReviewJob",
                         "securityagent:StartPentestJob",
+                        "securityagent:StartPentestEstimationRun",
                         "securityagent:StartThreatModelJob",
                         "securityagent:StartValidationRun",
                         "securityagent:StopCodeReviewJob",
                         "securityagent:StopPentestJob",
+                        "securityagent:StopPentestEstimationRun",
                         "securityagent:StopThreatModelJob",
                         "securityagent:UpdateCodeReview",
                         "securityagent:UpdateDiscoveredDomains",
@@ -149,8 +152,8 @@
                 }
             ]
         },
-        "VersionId": "v11",
+        "VersionId": "v12",
         "IsDefaultVersion": true,
-        "CreateDate": "2026-11-14T02:37:08+00:00"
+        "CreateDate": "2026-11-20T18:07:06+00:00"
     }
 }
