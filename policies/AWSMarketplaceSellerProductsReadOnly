@@ -43,11 +43,35 @@
                         "aws-marketplace:GetResourcePolicy"
                     ],
                     "Resource": "arn:aws:aws-marketplace:*:*:AWSMarketplace/*"
+                },
+                {
+                    "Sid": "Support",
+                    "Effect": "Allow",
+                    "Action": [
+                        "support:DescribeCases",
+                        "support:DescribeCommunications",
+                        "support:DescribeAttachment",
+                        "support:SearchForCases",
+                        "support:DescribeServices",
+                        "support:DescribeCreateCaseOptions"
+                    ],
+                    "Resource": "*"
+                },
+                {
+                    "Sid": "SupportConsole",
+                    "Effect": "Allow",
+                    "Action": [
+                        "support-console:GetAccountState",
+                        "support-console:GetAccountGovCloudEnabled",
+                        "support-console:CheckSubscription",
+                        "support-console:GetBanner"
+                    ],
+                    "Resource": "*"
                 }
             ]
         },
-        "VersionId": "v8",
+        "VersionId": "v9",
         "IsDefaultVersion": true,
-        "CreateDate": "2026-11-18T18:37:08+00:00"
+        "CreateDate": "2026-11-21T01:27:07+00:00"
     }
 }
