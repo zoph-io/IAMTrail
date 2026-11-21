@@ -900,42 +900,6 @@
     ]
   },
   {
-    "findingDetails": "The action payments:GetAccountBalance does not exist.",
-    "findingType": "ERROR",
-    "issueCode": "INVALID_ACTION",
-    "learnMoreLink": "https://docs.aws.amazon.com/IAM/latest/UserGuide/access-analyzer-reference-policy-checks.html#access-analyzer-reference-policy-checks-error-invalid-action",
-    "locations": [
-      {
-        "path": [
-          {
-            "value": "Statement"
-          },
-          {
-            "index": 12
-          },
-          {
-            "value": "Action"
-          },
-          {
-            "index": 25
-          }
-        ],
-        "span": {
-          "start": {
-            "line": 1,
-            "column": 5245,
-            "offset": 5245
-          },
-          "end": {
-            "line": 1,
-            "column": 5273,
-            "offset": 5273
-          }
-        }
-      }
-    ]
-  },
-  {
     "findingDetails": "The action payments:GetDefaultPaymentProfile does not exist.",
     "findingType": "ERROR",
     "issueCode": "INVALID_ACTION",
