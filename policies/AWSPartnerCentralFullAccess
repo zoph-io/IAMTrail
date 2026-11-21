@@ -240,7 +240,10 @@
                     "Action": [
                         "iam:GetRole"
                     ],
-                    "Resource": "arn:aws:iam::*:role/aws-service-role/partnercentral-account.amazonaws.com/AWSServiceRoleForPartnerCentralAccount"
+                    "Resource": [
+                        "arn:aws:iam::*:role/aws-service-role/partnercentral-account.amazonaws.com/AWSServiceRoleForPartnerCentralAccount",
+                        "arn:aws:iam::*:role/AWSServiceRoleForPartnerCentralAccount"
+                    ]
                 },
                 {
                     "Sid": "CreateServiceLinkedRole",
@@ -284,7 +287,10 @@
                     "Action": [
                         "iam:GetRole"
                     ],
-                    "Resource": "arn:aws:iam::*:role/aws-service-role/partnercentral-marketing.amazonaws.com/AWSServiceRoleForPartnerCentralMarketing"
+                    "Resource": [
+                        "arn:aws:iam::*:role/aws-service-role/partnercentral-marketing.amazonaws.com/AWSServiceRoleForPartnerCentralMarketing",
+                        "arn:aws:iam::*:role/AWSServiceRoleForPartnerCentralMarketing"
+                    ]
                 },
                 {
                     "Sid": "SupportConsole",
@@ -299,8 +305,8 @@
                 }
             ]
         },
-        "VersionId": "v18",
+        "VersionId": "v19",
         "IsDefaultVersion": true,
-        "CreateDate": "2026-11-20T06:17:06+00:00"
+        "CreateDate": "2026-11-21T02:57:08+00:00"
     }
 }
