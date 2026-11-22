@@ -18,6 +18,8 @@ import boto3
 from botocore.config import Config
 
 WORKERS = 32
+RETRY_ATTEMPTS = 3
+RETRY_BASE_DELAY = 2  # seconds; doubles each attempt (2, 4, 8)
 REGION = os.environ.get("AWS_REGION", "eu-west-1")
 
 config = Config(
@@ -91,7 +93,8 @@ def main():
     log(f"Fetching policy versions with {WORKERS} threads...")
     t0 = time.time()
     done = 0
-    errors = 0
+
+    failed = []
 
     with ThreadPoolExecutor(max_workers=WORKERS) as pool:
         futures = {}
@@ -100,18 +103,35 @@ def main():
             fut = pool.submit(
                 fetch_and_write, iam, p["Arn"], p["DefaultVersionId"], output_path
             )
-            futures[fut] = p["PolicyName"]
+            futures[fut] = (p, output_path)
 
         for fut in as_completed(futures):
-            name = futures[fut]
+            p, output_path = futures[fut]
             try:
                 fut.result()
                 done += 1
                 if done % 100 == 0:
                     log(f"  Progress: {done}/{len(policies)}")
             except Exception as e:
-                errors += 1
-                log(f"  ERROR fetching {name}: {e}")
+                failed.append((p, output_path))
+                log(f"  WARN fetching {p['PolicyName']} (will retry): {e}")
+
+    # IAM's rate limit is low and 32 threads can exhaust botocore's retries on a
+    # single call (2026-11-22: one Throttling failed the whole hourly run). Once
+    # the parallel burst is over, retry the stragglers one at a time with backoff.
+    errors = 0
+    for p, output_path in failed:
+        for attempt in range(1, RETRY_ATTEMPTS + 1):
+            time.sleep(RETRY_BASE_DELAY * 2 ** (attempt - 1))
+            try:
+                fetch_and_write(iam, p["Arn"], p["DefaultVersionId"], output_path)
+                done += 1
+                log(f"  Retried {p['PolicyName']} OK (attempt {attempt})")
+                break
+            except Exception as e:
+                if attempt == RETRY_ATTEMPTS:
+                    errors += 1
+                    log(f"  ERROR fetching {p['PolicyName']}: {e}")
 
     elapsed = time.time() - t0
     log(f"Fetched {done} policies in {elapsed:.1f}s ({errors} errors)")
