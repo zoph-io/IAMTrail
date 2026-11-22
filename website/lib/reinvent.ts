@@ -14,6 +14,13 @@ export type ReinventService = {
   firstSeen: string;
   firstPolicy: string;
   timing: ReinventTiming | null;
+  /** "new": not in AWS's IAM reference when docs history began. null: no history for that date. */
+  kind: "new" | "existing" | null;
+  /** First day AWS's Service Authorization Reference listed the prefix. */
+  docsSince: string | null;
+  /** The managed policy came at least a day before the docs. */
+  spottedFirst: boolean;
+  announcement: { headline: string; url: string; date: string } | null;
   actions: ReinventAction[];
 };
 
@@ -61,6 +68,7 @@ export type ReinventEdition = {
 export type ReinventFile = {
   schemaVersion: number;
   generatedAt: string;
+  docsHistoryStart: string | null;
   windowLabel: string;
   currentYear: string | null;
   lastmod: string | null;
@@ -138,4 +146,45 @@ export function preReinventionPosts(
 
 export function timingLabel(timing: ReinventTiming | null): string {
   return timing ? TIMING_LABEL[timing] : "";
+}
+
+/** Services worth watching: brand-new ones, or every one when the season predates docs history. */
+export function spottedServices(edition: ReinventEdition): ReinventService[] {
+  return edition.services.filter((service) => service.kind !== "existing");
+}
+
+/** Existing AWS services that only now show up in a managed policy. */
+export function existingServices(edition: ReinventEdition): ReinventService[] {
+  return edition.services.filter((service) => service.kind === "existing");
+}
+
+function daysBetween(from: string, to: string): number {
+  const a = Date.parse(`${from.slice(0, 10)}T00:00:00Z`);
+  const b = Date.parse(`${to.slice(0, 10)}T00:00:00Z`);
+  return Math.round((b - a) / 86_400_000);
+}
+
+/**
+ * Where the conference stands on the day the data was built: the page is
+ * static, so this is "as of" generatedAt, not the reader's clock.
+ */
+export function conferenceStatus(
+  edition: ReinventEdition,
+  generatedAt: string,
+): { phase: "upcoming" | "live" | "past"; days: number } | null {
+  if (!edition.conference) return null;
+  const today = generatedAt.slice(0, 10);
+  if (today < edition.conference.starts) {
+    return { phase: "upcoming", days: daysBetween(today, edition.conference.starts) };
+  }
+  if (today <= edition.conference.ends) {
+    return { phase: "live", days: daysBetween(edition.conference.starts, today) + 1 };
+  }
+  return { phase: "past", days: 0 };
+}
+
+/** Days from the IAM sighting to the announcement; negative when AWS announced first. */
+export function leadDays(service: ReinventService): number | null {
+  if (!service.announcement) return null;
+  return daysBetween(service.firstSeen, service.announcement.date);
 }

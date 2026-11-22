@@ -92,6 +92,58 @@ function whatsNewFor(year, meta, whatsNewByYear, whatsNewUnavailable) {
   return { available: true, items };
 }
 
+/**
+ * Is this prefix a new AWS service, or an existing one that only now shows up
+ * in a managed policy? Read from when AWS's Service Authorization Reference
+ * first listed it (docsHistory, see loadDocsHistory in generate-data.js).
+ *
+ *   "new"       not listed when the history started, so AWS documented it
+ *               recently, or not at all yet
+ *   "existing"  already listed when the history started
+ *   null        sighting predates the history, so nothing can be said
+ *
+ * docsSince is the first day it was listed; null when it is not listed yet.
+ * spottedFirst is true when the managed policy came at least a day first.
+ */
+function classify(prefix, firstSeen, docsHistory) {
+  if (!docsHistory || !docsHistory.start || firstSeen < docsHistory.start) {
+    return { kind: null, docsSince: null, spottedFirst: false };
+  }
+  const docsSince = (docsHistory.since && docsHistory.since[prefix]) || null;
+  if (docsSince && docsSince <= docsHistory.start) {
+    return { kind: "existing", docsSince, spottedFirst: false };
+  }
+  return {
+    kind: "new",
+    docsSince,
+    spottedFirst: !docsSince || docsSince > firstSeen,
+  };
+}
+
+/**
+ * The What's New post that names this service, if any. Strict on purpose: the
+ * full name, or the name without "AWS"/"Amazon" when that still has two words,
+ * as a whole phrase. A missed match costs a link; a wrong one costs trust.
+ */
+function escapeRegExp(text) {
+  return text.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+}
+
+function announcementFor(name, posts) {
+  if (!name) return null;
+  const core = name.replace(/^(AWS|Amazon)\s+/i, "").trim();
+  const phrases = [name];
+  if (core !== name && core.split(/\s+/).length >= 2) phrases.push(core);
+  const patterns = phrases.map(
+    (phrase) => new RegExp(`(^|[^\\w-])${escapeRegExp(phrase)}($|[^\\w-])`, "i")
+  );
+  const hits = posts.filter((post) => patterns.some((re) => re.test(post.headline)));
+  if (hits.length === 0) return null;
+  // Earliest post: the launch, not a later feature on top of it.
+  const first = hits.reduce((best, post) => (post.date < best.date ? post : best));
+  return { headline: first.headline, url: first.url, date: first.date };
+}
+
 function buildArchive({
   generatedAt,
   services = [],
@@ -105,6 +157,7 @@ function buildArchive({
   permissions = new Set(),
   whatsNewByYear = null,
   whatsNewUnavailable = false,
+  docsHistory = null,
 }) {
   const perm = permissions instanceof Set ? permissions : new Set(permissions);
   const currentYear = seasonYear(generatedAt);
@@ -170,6 +223,13 @@ function buildArchive({
         list.sort((a, b) => a.action.localeCompare(b.action));
       }
 
+      const whatsNewPosts = whatsNewFor(
+        year,
+        meta,
+        whatsNewByYear,
+        whatsNewUnavailable
+      );
+
       const servicePrefixes = new Set();
       const serviceRows = row.services
         .map((service) => {
@@ -177,12 +237,15 @@ function buildArchive({
           if (!prefix || servicePrefixes.has(prefix)) return null;
           servicePrefixes.add(prefix);
           const name = serviceNames[prefix] || null;
+          const firstSeen = day(service.firstSeen);
           return {
             prefix,
             name,
-            firstSeen: day(service.firstSeen),
+            firstSeen,
             firstPolicy: service.firstPolicy || "",
             timing: timingFor(service.firstSeen, meta),
+            ...classify(prefix, firstSeen, docsHistory),
+            announcement: announcementFor(name, whatsNewPosts.items),
             actions: actionsByPrefix.get(prefix) || [],
           };
         })
@@ -287,13 +350,6 @@ function buildArchive({
       }
       permissionsManagement.sort((a, b) => a.action.localeCompare(b.action));
 
-      const whatsNewPosts = whatsNewFor(
-        year,
-        meta,
-        whatsNewByYear,
-        whatsNewUnavailable
-      );
-
       const lastmod = maxDay([
         ...serviceRows.map((service) => service.firstSeen),
         ...row.actions.map((action) => action.firstSeen),
@@ -352,6 +408,7 @@ function buildArchive({
   return {
     schemaVersion: 1,
     generatedAt,
+    docsHistoryStart: docsHistory ? docsHistory.start || null : null,
     windowLabel: WINDOW_LABEL,
     currentYear,
     lastmod: indexLastmod,
@@ -364,4 +421,6 @@ module.exports = {
   seasonYear,
   timingFor,
   buildArchive,
+  classify,
+  announcementFor,
 };

@@ -229,3 +229,48 @@ test("outside the season the latest closed year leads and the next one is absent
   );
   assert.equal(archive.editions[0].status, "closed");
 });
+
+const { classify, announcementFor } = require("./reinvent-window");
+
+test("a prefix is new, existing, or unclassified by when AWS documented it", () => {
+  const history = {
+    start: "2026-07-31",
+    since: { wickr: "2026-07-31", nsm: "2026-09-25", apex: "2026-11-22", hub: "2026-11-20" },
+  };
+  // Documented when the history began: an existing service.
+  assert.deepEqual(classify("wickr", "2026-10-28", history), {
+    kind: "existing",
+    docsSince: "2026-07-31",
+    spottedFirst: false,
+  });
+  // Documented during the history, before the policy: new, not first.
+  assert.equal(classify("nsm", "2026-11-20", history).kind, "new");
+  assert.equal(classify("nsm", "2026-11-20", history).spottedFirst, false);
+  // Policy came first: spotted before the docs.
+  assert.equal(classify("apex", "2026-11-19", history).spottedFirst, true);
+  // Same day is not "before".
+  assert.equal(classify("hub", "2026-11-20", history).spottedFirst, false);
+  // Never documented: new and first.
+  assert.deepEqual(classify("ghost", "2026-11-01", history), {
+    kind: "new",
+    docsSince: null,
+    spottedFirst: true,
+  });
+  // Sighting before the history, or no history at all: no claim.
+  assert.equal(classify("apex", "2025-11-19", history).kind, null);
+  assert.equal(classify("apex", "2026-11-19", null).kind, null);
+});
+
+test("an announcement matches the service name as a phrase, not a fragment", () => {
+  const posts = [
+    { headline: "Amazon Connect Health medical coding is now in preview", url: "u1", date: "2026-11-16" },
+    { headline: "Amazon Connect Health launches", url: "u0", date: "2026-11-10" },
+    { headline: "AWS launches AWS Transform custom", url: "u2", date: "2025-12-01" },
+    { headline: "Amazon Connect Healthcare-ish thing", url: "u3", date: "2026-11-01" },
+  ];
+  assert.equal(announcementFor("Amazon Connect Health", posts).url, "u0");
+  assert.equal(announcementFor("AWS Transform custom", posts).url, "u2");
+  // A one-word core ("Wickr") must match the full name only.
+  assert.equal(announcementFor("AWS Wickr", [{ headline: "Wickr adds X", url: "w", date: "2026-11-01" }]), null);
+  assert.equal(announcementFor(null, posts), null);
+});

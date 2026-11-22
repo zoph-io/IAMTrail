@@ -3,7 +3,7 @@ import { notFound } from "next/navigation";
 import ReinventEditionView from "@/components/ReinventEditionView";
 import RelatedPages from "@/components/RelatedPages";
 import { plural } from "@/lib/changes";
-import { loadReinvent } from "@/lib/reinvent";
+import { loadReinvent, spottedServices } from "@/lib/reinvent";
 import { pageMetadata } from "@/lib/seo";
 
 export function generateStaticParams() {
@@ -20,16 +20,16 @@ export async function generateMetadata(props: {
 }): Promise<Metadata> {
   const { year } = await props.params;
   const edition = loadReinvent().editions.find((item) => item.year === year);
-  const pre = edition
-    ? edition.whatsNewPosts.available
-      ? edition.whatsNewPosts.items.filter((post) => post.timing === "before").length
-      : null
-    : null;
+  const spotted = edition ? spottedServices(edition) : [];
+  const names = spotted
+    .slice(0, 3)
+    .map((service) => service.name ?? service.prefix)
+    .join(", ");
   const description = !edition
     ? `re:Invent ${year} in the IAMTrail archive of AWS managed IAM policy changes.`
-    : pre === null
-      ? `re:Invent ${year}: ${plural(edition.services.length, "new AWS service")} in managed IAM policies. What's New data unavailable.`
-      : `re:Invent ${year}: ${plural(pre, "pre-re:Invent announcement")} and ${plural(edition.services.length, "new AWS service")} in managed IAM policies.`;
+    : spotted.length === 0
+      ? `re:Invent ${year} in AWS managed IAM policies: ${plural(edition.neverBeforeSeen, "never-before-seen action")} and what was announced.`
+      : `re:Invent ${year}: ${plural(spotted.length, "new AWS service")} spotted in managed IAM policies, including ${names}.`;
   return pageMetadata({
     title: `re:Invent ${year}`,
     description,

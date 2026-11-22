@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import { CalendarDays, ChevronRight } from "lucide-react";
 import RelatedPages from "@/components/RelatedPages";
 import {
+  countdownLabel,
   OfficialLinks,
   ReinventStats,
   seasonLead,
@@ -11,25 +12,39 @@ import VegasFrame, { BulbRow } from "@/components/VegasFrame";
 import { plural } from "@/lib/changes";
 import {
   conferenceLabel,
-  endpointTotal,
   formatDay,
   loadReinvent,
   preReinventionPosts,
+  spottedServices,
   type ReinventEdition,
+  type ReinventService,
 } from "@/lib/reinvent";
 import { pageMetadata } from "@/lib/seo";
 
 export const metadata: Metadata = pageMetadata({
   title: "AWS re:Invent in IAM",
   description:
-    "What showed up in AWS managed IAM policies each re:Invent season, October through December, with the pre-re:Invent What's New posts.",
+    "New AWS services spotted in managed IAM policies ahead of re:Invent, season by season, with the launches they turned into.",
   path: "/reinvent",
 });
 
-const PREVIEW = 5;
+const PREVIEW = 6;
+const ARCHIVE_NAMES = 4;
+
+function serviceLabel(service: ReinventService): string {
+  return service.name ?? service.prefix;
+}
+
+/** The services a season gave away before the conference opened. */
+function earlyServices(edition: ReinventEdition): ReinventService[] {
+  return spottedServices(edition)
+    .filter((service) => service.timing === "before")
+    .sort((a, b) => a.firstSeen.localeCompare(b.firstSeen));
+}
 
 function ArchiveCard({ edition }: { edition: ReinventEdition }) {
   const when = conferenceLabel(edition.conference);
+  const early = earlyServices(edition);
   const pre = preReinventionPosts(edition);
   return (
     <article className="overflow-hidden rounded-lg border border-amber-400/30 bg-zinc-950 text-zinc-100">
@@ -56,27 +71,43 @@ function ArchiveCard({ edition }: { edition: ReinventEdition }) {
         {when ? (
           <p className="mt-1 text-xs font-mono text-zinc-400">{when}</p>
         ) : null}
-        <p className="mt-3 text-sm text-zinc-300">
-          {plural(edition.services.length, "new AWS service")},{" "}
-          {plural(edition.neverBeforeSeen, "never-before-seen action")},{" "}
-          {plural(edition.changes, "policy change")}
-          {endpointTotal(edition) > 0
-            ? `, ${plural(endpointTotal(edition), "endpoint change")}`
+
+        {early.length > 0 ? (
+          <div className="mt-3">
+            <p className="text-xs font-mono uppercase tracking-wider text-amber-300">
+              {edition.services.some((service) => service.kind !== null)
+                ? "Spotted before the keynote"
+                : "New in IAM before the keynote"}
+            </p>
+            <p className="mt-1 text-sm text-zinc-200 leading-relaxed">
+              {early.slice(0, ARCHIVE_NAMES).map((service, index) => (
+                <span key={service.prefix}>
+                  {index > 0 ? ", " : null}
+                  {serviceLabel(service)}{" "}
+                  <span className="text-xs font-mono text-zinc-500">
+                    {formatDay(service.firstSeen).replace(/, \d{4}$/, "")}
+                  </span>
+                </span>
+              ))}
+              {early.length > ARCHIVE_NAMES
+                ? `, and ${early.length - ARCHIVE_NAMES} more`
+                : null}
+            </p>
+          </div>
+        ) : (
+          <p className="mt-3 text-sm text-zinc-400">
+            No new service prefix before the keynote.
+          </p>
+        )}
+
+        <p className="mt-3 text-xs text-zinc-400">
+          {plural(edition.services.length, "new service prefix", "new service prefixes")},{" "}
+          {plural(edition.neverBeforeSeen, "never-before-seen action")}
+          {pre && pre.length > 0
+            ? `, ${plural(pre.length, "pre-re:Invent launch", "pre-re:Invent launches")}`
             : ""}
           .
         </p>
-        {edition.beforeConference > 0 ? (
-          <p className="mt-1 text-xs text-zinc-400">
-            {plural(edition.beforeConference, "new AWS service")} pre-re:Invent.
-          </p>
-        ) : null}
-        {pre === null ? (
-          <p className="mt-1 text-xs text-rose-300">What&apos;s New data unavailable.</p>
-        ) : pre.length > 0 ? (
-          <p className="mt-1 text-xs text-amber-200/90">
-            {plural(pre.length, "pre-re:Invent announcement")}.
-          </p>
-        ) : null}
         <Link
           href={`/reinvent/${edition.year}`}
           className="mt-3 inline-flex items-center gap-1 text-sm font-medium font-mono text-amber-300 hover:text-white"
@@ -89,6 +120,60 @@ function ArchiveCard({ edition }: { edition: ReinventEdition }) {
   );
 }
 
+function SpottedPreview({ edition }: { edition: ReinventEdition }) {
+  const spotted = [...spottedServices(edition)].sort(
+    (a, b) => b.firstSeen.localeCompare(a.firstSeen) || a.prefix.localeCompare(b.prefix),
+  );
+  const shown = spotted.slice(0, PREVIEW);
+  if (shown.length === 0) {
+    return (
+      <p className="text-sm text-zinc-300">
+        No brand-new service in a managed policy yet this season.
+      </p>
+    );
+  }
+  return (
+    <div>
+      <h2 className="text-xs font-mono font-semibold uppercase tracking-widest text-amber-300">
+        Spotted in IAM so far
+      </h2>
+      <ul className="mt-2 divide-y divide-amber-400/15 border border-amber-400/25 rounded-lg bg-black/40">
+        {shown.map((service) => (
+          <li
+            key={service.prefix}
+            className="px-4 py-2.5 flex flex-wrap items-baseline justify-between gap-x-3 gap-y-0.5"
+          >
+            <span className="min-w-0">
+              <span className="text-sm text-amber-100">{serviceLabel(service)}</span>{" "}
+              <code className="text-xs font-mono text-zinc-500">{service.prefix}</code>
+            </span>
+            <span className="flex items-center gap-2 text-xs font-mono text-zinc-400">
+              {service.spottedFirst ? (
+                <span className="px-1.5 py-0.5 rounded border border-emerald-500/50 bg-emerald-400/15 text-[10px] font-semibold uppercase tracking-widest text-emerald-200">
+                  Before AWS docs
+                </span>
+              ) : null}
+              {service.announcement ? (
+                <span className="text-zinc-300">announced</span>
+              ) : null}
+              {formatDay(service.firstSeen)}
+            </span>
+          </li>
+        ))}
+      </ul>
+      <Link
+        href={`/reinvent/${edition.year}`}
+        className="mt-2 inline-flex items-center gap-1 text-sm font-mono text-amber-300 hover:text-white"
+      >
+        {spotted.length > shown.length
+          ? `All ${spotted.length} with their actions and announcements`
+          : "Actions, docs dates and announcements"}
+        <ChevronRight className="w-4 h-4" />
+      </Link>
+    </div>
+  );
+}
+
 export default function ReinventPage() {
   const archive = loadReinvent();
   const current = archive.currentYear
@@ -97,8 +182,7 @@ export default function ReinventPage() {
   const previous = archive.editions.filter(
     (edition) => edition.year !== archive.currentYear,
   );
-  const pre = current ? preReinventionPosts(current) : null;
-  const preview = pre ? pre.slice(0, PREVIEW) : [];
+  const countdown = current ? countdownLabel(current, archive.generatedAt) : null;
 
   return (
     <div className="space-y-10">
@@ -110,10 +194,10 @@ export default function ReinventPage() {
               <h1 className="text-2xl font-bold font-mono text-white">re:Invent</h1>
             </div>
             <p className="text-sm text-zinc-300 leading-relaxed">
-              Each season runs {archive.windowLabel}. AWS often ships the IAM
-              component in October and November, ahead of the conference. Major
-              What&apos;s New posts from that window are listed as pre-re:Invent.
-              The roundup link is the AWS News Blog post for that year.
+              AWS wires up a new service&apos;s permissions in its managed
+              policies before launch day. IAMTrail watches those policies every
+              hour, so new services show up here before the keynote, often
+              before AWS documents them.
             </p>
           </div>
 
@@ -121,15 +205,17 @@ export default function ReinventPage() {
             <div className="space-y-4">
               <div className="flex flex-wrap items-end justify-between gap-3">
                 <div>
-                  <h2 className="text-sm font-semibold font-mono uppercase tracking-wider text-amber-200">
-                    This season
-                  </h2>
-                  <p className="mt-1 text-xs font-mono text-zinc-400">
+                  <p className="text-lg font-bold font-mono text-white">
                     re:Invent {current.year}
-                    {current.conference
-                      ? ` / ${conferenceLabel(current.conference)}`
-                      : ""}
+                    {countdown ? (
+                      <span className="ml-3 text-sm text-amber-300">{countdown}</span>
+                    ) : null}
                   </p>
+                  {current.conference ? (
+                    <p className="mt-0.5 text-xs font-mono text-zinc-400">
+                      {conferenceLabel(current.conference)}
+                    </p>
+                  ) : null}
                 </div>
                 <Link
                   href={`/reinvent/${current.year}`}
@@ -139,45 +225,12 @@ export default function ReinventPage() {
                   <ChevronRight className="w-4 h-4" />
                 </Link>
               </div>
-              <ReinventStats edition={current} tone="vegas" />
-              <p className="text-sm text-zinc-300 max-w-3xl">
+              <p className="text-base text-zinc-100 max-w-3xl">
                 {seasonLead(current, archive.generatedAt)}
               </p>
+              <SpottedPreview edition={current} />
+              <ReinventStats edition={current} tone="vegas" />
               <OfficialLinks edition={current} />
-              {pre === null ? (
-                <p className="text-sm text-rose-300">What&apos;s New data unavailable.</p>
-              ) : preview.length > 0 ? (
-                <div>
-                  <h3 className="text-xs font-mono font-semibold uppercase tracking-widest text-amber-300">
-                    Pre-re:Invent
-                  </h3>
-                  <ul className="mt-2 space-y-2">
-                    {preview.map((post) => (
-                      <li key={post.url}>
-                        <a
-                          href={post.url}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="text-sm text-amber-100 hover:text-white hover:underline"
-                        >
-                          {post.headline}
-                        </a>
-                        <span className="ml-2 text-xs font-mono text-zinc-500">
-                          {formatDay(post.date)}
-                        </span>
-                      </li>
-                    ))}
-                  </ul>
-                  {pre.length > preview.length ? (
-                    <Link
-                      href={`/reinvent/${current.year}`}
-                      className="mt-2 inline-block text-sm font-mono text-amber-300 hover:text-white"
-                    >
-                      {plural(pre.length - preview.length, "more announcement")}
-                    </Link>
-                  ) : null}
-                </div>
-              ) : null}
             </div>
           ) : (
             <p className="text-sm text-zinc-300 max-w-3xl">
@@ -189,9 +242,14 @@ export default function ReinventPage() {
       </VegasFrame>
 
       <section className="space-y-4">
-        <h2 className="text-sm font-semibold font-mono uppercase tracking-wider text-zinc-900 dark:text-white">
-          {current ? "Previous seasons" : "Archive"}
-        </h2>
+        <div>
+          <h2 className="text-sm font-semibold font-mono uppercase tracking-wider text-zinc-900 dark:text-white">
+            {current ? "Previous seasons" : "Archive"}
+          </h2>
+          <p className="mt-1 text-sm text-zinc-600 dark:text-zinc-400 max-w-3xl">
+            What each season gave away in IAM before the keynote.
+          </p>
+        </div>
         {previous.length === 0 ? (
           <p className="text-sm text-zinc-500 dark:text-zinc-400">
             No earlier season is in the archive yet.

@@ -401,6 +401,62 @@ function readGitBlobs(specs) {
   return blobs;
 }
 
+/**
+ * When each service prefix first appeared in AWS's Service Authorization
+ * Reference, read from the commit history of data/iam-metadata.json (refreshed
+ * daily since it was added). This is what tells a brand-new service from an
+ * existing one that only now shows up in a managed policy: AWS Wickr gaining a
+ * managed policy is not a re:Invent spoiler, an undocumented prefix is.
+ *
+ * Returns { start, since } where start is the first snapshot's day and since
+ * maps prefix -> first day it was listed. A prefix already in the first
+ * snapshot maps to start, meaning "on or before". Null when there is no
+ * history (shallow clone, no git), so the page simply does not classify.
+ */
+function loadDocsHistory() {
+  const rel = path.relative(REPO_ROOT, IAM_METADATA_JSON);
+  const log = spawnSync(
+    "git",
+    ["log", "--reverse", "--format=%H %cs", "--", rel],
+    { cwd: REPO_ROOT, encoding: "utf8" }
+  );
+  if (log.status !== 0 || !log.stdout.trim()) return null;
+  const commits = log.stdout
+    .trim()
+    .split("\n")
+    .map((line) => {
+      const [sha, date] = line.split(" ");
+      return { sha, date };
+    });
+  const specs = commits.map((c) => `${c.sha}:${rel}`);
+  let blobs;
+  try {
+    blobs = readGitBlobs(specs);
+  } catch (error) {
+    console.error(`   Docs history unavailable: ${error.message}`);
+    return null;
+  }
+  const since = {};
+  for (const [index, commit] of commits.entries()) {
+    const blob = blobs.get(specs[index]);
+    if (!blob) continue;
+    let names;
+    try {
+      names = JSON.parse(blob).serviceNames || {};
+    } catch {
+      continue;
+    }
+    for (const prefix of Object.keys(names)) {
+      if (!since[prefix]) since[prefix] = commit.date;
+    }
+  }
+  // Today's working copy may list prefixes not committed yet.
+  for (const prefix of Object.keys(loadIamMetadata().serviceNames)) {
+    if (!since[prefix]) since[prefix] = GENERATED_AT.slice(0, 10);
+  }
+  return { start: commits[0].date, since };
+}
+
 const RISK_CHANGE_WINDOW_DAYS = 90;
 
 /**
@@ -2748,6 +2804,7 @@ async function writeReinventArchive(policyData, endpointsData, guarddutyData) {
     editions,
     serviceNames: meta.serviceNames,
     permissions: meta.permissionsManagement,
+    docsHistory: loadDocsHistory(),
     generatedAt: GENERATED_AT,
     whatsNewByYear,
     whatsNewUnavailable,
