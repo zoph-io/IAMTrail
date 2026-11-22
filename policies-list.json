@@ -4997,12 +4997,12 @@
             "PolicyId": "ANPAIEUV6Z2X4VNZRVB5I",
             "Arn": "arn:aws:iam::aws:policy/AmazonFSxFullAccess",
             "Path": "/",
-            "DefaultVersionId": "v13",
+            "DefaultVersionId": "v14",
             "AttachmentCount": 0,
             "PermissionsBoundaryUsageCount": 0,
             "IsAttachable": true,
             "CreateDate": "2018-11-28T16:34:43+00:00",
-            "UpdateDate": "2026-02-12T17:58:13+00:00"
+            "UpdateDate": "2026-11-21T20:07:07+00:00"
         },
         {
             "PolicyName": "AmazonFSxConsoleReadOnlyAccess",
@@ -5021,12 +5021,12 @@
             "PolicyId": "ANPAITDDJ23Y5UZ2WCZRQ",
             "Arn": "arn:aws:iam::aws:policy/AmazonFSxConsoleFullAccess",
             "Path": "/",
-            "DefaultVersionId": "v20",
+            "DefaultVersionId": "v21",
             "AttachmentCount": 0,
             "PermissionsBoundaryUsageCount": 0,
             "IsAttachable": true,
             "CreateDate": "2018-11-28T16:36:05+00:00",
-            "UpdateDate": "2026-02-12T18:02:11+00:00"
+            "UpdateDate": "2026-11-21T20:07:06+00:00"
         },
         {
             "PolicyName": "AmazonTextractFullAccess",
