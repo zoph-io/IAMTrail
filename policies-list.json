@@ -161,12 +161,12 @@
             "PolicyId": "ANPAJN23PDQP7SZQAE3QE",
             "Arn": "arn:aws:iam::aws:policy/CloudWatchReadOnlyAccess",
             "Path": "/",
-            "DefaultVersionId": "v27",
+            "DefaultVersionId": "v28",
             "AttachmentCount": 0,
             "PermissionsBoundaryUsageCount": 0,
             "IsAttachable": true,
             "CreateDate": "2015-02-06T18:40:01+00:00",
-            "UpdateDate": "2026-11-11T13:47:08+00:00"
+            "UpdateDate": "2026-11-23T11:47:06+00:00"
         },
         {
             "PolicyName": "CloudWatchLogsFullAccess",
