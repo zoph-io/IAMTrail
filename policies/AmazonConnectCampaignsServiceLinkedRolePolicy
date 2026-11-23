@@ -27,7 +27,8 @@
                         "connect:StopContact",
                         "connect:DescribeContactFlow",
                         "connect:SendOutboundEmail",
-                        "connect:SendOutboundWebNotification"
+                        "connect:SendOutboundWebNotification",
+                        "connect:StartTaskContact"
                     ],
                     "Resource": "arn:aws:connect:*:*:instance/*"
                 },
@@ -146,8 +147,8 @@
                 }
             ]
         },
-        "VersionId": "v5",
+        "VersionId": "v6",
         "IsDefaultVersion": true,
-        "CreateDate": "2026-06-18T23:12:23+00:00"
+        "CreateDate": "2026-11-23T17:37:07+00:00"
     }
 }
