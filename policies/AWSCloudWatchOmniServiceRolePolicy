@@ -101,7 +101,11 @@
                     "Sid": "ReadRoleTemplate",
                     "Effect": "Allow",
                     "Action": "iam:GetRoleTemplateVersion",
-                    "Resource": "arn:aws:iam::aws:role-template/cloudwatch.amazonaws.com/CloudWatchOmniAWSIntegrationForOrgRoleTemplate:1"
+                    "Resource": [
+                        "arn:aws:iam::aws:role-template/cloudwatch.amazonaws.com/CloudWatchOmni*",
+                        "arn:aws:iam::aws:role-template/logs.amazonaws.com/CloudWatchOmniDatasetIntegrationExecutionRoleTemplate:1",
+                        "arn:aws:iam::aws:role-template/bedrock-agentcore.amazonaws.com/BedrockAgentCoreEvaluationCloudWatchBedockRoleTemplate:2"
+                    ]
                 },
                 {
                     "Sid": "PassRolePermissionForCloudWatchOmniAWSIntegrationRole",
@@ -141,11 +145,103 @@
                     }
                 },
                 {
-                    "Sid": "GetCloudWatchOmniAWSIntegrationRole",
+                    "Sid": "GetCloudWatchOmniRoles",
                     "Effect": "Allow",
                     "Action": "iam:GetRole",
-                    "Resource": "arn:aws:iam::*:role/service-role/CloudWatchOmniAWSIntegrationRole-*",
+                    "Resource": [
+                        "arn:aws:iam::*:role/service-role/CloudWatchOmniAWSIntegrationRole-*",
+                        "arn:aws:iam::*:role/service-role/CloudWatchOmniProvisioningRole",
+                        "arn:aws:iam::*:role/service-role/CloudWatchOmniDatasetIntegrationRole-Org*",
+                        "arn:aws:iam::*:role/service-role/CloudWatchOmniSpaceDataAccessRole-Org*",
+                        "arn:aws:iam::*:role/service-role/AgentCoreEvaluationRole-Org*"
+                    ],
                     "Condition": {
+                        "StringEquals": {
+                            "aws:ResourceAccount": "${aws:PrincipalAccount}"
+                        }
+                    }
+                },
+                {
+                    "Sid": "CreateCloudWatchOmniProvisioningRole",
+                    "Effect": "Allow",
+                    "Action": [
+                        "iam:CreateRole",
+                        "iam:AttachRolePolicy"
+                    ],
+                    "Resource": "arn:aws:iam::*:role/service-role/CloudWatchOmniProvisioningRole",
+                    "Condition": {
+                        "ArnEquals": {
+                            "iam:RoleTemplateARN": "arn:aws:iam::aws:role-template/cloudwatch.amazonaws.com/CloudWatchOmniProvisioningRoleTemplate:1"
+                        },
+                        "StringEquals": {
+                            "aws:ResourceAccount": "${aws:PrincipalAccount}"
+                        }
+                    }
+                },
+                {
+                    "Sid": "CreateCloudWatchOmniSpaceAccessRole",
+                    "Effect": "Allow",
+                    "Action": [
+                        "iam:CreateRole",
+                        "iam:AttachRolePolicy"
+                    ],
+                    "Resource": "arn:aws:iam::*:role/service-role/CloudWatchOmniSpaceDataAccessRole-Org*",
+                    "Condition": {
+                        "ArnEquals": {
+                            "iam:RoleTemplateARN": "arn:aws:iam::aws:role-template/cloudwatch.amazonaws.com/CloudWatchOmniSpaceAccessRoleTemplate:1"
+                        },
+                        "StringEquals": {
+                            "aws:ResourceAccount": "${aws:PrincipalAccount}"
+                        }
+                    }
+                },
+                {
+                    "Sid": "AttachOptionalSpaceAccessPolicies",
+                    "Effect": "Allow",
+                    "Action": "iam:AttachRolePolicy",
+                    "Resource": "arn:aws:iam::*:role/service-role/CloudWatchOmniSpaceDataAccessRole-Org*",
+                    "Condition": {
+                        "ArnEquals": {
+                            "iam:PolicyARN": [
+                                "arn:aws:iam::aws:policy/CloudWatchOmniModelInferencePolicy",
+                                "arn:aws:iam::aws:policy/AIDevOpsAgentFullAccess",
+                                "arn:aws:iam::aws:policy/CloudWatchOmniAWSIntegrationPolicyV2"
+                            ]
+                        },
+                        "StringEquals": {
+                            "aws:ResourceAccount": "${aws:PrincipalAccount}"
+                        }
+                    }
+                },
+                {
+                    "Sid": "CreateCloudWatchOmniDatasetIntegrationRole",
+                    "Effect": "Allow",
+                    "Action": [
+                        "iam:CreateRole",
+                        "iam:PutRolePolicy"
+                    ],
+                    "Resource": "arn:aws:iam::*:role/service-role/CloudWatchOmniDatasetIntegrationRole-Org*",
+                    "Condition": {
+                        "ArnEquals": {
+                            "iam:RoleTemplateARN": "arn:aws:iam::aws:role-template/logs.amazonaws.com/CloudWatchOmniDatasetIntegrationExecutionRoleTemplate:1"
+                        },
+                        "StringEquals": {
+                            "aws:ResourceAccount": "${aws:PrincipalAccount}"
+                        }
+                    }
+                },
+                {
+                    "Sid": "CreateAgentCoreEvaluationRole",
+                    "Effect": "Allow",
+                    "Action": [
+                        "iam:CreateRole",
+                        "iam:PutRolePolicy"
+                    ],
+                    "Resource": "arn:aws:iam::*:role/service-role/AgentCoreEvaluationRole-Org*",
+                    "Condition": {
+                        "ArnEquals": {
+                            "iam:RoleTemplateARN": "arn:aws:iam::aws:role-template/bedrock-agentcore.amazonaws.com/BedrockAgentCoreEvaluationCloudWatchBedockRoleTemplate:2"
+                        },
                         "StringEquals": {
                             "aws:ResourceAccount": "${aws:PrincipalAccount}"
                         }
@@ -153,8 +249,8 @@
                 }
             ]
         },
-        "VersionId": "v2",
+        "VersionId": "v3",
         "IsDefaultVersion": true,
-        "CreateDate": "2026-09-24T17:47:08+00:00"
+        "CreateDate": "2026-11-23T22:57:06+00:00"
     }
 }
