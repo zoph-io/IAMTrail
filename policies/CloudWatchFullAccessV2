@@ -262,11 +262,19 @@
                     "Effect": "Allow",
                     "Action": "config:GetConnector",
                     "Resource": "arn:aws:config:*:*:connector/*"
+                },
+                {
+                    "Sid": "CloudWatchDevOpsAgentListPermissions",
+                    "Effect": "Allow",
+                    "Action": [
+                        "aidevops:ListAgentSpaces"
+                    ],
+                    "Resource": "*"
                 }
             ]
         },
-        "VersionId": "v20",
+        "VersionId": "v21",
         "IsDefaultVersion": true,
-        "CreateDate": "2026-11-18T15:07:08+00:00"
+        "CreateDate": "2026-11-23T22:17:06+00:00"
     }
 }
