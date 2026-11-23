@@ -1,0 +1,15 @@
+{
+  "detected_at": "2026-11-23T23:42:02.398Z",
+  "botocore_commit": "a612376fcdfccae61c2aa5e5ebdeec2c7e360ab5",
+  "botocore_commit_url": "https://github.com/boto/botocore/commit/a612376fcdfccae61c2aa5e5ebdeec2c7e360ab5",
+  "summary": "1 new service",
+  "changes": [
+    {
+      "type": "new_service",
+      "partition": "aws-eusc",
+      "id": "emr-containers",
+      "description": "emr-containers (1 endpoint)",
+      "endpoint_count": 1
+    }
+  ]
+}
