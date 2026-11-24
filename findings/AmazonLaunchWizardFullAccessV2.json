@@ -1,6 +1,6 @@
 [
   {
-    "findingDetails": "The 18207 characters in the identity policy, excluding whitespace, exceed the 10240 character maximum for inline and managed policies. We recommend that you use multiple granular policies.",
+    "findingDetails": "The 18500 characters in the identity policy, excluding whitespace, exceed the 10240 character maximum for inline and managed policies. We recommend that you use multiple granular policies.",
     "findingType": "WARNING",
     "issueCode": "POLICY_SIZE_EXCEEDS_IDENTITY_POLICY_QUOTA",
     "learnMoreLink": "https://docs.aws.amazon.com/IAM/latest/UserGuide/access-analyzer-reference-policy-checks.html#access-analyzer-reference-policy-checks-general-warning-policy-size-exceeds-identity-policy-quota",
@@ -15,8 +15,8 @@
           },
           "end": {
             "line": 1,
-            "column": 19077,
-            "offset": 19077
+            "column": 19377,
+            "offset": 19377
           }
         }
       }
@@ -46,13 +46,13 @@
         "span": {
           "start": {
             "line": 1,
-            "column": 12800,
-            "offset": 12800
+            "column": 13100,
+            "offset": 13100
           },
           "end": {
             "line": 1,
-            "column": 12828,
-            "offset": 12828
+            "column": 13128,
+            "offset": 13128
           }
         }
       },
@@ -74,13 +74,13 @@
         "span": {
           "start": {
             "line": 1,
-            "column": 12830,
-            "offset": 12830
+            "column": 13130,
+            "offset": 13130
           },
           "end": {
             "line": 1,
-            "column": 12860,
-            "offset": 12860
+            "column": 13160,
+            "offset": 13160
           }
         }
       }
@@ -110,13 +110,13 @@
         "span": {
           "start": {
             "line": 1,
-            "column": 17696,
-            "offset": 17696
+            "column": 17996,
+            "offset": 17996
           },
           "end": {
             "line": 1,
-            "column": 17738,
-            "offset": 17738
+            "column": 18038,
+            "offset": 18038
           }
         }
       },
@@ -138,13 +138,13 @@
         "span": {
           "start": {
             "line": 1,
-            "column": 17740,
-            "offset": 17740
+            "column": 18040,
+            "offset": 18040
           },
           "end": {
             "line": 1,
-            "column": 17795,
-            "offset": 17795
+            "column": 18095,
+            "offset": 18095
           }
         }
       }
