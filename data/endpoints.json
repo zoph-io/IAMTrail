@@ -50630,6 +50630,12 @@
           "isRegionalized": false,
           "partitionEndpoint": "aws-iso-global"
         },
+        "route53profiles": {
+          "endpoints": {
+            "us-iso-east-1": {},
+            "us-iso-west-1": {}
+          }
+        },
         "route53resolver": {
           "endpoints": {
             "us-iso-east-1": {},
@@ -51926,6 +51932,12 @@
           "isRegionalized": false,
           "partitionEndpoint": "aws-iso-b-global"
         },
+        "route53profiles": {
+          "endpoints": {
+            "us-isob-east-1": {},
+            "us-isob-west-1": {}
+          }
+        },
         "route53resolver": {
           "endpoints": {
             "us-isob-east-1": {},
@@ -53050,6 +53062,12 @@
           }
         },
         "api.sagemaker": {
+          "endpoints": {
+            "us-isof-east-1": {},
+            "us-isof-south-1": {}
+          }
+        },
+        "apigateway": {
           "endpoints": {
             "us-isof-east-1": {},
             "us-isof-south-1": {}

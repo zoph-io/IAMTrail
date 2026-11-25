@@ -1,0 +1,29 @@
+{
+  "detected_at": "2026-11-25T21:29:39.352Z",
+  "botocore_commit": "2750bf6f9cfe4be54f4237b442c188570e232522",
+  "botocore_commit_url": "https://github.com/boto/botocore/commit/2750bf6f9cfe4be54f4237b442c188570e232522",
+  "summary": "2 new services",
+  "changes": [
+    {
+      "type": "new_service",
+      "partition": "aws-iso",
+      "id": "route53profiles",
+      "description": "route53profiles (2 endpoints)",
+      "endpoint_count": 2
+    },
+    {
+      "type": "new_service",
+      "partition": "aws-iso-b",
+      "id": "route53profiles",
+      "description": "route53profiles (2 endpoints)",
+      "endpoint_count": 2
+    },
+    {
+      "type": "new_service",
+      "partition": "aws-iso-f",
+      "id": "apigateway",
+      "description": "apigateway (2 endpoints)",
+      "endpoint_count": 2
+    }
+  ]
+}
