@@ -1,0 +1,463 @@
+{
+    "PolicyVersion": {
+        "Document": {
+            "Version": "2012-10-17",
+            "Statement": [
+                {
+                    "Sid": "EvaluationDataAccess",
+                    "Effect": "Allow",
+                    "Action": [
+                        "s3:GetObject",
+                        "s3:PutObject",
+                        "s3:ListBucket"
+                    ],
+                    "Resource": [
+                        "arn:aws:s3:::*SageMaker*",
+                        "arn:aws:s3:::*Sagemaker*",
+                        "arn:aws:s3:::*sagemaker*"
+                    ],
+                    "Condition": {
+                        "StringEquals": {
+                            "aws:ResourceAccount": "${aws:PrincipalAccount}"
+                        }
+                    }
+                },
+                {
+                    "Sid": "EvaluationJumpStartArtifactRead",
+                    "Effect": "Allow",
+                    "Action": [
+                        "s3:GetObject",
+                        "s3:ListBucket"
+                    ],
+                    "Resource": [
+                        "arn:aws:s3:::jumpstart*"
+                    ]
+                },
+                {
+                    "Sid": "EvaluationJobLogs",
+                    "Effect": "Allow",
+                    "Action": [
+                        "logs:CreateLogGroup",
+                        "logs:CreateLogStream",
+                        "logs:PutLogEvents",
+                        "logs:DescribeLogStreams"
+                    ],
+                    "Resource": "arn:aws:logs:*:*:log-group:/aws/sagemaker/*",
+                    "Condition": {
+                        "StringEquals": {
+                            "aws:ResourceAccount": "${aws:PrincipalAccount}"
+                        }
+                    }
+                },
+                {
+                    "Sid": "EvaluationMlflow",
+                    "Effect": "Allow",
+                    "Action": [
+                        "sagemaker:CallMlflowAppApi",
+                        "sagemaker:DescribeMlflowApp"
+                    ],
+                    "Resource": [
+                        "arn:aws:sagemaker:*:*:mlflow-app/*"
+                    ],
+                    "Condition": {
+                        "StringEquals": {
+                            "aws:ResourceAccount": "${aws:PrincipalAccount}"
+                        }
+                    }
+                },
+                {
+                    "Sid": "EvaluationCriteriaRead",
+                    "Effect": "Allow",
+                    "Action": [
+                        "sagemaker:DescribeHub",
+                        "sagemaker:DescribeHubContent",
+                        "sagemaker:ListHubContentVersions"
+                    ],
+                    "Resource": [
+                        "arn:aws:sagemaker:*:*:hub/*",
+                        "arn:aws:sagemaker:*:*:hub-content/*"
+                    ],
+                    "Condition": {
+                        "StringEquals": {
+                            "aws:ResourceAccount": "${aws:PrincipalAccount}"
+                        }
+                    }
+                },
+                {
+                    "Sid": "EvaluationJumpStartModelRead",
+                    "Effect": "Allow",
+                    "Action": "sagemaker:DescribeHubContent",
+                    "Resource": "arn:aws:sagemaker:*:aws:hub-content/SageMakerPublicHub/Model/*"
+                },
+                {
+                    "Sid": "EvaluationBedrockProfileInvoke",
+                    "Effect": "Allow",
+                    "Action": [
+                        "bedrock:InvokeModel",
+                        "bedrock:InvokeModelWithResponseStream"
+                    ],
+                    "Resource": [
+                        "arn:aws:bedrock:*:*:inference-profile/*",
+                        "arn:aws:bedrock:*:*:application-inference-profile/*"
+                    ],
+                    "Condition": {
+                        "StringEquals": {
+                            "aws:ResourceAccount": "${aws:PrincipalAccount}"
+                        }
+                    }
+                },
+                {
+                    "Sid": "EvaluationFoundationModelViaProfile",
+                    "Effect": "Allow",
+                    "Action": [
+                        "bedrock:InvokeModel",
+                        "bedrock:InvokeModelWithResponseStream"
+                    ],
+                    "Resource": "arn:aws:bedrock:*::foundation-model/*",
+                    "Condition": {
+                        "ArnLike": {
+                            "bedrock:InferenceProfileArn": [
+                                "arn:aws:bedrock:*:*:inference-profile/*",
+                                "arn:aws:bedrock:*:*:application-inference-profile/*"
+                            ]
+                        },
+                        "StringEqualsIfExists": {
+                            "aws:ResourceAccount": "${aws:PrincipalAccount}"
+                        }
+                    }
+                },
+                {
+                    "Sid": "EvaluationMantleInference",
+                    "Effect": "Allow",
+                    "Action": [
+                        "bedrock-mantle:CreateInference",
+                        "bedrock-mantle:ListModels"
+                    ],
+                    "Resource": "arn:aws:bedrock-mantle:*:*:project/default",
+                    "Condition": {
+                        "StringEquals": {
+                            "aws:ResourceAccount": "${aws:PrincipalAccount}"
+                        }
+                    }
+                },
+                {
+                    "Sid": "EvaluationMantleBearerToken",
+                    "Effect": "Allow",
+                    "Action": "bedrock-mantle:CallWithBearerToken",
+                    "Resource": "*",
+                    "Condition": {
+                        "StringEquals": {
+                            "bedrock-mantle:BearerTokenType": "SHORT_TERM"
+                        }
+                    }
+                },
+                {
+                    "Sid": "EvaluationRagKnowledgeBase",
+                    "Effect": "Allow",
+                    "Action": [
+                        "bedrock:GetKnowledgeBase",
+                        "bedrock:ListDataSources",
+                        "bedrock:ListIngestionJobs",
+                        "bedrock:Retrieve"
+                    ],
+                    "Resource": "arn:aws:bedrock:*:*:knowledge-base/*",
+                    "Condition": {
+                        "StringEquals": {
+                            "aws:ResourceAccount": "${aws:PrincipalAccount}"
+                        }
+                    }
+                },
+                {
+                    "Sid": "EvaluationRagPromptTemplateRead",
+                    "Effect": "Allow",
+                    "Action": "bedrock:GetPrompt",
+                    "Resource": "arn:aws:bedrock:*:*:prompt/*",
+                    "Condition": {
+                        "StringEquals": {
+                            "aws:ResourceAccount": "${aws:PrincipalAccount}"
+                        }
+                    }
+                },
+                {
+                    "Sid": "EvaluationScorerInvoke",
+                    "Effect": "Allow",
+                    "Action": "lambda:InvokeFunction",
+                    "Resource": [
+                        "arn:aws:lambda:*:*:function:*SageMaker*",
+                        "arn:aws:lambda:*:*:function:*Sagemaker*",
+                        "arn:aws:lambda:*:*:function:*sagemaker*"
+                    ],
+                    "Condition": {
+                        "StringEquals": {
+                            "aws:ResourceAccount": "${aws:PrincipalAccount}"
+                        }
+                    }
+                },
+                {
+                    "Sid": "EvaluationEndpointInvoke",
+                    "Effect": "Allow",
+                    "Action": [
+                        "sagemaker:InvokeEndpoint",
+                        "sagemaker:InvokeEndpointWithResponseStream"
+                    ],
+                    "Resource": [
+                        "arn:aws:sagemaker:*:*:endpoint/*",
+                        "arn:aws:sagemaker:*:*:inference-component/*"
+                    ],
+                    "Condition": {
+                        "StringEquals": {
+                            "aws:ResourceAccount": "${aws:PrincipalAccount}"
+                        }
+                    }
+                },
+                {
+                    "Sid": "EvaluationHostingJobCreate",
+                    "Effect": "Allow",
+                    "Action": [
+                        "sagemaker:CreateAIRecommendationJob",
+                        "sagemaker:CreateAIWorkloadConfig",
+                        "sagemaker:CreateOptimizationJob"
+                    ],
+                    "Resource": [
+                        "arn:aws:sagemaker:*:*:ai-recommendation-job/*",
+                        "arn:aws:sagemaker:*:*:ai-workload-config/*",
+                        "arn:aws:sagemaker:*:*:optimization-job/*"
+                    ],
+                    "Condition": {
+                        "StringEquals": {
+                            "aws:ResourceAccount": "${aws:PrincipalAccount}"
+                        }
+                    }
+                },
+                {
+                    "Sid": "EvaluationHostingJobControl",
+                    "Effect": "Allow",
+                    "Action": [
+                        "sagemaker:DescribeAIRecommendationJob",
+                        "sagemaker:StopAIRecommendationJob",
+                        "sagemaker:DescribeAIWorkloadConfig",
+                        "sagemaker:DescribeOptimizationJob",
+                        "sagemaker:StopOptimizationJob"
+                    ],
+                    "Resource": [
+                        "arn:aws:sagemaker:*:*:ai-recommendation-job/*",
+                        "arn:aws:sagemaker:*:*:ai-workload-config/*",
+                        "arn:aws:sagemaker:*:*:optimization-job/*"
+                    ],
+                    "Condition": {
+                        "StringEquals": {
+                            "aws:ResourceAccount": "${aws:PrincipalAccount}"
+                        }
+                    }
+                },
+                {
+                    "Sid": "EvaluationHostingResourcesDescribe",
+                    "Effect": "Allow",
+                    "Action": [
+                        "sagemaker:DescribeModel",
+                        "sagemaker:DescribeEndpointConfig",
+                        "sagemaker:DescribeEndpoint",
+                        "sagemaker:DescribeInferenceComponent",
+                        "sagemaker:DescribeTrainingJob"
+                    ],
+                    "Resource": [
+                        "arn:aws:sagemaker:*:*:model/*",
+                        "arn:aws:sagemaker:*:*:endpoint-config/*",
+                        "arn:aws:sagemaker:*:*:endpoint/*",
+                        "arn:aws:sagemaker:*:*:inference-component/*",
+                        "arn:aws:sagemaker:*:*:training-job/*"
+                    ],
+                    "Condition": {
+                        "StringEquals": {
+                            "aws:ResourceAccount": "${aws:PrincipalAccount}"
+                        }
+                    }
+                },
+                {
+                    "Sid": "EvaluationHostingResourcesManage",
+                    "Effect": "Allow",
+                    "Action": [
+                        "sagemaker:CreateModel",
+                        "sagemaker:DeleteModel",
+                        "sagemaker:CreateEndpointConfig",
+                        "sagemaker:DeleteEndpointConfig",
+                        "sagemaker:CreateEndpoint",
+                        "sagemaker:DeleteEndpoint",
+                        "sagemaker:CreateInferenceComponent",
+                        "sagemaker:DeleteInferenceComponent"
+                    ],
+                    "Resource": [
+                        "arn:aws:sagemaker:*:*:model/ai-rec-*",
+                        "arn:aws:sagemaker:*:*:endpoint-config/ai-rec-*",
+                        "arn:aws:sagemaker:*:*:endpoint/ai-rec-*",
+                        "arn:aws:sagemaker:*:*:inference-component/ai-rec-*"
+                    ],
+                    "Condition": {
+                        "StringEquals": {
+                            "aws:ResourceAccount": "${aws:PrincipalAccount}"
+                        }
+                    }
+                },
+                {
+                    "Sid": "EvaluationBenchmarkTrainingJobManage",
+                    "Effect": "Allow",
+                    "Action": [
+                        "sagemaker:CreateTrainingJob",
+                        "sagemaker:StopTrainingJob"
+                    ],
+                    "Resource": [
+                        "arn:aws:sagemaker:*:*:training-job/bmk-*",
+                        "arn:aws:sagemaker:*:*:training-job/ai-rec-*"
+                    ],
+                    "Condition": {
+                        "StringEquals": {
+                            "aws:ResourceAccount": "${aws:PrincipalAccount}"
+                        }
+                    }
+                },
+                {
+                    "Sid": "EvaluationModelPackages",
+                    "Effect": "Allow",
+                    "Action": [
+                        "sagemaker:CreateModelPackageGroup",
+                        "sagemaker:DescribeModelPackageGroup",
+                        "sagemaker:CreateModelPackage",
+                        "sagemaker:DescribeModelPackage"
+                    ],
+                    "Resource": [
+                        "arn:aws:sagemaker:*:*:model-package-group/*",
+                        "arn:aws:sagemaker:*:*:model-package/*"
+                    ],
+                    "Condition": {
+                        "StringEquals": {
+                            "aws:ResourceAccount": "${aws:PrincipalAccount}"
+                        }
+                    }
+                },
+                {
+                    "Sid": "EvaluationLineage",
+                    "Effect": "Allow",
+                    "Action": [
+                        "sagemaker:CreateArtifact",
+                        "sagemaker:DescribeArtifact",
+                        "sagemaker:CreateAction",
+                        "sagemaker:DescribeAction",
+                        "sagemaker:AddAssociation"
+                    ],
+                    "Resource": [
+                        "arn:aws:sagemaker:*:*:artifact/*",
+                        "arn:aws:sagemaker:*:*:action/*",
+                        "arn:aws:sagemaker:*:*:endpoint/*",
+                        "arn:aws:sagemaker:*:*:model-package/*"
+                    ],
+                    "Condition": {
+                        "StringEquals": {
+                            "aws:ResourceAccount": "${aws:PrincipalAccount}"
+                        }
+                    }
+                },
+                {
+                    "Sid": "EvaluationHostingTagOnCreate",
+                    "Effect": "Allow",
+                    "Action": "sagemaker:AddTags",
+                    "Resource": [
+                        "arn:aws:sagemaker:*:*:model/*",
+                        "arn:aws:sagemaker:*:*:endpoint-config/*",
+                        "arn:aws:sagemaker:*:*:endpoint/*",
+                        "arn:aws:sagemaker:*:*:inference-component/*",
+                        "arn:aws:sagemaker:*:*:training-job/*",
+                        "arn:aws:sagemaker:*:*:model-package-group/*"
+                    ],
+                    "Condition": {
+                        "ForAllValues:StringLike": {
+                            "aws:TagKeys": "sagemaker:ai-*"
+                        },
+                        "Null": {
+                            "aws:TagKeys": "false"
+                        },
+                        "StringEquals": {
+                            "aws:ResourceAccount": "${aws:PrincipalAccount}",
+                            "sagemaker:TaggingAction": [
+                                "CreateModel",
+                                "CreateEndpointConfig",
+                                "CreateEndpoint",
+                                "CreateInferenceComponent",
+                                "CreateTrainingJob",
+                                "CreateModelPackageGroup"
+                            ]
+                        }
+                    }
+                },
+                {
+                    "Sid": "EvaluationServiceQuotaRead",
+                    "Effect": "Allow",
+                    "Action": "servicequotas:GetServiceQuota",
+                    "Resource": "arn:aws:servicequotas:*:*:sagemaker/*",
+                    "Condition": {
+                        "StringEquals": {
+                            "aws:ResourceAccount": "${aws:PrincipalAccount}"
+                        }
+                    }
+                },
+                {
+                    "Sid": "EvaluationListAndMetricsRead",
+                    "Effect": "Allow",
+                    "Action": [
+                        "sagemaker:ListModelPackages",
+                        "sagemaker:ListArtifacts",
+                        "cloudwatch:GetMetricStatistics"
+                    ],
+                    "Resource": "*",
+                    "Condition": {
+                        "StringEqualsIfExists": {
+                            "aws:ResourceAccount": "${aws:PrincipalAccount}"
+                        }
+                    }
+                },
+                {
+                    "Sid": "EvaluationHostingImagePull",
+                    "Effect": "Allow",
+                    "Action": [
+                        "ecr:BatchGetImage",
+                        "ecr:BatchCheckLayerAvailability",
+                        "ecr:GetDownloadUrlForLayer"
+                    ],
+                    "Resource": "arn:aws:ecr:*:*:repository/*"
+                },
+                {
+                    "Sid": "EvaluationEcrAuth",
+                    "Effect": "Allow",
+                    "Action": "ecr:GetAuthorizationToken",
+                    "Resource": "*",
+                    "Condition": {
+                        "StringEqualsIfExists": {
+                            "aws:ResourceAccount": "${aws:PrincipalAccount}"
+                        }
+                    }
+                },
+                {
+                    "Sid": "EvaluationPassRoleToSageMaker",
+                    "Effect": "Allow",
+                    "Action": "iam:PassRole",
+                    "Resource": [
+                        "arn:aws:iam::*:role/service-role/*SageMaker*",
+                        "arn:aws:iam::*:role/service-role/*Sagemaker*",
+                        "arn:aws:iam::*:role/service-role/*sagemaker*"
+                    ],
+                    "Condition": {
+                        "ArnLike": {
+                            "iam:AssociatedResourceArn": "arn:aws:sagemaker:*:*:*"
+                        },
+                        "StringEquals": {
+                            "aws:ResourceAccount": "${aws:PrincipalAccount}",
+                            "iam:PassedToService": "sagemaker.amazonaws.com"
+                        }
+                    }
+                }
+            ]
+        },
+        "VersionId": "v1",
+        "IsDefaultVersion": true,
+        "CreateDate": "2026-11-25T22:47:08+00:00"
+    }
+}
