@@ -161,12 +161,12 @@
             "PolicyId": "ANPAJN23PDQP7SZQAE3QE",
             "Arn": "arn:aws:iam::aws:policy/CloudWatchReadOnlyAccess",
             "Path": "/",
-            "DefaultVersionId": "v28",
+            "DefaultVersionId": "v29",
             "AttachmentCount": 0,
             "PermissionsBoundaryUsageCount": 0,
             "IsAttachable": true,
             "CreateDate": "2015-02-06T18:40:01+00:00",
-            "UpdateDate": "2026-11-23T11:47:06+00:00"
+            "UpdateDate": "2026-11-24T23:47:07+00:00"
         },
         {
             "PolicyName": "CloudWatchLogsFullAccess",
@@ -19475,6 +19475,18 @@
             "IsAttachable": true,
             "CreateDate": "2026-11-23T22:27:07+00:00",
             "UpdateDate": "2026-11-23T22:27:07+00:00"
+        },
+        {
+            "PolicyName": "AWSContinuumConfigurationsServiceRolePolicy",
+            "PolicyId": "ANPAZKAPJZG4AQIC22IRS",
+            "Arn": "arn:aws:iam::aws:policy/aws-service-role/AWSContinuumConfigurationsServiceRolePolicy",
+            "Path": "/aws-service-role/",
+            "DefaultVersionId": "v1",
+            "AttachmentCount": 0,
+            "PermissionsBoundaryUsageCount": 0,
+            "IsAttachable": true,
+            "CreateDate": "2026-11-25T00:07:07+00:00",
+            "UpdateDate": "2026-11-25T00:07:07+00:00"
         },
         {
             "PolicyName": "AWSConfigRole",
