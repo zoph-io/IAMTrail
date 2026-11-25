@@ -1,0 +1,120 @@
+{
+    "PolicyVersion": {
+        "Document": {
+            "Version": "2012-10-17",
+            "Statement": [
+                {
+                    "Sid": "DataPrepBucketLocation",
+                    "Effect": "Allow",
+                    "Action": "s3:GetBucketLocation",
+                    "Resource": "arn:aws:s3:::*sagemaker*",
+                    "Condition": {
+                        "StringEquals": {
+                            "aws:ResourceAccount": "${aws:PrincipalAccount}"
+                        }
+                    }
+                },
+                {
+                    "Sid": "DataPrepMultipartUploadCleanup",
+                    "Effect": "Allow",
+                    "Action": "s3:AbortMultipartUpload",
+                    "Resource": "arn:aws:s3:::*sagemaker*/*",
+                    "Condition": {
+                        "StringEquals": {
+                            "aws:ResourceAccount": "${aws:PrincipalAccount}"
+                        }
+                    }
+                },
+                {
+                    "Sid": "DataPrepPublicHubModelLookup",
+                    "Effect": "Allow",
+                    "Action": "sagemaker:DescribeHubContent",
+                    "Resource": [
+                        "arn:aws:sagemaker:*:aws:hub/SageMakerPublicHub",
+                        "arn:aws:sagemaker:*:aws:hub-content/SageMakerPublicHub/Model/*"
+                    ]
+                },
+                {
+                    "Sid": "HumanReviewDomainDiscovery",
+                    "Effect": "Allow",
+                    "Action": [
+                        "sagemaker:ListDomains",
+                        "sagemaker:ListUserProfiles"
+                    ],
+                    "Resource": "*",
+                    "Condition": {
+                        "StringEqualsIfExists": {
+                            "aws:ResourceAccount": "${aws:PrincipalAccount}"
+                        }
+                    }
+                },
+                {
+                    "Sid": "HumanReviewSpaceWrites",
+                    "Effect": "Allow",
+                    "Action": [
+                        "sagemaker:CreateSpace",
+                        "sagemaker:UpdateSpace"
+                    ],
+                    "Resource": "arn:aws:sagemaker:*:*:space/${sagemaker:DomainId}/label-studio-*",
+                    "Condition": {
+                        "StringEquals": {
+                            "aws:ResourceAccount": "${aws:PrincipalAccount}",
+                            "sagemaker:SpaceSharingType": "Shared"
+                        },
+                        "ArnLike": {
+                            "sagemaker:OwnerUserProfileArn": "arn:aws:sagemaker:*:*:user-profile/${sagemaker:DomainId}/${sagemaker:UserProfileName}"
+                        }
+                    }
+                },
+                {
+                    "Sid": "HumanReviewSpaceAppWrites",
+                    "Effect": "Allow",
+                    "Action": [
+                        "sagemaker:CreateApp",
+                        "sagemaker:DeleteApp"
+                    ],
+                    "Resource": "arn:aws:sagemaker:*:*:app/${sagemaker:DomainId}/label-studio-*/*",
+                    "Condition": {
+                        "StringEquals": {
+                            "aws:ResourceAccount": "${aws:PrincipalAccount}"
+                        },
+                        "StringEqualsIfExists": {
+                            "sagemaker:SpaceSharingType": "Shared"
+                        }
+                    }
+                },
+                {
+                    "Sid": "HumanReviewExportBucketSettings",
+                    "Effect": "Allow",
+                    "Action": [
+                        "s3:GetBucketPublicAccessBlock",
+                        "s3:GetBucketPolicyStatus",
+                        "s3:GetBucketOwnershipControls",
+                        "s3:GetBucketAcl",
+                        "s3:GetEncryptionConfiguration"
+                    ],
+                    "Resource": "arn:aws:s3:::*sagemaker*",
+                    "Condition": {
+                        "StringEquals": {
+                            "aws:ResourceAccount": "${aws:PrincipalAccount}"
+                        }
+                    }
+                },
+                {
+                    "Sid": "HumanReviewExportProbeCleanup",
+                    "Effect": "Allow",
+                    "Action": "s3:DeleteObject",
+                    "Resource": "arn:aws:s3:::*sagemaker*/*.hil-write-check-*",
+                    "Condition": {
+                        "StringEquals": {
+                            "aws:ResourceAccount": "${aws:PrincipalAccount}"
+                        }
+                    }
+                }
+            ]
+        },
+        "VersionId": "v1",
+        "IsDefaultVersion": true,
+        "CreateDate": "2026-11-25T22:37:08+00:00"
+    }
+}
