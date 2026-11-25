@@ -1,0 +1,162 @@
+{
+    "PolicyVersion": {
+        "Document": {
+            "Version": "2012-10-17",
+            "Statement": [
+                {
+                    "Sid": "S3BucketValidation",
+                    "Effect": "Allow",
+                    "Action": [
+                        "s3:ListBucket"
+                    ],
+                    "Resource": "arn:aws:s3:::*",
+                    "Condition": {
+                        "StringEquals": {
+                            "aws:ResourceAccount": "${aws:PrincipalAccount}"
+                        }
+                    }
+                },
+                {
+                    "Sid": "DsqlClusterValidation",
+                    "Effect": "Allow",
+                    "Action": [
+                        "dsql:GetCluster"
+                    ],
+                    "Resource": "arn:aws:dsql:*:*:cluster/*"
+                },
+                {
+                    "Sid": "BedrockModelDiscovery",
+                    "Effect": "Allow",
+                    "Action": [
+                        "bedrock:ListFoundationModels",
+                        "bedrock:ListInferenceProfiles"
+                    ],
+                    "Resource": "*"
+                },
+                {
+                    "Sid": "BedrockInferenceProfileRead",
+                    "Effect": "Allow",
+                    "Action": [
+                        "bedrock:GetInferenceProfile"
+                    ],
+                    "Resource": "arn:aws:bedrock:*:*:inference-profile/*"
+                },
+                {
+                    "Sid": "LogGroupProvisioning",
+                    "Effect": "Allow",
+                    "Action": [
+                        "logs:CreateLogGroup",
+                        "logs:PutRetentionPolicy"
+                    ],
+                    "Resource": "arn:aws:logs:*:*:log-group:/aws/amplifygen3/*"
+                },
+                {
+                    "Sid": "LogDeliveryManagement",
+                    "Effect": "Allow",
+                    "Action": [
+                        "logs:PutDeliverySource",
+                        "logs:PutDeliveryDestination",
+                        "logs:CreateDelivery",
+                        "logs:DeleteDelivery",
+                        "logs:DeleteDeliverySource",
+                        "logs:DeleteDeliveryDestination"
+                    ],
+                    "Resource": [
+                        "arn:aws:logs:*:*:delivery:*",
+                        "arn:aws:logs:*:*:delivery-source:*",
+                        "arn:aws:logs:*:*:delivery-destination:*"
+                    ]
+                },
+                {
+                    "Sid": "LogGroupResourcePolicyManagement",
+                    "Effect": "Allow",
+                    "Action": [
+                        "logs:DescribeLogGroups",
+                        "logs:DescribeResourcePolicies",
+                        "logs:PutResourcePolicy"
+                    ],
+                    "Resource": "*"
+                },
+                {
+                    "Sid": "VendedLogDelivery",
+                    "Effect": "Allow",
+                    "Action": [
+                        "amplifygen3:AllowVendedLogDeliveryForResource"
+                    ],
+                    "Resource": "*"
+                },
+                {
+                    "Sid": "LogDeliveryDescribe",
+                    "Effect": "Allow",
+                    "Action": [
+                        "logs:DescribeDeliveries"
+                    ],
+                    "Resource": "*"
+                },
+                {
+                    "Sid": "GitTriggeredDeployment",
+                    "Effect": "Allow",
+                    "Action": [
+                        "amplifygen3:CreateDeployment"
+                    ],
+                    "Resource": "arn:aws:amplifygen3:*:*:app/*/environment/*"
+                },
+                {
+                    "Sid": "IdcInstanceDiscovery",
+                    "Effect": "Allow",
+                    "Action": [
+                        "sso:ListInstances"
+                    ],
+                    "Resource": "*"
+                },
+                {
+                    "Sid": "IdcAdminGroupResolution",
+                    "Effect": "Allow",
+                    "Action": [
+                        "identitystore:GetGroupId"
+                    ],
+                    "Resource": "arn:aws:identitystore::*:identitystore/*"
+                },
+                {
+                    "Sid": "Route53HostedZoneDiscoveryAndCreation",
+                    "Effect": "Allow",
+                    "Action": [
+                        "route53:ListHostedZonesByName",
+                        "route53:CreateHostedZone"
+                    ],
+                    "Resource": "*"
+                },
+                {
+                    "Sid": "Route53HostedZoneRead",
+                    "Effect": "Allow",
+                    "Action": [
+                        "route53:GetHostedZone",
+                        "route53:ListResourceRecordSets"
+                    ],
+                    "Resource": "arn:aws:route53:::hostedzone/*"
+                },
+                {
+                    "Sid": "Route53RecordManagement",
+                    "Effect": "Allow",
+                    "Action": [
+                        "route53:ChangeResourceRecordSets"
+                    ],
+                    "Resource": "arn:aws:route53:::hostedzone/*",
+                    "Condition": {
+                        "ForAllValues:StringEquals": {
+                            "route53:ChangeResourceRecordSetsRecordTypes": [
+                                "A",
+                                "AAAA",
+                                "CNAME",
+                                "TXT"
+                            ]
+                        }
+                    }
+                }
+            ]
+        },
+        "VersionId": "v1",
+        "IsDefaultVersion": true,
+        "CreateDate": "2026-11-25T18:57:07+00:00"
+    }
+}
