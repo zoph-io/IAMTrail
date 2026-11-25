@@ -102,11 +102,19 @@
                         "arn:aws:resource-explorer-2:*::view/AWSServiceViewForApplicationSignals/service-view",
                         "arn:aws:resource-explorer-2:*::view/AWSServiceViewForApplicationSignalsOrgScopeProd/service-view"
                     ]
+                },
+                {
+                    "Sid": "CloudWatchDevOpsAgentListPermissions",
+                    "Effect": "Allow",
+                    "Action": [
+                        "aidevops:ListAgentSpaces"
+                    ],
+                    "Resource": "*"
                 }
             ]
         },
-        "VersionId": "v28",
+        "VersionId": "v29",
         "IsDefaultVersion": true,
-        "CreateDate": "2026-11-23T11:47:06+00:00"
+        "CreateDate": "2026-11-24T23:47:07+00:00"
     }
 }
