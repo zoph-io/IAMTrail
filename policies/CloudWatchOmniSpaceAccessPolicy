@@ -31,6 +31,12 @@
                         "cloudwatch:UpdateAlert",
                         "cloudwatch:DeleteAlert",
                         "cloudwatch:ListAlerts",
+                        "cloudwatch:CreateOmniSlo",
+                        "cloudwatch:GetOmniSlo",
+                        "cloudwatch:UpdateOmniSlo",
+                        "cloudwatch:DeleteOmniSlo",
+                        "cloudwatch:ListOmniSlos",
+                        "cloudwatch:BatchGetOmniSloReport",
                         "cloudwatch:CreateOmniDashboard",
                         "cloudwatch:GetOmniDashboard",
                         "cloudwatch:UpdateOmniDashboard",
@@ -47,6 +53,11 @@
                         "cloudwatch:UpdateView",
                         "cloudwatch:DeleteView",
                         "cloudwatch:ListViews",
+                        "cloudwatch:CreateLookup",
+                        "cloudwatch:GetLookup",
+                        "cloudwatch:UpdateLookup",
+                        "cloudwatch:DeleteLookup",
+                        "cloudwatch:ListLookups",
                         "cloudwatch:GetPreferences",
                         "cloudwatch:UpdatePreferences",
                         "cloudwatch:CreateOmniThread",
@@ -60,12 +71,25 @@
                         "cloudwatch:UpdateOmniAgentAsset",
                         "cloudwatch:ListOmniAgentAssets",
                         "cloudwatch:DeleteOmniAgentAsset",
+                        "cloudwatch:CreateExperiment",
+                        "cloudwatch:GetExperiment",
+                        "cloudwatch:UpdateExperiment",
+                        "cloudwatch:DeleteExperiment",
+                        "cloudwatch:ListExperiments",
+                        "cloudwatch:StartExperimentRun",
+                        "cloudwatch:StopExperimentRun",
+                        "cloudwatch:GetExperimentRun",
+                        "cloudwatch:ListExperimentRuns",
+                        "cloudwatch:DeleteExperimentRun",
                         "cloudwatch:SubmitFeedback",
+                        "cloudwatch:ListObservations",
+                        "cloudwatch:ListAnomalies",
                         "cloudwatch:CreateIntegration",
                         "cloudwatch:UpdateIntegration",
                         "cloudwatch:GetIntegration",
                         "cloudwatch:DeleteIntegration",
                         "cloudwatch:ListIntegrations",
+                        "cloudwatch:ListIntegrationTargets",
                         "cloudwatch:InvokeIntegration",
                         "cloudwatch:GetIntelligenceConfiguration",
                         "cloudwatch:PutIntelligenceConfiguration",
@@ -102,7 +126,10 @@
                         "arn:aws:cloudwatch:*:*:view/*",
                         "arn:aws:cloudwatch:*:*:integration/*",
                         "arn:aws:cloudwatch:*:*:dataset/*",
-                        "arn:aws:cloudwatch:*:*:omni-agent-asset/*"
+                        "arn:aws:cloudwatch:*:*:omni-agent-asset/*",
+                        "arn:aws:cloudwatch:*:*:experiment/*",
+                        "arn:aws:cloudwatch:*:*:omni-slo/*",
+                        "arn:aws:cloudwatch:*:*:lookup/*"
                     ]
                 },
                 {
@@ -205,6 +232,29 @@
                         },
                         "StringLike": {
                             "kms:EncryptionContext:aws:cloudwatch:arn": "arn:aws:cloudwatch:*:${aws:PrincipalAccount}:dataset/*"
+                        }
+                    }
+                },
+                {
+                    "Sid": "KmsCryptoOpsForLookups",
+                    "Effect": "Allow",
+                    "Action": [
+                        "kms:Decrypt",
+                        "kms:GenerateDataKey"
+                    ],
+                    "Resource": "arn:aws:kms:*:*:key/*",
+                    "Condition": {
+                        "ForAnyValue:StringEquals": {
+                            "aws:CalledVia": [
+                                "cloudwatch.amazonaws.com"
+                            ]
+                        },
+                        "StringEquals": {
+                            "aws:ResourceAccount": "${aws:PrincipalAccount}",
+                            "aws:ResourceTag/cw-omni": "true"
+                        },
+                        "StringLike": {
+                            "kms:EncryptionContext:aws:cloudwatch:arn": "arn:aws:cloudwatch:*:${aws:PrincipalAccount}:lookup/*"
                         }
                     }
                 },
@@ -613,11 +663,63 @@
                     }
                 },
                 {
+                    "Sid": "AgentCorePrimitiveReads",
+                    "Effect": "Allow",
+                    "Action": [
+                        "bedrock-agentcore:GetMemory",
+                        "bedrock-agentcore:GetGateway",
+                        "bedrock-agentcore:GetBrowser",
+                        "bedrock-agentcore:GetCodeInterpreter",
+                        "bedrock-agentcore:GetPaymentManager",
+                        "bedrock-agentcore:GetOauth2CredentialProvider",
+                        "bedrock-agentcore:GetApiKeyCredentialProvider",
+                        "bedrock-agentcore:GetPaymentCredentialProvider",
+                        "bedrock-agentcore:ListGatewayTargets",
+                        "bedrock-agentcore:GetGatewayTarget",
+                        "bedrock-agentcore:GetPolicyEngine"
+                    ],
+                    "Resource": [
+                        "arn:aws:bedrock-agentcore:*:*:memory/*",
+                        "arn:aws:bedrock-agentcore:*:*:gateway/*",
+                        "arn:aws:bedrock-agentcore:*:*:browser-custom/*",
+                        "arn:aws:bedrock-agentcore:*:*:code-interpreter-custom/*",
+                        "arn:aws:bedrock-agentcore:*:*:payment-manager/*",
+                        "arn:aws:bedrock-agentcore:*:*:token-vault/*",
+                        "arn:aws:bedrock-agentcore:*:*:policy-engine/*"
+                    ],
+                    "Condition": {
+                        "StringEquals": {
+                            "aws:ResourceAccount": "${aws:PrincipalAccount}"
+                        }
+                    }
+                },
+                {
+                    "Sid": "BedrockKnowledgeBaseReads",
+                    "Effect": "Allow",
+                    "Action": [
+                        "bedrock:GetKnowledgeBase"
+                    ],
+                    "Resource": "arn:aws:bedrock:*:*:knowledge-base/*",
+                    "Condition": {
+                        "StringEquals": {
+                            "aws:ResourceAccount": "${aws:PrincipalAccount}"
+                        }
+                    }
+                },
+                {
                     "Sid": "BedrockFoundationModelDiscovery",
                     "Effect": "Allow",
                     "Action": [
                         "bedrock:ListFoundationModels",
                         "bedrock:ListInferenceProfiles"
+                    ],
+                    "Resource": "*"
+                },
+                {
+                    "Sid": "PriceListModelPrices",
+                    "Effect": "Allow",
+                    "Action": [
+                        "pricing:GetProducts"
                     ],
                     "Resource": "*"
                 },
@@ -860,11 +962,95 @@
                             "aws:CalledVia": "cloudwatch.amazonaws.com"
                         }
                     }
+                },
+                {
+                    "Sid": "SnsTopicReadForIntelligenceNotifications",
+                    "Effect": "Allow",
+                    "Action": "sns:GetTopicAttributes",
+                    "Resource": "arn:aws:sns:*:*:*",
+                    "Condition": {
+                        "ForAnyValue:StringEquals": {
+                            "aws:CalledVia": [
+                                "cloudwatch.amazonaws.com"
+                            ]
+                        }
+                    }
+                },
+                {
+                    "Sid": "ObservabilityAdminTelemetryStatusReads",
+                    "Effect": "Allow",
+                    "Action": [
+                        "observabilityadmin:GetTelemetryEvaluationStatus",
+                        "observabilityadmin:ListTelemetryRules"
+                    ],
+                    "Resource": "*"
+                },
+                {
+                    "Sid": "AwsEventsTelemetryRuleManagement",
+                    "Effect": "Allow",
+                    "Action": [
+                        "observabilityadmin:GetTelemetryRule",
+                        "observabilityadmin:CreateTelemetryRule",
+                        "observabilityadmin:UpdateTelemetryRule",
+                        "observabilityadmin:DeleteTelemetryRule"
+                    ],
+                    "Resource": "arn:aws:observabilityadmin:*:*:telemetry-rule/CloudWatchOmniEvents",
+                    "Condition": {
+                        "StringEquals": {
+                            "aws:ResourceAccount": "${aws:PrincipalAccount}"
+                        }
+                    }
+                },
+                {
+                    "Sid": "AwsEventsTelemetryEvaluation",
+                    "Effect": "Allow",
+                    "Action": "observabilityadmin:StartTelemetryEvaluation",
+                    "Resource": "*"
+                },
+                {
+                    "Sid": "AwsEventsObservabilityAdminConfigRecorder",
+                    "Effect": "Allow",
+                    "Action": "config:PutServiceLinkedConfigurationRecorder",
+                    "Resource": "arn:aws:config:*:*:configuration-recorder/AWSConfigurationRecorderForObservabilityAdmin/*",
+                    "Condition": {
+                        "ForAnyValue:StringEquals": {
+                            "aws:CalledVia": [
+                                "observabilityadmin.amazonaws.com"
+                            ]
+                        },
+                        "StringEquals": {
+                            "aws:ResourceAccount": "${aws:PrincipalAccount}",
+                            "config:ConfigurationRecorderServicePrincipal": "observabilityadmin.amazonaws.com"
+                        }
+                    }
+                },
+                {
+                    "Sid": "AwsEventsObservabilityAdminServiceLinkedRoles",
+                    "Effect": "Allow",
+                    "Action": "iam:CreateServiceLinkedRole",
+                    "Resource": [
+                        "arn:aws:iam::*:role/aws-service-role/observabilityadmin.amazonaws.com/AWSServiceRoleForObservabilityAdmin",
+                        "arn:aws:iam::*:role/aws-service-role/telemetry-enablement.observabilityadmin.amazonaws.com/AWSServiceRoleForObservabilityAdmin_TelemetryEnablement"
+                    ],
+                    "Condition": {
+                        "ForAnyValue:StringEquals": {
+                            "aws:CalledVia": [
+                                "observabilityadmin.amazonaws.com"
+                            ]
+                        },
+                        "StringEquals": {
+                            "aws:ResourceAccount": "${aws:PrincipalAccount}",
+                            "iam:AWSServiceName": [
+                                "observabilityadmin.amazonaws.com",
+                                "telemetry-enablement.observabilityadmin.amazonaws.com"
+                            ]
+                        }
+                    }
                 }
             ]
         },
-        "VersionId": "v5",
+        "VersionId": "v6",
         "IsDefaultVersion": true,
-        "CreateDate": "2026-11-19T23:37:09+00:00"
+        "CreateDate": "2026-11-25T19:47:07+00:00"
     }
 }
