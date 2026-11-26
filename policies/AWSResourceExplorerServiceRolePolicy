@@ -3429,6 +3429,7 @@
                         "rds:DescribeEngineDefaultClusterParameters",
                         "rds:DescribeEngineDefaultParameters",
                         "rds:DescribeIntegrations",
+                        "rds:DescribeSchemas",
                         "rds:DescribeTenantDatabases",
                         "rds:ListTagsForResource",
                         "redshift-serverless:GetNamespace",
@@ -4073,8 +4074,8 @@
                 }
             ]
         },
-        "VersionId": "v61",
+        "VersionId": "v62",
         "IsDefaultVersion": true,
-        "CreateDate": "2026-11-19T23:57:07+00:00"
+        "CreateDate": "2026-11-26T00:37:07+00:00"
     }
 }
