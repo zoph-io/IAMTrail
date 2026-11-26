@@ -143,11 +143,26 @@
                     "Resource": [
                         "*"
                     ]
+                },
+                {
+                    "Sid": "AthenaServiceLinkedRolePermissions",
+                    "Effect": "Allow",
+                    "Action": [
+                        "iam:CreateServiceLinkedRole"
+                    ],
+                    "Resource": [
+                        "arn:aws:iam::*:role/aws-service-role/ops.athena.amazonaws.com/AWSServiceRoleForAmazonAthena"
+                    ],
+                    "Condition": {
+                        "StringEquals": {
+                            "iam:AWSServiceName": "ops.athena.amazonaws.com"
+                        }
+                    }
                 }
             ]
         },
-        "VersionId": "v15",
+        "VersionId": "v16",
         "IsDefaultVersion": true,
-        "CreateDate": "2026-02-12T18:03:09+00:00"
+        "CreateDate": "2026-11-26T00:07:07+00:00"
     }
 }
