@@ -71,33 +71,6 @@
                 },
                 {
                     "Effect": "Allow",
-                    "Action": "iam:CreateRole",
-                    "Resource": "arn:aws:iam::*:role/service-role/*"
-                },
-                {
-                    "Effect": "Allow",
-                    "Action": "iam:AttachRolePolicy",
-                    "Resource": "arn:aws:iam::*:role/service-role/*",
-                    "Condition": {
-                        "ArnLike": {
-                            "iam:PolicyARN": [
-                                "arn:aws:iam::aws:policy/WellArchitectedAgentResourceScanning",
-                                "arn:aws:iam::*:policy/service-role/WAAgentExecutionRolePolicy*",
-                                "arn:aws:iam::*:policy/service-role/WAAgentExecutionPolicy*"
-                            ]
-                        }
-                    }
-                },
-                {
-                    "Effect": "Allow",
-                    "Action": "iam:CreatePolicy",
-                    "Resource": [
-                        "arn:aws:iam::*:policy/service-role/WAAgentExecutionRolePolicy*",
-                        "arn:aws:iam::*:policy/service-role/WAAgentExecutionPolicy*"
-                    ]
-                },
-                {
-                    "Effect": "Allow",
                     "Action": "iam:ListRoles",
                     "Resource": "*"
                 },
@@ -121,8 +94,8 @@
                 }
             ]
         },
-        "VersionId": "v4",
+        "VersionId": "v5",
         "IsDefaultVersion": true,
-        "CreateDate": "2026-11-13T19:37:08+00:00"
+        "CreateDate": "2026-11-26T17:37:07+00:00"
     }
 }
