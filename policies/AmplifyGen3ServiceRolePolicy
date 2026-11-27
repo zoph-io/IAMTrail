@@ -102,12 +102,111 @@
                     "Resource": "arn:aws:amplifygen3:*:*:app/*/environment/*"
                 },
                 {
-                    "Sid": "IdcInstanceDiscovery",
+                    "Sid": "IdcDiscovery",
                     "Effect": "Allow",
                     "Action": [
-                        "sso:ListInstances"
+                        "sso:ListInstances",
+                        "sso:DescribeInstance"
                     ],
                     "Resource": "*"
+                },
+                {
+                    "Sid": "IdcApplicationProvisioning",
+                    "Effect": "Allow",
+                    "Action": [
+                        "sso:CreateApplication"
+                    ],
+                    "Resource": [
+                        "arn:aws:sso::*:application/*",
+                        "arn:aws:sso:::instance/*",
+                        "arn:aws:sso::aws:applicationProvider/amplifygen3"
+                    ],
+                    "Condition": {
+                        "StringEquals": {
+                            "aws:RequestTag/ManagedByAmplifyGen3": "true"
+                        },
+                        "ForAllValues:StringEquals": {
+                            "aws:TagKeys": [
+                                "ManagedByAmplifyGen3"
+                            ]
+                        }
+                    }
+                },
+                {
+                    "Sid": "IdcApplicationTagOnCreate",
+                    "Effect": "Allow",
+                    "Action": [
+                        "sso:TagResource"
+                    ],
+                    "Resource": [
+                        "arn:aws:sso:::instance/*",
+                        "arn:aws:sso::aws:applicationProvider/amplifygen3"
+                    ],
+                    "Condition": {
+                        "StringEquals": {
+                            "aws:RequestTag/ManagedByAmplifyGen3": "true"
+                        },
+                        "ForAllValues:StringEquals": {
+                            "aws:TagKeys": [
+                                "ManagedByAmplifyGen3"
+                            ]
+                        }
+                    }
+                },
+                {
+                    "Sid": "IdcApplicationTagManagement",
+                    "Effect": "Allow",
+                    "Action": [
+                        "sso:TagResource"
+                    ],
+                    "Resource": "arn:aws:sso::*:application/*",
+                    "Condition": {
+                        "StringEquals": {
+                            "aws:RequestTag/ManagedByAmplifyGen3": "true",
+                            "aws:ResourceTag/ManagedByAmplifyGen3": "true"
+                        },
+                        "ForAllValues:StringEquals": {
+                            "aws:TagKeys": [
+                                "ManagedByAmplifyGen3"
+                            ]
+                        }
+                    }
+                },
+                {
+                    "Sid": "IdcApplicationConfigurationSameAccount",
+                    "Effect": "Allow",
+                    "Action": [
+                        "sso:PutApplicationAssignmentConfiguration",
+                        "sso:PutApplicationGrant",
+                        "sso:PutApplicationAuthenticationMethod",
+                        "sso:CreateApplicationAssignment",
+                        "sso:DeleteApplication"
+                    ],
+                    "Resource": "arn:aws:sso::*:application/*",
+                    "Condition": {
+                        "StringEquals": {
+                            "aws:ResourceAccount": "${aws:PrincipalAccount}",
+                            "aws:ResourceTag/ManagedByAmplifyGen3": "true"
+                        }
+                    }
+                },
+                {
+                    "Sid": "IdcApplicationConfigurationSameOrganization",
+                    "Effect": "Allow",
+                    "Action": [
+                        "sso:PutApplicationAssignmentConfiguration",
+                        "sso:PutApplicationGrant",
+                        "sso:PutApplicationAuthenticationMethod",
+                        "sso:CreateApplicationAssignment",
+                        "sso:DeleteApplication"
+                    ],
+                    "Resource": "arn:aws:sso::*:application/*",
+                    "Condition": {
+                        "StringEquals": {
+                            "aws:ResourceOrgID": "${aws:PrincipalOrgID}",
+                            "aws:ResourceTag/ManagedByAmplifyGen3": "true"
+                        }
+                    }
                 },
                 {
                     "Sid": "IdcAdminGroupResolution",
@@ -115,7 +214,10 @@
                     "Action": [
                         "identitystore:GetGroupId"
                     ],
-                    "Resource": "arn:aws:identitystore::*:identitystore/*"
+                    "Resource": [
+                        "arn:aws:identitystore::*:identitystore/*",
+                        "arn:aws:identitystore:::group/*"
+                    ]
                 },
                 {
                     "Sid": "Route53HostedZoneDiscoveryAndCreation",
@@ -155,8 +257,8 @@
                 }
             ]
         },
-        "VersionId": "v1",
+        "VersionId": "v2",
         "IsDefaultVersion": true,
-        "CreateDate": "2026-11-25T18:57:07+00:00"
+        "CreateDate": "2026-11-27T05:17:08+00:00"
     }
 }
