@@ -5105,12 +5105,12 @@
             "PolicyId": "ANPAIH6HSBHM3VSYC5SKA",
             "Arn": "arn:aws:iam::aws:policy/WellArchitectedConsoleFullAccess",
             "Path": "/",
-            "DefaultVersionId": "v4",
+            "DefaultVersionId": "v5",
             "AttachmentCount": 0,
             "PermissionsBoundaryUsageCount": 0,
             "IsAttachable": true,
             "CreateDate": "2018-11-29T18:19:23+00:00",
-            "UpdateDate": "2026-11-13T19:37:08+00:00"
+            "UpdateDate": "2026-11-26T17:37:07+00:00"
         },
         {
             "PolicyName": "WellArchitectedConsoleReadOnlyAccess",
@@ -19493,12 +19493,12 @@
             "PolicyId": "ANPAZKAPJZG4AIQQQJC3J",
             "Arn": "arn:aws:iam::aws:policy/service-role/AmplifyGen3ServiceRolePolicy",
             "Path": "/service-role/",
-            "DefaultVersionId": "v1",
+            "DefaultVersionId": "v2",
             "AttachmentCount": 0,
             "PermissionsBoundaryUsageCount": 0,
             "IsAttachable": true,
             "CreateDate": "2026-11-25T18:57:07+00:00",
-            "UpdateDate": "2026-11-25T18:57:07+00:00"
+            "UpdateDate": "2026-11-27T05:17:08+00:00"
         },
         {
             "PolicyName": "AWSContinuumForAgentsServiceRolePolicy",
